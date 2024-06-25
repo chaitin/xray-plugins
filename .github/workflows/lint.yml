@@ -1,0 +1,46 @@
+name: Lint Check
+
+on:
+  pull_request:
+    paths:
+      - 'finger/**'
+      - 'poc/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download latest release of xlint_linux_amd64
+        run: |
+          LATEST_RELEASE=$(curl -s https://api.github.com/repos/chaitin/xray-plugins/releases/latest | jq -r '.assets[] | select(.name == "xlint_linux_amd64").browser_download_url')
+          curl -L $LATEST_RELEASE -o xlint_linux_amd64
+          chmod +x xlint_linux_amd64
+
+      - name: Check file changes and run linter
+        run: |
+          FINGER_CHANGED=false
+          POC_CHANGED=false
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^finger/' && FINGER_CHANGED=true || true
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^poc/' && POC_CHANGED=true || true
+          
+          if $FINGER_CHANGED && $POC_CHANGED; then
+            ./xlint_linux_amd64 -f "./finger/*.yml" -f "./poc/*.yml" | tee xlint_output
+          elif $FINGER_CHANGED; then
+            ./xlint_linux_amd64 -f "./finger/*.yml" | tee xlint_output
+          elif $POC_CHANGED; then
+            ./xlint_linux_amd64 -f "./poc/*.yml" | tee xlint_output
+          fi
+
+      - name: Check for lint errors
+        run: |
+          if grep -q "[ERR]" xlint_output; then
+            echo "Lint errors found:"
+            grep "[ERR]" xlint_output
+            exit 1
+          else
+            echo "No lint errors"
+          fi
