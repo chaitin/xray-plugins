@@ -37,7 +37,7 @@ xlint -f "./finger/*" -f "./poc/*"
 本仓库收录的内容包括：
 
 1. 插件优化：对现有插件进行优化，或者将不同来源但检测同一产品或漏洞的插件进行优化合并。
-2. Group List：提交自用的好用的 Group List。
+2. Group List：提交自用的好用的 [Group List](./group/README.md)。
 3. 新的插件。
 
 更多关于插件修复的指南，请参考 [插件修复指南](https://docs.xray.cool/plugins/yaml/Fix)。

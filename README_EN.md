@@ -37,7 +37,7 @@ xlint -f "./finger/*" -f "./poc/*"
 The content included in this repository includes:
 
 1. Plugin Optimization: Optimize existing plugins or merge plugins from different sources that detect the same product or vulnerability.
-2. Group List: Submit useful personal Group Lists.
+2. Group List: Submit useful personal [Group List](./group/README.md).
 3. New Plugins.
 
 For more guidelines on plugin fixes, please refer to [Plugin Fix Guide](https://docs.xray.cool/plugins/yaml/Fix).
