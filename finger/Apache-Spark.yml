@@ -1,0 +1,38 @@
+name: fingerprint-yaml-Apache-Spark
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Spark
+    version: '{{version}}'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/static/spark-logo') || response.title_string.contains('Spark Worker at') || response.body_string.contains('serverSparkVersion')
+    v0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('serverSparkVersion')
+        output:
+            search: |
+                '"serverSparkVersion" : "(?P<version>[0-9\\.]+)"'.submatch(response.body_string)
+            version: search['version']
+    v1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="version"')
+        output:
+            search: |
+                '<span class="version" style="margin-right: 15px;">(?P<version>[0-9\\.]+)</span>'.submatch(response.body_string)
+            version: search['version']
+expression: r0() && (v0() || v1() || true)

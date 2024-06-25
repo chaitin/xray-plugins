@@ -1,0 +1,55 @@
+name: fingerprint-yaml-Apache-Struts2
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Struts2
+    fofa: body="struts problem report" && body="there is no action mapped for namespace" && body="no result defined for action and result input" && body="<a href=(.*\\.action(.*</a>" && body="<form id=(.*\\.action(.*" && body="<a href=(.*\\.do(.*</a>" && body="(.*\\.action" && body="(.*\\.do" || header="jsessionid" || body="struts problem report" || body="there is no action mapped for namespace" || body="no result defined for action and result input"
+transport: http
+set:
+    404Path: get404Path()
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("struts problem report") && response.body_string.contains("there is no action mapped for namespace") && response.body_string.contains("no result defined for action and result input") && response.body_string.contains("<a href=(.*\\.action(.*</a>") && response.body_string.contains("<form id=(.*\\.action(.*") && response.body_string.contains("<a href=(.*\\.do(.*</a>") && response.body_string.contains("(.*\\.action") && response.body_string.contains("(.*\\.do")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jsessionid"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("struts problem report")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("there is no action mapped for namespace")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("no result defined for action and result input")
+    r5:
+        request:
+            method: GET
+            path: /{{404Path}}
+        expression: response.body_string.contains('Struts Problem Report') ||
+            response.body_string.contains('org.apache.struts') ||
+            response.body_string.contains('struts.devMode') ||
+            response.body_string.contains('struts-tags') ||
+            response.body_string.contains('There is no Action mapped for namespace')
+expression: r0() || r1() || r2() || r3() || r4() || r5()
