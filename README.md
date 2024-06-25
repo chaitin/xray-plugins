@@ -22,7 +22,7 @@
 
 ## ✔️ 插件质量
 
-为了确保插件的质量和一致性，我们会在本项目的 [release](https://github.com/chaitin/xray-plugins/releases) 中及时发布最新的 XLint，专门用于 lint 插件。存放在本仓库的插件唯一要求就是通过 CI 中的 lint 检查。
+为了确保插件的质量和一致性，我们会在本项目的 [release](https://github.com/chaitin/xray-plugins/releases) 中及时发布最新的 xlint，专门用于 lint 插件。存放在本仓库的插件唯一要求就是通过 CI 中的 lint 检查。
 
 ### 使用指南
 

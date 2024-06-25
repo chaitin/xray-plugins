@@ -22,7 +22,7 @@ Please note that the plugins in this repository have only passed xlint validatio
 
 ## ✔️ Plugin Quality
 
-To ensure the quality and consistency of the plugins, we will promptly release the latest XLint in the [release](https://github.com/chaitin/xray-plugins/releases) section of this project for linting plugins. The only requirement for plugins stored in this repository is to pass the lint check in the CI.
+To ensure the quality and consistency of the plugins, we will promptly release the latest xlint in the [release](https://github.com/chaitin/xray-plugins/releases) section of this project for linting plugins. The only requirement for plugins stored in this repository is to pass the lint check in the CI.
 
 ### Usage Guide
 
