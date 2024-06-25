@@ -44,6 +44,8 @@ jobs:
 
       - name: Check for lint errors
         run: |
+          echo "Lint output:"
+          cat xlint_output
           if grep -q "[ERR]" xlint_output; then
             echo "Lint errors found:"
             grep "[ERR]" xlint_output
