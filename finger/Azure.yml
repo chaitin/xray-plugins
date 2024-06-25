@@ -3,6 +3,7 @@ manual: false
 detail:
     fingerprint:
         name: Azure
+    fofa: header="azure-webrole-instance-id"
 transport: http
 rules:
     r0:
