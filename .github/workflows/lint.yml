@@ -46,9 +46,9 @@ jobs:
         run: |
           echo "Lint output:"
           cat xlint_output
-          if grep -q "[ERR]" xlint_output; then
+          if grep -q "^\[ERR\]" xlint_output; then
             echo "Lint errors found:"
-            grep "[ERR]" xlint_output
+            grep "^\[ERR\]" xlint_output
             exit 1
           else
             echo "No lint errors"
