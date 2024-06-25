@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://raw.githubusercontent.com/chaitin/gamma/master/static/schema/schema-v2.json",
+  "title": "POC Check",
+  "definitions": {
+    "kv": {
+      "description": "variables",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "raw_request": {
+      "description": "tcp or udp request",
+      "type": "object",
+      "properties": {
+        "cache": {
+          "description": "cache package",
+          "type": "boolean"
+        },
+        "content": {
+          "description": "raw package content",
+          "type": "string"
+        },
+        "read_timeout": {
+          "description": "raw read timeout",
+          "type": "string"
+        },
+        "connection_id": {
+          "description": "raw send package use which connection",
+          "type": "string"
+        }
+      },
+      "required": ["content"],
+      "additionalProperties": false
+    },
+    "http_request": {
+      "description": "http request",
+      "type": "object",
+      "properties": {
+        "cache": {
+          "description": "cache package",
+          "type": "boolean"
+        },
+        "method": {
+          "description": "request method",
+          "type": "string",
+          "enum": ["HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "CONNECT", "MOVE", "TRACE", "PROPFIND"]
+        },
+        "path": {
+          "description": "request path",
+          "type": "string",
+          "pattern": "^[/^].*"
+        },
+        "headers": {
+          "description": "request HTTP headers",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "body": {
+          "description": "request body",
+          "type": "string"
+        },
+        "follow_redirects": {
+          "description": "This option determines whether the HTTP request will follow the jump",
+          "type": "boolean"
+        },
+        "read_timeout": {
+          "description": "http response read timeout",
+          "type": "string"
+        },
+        "no_cookie": {
+            "description": "This option determines whether the HTTP request will not use the cookie",
+            "type": "boolean"
+        }
+      },
+      "required": ["method"],
+      "additionalProperties": false
+    },
+    "rule": {
+      "description": "A rule",
+      "type": "object",
+      "properties": {
+        "request": {
+          "description": "request object is related with transport",
+          "type": "object",
+          "oneOf": [{ "$ref": "#/definitions/raw_request" }, { "$ref": "#/definitions/http_request" }]
+        },
+        "expression": {
+          "description": "a CEL expression what determines whether the vulnerability exists",
+          "type": "string"
+        },
+        "output": { "$ref": "#/definitions/kv" }
+      },
+      "required": ["expression"],
+      "additionalProperties": false
+    },
+    "product": {
+      "description": "fingerprint info",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ct product id",
+          "type": "string"
+        },
+        "name": {
+          "description": "product name",
+          "type": "string"
+        },
+        "version": {
+          "description": "product version",
+          "type": "string"
+        },
+        "cpe": {
+          "description": "product cpe identifier",
+          "type": "string"
+        }
+      }
+    },
+    "detail": {
+      "description": "output details",
+      "type": "object",
+      "properties": {
+        "author": {
+          "description": "POC author",
+          "type": "string"
+        },
+        "links": {
+          "description": "some links that describe or reproduce the vulnerability",
+          "type": "array",
+          "items": {
+            "description": "link",
+            "type": "string",
+            "format": "iri"
+          },
+          "minItems": 0
+        },
+        "vulnerability": {
+          "description": "vulnerability info",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "ct vulnerability id",
+              "type": "string"
+            },
+            "match": {
+              "description": "vulnerability match result",
+              "type": "string"
+            },
+            "level": {
+              "description": "vulnerability level",
+              "type": "string"
+            }
+          },
+          "additionalProperties": true
+        },
+        "fingerprint": {
+          "description": "fingerprint product",
+          "type": "object",
+          "allOf": [
+            { "$ref": "#/definitions/product" }
+          ],
+          "properties": {
+            "os": {
+              "description": "os product",
+              "type": "object",
+              "allOf": [
+                { "$ref": "#/definitions/product" }
+              ]
+            },
+            "hardware": {
+              "description": "hardware product",
+              "type": "object",
+              "allOf": [
+                { "$ref": "#/definitions/product" }
+              ]
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "info": {
+      "description": "info definition",
+      "type": "object",
+      "properties":{
+        "name": {
+          "description": "POC name",
+          "type": "string",
+          "pattern": "^(?:poc-yaml|custom|fingerprint-yaml)-.+$"
+        },
+        "binding": {
+          "description": "binding uuid",
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "manual": {
+          "description": "manual write",
+          "type": "boolean"
+        },
+        "detail": { "$ref": "#/definitions/detail" }
+      },
+      "required": ["name"]
+    },
+    "script": {
+      "description": "script definition",
+      "type": "object",
+      "properties":{
+        "transport": {
+          "description": "transport",
+          "type": "string",
+          "enum": ["tcp", "udp", "http"]
+        },
+        "set": { "$ref": "#/definitions/kv" },
+        "rules": {
+          "description": "Rules",
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rule"
+          }
+        },
+        "expression": {
+          "description": "expression",
+          "type": "string"
+        },
+        "payloads": {
+          "description": "payloads variables",
+          "type": "object",
+          "properties": {
+            "continue": {
+              "description": "get result payload continue",
+              "type": "boolean"
+            },
+            "payloads": {
+              "description": "This option determines whether the test is skip",
+              "type": "object",
+              "additionalProperties": { "$ref": "#/definitions/kv" }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["transport", "rules", "expression"]
+    },
+    "poc": {
+      "description": "A tool that checks XRay POC",
+      "type": "object",
+      "allOf": [
+        { "$ref": "#/definitions/info" },
+        { "$ref": "#/definitions/script" }
+      ],
+      "unevaluatedProperties": false
+    }
+  },
+  "$ref": "#/definitions/poc"
+}

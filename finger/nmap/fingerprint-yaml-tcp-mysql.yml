@@ -1,0 +1,259 @@
+# # This is the NULL probe that just compares any banners given to us
+# ##############################NEXT PROBE##############################
+# Probe TCP NULL q||
+# totalwaitms 6000
+# tcpwrappedms 3000
+# # MySQL Handshake packet ( .\0\0\0\x0a ) reference - http://dev.mysql.com/doc/internals/en/connection-phase-packets.html#packet-Protocol::Handshake
+# #       Error packet     ( .\0\0\0\xff ) reference - http://dev.mysql.com/doc/internals/en/packet-ERR_Packet.html#cs-packet-err-header
+# match mysql m|^.\0\0\0\xff..Host .* is not allowed to connect to this MySQL server$|s p/MySQL/ i/unauthorized/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Host .* is not allowed to connect to this MariaDB server$|s p/MariaDB/ i/unauthorized/ cpe:/a:mariadb:mariadb/
+# match mysql m|^.\0\0\0\xff..Too many connections|s p/MySQL/ i/Too many connections/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Host .* is blocked because of many connection errors|s p/MySQL/ i/blocked - too many connection errors/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Le h\xf4te '[-.\w]+' n'est pas authoris\xe9 \xe0 se connecter \xe0 ce serveur MySQL$| p/MySQL/ i/unauthorized; French/ cpe:/a:mysql:mysql::::fr/
+# match mysql m|^.\0\0\0\xff..Host hat keine Berechtigung, eine Verbindung zu diesem MySQL Server herzustellen\.|s p/MySQL/ i/unauthorized; German/ cpe:/a:mysql:mysql::::de/
+# match mysql m|^.\0\0\0\xff..Host '[-\w_.]+' hat keine Berechtigung, sich mit diesem MySQL-Server zu verbinden|s p/MySQL/ i/unauthorized; German/ cpe:/a:mysql:mysql::::de/
+# match mysql m|^.\0\0\0\xff..Al sistema '[-.\w]+' non e` consentita la connessione a questo server MySQL$|s p/MySQL/ i/unauthorized; Italian/ cpe:/a:mysql:mysql::::it/
+# match mysql m|^.\0\0\0...Servidor '[-.\w]+' est\xe1 bloqueado por muchos errores de conexi\xf3n\.  Desbloquear con 'mysqladmin flush-hosts'|s p/MySQL/ i/blocked - too many connection errors; Spanish/ cpe:/a:mysql:mysql::::es/
+# match mysql m|^.\0\0\0...'Host' '[-.\w]+' n\xe3o tem permiss\xe3o para se conectar com este servidor MySQL| p/MySQL/ i/unauthorized; Spanish/ cpe:/a:mysql:mysql::::es/
+# match mysql m|^.\0\0\0\x0a([\w._-]+)\0............\0\x5f\xd3\x2d\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0............\0$|s p/Drizzle/ v/$1/
+# match mysql m|^.\0\0\0\x0a([\w._-]+)\0............\0\x5f\xd1\x2d\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0............\0$|s p/Drizzle/ v/$1/
+# #MariaDB
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+:\w]+MariaDB-[-_~.+:\w]+~bionic)\0|s p/MySQL/ v/$1/ cpe:/a:mariadb:mariadb:$1/ o/Linux/ cpe:/o:canonical:ubuntu_linux:18.04/
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+:\w]+MariaDB-[-_~.+:\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mariadb:mariadb:$1/
+# match mysql m|^.\0\0\0.(3\.[-_~.+\w]+)\0.*\x08\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0$|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(3\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(4\.[-_~.+\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(6\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(8\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\xffj\x04'[\d.]+' .* MySQL|s p/MySQL/ cpe:/a:mysql:mysql/
+# # This will get awkward if Sphinx goes to version 3.
+# match mysql m|^.\0\0\0.([012]\.[\w.-]+)(?: \([0-9a-f]+\))?\0|s p/Sphinx Search SphinxQL/ v/$1/ cpe:/a:sphinx:sphinx_search:$1/
+# match mysql m|^.\0\0\0\x0a(0[\w._-]+)\0| p/MySQL instance manager/ v/$1/ cpe:/a:mysql:mysql:$1/
+# ##############################NEXT PROBE##############################
+# Probe TCP GenericLines q|\r\n\r\n|
+# rarity 1
+# ports 21,23,35,43,79,98,110,113,119,199,214,264,449,505,510,540,587,616,628,666,731,771,782,1000,1010,1040-1043,1080,1212,1220,1248,1302,1400,1432,1467,1501,1505,1666,1687-1688,2010,2024,2600,3000,3005,3128,3310,3333,3940,4155,5000,5400,5432,5555,5570,6112,6432,6667-6670,7144,7145,7200,7780,8000,8138,9000-9003,9801,11371,11965,13720,15000-15002,18086,19150,26214,26470,31416,30444,34012,56667
+# sslports 989,990,992,995
+# match mysql m|^\x10\0\0\x01\xff\x13\x04Bad handshake$| p/MySQL/ cpe:/a:mysql:mysql/
+# # MySQL Handshake packet ( .\0\0\0\x0a ) reference - http://dev.mysql.com/doc/internals/en/connection-phase-packets.html#packet-Protocol::Handshake
+# #       Error packet     ( .\0\0\0\xff ) reference - http://dev.mysql.com/doc/internals/en/packet-ERR_Packet.html#cs-packet-err-header
+# match mysql m|^.\0\0\0\xff..Host .* is not allowed to connect to this MySQL server$|s p/MySQL/ i/unauthorized/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Host .* is not allowed to connect to this MariaDB server$|s p/MariaDB/ i/unauthorized/ cpe:/a:mariadb:mariadb/
+# match mysql m|^.\0\0\0\xff..Too many connections|s p/MySQL/ i/Too many connections/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Host .* is blocked because of many connection errors|s p/MySQL/ i/blocked - too many connection errors/ cpe:/a:mysql:mysql/
+# match mysql m|^.\0\0\0\xff..Le h\xf4te '[-.\w]+' n'est pas authoris\xe9 \xe0 se connecter \xe0 ce serveur MySQL$| p/MySQL/ i/unauthorized; French/ cpe:/a:mysql:mysql::::fr/
+# match mysql m|^.\0\0\0\xff..Host hat keine Berechtigung, eine Verbindung zu diesem MySQL Server herzustellen\.|s p/MySQL/ i/unauthorized; German/ cpe:/a:mysql:mysql::::de/
+# match mysql m|^.\0\0\0\xff..Host '[-\w_.]+' hat keine Berechtigung, sich mit diesem MySQL-Server zu verbinden|s p/MySQL/ i/unauthorized; German/ cpe:/a:mysql:mysql::::de/
+# match mysql m|^.\0\0\0\xff..Al sistema '[-.\w]+' non e` consentita la connessione a questo server MySQL$|s p/MySQL/ i/unauthorized; Italian/ cpe:/a:mysql:mysql::::it/
+# match mysql m|^.\0\0\0...Servidor '[-.\w]+' est\xe1 bloqueado por muchos errores de conexi\xf3n\.  Desbloquear con 'mysqladmin flush-hosts'|s p/MySQL/ i/blocked - too many connection errors; Spanish/ cpe:/a:mysql:mysql::::es/
+# match mysql m|^.\0\0\0...'Host' '[-.\w]+' n\xe3o tem permiss\xe3o para se conectar com este servidor MySQL| p/MySQL/ i/unauthorized; Spanish/ cpe:/a:mysql:mysql::::es/
+# match mysql m|^.\0\0\0\x0a([\w._-]+)\0............\0\x5f\xd3\x2d\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0............\0$|s p/Drizzle/ v/$1/
+# match mysql m|^.\0\0\0\x0a([\w._-]+)\0............\0\x5f\xd1\x2d\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0............\0$|s p/Drizzle/ v/$1/
+# #MariaDB
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+:\w]+MariaDB-[-_~.+:\w]+~bionic)\0|s p/MySQL/ v/$1/ cpe:/a:mariadb:mariadb:$1/ o/Linux/ cpe:/o:canonical:ubuntu_linux:18.04/
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+:\w]+MariaDB-[-_~.+:\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mariadb:mariadb:$1/
+# match mysql m|^.\0\0\0.(3\.[-_~.+\w]+)\0.*\x08\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0$|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(3\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(4\.[-_~.+\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(5\.[-_~.+\w]+)\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(6\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\x0a(8\.[-_~.+\w]+)\0...\0|s p/MySQL/ v/$1/ cpe:/a:mysql:mysql:$1/
+# match mysql m|^.\0\0\0\xffj\x04'[\d.]+' .* MySQL|s p/MySQL/ cpe:/a:mysql:mysql/
+# # This will get awkward if Sphinx goes to version 3.
+# match mysql m|^.\0\0\0.([012]\.[\w.-]+)(?: \([0-9a-f]+\))?\0|s p/Sphinx Search SphinxQL/ v/$1/ cpe:/a:sphinx:sphinx_search:$1/
+# match mysql m|^.\0\0\0\x0a(0[\w._-]+)\0| p/MySQL instance manager/ v/$1/ cpe:/a:mysql:mysql:$1/
+name: fingerprint-yaml-tcp-mysql-
+manual: false
+detail:
+    fingerprint:
+        name: mysql
+        version: '{{version}}'
+        os_name: '{{osname}}'
+        cpe: oracle:mysql
+transport: tcp
+set:
+    GenericLines: b"\r\n\r\n"
+    re1: '"^\\x10\\0\\0\\x01\\xff\\x13\\x04Bad handshake$"'
+    re10: '"(?s)^.\\0\\0\\0...Servidor ''[-.\\w]+'' est\\xe1 bloqueado por muchos errores de conexi\\xf3n\\.  Desbloquear con ''mysqladmin flush-hosts''"'
+    re11: '"^.\\0\\0\\0...''Host'' ''[-.\\w]+'' n\\xe3o tem permiss\\xe3o para se conectar com este servidor MySQL"'
+    re12: '"(?s)^.\\0\\0\\0\\x0a(?P<version>[\\w._-]+)\\0............\\0\\x5f\\xd3\\x2d\\x02\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0............\\0$"'
+    re13: '"(?s)^.\\0\\0\\0\\x0a(?P<version>[\\w._-]+)\\0............\\0\\x5f\\xd1\\x2d\\x02\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0............\\0$"'
+    re14: '"(?s)^.\\0\\0\\0\\x0a(?P<version>5\\.[-_~.+:\\w]+MariaDB-[-_~.+:\\w]+~bionic)\\0"'
+    re15: '"(?s)^.\\0\\0\\0\\x0a(?P<version>5\\.[-_~.+:\\w]+MariaDB-[-_~.+:\\w]+)\\0"'
+    re16: '"(?s)^.\\0\\0\\0.(?P<version>3\\.[-_~.+\\w]+)\\0.*\\x08\\x02\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0\\0$"'
+    re17: '"(?s)^.\\0\\0\\0\\x0a(?P<version>3\\.[-_~.+\\w]+)\\0...\\0"'
+    re18: '"(?s)^.\\0\\0\\0\\x0a(?P<version>4\\.[-_~.+\\w]+)\\0"'
+    re19: '"(?s)^.\\0\\0\\0\\x0a(?P<version>5\\.[-_~.+\\w]+)\\0"'
+    re2: '"(?s)^.\\0\\0\\0\\xff..Host .* is not allowed to connect to this MySQL server$"'
+    re20: '"(?s)^.\\0\\0\\0\\x0a(?P<version>6\\.[-_~.+\\w]+)\\0...\\0"'
+    re21: '"(?s)^.\\0\\0\\0\\x0a(?P<version>8\\.[-_~.+\\w]+)\\0...\\0"'
+    re22: '"(?s)^.\\0\\0\\0\\xffj\\x04''[\\d.]+'' .* MySQL"'
+    re23: '"(?s)^.\\0\\0\\0.(?P<version>[012]\\.[\\w.-]+)(?: \\([0-9a-f]+\\))?\\0"'
+    re24: '"^.\\0\\0\\0\\x0a(?P<version>0[\\w._-]+)\\0"'
+    re3: '"(?s)^.\\0\\0\\0\\xff..Host .* is not allowed to connect to this MariaDB server$"'
+    re4: '"(?s)^.\\0\\0\\0\\xff..Too many connections"'
+    re5: '"(?s)^.\\0\\0\\0\\xff..Host .* is blocked because of many connection errors"'
+    re6: '"^.\\0\\0\\0\\xff..Le h\\xf4te ''[-.\\w]+'' n''est pas authoris\\xe9 \\xe0 se connecter \\xe0 ce serveur MySQL$"'
+    re7: '"(?s)^.\\0\\0\\0\\xff..Host hat keine Berechtigung, eine Verbindung zu diesem MySQL Server herzustellen\\."'
+    re8: '"(?s)^.\\0\\0\\0\\xff..Host ''[-\\w_.]+'' hat keine Berechtigung, sich mit diesem MySQL-Server zu verbinden"'
+    re9: '"(?s)^.\\0\\0\\0\\xff..Al sistema ''[-.\\w]+'' non e` consentita la connessione a questo server MySQL$"'
+rules:
+    r1:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re1.bmatches(response.raw)
+    r2:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re2.bmatches(response.raw)
+    r3:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re3.bmatches(response.raw)
+    r4:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re4.bmatches(response.raw)
+    r5:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re5.bmatches(response.raw)
+    r6:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re6.bmatches(response.raw)
+    r7:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re7.bmatches(response.raw)
+    r8:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re8.bmatches(response.raw)
+    r9:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re9.bmatches(response.raw)
+    r10:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re10.bmatches(response.raw)
+    r11:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re11.bmatches(response.raw)
+    r12:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re12.bmatches(response.raw)
+        output:
+            r12_result: re12.bsubmatch(response.raw)
+            version: r12_result['version']
+    r13:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re13.bmatches(response.raw)
+        output:
+            r13_result: re13.bsubmatch(response.raw)
+            version: r13_result['version']
+    r14:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re14.bmatches(response.raw)
+        output:
+            r14_result: re14.bsubmatch(response.raw)
+            osname: '''Linux'''
+            version: r14_result['version']
+    r15:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re15.bmatches(response.raw)
+        output:
+            r15_result: re15.bsubmatch(response.raw)
+            version: r15_result['version']
+    r16:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re16.bmatches(response.raw)
+        output:
+            r16_result: re16.bsubmatch(response.raw)
+            version: r16_result['version']
+    r17:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re17.bmatches(response.raw)
+        output:
+            r17_result: re17.bsubmatch(response.raw)
+            version: r17_result['version']
+    r18:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re18.bmatches(response.raw)
+        output:
+            r18_result: re18.bsubmatch(response.raw)
+            version: r18_result['version']
+    r19:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re19.bmatches(response.raw)
+        output:
+            r19_result: re19.bsubmatch(response.raw)
+            version: r19_result['version']
+    r20:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re20.bmatches(response.raw)
+        output:
+            r20_result: re20.bsubmatch(response.raw)
+            version: r20_result['version']
+    r21:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re21.bmatches(response.raw)
+        output:
+            r21_result: re21.bsubmatch(response.raw)
+            version: r21_result['version']
+    r22:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re22.bmatches(response.raw)
+    r23:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re23.bmatches(response.raw)
+        output:
+            r23_result: re23.bsubmatch(response.raw)
+            version: r23_result['version']
+    r24:
+        request:
+            cache: true
+            content: '{{GenericLines}}'
+        expression: re24.bmatches(response.raw)
+        output:
+            r24_result: re24.bsubmatch(response.raw)
+            version: r24_result['version']
+expression: r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24()

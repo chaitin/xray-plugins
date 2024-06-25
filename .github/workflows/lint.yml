@@ -35,11 +35,11 @@ jobs:
           git diff --name-only $PREV_SHA $GITHUB_SHA | grep '^poc/' && POC_CHANGED=true || true
           
           if $FINGER_CHANGED && $POC_CHANGED; then
-            ./xlint_linux_amd64 -f "./finger/*.yml" -f "./poc/*.yml" | tee xlint_output
+            ./xlint_linux_amd64 -f "./finger/**/*.yml" -f "./poc/**/*.yml" | tee xlint_output
           elif $FINGER_CHANGED; then
-            ./xlint_linux_amd64 -f "./finger/*.yml" | tee xlint_output
+            ./xlint_linux_amd64 -f "./finger/**/*.yml" | tee xlint_output
           elif $POC_CHANGED; then
-            ./xlint_linux_amd64 -f "./poc/*.yml" | tee xlint_output
+            ./xlint_linux_amd64 -f "./poc/**/*.yml" | tee xlint_output
           fi
 
       - name: Check for lint errors

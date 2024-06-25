@@ -3,6 +3,7 @@ manual: false
 detail:
     fingerprint:
         name: Apache-Struts2
+    cpe: apache:struts
     fofa: body="struts problem report" && body="there is no action mapped for namespace" && body="no result defined for action and result input" && body="<a href=(.*\\.action(.*</a>" && body="<form id=(.*\\.action(.*" && body="<a href=(.*\\.do(.*</a>" && body="(.*\\.action" && body="(.*\\.do" || header="jsessionid" || body="struts problem report" || body="there is no action mapped for namespace" || body="no result defined for action and result input"
 transport: http
 set:

@@ -3,6 +3,7 @@ manual: false
 detail:
     fingerprint:
         name: Apache-Spark
+    cpe: apache:spark
     version: '{{version}}'
 transport: http
 rules:
