@@ -22,7 +22,9 @@
 ### 使用指南
 
 ```sh
-xlint --script xxx.yml
+xlint -f xxx.yml
+xlint -f "./finger/*"
+xlint -f "./finger/*" -f "./poc/*"
 ```
 
 更多关于插件修复的指南，请参考 [插件修复指南](https://docs.xray.cool/plugins/yaml/Fix)。

@@ -22,7 +22,9 @@ To ensure the quality and consistency of the plugins, we will promptly release t
 ### Usage Guide
 
 ```sh
-xlint --script xxx.yml
+xlint -f xxx.yml
+xlint -f "./finger/*"
+xlint -f "./finger/*" -f "./poc/*"
 ```
 
 For more guidelines on plugin fixes, please refer to [Plugin Fix Guide](https://docs.xray.cool/plugins/yaml/Fix).
