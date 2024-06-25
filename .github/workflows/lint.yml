@@ -1,6 +1,10 @@
 name: Lint Check
 
 on:
+  push:
+    paths:
+      - 'finger/**'
+      - 'poc/**'
   pull_request:
     paths:
       - 'finger/**'
