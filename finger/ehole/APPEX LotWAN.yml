@@ -1,0 +1,23 @@
+name: fingerprint-yaml-APPEX LotWAN
+manual: false
+detail:
+    fingerprint:
+        name: APPEX LotWAN
+    fofa: header="APPEX LotWAN" || title="APPEX LotWAN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("APPEX LotWAN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("APPEX LotWAN")
+expression: r0() || r1()

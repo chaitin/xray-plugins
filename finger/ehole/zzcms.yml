@@ -1,0 +1,58 @@
+name: fingerprint-yaml-zzcms
+manual: false
+detail:
+    fingerprint:
+        name: zzcms
+    fofa: body="/zx/search.php" && body="/inc/showuserlogin.php?style=h&t=math.random(" || body="_ZCMS_ShowNewMessage" || body="zcms_skin" || body="/inc/showuserlogin.php?style=h&t=math.random()" || body="/zx/search.php" || body="/inc/showuserlogin.php?style=h&t=math.random" || title="zzcms-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/zx/search.php") && response.body_string.contains("/inc/showuserlogin.php?style=h&t=math.random(")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_ZCMS_ShowNewMessage")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("zcms_skin")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/inc/showuserlogin.php?style=h&t=math.random()")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/zx/search.php")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/inc/showuserlogin.php?style=h&t=math.random")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zzcms-")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

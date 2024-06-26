@@ -1,0 +1,16 @@
+name: fingerprint-yaml-fortinet-fortigate
+manual: false
+detail:
+    fingerprint:
+        name: fortinet-fortigate
+    fofa: body="top.location=window.location;top.location=\"/remote/login\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('top.location=window.location;top.location="/remote/login";')
+expression: r0()

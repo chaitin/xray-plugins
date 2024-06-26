@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CISCO-Integrated-Management-Controller
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-Integrated-Management-Controller
+    fofa: title="cisco integrated management controller"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cisco integrated management controller")
+expression: r0()

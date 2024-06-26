@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SPIP
+manual: false
+detail:
+    fingerprint:
+        name: SPIP
+    fofa: body="<div class=\"formulaire_spip formulaire_recherche\"" || body="<a href=\"spip.php" || body="<img src=\"/spip"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="formulaire_spip formulaire_recherche"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="spip.php')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/spip')
+expression: r0() || r1() || r2()

@@ -1,0 +1,121 @@
+name: fingerprint-yaml-Microsoft-SharePoint
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-SharePoint
+    fofa: body="content=\"microsoft sharepoint" && body="content=\"sharepoint team" && body="id=\"msowebpartpage_postbacksource" || header="microsoftsharepointteamservices" && header="sprequestduration" || body="id=\"msowebpartpage_postbacksource" || body="content=\"sharepoint team" || body="content=\"microsoft sharepoint" || body="<noscript><div class=\"noindex\">You may be trying to access this site from a secured browser on the server. Please enable scripts and reload this page.</div></noscript>" || body="<noscript><div class=\"noindex\">Please enable scripts and reload this page. If your browser does not support script, then you can visit the minimal version of this site at <a href=" || body="<meta name=\"CollaborationServer\" content=\"SharePoint Team Web Site\" />" || body="<input type=\"hidden\" name=\"MSOWebPartPage_PostbackSource\" id=\"MSOWebPartPage_PostbackSource\" value=" || body="<meta name=\"GENERATOR\" content=\"Microsoft SharePoint\" />" || body="<meta name=\"progid\" content=\"SharePoint.WebPartPage.Document\" />" || header="sprequestduration" || header="sharepointerror" || header="x-sharepointhealthscore" || header="microsoftsharepointteamservices" || title="Microsoft SharePoint"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="microsoft sharepoint') && response.body_string.contains('content="sharepoint team') && response.body_string.contains('id="msowebpartpage_postbacksource')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("microsoftsharepointteamservices")) && response.raw_header.bcontains(bytes("sprequestduration"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="msowebpartpage_postbacksource')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="sharepoint team')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="microsoft sharepoint')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<noscript><div class="noindex">You may be trying to access this site from a secured browser on the server. Please enable scripts and reload this page.</div></noscript>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<noscript><div class="noindex">Please enable scripts and reload this page. If your browser does not support script, then you can visit the minimal version of this site at <a href=')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="CollaborationServer" content="SharePoint Team Web Site" />')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="hidden" name="MSOWebPartPage_PostbackSource" id="MSOWebPartPage_PostbackSource" value=')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="GENERATOR" content="Microsoft SharePoint" />')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="progid" content="SharePoint.WebPartPage.Document" />')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sprequestduration"))
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sharepointerror"))
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-sharepointhealthscore"))
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("microsoftsharepointteamservices"))
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft SharePoint")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15()

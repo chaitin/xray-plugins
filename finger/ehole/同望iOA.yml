@@ -1,0 +1,23 @@
+name: fingerprint-yaml-同望iOA
+manual: false
+detail:
+    fingerprint:
+        name: 同望iOA
+    fofa: header="同望iOA" || title="同望iOA"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("同望iOA"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("同望iOA")
+expression: r0() || r1()

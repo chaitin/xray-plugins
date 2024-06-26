@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Kubernetes
+manual: false
+detail:
+    fingerprint:
+        name: Kubernetes
+    fofa: title="Kubernetes Dashboard" || body="href=\"assets/images/kubernetes-logo.png" && body="<article class=\"post kubernetes" && body="<b>kubernetes</b> listening" && body="value=\"kubernetes" || header="realm=\"kubernetes" || body="value=\"kubernetes" || body="<b>kubernetes</b> listening" || body="<article class=\"post kubernetes" || body="href=\"assets/images/kubernetes-logo.png" || title="kubernetes ci" || title="kubernetes dashboard"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kubernetes Dashboard")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="assets/images/kubernetes-logo.png') && response.body_string.contains('<article class="post kubernetes') && response.body_string.contains("<b>kubernetes</b> listening") && response.body_string.contains('value="kubernetes')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="kubernetes'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="kubernetes')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>kubernetes</b> listening")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<article class="post kubernetes')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="assets/images/kubernetes-logo.png')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kubernetes ci")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kubernetes dashboard")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

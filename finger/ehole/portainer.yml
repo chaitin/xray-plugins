@@ -1,0 +1,51 @@
+name: fingerprint-yaml-portainer
+manual: false
+detail:
+    fingerprint:
+        name: portainer
+    fofa: body="href=\"ico/safari-pinned-tab.svg\"" || body="meta name=\"author\" content=\"Portainer.io" || header="portainer" || body="<meta name=\"author\" content=\"Portainer.io\" />" || body="content=\"Portainer.io\"" || title="portainer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="ico/safari-pinned-tab.svg"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('meta name="author" content="Portainer.io')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("portainer"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Portainer.io" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Portainer.io"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("portainer")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

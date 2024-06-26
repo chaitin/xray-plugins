@@ -1,0 +1,51 @@
+name: fingerprint-yaml-MetInfo
+manual: false
+detail:
+    fingerprint:
+        name: MetInfo
+    fofa: body="content=\"metinfo" && body="powered_by_metinfo" && body="/images/css/metinfo.css" || body="content=\"MetInfo" || body="powered_by_metinfo" || body="/images/css/metinfo.css" || body="content=\"metinfo" || title="powered by metinfo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="metinfo') && response.body_string.contains("powered_by_metinfo") && response.body_string.contains("/images/css/metinfo.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="MetInfo')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered_by_metinfo")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/css/metinfo.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="metinfo')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("powered by metinfo")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

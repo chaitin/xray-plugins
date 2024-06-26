@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LotApp 应用交付系统
+manual: false
+detail:
+    fingerprint:
+        name: LotApp 应用交付系统
+    fofa: header="LotApp 应用交付系统" || title="LotApp 应用交付系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LotApp 应用交付系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LotApp 应用交付系统")
+expression: r0() || r1()

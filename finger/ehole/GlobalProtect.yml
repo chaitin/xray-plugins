@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GlobalProtect
+manual: false
+detail:
+    fingerprint:
+        name: GlobalProtect
+    fofa: header="GlobalProtect" || title="GlobalProtect"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GlobalProtect"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GlobalProtect")
+expression: r0() || r1()

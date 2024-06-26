@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Synology-NAS
+manual: false
+detail:
+    fingerprint:
+        name: Synology-NAS
+    fofa: body="content=\"synology diskstation" && body="content=\"synology nas 提供功能完整的网络存储" || body="modules/BackupReplicationApp" || header="webman/index.cgi" || body="content=\"synology nas 提供功能完整的网络存储" || body="content=\"synology diskstation" || body="nas" && body="content=\"diskstation" || title="synology diskstation"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="synology diskstation') && response.body_string.contains('content="synology nas 提供功能完整的网络存储')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("modules/BackupReplicationApp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webman/index.cgi"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="synology nas 提供功能完整的网络存储')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="synology diskstation')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nas") && response.body_string.contains('content="diskstation')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("synology diskstation")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EleanorCMS
+manual: false
+detail:
+    fingerprint:
+        name: EleanorCMS
+    fofa: header="Eleanor CMS" || title="Eleanor CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Eleanor CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Eleanor CMS")
+expression: r0() || r1()

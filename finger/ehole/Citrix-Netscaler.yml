@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Citrix-Netscaler
+manual: false
+detail:
+    fingerprint:
+        name: Citrix-Netscaler
+    fofa: 'body="netscape/firefox/opera" || header="set-cookie: citrix_ns_id" || header="NS-CACHE" || header="ns_af" || header="Citrix NetScaler" || header="ns-cache" || title="Citrix NetScaler"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netscape/firefox/opera")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: citrix_ns_id"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NS-CACHE"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ns_af"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix NetScaler"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ns-cache"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix NetScaler")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

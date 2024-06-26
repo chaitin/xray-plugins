@@ -1,0 +1,37 @@
+name: fingerprint-yaml-zxoa
+manual: false
+detail:
+    fingerprint:
+        name: zxoa
+    fofa: body="obj.src = \"createcheckcode.aspx?id\"+strmath;" && body="name=\"button1\" value=\"\" onclick=\"javascript:return checkfrom(;\" id=\"button1\" class=\"loginbtn\" />" || body="name=\"button1\" value=\"\" onclick=\"javascript:return checkfrom();\" id=\"button1\" class=\"loginbtn\" />" || body="obj.src = \"createcheckcode.aspx?id\"+strmath;" || body="name=\"button1\" value=\"\" onclick=\"javascript:return checkfrom;\" id=\"button1\" class=\"loginbtn\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('obj.src = "createcheckcode.aspx?id"+strmath;') && response.body_string.contains('name="button1" value="" onclick="javascript:return checkfrom(;" id="button1" class="loginbtn" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="button1" value="" onclick="javascript:return checkfrom();" id="button1" class="loginbtn" />')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('obj.src = "createcheckcode.aspx?id"+strmath;')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="button1" value="" onclick="javascript:return checkfrom;" id="button1" class="loginbtn" />')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Zyxel-USG20W
+manual: false
+detail:
+    fingerprint:
+        name: Zyxel-USG20W
+    fofa: body=" class=\"usg_icon\"" || body="class=\"usg_icon\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' class="usg_icon"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="usg_icon"')
+expression: r0() || r1()

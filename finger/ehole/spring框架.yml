@@ -1,0 +1,23 @@
+name: fingerprint-yaml-spring框架
+manual: false
+detail:
+    fingerprint:
+        name: spring框架
+    fofa: header="spring框架" || title="spring框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("spring框架"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("spring框架")
+expression: r0() || r1()

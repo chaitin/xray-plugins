@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Oracle-Fusion-Middleware
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-Fusion-Middleware
+    fofa: body="href=\"css/fmw_bottom_area.css" || header="oracle-fusion-middleware" || body="<title>Welcome to Oracle Fusion Middleware</title>" || body="<link href=\"css/fmw_bottom_area.css\" rel=\"stylesheet\" type=\"text/css\">" || title="welcome to oracle fusion middleware"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="css/fmw_bottom_area.css')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-fusion-middleware"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Welcome to Oracle Fusion Middleware</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="css/fmw_bottom_area.css" rel="stylesheet" type="text/css">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome to oracle fusion middleware")
+expression: r0() || r1() || r2() || r3() || r4()

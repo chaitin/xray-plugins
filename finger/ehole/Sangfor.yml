@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Sangfor
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor
+    fofa: icon_hash="123821839" || icon_hash="-1926484046" || icon_hash="-1810847295"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 123821839
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1926484046
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1810847295
+expression: r0() || r1() || r2()

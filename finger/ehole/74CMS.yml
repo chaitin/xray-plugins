@@ -1,0 +1,79 @@
+name: fingerprint-yaml-74CMS
+manual: false
+detail:
+    fingerprint:
+        name: 74CMS
+    fofa: body="content=\"74cms.com" && body="content=\"骑士cms" && body="powered by <a href=\"http://www.74cms.com/\"" && body="/templates/default/css/common.css" && body="selectjobscategory" || body="content=\"74cms.com" || body="content=\"骑士CMS" || body="Powered by <a href=\"http://www.74cms.com/\"" || body="selectjobscategory" && body="/templates/default/css/common.css" || body="powered by <a href=\"http://www.74cms.com/\"" || body="content=\"骑士cms" || body="/templates/default/css/common.css" || body="selectjobscategory" || body="content=\"74cms.com\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="74cms.com') && response.body_string.contains('content="骑士cms') && response.body_string.contains('powered by <a href="http://www.74cms.com/"') && response.body_string.contains("/templates/default/css/common.css") && response.body_string.contains("selectjobscategory")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="74cms.com')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="骑士CMS')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.74cms.com/"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("selectjobscategory") && response.body_string.contains("/templates/default/css/common.css")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.74cms.com/"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="骑士cms')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/templates/default/css/common.css")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("selectjobscategory")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="74cms.com"')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

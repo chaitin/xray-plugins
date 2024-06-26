@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Atlassian – JIRA
+manual: false
+detail:
+    fingerprint:
+        name: Atlassian – JIRA
+    fofa: icon_hash="981867722" || icon_hash="552727997" || icon_hash="-1581907337"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 981867722
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 552727997
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1581907337
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-华为云桌面
+manual: false
+detail:
+    fingerprint:
+        name: 华为云桌面
+    fofa: body="Desktop@FusionAccess" && body="/webui/"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Desktop@FusionAccess") && response.body_string.contains("/webui/")
+expression: r0()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-JFrog
+manual: false
+detail:
+    fingerprint:
+        name: JFrog
+    fofa: 'body="src=/ui/img/jfrog" && body="<meta http-equiv=\"refresh\" content=\"0;URL=/artifactory\">" && body="Artifactory is a binaries repository manager" || header="Location: /artifactory/" || body="src=/ui/img/jfrog" || body="<meta http-equiv=\"refresh\" content=\"0;URL=/artifactory\">" || body="Artifactory is a binaries repository manager"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("src=/ui/img/jfrog") && response.body_string.contains('<meta http-equiv="refresh" content="0;URL=/artifactory">') && response.body_string.contains("Artifactory is a binaries repository manager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Location: /artifactory/"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("src=/ui/img/jfrog")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;URL=/artifactory">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Artifactory is a binaries repository manager")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GoAhead
+manual: false
+detail:
+    fingerprint:
+        name: GoAhead
+    fofa: header="goahead" || header="goahead-webs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("goahead"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("goahead-webs"))
+expression: r0() || r1()

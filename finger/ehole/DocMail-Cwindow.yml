@@ -1,0 +1,44 @@
+name: fingerprint-yaml-DocMail-Cwindow
+manual: false
+detail:
+    fingerprint:
+        name: DocMail-Cwindow
+    fofa: body="href=\"http://www.docmail.cn/android/app/docmail.apk" && body="content=\"北京国信冠群技术有限公司,国信冠群,邮件" && body="<a href=\"http://www.docmail.cn\" target=\"_blank\">" || body="<a href=\"http://www.docmail.cn\" target=\"_blank\">" || body="content=\"北京国信冠群技术有限公司,国信冠群,邮件" || body="href=\"http://www.docmail.cn/android/app/docmail.apk" || title="cwindow云视窗安全电子邮件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.docmail.cn/android/app/docmail.apk') && response.body_string.contains('content="北京国信冠群技术有限公司,国信冠群,邮件') && response.body_string.contains('<a href="http://www.docmail.cn" target="_blank">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.docmail.cn" target="_blank">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="北京国信冠群技术有限公司,国信冠群,邮件')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.docmail.cn/android/app/docmail.apk')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cwindow云视窗安全电子邮件")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Zyxel ZyWALL
+manual: false
+detail:
+    fingerprint:
+        name: Zyxel ZyWALL
+    fofa: icon_hash="-440644339" || icon_hash="-484708885"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -440644339
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -484708885
+expression: r0() || r1()

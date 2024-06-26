@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Neo4j
+manual: false
+detail:
+    fingerprint:
+        name: Neo4j
+    fofa: body="content=\"neo4j" && body="ng-show=\"neo4j.enterpriseedition" && body="play-topic=\"neo4j-sync" && body="neo4jdeveloperdoc" || header="Neo4j" || body="{{ neo4j.version | neo4jdeveloperdoc }}/" || body="play-topic=\"neo4j-sync" || body="ng-show=\"neo4j.enterpriseedition" || body="content=\"neo4j" || body="neo4jdeveloperdoc" || title="Neo4j"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="neo4j') && response.body_string.contains('ng-show="neo4j.enterpriseedition') && response.body_string.contains('play-topic="neo4j-sync') && response.body_string.contains("neo4jdeveloperdoc")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Neo4j"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("{{ neo4j.version | neo4jdeveloperdoc }}/")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('play-topic="neo4j-sync')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('ng-show="neo4j.enterpriseedition')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="neo4j')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("neo4jdeveloperdoc")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Neo4j")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

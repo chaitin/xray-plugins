@@ -1,0 +1,37 @@
+name: fingerprint-yaml-faqrobot
+manual: false
+detail:
+    fingerprint:
+        name: faqrobot
+    fofa: body="content=\"faq客服机器人" && body="南京云问网络技术有限公司" || body="南京云问网络技术有限公司" && body="content=\"faq客服机器人" || body="content=\"faq客服机器人" || body="南京云问网络技术有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="faq客服机器人') && response.body_string.contains("南京云问网络技术有限公司")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("南京云问网络技术有限公司") && response.body_string.contains('content="faq客服机器人')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="faq客服机器人')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("南京云问网络技术有限公司")
+expression: r0() || r1() || r2() || r3()

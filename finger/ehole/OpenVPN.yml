@@ -1,0 +1,30 @@
+name: fingerprint-yaml-OpenVPN
+manual: false
+detail:
+    fingerprint:
+        name: OpenVPN
+    fofa: 'icon_hash="396533629" || header="realm=\"openvpn" || header="server: openvpn"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 396533629
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="openvpn'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: openvpn"))'
+expression: r0() || r1() || r2()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-云优CMS(YUNUCMS)
+manual: false
+detail:
+    fingerprint:
+        name: 云优CMS(YUNUCMS)
+    fofa: body="云优CMS" || body="YUNUCMS" || header="云优CMS" || header="YUNUCMS" || title="云优CMS" || title="YUNUCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("云优CMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("YUNUCMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("云优CMS"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YUNUCMS"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("云优CMS")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YUNUCMS")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

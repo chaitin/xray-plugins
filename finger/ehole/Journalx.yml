@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Journalx
+manual: false
+detail:
+    fingerprint:
+        name: Journalx
+    fofa: header="Journalx" || title="Journalx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Journalx"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Journalx")
+expression: r0() || r1()

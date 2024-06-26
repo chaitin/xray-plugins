@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CentOS
+manual: false
+detail:
+    fingerprint:
+        name: CentOS
+    fofa: header="centos" || title="apache http server test page powered by centos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("centos"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("apache http server test page powered by centos")
+expression: r0() || r1()

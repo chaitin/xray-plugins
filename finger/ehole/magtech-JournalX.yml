@@ -1,0 +1,16 @@
+name: fingerprint-yaml-magtech-JournalX
+manual: false
+detail:
+    fingerprint:
+        name: magtech-JournalX
+    fofa: body="journalx/authorlogon.action?mag_id"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("journalx/authorlogon.action?mag_id")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Atlassian – Confluence
+manual: false
+detail:
+    fingerprint:
+        name: Atlassian – Confluence
+    fofa: icon_hash="-305179312" || icon_hash="-1642532491"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -305179312
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1642532491
+expression: r0() || r1()

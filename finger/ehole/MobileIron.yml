@@ -1,0 +1,37 @@
+name: fingerprint-yaml-MobileIron
+manual: false
+detail:
+    fingerprint:
+        name: MobileIron
+    fofa: icon_hash="545827989" || icon_hash="967636089" || icon_hash="362091310" || icon_hash="2086228042"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 545827989
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 967636089
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 362091310
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2086228042
+expression: r0() || r1() || r2() || r3()

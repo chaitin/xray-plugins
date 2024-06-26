@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Docker
+manual: false
+detail:
+    fingerprint:
+        name: Docker
+    fofa: 'icon_hash="-1814887000" || icon_hash="1937209448" || header="x-docker-registry-version" && header="x-docker-container: nginx" || header="x-docker-container: nginx" || header="x-docker: production" || header="x-docker-registry-version"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1814887000
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1937209448
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-docker-registry-version")) && response.raw_header.bcontains(bytes("x-docker-container: nginx"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-docker-container: nginx"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-docker: production"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-docker-registry-version"))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

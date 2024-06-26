@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ALCASAR
+manual: false
+detail:
+    fingerprint:
+        name: ALCASAR
+    fofa: body="valoriserdiv5" || body="valoriserDiv5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("valoriserdiv5")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("valoriserDiv5")
+expression: r0() || r1()

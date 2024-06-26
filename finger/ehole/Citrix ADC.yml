@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Citrix ADC
+manual: false
+detail:
+    fingerprint:
+        name: Citrix ADC
+    fofa: header="Citrix ADC" || title="Citrix ADC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix ADC"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix ADC")
+expression: r0() || r1()

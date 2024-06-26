@@ -1,9 +1,9 @@
-name: fingerprint-yaml-1caitong
+name: fingerprint-yaml-MicrosoftAzure
 manual: false
 detail:
     fingerprint:
-        name: 1caitong
-    fofa: body="/custom/groupnewslist.aspx?groupid="
+        name: MicrosoftAzure
+    fofa: title="Microsoft Azure"
 transport: http
 rules:
     r0:
@@ -12,5 +12,5 @@ rules:
             method: GET
             path: /
             follow_redirects: true
-        expression: response.body_string.contains("/custom/groupnewslist.aspx?groupid=")
+        expression: response.title_string.contains("Microsoft Azure")
 expression: r0()

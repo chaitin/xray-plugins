@@ -1,0 +1,51 @@
+name: fingerprint-yaml-AnyMacro
+manual: false
+detail:
+    fingerprint:
+        name: AnyMacro
+    fofa: body="document.aa.f_email" || header="login_key" || body="document.aa.F_email" || body="AnyWebApp" || header="LOGIN_KEY" || body="anywebapp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.aa.f_email")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("login_key"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.aa.F_email")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("AnyWebApp")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LOGIN_KEY"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("anywebapp")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

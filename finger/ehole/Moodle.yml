@@ -1,0 +1,93 @@
+name: fingerprint-yaml-Moodle
+manual: false
+detail:
+    fingerprint:
+        name: Moodle
+    fofa: icon_hash="-438482901" || body="title=\"moodle\" href=\"http://moodle.org/" && body="moodle" && body="moodle\":" || header="moodlesession=" && header="moodleid_" || header="moodle" || body="m.str = {\"moodle\":" || body="content=\"moodle" || body="title=\"moodle\" href=\"http://moodle.org/" || body="moodle" || body="moodle\":" || header="moodleid_" || header="moodlesession=" || title="moodle"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -438482901
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="moodle" href="http://moodle.org/') && response.body_string.contains("moodle") && response.body_string.contains('moodle":')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("moodlesession=")) && response.raw_header.bcontains(bytes("moodleid_"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("moodle"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('m.str = {"moodle":')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="moodle')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="moodle" href="http://moodle.org/')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("moodle")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('moodle":')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("moodleid_"))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("moodlesession="))
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("moodle")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

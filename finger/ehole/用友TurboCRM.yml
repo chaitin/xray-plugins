@@ -1,0 +1,23 @@
+name: fingerprint-yaml-用友TurboCRM
+manual: false
+detail:
+    fingerprint:
+        name: 用友TurboCRM
+    fofa: header="用友TurboCRM" || title="用友TurboCRM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("用友TurboCRM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("用友TurboCRM")
+expression: r0() || r1()

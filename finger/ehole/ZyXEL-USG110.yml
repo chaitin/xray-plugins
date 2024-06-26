@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-USG110
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-USG110
+    fofa: body="<div class=\"model\" id=\"model\" name=\"model\">usg110</div>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="model" id="model" name="model">usg110</div>')
+expression: r0()

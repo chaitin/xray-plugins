@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C Web网管
+manual: false
+detail:
+    fingerprint:
+        name: H3C Web网管
+    fofa: body="webui" && body="Web网管用户登录" && body="china_logo.jpg" || body="Web网管用户登录" && body="china_logo.jpg" && body="webui"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webui") && response.body_string.contains("Web网管用户登录") && response.body_string.contains("china_logo.jpg")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Web网管用户登录") && response.body_string.contains("china_logo.jpg") && response.body_string.contains("webui")
+expression: r0() || r1()

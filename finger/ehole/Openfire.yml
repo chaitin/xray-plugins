@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Openfire
+manual: false
+detail:
+    fingerprint:
+        name: Openfire
+    fofa: 'body="class=\"row justify-content-center\"" && body="<title>openfire 管理界面</title>" || body="<title>openfire 管理界面</title>" && body="class=\"row justify-content-center\"" || body="background: transparent url(images/login_logo.gif) no-repeat" || body="class=\"row justify-content-center\"" || body="<title>openfire 管理界面</title>" || title="Openfire"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="row justify-content-center"') && response.body_string.contains("<title>openfire 管理界面</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>openfire 管理界面</title>") && response.body_string.contains('class="row justify-content-center"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("background: transparent url(images/login_logo.gif) no-repeat")'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="row justify-content-center"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>openfire 管理界面</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Openfire")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

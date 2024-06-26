@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Apache ActiveMQ
+manual: false
+detail:
+    fingerprint:
+        name: Apache ActiveMQ
+    fofa: icon_hash="1766699363" || body="<h2>Welcome to the Apache ActiveMQ!</h2>" && body="(realm=\"activemqrealm" || header="Apache ActiveMQ" || body="<title>Apache ActiveMQ</title>" || header="realm=\"activemqrealm" || title="Apache ActiveMQ" || title="apache activemq"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1766699363
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>Welcome to the Apache ActiveMQ!</h2>") && response.body_string.contains('(realm="activemqrealm')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache ActiveMQ"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Apache ActiveMQ</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="activemqrealm'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache ActiveMQ")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("apache activemq")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

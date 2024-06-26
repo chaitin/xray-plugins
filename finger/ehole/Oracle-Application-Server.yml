@@ -1,0 +1,107 @@
+name: fingerprint-yaml-Oracle-Application-Server
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-Application-Server
+    fofa: 'body="oracle http server</font></font></b></h1>" || header="oracle-application-server" || header="Oracle-Application-Server" || header="Oracle Application Server" || body="mod_ose documentation" && body="oracle jsp documentation" && body="mod_ssl web site" || body="mod_ssl web site" || body="oracle jsp documentation" || body="mod_ose documentation" || header="server: oracle_web_listener" || header="server: oracle http server" || header="server: oracle containers for j2ee" || header="server: oracle application server" || title="Oracle Application Server" || title="oracle http server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("oracle http server</font></font></b></h1>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-application-server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle-Application-Server"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle Application Server"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mod_ose documentation") && response.body_string.contains("oracle jsp documentation") && response.body_string.contains("mod_ssl web site")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mod_ssl web site")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("oracle jsp documentation")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mod_ose documentation")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle_web_listener"))'
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle http server"))'
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle containers for j2ee"))'
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle application server"))'
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oracle Application Server")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("oracle http server")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

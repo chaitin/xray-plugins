@@ -1,0 +1,58 @@
+name: fingerprint-yaml-JeeSite
+manual: false
+detail:
+    fingerprint:
+        name: JeeSite
+    fofa: 'body="jeesite.css" && body="jeesite.js" && body="jeesite.com" || header="set-cookie: jeesite.session.id=" || body="jeesite.com" && body="jeesite.js" && body="jeesite.css" || body="jeesite.css" || body="jeesite.js" || body="jeesite.com" || title="JeeSite"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jeesite.css") && response.body_string.contains("jeesite.js") && response.body_string.contains("jeesite.com")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: jeesite.session.id="))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jeesite.com") && response.body_string.contains("jeesite.js") && response.body_string.contains("jeesite.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jeesite.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jeesite.js")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jeesite.com")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JeeSite")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

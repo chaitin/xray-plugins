@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SonicWALL
+manual: false
+detail:
+    fingerprint:
+        name: SonicWALL
+    fofa: icon_hash="631108382" || header="Server:SonicWALL"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 631108382
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:SonicWALL"))
+expression: r0() || r1()

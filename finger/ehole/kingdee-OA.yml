@@ -1,0 +1,44 @@
+name: fingerprint-yaml-kingdee-OA
+manual: false
+detail:
+    fingerprint:
+        name: kingdee-OA
+    fofa: body="location.href=\"/kingdee/index.jsp\"" && body="logo-kingdee.png" || body="logo-kingdee.png" || body="location.href=\"/kingdee/index.jsp\"" || header="oa/login/logout.jsp" || title="kingdee_oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href="/kingdee/index.jsp"') && response.body_string.contains("logo-kingdee.png")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logo-kingdee.png")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href="/kingdee/index.jsp"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oa/login/logout.jsp"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kingdee_oa")
+expression: r0() || r1() || r2() || r3() || r4()

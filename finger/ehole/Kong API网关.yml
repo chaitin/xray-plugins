@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kong API网关
+manual: false
+detail:
+    fingerprint:
+        name: Kong API网关
+    fofa: header="Kong API网关" || title="Kong API网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kong API网关"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kong API网关")
+expression: r0() || r1()

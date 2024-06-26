@@ -1,0 +1,23 @@
+name: fingerprint-yaml-V2视频会议
+manual: false
+detail:
+    fingerprint:
+        name: V2视频会议
+    fofa: header="V2视频会议" || title="V2视频会议"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("V2视频会议"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("V2视频会议")
+expression: r0() || r1()

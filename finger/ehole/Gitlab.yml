@@ -1,0 +1,121 @@
+name: fingerprint-yaml-Gitlab
+manual: false
+detail:
+    fingerprint:
+        name: Gitlab
+    fofa: 'body="assets/gitlab_logo" || icon_hash="1278323681" || icon_hash="516963061" || body="gon.default_issues_tracker" && body="content=\"gitlab community edition\"" && body="content=\"gitlab " && body="<a href=\"https://about.gitlab.com/\">about gitlab" && body="class=\"col-sm-7 brand-holder pull-left\"" && body="<a href=\"https://about.gitlab.com/\">About GitLab</a>" || header="Set-Cookie: _gitlab_session=" || body="gon.default_issues_tracker" || body="GitLab Community Edition" || header="_gitlab_session" || body="class=\"col-sm-7 brand-holder pull-left\"" || body="<a href=\"https://about.gitlab.com/\">about gitlab" || body="content=\"gitlab " || body="content=\"gitlab community edition\"" || body="content=\"gitlab" || body="<a href=\"https://about.gitlab.com/\">About GitLab</a>" || body="content=\"gitla" || title="sign in · gitlab"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("assets/gitlab_logo")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1278323681
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 516963061
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gon.default_issues_tracker") && response.body_string.contains('content="gitlab community edition"') && response.body_string.contains('content="gitlab ') && response.body_string.contains('<a href="https://about.gitlab.com/">about gitlab') && response.body_string.contains('class="col-sm-7 brand-holder pull-left"') && response.body_string.contains('<a href="https://about.gitlab.com/">About GitLab</a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Set-Cookie: _gitlab_session="))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gon.default_issues_tracker")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("GitLab Community Edition")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_gitlab_session"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="col-sm-7 brand-holder pull-left"')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="https://about.gitlab.com/">about gitlab')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="gitlab ')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="gitlab community edition"')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="gitlab')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="https://about.gitlab.com/">About GitLab</a>')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="gitla')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sign in · gitlab")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15()

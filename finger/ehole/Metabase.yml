@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Metabase
+manual: false
+detail:
+    fingerprint:
+        name: Metabase
+    fofa: icon_hash="1953726032" || title="Metabase"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1953726032
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Metabase")
+expression: r0() || r1()

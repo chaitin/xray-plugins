@@ -1,0 +1,44 @@
+name: fingerprint-yaml-SonarQube
+manual: false
+detail:
+    fingerprint:
+        name: SonarQube
+    fofa: icon_hash="1485257654" || body="content=\"sonarqube" && body="sonarqube" || body="content=\"sonarqube" || body="sonarqube" || title="sonarqube"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1485257654
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="sonarqube') && response.body_string.contains("sonarqube")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="sonarqube')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sonarqube")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sonarqube")
+expression: r0() || r1() || r2() || r3() || r4()

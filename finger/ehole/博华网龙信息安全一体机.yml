@@ -1,0 +1,16 @@
+name: fingerprint-yaml-博华网龙信息安全一体机
+manual: false
+detail:
+    fingerprint:
+        name: 博华网龙信息安全一体机
+    fofa: title="博华网龙信息安全一体机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("博华网龙信息安全一体机")
+expression: r0()

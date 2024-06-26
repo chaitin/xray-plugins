@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Easysite
+manual: false
+detail:
+    fingerprint:
+        name: Easysite
+    fofa: body="generator\" content=\"easysite" && body="copyright 2009 by huilan" && body="_desktopmodules_picturenews" || header="easysite-compression" || body="GENERATOR\" content=\"EasySite" || body="Copyright 2009 by Huilan" || body="_DesktopModules_PictureNews" || header="EasySite-Compression" || body="_desktopmodules_picturenews" || body="copyright 2009 by huilan" || body="generator\" content=\"easysite"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="easysite') && response.body_string.contains("copyright 2009 by huilan") && response.body_string.contains("_desktopmodules_picturenews")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("easysite-compression"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('GENERATOR" content="EasySite')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Copyright 2009 by Huilan")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_DesktopModules_PictureNews")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EasySite-Compression"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_desktopmodules_picturenews")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright 2009 by huilan")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="easysite')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()
