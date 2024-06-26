@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XiunoPHP
+manual: false
+detail:
+    fingerprint:
+        name: XiunoPHP
+    fofa: title="XiunoPHP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XiunoPHP")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-khtimes-Serial-Device-Server
+manual: false
+detail:
+    fingerprint:
+        name: khtimes-Serial-Device-Server
+    fofa: title="io server" && title="canhigher"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("io server") && response.title_string.contains("canhigher")
+expression: r0()

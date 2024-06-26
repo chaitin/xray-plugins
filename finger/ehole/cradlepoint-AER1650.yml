@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-AER1650
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-AER1650
+    fofa: 'title="login :: aer1650"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("login :: aer1650")'
+expression: r0()

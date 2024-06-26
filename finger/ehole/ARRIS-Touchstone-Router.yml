@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ARRIS-Touchstone-Router
+manual: false
+detail:
+    fingerprint:
+        name: ARRIS-Touchstone-Router
+    fofa: body="/arris_style.css" || body="<FRAME name=\"tabs\" src=\"/menu.htm?3\" frameborder=\"0\" scrolling=\"no\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/arris_style.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FRAME name="tabs" src="/menu.htm?3" frameborder="0" scrolling="no">')
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TELESQUARE-SDT-CS3B1
+manual: false
+detail:
+    fingerprint:
+        name: TELESQUARE-SDT-CS3B1
+    fofa: title="sdt-cs3b1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sdt-cs3b1")
+expression: r0()

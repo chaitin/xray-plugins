@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys E4200EB
+manual: false
+detail:
+    fingerprint:
+        name: Linksys E4200EB
+    fofa: header="Linksys E4200EB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys E4200EB"))
+expression: r0()

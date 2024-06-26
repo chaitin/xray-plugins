@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VkFlash
+manual: false
+detail:
+    fingerprint:
+        name: VkFlash
+    fofa: title="VkFlash"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VkFlash")
+expression: r0()

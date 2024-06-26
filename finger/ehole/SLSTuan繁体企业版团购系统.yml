@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SLSTuan繁体企业版团购系统
+manual: false
+detail:
+    fingerprint:
+        name: SLSTuan繁体企业版团购系统
+    fofa: title="SLSTuan繁体企业版团购系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SLSTuan繁体企业版团购系统")
+expression: r0()

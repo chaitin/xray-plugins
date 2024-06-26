@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EMS2600
+manual: false
+detail:
+    fingerprint:
+        name: EMS2600
+    fofa: body="<b>ems2600 - 用户登录</b>" || title="ems2600"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>ems2600 - 用户登录</b>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ems2600")
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Online-Grades
+manual: false
+detail:
+    fingerprint:
+        name: Online-Grades
+    fofa: 'body="content=\"online grades" || body="<small><br /><em>Disclaimer</em>:  If you handed in an assignment or took a test today, don\"t expect the grade to be online immediately.  Teachers only update their grade books as needed.</small><ul><li>" || body="<meta name=\"author\" content=\"Online Grade Posting System -- http://www.onlinegrades.org\" />" || body="<!-- YOU CAN SAFELY REMOVE OR CHANGE ANYTHING BETWEEN THIS SECTION OF COMENTED CODE -->" || body="<!-- STOP REMOVING LINES HERE IF REMOVING/CHANGING THE FOOTER -->" || title="online grades"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="online grades')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<small><br /><em>Disclaimer</em>:  If you handed in an assignment or took a test today, don"t expect the grade to be online immediately.  Teachers only update their grade books as needed.</small><ul><li>'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Online Grade Posting System -- http://www.onlinegrades.org" />')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- YOU CAN SAFELY REMOVE OR CHANGE ANYTHING BETWEEN THIS SECTION OF COMENTED CODE -->")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- STOP REMOVING LINES HERE IF REMOVING/CHANGING THE FOOTER -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("online grades")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

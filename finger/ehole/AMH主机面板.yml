@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AMH主机面板
+manual: false
+detail:
+    fingerprint:
+        name: AMH主机面板
+    fofa: title="AMH主机面板"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AMH主机面板")
+expression: r0()

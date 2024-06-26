@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IceWarp WebSrv
+manual: false
+detail:
+    fingerprint:
+        name: IceWarp WebSrv
+    fofa: header="IceWarp WebSrv" || title="IceWarp WebSrv"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IceWarp WebSrv"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IceWarp WebSrv")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-RPA-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: RPA-Gateway
+    fofa: body="<td align='middle' class='tb_skybg'>" || body="<td align=\"middle\" class=\"tb_skybg\">" || title="- residetial gateway - rpa networks"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td align='middle' class='tb_skybg'>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="middle" class="tb_skybg">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("- residetial gateway - rpa networks")
+expression: r0() || r1() || r2()

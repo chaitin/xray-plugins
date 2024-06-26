@@ -1,0 +1,16 @@
+name: fingerprint-yaml-中成科信 综合管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 中成科信 综合管理平台
+    fofa: icon_hash="1632964065"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1632964065
+expression: r0()

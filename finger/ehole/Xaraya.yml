@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Xaraya
+manual: false
+detail:
+    fingerprint:
+        name: Xaraya
+    fofa: header="Xaraya" || title="Xaraya"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Xaraya"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xaraya")
+expression: r0() || r1()

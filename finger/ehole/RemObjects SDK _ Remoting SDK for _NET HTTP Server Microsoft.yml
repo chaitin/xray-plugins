@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RemObjects SDK _ Remoting SDK for _NET HTTP Server Microsoft
+manual: false
+detail:
+    fingerprint:
+        name: RemObjects SDK / Remoting SDK for .NET HTTP Server Microsoft
+    fofa: icon_hash="72005642"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 72005642
+expression: r0()

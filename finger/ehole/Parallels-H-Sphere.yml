@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Parallels-H-Sphere
+manual: false
+detail:
+    fingerprint:
+        name: Parallels-H-Sphere
+    fofa: title="parallels h-sphere"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("parallels h-sphere")
+expression: r0()

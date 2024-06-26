@@ -1,0 +1,23 @@
+name: fingerprint-yaml-360新一代智慧防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 360新一代智慧防火墙
+    fofa: header="360新一代智慧防火墙" || title="360新一代智慧防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("360新一代智慧防火墙"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("360新一代智慧防火墙")
+expression: r0() || r1()

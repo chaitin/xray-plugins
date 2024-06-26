@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Op5-Statistics
+manual: false
+detail:
+    fingerprint:
+        name: Op5-Statistics
+    fofa: body="<td colspan=\"2\"><center><img src=\"/statistics/plugins/op5gui/op5_statistics.gif\" border=\"0\" alt=\"\"></center></td>" || body="<title>Login to op5 Statistics</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td colspan="2"><center><img src="/statistics/plugins/op5gui/op5_statistics.gif" border="0" alt=""></center></td>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Login to op5 Statistics</title>")
+expression: r0() || r1()

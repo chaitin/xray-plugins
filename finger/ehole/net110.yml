@@ -1,0 +1,16 @@
+name: fingerprint-yaml-net110
+manual: false
+detail:
+    fingerprint:
+        name: net110
+    fofa: title="net110"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("net110")
+expression: r0()

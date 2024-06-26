@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys-CIT400
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-CIT400
+    fofa: header="Linksys-CIT400"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys-CIT400"))
+expression: r0()

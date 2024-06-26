@@ -1,0 +1,37 @@
+name: fingerprint-yaml-richcache-VPN
+manual: false
+detail:
+    fingerprint:
+        name: richcache-VPN
+    fofa: body="class=\"col-md-12 col-xs-12 col-lg-12 external_signin_links\"" && body="class=\"no-js\">请先启用javascript" || body="class=\"no-js\">请先启用javascript" && body="class=\"col-md-12 col-xs-12 col-lg-12 external_signin_links\"" || body="class=\"col-md-12 col-xs-12 col-lg-12 external_signin_links\"" || body="class=\"no-js\">请先启用javascript"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="col-md-12 col-xs-12 col-lg-12 external_signin_links"') && response.body_string.contains('class="no-js">请先启用javascript')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="no-js">请先启用javascript') && response.body_string.contains('class="col-md-12 col-xs-12 col-lg-12 external_signin_links"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="col-md-12 col-xs-12 col-lg-12 external_signin_links"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="no-js">请先启用javascript')
+expression: r0() || r1() || r2() || r3()

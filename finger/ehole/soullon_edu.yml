@@ -1,0 +1,16 @@
+name: fingerprint-yaml-soullon_edu
+manual: false
+detail:
+    fingerprint:
+        name: soullon_edu
+    fofa: title="soullon_edu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("soullon_edu")
+expression: r0()

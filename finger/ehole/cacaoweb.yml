@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cacaoweb
+manual: false
+detail:
+    fingerprint:
+        name: cacaoweb
+    fofa: icon_hash="-1738184811"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1738184811
+expression: r0()

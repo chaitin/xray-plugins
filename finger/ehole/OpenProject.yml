@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OpenProject
+manual: false
+detail:
+    fingerprint:
+        name: OpenProject
+    fofa: icon_hash="1836828108"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1836828108
+expression: r0()

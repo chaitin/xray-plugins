@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Workerman
+manual: false
+detail:
+    fingerprint:
+        name: Workerman
+    fofa: header="Workerman" || title="Workerman"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Workerman"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Workerman")
+expression: r0() || r1()

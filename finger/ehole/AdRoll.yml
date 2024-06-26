@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AdRoll
+manual: false
+detail:
+    fingerprint:
+        name: AdRoll
+    fofa: header="AdRoll" || title="AdRoll"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AdRoll"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AdRoll")
+expression: r0() || r1()

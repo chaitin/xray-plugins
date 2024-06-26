@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XonTel-Network-Camera
+manual: false
+detail:
+    fingerprint:
+        name: XonTel-Network-Camera
+    fofa: title="xontel network camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xontel network camera")
+expression: r0()

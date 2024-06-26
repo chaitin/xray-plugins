@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-FusionInsight
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-FusionInsight
+    fofa: 'header="server: fusioninsight"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: fusioninsight"))'
+expression: r0()

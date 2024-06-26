@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aliware
+manual: false
+detail:
+    fingerprint:
+        name: Aliware
+    fofa: title="阿里中间件自动化验证平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("阿里中间件自动化验证平台")
+expression: r0()

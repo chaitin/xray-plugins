@@ -1,0 +1,16 @@
+name: fingerprint-yaml-安乐业商业版
+manual: false
+detail:
+    fingerprint:
+        name: 安乐业商业版
+    fofa: title="安乐业商业版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安乐业商业版")
+expression: r0()

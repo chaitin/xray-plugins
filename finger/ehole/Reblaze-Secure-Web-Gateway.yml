@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Reblaze-Secure-Web-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Reblaze-Secure-Web-Gateway
+    fofa: 'header="server: reblaze secure web gateway"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: reblaze secure web gateway"))'
+expression: r0()

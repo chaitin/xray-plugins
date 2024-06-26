@@ -1,0 +1,30 @@
+name: fingerprint-yaml-BusinessSpace
+manual: false
+detail:
+    fingerprint:
+        name: BusinessSpace
+    fofa: body="<title>Login to our community network!</title>" || body="&copy; BusinessSpace</div>" || body="This is a place for people building a circle of professional contacts, open to sharing new business opportunities, and looking to fully promote and showcase their capabilities.\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Login to our community network!</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("&copy; BusinessSpace</div>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This is a place for people building a circle of professional contacts, open to sharing new business opportunities, and looking to fully promote and showcase their capabilities." />')
+expression: r0() || r1() || r2()

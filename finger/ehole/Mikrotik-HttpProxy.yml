@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mikrotik-HttpProxy
+manual: false
+detail:
+    fingerprint:
+        name: Mikrotik-HttpProxy
+    fofa: 'header="server: mikrotik httpproxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mikrotik httpproxy"))'
+expression: r0()

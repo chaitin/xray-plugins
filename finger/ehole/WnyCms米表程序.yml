@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WnyCms米表程序
+manual: false
+detail:
+    fingerprint:
+        name: WnyCms米表程序
+    fofa: title="WnyCms米表程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WnyCms米表程序")
+expression: r0()

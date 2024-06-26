@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Abus-TV7230
+manual: false
+detail:
+    fingerprint:
+        name: Abus-TV7230
+    fofa: header="realm=\"tv7230" || title="tv7230"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv7230'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tv7230")
+expression: r0() || r1()

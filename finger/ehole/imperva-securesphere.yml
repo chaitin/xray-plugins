@@ -1,0 +1,44 @@
+name: fingerprint-yaml-imperva-securesphere
+manual: false
+detail:
+    fingerprint:
+        name: imperva-securesphere
+    fofa: body="<title>SecureSphere - Default</title>" || body="<td><font class=\"gray-text-small\">SecureSphere includes software developed by Oracle Corporation.</font></td></tr>" || body="src=\"/SecureSphere/scripts/infra/ActiveRequests.js\">" || body="src=\"/SecureSphere/scripts/infra/Mprv.js\"></script>" || body="src=\"/SecureSphere/scripts/infra/SessionUtils.js\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>SecureSphere - Default</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><font class="gray-text-small">SecureSphere includes software developed by Oracle Corporation.</font></td></tr>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/SecureSphere/scripts/infra/ActiveRequests.js">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/SecureSphere/scripts/infra/Mprv.js"></script>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/SecureSphere/scripts/infra/SessionUtils.js">')
+expression: r0() || r1() || r2() || r3() || r4()

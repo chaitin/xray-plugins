@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WRT600N
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WRT600N
+    fofa: header="Linksys WRT600N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WRT600N"))
+expression: r0()

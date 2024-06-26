@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hait_windows网站系统
+manual: false
+detail:
+    fingerprint:
+        name: Hait_windows网站系统
+    fofa: title="Hait_windows网站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hait_windows网站系统")
+expression: r0()

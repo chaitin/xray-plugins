@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lotus-Expeditor
+manual: false
+detail:
+    fingerprint:
+        name: Lotus-Expeditor
+    fofa: 'header="server: lotus expeditor web"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lotus expeditor web"))'
+expression: r0()

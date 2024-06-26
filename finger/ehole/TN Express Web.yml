@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TN Express Web
+manual: false
+detail:
+    fingerprint:
+        name: TN Express Web
+    fofa: header="TN Express Web" || title="TN Express Web"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TN Express Web"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TN Express Web")
+expression: r0() || r1()

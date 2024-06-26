@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WCS-2040 P_T_Z Wireless IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: WCS-2040 P/T/Z Wireless IP Camera
+    fofa: header="WCS-2040 P/T/Z Wireless IP Camera" || title="WCS-2040 P/T/Z Wireless IP Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WCS-2040 P/T/Z Wireless IP Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WCS-2040 P/T/Z Wireless IP Camera")
+expression: r0() || r1()

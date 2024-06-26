@@ -1,0 +1,58 @@
+name: fingerprint-yaml-WHMCS
+manual: false
+detail:
+    fingerprint:
+        name: WHMCS
+    fofa: body="powered by <a href=\"http://www.whmcs.com" && body="<div id=\"welcome_box\">please <a href=\"clientarea.php\" title=\"login\"><strong>login</strong></a> or <a href=\"register.php\" title=\"register\"><strong>register</strong></a></div>" || body="<div id=\"welcome_box\">please <a href=\"clientarea.php\" title=\"login\"><strong>login</strong></a>,<a href=\"register.php\" title=\"register\"><strong>register</strong></a></div>" || body="powered by <a href=\"http://www.whmcs.com" || body="<div id=\"welcome_box\">please <a href=\"clientarea.php\" title=\"login\"><strong>login</strong></a> or <a href=\"register.php\" title=\"register\"><strong>register</strong></a></div>" || body="<p align=\"center\">Powered by <a href=\"http://www.whmcs.com/\" target=\"_blank\">WHMCompleteSolution</a></p>" || body="<td align=\"right\" valign=\"middle\">Powered by <a href=\"http://www.whmcs.com/\" target=\"_blank\">WHMCS</a></td>" || body="<p>Got a new license key?  <a href=\"licenseerror.php?licenseerror=change\">Click here to enter it</a></p>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.whmcs.com') && response.body_string.contains('<div id="welcome_box">please <a href="clientarea.php" title="login"><strong>login</strong></a> or <a href="register.php" title="register"><strong>register</strong></a></div>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="welcome_box">please <a href="clientarea.php" title="login"><strong>login</strong></a>,<a href="register.php" title="register"><strong>register</strong></a></div>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.whmcs.com')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="welcome_box">please <a href="clientarea.php" title="login"><strong>login</strong></a> or <a href="register.php" title="register"><strong>register</strong></a></div>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p align="center">Powered by <a href="http://www.whmcs.com/" target="_blank">WHMCompleteSolution</a></p>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" valign="middle">Powered by <a href="http://www.whmcs.com/" target="_blank">WHMCS</a></td>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Got a new license key?  <a href="licenseerror.php?licenseerror=change">Click here to enter it</a></p>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

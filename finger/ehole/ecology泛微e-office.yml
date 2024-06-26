@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ecology泛微e-office
+manual: false
+detail:
+    fingerprint:
+        name: ecology泛微e-office
+    fofa: body="dynamiCode" && body="iSignaturePortal" || body="/general/login/view//images/updateload.gif" || body="szfeatures"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dynamiCode") && response.body_string.contains("iSignaturePortal")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/general/login/view//images/updateload.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("szfeatures")
+expression: r0() || r1() || r2()

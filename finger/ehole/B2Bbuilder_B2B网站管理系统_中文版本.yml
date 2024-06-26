@@ -1,0 +1,23 @@
+name: fingerprint-yaml-B2Bbuilder_B2B网站管理系统_中文版本
+manual: false
+detail:
+    fingerprint:
+        name: B2Bbuilder_B2B网站管理系统_中文版本
+    fofa: body="content=\"B2Bbuilder" || body="translateButtonId = \"B2Bbuilder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="B2Bbuilder')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('translateButtonId = "B2Bbuilder')
+expression: r0() || r1()

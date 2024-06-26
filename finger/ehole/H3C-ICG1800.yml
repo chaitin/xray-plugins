@@ -1,0 +1,30 @@
+name: fingerprint-yaml-H3C-ICG1800
+manual: false
+detail:
+    fingerprint:
+        name: H3C-ICG1800
+    fofa: header="realm=\"h3c icg 1800" && header="realm=\"h3c icg1800" || header="realm=\"h3c icg1800" || header="realm=\"h3c icg 1800"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="h3c icg 1800')) && response.raw_header.bcontains(bytes('realm="h3c icg1800'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="h3c icg1800'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="h3c icg 1800'))
+expression: r0() || r1() || r2()

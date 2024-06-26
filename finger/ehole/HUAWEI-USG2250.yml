@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG2250
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG2250
+    fofa: header="usg2250"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("usg2250"))
+expression: r0()

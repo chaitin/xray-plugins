@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RoSpora
+manual: false
+detail:
+    fingerprint:
+        name: RoSpora
+    fofa: body="<link rel=\"Shortcut Icon\" href=\"img/wowlogoanim.gif\" type=\"image/gif\">" || body="<li>This server supports only 2.2.3 clients<br><li>1x Quest XP , 1x Kill XP , 1x Discovery XP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="Shortcut Icon" href="img/wowlogoanim.gif" type="image/gif">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<li>This server supports only 2.2.3 clients<br><li>1x Quest XP , 1x Kill XP , 1x Discovery XP")
+expression: r0() || r1()

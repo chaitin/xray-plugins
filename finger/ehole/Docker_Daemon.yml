@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Docker_Daemon
+manual: false
+detail:
+    fingerprint:
+        name: Docker_Daemon
+    fofa: header="Content-Length:19" || header="text/plain"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Content-Length:19"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("text/plain"))
+expression: r0() || r1()

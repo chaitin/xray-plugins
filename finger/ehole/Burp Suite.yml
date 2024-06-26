@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Burp Suite
+manual: false
+detail:
+    fingerprint:
+        name: Burp Suite
+    fofa: body="<title>Burp Suite Professional</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Burp Suite Professional</title>")
+expression: r0()

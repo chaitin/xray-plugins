@@ -1,0 +1,16 @@
+name: fingerprint-yaml-STARFACE VoIP Software
+manual: false
+detail:
+    fingerprint:
+        name: STARFACE VoIP Software
+    fofa: icon_hash="-332324409"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -332324409
+expression: r0()

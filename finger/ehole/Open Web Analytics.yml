@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Open Web Analytics
+manual: false
+detail:
+    fingerprint:
+        name: Open Web Analytics
+    fofa: header="Open Web Analytics" || title="Open Web Analytics"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Open Web Analytics"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Open Web Analytics")
+expression: r0() || r1()

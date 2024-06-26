@@ -1,0 +1,16 @@
+name: fingerprint-yaml-intelbras-RF-301K
+manual: false
+detail:
+    fingerprint:
+        name: intelbras-RF-301K
+    fofa: title="rf 301k"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rf 301k")
+expression: r0()

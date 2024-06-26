@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Technicolor Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Technicolor Gateway
+    fofa: icon_hash="1835479497" || body="technicolor gateway" || header="xauth_session_id" && header="technicolor gateway" || header="technicolor gateway" || header="xauth_session_id"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1835479497
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("technicolor gateway")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("xauth_session_id")) && response.raw_header.bcontains(bytes("technicolor gateway"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("technicolor gateway"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("xauth_session_id"))
+expression: r0() || r1() || r2() || r3() || r4()

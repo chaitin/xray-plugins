@@ -1,0 +1,23 @@
+name: fingerprint-yaml-O2Micro
+manual: false
+detail:
+    fingerprint:
+        name: O2Micro
+    fofa: header="O2Micro" || title="O2Micro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("O2Micro"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("O2Micro")
+expression: r0() || r1()

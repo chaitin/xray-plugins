@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Unified Management Console (Polycom)
+manual: false
+detail:
+    fingerprint:
+        name: Unified Management Console (Polycom)
+    fofa: icon_hash="-1775553655"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1775553655
+expression: r0()

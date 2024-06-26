@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Allegro-Software-RomPager
+manual: false
+detail:
+    fingerprint:
+        name: Allegro-Software-RomPager
+    fofa: header="Allegro-Software-RomPager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Allegro-Software-RomPager"))
+expression: r0()

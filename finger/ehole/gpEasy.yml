@@ -1,0 +1,23 @@
+name: fingerprint-yaml-gpEasy
+manual: false
+detail:
+    fingerprint:
+        name: gpEasy
+    fofa: header="gpEasy" || title="gpEasy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("gpEasy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gpEasy")
+expression: r0() || r1()

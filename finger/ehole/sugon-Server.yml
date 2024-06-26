@@ -1,0 +1,16 @@
+name: fingerprint-yaml-sugon-Server
+manual: false
+detail:
+    fingerprint:
+        name: sugon-Server
+    fofa: title="server mgmt"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("server mgmt")
+expression: r0()

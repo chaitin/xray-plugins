@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AfterLogic-WebMail-Pro
+manual: false
+detail:
+    fingerprint:
+        name: AfterLogic-WebMail-Pro
+    fofa: body="Powered by <a href=\"http://www.afterlogic.com/products/webmail-pro\" target=\"_blank\">AfterLogic WebMail Pro</a><br />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.afterlogic.com/products/webmail-pro" target="_blank">AfterLogic WebMail Pro</a><br />')
+expression: r0()

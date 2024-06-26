@@ -1,0 +1,16 @@
+name: fingerprint-yaml-二级域名分发系统
+manual: false
+detail:
+    fingerprint:
+        name: 二级域名分发系统
+    fofa: icon_hash="-2055778861"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2055778861
+expression: r0()

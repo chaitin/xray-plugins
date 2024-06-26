@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-S9303
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-S9303
+    fofa: 'header="server: s9303"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: s9303"))'
+expression: r0()

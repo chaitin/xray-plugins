@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LoudBlog
+manual: false
+detail:
+    fingerprint:
+        name: LoudBlog
+    fofa: header="LoudBlog" || title="LoudBlog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LoudBlog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LoudBlog")
+expression: r0() || r1()

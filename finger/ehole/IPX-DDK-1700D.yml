@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IPX-DDK-1700D
+manual: false
+detail:
+    fingerprint:
+        name: IPX-DDK-1700D
+    fofa: header="realm=\"ddk-1700d"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ddk-1700d'))
+expression: r0()

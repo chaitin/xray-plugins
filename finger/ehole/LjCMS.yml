@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LjCMS
+manual: false
+detail:
+    fingerprint:
+        name: LjCMS
+    fofa: header="LjCMS" || title="LjCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LjCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LjCMS")
+expression: r0() || r1()

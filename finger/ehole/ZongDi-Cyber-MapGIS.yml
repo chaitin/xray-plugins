@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZongDi-Cyber-MapGIS
+manual: false
+detail:
+    fingerprint:
+        name: ZongDi-Cyber-MapGIS
+    fofa: title="mapgis server manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mapgis server manager")
+expression: r0()

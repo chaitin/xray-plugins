@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Web-Data-Administrator
+manual: false
+detail:
+    fingerprint:
+        name: Web-Data-Administrator
+    fofa: body="<form name=\"webform1\" method=\"post\" action=\"default.aspx\" onsubmit=\"javascript:return webform_onsubmit(;\" id=\"webform1" || body="<form name=\"webform1\" method=\"post\" action=\"default.aspx\" onsubmit=\"javascript:return webform_onsubmit();\" id=\"webform1" || body="<form name=\"webform1\" method=\"post\" action=\"default.aspx\" onsubmit=\"javascript:return webform_onsubmit;\" id=\"webform1" || body="<title>Web Data Administrator - Login</title>" || body="<form name=\"WebForm1\" method=\"post\" action=\"Default.aspx\" onsubmit=\"javascript:return WebForm_OnSubmit();\" id=\"WebForm1\">" || title="web data administrator - login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="webform1" method="post" action="default.aspx" onsubmit="javascript:return webform_onsubmit(;" id="webform1')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="webform1" method="post" action="default.aspx" onsubmit="javascript:return webform_onsubmit();" id="webform1')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="webform1" method="post" action="default.aspx" onsubmit="javascript:return webform_onsubmit;" id="webform1')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Web Data Administrator - Login</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="WebForm1" method="post" action="Default.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="WebForm1">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("web data administrator - login")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

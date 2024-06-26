@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Node-RED
+manual: false
+detail:
+    fingerprint:
+        name: Node-RED
+    fofa: icon_hash="321591353"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 321591353
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Relaxcms
+manual: false
+detail:
+    fingerprint:
+        name: Relaxcms
+    fofa: header="Relaxcms" || title="Relaxcms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Relaxcms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Relaxcms")
+expression: r0() || r1()

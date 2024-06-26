@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Blesta
+manual: false
+detail:
+    fingerprint:
+        name: Blesta
+    fofa: header="Blesta" || title="Blesta"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Blesta"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Blesta")
+expression: r0() || r1()

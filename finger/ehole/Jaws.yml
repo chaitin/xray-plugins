@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Jaws
+manual: false
+detail:
+    fingerprint:
+        name: Jaws
+    fofa: header="Jaws" || title="Jaws"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Jaws"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Jaws")
+expression: r0() || r1()

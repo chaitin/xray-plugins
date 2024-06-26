@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Adobe DTM
+manual: false
+detail:
+    fingerprint:
+        name: Adobe DTM
+    fofa: header="Adobe DTM" || title="Adobe DTM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Adobe DTM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Adobe DTM")
+expression: r0() || r1()

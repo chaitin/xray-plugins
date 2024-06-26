@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ZyXEL-PMG2005-T20B
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-PMG2005-T20B
+    fofa: body="pmg2005-t20b" && body="xpon onu</font>" || body="xpon onu</font>" && body="pmg2005-t20b" || body="pmg2005-t20b" || body="xpon onu</font>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pmg2005-t20b") && response.body_string.contains("xpon onu</font>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xpon onu</font>") && response.body_string.contains("pmg2005-t20b")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pmg2005-t20b")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xpon onu</font>")
+expression: r0() || r1() || r2() || r3()

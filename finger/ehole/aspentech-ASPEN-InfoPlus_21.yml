@@ -1,0 +1,16 @@
+name: fingerprint-yaml-aspentech-ASPEN-InfoPlus_21
+manual: false
+detail:
+    fingerprint:
+        name: aspentech-ASPEN-InfoPlus.21
+    fofa: body="src=\"/aspencui/css/appstyles.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/aspencui/css/appstyles.js')
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-东方通应用服务器TongWeb
+manual: false
+detail:
+    fingerprint:
+        name: 东方通应用服务器TongWeb
+    fofa: header="TongWeb Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TongWeb Server"))
+expression: r0()

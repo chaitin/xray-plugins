@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lianbangsoft
+manual: false
+detail:
+    fingerprint:
+        name: lianbangsoft
+    fofa: title="lianbangsoft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lianbangsoft")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Pingoteam
+manual: false
+detail:
+    fingerprint:
+        name: Pingoteam
+    fofa: header="Pingoteam" || title="Pingoteam"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Pingoteam"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Pingoteam")
+expression: r0() || r1()

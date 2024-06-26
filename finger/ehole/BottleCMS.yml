@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BottleCMS
+manual: false
+detail:
+    fingerprint:
+        name: BottleCMS
+    fofa: header="BottleCMS" || title="BottleCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BottleCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BottleCMS")
+expression: r0() || r1()

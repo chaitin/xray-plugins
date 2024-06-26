@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniwin_gov
+manual: false
+detail:
+    fingerprint:
+        name: uniwin_gov
+    fofa: title="uniwin_gov"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("uniwin_gov")
+expression: r0()

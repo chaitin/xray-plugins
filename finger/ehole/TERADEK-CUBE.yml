@@ -1,0 +1,37 @@
+name: fingerprint-yaml-TERADEK-CUBE
+manual: false
+detail:
+    fingerprint:
+        name: TERADEK-CUBE
+    fofa: body="index.cs?header=0" && body="administrative console" || body="administrative console" && body="teradek" || body="index.cs?header=0" || body="administrative console"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index.cs?header=0") && response.body_string.contains("administrative console")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("administrative console") && response.body_string.contains("teradek")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index.cs?header=0")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("administrative console")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kinsta
+manual: false
+detail:
+    fingerprint:
+        name: Kinsta
+    fofa: header="Kinsta" || title="Kinsta"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kinsta"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kinsta")
+expression: r0() || r1()

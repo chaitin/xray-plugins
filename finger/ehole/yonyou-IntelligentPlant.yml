@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yonyou-IntelligentPlant
+manual: false
+detail:
+    fingerprint:
+        name: 'yonyou-IntelligentPlant '
+    fofa: body="/modules/core/client/views/sidemenu.client.view.html"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/modules/core/client/views/sidemenu.client.view.html")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR wnr2200
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR wnr2200
+    fofa: header="NETGEAR wnr2200"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR wnr2200"))
+expression: r0()

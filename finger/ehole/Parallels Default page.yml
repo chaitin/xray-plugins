@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Parallels Default page
+manual: false
+detail:
+    fingerprint:
+        name: Parallels Default page
+    fofa: icon_hash="-1050786453"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1050786453
+expression: r0()

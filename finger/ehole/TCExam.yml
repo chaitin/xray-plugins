@@ -1,0 +1,58 @@
+name: fingerprint-yaml-TCExam
+manual: false
+detail:
+    fingerprint:
+        name: TCExam
+    fofa: body="<a name=\"topofdoc\" id=\"topofdoc\"></a>" && body="content=\"nicola asuni - tecnick.com s.r.l.\" />" || body="content=\"nicola asuni - tecnick.com s.r.l.\" />" || body="<a name=\"topofdoc\" id=\"topofdoc\"></a>" || body="<meta name=\"author\" content=\"Nicola Asuni - Tecnick.com s.r.l.\" />" || body="<!-- TCExam19730104 -->" || body="<li><a href=\"tce_login.php\" title=\"click on this link to access on this system\">" || body="<meta name=\"tcexam_level\" content=\"0\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a name="topofdoc" id="topofdoc"></a>') && response.body_string.contains('content="nicola asuni - tecnick.com s.r.l." />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="nicola asuni - tecnick.com s.r.l." />')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a name="topofdoc" id="topofdoc"></a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Nicola Asuni - Tecnick.com s.r.l." />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- TCExam19730104 -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li><a href="tce_login.php" title="click on this link to access on this system">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="tcexam_level" content="0" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

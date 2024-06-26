@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CenturyLink Modem GUI Login (eg_ Technicolor)
+manual: false
+detail:
+    fingerprint:
+        name: 'CenturyLink Modem GUI Login (eg: Technicolor)'
+    fofa: icon_hash="-1908556829"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1908556829
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys EA2700
+manual: false
+detail:
+    fingerprint:
+        name: Linksys EA2700
+    fofa: header="Linksys EA2700"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys EA2700"))
+expression: r0()

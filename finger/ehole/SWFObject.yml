@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SWFObject
+manual: false
+detail:
+    fingerprint:
+        name: SWFObject
+    fofa: header="SWFObject" || title="SWFObject"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SWFObject"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SWFObject")
+expression: r0() || r1()

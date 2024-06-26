@@ -1,0 +1,23 @@
+name: fingerprint-yaml-爱迪科森网上报告厅
+manual: false
+detail:
+    fingerprint:
+        name: 爱迪科森网上报告厅
+    fofa: header="爱迪科森网上报告厅" || title="爱迪科森网上报告厅"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("爱迪科森网上报告厅"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("爱迪科森网上报告厅")
+expression: r0() || r1()

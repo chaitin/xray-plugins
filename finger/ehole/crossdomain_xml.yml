@@ -1,0 +1,23 @@
+name: fingerprint-yaml-crossdomain_xml
+manual: false
+detail:
+    fingerprint:
+        name: crossdomain_xml
+    fofa: body="<cross-domain-policy>" || body="<site-control permitted-cross-domain-policies=\"none\"/>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<cross-domain-policy>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<site-control permitted-cross-domain-policies="none"/>')
+expression: r0() || r1()

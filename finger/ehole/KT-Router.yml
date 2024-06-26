@@ -1,0 +1,16 @@
+name: fingerprint-yaml-KT-Router
+manual: false
+detail:
+    fingerprint:
+        name: KT-Router
+    fofa: header="realm=\"test@kt.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="test@kt.com'))
+expression: r0()

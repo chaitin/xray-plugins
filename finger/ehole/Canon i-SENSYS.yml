@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Canon i-SENSYS
+manual: false
+detail:
+    fingerprint:
+        name: Canon i-SENSYS
+    fofa: header="Canon i-SENSYS" || title="Canon i-SENSYS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Canon i-SENSYS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Canon i-SENSYS")
+expression: r0() || r1()

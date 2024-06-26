@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Surfilter SSL VPN Portal
+manual: false
+detail:
+    fingerprint:
+        name: Surfilter SSL VPN Portal
+    fofa: icon_hash="-590892202"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -590892202
+expression: r0()

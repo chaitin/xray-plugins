@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Shock&Innovation!! netis setup
+manual: false
+detail:
+    fingerprint:
+        name: Shock&Innovation!! netis setup
+    fofa: icon_hash="1326164945"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1326164945
+expression: r0()

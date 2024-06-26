@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mailcow
+manual: false
+detail:
+    fingerprint:
+        name: Mailcow
+    fofa: icon_hash="2146763496"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2146763496
+expression: r0()

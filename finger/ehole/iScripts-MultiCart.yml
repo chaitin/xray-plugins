@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iScripts-MultiCart
+manual: false
+detail:
+    fingerprint:
+        name: iScripts-MultiCart
+    fofa: body="Powered by <a href=\"http://iscripts.com/multicart"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://iscripts.com/multicart')
+expression: r0()

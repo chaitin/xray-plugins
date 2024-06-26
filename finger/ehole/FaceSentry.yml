@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FaceSentry
+manual: false
+detail:
+    fingerprint:
+        name: FaceSentry
+    fofa: title="facesentry access control system"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("facesentry access control system")
+expression: r0()

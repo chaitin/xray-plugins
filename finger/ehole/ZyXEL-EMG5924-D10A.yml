@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-EMG5924-D10A
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-EMG5924-D10A
+    fofa: title="emg5924-d10a"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("emg5924-d10a")
+expression: r0()

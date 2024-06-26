@@ -1,0 +1,37 @@
+name: fingerprint-yaml-AVIOSYS-IP-Camera
+manual: false
+detail:
+    fingerprint:
+        name: AVIOSYS-IP-Camera
+    fofa: body="copyright aviosys" && body="view log" || body="view log" && body="copyright aviosys" || body="copyright aviosys" || body="view log"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright aviosys") && response.body_string.contains("view log")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("view log") && response.body_string.contains("copyright aviosys")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright aviosys")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("view log")
+expression: r0() || r1() || r2() || r3()

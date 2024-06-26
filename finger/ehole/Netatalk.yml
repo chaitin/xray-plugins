@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Netatalk
+manual: false
+detail:
+    fingerprint:
+        name: Netatalk
+    fofa: header="Netatalk" || title="Netatalk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netatalk"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Netatalk")
+expression: r0() || r1()

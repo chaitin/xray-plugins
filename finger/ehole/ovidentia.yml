@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ovidentia
+manual: false
+detail:
+    fingerprint:
+        name: ovidentia
+    fofa: header="ovidentia" || title="ovidentia"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ovidentia"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ovidentia")
+expression: r0() || r1()

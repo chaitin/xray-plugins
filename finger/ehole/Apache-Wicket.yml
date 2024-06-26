@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Apache-Wicket
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Wicket
+    fofa: body="xmlns:wicket=" && body="/org.apache.wicket." || body="xmlns:wicket=" || body="/org.apache.wicket." || header="Apache Wicket" || title="Apache Wicket"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xmlns:wicket=") && response.body_string.contains("/org.apache.wicket.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xmlns:wicket=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/org.apache.wicket.")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Wicket"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Wicket")
+expression: r0() || r1() || r2() || r3() || r4()

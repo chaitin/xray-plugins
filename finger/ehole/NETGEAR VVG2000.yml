@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR VVG2000
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR VVG2000
+    fofa: header="NETGEAR VVG2000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR VVG2000"))
+expression: r0()

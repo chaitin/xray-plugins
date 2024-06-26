@@ -1,0 +1,65 @@
+name: fingerprint-yaml-PivotX
+manual: false
+detail:
+    fingerprint:
+        name: PivotX
+    fofa: body="src=\"includes/js/pivotx.js" && body="templates_internal/assets/pivotx.png\" alt=\"pivotx" && body="content=\"pivotx" || body="content=\"pivotx" || body="templates_internal/assets/pivotx.png\" alt=\"pivotx" || body="src=\"includes/js/pivotx.js" || body="<!-- PivotX -->" || body="<script src=\"includes/js/pivotx.js\" type=\"text/javascript\"></script>" || body="<img src=\"templates_internal/assets/pivotx.png\" alt=\"PivotX\" /></a>" || body="<meta name=\"generator\" content=\"PivotX\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="includes/js/pivotx.js') && response.body_string.contains('templates_internal/assets/pivotx.png" alt="pivotx') && response.body_string.contains('content="pivotx')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="pivotx')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('templates_internal/assets/pivotx.png" alt="pivotx')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="includes/js/pivotx.js')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- PivotX -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="includes/js/pivotx.js" type="text/javascript"></script>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="templates_internal/assets/pivotx.png" alt="PivotX" /></a>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="PivotX" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

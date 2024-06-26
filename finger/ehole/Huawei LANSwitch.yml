@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Huawei LANSwitch
+manual: false
+detail:
+    fingerprint:
+        name: Huawei LANSwitch
+    fofa: header="Huawei LANSwitch" || title="Huawei LANSwitch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Huawei LANSwitch"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Huawei LANSwitch")
+expression: r0() || r1()

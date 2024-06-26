@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-FMG3025-D10A
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-FMG3025-D10A
+    fofa: title="fmg3025-d10a"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("fmg3025-d10a")
+expression: r0()

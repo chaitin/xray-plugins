@@ -1,0 +1,16 @@
+name: fingerprint-yaml-捷易CMS
+manual: false
+detail:
+    fingerprint:
+        name: 捷易CMS
+    fofa: title="捷易CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("捷易CMS")
+expression: r0()

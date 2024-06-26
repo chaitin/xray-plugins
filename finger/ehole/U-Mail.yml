@@ -1,0 +1,79 @@
+name: fingerprint-yaml-U-Mail
+manual: false
+detail:
+    fingerprint:
+        name: U-Mail
+    fofa: body="<body link=\"white\" vlink=\"white\" alink=\"white\">" && body="<meta http-equiv=\"refresh\" content=\"0;url=./webmail/\">" && body="power by <a href=\"http://www.comingchina.com\">u-mail邮件服务器</a>" && body="static/images/login/login_37.jpg" && body="u-mail webadmin 要求启用 javascript" || body="<BODY LINK=\"White\" VLINK=\"White\" ALINK=\"White\">" || body="u-mail webadmin 要求启用 javascript" || body="static/images/login/login_37.jpg" || body="power by <a href=\"http://www.comingchina.com\">u-mail邮件服务器</a>" || body="<meta http-equiv=\"refresh\" content=\"0;url=./webmail/\">" && body="<body link=\"white\" vlink=\"white\" alink=\"white\">" || body="<body link=\"white\" vlink=\"white\" alink=\"white\">" || body="<meta http-equiv=\"refresh\" content=\"0;url=./webmail/\">" || title="power by u-mail" || title="u-mail邮件服务器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body link="white" vlink="white" alink="white">') && response.body_string.contains('<meta http-equiv="refresh" content="0;url=./webmail/">') && response.body_string.contains('power by <a href="http://www.comingchina.com">u-mail邮件服务器</a>') && response.body_string.contains("static/images/login/login_37.jpg") && response.body_string.contains("u-mail webadmin 要求启用 javascript")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<BODY LINK="White" VLINK="White" ALINK="White">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("u-mail webadmin 要求启用 javascript")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("static/images/login/login_37.jpg")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('power by <a href="http://www.comingchina.com">u-mail邮件服务器</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;url=./webmail/">') && response.body_string.contains('<body link="white" vlink="white" alink="white">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body link="white" vlink="white" alink="white">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;url=./webmail/">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("power by u-mail")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("u-mail邮件服务器")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Jamf Pro Login
+manual: false
+detail:
+    fingerprint:
+        name: Jamf Pro Login
+    fofa: icon_hash="1262005940"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1262005940
+expression: r0()

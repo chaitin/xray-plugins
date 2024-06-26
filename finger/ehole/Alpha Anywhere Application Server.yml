@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Alpha Anywhere Application Server
+manual: false
+detail:
+    fingerprint:
+        name: Alpha Anywhere Application Server
+    fofa: header="Alpha Anywhere Application Server" || title="Alpha Anywhere Application Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alpha Anywhere Application Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Alpha Anywhere Application Server")
+expression: r0() || r1()

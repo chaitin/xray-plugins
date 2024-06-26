@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cndatacom-SMSP
+manual: false
+detail:
+    fingerprint:
+        name: cndatacom-SMSP
+    fofa: body="/smrc/resources/default/"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/smrc/resources/default/")
+expression: r0()

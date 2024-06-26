@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftLyncSIP
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftLyncSIP
+    fofa: title="Microsoft Lync SIP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Lync SIP")
+expression: r0()

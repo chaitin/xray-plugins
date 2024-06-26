@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK SOHO R402M
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK SOHO R402M
+    fofa: header="TP-LINK SOHO R402M"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK SOHO R402M"))
+expression: r0()

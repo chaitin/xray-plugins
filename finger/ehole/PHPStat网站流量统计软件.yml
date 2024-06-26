@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHPStat网站流量统计软件
+manual: false
+detail:
+    fingerprint:
+        name: PHPStat网站流量统计软件
+    fofa: title="PHPStat网站流量统计软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPStat网站流量统计软件")
+expression: r0()

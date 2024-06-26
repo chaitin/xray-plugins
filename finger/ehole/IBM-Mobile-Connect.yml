@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBM-Mobile-Connect
+manual: false
+detail:
+    fingerprint:
+        name: IBM-Mobile-Connect
+    fofa: header="ibm mobile connect"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ibm mobile connect"))
+expression: r0()

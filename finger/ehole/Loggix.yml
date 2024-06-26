@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Loggix
+manual: false
+detail:
+    fingerprint:
+        name: Loggix
+    fofa: body="<meta name=\"generator\" content=\"Loggix\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Loggix" />')
+expression: r0()

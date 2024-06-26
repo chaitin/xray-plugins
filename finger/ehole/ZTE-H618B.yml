@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZTE-H618B
+manual: false
+detail:
+    fingerprint:
+        name: ZTE-H618B
+    fofa: header="realm=\"zte h618b"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="zte h618b'))
+expression: r0()

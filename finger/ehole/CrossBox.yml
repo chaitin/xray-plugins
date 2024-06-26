@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CrossBox
+manual: false
+detail:
+    fingerprint:
+        name: CrossBox
+    fofa: header="CrossBox" || title="CrossBox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CrossBox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CrossBox")
+expression: r0() || r1()

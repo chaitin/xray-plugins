@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Yandex_Direct
+manual: false
+detail:
+    fingerprint:
+        name: Yandex.Direct
+    fofa: header="Yandex.Direct" || title="Yandex.Direct"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Yandex.Direct"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Yandex.Direct")
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-FileVista
+manual: false
+detail:
+    fingerprint:
+        name: FileVista
+    fofa: body="welcome to filevista" && body="<a href=\"http://www.gleamtech.com/products/filevista/web-file-manager" || body="Welcome to FileVista" || body="<a href=\"http://www.gleamtech.com/products/filevista/web-file-manager" || body="welcome to filevista" || body="<td>Welcome to FileVista<br />Please enter your credentials:</td>" || body="<a href=\"http://www.gleamtech.com/products/filevista/web-file-manager" && body="welcome to filevista"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to filevista") && response.body_string.contains('<a href="http://www.gleamtech.com/products/filevista/web-file-manager')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Welcome to FileVista")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.gleamtech.com/products/filevista/web-file-manager')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to filevista")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td>Welcome to FileVista<br />Please enter your credentials:</td>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.gleamtech.com/products/filevista/web-file-manager') && response.body_string.contains("welcome to filevista")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

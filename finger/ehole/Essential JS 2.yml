@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Essential JS 2
+manual: false
+detail:
+    fingerprint:
+        name: Essential JS 2
+    fofa: header="Essential JS 2" || title="Essential JS 2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Essential JS 2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Essential JS 2")
+expression: r0() || r1()

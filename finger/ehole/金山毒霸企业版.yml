@@ -1,0 +1,23 @@
+name: fingerprint-yaml-金山毒霸企业版
+manual: false
+detail:
+    fingerprint:
+        name: 金山毒霸企业版
+    fofa: header="金山毒霸企业版" || title="金山毒霸企业版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("金山毒霸企业版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("金山毒霸企业版")
+expression: r0() || r1()

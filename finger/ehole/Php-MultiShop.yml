@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Php-MultiShop
+manual: false
+detail:
+    fingerprint:
+        name: Php-MultiShop
+    fofa: header="Php-MultiShop" || title="Php-MultiShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Php-MultiShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Php-MultiShop")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-animate_css
+manual: false
+detail:
+    fingerprint:
+        name: animate.css
+    fofa: title="animate.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("animate.css")
+expression: r0()

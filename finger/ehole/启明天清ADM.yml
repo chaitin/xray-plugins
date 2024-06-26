@@ -1,0 +1,23 @@
+name: fingerprint-yaml-启明天清ADM
+manual: false
+detail:
+    fingerprint:
+        name: 启明天清ADM
+    fofa: header="启明天清ADM" || title="启明天清ADM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("启明天清ADM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("启明天清ADM")
+expression: r0() || r1()

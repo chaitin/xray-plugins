@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SPID HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: SPID HTTP Server
+    fofa: header="SPID HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SPID HTTP Server"))
+expression: r0()

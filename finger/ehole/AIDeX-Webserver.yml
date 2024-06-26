@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AIDeX-Webserver
+manual: false
+detail:
+    fingerprint:
+        name: AIDeX-Webserver
+    fofa: body="<br><small>Powered by <a href=\"http://www.aidex.de/software/webserver/\" target=\"_blank\">AIDeX Webserver</a></small></div></div><br><br><br>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<br><small>Powered by <a href="http://www.aidex.de/software/webserver/" target="_blank">AIDeX Webserver</a></small></div></div><br><br><br>')
+expression: r0()

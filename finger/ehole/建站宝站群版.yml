@@ -1,0 +1,16 @@
+name: fingerprint-yaml-建站宝站群版
+manual: false
+detail:
+    fingerprint:
+        name: 建站宝站群版
+    fofa: title="建站宝站群版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("建站宝站群版")
+expression: r0()

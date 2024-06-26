@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Intelligence-Parking-Integrated-management-platform
+manual: false
+detail:
+    fingerprint:
+        name: Intelligence-Parking-Integrated-management-platform
+    fofa: body="厦门立智通讯科技有限公司 版权所有" || title="财富中心智能停车场综合管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("厦门立智通讯科技有限公司 版权所有")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("财富中心智能停车场综合管理平台")
+expression: r0() || r1()

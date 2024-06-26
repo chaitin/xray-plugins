@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Axence nVision API HTTP
+manual: false
+detail:
+    fingerprint:
+        name: Axence nVision API HTTP
+    fofa: header="Axence nVision API HTTP" || title="Axence nVision API HTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Axence nVision API HTTP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axence nVision API HTTP")
+expression: r0() || r1()

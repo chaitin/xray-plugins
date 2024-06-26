@@ -1,0 +1,93 @@
+name: fingerprint-yaml-PhpCMS
+manual: false
+detail:
+    fingerprint:
+        name: PhpCMS
+    fofa: body="http://www.phpcms.cn" && body="content=\"phpcms" && body="powered by phpcms" && body="data/configs.js" || body="http://www.phpcms.cn" || body="content=\"Phpcms" || body="Powered by Phpcms" || body="data/config.js" || body="/index.php?m=content&c=index&a=lists" || body="/index.php?m=content&amp;c=index&amp;a=lists" || body="powered by phpcms" || body="content=\"phpcms" || body="http://www.phpcms.cn" && body="powered by" || body="data/configs.js" || body="<a href=\"http://www.phpcms.cn\" target=\"_blank\">PHPCMS</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.phpcms.cn") && response.body_string.contains('content="phpcms') && response.body_string.contains("powered by phpcms") && response.body_string.contains("data/configs.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.phpcms.cn")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Phpcms')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Phpcms")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("data/config.js")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.php?m=content&c=index&a=lists")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.php?m=content&amp;c=index&amp;a=lists")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by phpcms")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="phpcms')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.phpcms.cn") && response.body_string.contains("powered by")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("data/configs.js")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.phpcms.cn" target="_blank">PHPCMS</a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

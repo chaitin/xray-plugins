@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OK3W文章发布系统
+manual: false
+detail:
+    fingerprint:
+        name: OK3W文章发布系统
+    fofa: title="OK3W文章发布系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OK3W文章发布系统")
+expression: r0()

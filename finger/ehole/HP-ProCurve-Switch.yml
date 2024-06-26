@@ -1,0 +1,30 @@
+name: fingerprint-yaml-HP-ProCurve-Switch
+manual: false
+detail:
+    fingerprint:
+        name: HP-ProCurve-Switch
+    fofa: 'header="server: ehttp" || header="eHTTP" || title="procurve switch"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ehttp"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eHTTP"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("procurve switch")
+expression: r0() || r1() || r2()

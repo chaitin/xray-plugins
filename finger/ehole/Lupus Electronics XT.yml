@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lupus Electronics XT
+manual: false
+detail:
+    fingerprint:
+        name: Lupus Electronics XT
+    fofa: icon_hash="-299324825"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -299324825
+expression: r0()

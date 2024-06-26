@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xikecms
+manual: false
+detail:
+    fingerprint:
+        name: xikecms
+    fofa: title="xikecms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xikecms")
+expression: r0()

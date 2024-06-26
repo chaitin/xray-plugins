@@ -1,0 +1,44 @@
+name: fingerprint-yaml-FreePBX
+manual: false
+detail:
+    fingerprint:
+        name: FreePBX
+    fofa: header="realm=\"freepbx" && header="freepbx" || header="FreePBX" || header="freepbx" && header="freepbx" || header="realm=\"freepbx" || header="freepbx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="freepbx')) && response.raw_header.bcontains(bytes("freepbx"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FreePBX"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("freepbx")) && response.raw_header.bcontains(bytes("freepbx"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="freepbx'))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("freepbx"))
+expression: r0() || r1() || r2() || r3() || r4()

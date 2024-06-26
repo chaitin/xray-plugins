@@ -1,0 +1,16 @@
+name: fingerprint-yaml-adtsec_gateway
+manual: false
+detail:
+    fingerprint:
+        name: adtsec_gateway
+    fofa: title="adtsec_gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("adtsec_gateway")
+expression: r0()

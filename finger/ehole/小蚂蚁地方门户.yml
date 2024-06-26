@@ -1,0 +1,16 @@
+name: fingerprint-yaml-小蚂蚁地方门户
+manual: false
+detail:
+    fingerprint:
+        name: 小蚂蚁地方门户
+    fofa: body="/Template/Ant/Css/AntHomeComm.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/Template/Ant/Css/AntHomeComm.css")
+expression: r0()

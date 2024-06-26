@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MERCURY路由器
+manual: false
+detail:
+    fingerprint:
+        name: MERCURY路由器
+    fofa: header="MERCURY路由器" || title="MERCURY路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MERCURY路由器"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MERCURY路由器")
+expression: r0() || r1()

@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Avaya-Aura-Utility-Server
+manual: false
+detail:
+    fingerprint:
+        name: Avaya-Aura-Utility-Server
+    fofa: body="vmstitle\">avaya aura&#8482;&nbsp;utility server" && body="/webhelp/base/utility_toc.htm" && body="avaya aura&reg;&nbsp;utility services" && body="avaya inc. all rights reserved" || body="vmsTitle\">Avaya Aura&#8482;&nbsp;Utility Server" || body="/webhelp/Base/Utility_toc.htm" || body="avaya inc. all rights reserved" && body="avaya aura&reg;&nbsp;utility services" || body="/webhelp/base/utility_toc.htm" || body="vmstitle\">avaya aura&#8482;&nbsp;utility server" || body="avaya aura&reg;&nbsp;utility services" || body="avaya inc. all rights reserved" || body="<span class=\"vmsTitle\">Avaya Aura&#8482;&nbsp;Utility Server</span>" || body="<div id=\"topBar\"><div id=\"topBarLeft\"><a href=\"#\" class=\"helpAndExit\" onclick=\"window.open(\"/webhelp/Base/Utility_toc.htm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('vmstitle">avaya aura&#8482;&nbsp;utility server') && response.body_string.contains("/webhelp/base/utility_toc.htm") && response.body_string.contains("avaya aura&reg;&nbsp;utility services") && response.body_string.contains("avaya inc. all rights reserved")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('vmsTitle">Avaya Aura&#8482;&nbsp;Utility Server')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/webhelp/Base/Utility_toc.htm")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("avaya inc. all rights reserved") && response.body_string.contains("avaya aura&reg;&nbsp;utility services")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/webhelp/base/utility_toc.htm")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('vmstitle">avaya aura&#8482;&nbsp;utility server')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("avaya aura&reg;&nbsp;utility services")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("avaya inc. all rights reserved")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="vmsTitle">Avaya Aura&#8482;&nbsp;Utility Server</span>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="topBar"><div id="topBarLeft"><a href="#" class="helpAndExit" onclick="window.open("/webhelp/Base/Utility_toc.htm')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

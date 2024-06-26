@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Nginx-admin
+manual: false
+detail:
+    fingerprint:
+        name: Nginx-admin
+    fofa: header="nginx admin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nginx admin"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EQManager邮件网关
+manual: false
+detail:
+    fingerprint:
+        name: EQManager邮件网关
+    fofa: header="EQManager邮件网关" || title="EQManager邮件网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EQManager邮件网关"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EQManager邮件网关")
+expression: r0() || r1()

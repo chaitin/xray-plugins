@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DLink-NVR
+manual: false
+detail:
+    fingerprint:
+        name: DLink-NVR
+    fofa: header="realm=\"dnr-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dnr-'))
+expression: r0()

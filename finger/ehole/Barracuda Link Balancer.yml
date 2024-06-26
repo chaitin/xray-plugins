@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Barracuda Link Balancer
+manual: false
+detail:
+    fingerprint:
+        name: Barracuda Link Balancer
+    fofa: header="Barracuda Link Balancer" || title="Barracuda Link Balancer" || title="barracuda link balancer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Barracuda Link Balancer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Barracuda Link Balancer")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("barracuda link balancer")
+expression: r0() || r1() || r2()

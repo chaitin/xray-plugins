@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Tinyproxy
+manual: false
+detail:
+    fingerprint:
+        name: Tinyproxy
+    fofa: 'header="server: tinyproxy/" || header="Tinyproxy" || title="Tinyproxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tinyproxy/"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tinyproxy"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tinyproxy")
+expression: r0() || r1() || r2()

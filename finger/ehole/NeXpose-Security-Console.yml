@@ -1,0 +1,107 @@
+name: fingerprint-yaml-NeXpose-Security-Console
+manual: false
+detail:
+    fingerprint:
+        name: NeXpose-Security-Console
+    fofa: 'body="/nexpose-dark.min.css" && body="nexposeccpassword" && body="/nexpose-features.js" || body="/nexpose-features.js" || body="nexposeccpassword" || body="/nexpose-dark.min.css" || body="<link rel=\"shortcut icon\" href=\"/style/image/favicon.ico\" type=\"image/vnd.microsoft.icon\"></link>" || body="<script src=\"/scripts/nexpose-skin.js\" type=\"text/javascript\"></script>" || body="document.title = \"Log in to \" + document.nxp.skin.getProductName();" || body="<input type=\"password\" id=\"nexposeccpassword\" name=\"nexposeccpassword\" size=\"12\"/>" || body="<input type=\"password\" id=\"nexposeccpassword\" name=\"nexposeccpassword\" size=\"12\"></input>" || body="<noscript><div class=\"LoginDialog\">JavaScript must be enabled before you can continue.</div></noscript>" || body="<script type=\"text/javascript\" src=\"/scripts/nexpose.js\"></script>" || body="<script type=\"text/javascript\" src=\"/scripts/nexpose-skin.js\"></script>" || body="<script type=\"text/javascript\" src=\"/scripts/nexpose-features.js\"></script>" || body="<title>NeXpose Security Console :: Error</title>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/nexpose-dark.min.css") && response.body_string.contains("nexposeccpassword") && response.body_string.contains("/nexpose-features.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/nexpose-features.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nexposeccpassword")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/nexpose-dark.min.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="shortcut icon" href="/style/image/favicon.ico" type="image/vnd.microsoft.icon"></link>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="/scripts/nexpose-skin.js" type="text/javascript"></script>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.title = "Log in to " + document.nxp.skin.getProductName();')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="password" id="nexposeccpassword" name="nexposeccpassword" size="12"/>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="password" id="nexposeccpassword" name="nexposeccpassword" size="12"></input>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<noscript><div class="LoginDialog">JavaScript must be enabled before you can continue.</div></noscript>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="/scripts/nexpose.js"></script>')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="/scripts/nexpose-skin.js"></script>')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="/scripts/nexpose-features.js"></script>')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>NeXpose Security Console :: Error</title>")'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

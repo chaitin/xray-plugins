@@ -1,0 +1,16 @@
+name: fingerprint-yaml-5VTechnologies-BlueAngelSoftwareSuite
+manual: false
+detail:
+    fingerprint:
+        name: 5VTechnologies-BlueAngelSoftwareSuite
+    fofa: body="/cgi-bin/webctrl.cgi?action=index_page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/webctrl.cgi?action=index_page")
+expression: r0()

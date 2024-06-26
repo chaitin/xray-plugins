@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WhiteSharkSystem
+manual: false
+detail:
+    fingerprint:
+        name: WhiteSharkSystem
+    fofa: title="White Shark System"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("White Shark System")
+expression: r0()

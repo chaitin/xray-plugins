@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Inspur-AS5500G2
+manual: false
+detail:
+    fingerprint:
+        name: Inspur-AS5500G2
+    fofa: 'body="\"productname\": \"inspur as5500g2\"" || body="\"productname\": \"inspur as5500g2\"," || title="inspur as5500g2"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''"productname": "inspur as5500g2"'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''"productname": "inspur as5500g2",'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("inspur as5500g2")
+expression: r0() || r1() || r2()

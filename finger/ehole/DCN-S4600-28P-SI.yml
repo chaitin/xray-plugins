@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DCN-S4600-28P-SI
+manual: false
+detail:
+    fingerprint:
+        name: DCN-S4600-28P-SI
+    fofa: body="<b>s4600-28p-si</b>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>s4600-28p-si</b>")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-easyLink-Web-Solutions
+manual: false
+detail:
+    fingerprint:
+        name: easyLink-Web-Solutions
+    fofa: body="content=\"easyLink" || body="Dieser Abschnitt darf nur mit Genehmigung des Entwicklers entfernt werden und bedarf einer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="easyLink')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Dieser Abschnitt darf nur mit Genehmigung des Entwicklers entfernt werden und bedarf einer")
+expression: r0() || r1()

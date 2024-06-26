@@ -1,0 +1,23 @@
+name: fingerprint-yaml-3Com OfficeConnect Wireless 11g Access Point
+manual: false
+detail:
+    fingerprint:
+        name: 3Com OfficeConnect Wireless 11g Access Point
+    fofa: header="3Com OfficeConnect Wireless 11g Access Point" || title="3Com OfficeConnect Wireless 11g Access Point"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("3Com OfficeConnect Wireless 11g Access Point"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("3Com OfficeConnect Wireless 11g Access Point")
+expression: r0() || r1()

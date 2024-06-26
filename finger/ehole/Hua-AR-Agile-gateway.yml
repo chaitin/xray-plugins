@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Hua-AR-Agile-gateway
+manual: false
+detail:
+    fingerprint:
+        name: Hua-AR-Agile-gateway
+    fofa: body="document.title = 'ar web登录" && body="/verifycode.cgi?vrfcodeid=" && body="document.title = 'log in to ar web';" && body="checkvoiceservice.cgi" && body="ispbxmode_callback" || body="ispbxmode_callback" && body="checkvoiceservice.cgi" || body="document.title = \"log in to ar web\";" || body="/verifycode.cgi?vrfcodeid=" || body="document.title = \"ar web登录" || body="checkvoiceservice.cgi" || body="ispbxmode_callback"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.title = 'ar web登录") && response.body_string.contains("/verifycode.cgi?vrfcodeid=") && response.body_string.contains("document.title = 'log in to ar web';") && response.body_string.contains("checkvoiceservice.cgi") && response.body_string.contains("ispbxmode_callback")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ispbxmode_callback") && response.body_string.contains("checkvoiceservice.cgi")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.title = "log in to ar web";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/verifycode.cgi?vrfcodeid=")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.title = "ar web登录')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("checkvoiceservice.cgi")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ispbxmode_callback")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

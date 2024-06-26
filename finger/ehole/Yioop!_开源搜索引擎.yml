@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Yioop!_开源搜索引擎
+manual: false
+detail:
+    fingerprint:
+        name: Yioop!_开源搜索引擎
+    fofa: title="Yioop!_开源搜索引擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Yioop!_开源搜索引擎")
+expression: r0()

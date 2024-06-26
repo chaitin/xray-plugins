@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Goonie-Internet-Public-Ppinion-Monitoring-System
+manual: false
+detail:
+    fingerprint:
+        name: Goonie-Internet-Public-Ppinion-Monitoring-System
+    fofa: body="alert(\"菜单层数量和内容层数量不一样!\"" && body="网络舆情监控系统" || body="alert\"菜单层数量和内容层数量不一样!\"" || body="网络舆情监控系统" || body="alert(\"菜单层数量和内容层数量不一样!\")" || body="网络舆情监控系统" && body="alert(\"菜单层数量和内容层数量不一样!\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("菜单层数量和内容层数量不一样!"') && response.body_string.contains("网络舆情监控系统")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert"菜单层数量和内容层数量不一样!"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("网络舆情监控系统")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("菜单层数量和内容层数量不一样!")')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("网络舆情监控系统") && response.body_string.contains('alert("菜单层数量和内容层数量不一样!"')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wa86全能导航网
+manual: false
+detail:
+    fingerprint:
+        name: wa86全能导航网
+    fofa: title="wa86全能导航网"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wa86全能导航网")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Atlassian Jira Issue Collector
+manual: false
+detail:
+    fingerprint:
+        name: Atlassian Jira Issue Collector
+    fofa: header="Atlassian Jira Issue Collector" || title="Atlassian Jira Issue Collector"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Atlassian Jira Issue Collector"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Atlassian Jira Issue Collector")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Kyocera (Printer)
+manual: false
+detail:
+    fingerprint:
+        name: Kyocera (Printer)
+    fofa: icon_hash="-50306417"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -50306417
+expression: r0()

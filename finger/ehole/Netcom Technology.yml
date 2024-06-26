@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netcom Technology
+manual: false
+detail:
+    fingerprint:
+        name: Netcom Technology
+    fofa: icon_hash="5471989"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 5471989
+expression: r0()

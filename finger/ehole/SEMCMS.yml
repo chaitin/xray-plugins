@@ -1,0 +1,51 @@
+name: fingerprint-yaml-SEMCMS
+manual: false
+detail:
+    fingerprint:
+        name: SEMCMS
+    fofa: body="sc_mid_c_left_c sc_mid_left_bt" && body="semcms php 3.9" && body="<b semcms php 2.9</b>" && body="powered by <a href=\"http://www.sem-cms.com\"" || body="semcms PHP" || body="sc_mid_c_left_c sc_mid_left_bt" || body="powered by <a href=\"http://www.sem-cms.com\"" || body="<b semcms php 2.9</b>" || body="semcms php 3.9"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sc_mid_c_left_c sc_mid_left_bt") && response.body_string.contains("semcms php 3.9") && response.body_string.contains("<b semcms php 2.9</b>") && response.body_string.contains('powered by <a href="http://www.sem-cms.com"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("semcms PHP")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sc_mid_c_left_c sc_mid_left_bt")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.sem-cms.com"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b semcms php 2.9</b>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("semcms php 3.9")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

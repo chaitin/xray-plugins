@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETENTSEC-Log-analysis
+manual: false
+detail:
+    fingerprint:
+        name: NETENTSEC-Log-analysis
+    fofa: body="网康"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("网康")
+expression: r0()

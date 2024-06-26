@@ -1,0 +1,23 @@
+name: fingerprint-yaml-百度在线web编辑器
+manual: false
+detail:
+    fingerprint:
+        name: 百度在线web编辑器
+    fofa: body="ueditor.all.js" || body="UE.getEditor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ueditor.all.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("UE.getEditor")
+expression: r0() || r1()

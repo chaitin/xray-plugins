@@ -1,0 +1,51 @@
+name: fingerprint-yaml-PHP-Support-Tickets
+manual: false
+detail:
+    fingerprint:
+        name: PHP-Support-Tickets
+    fofa: 'body="title=\"php support tickets\">php support tickets" && body="content=\"triangle solutions ltd" || body="content=\"triangle solutions ltd" || body="title=\"php support tickets\">php support tickets" || body="<title>PHP Support Tickets :: Login</title>" || body="<meta name=\"copyright\"   content=\"Triangle Solutions Ltd\" />" || title="php support tickets"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="php support tickets">php support tickets') && response.body_string.contains('content="triangle solutions ltd')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="triangle solutions ltd')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="php support tickets">php support tickets')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>PHP Support Tickets :: Login</title>")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="copyright"   content="Triangle Solutions Ltd" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("php support tickets")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

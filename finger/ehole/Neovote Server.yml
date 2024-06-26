@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Neovote Server
+manual: false
+detail:
+    fingerprint:
+        name: Neovote Server
+    fofa: header="Neovote Server" || title="Neovote Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Neovote Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Neovote Server")
+expression: r0() || r1()

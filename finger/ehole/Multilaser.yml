@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Multilaser
+manual: false
+detail:
+    fingerprint:
+        name: Multilaser
+    fofa: icon_hash="916642917"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 916642917
+expression: r0()

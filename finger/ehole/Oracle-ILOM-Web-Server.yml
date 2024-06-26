@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Oracle-ILOM-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-ILOM-Web-Server
+    fofa: 'header="server: sun-ilom-web-server" || header="server: oracle-ilom-web-server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sun-ilom-web-server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle-ilom-web-server"))'
+expression: r0() || r1()

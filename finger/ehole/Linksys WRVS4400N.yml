@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WRVS4400N
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WRVS4400N
+    fofa: header="Linksys WRVS4400N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WRVS4400N"))
+expression: r0()

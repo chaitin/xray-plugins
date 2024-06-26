@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Miracle Hunt Services
+manual: false
+detail:
+    fingerprint:
+        name: Miracle Hunt Services
+    fofa: header="Miracle Hunt Services" || title="Miracle Hunt Services"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Miracle Hunt Services"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Miracle Hunt Services")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Klarna Checkout
+manual: false
+detail:
+    fingerprint:
+        name: Klarna Checkout
+    fofa: header="Klarna Checkout" || title="Klarna Checkout"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Klarna Checkout"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Klarna Checkout")
+expression: r0() || r1()

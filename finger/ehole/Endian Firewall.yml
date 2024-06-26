@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Endian Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Endian Firewall
+    fofa: icon_hash="-1225484776"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1225484776
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-buscape
+manual: false
+detail:
+    fingerprint:
+        name: buscape
+    fofa: header="sessao3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sessao3"))
+expression: r0()

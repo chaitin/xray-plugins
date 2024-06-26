@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Nagios XI
+manual: false
+detail:
+    fingerprint:
+        name: Nagios XI
+    fofa: body="Nagios XI" && body="nagiosxi" && body="Nagios" || body="click the link below to get started using nagios xi." && body="/nagiosxi/images/favicon.ico" || header="nagios xi" || body="/nagiosxi/images/favicon.ico" || body="click the link below to get started using nagios xi." || title="nagios xi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Nagios XI") && response.body_string.contains("nagiosxi") && response.body_string.contains("Nagios")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("click the link below to get started using nagios xi.") && response.body_string.contains("/nagiosxi/images/favicon.ico")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nagios xi"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/nagiosxi/images/favicon.ico")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("click the link below to get started using nagios xi.")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nagios xi")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

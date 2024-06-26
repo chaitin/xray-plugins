@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetComWireless (Network)
+manual: false
+detail:
+    fingerprint:
+        name: NetComWireless (Network)
+    fofa: icon_hash="5542029"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 5542029
+expression: r0()

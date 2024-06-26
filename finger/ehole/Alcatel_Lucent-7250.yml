@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alcatel_Lucent-7250
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-7250
+    fofa: header="realm=\"alcatel-lucent 7250"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="alcatel-lucent 7250'))
+expression: r0()

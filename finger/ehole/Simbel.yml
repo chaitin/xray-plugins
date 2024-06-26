@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Simbel
+manual: false
+detail:
+    fingerprint:
+        name: Simbel
+    fofa: header="Simbel" || title="Simbel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Simbel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Simbel")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CC校友录_毕业入世版
+manual: false
+detail:
+    fingerprint:
+        name: CC校友录_毕业入世版
+    fofa: title="CC校友录_毕业入世版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CC校友录_毕业入世版")
+expression: r0()

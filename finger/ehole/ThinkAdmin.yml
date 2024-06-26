@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ThinkAdmin
+manual: false
+detail:
+    fingerprint:
+        name: ThinkAdmin
+    fofa: header="ThinkAdmin" || title="ThinkAdmin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ThinkAdmin"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ThinkAdmin")
+expression: r0() || r1()

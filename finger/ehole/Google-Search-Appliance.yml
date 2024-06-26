@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Google-Search-Appliance
+manual: false
+detail:
+    fingerprint:
+        name: Google-Search-Appliance
+    fofa: 'header="server: google search appliance" || body="<font face=arial,sans-serif size=-1>If you are an end user looking for a Google search service on your network, please ask your system administrator for the URL of the search service.<p>" || body="<tr id=\"TopBar\"><td id=\"TopBarName\">About Google Search Appliance</td></tr></table></td></tr></table>" || body="<tr id=\"TopBar\"><td id=\"TopBarName\">Welcome to the Google Search Appliance!</td></tr></table></td></tr></table>" || body="<tr id=\"TopBar\"> <td id=\"TopBarName\">  Welcome to the Google Mini!  </td> </tr> </table>" || title="Google Search Appliance"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: google search appliance"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<font face=arial,sans-serif size=-1>If you are an end user looking for a Google search service on your network, please ask your system administrator for the URL of the search service.<p>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr id="TopBar"><td id="TopBarName">About Google Search Appliance</td></tr></table></td></tr></table>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr id="TopBar"><td id="TopBarName">Welcome to the Google Search Appliance!</td></tr></table></td></tr></table>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr id="TopBar"> <td id="TopBarName">  Welcome to the Google Mini!  </td> </tr> </table>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Search Appliance")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

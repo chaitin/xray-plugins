@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JUNIPer-EX4200-24t
+manual: false
+detail:
+    fingerprint:
+        name: JUNIPer-EX4200-24t
+    fofa: body="class=\"jweb-title uppercase\"> - ex4200-24t"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="jweb-title uppercase"> - ex4200-24t')
+expression: r0()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-CafeEngine
+manual: false
+detail:
+    fingerprint:
+        name: CafeEngine
+    fofa: body="/CafeEngine/style.css" || body="<a href=http://cafeengine.com>CafeEngine.com" || body="<td id=\"footer\">Copyright &copy; <a href=\"http://cafeengine.com\">CafeEngine</a> 2008-2009</td>" || body="<td id=\"footer\">Copyright &copy; CafeEngine</a> 2008-2009</td>" || body="<td id=footer>Copyright &copy; <a href=http://cafeengine.com>CafeEngine.com</a> 2008-2009</td>" || body="win = window.open(src,\"\",\"top=20,left=20,height=\" + h + \",width=\" + w + \",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes\")"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/CafeEngine/style.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<a href=http://cafeengine.com>CafeEngine.com")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td id="footer">Copyright &copy; <a href="http://cafeengine.com">CafeEngine</a> 2008-2009</td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td id="footer">Copyright &copy; CafeEngine</a> 2008-2009</td>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td id=footer>Copyright &copy; <a href=http://cafeengine.com>CafeEngine.com</a> 2008-2009</td>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('win = window.open(src,"","top=20,left=20,height=" + h + ",width=" + w + ",toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes")')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

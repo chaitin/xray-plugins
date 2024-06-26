@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IP-Video-embedded-camera
+manual: false
+detail:
+    fingerprint:
+        name: IP-Video-embedded-camera
+    fofa: header="basic realm=\"camera server\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="camera server"'))
+expression: r0()

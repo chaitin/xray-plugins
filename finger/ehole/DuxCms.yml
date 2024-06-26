@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DuxCms
+manual: false
+detail:
+    fingerprint:
+        name: DuxCms
+    fofa: header="DuxCms" || title="DuxCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DuxCms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DuxCms")
+expression: r0() || r1()

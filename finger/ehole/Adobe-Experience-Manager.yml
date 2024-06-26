@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Adobe-Experience-Manager
+manual: false
+detail:
+    fingerprint:
+        name: Adobe-Experience-Manager
+    fofa: body="adobe experience manager" && body=" class=\"coral-heading coral-heading--1\"" || header="Adobe Experience Manager" || body=" class=\"coral-heading coral-heading--1\"" && body="adobe experience manager" || body="adobe experience manager" || body="class=\"coral-heading coral-heading--1\"" || body=" class=\"coral-heading coral-heading--1\"" || title="Adobe Experience Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("adobe experience manager") && response.body_string.contains(' class="coral-heading coral-heading--1"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Adobe Experience Manager"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' class="coral-heading coral-heading--1"') && response.body_string.contains("adobe experience manager")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("adobe experience manager")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="coral-heading coral-heading--1"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' class="coral-heading coral-heading--1"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Adobe Experience Manager")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

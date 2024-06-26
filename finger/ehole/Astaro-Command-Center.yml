@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Astaro-Command-Center
+manual: false
+detail:
+    fingerprint:
+        name: Astaro-Command-Center
+    fofa: body="/js/_variables_from_backend.js?" && body="commandcenter" || body="/acc_aggregated_reporting.js" || body="/js/_variables_from_backend.js?" || body="commandcenter" && body="/js/_variables_from_backend.js?" || body="commandcenter" || body="<script src=\"wfe/acc/js/acc_aggregated_reporting.js?t="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/_variables_from_backend.js?") && response.body_string.contains("commandcenter")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/acc_aggregated_reporting.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/_variables_from_backend.js?")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("commandcenter") && response.body_string.contains("/js/_variables_from_backend.js?")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("commandcenter")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="wfe/acc/js/acc_aggregated_reporting.js?t=')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

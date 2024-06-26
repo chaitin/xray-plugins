@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ralph
+manual: false
+detail:
+    fingerprint:
+        name: ralph
+    fofa: body="ralph <strong>3</strong>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ralph <strong>3</strong>")
+expression: r0()

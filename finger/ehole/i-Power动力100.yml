@@ -1,0 +1,16 @@
+name: fingerprint-yaml-i-Power动力100
+manual: false
+detail:
+    fingerprint:
+        name: i-Power动力100
+    fofa: title="i-Power 动力100"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("i-Power 动力100")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CISCO-Email-Security-Appliance-C690
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-Email-Security-Appliance-C690
+    fofa: title="email security appliance   c690"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("email security appliance   c690")
+expression: r0()

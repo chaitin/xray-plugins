@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RADIX
+manual: false
+detail:
+    fingerprint:
+        name: RADIX
+    fofa: icon_hash="-1492966240"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1492966240
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jquery官网CDN
+manual: false
+detail:
+    fingerprint:
+        name: jquery官网CDN
+    fofa: header="code.jquery.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("code.jquery.com"))
+expression: r0()

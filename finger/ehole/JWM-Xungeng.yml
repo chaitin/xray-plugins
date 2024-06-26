@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JWM-Xungeng
+manual: false
+detail:
+    fingerprint:
+        name: JWM-Xungeng
+    fofa: body="id=\"removeietoolbar\" classid=\"clsid:2646205b-878c-11d1-b07c-0000c040bcdb\" codebase=\"dll/nskey.dll"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="removeietoolbar" classid="clsid:2646205b-878c-11d1-b07c-0000c040bcdb" codebase="dll/nskey.dll')
+expression: r0()

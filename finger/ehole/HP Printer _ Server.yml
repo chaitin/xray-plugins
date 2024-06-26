@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HP Printer _ Server
+manual: false
+detail:
+    fingerprint:
+        name: HP Printer / Server
+    fofa: icon_hash="905744673" || icon_hash="-2144363468"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 905744673
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2144363468
+expression: r0() || r1()

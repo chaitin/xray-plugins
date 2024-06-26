@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZTE-Police-research-system
+manual: false
+detail:
+    fingerprint:
+        name: ZTE-Police-research-system
+    fofa: body="深圳市中兴信息技术有限公司版权所有" && body="src=\"img/gonanlogo.jpg" || body="src=\"img/gonanlogo.jpg" || body="深圳市中兴信息技术有限公司版权所有"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("深圳市中兴信息技术有限公司版权所有") && response.body_string.contains('src="img/gonanlogo.jpg')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="img/gonanlogo.jpg')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("深圳市中兴信息技术有限公司版权所有")
+expression: r0() || r1() || r2()

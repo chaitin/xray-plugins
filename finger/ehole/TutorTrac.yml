@@ -1,0 +1,86 @@
+name: fingerprint-yaml-TutorTrac
+manual: false
+detail:
+    fingerprint:
+        name: TutorTrac
+    fofa: body="font><a href=\"http://www.go-redrock.com\"><font" || header="set-cookie productcode" && header="location tutortrac" || header="TutorTrac" || body="<TITLE>TutorTrac Learning Center Tracking Software</TITLE>" || body="<meta name=\"keywords\" content=\"tutor,software,scheduling,learning,center,tutoring,assistant,assistance,education,accutrack,tutorial,community,college,university\"><meta name=\"description\" content=\"Web Based Tutor/Learning Center Management/Scheduling Software\">" || header="location tutortrac" || header="location tracweb40" || header="set-cookie installcode" || header="set-cookie productcode" || title="TutorTrac" || title="tutortrac learning center tracking software"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('font><a href="http://www.go-redrock.com"><font')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("set-cookie productcode")) && response.raw_header.bcontains(bytes("location tutortrac"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TutorTrac"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>TutorTrac Learning Center Tracking Software</TITLE>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="keywords" content="tutor,software,scheduling,learning,center,tutoring,assistant,assistance,education,accutrack,tutorial,community,college,university"><meta name="description" content="Web Based Tutor/Learning Center Management/Scheduling Software">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("location tutortrac"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("location tracweb40"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("set-cookie installcode"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("set-cookie productcode"))
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TutorTrac")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tutortrac learning center tracking software")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

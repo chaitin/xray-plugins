@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IQinVision-IQeye811
+manual: false
+detail:
+    fingerprint:
+        name: IQinVision-IQeye811
+    fofa: title="iqeye811"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iqeye811")
+expression: r0()

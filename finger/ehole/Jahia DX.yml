@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Jahia DX
+manual: false
+detail:
+    fingerprint:
+        name: Jahia DX
+    fofa: header="Jahia DX" || title="Jahia DX"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Jahia DX"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Jahia DX")
+expression: r0() || r1()

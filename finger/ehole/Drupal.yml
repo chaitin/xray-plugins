@@ -1,0 +1,149 @@
+name: fingerprint-yaml-Drupal
+manual: false
+detail:
+    fingerprint:
+        name: Drupal
+    fofa: 'icon_hash="-167656799" || icon_hash="1174841451" || header="drupal" || body="href=\"https://www.drupal.org\"" && body="data-drupal-link-system-path=" || body="content=\"Drupal" || body="jQuery.extend(Drupal.settings" || body="/sites/all/modules/" || header="X-Generator:Drupal" || body="/sites/all/themes/" && body="/sites/all/modules/" && body="/sites/default/files/" || body="jquery.extend(drupal.settings" || body="content=\"drupal" || body="jQuery.extend(Drupal.settings," || body="Drupal.extend(" || body="/misc/drupal.js" || body="Powered by <a href=\"https://www.drupal.org\">Drupal</a>" || body="Drupal.settings" || body="/sites/default/files/" || body="/sites/all/themes/" || header="ace-drupal7prod" || header="x-generator: drupal"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -167656799
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1174841451
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("drupal"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="https://www.drupal.org"') && response.body_string.contains("data-drupal-link-system-path=")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Drupal')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jQuery.extend(Drupal.settings")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/sites/all/modules/")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Generator:Drupal"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/sites/all/themes/") && response.body_string.contains("/sites/all/modules/") && response.body_string.contains("/sites/default/files/")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jquery.extend(drupal.settings")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="drupal')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jQuery.extend(Drupal.settings,")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Drupal.extend(")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/misc/drupal.js")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="https://www.drupal.org">Drupal</a>')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Drupal.settings")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/sites/default/files/")
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/sites/all/themes/")
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ace-drupal7prod"))
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-generator: drupal"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19()

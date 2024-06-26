@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Integrating-Century-EPBP-Management-Platform
+manual: false
+detail:
+    fingerprint:
+        name: Integrating-Century-EPBP-Management-Platform
+    fofa: body="match = rmsie.exec(window.navigator.useragent" && body="rmsie = /(msie\\s|trident.*rv:)([\\w.]+)/i" || body="rmsie = /(msie\\s|trident.*rv:)([\\w.]+)/i" || body="match = rmsie.exec(window.navigator.useragent"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("match = rmsie.exec(window.navigator.useragent") && response.body_string.contains("rmsie = /(msie\\s|trident.*rv:)([\\w.]+)/i")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("rmsie = /(msie\\s|trident.*rv:)([\\w.]+)/i")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("match = rmsie.exec(window.navigator.useragent")
+expression: r0() || r1() || r2()

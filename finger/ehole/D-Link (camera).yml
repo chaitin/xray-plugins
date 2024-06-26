@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link (camera)
+manual: false
+detail:
+    fingerprint:
+        name: D-Link (camera)
+    fofa: icon_hash="-355305208" || icon_hash="-1897829998"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -355305208
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1897829998
+expression: r0() || r1()

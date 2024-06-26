@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Spring-Cloud-Netflix
+manual: false
+detail:
+    fingerprint:
+        name: Spring-Cloud-Netflix
+    fofa: 'header="x-application-context: hystrix-dashboard:" || title="hystrix dashboard"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-application-context: hystrix-dashboard:"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hystrix dashboard")
+expression: r0() || r1()

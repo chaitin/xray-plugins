@@ -1,0 +1,16 @@
+name: fingerprint-yaml-syncthru_web_service
+manual: false
+detail:
+    fingerprint:
+        name: syncthru_web_service
+    fofa: title="syncthru_web_service"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("syncthru_web_service")
+expression: r0()

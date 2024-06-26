@@ -1,0 +1,30 @@
+name: fingerprint-yaml-micro_httpd
+manual: false
+detail:
+    fingerprint:
+        name: micro_httpd
+    fofa: 'header="micro_httpd" || header="server: micro_httpd" || title="micro_httpd"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("micro_httpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: micro_httpd"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("micro_httpd")
+expression: r0() || r1() || r2()

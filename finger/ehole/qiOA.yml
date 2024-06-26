@@ -1,0 +1,23 @@
+name: fingerprint-yaml-qiOA
+manual: false
+detail:
+    fingerprint:
+        name: qiOA
+    fofa: body="class=\"style1" && body="css/css.css" && body="js/jqselect.js" || body="class=\"style1" && body="css/css.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="style1') && response.body_string.contains("css/css.css") && response.body_string.contains("js/jqselect.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="style1') && response.body_string.contains("css/css.css")
+expression: r0() || r1()

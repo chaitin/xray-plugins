@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xinyang
+manual: false
+detail:
+    fingerprint:
+        name: xinyang
+    fofa: title="xinyang"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xinyang")
+expression: r0()

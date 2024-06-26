@@ -1,0 +1,16 @@
+name: fingerprint-yaml-QNAP NAS Virtualization Station
+manual: false
+detail:
+    fingerprint:
+        name: QNAP NAS Virtualization Station
+    fofa: icon_hash="-1041180225"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1041180225
+expression: r0()

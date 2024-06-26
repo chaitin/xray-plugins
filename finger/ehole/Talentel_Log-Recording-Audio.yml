@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Talentel_Log-Recording-Audio
+manual: false
+detail:
+    fingerprint:
+        name: Talentel_Log-Recording-Audio
+    fofa: title="欢迎您使用talentel_log-录音客户端系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎您使用talentel_log-录音客户端系统")
+expression: r0()

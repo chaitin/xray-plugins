@@ -1,0 +1,30 @@
+name: fingerprint-yaml-concrete5
+manual: false
+detail:
+    fingerprint:
+        name: concrete5
+    fofa: body="generator\" content=\"ezCMS" || body="CCM_DISPATCHER_FILENAME" || header="CONCRETE5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="ezCMS')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("CCM_DISPATCHER_FILENAME")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CONCRETE5"))
+expression: r0() || r1() || r2()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mockup Studio
+manual: false
+detail:
+    fingerprint:
+        name: Mockup Studio
+    fofa: header="Mockup Studio" || title="Mockup Studio"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mockup Studio"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mockup Studio")
+expression: r0() || r1()

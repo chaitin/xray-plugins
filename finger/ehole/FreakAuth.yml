@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FreakAuth
+manual: false
+detail:
+    fingerprint:
+        name: FreakAuth
+    fofa: 'header="set-cookie: freakauth" || header="FreakAuth"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: freakauth"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FreakAuth"))
+expression: r0() || r1()

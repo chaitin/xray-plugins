@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Plesk 面板
+manual: false
+detail:
+    fingerprint:
+        name: Plesk 面板
+    fofa: icon_hash="-134375033"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -134375033
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TopSec TopAD
+manual: false
+detail:
+    fingerprint:
+        name: TopSec TopAD
+    fofa: header="TopSec TopAD" || title="TopSec TopAD"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TopSec TopAD"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TopSec TopAD")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Envoy
+manual: false
+detail:
+    fingerprint:
+        name: Envoy
+    fofa: 'header="Envoy" || header="server: envoy" || title="Envoy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Envoy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: envoy"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Envoy")
+expression: r0() || r1() || r2()

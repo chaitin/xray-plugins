@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SimpleHelp (Remote Support)
+manual: false
+detail:
+    fingerprint:
+        name: SimpleHelp (Remote Support)
+    fofa: icon_hash="1117165781"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1117165781
+expression: r0()

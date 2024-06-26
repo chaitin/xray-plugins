@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OkoFEN Pellematic
+manual: false
+detail:
+    fingerprint:
+        name: OkoFEN Pellematic
+    fofa: icon_hash="-625364318"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -625364318
+expression: r0()

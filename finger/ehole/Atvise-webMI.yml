@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Atvise-webMI
+manual: false
+detail:
+    fingerprint:
+        name: Atvise-webMI
+    fofa: body="alarmlistbutton" || header="atvise" || body="<td><noscript>N/A</noscript><script type=\"text/javascript\"><!--" || body="<li class=\"btn\"><a class=\"button\" style=\"left:93%;\" href=\"javascript:void(0)\" target=\"mainframe\" id=\"alarmlistbutton\"><img height=\"30\" width=\"47\" src=\"buttonc.gif\" alt=\"\" /></a></li>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("alarmlistbutton")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("atvise"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><noscript>N/A</noscript><script type="text/javascript"><!--')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li class="btn"><a class="button" style="left:93%;" href="javascript:void(0)" target="mainframe" id="alarmlistbutton"><img height="30" width="47" src="buttonc.gif" alt="" /></a></li>')
+expression: r0() || r1() || r2() || r3()

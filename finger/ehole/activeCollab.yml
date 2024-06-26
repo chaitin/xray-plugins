@@ -1,0 +1,44 @@
+name: fingerprint-yaml-activeCollab
+manual: false
+detail:
+    fingerprint:
+        name: activeCollab
+    fofa: body="powered by activecollab" && body="<p id=\"powered_by\"><a href=\"http://www.activecollab.com/\"" || body="powered by activeCollab" || body="<p id=\"powered_by\"><a href=\"http://www.activecollab.com/\"" || body="powered by activecollab" || body="<form method=\"post\" id=\"system_form_2\" class=\"uniForm focusFirstField\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by activecollab") && response.body_string.contains('<p id="powered_by"><a href="http://www.activecollab.com/"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by activeCollab")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="powered_by"><a href="http://www.activecollab.com/"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by activecollab")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form method="post" id="system_form_2" class="uniForm focusFirstField">')
+expression: r0() || r1() || r2() || r3() || r4()

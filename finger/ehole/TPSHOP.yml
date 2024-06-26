@@ -1,0 +1,58 @@
+name: fingerprint-yaml-TPSHOP
+manual: false
+detail:
+    fingerprint:
+        name: TPSHOP
+    fofa: body="/index.php/mobile/index/index.html" && body=">tpshop开源商城<" || body="mn-c-top" || body="/index.php/Mobile/Index/index.html" || body=">TPshop开源商城<" || body=">tpshop开源商城<" || body="/index.php/mobile/index/index.html" || body="tpshop.css" && body="tpshop_config"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.php/mobile/index/index.html") && response.body_string.contains(">tpshop开源商城<")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mn-c-top")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.php/Mobile/Index/index.html")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">TPshop开源商城<")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">tpshop开源商城<")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.php/mobile/index/index.html")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("tpshop.css") && response.body_string.contains("tpshop_config")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Posterous
+manual: false
+detail:
+    fingerprint:
+        name: Posterous
+    fofa: body="content=\"posterous" && body="class=\"posterous_site_data" || header="_sharebymail_session_id=" || header="Posterous" || body="class=\"posterous_site_data" || body="content=\"posterous" || body="<meta name=\"generator\" content=\"Posterous\" />" || body="<div class=\"posterous_site_data\" data-post-id=\"" || body="<li class=\"first\"><a href=\"http://posterous.com/login?jumpto=http" || title="Posterous"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="posterous') && response.body_string.contains('class="posterous_site_data')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_sharebymail_session_id="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Posterous"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="posterous_site_data')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="posterous')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Posterous" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="posterous_site_data" data-post-id="')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li class="first"><a href="http://posterous.com/login?jumpto=http')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Posterous")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

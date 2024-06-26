@@ -1,0 +1,16 @@
+name: fingerprint-yaml-love1度论坛
+manual: false
+detail:
+    fingerprint:
+        name: love1度论坛
+    fofa: title="love1度论坛"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("love1度论坛")
+expression: r0()

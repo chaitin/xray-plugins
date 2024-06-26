@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cosminexus HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: Cosminexus HTTP Server
+    fofa: header="Cosminexus HTTP Server" || title="Cosminexus HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cosminexus HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cosminexus HTTP Server")
+expression: r0() || r1()

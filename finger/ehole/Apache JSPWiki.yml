@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Apache JSPWiki
+manual: false
+detail:
+    fingerprint:
+        name: Apache JSPWiki
+    fofa: header="Apache JSPWiki" || title="Apache JSPWiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache JSPWiki"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache JSPWiki")
+expression: r0() || r1()

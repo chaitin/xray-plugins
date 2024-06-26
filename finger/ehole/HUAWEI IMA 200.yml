@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI IMA 200
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI IMA 200
+    fofa: header="HUAWEI IMA 200" || title="HUAWEI IMA 200"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI IMA 200"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HUAWEI IMA 200")
+expression: r0() || r1()

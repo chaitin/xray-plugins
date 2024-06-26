@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hentai@Home
+manual: false
+detail:
+    fingerprint:
+        name: Hentai@Home
+    fofa: header="Hentai@Home" || title="Hentai@Home"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hentai@Home"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hentai@Home")
+expression: r0() || r1()

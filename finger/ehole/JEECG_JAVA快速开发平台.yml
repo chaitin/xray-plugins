@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JEECG_JAVA快速开发平台
+manual: false
+detail:
+    fingerprint:
+        name: JEECG_JAVA快速开发平台
+    fofa: title="JEECG_JAVA快速开发平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JEECG_JAVA快速开发平台")
+expression: r0()

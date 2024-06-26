@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Auction Network Webs
+manual: false
+detail:
+    fingerprint:
+        name: Auction Network Webs
+    fofa: header="Auction Network Webs" || title="Auction Network Webs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Auction Network Webs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Auction Network Webs")
+expression: r0() || r1()

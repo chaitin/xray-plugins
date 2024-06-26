@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AA-IOT
+manual: false
+detail:
+    fingerprint:
+        name: AA-IOT
+    fofa: header="AA-IOT" || title="AA-IOT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AA-IOT"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AA-IOT")
+expression: r0() || r1()

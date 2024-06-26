@@ -1,0 +1,16 @@
+name: fingerprint-yaml-QCMS小型网站管理系统_ASP
+manual: false
+detail:
+    fingerprint:
+        name: QCMS小型网站管理系统_ASP
+    fofa: title="QCMS小型网站管理系统_ASP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QCMS小型网站管理系统_ASP")
+expression: r0()

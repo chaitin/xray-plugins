@@ -1,0 +1,128 @@
+name: fingerprint-yaml-phpBB
+manual: false
+detail:
+    fingerprint:
+        name: phpBB
+    fofa: 'header="set-cookie: phpbb3_" && header="httponly, phpbb3_" || body="http://www.longluntan.com/zh/phpbb/" || body="phpBB" || body="phpBB Group\" />" || body="START QUICK HACK - phpBB Statistics MOD" || header="Set-Cookie:phpbb3_" || header="HttpOnly, phpbb3_" || body="start quick hack - phpbb statistics mod" || body="phpbb group\" />" || body="phpbb" && body="http://www.longluntan.com/zh/phpbb/" && body="&copy;" || body="<!-- link rel=\"stylesheet\" href=\"templates/subSilver/subSilver.css" || body="/images/logo_phpBB.gif" || body="We request you retain the full copyright notice below including the link to www.phpbb.com." || body="&copy;" && body="http://www.longluntan.com/zh/phpbb/" || body="phpbb" && body="phpbb group\" />" || header="httponly, phpbb3_" || header="set-cookie: phpbb3_"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: phpbb3_")) && response.raw_header.bcontains(bytes("httponly, phpbb3_"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.longluntan.com/zh/phpbb/")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phpBB")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('phpBB Group" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("START QUICK HACK - phpBB Statistics MOD")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Set-Cookie:phpbb3_"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HttpOnly, phpbb3_"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("start quick hack - phpbb statistics mod")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('phpbb group" />')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phpbb") && response.body_string.contains("http://www.longluntan.com/zh/phpbb/") && response.body_string.contains("&copy;")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- link rel="stylesheet" href="templates/subSilver/subSilver.css')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/logo_phpBB.gif")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("We request you retain the full copyright notice below including the link to www.phpbb.com.")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("&copy;") && response.body_string.contains("http://www.longluntan.com/zh/phpbb/")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phpbb") && response.body_string.contains('phpbb group" />')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("httponly, phpbb3_"))
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: phpbb3_"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16()

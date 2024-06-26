@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PLEX Server
+manual: false
+detail:
+    fingerprint:
+        name: PLEX Server
+    fofa: icon_hash="-895890586"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -895890586
+expression: r0()

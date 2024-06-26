@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Chainpoint
+manual: false
+detail:
+    fingerprint:
+        name: Chainpoint
+    fofa: icon_hash="2128230701"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2128230701
+expression: r0()

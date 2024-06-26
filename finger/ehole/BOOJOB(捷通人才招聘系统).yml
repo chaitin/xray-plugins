@@ -1,0 +1,37 @@
+name: fingerprint-yaml-BOOJOB(捷通人才招聘系统)
+manual: false
+detail:
+    fingerprint:
+        name: BOOJOB(捷通人才招聘系统)
+    fofa: body="BOOJOB" || body="捷通人才招聘系统" || title="BOOJOB" || title="捷通人才招聘系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("BOOJOB")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("捷通人才招聘系统")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BOOJOB")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("捷通人才招聘系统")
+expression: r0() || r1() || r2() || r3()

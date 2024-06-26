@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Niagara Web Server _ Tridium
+manual: false
+detail:
+    fingerprint:
+        name: Niagara Web Server / Tridium
+    fofa: icon_hash="1991562061"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1991562061
+expression: r0()

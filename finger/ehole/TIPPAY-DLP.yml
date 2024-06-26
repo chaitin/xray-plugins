@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TIPPAY-DLP
+manual: false
+detail:
+    fingerprint:
+        name: TIPPAY-DLP
+    fofa: title="绿盾信息安全系统管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("绿盾信息安全系统管理")
+expression: r0()

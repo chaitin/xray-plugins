@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-VEN401
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-VEN401
+    fofa: header="cisco ven401" || header="Cisco VEN401"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco ven401"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco VEN401"))
+expression: r0() || r1()

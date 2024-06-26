@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SOC8000IP
+manual: false
+detail:
+    fingerprint:
+        name: SOC8000IP
+    fofa: title="SOC8000IP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SOC8000IP")
+expression: r0()

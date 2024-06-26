@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BookingeCMS酒店系统
+manual: false
+detail:
+    fingerprint:
+        name: BookingeCMS酒店系统
+    fofa: title="BookingeCMS酒店系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BookingeCMS酒店系统")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Pars Elecom Portal
+manual: false
+detail:
+    fingerprint:
+        name: Pars Elecom Portal
+    fofa: header="Pars Elecom Portal" || title="Pars Elecom Portal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Pars Elecom Portal"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Pars Elecom Portal")
+expression: r0() || r1()

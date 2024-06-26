@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ICEFLOW NP上网行为管理
+manual: false
+detail:
+    fingerprint:
+        name: ICEFLOW NP上网行为管理
+    fofa: header="ICEFLOW NP上网行为管理" || title="ICEFLOW NP上网行为管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ICEFLOW NP上网行为管理"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ICEFLOW NP上网行为管理")
+expression: r0() || r1()

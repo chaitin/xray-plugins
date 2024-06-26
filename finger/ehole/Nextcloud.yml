@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Nextcloud
+manual: false
+detail:
+    fingerprint:
+        name: Nextcloud
+    fofa: title="Nextcloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nextcloud")
+expression: r0()

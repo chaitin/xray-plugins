@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zf_cms
+manual: false
+detail:
+    fingerprint:
+        name: zf_cms
+    fofa: title="zf_cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zf_cms")
+expression: r0()

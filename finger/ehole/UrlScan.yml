@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UrlScan
+manual: false
+detail:
+    fingerprint:
+        name: UrlScan
+    fofa: header="Rejected-By-UrlScan"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Rejected-By-UrlScan"))
+expression: r0()

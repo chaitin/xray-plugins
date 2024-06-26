@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RightJS
+manual: false
+detail:
+    fingerprint:
+        name: RightJS
+    fofa: title="RightJS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RightJS")
+expression: r0()

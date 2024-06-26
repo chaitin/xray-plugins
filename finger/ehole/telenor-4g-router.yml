@@ -1,0 +1,23 @@
+name: fingerprint-yaml-telenor-4g-router
+manual: false
+detail:
+    fingerprint:
+        name: telenor-4g-router
+    fofa: body="<form id=\"default_login\" name=\"default_login\" method=\"post\" action=\"/goform/user_login\">" || body="please power off and plug in (u)sim card. then power on again. or pin is permanently blocked, please contact the provider"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form id="default_login" name="default_login" method="post" action="/goform/user_login">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("please power off and plug in (u)sim card. then power on again. or pin is permanently blocked, please contact the provider")
+expression: r0() || r1()

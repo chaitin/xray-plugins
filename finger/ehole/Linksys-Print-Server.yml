@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Linksys-Print-Server
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-Print-Server
+    fofa: body="print server for usb with 4-port switch" || header="print_server web" || body="<td align=\"right\" class=\"pname\" height=\"25\" colspan=\"5\">Print Server for USB with 4-Port Switch &nbsp; &nbsp; </td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("print server for usb with 4-port switch")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("print_server web"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="pname" height="25" colspan="5">Print Server for USB with 4-Port Switch &nbsp; &nbsp; </td>')
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netis (network devices)
+manual: false
+detail:
+    fingerprint:
+        name: Netis (network devices)
+    fofa: icon_hash="-594256627"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -594256627
+expression: r0()

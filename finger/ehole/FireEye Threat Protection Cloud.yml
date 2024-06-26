@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FireEye Threat Protection Cloud
+manual: false
+detail:
+    fingerprint:
+        name: FireEye Threat Protection Cloud
+    fofa: header="FireEye Threat Protection Cloud" || title="FireEye Threat Protection Cloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FireEye Threat Protection Cloud"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FireEye Threat Protection Cloud")
+expression: r0() || r1()

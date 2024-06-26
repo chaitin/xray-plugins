@@ -1,0 +1,23 @@
+name: fingerprint-yaml-openWRT Luci
+manual: false
+detail:
+    fingerprint:
+        name: openWRT Luci
+    fofa: icon_hash="-675839242" || icon_hash="1941381095"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -675839242
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1941381095
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hello Bar
+manual: false
+detail:
+    fingerprint:
+        name: Hello Bar
+    fofa: header="Hello Bar" || title="Hello Bar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hello Bar"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hello Bar")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-DGN2000
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-DGN2000
+    fofa: header="netgear dgn2000 " || header="NETGEAR DGN2000" || header="netgear dgn2000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear dgn2000 "))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DGN2000"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear dgn2000"))
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zentaophp框架
+manual: false
+detail:
+    fingerprint:
+        name: zentaophp框架
+    fofa: title="zentaophp框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zentaophp框架")
+expression: r0()

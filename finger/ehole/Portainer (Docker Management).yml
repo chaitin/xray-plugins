@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Portainer (Docker Management)
+manual: false
+detail:
+    fingerprint:
+        name: Portainer (Docker Management)
+    fofa: icon_hash="-1424036600"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1424036600
+expression: r0()

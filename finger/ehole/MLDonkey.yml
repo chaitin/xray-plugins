@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MLDonkey
+manual: false
+detail:
+    fingerprint:
+        name: MLDonkey
+    fofa: header="MLDonkey" || title="MLDonkey"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MLDonkey"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MLDonkey")
+expression: r0() || r1()

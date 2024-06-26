@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Demila数字内容交易系统
+manual: false
+detail:
+    fingerprint:
+        name: Demila数字内容交易系统
+    fofa: title="Demila数字内容交易系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Demila数字内容交易系统")
+expression: r0()

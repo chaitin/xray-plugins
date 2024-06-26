@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Atlassian – Bamboo
+manual: false
+detail:
+    fingerprint:
+        name: Atlassian – Bamboo
+    fofa: icon_hash="-1379982221"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1379982221
+expression: r0()

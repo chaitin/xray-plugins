@@ -1,0 +1,23 @@
+name: fingerprint-yaml-海昌协同办公系统
+manual: false
+detail:
+    fingerprint:
+        name: 海昌协同办公系统
+    fofa: header="海昌协同办公系统" || title="海昌协同办公系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("海昌协同办公系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("海昌协同办公系统")
+expression: r0() || r1()

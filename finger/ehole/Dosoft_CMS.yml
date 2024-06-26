@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dosoft_CMS
+manual: false
+detail:
+    fingerprint:
+        name: Dosoft_CMS
+    fofa: title="Dosoft_CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dosoft_CMS")
+expression: r0()

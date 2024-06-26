@@ -1,0 +1,37 @@
+name: fingerprint-yaml-NetSoft-eIDA
+manual: false
+detail:
+    fingerprint:
+        name: NetSoft-eIDA
+    fofa: body="window.location.href = \"/appframe/login_v2/login.jsp\";" && body="href=\"/images/common/favicon.ico\"" || body="href=\"/images/common/favicon.ico\"" && body="window.location.href = \"/appframe/login_v2/login.jsp\";" || body="window.location.href = \"/appframe/login_v2/login.jsp\";" || body="href=\"/images/common/favicon.ico\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = "/appframe/login_v2/login.jsp";') && response.body_string.contains('href="/images/common/favicon.ico"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/images/common/favicon.ico"') && response.body_string.contains('window.location.href = "/appframe/login_v2/login.jsp";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = "/appframe/login_v2/login.jsp";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/images/common/favicon.ico"')
+expression: r0() || r1() || r2() || r3()

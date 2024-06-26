@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MDPHP_麦迪php框架系统
+manual: false
+detail:
+    fingerprint:
+        name: MDPHP_麦迪php框架系统
+    fofa: title="MDPHP_麦迪php框架系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MDPHP_麦迪php框架系统")
+expression: r0()

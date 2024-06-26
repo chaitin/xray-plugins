@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK Wireless WR841N
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK Wireless WR841N
+    fofa: header="TP-LINK Wireless WR841N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK Wireless WR841N"))
+expression: r0()

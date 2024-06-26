@@ -1,0 +1,51 @@
+name: fingerprint-yaml-FEX
+manual: false
+detail:
+    fingerprint:
+        name: FEX
+    fofa: 'body="href=\"mailto:fexmaster@ostc.de" || header="server: fexsrv" || body="HREF=\"mailto:fexmaster@ostc.de" || header="fexsrv" || body="<HEAD><TITLE>F*EX - File EXchange</TITLE></HEAD>" || body="<h1>F*EX - Frams\" Fast File EXchange"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mailto:fexmaster@ostc.de')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: fexsrv"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('HREF="mailto:fexmaster@ostc.de')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fexsrv"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HEAD><TITLE>F*EX - File EXchange</TITLE></HEAD>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1>F*EX - Frams" Fast File EXchange')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

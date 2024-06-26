@@ -1,0 +1,51 @@
+name: fingerprint-yaml-MaxCMS(马克斯CMS)
+manual: false
+detail:
+    fingerprint:
+        name: MaxCMS(马克斯CMS)
+    fofa: body="MaxCMS" || body="马克斯CMS" || header="MaxCMS" || header="马克斯CMS" || title="MaxCMS" || title="马克斯CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("MaxCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("马克斯CMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MaxCMS"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("马克斯CMS"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MaxCMS")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("马克斯CMS")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

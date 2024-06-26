@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Paradox IP Module
+manual: false
+detail:
+    fingerprint:
+        name: Paradox IP Module
+    fofa: icon_hash="727253975"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 727253975
+expression: r0()

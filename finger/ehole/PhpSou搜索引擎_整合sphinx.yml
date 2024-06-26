@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PhpSou搜索引擎_整合sphinx
+manual: false
+detail:
+    fingerprint:
+        name: PhpSou搜索引擎_整合sphinx
+    fofa: header="PhpSou搜索引擎_整合sphinx" || title="PhpSou搜索引擎_整合sphinx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PhpSou搜索引擎_整合sphinx"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PhpSou搜索引擎_整合sphinx")
+expression: r0() || r1()

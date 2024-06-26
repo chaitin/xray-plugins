@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PIC18 Webserver
+manual: false
+detail:
+    fingerprint:
+        name: PIC18 Webserver
+    fofa: header="PIC18 Webserver" || title="PIC18 Webserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PIC18 Webserver"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PIC18 Webserver")
+expression: r0() || r1()

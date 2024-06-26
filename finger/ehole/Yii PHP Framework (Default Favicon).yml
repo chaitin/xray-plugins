@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Yii PHP Framework (Default Favicon)
+manual: false
+detail:
+    fingerprint:
+        name: Yii PHP Framework (Default Favicon)
+    fofa: icon_hash="-1298108480"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1298108480
+expression: r0()

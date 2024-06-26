@@ -1,0 +1,72 @@
+name: fingerprint-yaml-FormMail
+manual: false
+detail:
+    fingerprint:
+        name: FormMail
+    fofa: body="href=\"http://www.worldwidemart.com/scripts/formmail.shtml" || body="/FormMail.pl" || body="/formmail.pl" || body="This form was suplied by <A href=\"http://www.worldwidemart.com/scripts/formmail.shtml\"" || body="<a href=\"http://www.worldwidemart.com/scripts/formmail.shtml\">FormMail</a>" || body="<title>FormMail" || body="A Free Product of <a href=\"http://www.worldwidemart.com/scripts/\">Matt\"s Script Archive," || body="<tr><th><font size=+2>FormMail</font></th></tr>" || body="aboutus/magicmail.gif"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.worldwidemart.com/scripts/formmail.shtml')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/FormMail.pl")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/formmail.pl")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This form was suplied by <A href="http://www.worldwidemart.com/scripts/formmail.shtml"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.worldwidemart.com/scripts/formmail.shtml">FormMail</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>FormMail")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('A Free Product of <a href="http://www.worldwidemart.com/scripts/">Matt"s Script Archive,')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<tr><th><font size=+2>FormMail</font></th></tr>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("aboutus/magicmail.gif")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

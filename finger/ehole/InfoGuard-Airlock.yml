@@ -1,0 +1,30 @@
+name: fingerprint-yaml-InfoGuard-Airlock
+manual: false
+detail:
+    fingerprint:
+        name: InfoGuard-Airlock
+    fofa: header="al_sess=" && header="al_lb=" || header="al_lb=" || header="al_sess="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("al_sess=")) && response.raw_header.bcontains(bytes("al_lb="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("al_lb="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("al_sess="))
+expression: r0() || r1() || r2()

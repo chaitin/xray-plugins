@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SBR-info-LanSecS®-Network-Boundary-Integrity-Check-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: SBR-info-LanSecS®-Network-Boundary-Integrity-Check-Management-System
+    fofa: title="网络边界完整性检查管理系统 v2.0"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网络边界完整性检查管理系统 v2.0")
+expression: r0()

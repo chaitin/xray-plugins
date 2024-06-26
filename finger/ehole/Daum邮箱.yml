@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Daum邮箱
+manual: false
+detail:
+    fingerprint:
+        name: Daum邮箱
+    fofa: title="Daum邮箱"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Daum邮箱")
+expression: r0()

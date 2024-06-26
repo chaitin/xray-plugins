@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Imageview
+manual: false
+detail:
+    fingerprint:
+        name: Imageview
+    fofa: body="content=\"imageview" && body="by jorge schrauwen" && body="href=\"http://www.blackdot.be\" title=\"blackdot.be" || body="content=\"Imageview" || body="By Jorge Schrauwen" || body="href=\"http://www.blackdot.be\" title=\"blackdot.be" || body="by jorge schrauwen" || body="content=\"imageview" || body="<meta name=\"author\" content=\"Jorge Schrauwen\" />" || body="<frame src=\"preload.php\" name=\"frImageview\" id=\"frImageview\" />" || body="<frame src=\"about:blank\" name=\"iHistoryRecorder\" id=\"iHistoryRecorder\" />" || body="<link rel=\"Developer\" href=\"http://www.blackdot.be\" title=\"Blackdot.be\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="imageview') && response.body_string.contains("by jorge schrauwen") && response.body_string.contains('href="http://www.blackdot.be" title="blackdot.be')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Imageview')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("By Jorge Schrauwen")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.blackdot.be" title="blackdot.be')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("by jorge schrauwen")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="imageview')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Jorge Schrauwen" />')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="preload.php" name="frImageview" id="frImageview" />')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="about:blank" name="iHistoryRecorder" id="iHistoryRecorder" />')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="Developer" href="http://www.blackdot.be" title="Blackdot.be" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

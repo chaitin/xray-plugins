@@ -1,0 +1,16 @@
+name: fingerprint-yaml-友加畅捷U+财会通
+manual: false
+detail:
+    fingerprint:
+        name: 友加畅捷U+财会通
+    fofa: icon_hash="2049187099"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2049187099
+expression: r0()

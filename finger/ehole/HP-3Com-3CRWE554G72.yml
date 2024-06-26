@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-3Com-3CRWE554G72
+manual: false
+detail:
+    fingerprint:
+        name: HP-3Com-3CRWE554G72
+    fofa: body="http-equiv=\"3cnumber\" content=\"3crwe554g72\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('http-equiv="3cnumber" content="3crwe554g72"')
+expression: r0()

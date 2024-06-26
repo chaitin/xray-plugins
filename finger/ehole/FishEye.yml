@@ -1,0 +1,65 @@
+name: fingerprint-yaml-FishEye
+manual: false
+detail:
+    fingerprint:
+        name: FishEye
+    fofa: 'header="FESESSIONID=" || body="fisheye " && body="fisheye-16.ico" || header="set-cookie: fesessionid" || body="fisheye-16.ico" || header="Set-Cookie:FESESSIONID" || body="fisheye" || body="fisheye " || body="fishey"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FESESSIONID="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fisheye ") && response.body_string.contains("fisheye-16.ico")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: fesessionid"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fisheye-16.ico")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Set-Cookie:FESESSIONID"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fisheye")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fisheye ")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fishey")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

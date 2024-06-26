@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco PIX
+manual: false
+detail:
+    fingerprint:
+        name: Cisco PIX
+    fofa: header="Cisco PIX" || title="Cisco PIX"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco PIX"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cisco PIX")
+expression: r0() || r1()

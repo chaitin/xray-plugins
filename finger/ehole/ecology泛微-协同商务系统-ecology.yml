@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ecology泛微-协同商务系统-ecology
+manual: false
+detail:
+    fingerprint:
+        name: ecology泛微-协同商务系统-ecology
+    fofa: body="index_wev8.js" && body="jquery_wev8.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index_wev8.js") && response.body_string.contains("jquery_wev8.js")
+expression: r0()

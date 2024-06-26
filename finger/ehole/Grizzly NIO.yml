@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Grizzly NIO
+manual: false
+detail:
+    fingerprint:
+        name: Grizzly NIO
+    fofa: body="<div class=\"footer\">Grizzly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="footer">Grizzly')
+expression: r0()

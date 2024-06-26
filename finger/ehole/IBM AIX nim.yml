@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM AIX nim
+manual: false
+detail:
+    fingerprint:
+        name: IBM AIX nim
+    fofa: header="IBM AIX nim" || title="IBM AIX nim"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM AIX nim"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBM AIX nim")
+expression: r0() || r1()

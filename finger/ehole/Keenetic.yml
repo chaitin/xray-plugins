@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Keenetic
+manual: false
+detail:
+    fingerprint:
+        name: Keenetic
+    fofa: icon_hash="547282364"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 547282364
+expression: r0()

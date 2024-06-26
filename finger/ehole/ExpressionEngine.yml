@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ExpressionEngine
+manual: false
+detail:
+    fingerprint:
+        name: ExpressionEngine
+    fofa: body="exp_tracker" || header="exp_last_visit" || header="exp_last_activity"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("exp_tracker")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("exp_last_visit"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("exp_last_activity"))
+expression: r0() || r1() || r2()

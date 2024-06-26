@@ -1,0 +1,37 @@
+name: fingerprint-yaml-TengWeiOA
+manual: false
+detail:
+    fingerprint:
+        name: TengWeiOA
+    fofa: body="/_common/scripts/global.js" && body="/valcode.aspx" || body="/valcode.aspx" && body="/_common/scripts/global.js" || body="/_common/scripts/global.js" || body="/valcode.aspx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/_common/scripts/global.js") && response.body_string.contains("/valcode.aspx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/valcode.aspx") && response.body_string.contains("/_common/scripts/global.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/_common/scripts/global.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/valcode.aspx")
+expression: r0() || r1() || r2() || r3()

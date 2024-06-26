@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Network Appliance NetCache
+manual: false
+detail:
+    fingerprint:
+        name: Network Appliance NetCache
+    fofa: header="Network Appliance NetCache" || title="Network Appliance NetCache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Network Appliance NetCache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Network Appliance NetCache")
+expression: r0() || r1()

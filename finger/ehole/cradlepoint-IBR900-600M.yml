@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-IBR900-600M
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-IBR900-600M
+    fofa: 'title="login :: ibr900-600m"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("login :: ibr900-600m")'
+expression: r0()

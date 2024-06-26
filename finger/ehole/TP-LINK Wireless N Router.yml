@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TP-LINK Wireless N Router
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK Wireless N Router
+    fofa: header="TP-LINK Wireless N Router" || title="TP-LINK Wireless N Router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK Wireless N Router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TP-LINK Wireless N Router")
+expression: r0() || r1()

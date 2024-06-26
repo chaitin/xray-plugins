@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TripEC旅游电商门户网站
+manual: false
+detail:
+    fingerprint:
+        name: TripEC旅游电商门户网站
+    fofa: title="TripEC旅游电商门户网站"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TripEC旅游电商门户网站")
+expression: r0()

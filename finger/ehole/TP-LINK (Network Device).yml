@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TP-LINK (Network Device)
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK (Network Device)
+    fofa: icon_hash="1842351293" || icon_hash="1274078387"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1842351293
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1274078387
+expression: r0() || r1()

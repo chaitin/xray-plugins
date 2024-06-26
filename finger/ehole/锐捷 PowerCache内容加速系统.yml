@@ -1,0 +1,23 @@
+name: fingerprint-yaml-锐捷 PowerCache内容加速系统
+manual: false
+detail:
+    fingerprint:
+        name: 锐捷 PowerCache内容加速系统
+    fofa: header="锐捷 PowerCache内容加速系统" || title="锐捷 PowerCache内容加速系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("锐捷 PowerCache内容加速系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("锐捷 PowerCache内容加速系统")
+expression: r0() || r1()

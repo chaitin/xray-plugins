@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Projesoft
+manual: false
+detail:
+    fingerprint:
+        name: Projesoft
+    fofa: header="Projesoft" || title="Projesoft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Projesoft"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Projesoft")
+expression: r0() || r1()

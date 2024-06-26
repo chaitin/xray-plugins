@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FORSUN-SafeGateway
+manual: false
+detail:
+    fingerprint:
+        name: FORSUN-SafeGateway
+    fofa: title="科盾网关控制台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("科盾网关控制台")
+expression: r0()

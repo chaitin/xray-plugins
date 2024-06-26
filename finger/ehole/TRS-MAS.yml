@@ -1,0 +1,51 @@
+name: fingerprint-yaml-TRS-MAS
+manual: false
+detail:
+    fingerprint:
+        name: TRS-MAS
+    fofa: header="x-mas-server" || header="X-Mas-Server" || header="TRS MAS" || header="TRS-MAS" || title="TRS MAS" || title="TRS-MAS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-mas-server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Mas-Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TRS MAS"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TRS-MAS"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TRS MAS")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TRS-MAS")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

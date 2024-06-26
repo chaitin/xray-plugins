@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Siemens-SIMATIC-HMI
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-SIMATIC-HMI
+    fofa: body="/images/siemens_firmenmarke.gif" && body="refresh\" content=\"0;url=/www/start.html\">" || header="simatic hmi" || body="<meta http-equiv=\"refresh\" content=\"0;url=/www/start.html\">" || body="hint:<br> when the devicename contains an underscore ( _ ) some browsers have a bug that makes it impossible to log in.<br> one possible solution may be to use the ip address of the device instead of the name,,to use another browser." || body="/images/siemens_firmenmarke.gif" || body="refresh\" content=\"0;url=/www/start.html\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/siemens_firmenmarke.gif") && response.body_string.contains('refresh" content="0;url=/www/start.html">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("simatic hmi"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;url=/www/start.html">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hint:<br> when the devicename contains an underscore ( _ ) some browsers have a bug that makes it impossible to log in.<br> one possible solution may be to use the ip address of the device instead of the name,,to use another browser.")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/siemens_firmenmarke.gif")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('refresh" content="0;url=/www/start.html">')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

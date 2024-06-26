@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG6306
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG6306
+    fofa: header="huawei usg6306"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei usg6306"))
+expression: r0()

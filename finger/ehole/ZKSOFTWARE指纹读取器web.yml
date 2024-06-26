@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZKSOFTWARE指纹读取器web
+manual: false
+detail:
+    fingerprint:
+        name: ZKSOFTWARE指纹读取器web
+    fofa: header="ZKSOFTWARE指纹读取器web" || title="ZKSOFTWARE指纹读取器web"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZKSOFTWARE指纹读取器web"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZKSOFTWARE指纹读取器web")
+expression: r0() || r1()

@@ -1,0 +1,58 @@
+name: fingerprint-yaml-DMXReady-Portfolio-Manager
+manual: false
+detail:
+    fingerprint:
+        name: DMXReady-Portfolio-Manager
+    fofa: body="/css/portfoliomanager/styles_display_page.css" && body="rememberme_portfoliomanager" || body="/css/PortfolioManager/styles_display_page.css" || body="rememberme_portfoliomanager" || body="/css/portfoliomanager/styles_display_page.css" || body="<link href=\"/css/PortfolioManager/styles_display_page.css\" rel=\"stylesheet\" type=\"text/css\">" || body="<a href=\"javascript:;\" class=\"menu_linkB\" onClick=\"window.open(\"/applications/PortfolioManager/components/inc_slideshowmanager.asp?index=0\",\"send\",\"toolbar=no,location=no,status=yes,menubar=no,copyhistory=yes,scrollbars=yes,width=700,height=520\")\">" || body="<input name=\"rememberme_portfoliomanager\" type=\"checkbox\"  id=\"rememberme_portfoliomanager\"   value=\"yes\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/portfoliomanager/styles_display_page.css") && response.body_string.contains("rememberme_portfoliomanager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/PortfolioManager/styles_display_page.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("rememberme_portfoliomanager")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/portfoliomanager/styles_display_page.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="/css/PortfolioManager/styles_display_page.css" rel="stylesheet" type="text/css">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="javascript:;" class="menu_linkB" onClick="window.open("/applications/PortfolioManager/components/inc_slideshowmanager.asp?index=0","send","toolbar=no,location=no,status=yes,menubar=no,copyhistory=yes,scrollbars=yes,width=700,height=520")">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input name="rememberme_portfoliomanager" type="checkbox"  id="rememberme_portfoliomanager"   value="yes">')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

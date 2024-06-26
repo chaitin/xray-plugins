@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FlatPress
+manual: false
+detail:
+    fingerprint:
+        name: FlatPress
+    fofa: header="FlatPress" || title="FlatPress"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FlatPress"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FlatPress")
+expression: r0() || r1()

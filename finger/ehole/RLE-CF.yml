@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RLE-CF
+manual: false
+detail:
+    fingerprint:
+        name: RLE-CF
+    fofa: header="RLE-CF" || title="RLE-CF"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RLE-CF"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RLE-CF")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MoMoCMS
+manual: false
+detail:
+    fingerprint:
+        name: MoMoCMS
+    fofa: body="content=\"MoMoCMS" || body="Powered BY MoMoCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="MoMoCMS')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered BY MoMoCMS")
+expression: r0() || r1()

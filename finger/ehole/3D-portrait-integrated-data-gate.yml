@@ -1,0 +1,37 @@
+name: fingerprint-yaml-3D-portrait-integrated-data-gate
+manual: false
+detail:
+    fingerprint:
+        name: 3D-portrait-integrated-data-gate
+    fofa: body="<body onload=\"checkexplorer('/page/login_new'\">" || body="<body onload=\"checkexplorer(\"/page/login_new\")\">" || body="<body onload=\"checkexplorer\"/page/login_new\"\">" || title="欢迎使用三维人像综合数据门!"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<body onload=\"checkexplorer('/page/login_new'\">")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="checkexplorer("/page/login_new")">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="checkexplorer"/page/login_new"">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎使用三维人像综合数据门!")
+expression: r0() || r1() || r2() || r3()

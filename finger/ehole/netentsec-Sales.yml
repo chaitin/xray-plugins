@@ -1,0 +1,16 @@
+name: fingerprint-yaml-netentsec-Sales
+manual: false
+detail:
+    fingerprint:
+        name: netentsec-Sales
+    fofa: title="网康智能营销平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网康智能营销平台")
+expression: r0()

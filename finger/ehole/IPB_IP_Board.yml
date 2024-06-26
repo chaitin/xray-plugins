@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IPB_IP_Board
+manual: false
+detail:
+    fingerprint:
+        name: IPB_IP.Board
+    fofa: header="IPB_IP.Board" || title="IPB_IP.Board"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPB_IP.Board"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPB_IP.Board")
+expression: r0() || r1()

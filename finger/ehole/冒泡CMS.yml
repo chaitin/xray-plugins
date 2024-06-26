@@ -1,0 +1,23 @@
+name: fingerprint-yaml-冒泡CMS
+manual: false
+detail:
+    fingerprint:
+        name: 冒泡CMS
+    fofa: header="冒泡CMS" || title="冒泡CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("冒泡CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("冒泡CMS")
+expression: r0() || r1()

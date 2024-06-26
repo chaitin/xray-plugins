@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MuCMS
+manual: false
+detail:
+    fingerprint:
+        name: MuCMS
+    fofa: header="MuCMS" || title="MuCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MuCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MuCMS")
+expression: r0() || r1()

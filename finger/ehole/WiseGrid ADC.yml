@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WiseGrid ADC
+manual: false
+detail:
+    fingerprint:
+        name: WiseGrid ADC
+    fofa: header="WiseGrid ADC" || title="WiseGrid ADC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WiseGrid ADC"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WiseGrid ADC")
+expression: r0() || r1()

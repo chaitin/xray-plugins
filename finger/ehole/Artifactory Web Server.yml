@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Artifactory Web Server
+manual: false
+detail:
+    fingerprint:
+        name: Artifactory Web Server
+    fofa: header="Artifactory Web Server" || title="Artifactory Web Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Artifactory Web Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Artifactory Web Server")
+expression: r0() || r1()

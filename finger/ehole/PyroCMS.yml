@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PyroCMS
+manual: false
+detail:
+    fingerprint:
+        name: PyroCMS
+    fofa: header="PyroCMS" || title="PyroCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PyroCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PyroCMS")
+expression: r0() || r1()

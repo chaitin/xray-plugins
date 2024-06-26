@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-R6220
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-R6220
+    fofa: header="netgear r6220" || header="NETGEAR R6220" || title="netgear router r6220 "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear r6220"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR R6220"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear router r6220 ")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AccessiblePortal
+manual: false
+detail:
+    fingerprint:
+        name: AccessiblePortal
+    fofa: title="Accessible Portal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Accessible Portal")
+expression: r0()

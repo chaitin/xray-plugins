@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Apache2 Debian 默认页
+manual: false
+detail:
+    fingerprint:
+        name: Apache2 Debian 默认页
+    fofa: body="Apache2 Debian Default" && body="It works!" && body="Debian Logo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Apache2 Debian Default") && response.body_string.contains("It works!") && response.body_string.contains("Debian Logo")
+expression: r0()

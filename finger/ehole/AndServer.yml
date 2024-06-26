@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AndServer
+manual: false
+detail:
+    fingerprint:
+        name: AndServer
+    fofa: header="AndServer" || title="AndServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AndServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AndServer")
+expression: r0() || r1()

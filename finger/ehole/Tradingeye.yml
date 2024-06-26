@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Tradingeye
+manual: false
+detail:
+    fingerprint:
+        name: Tradingeye
+    fofa: body="content=\"dpivision.com ltd\" />" && body="id=\"credits\"><a href=\"http://www.tradingeye.com/\">powered by tradingeye</a>" || body="id=\"credits\"><a href=\"http://www.tradingeye.com/\">powered by tradingeye</a>" || body="content=\"dpivision.com ltd\" />" || body="<p id=\"credits\"><a href=\"http://www.tradingeye.com/\">powered by Tradingeye</a></p>" || body="<meta name=\"author\" content=\"dpivision.com Ltd\" />" || body="<p id=\"breadcrumbs\">You are here:" || body="</div><!-- end body/inner -->" || body="<p id=\"skip\">[<a href=\"#main\">skip to main content</a>]</p>" || body="<th class=\"login_bg\" colspan=\"2\">Tradingeye Login</th>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="dpivision.com ltd" />') && response.body_string.contains('id="credits"><a href="http://www.tradingeye.com/">powered by tradingeye</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="credits"><a href="http://www.tradingeye.com/">powered by tradingeye</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="dpivision.com ltd" />')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="credits"><a href="http://www.tradingeye.com/">powered by Tradingeye</a></p>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="dpivision.com Ltd" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="breadcrumbs">You are here:')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("</div><!-- end body/inner -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="skip">[<a href="#main">skip to main content</a>]</p>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<th class="login_bg" colspan="2">Tradingeye Login</th>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

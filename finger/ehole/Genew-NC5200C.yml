@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Genew-NC5200C
+manual: false
+detail:
+    fingerprint:
+        name: Genew-NC5200C
+    fofa: title="nc5200c"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nc5200c")
+expression: r0()

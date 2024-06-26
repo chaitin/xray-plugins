@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SmartPing
+manual: false
+detail:
+    fingerprint:
+        name: SmartPing
+    fofa: icon_hash="430582574"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 430582574
+expression: r0()

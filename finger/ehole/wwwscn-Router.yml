@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wwwscn-Router
+manual: false
+detail:
+    fingerprint:
+        name: wwwscn-Router
+    fofa: title="文网卫士安全路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("文网卫士安全路由器")
+expression: r0()

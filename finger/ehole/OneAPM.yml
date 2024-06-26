@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OneAPM
+manual: false
+detail:
+    fingerprint:
+        name: OneAPM
+    fofa: header="OneAPM" || title="OneAPM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OneAPM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OneAPM")
+expression: r0() || r1()

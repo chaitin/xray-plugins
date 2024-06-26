@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPSay-Microblog_微博客系统青春版
+manual: false
+detail:
+    fingerprint:
+        name: PHPSay-Microblog_微博客系统青春版
+    fofa: header="PHPSay-Microblog_微博客系统青春版" || title="PHPSay-Microblog_微博客系统青春版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPSay-Microblog_微博客系统青春版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPSay-Microblog_微博客系统青春版")
+expression: r0() || r1()

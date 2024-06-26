@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TechartCMS
+manual: false
+detail:
+    fingerprint:
+        name: TechartCMS
+    fofa: header="X-Powered-Cms:Techart CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-Cms:Techart CMS"))
+expression: r0()

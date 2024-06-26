@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SAP-Sybase
+manual: false
+detail:
+    fingerprint:
+        name: SAP-Sybase
+    fofa: 'header="server: adaptiveserveranywhere" && header="server: sqlanywhere" || header="server: sqlanywhere" || header="server: adaptiveserveranywhere"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: adaptiveserveranywhere")) && response.raw_header.bcontains(bytes("server: sqlanywhere"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sqlanywhere"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: adaptiveserveranywhere"))'
+expression: r0() || r1() || r2()

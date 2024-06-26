@@ -1,0 +1,30 @@
+name: fingerprint-yaml-DaDaBIK
+manual: false
+detail:
+    fingerprint:
+        name: DaDaBIK
+    fofa: 'body="content=\"DaDaBIK" || body="class=\"powered_by_dadabik" || body="<div class=\"powered_by_dadabik\" align=\"right\">Powered by: <a href=\"http://www.dadabik.org/\">DaDaBIK</a> database front-end</div>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="DaDaBIK')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="powered_by_dadabik')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div class="powered_by_dadabik" align="right">Powered by: <a href="http://www.dadabik.org/">DaDaBIK</a> database front-end</div>'')'
+expression: r0() || r1() || r2()

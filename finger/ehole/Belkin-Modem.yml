@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Belkin-Modem
+manual: false
+detail:
+    fingerprint:
+        name: Belkin-Modem
+    fofa: body="content=\"Belkin" || body="href=\"main_router.css\" src=\"showMenu.js\"" || body="<meta name=\"description\" content=\"Belkin 2307" || body="<td bgcolor=\"#94CAE4\" width=\"50%\" height=\"18\">F5D7230-4P</td>" || body="var isPPPoE, isStatic, isDynamic, isnat, isdialup, isbigpond, ispptp, isfirewall;"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Belkin')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="main_router.css" src="showMenu.js"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="Belkin 2307')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td bgcolor="#94CAE4" width="50%" height="18">F5D7230-4P</td>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var isPPPoE, isStatic, isDynamic, isnat, isdialup, isbigpond, ispptp, isfirewall;")
+expression: r0() || r1() || r2() || r3() || r4()

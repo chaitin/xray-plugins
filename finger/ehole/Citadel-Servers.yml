@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Citadel-Servers
+manual: false
+detail:
+    fingerprint:
+        name: Citadel-Servers
+    fofa: 'body="citadel server - powered by" && body="/styles/webcit.css" && body="<div class=\"boxlabel\">citadel server - powered by" || header="webcit=" || body="<div class=\"boxlabel\">citadel server - powered by" || body="/styles/webcit.css" || body="citadel server - powered by" || header="server: citadel" || title="- citadel server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("citadel server - powered by") && response.body_string.contains("/styles/webcit.css") && response.body_string.contains('<div class="boxlabel">citadel server - powered by')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webcit="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="boxlabel">citadel server - powered by')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/styles/webcit.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("citadel server - powered by")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: citadel"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("- citadel server")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Moonglade
+manual: false
+detail:
+    fingerprint:
+        name: Moonglade
+    fofa: header="Moonglade" || title="Moonglade"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Moonglade"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Moonglade")
+expression: r0() || r1()

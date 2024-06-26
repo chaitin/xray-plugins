@@ -1,0 +1,30 @@
+name: fingerprint-yaml-okayNav_js
+manual: false
+detail:
+    fingerprint:
+        name: okayNav.js
+    fofa: body="jquery.okaynav.min.js" && body="jquery.okaynav.js" || body="jquery.okaynav.js" || body="jquery.okaynav.min.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jquery.okaynav.min.js") && response.body_string.contains("jquery.okaynav.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jquery.okaynav.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jquery.okaynav.min.js")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CPPLUS-DVR
+manual: false
+detail:
+    fingerprint:
+        name: CPPLUS-DVR
+    fofa: 'header="p3p: cp=cao psa our"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("p3p: cp=cao psa our"))'
+expression: r0()

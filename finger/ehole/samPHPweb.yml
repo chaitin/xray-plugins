@@ -1,0 +1,72 @@
+name: fingerprint-yaml-samPHPweb
+manual: false
+detail:
+    fingerprint:
+        name: samPHPweb
+    fofa: body="songinfo.php" && body="copyright spacial audio solutions" && body="href=\"http://www.spacialaudio.com/products/sambroadcaster/\"" && body="<meta http-equiv=\"refresh\" content=\"0;url=playing.html\">" || body="<meta http-equiv=\"refresh\" content=\"0;url=playing.html\">" || body="href=\"http://www.spacialaudio.com/products/sambroadcaster/\"" || body="copyright spacial audio solutions" || body="songinfo.php" || body="<a href=\"http://www.spacialaudio.com/products/sambroadcaster/\" target=\"_blank\"><img src=\"images/sam-bc.gif\" border=\"0\" alt=\"Powered by SAM Broadcaster\" width=\"120\" height=\"60\" />" || body="<a href=\"http://www.spacialaudio.com/products/sambroadcaster/\" target=\"_blank\"><img src=\"images/sam-bc.gif\" width=\"120\" height=\"60\" border=\"0\" alt=\"Powered by SAM Broadcaster\">" || body="This page was produced using <a target=\"_blank\" href=\"http://www.spacialaudio.com/products/sambroadcaster/\">SAM Broadcaster</a>. © Copyright <a target=\"_blank\" href=\"http://www.spacialaudio.com\">Spacial Audio Solutions, LLC</a>" || body="songwin = window.open(\"songinfo.php?songid=\"+songid, \"songinfowin\", \"location=no,status=no,menubar=no,scrollbars=yes,resizeable=yes,height=400,width=650\");"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("songinfo.php") && response.body_string.contains("copyright spacial audio solutions") && response.body_string.contains('href="http://www.spacialaudio.com/products/sambroadcaster/"') && response.body_string.contains('<meta http-equiv="refresh" content="0;url=playing.html">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;url=playing.html">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.spacialaudio.com/products/sambroadcaster/"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright spacial audio solutions")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("songinfo.php")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.spacialaudio.com/products/sambroadcaster/" target="_blank"><img src="images/sam-bc.gif" border="0" alt="Powered by SAM Broadcaster" width="120" height="60" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.spacialaudio.com/products/sambroadcaster/" target="_blank"><img src="images/sam-bc.gif" width="120" height="60" border="0" alt="Powered by SAM Broadcaster">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This page was produced using <a target="_blank" href="http://www.spacialaudio.com/products/sambroadcaster/">SAM Broadcaster</a>. © Copyright <a target="_blank" href="http://www.spacialaudio.com">Spacial Audio Solutions, LLC</a>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('songwin = window.open("songinfo.php?songid="+songid, "songinfowin", "location=no,status=no,menubar=no,scrollbars=yes,resizeable=yes,height=400,width=650");')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

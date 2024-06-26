@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Max_Tech-C300N
+manual: false
+detail:
+    fingerprint:
+        name: Max_Tech-C300N
+    fofa: title="max-c300n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("max-c300n")
+expression: r0()

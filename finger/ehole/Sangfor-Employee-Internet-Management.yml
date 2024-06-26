@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Sangfor-Employee-Internet-Management
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Employee-Internet-Management
+    fofa: body="content=\"must-revalidate\"" && body=" = function(str, key" && body="document.cookie = 'sangfor_session_hash=0'" && body="上网优化管理" && body="href=\"http://sec.sangfor.com.cn/events/89.html\"" && body="internet authentication system" || body=" = function(str, key)" && body="content=\"must-revalidate\"" || body="content=\"must-revalidate\"" || body="= functionstr, key" || body="document.cookie = \"sangfor_session_hash=0\"" || body="上网优化管理" || body="href=\"http://sec.sangfor.com.cn/events/89.html\"" || body="internet authentication system" || body="document.cookie = sangfor_session_hash=0\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="must-revalidate"') && response.body_string.contains(" = function(str, key") && response.body_string.contains("document.cookie = 'sangfor_session_hash=0'") && response.body_string.contains("上网优化管理") && response.body_string.contains('href="http://sec.sangfor.com.cn/events/89.html"') && response.body_string.contains("internet authentication system")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(" = function(str, key)") && response.body_string.contains('content="must-revalidate"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="must-revalidate"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("= functionstr, key")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.cookie = "sangfor_session_hash=0"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("上网优化管理")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://sec.sangfor.com.cn/events/89.html"')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("internet authentication system")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.cookie = sangfor_session_hash=0"')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

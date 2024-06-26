@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sizmek
+manual: false
+detail:
+    fingerprint:
+        name: Sizmek
+    fofa: header="Sizmek" || title="Sizmek"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sizmek"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sizmek")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NETGEAR FR114P
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR FR114P
+    fofa: header="NETGEAR FR114P" || title="NETGEAR FR114P"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR FR114P"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NETGEAR FR114P")
+expression: r0() || r1()

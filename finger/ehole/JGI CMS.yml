@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JGI CMS
+manual: false
+detail:
+    fingerprint:
+        name: JGI CMS
+    fofa: header="JGI CMS" || title="JGI CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JGI CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JGI CMS")
+expression: r0() || r1()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-vpn358System
+manual: false
+detail:
+    fingerprint:
+        name: vpn358System
+    fofa: body="class=\"form-actions j_add_ip_actions\"" && body="href=\"/internal/bootstrap/ico/favicon.ico\"" || body="href=\"/lib/bootstrap/ico/favicon.ico\"" && body="class=\"form-actions j_add_ip_actions\"" || body="class=\"form-actions j_add_ip_actions\"" || body="href=\"/internal/bootstrap/ico/favicon.ico\"" || body="href=\"/lib/bootstrap/ico/favicon.ico\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="form-actions j_add_ip_actions"') && response.body_string.contains('href="/internal/bootstrap/ico/favicon.ico"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/lib/bootstrap/ico/favicon.ico"') && response.body_string.contains('class="form-actions j_add_ip_actions"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="form-actions j_add_ip_actions"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/internal/bootstrap/ico/favicon.ico"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/lib/bootstrap/ico/favicon.ico"')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BSPHP网络验证系统
+manual: false
+detail:
+    fingerprint:
+        name: BSPHP网络验证系统
+    fofa: title="BSPHP网络验证系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BSPHP网络验证系统")
+expression: r0()

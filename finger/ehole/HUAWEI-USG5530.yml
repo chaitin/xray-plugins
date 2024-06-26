@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG5530
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG5530
+    fofa: header="usg5530"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("usg5530"))
+expression: r0()

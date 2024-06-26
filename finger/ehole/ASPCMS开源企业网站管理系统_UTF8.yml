@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ASPCMS开源企业网站管理系统_UTF8
+manual: false
+detail:
+    fingerprint:
+        name: ASPCMS开源企业网站管理系统_UTF8
+    fofa: body="content=\"ASPCMS" || body="/inc/AspCms_AdvJs.asp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="ASPCMS')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/inc/AspCms_AdvJs.asp")
+expression: r0() || r1()

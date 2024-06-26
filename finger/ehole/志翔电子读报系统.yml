@@ -1,0 +1,16 @@
+name: fingerprint-yaml-志翔电子读报系统
+manual: false
+detail:
+    fingerprint:
+        name: 志翔电子读报系统
+    fofa: title="志翔电子读报系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("志翔电子读报系统")
+expression: r0()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-MiniBB
+manual: false
+detail:
+    fingerprint:
+        name: MiniBB
+    fofa: body="<!--minibb copyright link" && body="powered by <a href=\"http://www.minibb." || body="powered by <a href=\"http://www.minibb." || body="<!--minibb copyright link" || body="<td class=\"tbTransparent txtR\"><!--miniBB Copyright link. You are not allowed to remove it if you have not purchased the Commercial License. Refer to COPYING file for more-->" || title="MiniBB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--minibb copyright link") && response.body_string.contains('powered by <a href="http://www.minibb.')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.minibb.')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--minibb copyright link")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="tbTransparent txtR"><!--miniBB Copyright link. You are not allowed to remove it if you have not purchased the Commercial License. Refer to COPYING file for more-->')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MiniBB")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FortiGate Endpoint
+manual: false
+detail:
+    fingerprint:
+        name: FortiGate Endpoint
+    fofa: header="FortiGate Endpoint" || title="FortiGate Endpoint"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FortiGate Endpoint"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FortiGate Endpoint")
+expression: r0() || r1()

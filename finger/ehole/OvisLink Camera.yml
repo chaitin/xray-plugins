@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OvisLink Camera
+manual: false
+detail:
+    fingerprint:
+        name: OvisLink Camera
+    fofa: header="OvisLink Camera" || title="OvisLink Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OvisLink Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OvisLink Camera")
+expression: r0() || r1()

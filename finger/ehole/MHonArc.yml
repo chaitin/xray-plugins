@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MHonArc
+manual: false
+detail:
+    fingerprint:
+        name: MHonArc
+    fofa: header="MHonArc" || title="MHonArc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MHonArc"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MHonArc")
+expression: r0() || r1()

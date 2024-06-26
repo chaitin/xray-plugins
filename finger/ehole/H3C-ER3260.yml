@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C-ER3260
+manual: false
+detail:
+    fingerprint:
+        name: H3C-ER3260
+    fofa: header="h3c er3260" || title="er3260系统管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("h3c er3260"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("er3260系统管理")
+expression: r0() || r1()

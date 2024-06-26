@@ -1,0 +1,23 @@
+name: fingerprint-yaml-天生创想 知尚云OA
+manual: false
+detail:
+    fingerprint:
+        name: 天生创想 知尚云OA
+    fofa: header="天生创想 知尚云OA" || title="天生创想 知尚云OA"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("天生创想 知尚云OA"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天生创想 知尚云OA")
+expression: r0() || r1()

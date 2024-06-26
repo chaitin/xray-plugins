@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DELPHI XMLRPC SERVER
+manual: false
+detail:
+    fingerprint:
+        name: DELPHI XMLRPC SERVER
+    fofa: header="DELPHI XMLRPC SERVER" || title="DELPHI XMLRPC SERVER"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DELPHI XMLRPC SERVER"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DELPHI XMLRPC SERVER")
+expression: r0() || r1()

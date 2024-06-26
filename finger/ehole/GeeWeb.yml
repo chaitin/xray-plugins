@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GeeWeb
+manual: false
+detail:
+    fingerprint:
+        name: GeeWeb
+    fofa: title="GeeWeb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GeeWeb")
+expression: r0()

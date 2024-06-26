@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ArtCMS
+manual: false
+detail:
+    fingerprint:
+        name: ArtCMS
+    fofa: title="ArtCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ArtCMS")
+expression: r0()

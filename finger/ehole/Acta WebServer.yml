@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Acta WebServer
+manual: false
+detail:
+    fingerprint:
+        name: Acta WebServer
+    fofa: header="Acta WebServer" || title="Acta WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Acta WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Acta WebServer")
+expression: r0() || r1()

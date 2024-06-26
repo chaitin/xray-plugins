@@ -1,0 +1,58 @@
+name: fingerprint-yaml-eZ-Publish
+manual: false
+detail:
+    fingerprint:
+        name: eZ-Publish
+    fofa: 'header="set-cookie: ezsessioncookie" || header="eZSessionCookie" || header="eZ Publish" || body="<title>eZ publish administration</title>" || body="<link rel=\"stylesheet\" type=\"text/css\" href=\"/admin/templates/ezpublish/style.css\" />" || body="topmargin=\"6\" marginheight=\"6\" leftmargin=\"6\" marginwidth=\"6\" onload=\"MM_preloadImages(\"/admin/images/ezpublish/redigerminimrk.gif\",\"/admin/images/ezpublish/slettminimrk.gif\",\"/admin/images/ezpublish/downloadminimrk.gif\")\">" || title="eZ Publish"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: ezsessioncookie"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eZSessionCookie"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eZ Publish"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>eZ publish administration</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" type="text/css" href="/admin/templates/ezpublish/style.css" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('topmargin="6" marginheight="6" leftmargin="6" marginwidth="6" onload="MM_preloadImages("/admin/images/ezpublish/redigerminimrk.gif","/admin/images/ezpublish/slettminimrk.gif","/admin/images/ezpublish/downloadminimrk.gif")">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eZ Publish")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

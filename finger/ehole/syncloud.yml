@@ -1,0 +1,30 @@
+name: fingerprint-yaml-syncloud
+manual: false
+detail:
+    fingerprint:
+        name: syncloud
+    fofa: header="syncloud" || body="onelogo" && body="syncloud" || title="syncloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("syncloud"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("onelogo") && response.body_string.contains("syncloud")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("syncloud")
+expression: r0() || r1() || r2()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SATO-Network-Printing
+manual: false
+detail:
+    fingerprint:
+        name: SATO-Network-Printing
+    fofa: body="welcome to sato network printing</legend>" || title="sato network printing"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to sato network printing</legend>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sato network printing")
+expression: r0() || r1()

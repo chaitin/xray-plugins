@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MobileCms
+manual: false
+detail:
+    fingerprint:
+        name: MobileCms
+    fofa: header="MobileCms" || title="MobileCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MobileCms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MobileCms")
+expression: r0() || r1()

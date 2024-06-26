@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ralink-HTTPD
+manual: false
+detail:
+    fingerprint:
+        name: Ralink-HTTPD
+    fofa: 'header="server: ralink httpd"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ralink httpd"))'
+expression: r0()

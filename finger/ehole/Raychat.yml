@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Raychat
+manual: false
+detail:
+    fingerprint:
+        name: Raychat
+    fofa: header="Raychat" || title="Raychat"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Raychat"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Raychat")
+expression: r0() || r1()

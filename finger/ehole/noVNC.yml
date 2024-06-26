@@ -1,0 +1,58 @@
+name: fingerprint-yaml-noVNC
+manual: false
+detail:
+    fingerprint:
+        name: noVNC
+    fofa: 'body="id=\"novnc-control-bar" && body="novnc example: simple" && body="<!--novnc buttons-->" || body="<!--novnc buttons-->" || body="novnc example: simple" || body="id=\"novnc-control-bar" || body="<div id=\"VNC_status_bar\" class=\"VNC_status_bar\" style=\"margin-top: 0px;\">" || body="<span>no</span>" && body="host" && body="noVNC" || title="novnc"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''id="novnc-control-bar'') && response.body_string.contains("novnc example: simple") && response.body_string.contains("<!--novnc buttons-->")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--novnc buttons-->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("novnc example: simple")'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="novnc-control-bar')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div id="VNC_status_bar" class="VNC_status_bar" style="margin-top: 0px;">'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span>no</span>") && response.body_string.contains("host") && response.body_string.contains("noVNC")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("novnc")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

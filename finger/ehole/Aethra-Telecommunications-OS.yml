@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Aethra-Telecommunications-OS
+manual: false
+detail:
+    fingerprint:
+        name: Aethra-Telecommunications-OS
+    fofa: header="atos" || header="Aethra Telecommunications OS" || title="Aethra Telecommunications OS" || title="aethra telecommunications operating system"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("atos"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Aethra Telecommunications OS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Aethra Telecommunications OS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("aethra telecommunications operating system")
+expression: r0() || r1() || r2() || r3()

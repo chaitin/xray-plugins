@@ -1,0 +1,30 @@
+name: fingerprint-yaml-beegoServer
+manual: false
+detail:
+    fingerprint:
+        name: beegoServer
+    fofa: 'header="beegoServer" || header="server: beegoserver" || title="beegoServer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("beegoServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: beegoserver"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("beegoServer")
+expression: r0() || r1() || r2()

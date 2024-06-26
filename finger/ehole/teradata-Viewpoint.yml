@@ -1,0 +1,16 @@
+name: fingerprint-yaml-teradata-Viewpoint
+manual: false
+detail:
+    fingerprint:
+        name: teradata-Viewpoint
+    fofa: title="teradata viewpoint"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("teradata viewpoint")
+expression: r0()

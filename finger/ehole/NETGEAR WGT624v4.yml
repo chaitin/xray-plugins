@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WGT624v4
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WGT624v4
+    fofa: header="NETGEAR WGT624v4"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WGT624v4"))
+expression: r0()

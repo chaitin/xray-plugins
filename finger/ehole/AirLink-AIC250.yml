@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AirLink-AIC250
+manual: false
+detail:
+    fingerprint:
+        name: AirLink-AIC250
+    fofa: header="realm=\"aic250" || body="aic250"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="aic250'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("aic250")
+expression: r0() || r1()

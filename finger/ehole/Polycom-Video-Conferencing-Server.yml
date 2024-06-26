@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Polycom-Video-Conferencing-Server
+manual: false
+detail:
+    fingerprint:
+        name: Polycom-Video-Conferencing-Server
+    fofa: title="ema at carmel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ema at carmel")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dvbbs
+manual: false
+detail:
+    fingerprint:
+        name: Dvbbs
+    fofa: title="Dvbbs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dvbbs")
+expression: r0()

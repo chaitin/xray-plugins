@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kieback＆Peter DDC
+manual: false
+detail:
+    fingerprint:
+        name: Kieback＆Peter DDC
+    fofa: header="Kieback＆Peter DDC" || title="Kieback＆Peter DDC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kieback＆Peter DDC"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kieback＆Peter DDC")
+expression: r0() || r1()

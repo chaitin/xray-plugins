@@ -1,0 +1,23 @@
+name: fingerprint-yaml-蓝太平洋网络舆情监测系统
+manual: false
+detail:
+    fingerprint:
+        name: 蓝太平洋网络舆情监测系统
+    fofa: header="蓝太平洋网络舆情监测系统" || title="蓝太平洋网络舆情监测系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("蓝太平洋网络舆情监测系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("蓝太平洋网络舆情监测系统")
+expression: r0() || r1()

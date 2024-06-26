@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TRENDnet-TV-IP851WC
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TV-IP851WC
+    fofa: header="realm=\"tv-ip851wc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv-ip851wc'))
+expression: r0()

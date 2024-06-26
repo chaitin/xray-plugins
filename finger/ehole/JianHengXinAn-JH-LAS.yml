@@ -1,0 +1,37 @@
+name: fingerprint-yaml-JianHengXinAn-JH-LAS
+manual: false
+detail:
+    fingerprint:
+        name: JianHengXinAn-JH-LAS
+    fofa: body="jh-la3600" && body="建恒信安日志审计系统" || body="建恒信安日志审计系统" && body="jh-la3600" || body="jh-la3600" || body="建恒信安日志审计系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jh-la3600") && response.body_string.contains("建恒信安日志审计系统")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("建恒信安日志审计系统") && response.body_string.contains("jh-la3600")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jh-la3600")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("建恒信安日志审计系统")
+expression: r0() || r1() || r2() || r3()

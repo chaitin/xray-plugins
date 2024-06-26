@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yongyou_zhiyuan_a6
+manual: false
+detail:
+    fingerprint:
+        name: yongyou_zhiyuan_a6
+    fofa: title="yongyou_zhiyuan_a6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yongyou_zhiyuan_a6")
+expression: r0()

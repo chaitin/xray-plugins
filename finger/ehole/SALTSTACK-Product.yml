@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SALTSTACK-Product
+manual: false
+detail:
+    fingerprint:
+        name: SALTSTACK-Product
+    fofa: title="saltstack"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("saltstack")
+expression: r0()

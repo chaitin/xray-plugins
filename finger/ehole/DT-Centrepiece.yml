@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DT-Centrepiece
+manual: false
+detail:
+    fingerprint:
+        name: DT-Centrepiece
+    fofa: body="content=\"DT Centrepiece" || body="Powered By DT Centrepiece" || body="<meta name=\"generator\" content=\"DT Centrepiece - www.dt.net.nz/centrepiece/\" />" || body="<a href=\"http://www.dt.net.nz/centrepiece/\" target=\"_blank\">Powered By DT Centrepiece</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="DT Centrepiece')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered By DT Centrepiece")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="DT Centrepiece - www.dt.net.nz/centrepiece/" />')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.dt.net.nz/centrepiece/" target="_blank">Powered By DT Centrepiece</a>')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Cisco-Expert-Talks
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-Expert-Talks
+    fofa: header="cisco expert talks" && header="cisco-sx80" || header="Cisco Expert Talks" || header="cisco-sx80" || header="cisco-cx20" || header="cisco expert talks"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco expert talks")) && response.raw_header.bcontains(bytes("cisco-sx80"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco Expert Talks"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco-sx80"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco-cx20"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco expert talks"))
+expression: r0() || r1() || r2() || r3() || r4()

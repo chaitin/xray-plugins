@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GLPI
+manual: false
+detail:
+    fingerprint:
+        name: GLPI
+    fofa: icon_hash="-1474875778"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1474875778
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ruijie-RGOS
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-RGOS
+    fofa: 'header="server: rgos http-server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rgos http-server"))'
+expression: r0()

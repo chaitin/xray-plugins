@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Linksys-VPN
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-VPN
+    fofa: header="linksys vpn" && header="linksys-vpn" || header="Linksys VPN" || header="linksys-vpn" || header="linksys vpn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys vpn")) && response.raw_header.bcontains(bytes("linksys-vpn"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys VPN"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys-vpn"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys vpn"))
+expression: r0() || r1() || r2() || r3()

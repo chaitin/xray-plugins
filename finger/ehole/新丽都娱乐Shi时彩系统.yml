@@ -1,0 +1,16 @@
+name: fingerprint-yaml-新丽都娱乐Shi时彩系统
+manual: false
+detail:
+    fingerprint:
+        name: 新丽都娱乐Shi时彩系统
+    fofa: title="新丽都娱乐Shi时彩系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("新丽都娱乐Shi时彩系统")
+expression: r0()

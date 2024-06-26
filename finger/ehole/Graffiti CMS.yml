@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Graffiti CMS
+manual: false
+detail:
+    fingerprint:
+        name: Graffiti CMS
+    fofa: header="Graffiti CMS" || title="Graffiti CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Graffiti CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Graffiti CMS")
+expression: r0() || r1()

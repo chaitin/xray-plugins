@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Farming Simulator Dedicated Server
+manual: false
+detail:
+    fingerprint:
+        name: Farming Simulator Dedicated Server
+    fofa: icon_hash="509789953"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 509789953
+expression: r0()

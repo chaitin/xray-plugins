@@ -1,0 +1,16 @@
+name: fingerprint-yaml-kj65n_monitor
+manual: false
+detail:
+    fingerprint:
+        name: kj65n_monitor
+    fofa: title="kj65n_monitor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kj65n_monitor")
+expression: r0()

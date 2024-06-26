@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FlexCMP
+manual: false
+detail:
+    fingerprint:
+        name: FlexCMP
+    fofa: header="FlexCMP" || title="FlexCMP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FlexCMP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FlexCMP")
+expression: r0() || r1()

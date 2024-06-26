@@ -1,0 +1,23 @@
+name: fingerprint-yaml-lodash
+manual: false
+detail:
+    fingerprint:
+        name: lodash
+    fofa: header="lodash" || title="lodash"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("lodash"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lodash")
+expression: r0() || r1()

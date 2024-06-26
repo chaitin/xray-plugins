@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cisco-Catalyst-switch
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-Catalyst-switch
+    fofa: title="cisco catalyst switch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cisco catalyst switch")
+expression: r0()

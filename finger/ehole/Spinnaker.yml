@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Spinnaker
+manual: false
+detail:
+    fingerprint:
+        name: Spinnaker
+    fofa: 'header="server: spinnaker"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: spinnaker"))'
+expression: r0()

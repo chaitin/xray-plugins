@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ICOM-Router
+manual: false
+detail:
+    fingerprint:
+        name: ICOM-Router
+    fofa: 'header="server: icom http server" || header="Icom HTTP Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: icom http server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Icom HTTP Server"))
+expression: r0() || r1()

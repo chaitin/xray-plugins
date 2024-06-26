@@ -1,0 +1,58 @@
+name: fingerprint-yaml-3COM NBX
+manual: false
+detail:
+    fingerprint:
+        name: 3COM NBX
+    fofa: body="splashTitleIPTelephony" || body="splashtitleiptelephony" || body="<head><title>NBX NetSet</title>" || body="<!-- (c) Copyright, 3Com Corporation or its subsidiaries, 2004.  All Rights Reserved. -->" || body="<!-- Gregory Brucato  4/22/98  NBX Corporation -->" || body="<span class=\"splashTitleIPTelephony\">&nbsp;3Com<SUP><span class=\"splashTitleNBXReg\">&reg;</span></SUP> IP Telephony Solution</span>" || title="nbx netset"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("splashTitleIPTelephony")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("splashtitleiptelephony")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<head><title>NBX NetSet</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- (c) Copyright, 3Com Corporation or its subsidiaries, 2004.  All Rights Reserved. -->")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Gregory Brucato  4/22/98  NBX Corporation -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="splashTitleIPTelephony">&nbsp;3Com<SUP><span class="splashTitleNBXReg">&reg;</span></SUP> IP Telephony Solution</span>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nbx netset")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Proxicast-Enterprise-3G_4G-Router
+manual: false
+detail:
+    fingerprint:
+        name: Proxicast-Enterprise-3G/4G-Router
+    fofa: title="wan-proxicast lan-cell"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wan-proxicast lan-cell")
+expression: r0()

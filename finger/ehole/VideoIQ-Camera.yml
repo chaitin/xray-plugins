@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VideoIQ-Camera
+manual: false
+detail:
+    fingerprint:
+        name: VideoIQ-Camera
+    fofa: header="realm=\"avigilon" || title="videoiq camera login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="avigilon'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("videoiq camera login")
+expression: r0() || r1()

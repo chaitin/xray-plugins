@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Government and Enterprise Order Center
+manual: false
+detail:
+    fingerprint:
+        name: Government and Enterprise Order Center
+    fofa: body="content=\"政企订单中心"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="政企订单中心')
+expression: r0()

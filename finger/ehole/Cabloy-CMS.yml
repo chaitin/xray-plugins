@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cabloy-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Cabloy-CMS
+    fofa: header="Cabloy-CMS" || title="Cabloy-CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cabloy-CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cabloy-CMS")
+expression: r0() || r1()

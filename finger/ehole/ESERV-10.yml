@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ESERV-10
+manual: false
+detail:
+    fingerprint:
+        name: ESERV-10
+    fofa: title="ESERV-10"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ESERV-10")
+expression: r0()

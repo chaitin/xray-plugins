@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EasyConsole-CMS
+manual: false
+detail:
+    fingerprint:
+        name: EasyConsole-CMS
+    fofa: body="Powered by EasyConsole CMS" || body="Powered by <a href=\"http://www.easyconsole.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by EasyConsole CMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.easyconsole.com')
+expression: r0() || r1()

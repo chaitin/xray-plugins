@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Oracle Recommendations On Demand
+manual: false
+detail:
+    fingerprint:
+        name: Oracle Recommendations On Demand
+    fofa: header="Oracle Recommendations On Demand" || title="Oracle Recommendations On Demand"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle Recommendations On Demand"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oracle Recommendations On Demand")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EClass-Integrated-Platform-2_5
+manual: false
+detail:
+    fingerprint:
+        name: EClass-Integrated-Platform-2.5
+    fofa: title="eclass integrated platform 2.5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eclass integrated platform 2.5")
+expression: r0()

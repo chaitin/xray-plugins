@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetPosa-VideoCloud
+manual: false
+detail:
+    fingerprint:
+        name: NetPosa-VideoCloud
+    fofa: title="视云实战平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("视云实战平台")
+expression: r0()

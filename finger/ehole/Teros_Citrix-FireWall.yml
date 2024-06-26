@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Teros_Citrix-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Teros/Citrix-FireWall
+    fofa: header="Teros/Citrix-FireWall" || title="Teros/Citrix-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Teros/Citrix-FireWall"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Teros/Citrix-FireWall")
+expression: r0() || r1()

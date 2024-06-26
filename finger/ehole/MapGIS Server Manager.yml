@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MapGIS Server Manager
+manual: false
+detail:
+    fingerprint:
+        name: MapGIS Server Manager
+    fofa: icon_hash="-252149748"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -252149748
+expression: r0()

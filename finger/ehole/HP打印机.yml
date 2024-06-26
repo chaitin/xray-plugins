@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HP打印机
+manual: false
+detail:
+    fingerprint:
+        name: HP打印机
+    fofa: body="/hp/jetdirect" || header="HP-ChaiServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/hp/jetdirect")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HP-ChaiServer"))
+expression: r0() || r1()

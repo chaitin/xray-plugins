@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK MR3040
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK MR3040
+    fofa: header="TP-LINK MR3040"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK MR3040"))
+expression: r0()

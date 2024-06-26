@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Arcadyan o2 box (Network)
+manual: false
+detail:
+    fingerprint:
+        name: Arcadyan o2 box (Network)
+    fofa: icon_hash="1479202414"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1479202414
+expression: r0()

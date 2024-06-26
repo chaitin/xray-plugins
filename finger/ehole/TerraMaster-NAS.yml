@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TerraMaster-NAS
+manual: false
+detail:
+    fingerprint:
+        name: TerraMaster-NAS
+    fofa: body="nas.cgi" && body="x-ua-compatible" && body="nas setup" || body="window.open(\"http://www.terra-master.com/\",\"_blank\");"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nas.cgi") && response.body_string.contains("x-ua-compatible") && response.body_string.contains("nas setup")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("http://www.terra-master.com/","_blank");')
+expression: r0() || r1()

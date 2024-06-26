@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI-S5730
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-S5730
+    fofa: header="s5730" || header="server" && header="s5730"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("s5730"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("server")) && response.raw_header.bcontains(bytes("s5730"))
+expression: r0() || r1()

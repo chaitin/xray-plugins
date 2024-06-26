@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PortaBilling
+manual: false
+detail:
+    fingerprint:
+        name: PortaBilling
+    fofa: title="portabilling -- new installation"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("portabilling -- new installation")
+expression: r0()

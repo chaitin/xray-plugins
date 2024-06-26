@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Advantech-ER75i
+manual: false
+detail:
+    fingerprint:
+        name: Advantech-ER75i
+    fofa: title="er75i"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("er75i")
+expression: r0()

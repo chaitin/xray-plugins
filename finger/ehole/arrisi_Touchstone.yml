@@ -1,0 +1,16 @@
+name: fingerprint-yaml-arrisi_Touchstone
+manual: false
+detail:
+    fingerprint:
+        name: arrisi_Touchstone
+    fofa: body="passWithWarnings"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("passWithWarnings")
+expression: r0()

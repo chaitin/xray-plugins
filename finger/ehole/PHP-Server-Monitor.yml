@@ -1,0 +1,51 @@
+name: fingerprint-yaml-PHP-Server-Monitor
+manual: false
+detail:
+    fingerprint:
+        name: PHP-Server-Monitor
+    fofa: body="target=\"_blank\">php server monitor" && body="powered by <a href=\"http://www.phpservermonitor.org/" || body="powered by <a href=\"http://www.phpservermonitor.org/" || body="target=\"_blank\">php server monitor" || body="<title>PHP Server Monitor</title>" || body="<div class=\"opensource\"><a href=\"index.php\"><img src=\"img/opensource.png\" alt=\"Open Source\" height=\"101px\" /></a></div>" || title="php server monitor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank">php server monitor') && response.body_string.contains('powered by <a href="http://www.phpservermonitor.org/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.phpservermonitor.org/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank">php server monitor')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PHP Server Monitor</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="opensource"><a href="index.php"><img src="img/opensource.png" alt="Open Source" height="101px" /></a></div>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("php server monitor")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

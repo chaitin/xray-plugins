@@ -1,0 +1,44 @@
+name: fingerprint-yaml-eLitius
+manual: false
+detail:
+    fingerprint:
+        name: eLitius
+    fofa: body="content=\"elitius" && body="target=\"_blank\" title=\"affiliate" || body="content=\"eLitius" || body="target=\"_blank\" title=\"affiliate" || body="content=\"elitius" || body="<meta name=\"description\" content=\"eLitius Affiliate Management Software\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="elitius') && response.body_string.contains('target="_blank" title="affiliate')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="eLitius')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank" title="affiliate')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="elitius')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="eLitius Affiliate Management Software" />')
+expression: r0() || r1() || r2() || r3() || r4()

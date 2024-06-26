@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-ES-2108
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-ES-2108
+    fofa: header="realm=\"es-2108"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="es-2108'))
+expression: r0()

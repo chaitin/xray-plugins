@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Phoenix-Contact-Device
+manual: false
+detail:
+    fingerprint:
+        name: Phoenix-Contact-Device
+    fofa: 'header="server: powered by spidercontrol" || header="server: phoenix-contact"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: powered by spidercontrol"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: phoenix-contact"))'
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CK小说程序
+manual: false
+detail:
+    fingerprint:
+        name: CK小说程序
+    fofa: title="CK小说程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CK小说程序")
+expression: r0()

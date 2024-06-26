@@ -1,0 +1,72 @@
+name: fingerprint-yaml-KPPW
+manual: false
+detail:
+    fingerprint:
+        name: KPPW
+    fofa: body="content=\"kekezu" && body="var siteurl = " && body="skin_path = 'tpl/default'," && body="<img id='imgflag' src=\"tpl/default/img/" || body="<img id=\"imgflag\" src=\"tpl/default/img/" || body="skin_path = \"tpl/default\"," && body="var siteurl = " || body="content=\"kekezu" || body="var siteurl =" || body="skin_path = \"tpl/default\"," || body="var siteurl = " || body="var siteurl " || body="skin_path = tpl/default\","
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="kekezu') && response.body_string.contains("var siteurl = ") && response.body_string.contains("skin_path = 'tpl/default',") && response.body_string.contains("<img id='imgflag' src=\"tpl/default/img/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="imgflag" src="tpl/default/img/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('skin_path = "tpl/default",') && response.body_string.contains("var siteurl = ")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="kekezu')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var siteurl =")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('skin_path = "tpl/default",')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var siteurl = ")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var siteurl ")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('skin_path = tpl/default",')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

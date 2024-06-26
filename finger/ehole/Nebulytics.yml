@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Nebulytics
+manual: false
+detail:
+    fingerprint:
+        name: Nebulytics
+    fofa: header="Nebulytics" || title="Nebulytics"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nebulytics"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nebulytics")
+expression: r0() || r1()

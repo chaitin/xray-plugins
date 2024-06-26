@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Planet
+manual: false
+detail:
+    fingerprint:
+        name: Planet
+    fofa: title="Planet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Planet")
+expression: r0()

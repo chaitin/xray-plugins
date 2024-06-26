@@ -1,0 +1,16 @@
+name: fingerprint-yaml-登录 – AMH
+manual: false
+detail:
+    fingerprint:
+        name: 登录 – AMH
+    fofa: icon_hash="1822002133"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1822002133
+expression: r0()

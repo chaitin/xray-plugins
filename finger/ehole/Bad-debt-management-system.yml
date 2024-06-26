@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Bad-debt-management-system
+manual: false
+detail:
+    fingerprint:
+        name: Bad-debt-management-system
+    fofa: body="登录密码错误次数超过5次，帐号被锁定。请联系省坏账系统管理员，或发邮件解锁" || title="中国联通坏账管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("登录密码错误次数超过5次，帐号被锁定。请联系省坏账系统管理员，或发邮件解锁")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("中国联通坏账管理系统")
+expression: r0() || r1()

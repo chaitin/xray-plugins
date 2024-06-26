@@ -1,0 +1,44 @@
+name: fingerprint-yaml-SJSWS-OiWS
+manual: false
+detail:
+    fingerprint:
+        name: SJSWS-OiWS
+    fofa: header="oracle-iplanet-web-server" && header="sun-java-system-web-server" || header="Oracle-iPlanet-Web-Server" || header="Sun-Java-System-Web-Server" || header="sun-java-system-web-server" || header="oracle-iplanet-web-server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-iplanet-web-server")) && response.raw_header.bcontains(bytes("sun-java-system-web-server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle-iPlanet-Web-Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sun-Java-System-Web-Server"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sun-java-system-web-server"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-iplanet-web-server"))
+expression: r0() || r1() || r2() || r3() || r4()

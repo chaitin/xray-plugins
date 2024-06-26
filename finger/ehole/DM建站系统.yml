@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DM建站系统
+manual: false
+detail:
+    fingerprint:
+        name: DM建站系统
+    fofa: header="DM建站系统" || title="DM建站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DM建站系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DM建站系统")
+expression: r0() || r1()

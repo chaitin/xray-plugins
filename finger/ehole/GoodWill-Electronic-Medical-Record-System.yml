@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoodWill-Electronic-Medical-Record-System
+manual: false
+detail:
+    fingerprint:
+        name: GoodWill-Electronic-Medical-Record-System
+    fofa: title="北京嘉和美康电子病历系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("北京嘉和美康电子病历系统")
+expression: r0()

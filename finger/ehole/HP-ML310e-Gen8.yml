@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-ML310e-Gen8
+manual: false
+detail:
+    fingerprint:
+        name: HP-ML310e-Gen8
+    fofa: header="ml310e-gen8"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ml310e-gen8"))
+expression: r0()

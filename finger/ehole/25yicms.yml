@@ -1,0 +1,23 @@
+name: fingerprint-yaml-25yicms
+manual: false
+detail:
+    fingerprint:
+        name: 25yicms
+    fofa: header="25yicms" || title="25yicms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("25yicms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("25yicms")
+expression: r0() || r1()

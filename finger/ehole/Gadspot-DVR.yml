@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Gadspot-DVR
+manual: false
+detail:
+    fingerprint:
+        name: Gadspot-DVR
+    fofa: body="content=\"chenxiaohui\"" && body="name=\"configptz\"" || body="name=\"configptz\"" && body="content=\"chenxiaohui\"" || body="content=\"chenxiaohui\"" || body="name=\"configptz\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="chenxiaohui"') && response.body_string.contains('name="configptz"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="configptz"') && response.body_string.contains('content="chenxiaohui"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="chenxiaohui"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="configptz"')
+expression: r0() || r1() || r2() || r3()

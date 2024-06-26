@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Sangfor-Application-Delivery
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Application-Delivery
+    fofa: body="default_target=\"/cgi-bin/login.cgi?action=log&fro=self" && body="var check_login_key" && body="/static/es5_shim/es5-sham.js" || body="default_target=\"/cgi-bin/login.cgi?action=log&fro=self" || body="var check_login_key" || body="/static/es5_shim/es5-sham.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('default_target="/cgi-bin/login.cgi?action=log&fro=self') && response.body_string.contains("var check_login_key") && response.body_string.contains("/static/es5_shim/es5-sham.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('default_target="/cgi-bin/login.cgi?action=log&fro=self')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var check_login_key")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/static/es5_shim/es5-sham.js")
+expression: r0() || r1() || r2() || r3()

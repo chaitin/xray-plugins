@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Axis-Commerce
+manual: false
+detail:
+    fingerprint:
+        name: Axis-Commerce
+    fofa: body="Powered by Axis" || header="axisid" || body="<div class=\"head\"><h2>Forgot password</h2><p class=\"powered\">Powered by Axis</p></div>" || body="<title>Login to Axis administrator panel</title>" || body="<p class=\"bug-report\">Report any <a href=\"http://github.com/axis/axiscommerce/issues\" onclick=\"window.open(this.href); return false;\" title=\"Report\">Bugs or Issues</a> you\"ve found</p>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Axis")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("axisid"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="head"><h2>Forgot password</h2><p class="powered">Powered by Axis</p></div>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Login to Axis administrator panel</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="bug-report">Report any <a href="http://github.com/axis/axiscommerce/issues" onclick="window.open(this.href); return false;" title="Report">Bugs or Issues</a> you"ve found</p>')
+expression: r0() || r1() || r2() || r3() || r4()

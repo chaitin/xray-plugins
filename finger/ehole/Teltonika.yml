@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Teltonika
+manual: false
+detail:
+    fingerprint:
+        name: Teltonika
+    fofa: icon_hash="119741608" || icon_hash="-1612496354"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 119741608
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1612496354
+expression: r0() || r1()

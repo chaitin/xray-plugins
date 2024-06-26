@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WSTShop
+manual: false
+detail:
+    fingerprint:
+        name: WSTShop
+    fofa: header="WSTShop" || title="WSTShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WSTShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WSTShop")
+expression: r0() || r1()

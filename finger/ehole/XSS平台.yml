@@ -1,0 +1,23 @@
+name: fingerprint-yaml-XSS平台
+manual: false
+detail:
+    fingerprint:
+        name: XSS平台
+    fofa: header="XSS平台" || title="XSS平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XSS平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XSS平台")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ASUS-DSL-N14U_B1
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-DSL-N14U_B1
+    fofa: header="realm=\"dsl-n14u_b1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dsl-n14u_b1'))
+expression: r0()

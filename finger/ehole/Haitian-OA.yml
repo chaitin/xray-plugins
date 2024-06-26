@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Haitian-OA
+manual: false
+detail:
+    fingerprint:
+        name: Haitian-OA
+    fofa: body="images/myjs.js" && body="mshtml 8.00.6001.19298" || body="mshtml 8.00.6001.19298" && body="images/myjs.js" || body="htvos.js" || body="images/myjs.js" || body="mshtml 8.00.6001.19298" || title="haitianoa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/myjs.js") && response.body_string.contains("mshtml 8.00.6001.19298")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mshtml 8.00.6001.19298") && response.body_string.contains("images/myjs.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("htvos.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/myjs.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mshtml 8.00.6001.19298")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("haitianoa")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

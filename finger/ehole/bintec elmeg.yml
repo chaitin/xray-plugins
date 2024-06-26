@@ -1,0 +1,23 @@
+name: fingerprint-yaml-bintec elmeg
+manual: false
+detail:
+    fingerprint:
+        name: bintec elmeg
+    fofa: icon_hash="-375623619" || icon_hash="1770799630"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -375623619
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1770799630
+expression: r0() || r1()

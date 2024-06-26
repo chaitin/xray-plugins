@@ -1,0 +1,37 @@
+name: fingerprint-yaml-VisualSec-VS-AD
+manual: false
+detail:
+    fingerprint:
+        name: VisualSec-VS-AD
+    fofa: body="class=\"top-wrapper fn-clear\"" && body="value=\"sysadmin\"" || body="value=\"sysadmin\"" && body="class=\"top-wrapper fn-clear\"" || body="class=\"top-wrapper fn-clear\"" || body="value=\"sysadmin\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="top-wrapper fn-clear"') && response.body_string.contains('value="sysadmin"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="sysadmin"') && response.body_string.contains('class="top-wrapper fn-clear"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="top-wrapper fn-clear"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="sysadmin"')
+expression: r0() || r1() || r2() || r3()

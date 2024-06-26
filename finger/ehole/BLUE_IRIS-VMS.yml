@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BLUE_IRIS-VMS
+manual: false
+detail:
+    fingerprint:
+        name: BLUE_IRIS-VMS
+    fofa: title="blue iris login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("blue iris login")
+expression: r0()

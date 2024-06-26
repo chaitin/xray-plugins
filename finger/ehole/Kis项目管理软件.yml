@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Kis项目管理软件
+manual: false
+detail:
+    fingerprint:
+        name: Kis项目管理软件
+    fofa: title="Kis项目管理软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kis项目管理软件")
+expression: r0()

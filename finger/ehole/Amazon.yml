@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Amazon
+manual: false
+detail:
+    fingerprint:
+        name: Amazon
+    fofa: icon_hash="-1544605732" || icon_hash="716989053"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1544605732
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 716989053
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SNC_DCP-Dispatcher
+manual: false
+detail:
+    fingerprint:
+        name: SNC_DCP-Dispatcher
+    fofa: title="snc-dcp dispatcher"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("snc-dcp dispatcher")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SuperMap iServer Web Manager
+manual: false
+detail:
+    fingerprint:
+        name: SuperMap iServer Web Manager
+    fofa: icon_hash="1740191553"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1740191553
+expression: r0()

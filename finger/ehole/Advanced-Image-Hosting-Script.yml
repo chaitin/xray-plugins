@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Advanced-Image-Hosting-Script
+manual: false
+detail:
+    fingerprint:
+        name: Advanced-Image-Hosting-Script
+    fofa: 'body="yabsoft.com" || body=".title                          { font-size: 10px; font-weight: bold; line-height: 150%; color: #FFFFFF; height: 26px; background-image: url(./tile_back.gif) }" || body="<td colspan=2 align=center><h3>Advanced Image Host Script</h3></td>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yabsoft.com")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(".title                          { font-size: 10px; font-weight: bold; line-height: 150%; color: #FFFFFF; height: 26px; background-image: url(./tile_back.gif) }")'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td colspan=2 align=center><h3>Advanced Image Host Script</h3></td>")
+expression: r0() || r1() || r2()

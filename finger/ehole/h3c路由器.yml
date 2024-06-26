@@ -1,0 +1,16 @@
+name: fingerprint-yaml-h3c路由器
+manual: false
+detail:
+    fingerprint:
+        name: h3c路由器
+    fofa: body="nLanguageSupported"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nLanguageSupported")
+expression: r0()

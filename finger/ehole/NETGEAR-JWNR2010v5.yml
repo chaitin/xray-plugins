@@ -1,0 +1,37 @@
+name: fingerprint-yaml-NETGEAR-JWNR2010v5
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-JWNR2010v5
+    fofa: header="netgear jwnr2010v5" || header="NETGEAR JWNR2010v5" || title="netgear wireless router jwnr2010v5" || title="netgear router jwnr2010v5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear jwnr2010v5"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR JWNR2010v5"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear wireless router jwnr2010v5")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear router jwnr2010v5")
+expression: r0() || r1() || r2() || r3()

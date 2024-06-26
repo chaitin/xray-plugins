@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SHARP-XG-C430X
+manual: false
+detail:
+    fingerprint:
+        name: SHARP-XG-C430X
+    fofa: header="realm=\"xg-c430x"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="xg-c430x'))
+expression: r0()

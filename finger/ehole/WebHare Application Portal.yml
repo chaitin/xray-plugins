@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebHare Application Portal
+manual: false
+detail:
+    fingerprint:
+        name: WebHare Application Portal
+    fofa: header="WebHare Application Portal" || title="WebHare Application Portal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebHare Application Portal"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebHare Application Portal")
+expression: r0() || r1()

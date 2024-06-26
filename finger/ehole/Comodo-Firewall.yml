@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Comodo-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Comodo-Firewall
+    fofa: title="Comodo-Firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Comodo-Firewall")
+expression: r0()

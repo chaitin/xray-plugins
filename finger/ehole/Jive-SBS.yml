@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Jive-SBS
+manual: false
+detail:
+    fingerprint:
+        name: Jive-SBS
+    fofa: 'body="/jive-icons.css" && body="class=\"jive-body-formpage" && body="jive.rte.defaultstyles" || header="x-jsl: " || header="X-Jsl:" || body="jive.rte.defaultstyles" || body="class=\"jive-body-formpage" || body="/jive-icons.css" || body="<a href=\"#jive-body-full\" class=\"jive-skip-nav\">Skip navigation</a>" || body="<body class=\"jive-body-formpage jive-body-formpage-login\" >" || body="* This software is the proprietary information of Jive Software. Use is subject to license terms." || header="x-jsl:"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/jive-icons.css") && response.body_string.contains('class="jive-body-formpage') && response.body_string.contains("jive.rte.defaultstyles")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-jsl: "))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Jsl:"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jive.rte.defaultstyles")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="jive-body-formpage')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/jive-icons.css")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="#jive-body-full" class="jive-skip-nav">Skip navigation</a>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body class="jive-body-formpage jive-body-formpage-login" >')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("* This software is the proprietary information of Jive Software. Use is subject to license terms.")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-jsl:"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

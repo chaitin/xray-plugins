@@ -1,0 +1,30 @@
+name: fingerprint-yaml-TP_LINK-TL-WDR7500
+manual: false
+detail:
+    fingerprint:
+        name: TP_LINK-TL-WDR7500
+    fofa: header="realm=\"tp-link wireless wdr7500" && header="realm=\"tp-link wireless dual band gigabit router wdr7500" || header="realm=\"tp-link wireless dual band gigabit router wdr7500" || header="realm=\"tp-link wireless wdr7500"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tp-link wireless wdr7500')) && response.raw_header.bcontains(bytes('realm="tp-link wireless dual band gigabit router wdr7500'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tp-link wireless dual band gigabit router wdr7500'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tp-link wireless wdr7500'))
+expression: r0() || r1() || r2()

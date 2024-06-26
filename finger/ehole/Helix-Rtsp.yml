@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Helix-Rtsp
+manual: false
+detail:
+    fingerprint:
+        name: Helix-Rtsp
+    fofa: 'header="server: helix server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: helix server"))'
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Jakarta-Project
+manual: false
+detail:
+    fingerprint:
+        name: Jakarta-Project
+    fofa: body="alt=\"the jakarta project" && body="<a href=\"http://jakarta.apache.org/\">" || body="<a href=\"http://jakarta.apache.org/\">" || body="alt=\"the jakarta project" || title="jakarta project"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="the jakarta project') && response.body_string.contains('<a href="http://jakarta.apache.org/">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://jakarta.apache.org/">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="the jakarta project')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jakarta project")
+expression: r0() || r1() || r2() || r3()

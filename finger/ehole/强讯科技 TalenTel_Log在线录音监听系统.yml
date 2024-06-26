@@ -1,0 +1,23 @@
+name: fingerprint-yaml-强讯科技 TalenTel_Log在线录音监听系统
+manual: false
+detail:
+    fingerprint:
+        name: 强讯科技 TalenTel_Log在线录音监听系统
+    fofa: header="强讯科技 TalenTel_Log在线录音监听系统" || title="强讯科技 TalenTel_Log在线录音监听系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("强讯科技 TalenTel_Log在线录音监听系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("强讯科技 TalenTel_Log在线录音监听系统")
+expression: r0() || r1()

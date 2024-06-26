@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Zhejiang Uniview Technologies Co_
+manual: false
+detail:
+    fingerprint:
+        name: Zhejiang Uniview Technologies Co.
+    fofa: icon_hash="-1240222446"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1240222446
+expression: r0()

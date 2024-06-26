@@ -1,0 +1,37 @@
+name: fingerprint-yaml-MegapixelIPCamera
+manual: false
+detail:
+    fingerprint:
+        name: MegapixelIPCamera
+    fofa: header="realm=\"megapixelipcamera" && header="realm=\"megapixel_ip_camera" || header="realm=\"megapixel_ip_camera" || header="realm=\"megapixel ip camera" || header="realm=\"megapixelipcamera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="megapixelipcamera')) && response.raw_header.bcontains(bytes('realm="megapixel_ip_camera'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="megapixel_ip_camera'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="megapixel ip camera'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="megapixelipcamera'))
+expression: r0() || r1() || r2() || r3()

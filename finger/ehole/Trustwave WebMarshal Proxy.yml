@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Trustwave WebMarshal Proxy
+manual: false
+detail:
+    fingerprint:
+        name: Trustwave WebMarshal Proxy
+    fofa: header="Trustwave WebMarshal Proxy" || title="Trustwave WebMarshal Proxy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Trustwave WebMarshal Proxy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Trustwave WebMarshal Proxy")
+expression: r0() || r1()

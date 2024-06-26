@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Lutron Quantum
+manual: false
+detail:
+    fingerprint:
+        name: Lutron Quantum
+    fofa: header="Lutron Quantum" || title="Lutron Quantum"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Lutron Quantum"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Lutron Quantum")
+expression: r0() || r1()

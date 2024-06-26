@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Centralizedmanagement&&loganalysisplatform
+manual: false
+detail:
+    fingerprint:
+        name: Centralizedmanagement&&loganalysisplatform
+    fofa: title="天玥集中管理与日志分析平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天玥集中管理与日志分析平台")
+expression: r0()

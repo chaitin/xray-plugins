@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UltraME
+manual: false
+detail:
+    fingerprint:
+        name: UltraME
+    fofa: title="me移动协调办公平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("me移动协调办公平台")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Bandwidth-Management-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Bandwidth-Management-Gateway
+    fofa: header="realm=\"bandwidth management gateway " || header="realm=\"bandwidth management gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="bandwidth management gateway '))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="bandwidth management gateway'))
+expression: r0() || r1()

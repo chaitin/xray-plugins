@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TRENDnet-TV-NVR104
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TV-NVR104
+    fofa: header="realm=\"tv-nvr104"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv-nvr104'))
+expression: r0()

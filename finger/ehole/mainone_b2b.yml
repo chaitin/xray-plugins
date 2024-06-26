@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mainone_b2b
+manual: false
+detail:
+    fingerprint:
+        name: mainone_b2b
+    fofa: title="mainone_b2b"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mainone_b2b")
+expression: r0()

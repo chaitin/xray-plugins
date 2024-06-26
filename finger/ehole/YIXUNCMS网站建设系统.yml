@@ -1,0 +1,23 @@
+name: fingerprint-yaml-YIXUNCMS网站建设系统
+manual: false
+detail:
+    fingerprint:
+        name: YIXUNCMS网站建设系统
+    fofa: header="YIXUNCMS网站建设系统" || title="YIXUNCMS网站建设系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YIXUNCMS网站建设系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YIXUNCMS网站建设系统")
+expression: r0() || r1()

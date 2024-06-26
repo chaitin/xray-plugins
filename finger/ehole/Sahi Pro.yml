@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sahi Pro
+manual: false
+detail:
+    fingerprint:
+        name: Sahi Pro
+    fofa: header="Sahi Pro" || title="Sahi Pro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sahi Pro"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sahi Pro")
+expression: r0() || r1()

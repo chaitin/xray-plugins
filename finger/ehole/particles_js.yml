@@ -1,0 +1,16 @@
+name: fingerprint-yaml-particles_js
+manual: false
+detail:
+    fingerprint:
+        name: particles.js
+    fofa: title="particles.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("particles.js")
+expression: r0()

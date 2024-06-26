@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Skype
+manual: false
+detail:
+    fingerprint:
+        name: Skype
+    fofa: icon_hash="-1807411396"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1807411396
+expression: r0()

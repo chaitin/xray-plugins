@@ -1,0 +1,30 @@
+name: fingerprint-yaml-iTEST3_0
+manual: false
+detail:
+    fingerprint:
+        name: iTEST3.0
+    fofa: body="src=\"/itest/static/its/internal/" || body="src=\"/itest/static/its/lib/" || title="itest3.0登录界面"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/itest/static/its/internal/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/itest/static/its/lib/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("itest3.0登录界面")
+expression: r0() || r1() || r2()

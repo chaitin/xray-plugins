@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Softbiz-Online-Classifieds
+manual: false
+detail:
+    fingerprint:
+        name: Softbiz-Online-Classifieds
+    fofa: 'body="http://www.softbizscripts.com/classified-ads-plus-script-features.php" || body="Classifieds PLUS Script</strong> - ADMIN PANEL</font></p>" || body="<!-- --><font style=\"font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;color: #009900;font-weight: bold;\">Powered By <a href=\"http://www.softbizscripts.com/classified-ads-plus-script-features.php\" style=\"font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;color: #0099FF;font-weight: normal;\" title=\"Classified Ads Plus PHP Script\" target=\"_blank\" >Softbiz Scripts</a></font>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.softbizscripts.com/classified-ads-plus-script-features.php")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Classifieds PLUS Script</strong> - ADMIN PANEL</font></p>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<!-- --><font style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;color: #009900;font-weight: bold;">Powered By <a href="http://www.softbizscripts.com/classified-ads-plus-script-features.php" style="font-family: Arial, Helvetica, sans-serif;font-size: 12px;font-style: normal;color: #0099FF;font-weight: normal;" title="Classified Ads Plus PHP Script" target="_blank" >Softbiz Scripts</a></font>'')'
+expression: r0() || r1() || r2()

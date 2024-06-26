@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR-SRX5308
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-SRX5308
+    fofa: body="gigabit quad wan ssl vpn firewall srx5308"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gigabit quad wan ssl vpn firewall srx5308")
+expression: r0()

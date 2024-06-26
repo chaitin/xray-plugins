@@ -1,0 +1,16 @@
+name: fingerprint-yaml-D_Link-DCS-5220PUERTA
+manual: false
+detail:
+    fingerprint:
+        name: D_Link-DCS-5220PUERTA
+    fofa: body="basic realm=\"dcs-5220puerta\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('basic realm="dcs-5220puerta"')
+expression: r0()

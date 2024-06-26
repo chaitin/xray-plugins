@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-SR6608
+manual: false
+detail:
+    fingerprint:
+        name: H3C-SR6608
+    fofa: header="basic realm=\"h3c sr6608\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="h3c sr6608"'))
+expression: r0()

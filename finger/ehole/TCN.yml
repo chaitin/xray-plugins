@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TCN
+manual: false
+detail:
+    fingerprint:
+        name: TCN
+    fofa: icon_hash="-702384832"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -702384832
+expression: r0()

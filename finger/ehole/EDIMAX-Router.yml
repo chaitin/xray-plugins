@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EDIMAX-Router
+manual: false
+detail:
+    fingerprint:
+        name: EDIMAX-Router
+    fofa: 'header="realm=\"default: admin/1234"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes(''realm="default: admin/1234''))'
+expression: r0()

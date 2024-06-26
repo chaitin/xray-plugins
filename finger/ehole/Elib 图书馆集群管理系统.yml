@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Elib 图书馆集群管理系统
+manual: false
+detail:
+    fingerprint:
+        name: Elib 图书馆集群管理系统
+    fofa: icon_hash="478149598"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 478149598
+expression: r0()

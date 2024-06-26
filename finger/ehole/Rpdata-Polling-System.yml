@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rpdata-Polling-System
+manual: false
+detail:
+    fingerprint:
+        name: Rpdata-Polling-System
+    fofa: title="rpdata 查询系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rpdata 查询系统")
+expression: r0()

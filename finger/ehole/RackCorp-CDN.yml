@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RackCorp-CDN
+manual: false
+detail:
+    fingerprint:
+        name: RackCorp-CDN
+    fofa: 'header="server: rackcorpcdn"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rackcorpcdn"))'
+expression: r0()

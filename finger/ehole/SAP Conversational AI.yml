@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SAP Conversational AI
+manual: false
+detail:
+    fingerprint:
+        name: SAP Conversational AI
+    fofa: icon_hash="1347937389"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1347937389
+expression: r0()

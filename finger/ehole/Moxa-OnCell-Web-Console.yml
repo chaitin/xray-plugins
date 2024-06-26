@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Moxa-OnCell-Web-Console
+manual: false
+detail:
+    fingerprint:
+        name: Moxa-OnCell-Web-Console
+    fofa: title="web console" && title="oncell "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("web console") && response.title_string.contains("oncell ")
+expression: r0()

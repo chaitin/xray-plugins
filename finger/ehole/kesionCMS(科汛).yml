@@ -1,0 +1,44 @@
+name: fingerprint-yaml-kesionCMS(科汛)
+manual: false
+detail:
+    fingerprint:
+        name: kesionCMS(科汛)
+    fofa: body="kesionCMS" || body="/ks_inc/common.js" || body="publish by KesionCMS" || header="kesionCMS" || title="kesionCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("kesionCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ks_inc/common.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("publish by KesionCMS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kesionCMS"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kesionCMS")
+expression: r0() || r1() || r2() || r3() || r4()

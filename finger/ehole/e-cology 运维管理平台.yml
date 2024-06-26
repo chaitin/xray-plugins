@@ -1,0 +1,16 @@
+name: fingerprint-yaml-e-cology 运维管理平台
+manual: false
+detail:
+    fingerprint:
+        name: e-cology 运维管理平台
+    fofa: icon_hash="-384583337"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -384583337
+expression: r0()

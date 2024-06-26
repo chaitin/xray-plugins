@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBOS企业协同管理软件
+manual: false
+detail:
+    fingerprint:
+        name: IBOS企业协同管理软件
+    fofa: header="IBOS企业协同管理软件" || title="IBOS企业协同管理软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBOS企业协同管理软件"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBOS企业协同管理软件")
+expression: r0() || r1()

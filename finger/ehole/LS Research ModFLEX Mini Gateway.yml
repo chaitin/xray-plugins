@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LS Research ModFLEX Mini Gateway
+manual: false
+detail:
+    fingerprint:
+        name: LS Research ModFLEX Mini Gateway
+    fofa: header="LS Research ModFLEX Mini Gateway" || title="LS Research ModFLEX Mini Gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LS Research ModFLEX Mini Gateway"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LS Research ModFLEX Mini Gateway")
+expression: r0() || r1()

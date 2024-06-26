@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aura-Httpd
+manual: false
+detail:
+    fingerprint:
+        name: Aura-Httpd
+    fofa: 'header="sever: aurahttpd"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("sever: aurahttpd"))'
+expression: r0()

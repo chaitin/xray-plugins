@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Linksys-USB-HDD
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-USB-HDD
+    fofa: body="href=\"management/setup.cgi?next_file=lan.htm" || body="<title>Network Storage Link for USB 2.0 Disks</title>" || title="network storage link for usb 2.0 disks"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="management/setup.cgi?next_file=lan.htm')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Network Storage Link for USB 2.0 Disks</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("network storage link for usb 2.0 disks")
+expression: r0() || r1() || r2()

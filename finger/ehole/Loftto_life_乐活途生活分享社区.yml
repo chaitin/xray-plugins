@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Loftto_life_乐活途生活分享社区
+manual: false
+detail:
+    fingerprint:
+        name: Loftto_life_乐活途生活分享社区
+    fofa: title="Loftto_life_乐活途生活分享社区"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Loftto_life_乐活途生活分享社区")
+expression: r0()

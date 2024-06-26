@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eShangBao易商宝
+manual: false
+detail:
+    fingerprint:
+        name: eShangBao易商宝
+    fofa: title="eShangBao易商宝"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eShangBao易商宝")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Domoticz (Home Automation)
+manual: false
+detail:
+    fingerprint:
+        name: Domoticz (Home Automation)
+    fofa: icon_hash="90680708"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 90680708
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-genixcms
+manual: false
+detail:
+    fingerprint:
+        name: genixcms
+    fofa: header="genixcms" || title="genixcms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("genixcms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("genixcms")
+expression: r0() || r1()

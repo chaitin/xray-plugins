@@ -1,0 +1,51 @@
+name: fingerprint-yaml-MDaemon-email-server
+manual: false
+detail:
+    fingerprint:
+        name: MDaemon-email-server
+    fofa: body="/worldclient.dll?view=main" && body="<strong>mdaemon/worldclient" || body="mdaemon " && body="/worldclient.dll?view=main" || body="/worldclient.dll?view=main" || body="<strong>mdaemon/worldclient" || body="mdaemon " || body="mdaemo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/worldclient.dll?view=main") && response.body_string.contains("<strong>mdaemon/worldclient")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mdaemon ") && response.body_string.contains("/worldclient.dll?view=main")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/worldclient.dll?view=main")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<strong>mdaemon/worldclient")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mdaemon ")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mdaemo")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

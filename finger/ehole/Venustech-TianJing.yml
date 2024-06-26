@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Venustech-TianJing
+manual: false
+detail:
+    fingerprint:
+        name: Venustech-TianJing
+    fofa: title="天镜脆弱性扫描"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天镜脆弱性扫描")
+expression: r0()

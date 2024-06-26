@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PowerDNS
+manual: false
+detail:
+    fingerprint:
+        name: PowerDNS
+    fofa: header="basic realm=\"powerdns"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="powerdns'))
+expression: r0()

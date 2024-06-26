@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TCN协议
+manual: false
+detail:
+    fingerprint:
+        name: TCN协议
+    fofa: header="Tcn:choice" || header="Tcn:list"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tcn:choice"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tcn:list"))
+expression: r0() || r1()

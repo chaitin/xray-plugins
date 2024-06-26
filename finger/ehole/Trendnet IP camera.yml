@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Trendnet IP camera
+manual: false
+detail:
+    fingerprint:
+        name: Trendnet IP camera
+    fofa: icon_hash="512590457" || header="basic realm=\"netcam\"" && header=" realm=\"tv-" || body="window.location = \"rdr.cgi\"" || header=" realm=\"tv-" || header="basic realm=\"netcam\"" || header="realm=\"tv-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 512590457
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="netcam"')) && response.raw_header.bcontains(bytes(' realm="tv-'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "rdr.cgi"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes(' realm="tv-'))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="netcam"'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv-'))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

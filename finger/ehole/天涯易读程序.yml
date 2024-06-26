@@ -1,0 +1,16 @@
+name: fingerprint-yaml-天涯易读程序
+manual: false
+detail:
+    fingerprint:
+        name: 天涯易读程序
+    fofa: title="天涯易读程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天涯易读程序")
+expression: r0()

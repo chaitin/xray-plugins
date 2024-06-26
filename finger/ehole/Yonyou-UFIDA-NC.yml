@@ -1,0 +1,93 @@
+name: fingerprint-yaml-Yonyou-UFIDA-NC
+manual: false
+detail:
+    fingerprint:
+        name: Yonyou-UFIDA-NC
+    fofa: body="ufida" && body="logo/images/" && body="logo/images/ufida_nc.png" && body="<div id=\"nc_text\">" && body="<div id=\"nc_img\" onmouseover=\"overimage('nc';" && body="ufida nc" || body="<div id=\"nc_img\" onmouseover=\"overimage(\"nc\");" || body="<div id=\"nc_text\">" || body="logo/images/ufida_nc.png" || body="logo/images/" && body="ufida" || body="ufida" || body="logo/images/" || body="<div id=\"nc_img\" onmouseover=\"overimage\"nc\";" || body="产品登录界面" || body="ufida nc" || body="ufida_iufo_over.png" && body="ufida_nc.png" || title="yonyou nc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ufida") && response.body_string.contains("logo/images/") && response.body_string.contains("logo/images/ufida_nc.png") && response.body_string.contains('<div id="nc_text">') && response.body_string.contains("<div id=\"nc_img\" onmouseover=\"overimage('nc';") && response.body_string.contains("ufida nc")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="nc_img" onmouseover="overimage("nc");')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="nc_text">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logo/images/ufida_nc.png")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logo/images/") && response.body_string.contains("ufida")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ufida")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logo/images/")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="nc_img" onmouseover="overimage"nc";')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("产品登录界面")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ufida nc")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ufida_iufo_over.png") && response.body_string.contains("ufida_nc.png")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yonyou nc")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

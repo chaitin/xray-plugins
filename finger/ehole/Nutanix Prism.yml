@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Nutanix Prism
+manual: false
+detail:
+    fingerprint:
+        name: Nutanix Prism
+    fofa: header="Nutanix Prism" || title="Nutanix Prism"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nutanix Prism"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nutanix Prism")
+expression: r0() || r1()

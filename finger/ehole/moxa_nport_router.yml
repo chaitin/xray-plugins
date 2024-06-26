@@ -1,0 +1,16 @@
+name: fingerprint-yaml-moxa_nport_router
+manual: false
+detail:
+    fingerprint:
+        name: moxa_nport_router
+    fofa: title="moxa_nport_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("moxa_nport_router")
+expression: r0()

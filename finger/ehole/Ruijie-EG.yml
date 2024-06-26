@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Ruijie-EG
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-EG
+    fofa: 'body="锐捷网络有限公司 eg易网关" && body="webchat.ruijie.com.cn" && body="4008 111 000" && body="www.ruijie.com.cn/service/know.aspx" || body="www.ruijie.com.cn/service/know.aspx" && body="4008 111 000" && body="main.htm" && body="webchat.ruijie.com.cn" || body="product: [\"锐捷网络有限公司 eg易网关" || body="href=\"eg.css" && body="ruijie" || body="锐捷网络有限公司 eg易网关" || body="webchat.ruijie.com.cn" || body="www.ruijie.com.cn/service/know.aspx"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("锐捷网络有限公司 eg易网关") && response.body_string.contains("webchat.ruijie.com.cn") && response.body_string.contains("4008 111 000") && response.body_string.contains("www.ruijie.com.cn/service/know.aspx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.ruijie.com.cn/service/know.aspx") && response.body_string.contains("4008 111 000") && response.body_string.contains("main.htm") && response.body_string.contains("webchat.ruijie.com.cn")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''product: ["锐捷网络有限公司 eg易网关'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="eg.css') && response.body_string.contains("ruijie")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("锐捷网络有限公司 eg易网关")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webchat.ruijie.com.cn")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.ruijie.com.cn/service/know.aspx")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-boastMachine
+manual: false
+detail:
+    fingerprint:
+        name: boastMachine
+    fofa: body="powered by boastmachine" && body="powered by <a href=\"http://boastology.com" || body="powered by boastMachine" || body="Powered by <a href=\"http://boastology.com" || body="powered by <a href=\"http://boastology.com" || body="powered by boastmachine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by boastmachine") && response.body_string.contains('powered by <a href="http://boastology.com')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by boastMachine")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://boastology.com')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://boastology.com')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by boastmachine")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-Eudemon-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-Eudemon-Firewall
+    fofa: header="huawei eudemon200e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei eudemon200e"))
+expression: r0()

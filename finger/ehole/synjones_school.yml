@@ -1,0 +1,16 @@
+name: fingerprint-yaml-synjones_school
+manual: false
+detail:
+    fingerprint:
+        name: synjones_school
+    fofa: title="synjones_school"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("synjones_school")
+expression: r0()

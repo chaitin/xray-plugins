@@ -1,0 +1,23 @@
+name: fingerprint-yaml-启明天镜脆弱性扫描
+manual: false
+detail:
+    fingerprint:
+        name: 启明天镜脆弱性扫描
+    fofa: header="启明天镜脆弱性扫描" || title="启明天镜脆弱性扫描"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("启明天镜脆弱性扫描"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("启明天镜脆弱性扫描")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-宝塔面板
+manual: false
+detail:
+    fingerprint:
+        name: 宝塔面板
+    fofa: 'body="bt.cn" && body="扫码登录" || header="Set-Cookie: BT_PANEL_6"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bt.cn") && response.body_string.contains("扫码登录")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Set-Cookie: BT_PANEL_6"))'
+expression: r0() || r1()

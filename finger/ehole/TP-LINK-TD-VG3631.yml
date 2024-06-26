@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TP-LINK-TD-VG3631
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-TD-VG3631
+    fofa: header="tp-link td-vg3631" || header="TP-LINK TD-VG3631"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link td-vg3631"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TD-VG3631"))
+expression: r0() || r1()

@@ -1,0 +1,156 @@
+name: fingerprint-yaml-Winmail-Server
+manual: false
+detail:
+    fingerprint:
+        name: Winmail-Server
+    fofa: 'header="magicwinmail_default_language" || body="src=\"customer/index_winmail_new.gif" || body="background=\"customer/winmail_bg11.jpg" || body="(build " && body="winmail mail server" || body="pwdplaceholder" && body="f_theme" && body="encryptpwd" && body="sessid" || body="src=\"themes/default/images/mail_pic.jpg" || body="pop3,smtp server: <font color=red>" || body="amax information technologies inc." || body="<title>WebMail | Powered by Winmail Server - Login</title>" || body="<title>Web Administration | Powered by Winmail Server - Login</title>" || body="<td class=default>&nbsp;<input type=password name=f_password size=30 maxlength=64 onkeyup=\"javascript: EvalPwd(this.value);\" onchange=\"javascript: EvalPwd(this.value);\" class=\"textbox\"><font color=#ff0000>*</font></td>" || body="<a target=\"_blank\" href=\"http://www.magicwinmail.net?sid=winmailcust\">Powered by Winmail Server</a>&nbsp;" || body="<td align=\"right\" class=\"hometext\"><a href=\"http://www.magicwinmail.net?sid=winmailcust\" target=_blank>Powered by Winmail Server</a></td>" || body="<td rowspan=2 width=\"264\" bgcolor=\"#FFFFFF\"><img src=\"themes/default/images/mail_pic.jpg\" width=\"264\" height=\"102\"></td>" || body="<input type=checkbox name=f_autologin value=\"1\"><acronym style=\"cursor: hand;\" OnClick=\"f_autologin.click()\">Automatically login at next time</acronym>" || body="encryptpwd" && body="sessid" || body="f_theme" && body="pwdplaceholder" || body="winmail mail server" || body="(build " && body="background=\"customer/winmail_bg11.jpg" || body="(build ,background=\"customer/winmail_bg11.jpg" || title="Winmail Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("magicwinmail_default_language"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="customer/index_winmail_new.gif')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('background="customer/winmail_bg11.jpg')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("(build ") && response.body_string.contains("winmail mail server")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pwdplaceholder") && response.body_string.contains("f_theme") && response.body_string.contains("encryptpwd") && response.body_string.contains("sessid")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="themes/default/images/mail_pic.jpg')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("pop3,smtp server: <font color=red>")'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amax information technologies inc.")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WebMail | Powered by Winmail Server - Login</title>")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Web Administration | Powered by Winmail Server - Login</title>")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<td class=default>&nbsp;<input type=password name=f_password size=30 maxlength=64 onkeyup="javascript: EvalPwd(this.value);" onchange="javascript: EvalPwd(this.value);" class="textbox"><font color=#ff0000>*</font></td>'')'
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a target="_blank" href="http://www.magicwinmail.net?sid=winmailcust">Powered by Winmail Server</a>&nbsp;')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="hometext"><a href="http://www.magicwinmail.net?sid=winmailcust" target=_blank>Powered by Winmail Server</a></td>')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td rowspan=2 width="264" bgcolor="#FFFFFF"><img src="themes/default/images/mail_pic.jpg" width="264" height="102"></td>')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<input type=checkbox name=f_autologin value="1"><acronym style="cursor: hand;" OnClick="f_autologin.click()">Automatically login at next time</acronym>'')'
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("encryptpwd") && response.body_string.contains("sessid")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("f_theme") && response.body_string.contains("pwdplaceholder")
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("winmail mail server")
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("(build ") && response.body_string.contains('background="customer/winmail_bg11.jpg')
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('(build ,background="customer/winmail_bg11.jpg')
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Winmail Server")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-PG-Real-Estate-Solution
+manual: false
+detail:
+    fingerprint:
+        name: PG-Real-Estate-Solution
+    fofa: body=">pg real estate solution - real estate web site design" || body="<title>PG Real Estate Solution" || body="Powered by <a href=\"http://www.realtysoft.pro/realestate/\" title=\"real estate web site design, real estate listing software\">PG Real Estate Solution - real estate web site design</a>" || title="pg real estate solution"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">pg real estate solution - real estate web site design")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PG Real Estate Solution")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.realtysoft.pro/realestate/" title="real estate web site design, real estate listing software">PG Real Estate Solution - real estate web site design</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("pg real estate solution")
+expression: r0() || r1() || r2() || r3()

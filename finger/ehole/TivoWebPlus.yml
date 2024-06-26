@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TivoWebPlus
+manual: false
+detail:
+    fingerprint:
+        name: TivoWebPlus
+    fofa: header="realm=\"tivowebplus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tivowebplus'))
+expression: r0()

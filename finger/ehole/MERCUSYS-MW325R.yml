@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MERCUSYS-MW325R
+manual: false
+detail:
+    fingerprint:
+        name: MERCUSYS-MW325R
+    fofa: title="mw325r"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mw325r")
+expression: r0()

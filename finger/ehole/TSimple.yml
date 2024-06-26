@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TSimple
+manual: false
+detail:
+    fingerprint:
+        name: TSimple
+    fofa: title="TSimple"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TSimple")
+expression: r0()

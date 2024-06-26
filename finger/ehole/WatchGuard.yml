@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WatchGuard
+manual: false
+detail:
+    fingerprint:
+        name: WatchGuard
+    fofa: icon_hash="15831193"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 15831193
+expression: r0()

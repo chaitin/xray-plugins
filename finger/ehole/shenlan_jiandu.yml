@@ -1,0 +1,16 @@
+name: fingerprint-yaml-shenlan_jiandu
+manual: false
+detail:
+    fingerprint:
+        name: shenlan_jiandu
+    fofa: title="shenlan_jiandu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("shenlan_jiandu")
+expression: r0()

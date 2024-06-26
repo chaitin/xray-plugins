@@ -1,0 +1,23 @@
+name: fingerprint-yaml-webcam 7
+manual: false
+detail:
+    fingerprint:
+        name: webcam 7
+    fofa: header="webcam 7" || title="webcam 7"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webcam 7"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webcam 7")
+expression: r0() || r1()

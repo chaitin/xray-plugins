@@ -1,0 +1,30 @@
+name: fingerprint-yaml-WSN-Classifieds
+manual: false
+detail:
+    fingerprint:
+        name: WSN-Classifieds
+    fofa: body="<title>WSN Classifieds Admin Login</title>" || body="<title>WSN Classifieds Administration Panel</title>" || body="<textarea readonly rows=\"20\" cols=\"75\">WSN Classifieds License Agreement"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WSN Classifieds Admin Login</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WSN Classifieds Administration Panel</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<textarea readonly rows="20" cols="75">WSN Classifieds License Agreement')
+expression: r0() || r1() || r2()

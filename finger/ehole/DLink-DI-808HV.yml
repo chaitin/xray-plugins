@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DLink-DI-808HV
+manual: false
+detail:
+    fingerprint:
+        name: DLink-DI-808HV
+    fofa: header="realm=\"di-808hv"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="di-808hv'))
+expression: r0()

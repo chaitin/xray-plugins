@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Baidu-jiasule
+manual: false
+detail:
+    fingerprint:
+        name: Baidu-jiasule
+    fofa: body="notice-jiasule" && body="static.jiasule.com/static/js/http_error.js" || body="static.jiasule.com/static/js/http_error.js" || body="notice-jiasule" || header="__jsluid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("notice-jiasule") && response.body_string.contains("static.jiasule.com/static/js/http_error.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("static.jiasule.com/static/js/http_error.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("notice-jiasule")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("__jsluid"))
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-_NET
+manual: false
+detail:
+    fingerprint:
+        name: .NET
+    fofa: body="content=\"visual basic .net 7.1" || body="content=\"Visual Basic .NET 7.1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="visual basic .net 7.1')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Visual Basic .NET 7.1')
+expression: r0() || r1()

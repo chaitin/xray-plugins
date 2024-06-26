@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RaidenMAILD Mail Server
+manual: false
+detail:
+    fingerprint:
+        name: RaidenMAILD Mail Server
+    fofa: header="RaidenMAILD Mail Server" || title="RaidenMAILD Mail Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RaidenMAILD Mail Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RaidenMAILD Mail Server")
+expression: r0() || r1()

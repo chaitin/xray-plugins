@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Jcow
+manual: false
+detail:
+    fingerprint:
+        name: Jcow
+    fofa: body="content=\"Jcow" || body="content=\"Powered by Jcow" || body="end jcow_application_box" || body="<meta name=\"Generator\" content=\"Powered by Jcow\" />" || body="<!-- do NOT remove the Jcow Attribution Information -->" || body="<!-- jcow branding -->" || body="<!-- end jcow_application_box -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Jcow')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Powered by Jcow')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("end jcow_application_box")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Generator" content="Powered by Jcow" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- do NOT remove the Jcow Attribution Information -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- jcow branding -->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- end jcow_application_box -->")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

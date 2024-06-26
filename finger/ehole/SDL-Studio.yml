@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SDL-Studio
+manual: false
+detail:
+    fingerprint:
+        name: SDL-Studio
+    fofa: title="sdl studio groupshare"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sdl studio groupshare")
+expression: r0()

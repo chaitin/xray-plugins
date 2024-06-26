@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OpenKM
+manual: false
+detail:
+    fingerprint:
+        name: OpenKM
+    fofa: body="<form name=\"login\" method=\"post\" action=\"j_security_check\" onsubmit=\"setCookie()\">" || title="openkm login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="login" method="post" action="j_security_check" onsubmit="setCookie()">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("openkm login")
+expression: r0() || r1()

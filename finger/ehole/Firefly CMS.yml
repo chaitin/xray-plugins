@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Firefly CMS
+manual: false
+detail:
+    fingerprint:
+        name: Firefly CMS
+    fofa: header="Firefly CMS" || title="Firefly CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Firefly CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Firefly CMS")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Highlight_js
+manual: false
+detail:
+    fingerprint:
+        name: Highlight.js
+    fofa: title="Highlight.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Highlight.js")
+expression: r0()

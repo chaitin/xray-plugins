@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Canon-MX710-series
+manual: false
+detail:
+    fingerprint:
+        name: Canon-MX710-series
+    fofa: body="nowrap>canon mx710 series</td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nowrap>canon mx710 series</td>")
+expression: r0()

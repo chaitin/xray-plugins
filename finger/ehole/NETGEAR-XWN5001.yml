@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-XWN5001
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-XWN5001
+    fofa: header="netgear xwn5001" || header="NETGEAR XWN5001" || title="netgear plc ap xwn5001"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear xwn5001"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR XWN5001"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear plc ap xwn5001")
+expression: r0() || r1() || r2()

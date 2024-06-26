@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JAMIA AL HIND
+manual: false
+detail:
+    fingerprint:
+        name: JAMIA AL HIND
+    fofa: header="JAMIA AL HIND" || title="JAMIA AL HIND"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JAMIA AL HIND"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JAMIA AL HIND")
+expression: r0() || r1()

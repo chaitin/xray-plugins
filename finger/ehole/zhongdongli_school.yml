@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zhongdongli_school
+manual: false
+detail:
+    fingerprint:
+        name: zhongdongli_school
+    fofa: title="zhongdongli_school"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zhongdongli_school")
+expression: r0()

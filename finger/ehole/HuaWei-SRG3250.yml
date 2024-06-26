@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-SRG3250
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-SRG3250
+    fofa: header="huawei srg3250"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei srg3250"))
+expression: r0()

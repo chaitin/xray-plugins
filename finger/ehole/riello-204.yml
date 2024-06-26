@@ -1,0 +1,16 @@
+name: fingerprint-yaml-riello-204
+manual: false
+detail:
+    fingerprint:
+        name: riello-204
+    fofa: title="netman 204"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netman 204")
+expression: r0()

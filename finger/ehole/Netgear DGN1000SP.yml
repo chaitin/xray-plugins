@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear DGN1000SP
+manual: false
+detail:
+    fingerprint:
+        name: Netgear DGN1000SP
+    fofa: header="Netgear DGN1000SP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netgear DGN1000SP"))
+expression: r0()

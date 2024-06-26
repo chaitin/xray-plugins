@@ -1,0 +1,16 @@
+name: fingerprint-yaml-magicwinmail
+manual: false
+detail:
+    fingerprint:
+        name: magicwinmail
+    fofa: header="magicwinmail_default_theme"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("magicwinmail_default_theme"))
+expression: r0()

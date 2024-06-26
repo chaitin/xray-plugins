@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Telerik-Sitefinity
+manual: false
+detail:
+    fingerprint:
+        name: Telerik-Sitefinity
+    fofa: body="telerik.web.ui.webresource.axd" && body="content=\"sitefinity" || body="Telerik.Web.UI.WebResource.axd" || body="content=\"Sitefinity" || body="content=\"sitefinity" || body="telerik.web.ui.webresource.axd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("telerik.web.ui.webresource.axd") && response.body_string.contains('content="sitefinity')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Telerik.Web.UI.WebResource.axd")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Sitefinity')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="sitefinity')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("telerik.web.ui.webresource.axd")
+expression: r0() || r1() || r2() || r3() || r4()

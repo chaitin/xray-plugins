@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ColorMeShop
+manual: false
+detail:
+    fingerprint:
+        name: ColorMeShop
+    fofa: header="ColorMeShop" || title="ColorMeShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ColorMeShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ColorMeShop")
+expression: r0() || r1()

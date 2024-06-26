@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-BR204+
+manual: false
+detail:
+    fingerprint:
+        name: H3C-BR204+
+    fofa: header="basic realm=\"h3c br204+\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="h3c br204+"'))
+expression: r0()

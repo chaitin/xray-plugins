@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Broadcom-Home-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Broadcom-Home-Gateway
+    fofa: header="realm=\"broadcom home gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="broadcom home gateway'))
+expression: r0()

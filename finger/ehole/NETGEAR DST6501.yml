@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DST6501
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DST6501
+    fofa: header="NETGEAR DST6501"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DST6501"))
+expression: r0()

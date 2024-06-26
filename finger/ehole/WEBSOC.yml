@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WEBSOC
+manual: false
+detail:
+    fingerprint:
+        name: WEBSOC
+    fofa: body="<div id=\"logo-websoc\" class=\"png-bg\"></div>" || title="网站立体监控系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="logo-websoc" class="png-bg"></div>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网站立体监控系统")
+expression: r0() || r1()

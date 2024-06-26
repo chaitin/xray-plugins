@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Proximis Omnichannel
+manual: false
+detail:
+    fingerprint:
+        name: Proximis Omnichannel
+    fofa: header="Proximis Omnichannel" || title="Proximis Omnichannel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Proximis Omnichannel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Proximis Omnichannel")
+expression: r0() || r1()

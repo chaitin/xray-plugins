@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Weidun
+manual: false
+detail:
+    fingerprint:
+        name: Weidun
+    fofa: 'header="firewall: www.weidun.com.cn" || header="Firewall:www.weidun.com.cn"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("firewall: www.weidun.com.cn"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Firewall:www.weidun.com.cn"))
+expression: r0() || r1()

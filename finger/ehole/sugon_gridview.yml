@@ -1,0 +1,16 @@
+name: fingerprint-yaml-sugon_gridview
+manual: false
+detail:
+    fingerprint:
+        name: sugon_gridview
+    fofa: body="/common/resources/images/common/app/gridview.ico"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/common/resources/images/common/app/gridview.ico")
+expression: r0()

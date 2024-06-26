@@ -1,0 +1,51 @@
+name: fingerprint-yaml-msvod-MediaManager
+manual: false
+detail:
+    fingerprint:
+        name: msvod-MediaManager
+    fofa: body="$('.sign-btn'.addclass(\"completion\";" && body="static/js/meisicms.js" && body="content=\"魅思cms" || body="$\".sign-btn\".addclass\"completion\";" || body="static/js/meisicms.js" || body="content=\"魅思cms" || body="$(\".sign-btn\").addclass(\"completion\");" || body="content=\"魅思cms" && body="static/js/meisicms.js" && body="$(\".sign-btn\").addclass(\"completion\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("$('.sign-btn'.addclass(\"completion\";") && response.body_string.contains("static/js/meisicms.js") && response.body_string.contains('content="魅思cms')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('$".sign-btn".addclass"completion";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("static/js/meisicms.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="魅思cms')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('$(".sign-btn").addclass("completion");')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="魅思cms') && response.body_string.contains("static/js/meisicms.js") && response.body_string.contains('$(".sign-btn").addclass("completion";')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

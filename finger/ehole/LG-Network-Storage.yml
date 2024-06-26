@@ -1,0 +1,37 @@
+name: fingerprint-yaml-LG-Network-Storage
+manual: false
+detail:
+    fingerprint:
+        name: LG-Network-Storage
+    fofa: body="style=\"background:url('../images/login/form_bg_lg_nas_storage.gif'; background-repeat:no-repeat;\">" || body="style=\"background:url(\"../images/login/form_bg_lg_nas_storage.gif\"); background-repeat:no-repeat;\">" || body="style=\"background:url\"../images/login/form_bg_lg_nas_storage.gif\"; background-repeat:no-repeat;\">" || title="welcome to lg electronics"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("style=\"background:url('../images/login/form_bg_lg_nas_storage.gif'; background-repeat:no-repeat;\">")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('style="background:url("../images/login/form_bg_lg_nas_storage.gif"); background-repeat:no-repeat;">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('style="background:url"../images/login/form_bg_lg_nas_storage.gif"; background-repeat:no-repeat;">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome to lg electronics")
+expression: r0() || r1() || r2() || r3()

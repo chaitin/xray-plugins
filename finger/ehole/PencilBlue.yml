@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PencilBlue
+manual: false
+detail:
+    fingerprint:
+        name: PencilBlue
+    fofa: header="PencilBlue" || title="PencilBlue"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PencilBlue"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PencilBlue")
+expression: r0() || r1()

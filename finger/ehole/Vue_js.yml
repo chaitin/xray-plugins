@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vue_js
+manual: false
+detail:
+    fingerprint:
+        name: Vue.js
+    fofa: title="Vue.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Vue.js")
+expression: r0()

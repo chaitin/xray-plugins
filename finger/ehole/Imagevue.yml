@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Imagevue
+manual: false
+detail:
+    fingerprint:
+        name: Imagevue
+    fofa: title="Imagevue"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Imagevue")
+expression: r0()

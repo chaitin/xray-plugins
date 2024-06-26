@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Homegrown Website Hosting
+manual: false
+detail:
+    fingerprint:
+        name: Homegrown Website Hosting
+    fofa: icon_hash="-421986013"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -421986013
+expression: r0()

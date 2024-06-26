@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SJSWPS-OiWPS
+manual: false
+detail:
+    fingerprint:
+        name: SJSWPS-OiWPS
+    fofa: header="oracle-iplanet-proxy-server" || header="Sun-Java-System-Web-Proxy-Server" || header="Oracle-iPlanet-Proxy-Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-iplanet-proxy-server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sun-Java-System-Web-Proxy-Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle-iPlanet-Proxy-Server"))
+expression: r0() || r1() || r2()

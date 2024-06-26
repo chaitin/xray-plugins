@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DERAK_CLOUD
+manual: false
+detail:
+    fingerprint:
+        name: DERAK.CLOUD
+    fofa: header="DERAK.CLOUD" || title="DERAK.CLOUD"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DERAK.CLOUD"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DERAK.CLOUD")
+expression: r0() || r1()

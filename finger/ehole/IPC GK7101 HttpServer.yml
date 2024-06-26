@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IPC GK7101 HttpServer
+manual: false
+detail:
+    fingerprint:
+        name: IPC GK7101 HttpServer
+    fofa: header="IPC GK7101 HttpServer" || title="IPC GK7101 HttpServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPC GK7101 HttpServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPC GK7101 HttpServer")
+expression: r0() || r1()

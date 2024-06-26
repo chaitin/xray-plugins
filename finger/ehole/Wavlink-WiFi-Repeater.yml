@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Wavlink-WiFi-Repeater
+manual: false
+detail:
+    fingerprint:
+        name: Wavlink-WiFi-Repeater
+    fofa: title="wifi repeater web server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wifi repeater web server")
+expression: r0()

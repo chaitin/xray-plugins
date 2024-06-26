@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CIDAUTO CMS
+manual: false
+detail:
+    fingerprint:
+        name: CIDAUTO CMS
+    fofa: header="CIDAUTO CMS" || title="CIDAUTO CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CIDAUTO CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CIDAUTO CMS")
+expression: r0() || r1()

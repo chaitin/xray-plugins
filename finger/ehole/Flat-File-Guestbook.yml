@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Flat-File-Guestbook
+manual: false
+detail:
+    fingerprint:
+        name: Flat-File-Guestbook
+    fofa: body="<link rel=\"stylesheet\" type=\"text/css\" href=\"ffgb_styles.css\">" || body="<a href=\"guestbook.php\">Return to the Guestbook</a><br>&nbsp;<br>" || body="<td align=\"right\"><input type=\"password\" value=\"\" name=\"ffgb_pass\"></td></tr>" || body="<a href=\"ffgb_admin.php\"><i>Manage this Guestbook</i></a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" type="text/css" href="ffgb_styles.css">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="guestbook.php">Return to the Guestbook</a><br>&nbsp;<br>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right"><input type="password" value="" name="ffgb_pass"></td></tr>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="ffgb_admin.php"><i>Manage this Guestbook</i></a>')
+expression: r0() || r1() || r2() || r3()

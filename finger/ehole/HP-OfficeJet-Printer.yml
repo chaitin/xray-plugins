@@ -1,0 +1,44 @@
+name: fingerprint-yaml-HP-OfficeJet-Printer
+manual: false
+detail:
+    fingerprint:
+        name: HP-OfficeJet-Printer
+    fofa: body="align=\"center\">hp officejet" || body="align=\"center\">HP Officejet" || body="index.htm?cat=info&page=printerInfo" || body="home.htm?cat=home&page=home" || title="hp officejet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('align="center">hp officejet')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('align="center">HP Officejet')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index.htm?cat=info&page=printerInfo")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("home.htm?cat=home&page=home")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hp officejet")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Coship-Router-module
+manual: false
+detail:
+    fingerprint:
+        name: Coship-Router-module
+    fofa: header="realm=\"coship electronics wireless route module"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="coship electronics wireless route module'))
+expression: r0()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Alibaba Druid
+manual: false
+detail:
+    fingerprint:
+        name: Alibaba Druid
+    fofa: body="click(druid.login.login" && body="<title>druid monitor</title>" && body="druid.common.buildHead" && body="druid.index.init(" || body="clickdruid.login.login" || body="<title>druid monitor</title>" || body="druid.common.buildHead" || body="druid.index.init"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("click(druid.login.login") && response.body_string.contains("<title>druid monitor</title>") && response.body_string.contains("druid.common.buildHead") && response.body_string.contains("druid.index.init(")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("clickdruid.login.login")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>druid monitor</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("druid.common.buildHead")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("druid.index.init")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Phusion
+manual: false
+detail:
+    fingerprint:
+        name: Phusion
+    fofa: header="Phusion"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Phusion"))
+expression: r0()

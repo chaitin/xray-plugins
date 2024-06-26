@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Digi-Connect-SP
+manual: false
+detail:
+    fingerprint:
+        name: Digi-Connect-SP
+    fofa: body="href=\"http://www.digi.com\"" && body="welcome to the configuration and management interface of the digi connect sp python." || body="welcome to the configuration,management interface of the digi connect sp python." && body="href=\"http://www.digi.com\"" || body="href=\"http://www.digi.com\"" || body="welcome to the configuration and management interface of the digi connect sp python."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.digi.com"') && response.body_string.contains("welcome to the configuration and management interface of the digi connect sp python.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to the configuration,management interface of the digi connect sp python.") && response.body_string.contains('href="http://www.digi.com"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.digi.com"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to the configuration and management interface of the digi connect sp python.")
+expression: r0() || r1() || r2() || r3()

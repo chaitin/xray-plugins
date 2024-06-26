@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SynkronVia
+manual: false
+detail:
+    fingerprint:
+        name: SynkronVia
+    fofa: header="synkron via cms" || header="Synkron Via CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("synkron via cms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Synkron Via CMS"))
+expression: r0() || r1()

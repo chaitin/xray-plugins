@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CDN77
+manual: false
+detail:
+    fingerprint:
+        name: CDN77
+    fofa: header="CDN77" || title="CDN77"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CDN77"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CDN77")
+expression: r0() || r1()

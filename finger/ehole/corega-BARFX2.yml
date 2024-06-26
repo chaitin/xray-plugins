@@ -1,0 +1,16 @@
+name: fingerprint-yaml-corega-BARFX2
+manual: false
+detail:
+    fingerprint:
+        name: corega-BARFX2
+    fofa: header="realm=\"cg-bar fx2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="cg-bar fx2'))
+expression: r0()

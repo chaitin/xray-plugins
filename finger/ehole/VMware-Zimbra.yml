@@ -1,0 +1,58 @@
+name: fingerprint-yaml-VMware-Zimbra
+manual: false
+detail:
+    fingerprint:
+        name: VMware-Zimbra
+    fofa: 'body="<meta name=\"description\" content=\"Zimbra provides open source server and client software for messaging and collaboration. To find out more visit http://www.zimbra.com.\">" || body="<!--div id=\"ZLoginAppName\">Web Client</div-->" || body="<title>Zimbra Web Client Log In</title>" || body="<h1><a href=\"http://www.zimbra.com/\" id=\"bannerLink\" target=\"_new\">" || body="<td><input id=\"password\" class=\"zLoginField\" name=\"password\" type=\"password\" value=\"\" size=\"40\"/></td>" || body="<div id=\"ZLoginWhatsThis\" class=\"ZLoginInfoMessage\" style=\"display:none;\"><center style=\"margin-bottom:3px;\"><b>Client Types:</b></center>" || body="<div id=\"ZLoginNotice\" class=\"legalNotice-small\"><a target=\"_new\" href=\"http://www.zimbra.com\">Zimbra</a> :: the leader in open source messaging and collaboration ::"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit http://www.zimbra.com.">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!--div id="ZLoginAppName">Web Client</div-->')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Zimbra Web Client Log In</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1><a href="http://www.zimbra.com/" id="bannerLink" target="_new">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><input id="password" class="zLoginField" name="password" type="password" value="" size="40"/></td>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="ZLoginWhatsThis" class="ZLoginInfoMessage" style="display:none;"><center style="margin-bottom:3px;"><b>Client Types:</b></center>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div id="ZLoginNotice" class="legalNotice-small"><a target="_new" href="http://www.zimbra.com">Zimbra</a> :: the leader in open source messaging and collaboration ::'')'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

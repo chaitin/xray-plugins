@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HIKVISION-VideoCload
+manual: false
+detail:
+    fingerprint:
+        name: HIKVISION-VideoCload
+    fofa: 'header="server: face-webs"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: face-webs"))'
+expression: r0()

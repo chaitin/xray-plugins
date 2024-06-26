@@ -1,0 +1,16 @@
+name: fingerprint-yaml-生命源头论坛_LifeYT-BBS
+manual: false
+detail:
+    fingerprint:
+        name: 生命源头论坛_LifeYT-BBS
+    fofa: title="生命源头论坛_LifeYT-BBS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("生命源头论坛_LifeYT-BBS")
+expression: r0()

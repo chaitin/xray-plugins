@@ -1,0 +1,30 @@
+name: fingerprint-yaml-CherryPy
+manual: false
+detail:
+    fingerprint:
+        name: CherryPy
+    fofa: 'header="CherryPy" || header="server: cherrypy" || title="CherryPy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CherryPy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cherrypy"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CherryPy")
+expression: r0() || r1() || r2()

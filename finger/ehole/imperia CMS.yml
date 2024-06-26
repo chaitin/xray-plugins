@@ -1,0 +1,23 @@
+name: fingerprint-yaml-imperia CMS
+manual: false
+detail:
+    fingerprint:
+        name: imperia CMS
+    fofa: header="imperia CMS" || title="imperia CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("imperia CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("imperia CMS")
+expression: r0() || r1()

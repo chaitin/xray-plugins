@@ -1,0 +1,51 @@
+name: fingerprint-yaml-WDlinux-wdCPSystem
+manual: false
+detail:
+    fingerprint:
+        name: WDlinux-wdCPSystem
+    fofa: 'body="href=\"http://www.wdlinux.cn/bbs/index.php" && body="linux云主机" || header="set-cookie: wdcpsessionid" || body="linux云主机" && body="href=\"http://www.wdlinux.cn/bbs/index.php" || body="href=\"http://www.wdlinux.cn/bbs/index.php" || body="linux云主机" || title="wdcp云主机管理系统"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.wdlinux.cn/bbs/index.php') && response.body_string.contains("linux云主机")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: wdcpsessionid"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("linux云主机") && response.body_string.contains('href="http://www.wdlinux.cn/bbs/index.php')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.wdlinux.cn/bbs/index.php')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("linux云主机")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wdcp云主机管理系统")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

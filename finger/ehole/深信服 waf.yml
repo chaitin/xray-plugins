@@ -1,0 +1,30 @@
+name: fingerprint-yaml-深信服 waf
+manual: false
+detail:
+    fingerprint:
+        name: 深信服 waf
+    fofa: body="rsa.js" && body="commonFunction.js" || body="commonFunction.js" && body="rsa.js" || body="/LogInOut.php" && body="Redirect to..."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("rsa.js") && response.body_string.contains("commonFunction.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("commonFunction.js") && response.body_string.contains("rsa.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/LogInOut.php") && response.body_string.contains("Redirect to...")
+expression: r0() || r1() || r2()

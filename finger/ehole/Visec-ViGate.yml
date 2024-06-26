@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Visec-ViGate
+manual: false
+detail:
+    fingerprint:
+        name: Visec-ViGate
+    fofa: body="src='/themes/visec/images/" && body="name=\"passwordfld" || body="name=\"passwordfld" && body="src=\"/themes/visec/images/" || body="src=\"/themes/visec/images/" || body="name=\"passwordfld"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("src='/themes/visec/images/") && response.body_string.contains('name="passwordfld')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="passwordfld') && response.body_string.contains('src="/themes/visec/images/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/themes/visec/images/')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="passwordfld')
+expression: r0() || r1() || r2() || r3()

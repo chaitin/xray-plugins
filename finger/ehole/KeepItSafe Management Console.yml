@@ -1,0 +1,16 @@
+name: fingerprint-yaml-KeepItSafe Management Console
+manual: false
+detail:
+    fingerprint:
+        name: KeepItSafe Management Console
+    fofa: icon_hash="-1738727418"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1738727418
+expression: r0()

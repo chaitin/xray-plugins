@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyWALL-USG-300
+manual: false
+detail:
+    fingerprint:
+        name: ZyWALL-USG-300
+    fofa: title="zywall usg 300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zywall usg 300")
+expression: r0()

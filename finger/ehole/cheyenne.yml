@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cheyenne
+manual: false
+detail:
+    fingerprint:
+        name: cheyenne
+    fofa: header="cheyenne" || title="cheyenne"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cheyenne"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cheyenne")
+expression: r0() || r1()

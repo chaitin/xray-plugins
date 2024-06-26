@@ -1,0 +1,16 @@
+name: fingerprint-yaml-泛微emp-移动管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 泛微emp-移动管理平台
+    fofa: icon_hash="2062026853"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2062026853
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-通用Web管理后台
+manual: false
+detail:
+    fingerprint:
+        name: 通用Web管理后台
+    fofa: header="通用Web管理后台" || title="通用Web管理后台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("通用Web管理后台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("通用Web管理后台")
+expression: r0() || r1()

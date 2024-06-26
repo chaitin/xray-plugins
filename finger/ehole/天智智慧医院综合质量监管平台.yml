@@ -1,0 +1,16 @@
+name: fingerprint-yaml-天智智慧医院综合质量监管平台
+manual: false
+detail:
+    fingerprint:
+        name: 天智智慧医院综合质量监管平台
+    fofa: icon_hash="1986460035"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1986460035
+expression: r0()

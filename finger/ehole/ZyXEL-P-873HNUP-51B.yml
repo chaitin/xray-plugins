@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZyXEL-P-873HNUP-51B
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-P-873HNUP-51B
+    fofa: title="zyxel p-873hnu-51b" || title="zyxel p-873hnup-51b"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zyxel p-873hnu-51b")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zyxel p-873hnup-51b")
+expression: r0() || r1()

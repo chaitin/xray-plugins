@@ -1,0 +1,23 @@
+name: fingerprint-yaml-dvr_webcam WebDVR
+manual: false
+detail:
+    fingerprint:
+        name: dvr.webcam WebDVR
+    fofa: header="dvr.webcam WebDVR" || title="dvr.webcam WebDVR"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dvr.webcam WebDVR"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dvr.webcam WebDVR")
+expression: r0() || r1()

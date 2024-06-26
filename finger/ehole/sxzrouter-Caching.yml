@@ -1,0 +1,44 @@
+name: fingerprint-yaml-sxzrouter-Caching
+manual: false
+detail:
+    fingerprint:
+        name: sxzrouter-Caching
+    fofa: body="src=\"/public/sec/assets/js/libs/jquery.placeholder.min.js\">" && body=" href=\"http://www.dwcache.com\"" || body=" href=\"http://www.dwcache.com\"" && body="src=\"/public/sec/assets/js/libs/jquery.placeholder.min.js\">" || body="src=\"/public/sec/assets/js/libs/jquery.placeholder.min.js\">" || body="href=\"http://www.dwcache.com\"" || body=" href=\"http://www.dwcache.com\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/public/sec/assets/js/libs/jquery.placeholder.min.js">') && response.body_string.contains(' href="http://www.dwcache.com"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' href="http://www.dwcache.com"') && response.body_string.contains('src="/public/sec/assets/js/libs/jquery.placeholder.min.js">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/public/sec/assets/js/libs/jquery.placeholder.min.js">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.dwcache.com"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' href="http://www.dwcache.com"')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-greencms
+manual: false
+detail:
+    fingerprint:
+        name: greencms
+    fofa: 'header="x-powered-by: greencms"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: greencms"))'
+expression: r0()

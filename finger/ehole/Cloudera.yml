@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cloudera
+manual: false
+detail:
+    fingerprint:
+        name: Cloudera
+    fofa: header="Cloudera" || title="Cloudera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cloudera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cloudera")
+expression: r0() || r1()

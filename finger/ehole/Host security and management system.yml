@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Host security and management system
+manual: false
+detail:
+    fingerprint:
+        name: Host security and management system
+    fofa: body="href=./static/css/app.edb681c84a53277f9336fc297ebca96e.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href=./static/css/app.edb681c84a53277f9336fc297ebca96e.css")
+expression: r0()

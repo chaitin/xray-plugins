@@ -1,0 +1,44 @@
+name: fingerprint-yaml-DoceboLMS
+manual: false
+detail:
+    fingerprint:
+        name: DoceboLMS
+    fofa: body="powered by docebo" || header="docebo_session=" || body="Powered by Docebo" || body="Powered by <a href=\"http://www.docebo.com/?versions\" onclick=\"window.open(this.href); return false;\">Docebo <sup>&reg;</sup></a>" || body="lang_setup.setBody(\"<ul class=\\\"link_list_inline\\\" id=\\\"language_selection\\\"><li><a class=\\\"lang-sprite lang_"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by docebo")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("docebo_session="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Docebo")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.docebo.com/?versions" onclick="window.open(this.href); return false;">Docebo <sup>&reg;</sup></a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('lang_setup.setBody("<ul class=\\"link_list_inline\\" id=\\"language_selection\\"><li><a class=\\"lang-sprite lang_')
+expression: r0() || r1() || r2() || r3() || r4()

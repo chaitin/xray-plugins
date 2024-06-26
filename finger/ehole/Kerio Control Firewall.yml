@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kerio Control Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Kerio Control Firewall
+    fofa: icon_hash="-631002664" || icon_hash="-466504476"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -631002664
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -466504476
+expression: r0() || r1()

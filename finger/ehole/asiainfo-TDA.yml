@@ -1,0 +1,16 @@
+name: fingerprint-yaml-asiainfo-TDA
+manual: false
+detail:
+    fingerprint:
+        name: asiainfo-TDA
+    fofa: title="亚信安全&trade; 深度威胁发现设备"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("亚信安全&trade; 深度威胁发现设备")
+expression: r0()

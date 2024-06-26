@@ -1,0 +1,16 @@
+name: fingerprint-yaml-truVision NVR (interlogix)
+manual: false
+detail:
+    fingerprint:
+        name: truVision NVR (interlogix)
+    fofa: icon_hash="1782271534"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1782271534
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PolicyRetriever
+manual: false
+detail:
+    fingerprint:
+        name: PolicyRetriever
+    fofa: body="class=\"heading1\">policyretriever service</p>" || title="policyretriever "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="heading1">policyretriever service</p>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("policyretriever ")
+expression: r0() || r1()

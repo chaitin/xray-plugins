@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JPrass开发框架
+manual: false
+detail:
+    fingerprint:
+        name: JPrass开发框架
+    fofa: title="JPrass开发框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JPrass开发框架")
+expression: r0()

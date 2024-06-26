@@ -1,0 +1,30 @@
+name: fingerprint-yaml-奇安信 waf
+manual: false
+detail:
+    fingerprint:
+        name: 奇安信 waf
+    fofa: header="奇安信 waf" || title="奇安信 waf" || title="奇安信WAF"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("奇安信 waf"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("奇安信 waf")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("奇安信WAF")
+expression: r0() || r1() || r2()

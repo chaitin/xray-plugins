@@ -1,0 +1,65 @@
+name: fingerprint-yaml-ASProxy
+manual: false
+detail:
+    fingerprint:
+        name: ASProxy
+    fofa: body="surf the web invisibly using asproxy power" && body="btnasproxydisplaybutton" || body="Surf the web invisibly using ASProxy power" || body="btnASProxyDisplayButton" || body="btnasproxydisplaybutton" || body="surf the web invisibly using asproxy power" || body="<!-- Surf the web invisibly using ASProxy power. A Powerfull web proxy is in your hands. -->" || body="<!--This is ASProxy powered by SalarSoft. -->" || body="<input type=\"button\" onclick=\"_Page_SubmitForm()\" value=\"Display\" id=\"btnASProxyDisplayButton\" class=\"Button\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("surf the web invisibly using asproxy power") && response.body_string.contains("btnasproxydisplaybutton")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Surf the web invisibly using ASProxy power")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("btnASProxyDisplayButton")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("btnasproxydisplaybutton")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("surf the web invisibly using asproxy power")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Surf the web invisibly using ASProxy power. A Powerfull web proxy is in your hands. -->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--This is ASProxy powered by SalarSoft. -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="button" onclick="_Page_SubmitForm()" value="Display" id="btnASProxyDisplayButton" class="Button" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

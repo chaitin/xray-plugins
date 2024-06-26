@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZTE Corporation (Gateway_Appliance)
+manual: false
+detail:
+    fingerprint:
+        name: ZTE Corporation (Gateway/Appliance)
+    fofa: icon_hash="459900502"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 459900502
+expression: r0()

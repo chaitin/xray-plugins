@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CopAdd400
+manual: false
+detail:
+    fingerprint:
+        name: CopAdd400
+    fofa: body="科博安全隔离与信息单向导入系统</span>" && body="page/downloadlinuxclient.is.run" || body="page/downloadlinuxclient.is.run" || body="科博安全隔离与信息单向导入系统</span>" || title="科博安全隔离与信息交换系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("科博安全隔离与信息单向导入系统</span>") && response.body_string.contains("page/downloadlinuxclient.is.run")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("page/downloadlinuxclient.is.run")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("科博安全隔离与信息单向导入系统</span>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("科博安全隔离与信息交换系统")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FlameCMS
+manual: false
+detail:
+    fingerprint:
+        name: FlameCMS
+    fofa: header="FlameCMS" || title="FlameCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FlameCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FlameCMS")
+expression: r0() || r1()

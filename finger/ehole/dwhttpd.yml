@@ -1,0 +1,23 @@
+name: fingerprint-yaml-dwhttpd
+manual: false
+detail:
+    fingerprint:
+        name: dwhttpd
+    fofa: header="dwhttpd" || title="dwhttpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dwhttpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dwhttpd")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wdcp-PHP探针
+manual: false
+detail:
+    fingerprint:
+        name: wdcp-PHP探针
+    fofa: title="wdcp-PHP探针"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wdcp-PHP探针")
+expression: r0()

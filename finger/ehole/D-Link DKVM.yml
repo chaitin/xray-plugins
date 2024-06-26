@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link DKVM
+manual: false
+detail:
+    fingerprint:
+        name: D-Link DKVM
+    fofa: header="D-Link DKVM" || title="D-Link DKVM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link DKVM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link DKVM")
+expression: r0() || r1()

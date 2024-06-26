@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-Link 3600 DD-WRT
+manual: false
+detail:
+    fingerprint:
+        name: TP-Link 3600 DD-WRT
+    fofa: header="TP-Link 3600 DD-WRT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-Link 3600 DD-WRT"))
+expression: r0()

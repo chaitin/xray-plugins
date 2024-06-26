@@ -1,0 +1,23 @@
+name: fingerprint-yaml-万户ezOFFICE
+manual: false
+detail:
+    fingerprint:
+        name: 万户ezOFFICE
+    fofa: icon_hash="2467445972" || header="LocLan"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2467445972
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LocLan"))
+expression: r0() || r1()

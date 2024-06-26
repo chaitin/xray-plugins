@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LG-OLED55C8FNA
+manual: false
+detail:
+    fingerprint:
+        name: LG-OLED55C8FNA
+    fofa: body="<modelname>oled55c8fna</modelname>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<modelname>oled55c8fna</modelname>")
+expression: r0()

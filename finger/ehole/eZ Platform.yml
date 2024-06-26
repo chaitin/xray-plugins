@@ -1,0 +1,23 @@
+name: fingerprint-yaml-eZ Platform
+manual: false
+detail:
+    fingerprint:
+        name: eZ Platform
+    fofa: header="eZ Platform" || title="eZ Platform"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eZ Platform"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eZ Platform")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ksenos
+manual: false
+detail:
+    fingerprint:
+        name: Ksenos
+    fofa: header="Ksenos" || title="Ksenos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ksenos"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ksenos")
+expression: r0() || r1()

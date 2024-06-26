@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MathJax
+manual: false
+detail:
+    fingerprint:
+        name: MathJax
+    fofa: header="MathJax" || title="MathJax"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MathJax"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MathJax")
+expression: r0() || r1()

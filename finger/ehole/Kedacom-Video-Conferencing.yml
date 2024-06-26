@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kedacom-Video-Conferencing
+manual: false
+detail:
+    fingerprint:
+        name: Kedacom-Video-Conferencing
+    fofa: title="meeting control system - kedacom" || title="kedacom meeting teminal "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("meeting control system - kedacom")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kedacom meeting teminal ")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LeTV-路由器
+manual: false
+detail:
+    fingerprint:
+        name: LeTV-路由器
+    fofa: header="LeTV-路由器" || title="LeTV-路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LeTV-路由器"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LeTV-路由器")
+expression: r0() || r1()

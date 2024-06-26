@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sybase-Jaguar
+manual: false
+detail:
+    fingerprint:
+        name: Sybase-Jaguar
+    fofa: 'header="server: jaguar server version"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: jaguar server version"))'
+expression: r0()

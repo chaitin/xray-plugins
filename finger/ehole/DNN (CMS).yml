@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DNN (CMS)
+manual: false
+detail:
+    fingerprint:
+        name: DNN (CMS)
+    fofa: icon_hash="-1465479343"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1465479343
+expression: r0()

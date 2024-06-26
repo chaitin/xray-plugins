@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mymps蚂蚁分类信息
+manual: false
+detail:
+    fingerprint:
+        name: Mymps蚂蚁分类信息
+    fofa: title="Mymps蚂蚁分类信息"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mymps蚂蚁分类信息")
+expression: r0()

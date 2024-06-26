@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zenphoto
+manual: false
+detail:
+    fingerprint:
+        name: zenphoto
+    fofa: title="zenphoto"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zenphoto")
+expression: r0()

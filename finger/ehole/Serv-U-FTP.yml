@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Serv-U-FTP
+manual: false
+detail:
+    fingerprint:
+        name: Serv-U-FTP
+    fofa: body="alt=\"serv-u ftp server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="serv-u ftp server')
+expression: r0()

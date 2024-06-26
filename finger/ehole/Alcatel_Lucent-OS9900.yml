@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alcatel_Lucent-OS9900
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-OS9900
+    fofa: body="<span>device os9900"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span>device os9900")
+expression: r0()

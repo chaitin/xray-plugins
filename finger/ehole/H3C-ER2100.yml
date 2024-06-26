@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-ER2100
+manual: false
+detail:
+    fingerprint:
+        name: H3C-ER2100
+    fofa: title="er2100系统管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("er2100系统管理")
+expression: r0()

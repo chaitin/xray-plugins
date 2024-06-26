@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Jasig-CAS
+manual: false
+detail:
+    fingerprint:
+        name: Jasig-CAS
+    fofa: 'body="powered by <a href=\"http://www.jasig.org/cas" || body="Powered by <a href=\"http://www.jasig.org/cas" || body="<title>CAS &#8211; Central Authentication Service</title>" || body="<!-- Congratulations on bringing CAS online!  The default authentication handler authenticates where usernames equal passwords: go ahead, try it out.  -->" || body="<p>Powered by <a href=\"http://www.jasig.org/cas\">Jasig Central Authentication Service</a></p>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.jasig.org/cas')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.jasig.org/cas')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>CAS &#8211; Central Authentication Service</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- Congratulations on bringing CAS online!  The default authentication handler authenticates where usernames equal passwords: go ahead, try it out.  -->")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Powered by <a href="http://www.jasig.org/cas">Jasig Central Authentication Service</a></p>')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-起航点卡销售系统
+manual: false
+detail:
+    fingerprint:
+        name: 起航点卡销售系统
+    fofa: title="起航点卡销售系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("起航点卡销售系统")
+expression: r0()

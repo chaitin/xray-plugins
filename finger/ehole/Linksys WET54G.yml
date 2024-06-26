@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WET54G
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WET54G
+    fofa: header="Linksys WET54G"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WET54G"))
+expression: r0()

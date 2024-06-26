@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-NWA1100-N
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-NWA1100-N
+    fofa: title="zyxel nwa1100-n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zyxel nwa1100-n")
+expression: r0()

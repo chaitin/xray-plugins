@@ -1,0 +1,212 @@
+name: fingerprint-yaml-Hikvision-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision-Cameras-and-Surveillance
+    fofa: 'body="updatetips" && body="doc/page/login.asp" && body="hcnetvideoactivex.cab" && body="/ui/css/ui.css?version=\" + new date(.gettime" && body="ng-bind=\"olan.anonymous\" ng-click=\"login(''anonymous''\"" && body="css/login.css?version=\" + new date(" && body="var syslanguage= navigator.browserlanguage.tolowercase(" && body="var szlanguage = syslanguage.substring(0,2" && body="ng-bind=\"olan.anonymous\" ng-click=\"login(''anonymous''\">" && body="class=\"btn btn-primary login-btn\"" && body="id=\"divanonymous\"" && body="id=\"divpswstrength\"" && body="<form action=\"/goform/formcobralogin" && body="去除edge下将数字处理成电话的错误" || body="updatetips" && body="doc/page/login.asp" && body="/ui/css/ui.css?version=\" + new date(.gettime" && body="ng-bind=\"olan.anonymous\" ng-click=\"login(''anonymous''\"" && body="css/login.css?version=\" + new date(" && body="var syslanguage= navigator.browserlanguage.tolowercase(" && body="var szlanguage = syslanguage.substring(0,2" && body="ng-bind=\"olan.anonymous\" ng-click=\"login(''anonymous''\">" && body="class=\"btn btn-primary login-btn\"" && body="id=\"divanonymous\"" && body="id=\"divpswstrength\"" && body="<form action=\"/goform/formcobralogin" && body="去除edge下将数字处理成电话的错误" || header="realm=\"hikvision" || body="去除edge下将数字处理成电话的错误" || body="<form action=\"/goform/formcobralogin" || body="id=\"divpswstrength\"" && body="id=\"divanonymous\"" || body="class=\"btn btn-primary login-btn\"" && body="ng-bind=\"olan.anonymous\" ng-click=\"login(\"anonymous\")\">" || body="var szlanguage = syslanguage.substring(0,2)" && body="var syslanguage= navigator.browserlanguage.tolowercase()" || body="/hikgis/" || body="classid=\"clsid:f030f48f-cd67-45d1-b622-a5d88a7bcfe9\" id=\"hcnetvideo" || body="classid=\"clsid:7b43048f-da7a-458f-af35-d825bdbb6816\" codebase=\"../codebase/netvideoocx.cab" || body="//alert(\"the system language is not supported!\";" || body="codebase=\"../codebase/newhcnetactivex.cab" || body="hcnetvideoactivex.cab" || body="updatetips" || body="doc/page/login.asp" || body="/ui/css/ui.css?version=\" + new date.gettime" || body="ng-bind=\"olan.anonymous\" ng-click=\"login\"anonymous\"\"" || body="css/login.css?version=\" + new date" || body="var syslanguage= navigator.browserlanguage.tolowercase" || body="var szlanguage = syslanguage.substring0,2" || body="ng-bind=\"olan.anonymous\" ng-click=\"login\"anonymous\"\">" || body="class=\"btn btn-primary login-btn\"" || body="id=\"divanonymous\"" || body="id=\"divpswstrength\"" || header="content-length: 481" && header="server: app-webs/" || header="server: dnvrs-webs" || header="server: dvrdvs-webs" || header="_goaheadwebsessionid"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("updatetips") && response.body_string.contains("doc/page/login.asp") && response.body_string.contains("hcnetvideoactivex.cab") && response.body_string.contains('/ui/css/ui.css?version=" + new date(.gettime') && response.body_string.contains("ng-bind=\"olan.anonymous\" ng-click=\"login('anonymous'\"") && response.body_string.contains('css/login.css?version=" + new date(') && response.body_string.contains("var syslanguage= navigator.browserlanguage.tolowercase(") && response.body_string.contains("var szlanguage = syslanguage.substring(0,2") && response.body_string.contains("ng-bind=\"olan.anonymous\" ng-click=\"login('anonymous'\">") && response.body_string.contains('class="btn btn-primary login-btn"') && response.body_string.contains('id="divanonymous"') && response.body_string.contains('id="divpswstrength"') && response.body_string.contains('<form action="/goform/formcobralogin') && response.body_string.contains("去除edge下将数字处理成电话的错误")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("updatetips") && response.body_string.contains("doc/page/login.asp") && response.body_string.contains('/ui/css/ui.css?version=" + new date(.gettime') && response.body_string.contains("ng-bind=\"olan.anonymous\" ng-click=\"login('anonymous'\"") && response.body_string.contains('css/login.css?version=" + new date(') && response.body_string.contains("var syslanguage= navigator.browserlanguage.tolowercase(") && response.body_string.contains("var szlanguage = syslanguage.substring(0,2") && response.body_string.contains("ng-bind=\"olan.anonymous\" ng-click=\"login('anonymous'\">") && response.body_string.contains('class="btn btn-primary login-btn"') && response.body_string.contains('id="divanonymous"') && response.body_string.contains('id="divpswstrength"') && response.body_string.contains('<form action="/goform/formcobralogin') && response.body_string.contains("去除edge下将数字处理成电话的错误")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="hikvision'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("去除edge下将数字处理成电话的错误")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form action="/goform/formcobralogin')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="divpswstrength"') && response.body_string.contains('id="divanonymous"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="btn btn-primary login-btn"') && response.body_string.contains('ng-bind="olan.anonymous" ng-click="login("anonymous")">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var szlanguage = syslanguage.substring(0,2)") && response.body_string.contains("var syslanguage= navigator.browserlanguage.tolowercase()")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/hikgis/")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:f030f48f-cd67-45d1-b622-a5d88a7bcfe9" id="hcnetvideo')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:7b43048f-da7a-458f-af35-d825bdbb6816" codebase="../codebase/netvideoocx.cab')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('//alert("the system language is not supported!";')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('codebase="../codebase/newhcnetactivex.cab')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hcnetvideoactivex.cab")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("updatetips")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("doc/page/login.asp")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/ui/css/ui.css?version=" + new date.gettime')
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('ng-bind="olan.anonymous" ng-click="login"anonymous""')
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('css/login.css?version=" + new date')
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var syslanguage= navigator.browserlanguage.tolowercase")
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var szlanguage = syslanguage.substring0,2")
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('ng-bind="olan.anonymous" ng-click="login"anonymous"">')
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="btn btn-primary login-btn"')
+    r23:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="divanonymous"')
+    r24:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="divpswstrength"')
+    r25:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("content-length: 481")) && response.raw_header.bcontains(bytes("server: app-webs/"))'
+    r26:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dnvrs-webs"))'
+    r27:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dvrdvs-webs"))'
+    r28:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_goaheadwebsessionid"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25() || r26() || r27() || r28()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Gigabit-Color-IP-Phone
+manual: false
+detail:
+    fingerprint:
+        name: Gigabit-Color-IP-Phone
+    fofa: header="realm=\"gigabit color ip phone"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="gigabit color ip phone'))
+expression: r0()

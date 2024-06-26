@@ -1,0 +1,44 @@
+name: fingerprint-yaml-365xxy-Examing
+manual: false
+detail:
+    fingerprint:
+        name: 365xxy-Examing
+    fofa: body="href=https://unpkg.com/element-ui/internal/theme-chalk/index.css" && body="<title>云时政在线考试系统</title>" || body="<title>云时政在线考试系统</title>" && body="href=https://unpkg.com/element-ui/lib/theme-chalk/index.css" || body="href=https://unpkg.com/element-ui/internal/theme-chalk/index.css" || body="<title>云时政在线考试系统</title>" || body="href=https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href=https://unpkg.com/element-ui/internal/theme-chalk/index.css") && response.body_string.contains("<title>云时政在线考试系统</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>云时政在线考试系统</title>") && response.body_string.contains("href=https://unpkg.com/element-ui/lib/theme-chalk/index.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href=https://unpkg.com/element-ui/internal/theme-chalk/index.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>云时政在线考试系统</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href=https://unpkg.com/element-ui/lib/theme-chalk/index.css")
+expression: r0() || r1() || r2() || r3() || r4()

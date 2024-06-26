@@ -1,0 +1,37 @@
+name: fingerprint-yaml-AVerMedia-WebCamX
+manual: false
+detail:
+    fingerprint:
+        name: AVerMedia-WebCamX
+    fofa: body="id='webcamx'" && body="depending on the internet bandwidth, it might take a few minutes to download the software." || body="depending on the internet bandwidth, it might take a few minutes to download the software." && body="id=\"webcamx\"" || body="id=\"webcamx\"" || body="depending on the internet bandwidth, it might take a few minutes to download the software."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("id='webcamx'") && response.body_string.contains("depending on the internet bandwidth, it might take a few minutes to download the software.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("depending on the internet bandwidth, it might take a few minutes to download the software.") && response.body_string.contains('id="webcamx"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="webcamx"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("depending on the internet bandwidth, it might take a few minutes to download the software.")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MOVCMS
+manual: false
+detail:
+    fingerprint:
+        name: MOVCMS
+    fofa: header="MOVCMS" || title="MOVCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MOVCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MOVCMS")
+expression: r0() || r1()

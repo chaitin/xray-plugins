@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR-FVS318Gv2
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-FVS318Gv2
+    fofa: body="gigabit 8 port vpn firewall fvs318gv2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gigabit 8 port vpn firewall fvs318gv2")
+expression: r0()

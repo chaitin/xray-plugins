@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Netis-router
+manual: false
+detail:
+    fingerprint:
+        name: Netis-router
+    fofa: body="script/netcore.js" && body="./script/logic.js" || body="netis" && body="./script/logic.js" && body="script/netcore.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("script/netcore.js") && response.body_string.contains("./script/logic.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netis") && response.body_string.contains("./script/logic.js") && response.body_string.contains("script/netcore.js")
+expression: r0() || r1()

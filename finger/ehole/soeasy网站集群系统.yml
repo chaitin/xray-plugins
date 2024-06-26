@@ -1,0 +1,16 @@
+name: fingerprint-yaml-soeasy网站集群系统
+manual: false
+detail:
+    fingerprint:
+        name: soeasy网站集群系统
+    fofa: body="EGSS_User"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("EGSS_User")
+expression: r0()

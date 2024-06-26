@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Jeedom (home automation)
+manual: false
+detail:
+    fingerprint:
+        name: Jeedom (home automation)
+    fofa: icon_hash="462223993"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 462223993
+expression: r0()

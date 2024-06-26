@@ -1,0 +1,16 @@
+name: fingerprint-yaml-魅力赢平台
+manual: false
+detail:
+    fingerprint:
+        name: 魅力赢平台
+    fofa: title="魅力赢平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("魅力赢平台")
+expression: r0()

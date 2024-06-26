@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Webdev
+manual: false
+detail:
+    fingerprint:
+        name: Webdev
+    fofa: header="Webdev" || title="Webdev"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Webdev"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Webdev")
+expression: r0() || r1()

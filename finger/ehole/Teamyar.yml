@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Teamyar
+manual: false
+detail:
+    fingerprint:
+        name: Teamyar
+    fofa: header="Teamyar" || title="Teamyar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Teamyar"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Teamyar")
+expression: r0() || r1()

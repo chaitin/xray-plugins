@@ -1,0 +1,23 @@
+name: fingerprint-yaml-brother-8510DN
+manual: false
+detail:
+    fingerprint:
+        name: brother-8510DN
+    fofa: body="id=\"modelname\"><h1>mfc-8510dn" || title="brother mfc-8510dn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="modelname"><h1>mfc-8510dn')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("brother mfc-8510dn")
+expression: r0() || r1()

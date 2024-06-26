@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FourFaith-Product
+manual: false
+detail:
+    fingerprint:
+        name: FourFaith-Product
+    fofa: 'header="server: httpd_four-faith"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: httpd_four-faith"))'
+expression: r0()

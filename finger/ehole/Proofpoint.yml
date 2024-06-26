@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Proofpoint
+manual: false
+detail:
+    fingerprint:
+        name: Proofpoint
+    fofa: icon_hash="-1630354993"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1630354993
+expression: r0()

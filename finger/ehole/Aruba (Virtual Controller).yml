@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aruba (Virtual Controller)
+manual: false
+detail:
+    fingerprint:
+        name: Aruba (Virtual Controller)
+    fofa: icon_hash="1142227528"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1142227528
+expression: r0()

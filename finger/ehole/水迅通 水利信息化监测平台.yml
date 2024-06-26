@@ -1,0 +1,23 @@
+name: fingerprint-yaml-水迅通 水利信息化监测平台
+manual: false
+detail:
+    fingerprint:
+        name: 水迅通 水利信息化监测平台
+    fofa: header="水迅通 水利信息化监测平台" || title="水迅通 水利信息化监测平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("水迅通 水利信息化监测平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("水迅通 水利信息化监测平台")
+expression: r0() || r1()

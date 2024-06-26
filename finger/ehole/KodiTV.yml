@@ -1,0 +1,58 @@
+name: fingerprint-yaml-KodiTV
+manual: false
+detail:
+    fingerprint:
+        name: KodiTV
+    fofa: body="title=\"kodi library" || header="KodiTV" || body="<title>Kodi</title>" || body="<link rel=\"search\" href=\"provider.xml\" type=\"application/opensearchdescription+xml\" title=\"Kodi Library\" />" || body="xbmc.org" || title="KodiTV" || title="kodi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="kodi library')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KodiTV"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Kodi</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="search" href="provider.xml" type="application/opensearchdescription+xml" title="Kodi Library" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xbmc.org")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KodiTV")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kodi")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

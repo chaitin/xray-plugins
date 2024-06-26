@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sophos User Portal_VPN Portal
+manual: false
+detail:
+    fingerprint:
+        name: Sophos User Portal/VPN Portal
+    fofa: icon_hash="1045696447"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1045696447
+expression: r0()

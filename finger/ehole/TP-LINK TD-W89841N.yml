@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK TD-W89841N
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK TD-W89841N
+    fofa: header="TP-LINK TD-W89841N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TD-W89841N"))
+expression: r0()

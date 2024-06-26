@@ -1,0 +1,58 @@
+name: fingerprint-yaml-SAP-Web-Application-Server
+manual: false
+detail:
+    fingerprint:
+        name: SAP-Web-Application-Server
+    fofa: 'body="name=\"sap-login-xsrf" || header="sap-usercontext" && header="server: sap j2ee engine" || header="server: sap j2ee engine" || header="server: sap netweaver application server" || header="server: sap web application server" || header="sap-usercontext" || title="sap web application server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="sap-login-xsrf')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("sap-usercontext")) && response.raw_header.bcontains(bytes("server: sap j2ee engine"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sap j2ee engine"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sap netweaver application server"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sap web application server"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sap-usercontext"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sap web application server")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

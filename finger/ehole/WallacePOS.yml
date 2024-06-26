@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WallacePOS
+manual: false
+detail:
+    fingerprint:
+        name: WallacePOS
+    fofa: title="wallacepos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wallacepos")
+expression: r0()

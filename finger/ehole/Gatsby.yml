@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gatsby
+manual: false
+detail:
+    fingerprint:
+        name: Gatsby
+    fofa: header="Gatsby" || title="Gatsby"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Gatsby"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Gatsby")
+expression: r0() || r1()

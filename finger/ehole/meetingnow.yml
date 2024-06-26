@@ -1,0 +1,16 @@
+name: fingerprint-yaml-meetingnow
+manual: false
+detail:
+    fingerprint:
+        name: meetingnow
+    fofa: header="/hytconfwatch/jump.jsp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/hytconfwatch/jump.jsp"))
+expression: r0()

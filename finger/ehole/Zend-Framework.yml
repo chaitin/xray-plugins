@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Zend-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Zend-Framework
+    fofa: header="zend framework" || header="Zend Framework" || header="ZEND=" || header="zend="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zend framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Zend Framework"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZEND="))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zend="))
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Makingware_社区版
+manual: false
+detail:
+    fingerprint:
+        name: Makingware_社区版
+    fofa: title="Makingware_社区版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Makingware_社区版")
+expression: r0()

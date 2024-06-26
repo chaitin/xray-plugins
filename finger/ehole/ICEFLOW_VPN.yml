@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ICEFLOW_VPN
+manual: false
+detail:
+    fingerprint:
+        name: ICEFLOW_VPN
+    fofa: 'header="Server:ICEFLOW" || header="ICEFLOW VPN" || header="server: iceflow" || title="ICEFLOW VPN" || title="iceflow vpn router"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:ICEFLOW"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ICEFLOW VPN"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: iceflow"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ICEFLOW VPN")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iceflow vpn router")
+expression: r0() || r1() || r2() || r3() || r4()

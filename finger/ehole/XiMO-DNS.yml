@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XiMO-DNS
+manual: false
+detail:
+    fingerprint:
+        name: XiMO-DNS
+    fofa: title="西默智能dns"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("西默智能dns")
+expression: r0()

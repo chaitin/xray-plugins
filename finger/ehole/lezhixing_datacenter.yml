@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lezhixing_datacenter
+manual: false
+detail:
+    fingerprint:
+        name: lezhixing_datacenter
+    fofa: title="lezhixing_datacenter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lezhixing_datacenter")
+expression: r0()

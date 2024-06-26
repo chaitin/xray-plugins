@@ -1,0 +1,23 @@
+name: fingerprint-yaml-transifex
+manual: false
+detail:
+    fingerprint:
+        name: transifex
+    fofa: header="transifex" || title="transifex"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("transifex"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("transifex")
+expression: r0() || r1()

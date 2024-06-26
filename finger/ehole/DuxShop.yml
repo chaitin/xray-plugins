@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DuxShop
+manual: false
+detail:
+    fingerprint:
+        name: DuxShop
+    fofa: header="DuxShop" || title="DuxShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DuxShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DuxShop")
+expression: r0() || r1()

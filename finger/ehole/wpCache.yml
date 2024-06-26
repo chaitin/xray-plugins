@@ -1,0 +1,23 @@
+name: fingerprint-yaml-wpCache
+manual: false
+detail:
+    fingerprint:
+        name: wpCache
+    fofa: header="wpCache" || title="wpCache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wpCache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wpCache")
+expression: r0() || r1()

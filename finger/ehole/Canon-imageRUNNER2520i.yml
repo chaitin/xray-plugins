@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Canon-imageRUNNER2520i
+manual: false
+detail:
+    fingerprint:
+        name: Canon-imageRUNNER2520i
+    fofa: title="imagerunner2520i"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("imagerunner2520i")
+expression: r0()

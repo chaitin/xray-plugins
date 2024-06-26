@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kubernetes Dashboard
+manual: false
+detail:
+    fingerprint:
+        name: Kubernetes Dashboard
+    fofa: header="Kubernetes Dashboard" || title="Kubernetes Dashboard"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kubernetes Dashboard"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kubernetes Dashboard")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ReeCam-IP-Camera
+manual: false
+detail:
+    fingerprint:
+        name: ReeCam-IP-Camera
+    fofa: header="reecam" || header="ReeCam IP Camera" || title="ReeCam IP Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("reecam"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ReeCam IP Camera"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ReeCam IP Camera")
+expression: r0() || r1() || r2()

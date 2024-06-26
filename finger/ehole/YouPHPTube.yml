@@ -1,0 +1,23 @@
+name: fingerprint-yaml-YouPHPTube
+manual: false
+detail:
+    fingerprint:
+        name: YouPHPTube
+    fofa: header="YouPHPTube" || title="YouPHPTube"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YouPHPTube"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YouPHPTube")
+expression: r0() || r1()

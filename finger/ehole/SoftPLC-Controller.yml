@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SoftPLC-Controller
+manual: false
+detail:
+    fingerprint:
+        name: SoftPLC-Controller
+    fofa: header="syswww" && header="softplc" || header="softplc" || header="syswww"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("syswww")) && response.raw_header.bcontains(bytes("softplc"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("softplc"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("syswww"))
+expression: r0() || r1() || r2()

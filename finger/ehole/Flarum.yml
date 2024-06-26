@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Flarum
+manual: false
+detail:
+    fingerprint:
+        name: Flarum
+    fofa: title="Flarum"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Flarum")
+expression: r0()

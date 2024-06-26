@@ -1,0 +1,16 @@
+name: fingerprint-yaml-nitc定海神真
+manual: false
+detail:
+    fingerprint:
+        name: nitc定海神真
+    fofa: title="nitc定海神真"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nitc定海神真")
+expression: r0()

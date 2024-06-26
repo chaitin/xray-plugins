@@ -1,0 +1,51 @@
+name: fingerprint-yaml-phxEventManager
+manual: false
+detail:
+    fingerprint:
+        name: phxEventManager
+    fofa: body="<td><div class=\"minicalmonth" && body="src=\"pem-includes/xajax/xajax_js/xajax_core.js" && body="powered by phxeventmanager" || body="powered by phxeventmanager" || body="src=\"pem-includes/xajax/xajax_js/xajax_core.js" || body="<td><div class=\"minicalmonth" || body="<td><div class=\"minicalmonth\"><a href=\"/?y=" || body="<script type=\"text/javascript\" src=\"pem-includes/xajax/xajax_js/xajax_core.js\"></script>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><div class="minicalmonth') && response.body_string.contains('src="pem-includes/xajax/xajax_js/xajax_core.js') && response.body_string.contains("powered by phxeventmanager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by phxeventmanager")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="pem-includes/xajax/xajax_js/xajax_core.js')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><div class="minicalmonth')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><div class="minicalmonth"><a href="/?y=')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="pem-includes/xajax/xajax_js/xajax_core.js"></script>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

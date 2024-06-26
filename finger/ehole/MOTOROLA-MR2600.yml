@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MOTOROLA-MR2600
+manual: false
+detail:
+    fingerprint:
+        name: MOTOROLA-MR2600
+    fofa: title="motorola router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("motorola router")
+expression: r0()

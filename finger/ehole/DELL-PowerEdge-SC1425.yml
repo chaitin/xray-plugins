@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-PowerEdge-SC1425
+manual: false
+detail:
+    fingerprint:
+        name: DELL-PowerEdge-SC1425
+    fofa: header="poweredge-sc1425"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poweredge-sc1425"))
+expression: r0()

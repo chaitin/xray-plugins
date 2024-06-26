@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TC-Group
+manual: false
+detail:
+    fingerprint:
+        name: TC-Group
+    fofa: icon_hash="-1734573358"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1734573358
+expression: r0()

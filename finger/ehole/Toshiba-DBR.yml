@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Toshiba-DBR
+manual: false
+detail:
+    fingerprint:
+        name: Toshiba-DBR
+    fofa: header="realm=\"dbr-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dbr-'))
+expression: r0()

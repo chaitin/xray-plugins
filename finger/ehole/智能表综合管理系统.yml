@@ -1,0 +1,16 @@
+name: fingerprint-yaml-智能表综合管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 智能表综合管理系统
+    fofa: body="js/jsCore.js" && body="Ajax_Code/Login.ashx" && body="login.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/jsCore.js") && response.body_string.contains("Ajax_Code/Login.ashx") && response.body_string.contains("login.css")
+expression: r0()

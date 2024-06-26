@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VERTIV-MPU108E
+manual: false
+detail:
+    fingerprint:
+        name: VERTIV-MPU108E
+    fofa: title="mpu108e explorer" || title="mpu108e 资源管理器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mpu108e explorer")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mpu108e 资源管理器")
+expression: r0() || r1()

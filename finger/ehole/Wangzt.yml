@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Wangzt
+manual: false
+detail:
+    fingerprint:
+        name: Wangzt
+    fofa: header="Wangzt" || title="Wangzt"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Wangzt"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Wangzt")
+expression: r0() || r1()

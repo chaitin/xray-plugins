@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Mobile-law-enforcement-terminal
+manual: false
+detail:
+    fingerprint:
+        name: Mobile-law-enforcement-terminal
+    fofa: body="src=\"images/login/badgezh_cn.png" && body="huadean. all rights " || body="huadean. all rights " || body="src=\"images/login/badgezh_cn.png" || body="huadean. all rights" || title="pmedia platform"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/login/badgezh_cn.png') && response.body_string.contains("huadean. all rights ")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("huadean. all rights ")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/login/badgezh_cn.png')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("huadean. all rights")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("pmedia platform")
+expression: r0() || r1() || r2() || r3() || r4()

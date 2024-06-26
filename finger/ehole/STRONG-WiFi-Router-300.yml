@@ -1,0 +1,16 @@
+name: fingerprint-yaml-STRONG-WiFi-Router-300
+manual: false
+detail:
+    fingerprint:
+        name: STRONG-WiFi-Router-300
+    fofa: title="strong wifi router 300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("strong wifi router 300")
+expression: r0()

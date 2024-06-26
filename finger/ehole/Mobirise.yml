@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mobirise
+manual: false
+detail:
+    fingerprint:
+        name: Mobirise
+    fofa: header="Mobirise" || title="Mobirise"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mobirise"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mobirise")
+expression: r0() || r1()

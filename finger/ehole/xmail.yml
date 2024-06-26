@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xmail
+manual: false
+detail:
+    fingerprint:
+        name: xmail
+    fofa: title="xmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xmail")
+expression: r0()

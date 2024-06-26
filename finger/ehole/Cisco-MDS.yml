@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cisco-MDS
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-MDS
+    fofa: title="cisco mds"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cisco mds")
+expression: r0()

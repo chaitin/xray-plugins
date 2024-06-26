@@ -1,0 +1,44 @@
+name: fingerprint-yaml-CushyCMS
+manual: false
+detail:
+    fingerprint:
+        name: CushyCMS
+    fofa: body="Powered by CushyCMS" || header="_cushy_session" || body="Content Management Powered by <a href=\"http://www.cushycms.com\">CushyCMS</a>" || body="<li id=\"poweredBy\"><img alt=\"Powered by CushyCMS\" src=\"/images/cushy_badge.gif" || body="<span id=\"cushycms-footer\">Powered by CushyCMS</span>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by CushyCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_cushy_session"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Content Management Powered by <a href="http://www.cushycms.com">CushyCMS</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li id="poweredBy"><img alt="Powered by CushyCMS" src="/images/cushy_badge.gif')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="cushycms-footer">Powered by CushyCMS</span>')
+expression: r0() || r1() || r2() || r3() || r4()

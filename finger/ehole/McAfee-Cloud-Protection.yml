@@ -1,0 +1,16 @@
+name: fingerprint-yaml-McAfee-Cloud-Protection
+manual: false
+detail:
+    fingerprint:
+        name: McAfee-Cloud-Protection
+    fofa: header="realm=\"mcafee cloud web protection"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="mcafee cloud web protection'))
+expression: r0()

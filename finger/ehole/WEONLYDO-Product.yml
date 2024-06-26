@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WEONLYDO-Product
+manual: false
+detail:
+    fingerprint:
+        name: WEONLYDO-Product
+    fofa: 'header="server: weonlydo"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: weonlydo"))'
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZHYU-TrustMore
+manual: false
+detail:
+    fingerprint:
+        name: ZHYU-TrustMore
+    fofa: 'body="TrustMore 安全可信的应用授权平台" || body="alt=\"trustmore 安全可信的应用授权平台\"" || header="server: trustmore proxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("TrustMore 安全可信的应用授权平台")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="trustmore 安全可信的应用授权平台"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: trustmore proxy"))'
+expression: r0() || r1() || r2()

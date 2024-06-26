@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Juniper-NetScreen-Secure-Access
+manual: false
+detail:
+    fingerprint:
+        name: Juniper-NetScreen-Secure-Access
+    fofa: body="/dana-na/auth/welcome.cgi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dana-na/auth/welcome.cgi")
+expression: r0()

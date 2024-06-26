@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C-SecPath-Operation-and-maintenance-audit-system
+manual: false
+detail:
+    fingerprint:
+        name: H3C-SecPath-Operation-and-maintenance-audit-system
+    fofa: body="<span>h3c secpath 运维审计系统</span></div>" || title="h3c secpath 运维审计"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span>h3c secpath 运维审计系统</span></div>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("h3c secpath 运维审计")
+expression: r0() || r1()

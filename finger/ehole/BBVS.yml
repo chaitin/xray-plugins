@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BBVS
+manual: false
+detail:
+    fingerprint:
+        name: BBVS
+    fofa: 'header="server: bbvs"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: bbvs"))'
+expression: r0()

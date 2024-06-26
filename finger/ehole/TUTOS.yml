@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TUTOS
+manual: false
+detail:
+    fingerprint:
+        name: TUTOS
+    fofa: header="TUTOS" || title="TUTOS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TUTOS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TUTOS")
+expression: r0() || r1()

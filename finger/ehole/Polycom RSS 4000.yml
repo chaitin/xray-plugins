@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Polycom RSS 4000
+manual: false
+detail:
+    fingerprint:
+        name: Polycom RSS 4000
+    fofa: header="Polycom RSS 4000" || title="Polycom RSS 4000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Polycom RSS 4000"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Polycom RSS 4000")
+expression: r0() || r1()

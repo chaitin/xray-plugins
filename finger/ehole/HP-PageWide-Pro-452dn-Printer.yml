@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-PageWide-Pro-452dn-Printer
+manual: false
+detail:
+    fingerprint:
+        name: HP-PageWide-Pro-452dn-Printer
+    fofa: 'header="server: hp pagewide pro 452dn printer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: hp pagewide pro 452dn printer"))'
+expression: r0()

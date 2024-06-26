@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MailWizz
+manual: false
+detail:
+    fingerprint:
+        name: MailWizz
+    fofa: icon_hash="2127152956"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2127152956
+expression: r0()

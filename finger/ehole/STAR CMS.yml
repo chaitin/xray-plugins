@@ -1,0 +1,23 @@
+name: fingerprint-yaml-STAR CMS
+manual: false
+detail:
+    fingerprint:
+        name: STAR CMS
+    fofa: body="content=\"STARCMS" || body="<img alt=\"STAR CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="STARCMS')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img alt="STAR CMS')
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EasyTalk微博客
+manual: false
+detail:
+    fingerprint:
+        name: EasyTalk微博客
+    fofa: title="EasyTalk微博客"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EasyTalk微博客")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Oce Printer
+manual: false
+detail:
+    fingerprint:
+        name: Oce Printer
+    fofa: header="Oce Printer" || title="Oce Printer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oce Printer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oce Printer")
+expression: r0() || r1()

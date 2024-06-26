@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Destroy
+manual: false
+detail:
+    fingerprint:
+        name: Destroy
+    fofa: title="Destroy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Destroy")
+expression: r0()

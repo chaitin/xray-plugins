@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-Network-Camera-SNC-f
+manual: false
+detail:
+    fingerprint:
+        name: SONY-Network-Camera-SNC-f
+    fofa: header="basic realm=\"sony network camera snc-f\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="sony network camera snc-f"'))
+expression: r0()

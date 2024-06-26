@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Le-TV
+manual: false
+detail:
+    fingerprint:
+        name: Le-TV
+    fofa: 'header="server: letv live"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: letv live"))'
+expression: r0()

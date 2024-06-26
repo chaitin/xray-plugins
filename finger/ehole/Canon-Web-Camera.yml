@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Canon-Web-Camera
+manual: false
+detail:
+    fingerprint:
+        name: Canon-Web-Camera
+    fofa: 'body="/viewer/live/en/live.html" || body="content=\"vb-c10" || header="server: vb" || title="network camera vb-"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/viewer/live/en/live.html")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="vb-c10')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: vb"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("network camera vb-")
+expression: r0() || r1() || r2() || r3()

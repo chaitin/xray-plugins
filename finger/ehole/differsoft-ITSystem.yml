@@ -1,0 +1,16 @@
+name: fingerprint-yaml-differsoft-ITSystem
+manual: false
+detail:
+    fingerprint:
+        name: differsoft-ITSystem
+    fofa: body="name=\"tbzcode\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="tbzcode"')
+expression: r0()

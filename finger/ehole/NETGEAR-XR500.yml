@@ -1,0 +1,37 @@
+name: fingerprint-yaml-NETGEAR-XR500
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-XR500
+    fofa: body="href=\"/npg/xr500\"" && body="var host_name = \"xr500\"" || header="realm=\"netgear xr500" || body="var host_name = \"xr500\"" || body="href=\"/npg/xr500\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/npg/xr500"') && response.body_string.contains('var host_name = "xr500"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netgear xr500'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var host_name = "xr500"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/npg/xr500"')
+expression: r0() || r1() || r2() || r3()

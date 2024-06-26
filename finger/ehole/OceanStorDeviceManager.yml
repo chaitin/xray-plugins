@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OceanStorDeviceManager
+manual: false
+detail:
+    fingerprint:
+        name: OceanStorDeviceManager
+    fofa: title="oceanstor devicemanager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("oceanstor devicemanager")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Marionette_js
+manual: false
+detail:
+    fingerprint:
+        name: Marionette.js
+    fofa: title="Marionette.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Marionette.js")
+expression: r0()

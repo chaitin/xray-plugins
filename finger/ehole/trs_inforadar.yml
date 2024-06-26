@@ -1,0 +1,16 @@
+name: fingerprint-yaml-trs_inforadar
+manual: false
+detail:
+    fingerprint:
+        name: trs_inforadar
+    fofa: title="trs_inforadar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("trs_inforadar")
+expression: r0()

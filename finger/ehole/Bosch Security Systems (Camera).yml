@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Bosch Security Systems (Camera)
+manual: false
+detail:
+    fingerprint:
+        name: Bosch Security Systems (Camera)
+    fofa: icon_hash="-1702769256"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1702769256
+expression: r0()

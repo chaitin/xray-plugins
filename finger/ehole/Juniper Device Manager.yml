@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Juniper Device Manager
+manual: false
+detail:
+    fingerprint:
+        name: Juniper Device Manager
+    fofa: icon_hash="2141724739"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2141724739
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-East-Simulation-Account
+manual: false
+detail:
+    fingerprint:
+        name: East-Simulation-Account
+    fofa: body="src=\"/scripts/eastsimutility.js\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/scripts/eastsimutility.js"')
+expression: r0()

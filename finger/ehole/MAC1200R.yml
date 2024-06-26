@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MAC1200R
+manual: false
+detail:
+    fingerprint:
+        name: MAC1200R
+    fofa: header="MAC1200R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MAC1200R"))
+expression: r0()

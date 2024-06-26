@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DoubleClick Floodlight
+manual: false
+detail:
+    fingerprint:
+        name: DoubleClick Floodlight
+    fofa: header="DoubleClick Floodlight" || title="DoubleClick Floodlight"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DoubleClick Floodlight"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DoubleClick Floodlight")
+expression: r0() || r1()

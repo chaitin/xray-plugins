@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZN-1000
+manual: false
+detail:
+    fingerprint:
+        name: ZN-1000
+    fofa: title=" wireless smart access point" && title="zn-1000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains(" wireless smart access point") && response.title_string.contains("zn-1000")
+expression: r0()

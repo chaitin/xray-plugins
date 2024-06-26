@@ -1,0 +1,16 @@
+name: fingerprint-yaml-业务运营管理系统OESOP
+manual: false
+detail:
+    fingerprint:
+        name: 业务运营管理系统OESOP
+    fofa: title="业务运营管理系统OESOP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("业务运营管理系统OESOP")
+expression: r0()

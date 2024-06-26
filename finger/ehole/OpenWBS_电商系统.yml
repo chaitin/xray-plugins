@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OpenWBS_电商系统
+manual: false
+detail:
+    fingerprint:
+        name: OpenWBS_电商系统
+    fofa: header="OpenWBS_电商系统" || title="OpenWBS_电商系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OpenWBS_电商系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OpenWBS_电商系统")
+expression: r0() || r1()

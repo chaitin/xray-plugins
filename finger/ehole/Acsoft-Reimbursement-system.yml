@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Acsoft-Reimbursement-system
+manual: false
+detail:
+    fingerprint:
+        name: Acsoft-Reimbursement-system
+    fofa: body="安财" && body="window.external.addfavorite(location.href,document.title);" && body="by:lin.zhibin" || body="<div id=\"dsitetitle\"" || body="<div id=\"dsitetitle\"" && body="by:lin.zhibin" || body="window.external.addfavorite(location.href,document.title);"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("安财") && response.body_string.contains("window.external.addfavorite(location.href,document.title);") && response.body_string.contains("by:lin.zhibin")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="dsitetitle"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="dsitetitle"') && response.body_string.contains("by:lin.zhibin")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.external.addfavorite(location.href,document.title);")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-APEX-IT-Help-Desk
+manual: false
+detail:
+    fingerprint:
+        name: APEX-IT-Help-Desk
+    fofa: title="apex it help desk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("apex it help desk")
+expression: r0()

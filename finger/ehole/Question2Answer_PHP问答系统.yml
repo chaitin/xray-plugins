@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Question2Answer_PHP问答系统
+manual: false
+detail:
+    fingerprint:
+        name: Question2Answer_PHP问答系统
+    fofa: header="Question2Answer_PHP问答系统" || title="Question2Answer_PHP问答系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Question2Answer_PHP问答系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Question2Answer_PHP问答系统")
+expression: r0() || r1()

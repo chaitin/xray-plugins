@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DAS-Logge
+manual: false
+detail:
+    fingerprint:
+        name: DAS-Logge
+    fofa: title="明御综合日志审计"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("明御综合日志审计")
+expression: r0()

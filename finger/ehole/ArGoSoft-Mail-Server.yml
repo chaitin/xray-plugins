@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ArGoSoft-Mail-Server
+manual: false
+detail:
+    fingerprint:
+        name: ArGoSoft-Mail-Server
+    fofa: 'body="argosoft mail server plus for" || body="ArGoSoft Mail Server Plus for" || header="ArGoSoft Mail Server" || header="server: argosoft mail server" || title="argosoft mail server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("argosoft mail server plus for")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ArGoSoft Mail Server Plus for")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ArGoSoft Mail Server"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: argosoft mail server"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("argosoft mail server")
+expression: r0() || r1() || r2() || r3() || r4()

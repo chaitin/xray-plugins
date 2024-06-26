@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Aliyun-Cloud-shield
+manual: false
+detail:
+    fingerprint:
+        name: Aliyun-Cloud-shield
+    fofa: 'header="set-cookie: yundun_404" || header="server: yundun"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: yundun_404"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: yundun"))'
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ACTi-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: ACTi-Cameras-and-Surveillance
+    fofa: body="acti corporation all rights reserved" && body="url=/cgi-bin/videoconfiguration.cgi" || body="url=/cgi-bin/videoconfiguration.cgi" || body="acti corporation all rights reserved"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("acti corporation all rights reserved") && response.body_string.contains("url=/cgi-bin/videoconfiguration.cgi")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("url=/cgi-bin/videoconfiguration.cgi")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("acti corporation all rights reserved")
+expression: r0() || r1() || r2()

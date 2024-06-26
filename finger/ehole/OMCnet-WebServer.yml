@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OMCnet-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: OMCnet-WebServer
+    fofa: header="OMCnet-WebServer" || title="OMCnet-WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OMCnet-WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OMCnet-WebServer")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DWD Web Agency
+manual: false
+detail:
+    fingerprint:
+        name: DWD Web Agency
+    fofa: header="DWD Web Agency" || title="DWD Web Agency"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DWD Web Agency"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DWD Web Agency")
+expression: r0() || r1()

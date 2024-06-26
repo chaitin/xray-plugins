@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Huawei – ADSL_Router
+manual: false
+detail:
+    fingerprint:
+        name: Huawei – ADSL/Router
+    fofa: icon_hash="-1395400951"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1395400951
+expression: r0()

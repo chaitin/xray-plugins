@@ -1,0 +1,23 @@
+name: fingerprint-yaml-aten_kvm
+manual: false
+detail:
+    fingerprint:
+        name: aten_kvm
+    fofa: title="aten_kvm" || title="kn2132"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("aten_kvm")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kn2132")
+expression: r0() || r1()

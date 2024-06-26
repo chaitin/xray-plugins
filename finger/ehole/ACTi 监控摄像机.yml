@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ACTi 监控摄像机
+manual: false
+detail:
+    fingerprint:
+        name: ACTi 监控摄像机
+    fofa: header="ACTi 监控摄像机" || title="ACTi 监控摄像机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ACTi 监控摄像机"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ACTi 监控摄像机")
+expression: r0() || r1()

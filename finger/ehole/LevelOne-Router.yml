@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LevelOne-Router
+manual: false
+detail:
+    fingerprint:
+        name: LevelOne-Router
+    fofa: title="wireless broadband nat router web-console"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wireless broadband nat router web-console")
+expression: r0()

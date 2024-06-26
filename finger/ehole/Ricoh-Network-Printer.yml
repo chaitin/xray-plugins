@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ricoh-Network-Printer
+manual: false
+detail:
+    fingerprint:
+        name: Ricoh-Network-Printer
+    fofa: header="cookieonoffchecker=" || body="document.cookie=cookie_name + \"=\" + language + \"; expires=" && body="settimeout(\"window.location=\"main.asp?lang="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cookieonoffchecker="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.cookie=cookie_name + "=" + language + "; expires=') && response.body_string.contains('settimeout("window.location="main.asp?lang=')
+expression: r0() || r1()

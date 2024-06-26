@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys-MIR
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-MIR
+    fofa: header="Linksys-MIR"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys-MIR"))
+expression: r0()

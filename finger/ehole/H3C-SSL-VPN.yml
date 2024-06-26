@@ -1,0 +1,37 @@
+name: fingerprint-yaml-H3C-SSL-VPN
+manual: false
+detail:
+    fingerprint:
+        name: H3C-SSL-VPN
+    fofa: body="keep me signed in</span>" && body="welcome to ssl vpn</h1>" || body="welcome to ssl vpn</h1>" && body="keep me signed in</span>" || body="keep me signed in</span>" || body="welcome to ssl vpn</h1>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("keep me signed in</span>") && response.body_string.contains("welcome to ssl vpn</h1>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to ssl vpn</h1>") && response.body_string.contains("keep me signed in</span>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("keep me signed in</span>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("welcome to ssl vpn</h1>")
+expression: r0() || r1() || r2() || r3()

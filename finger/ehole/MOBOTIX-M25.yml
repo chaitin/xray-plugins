@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MOBOTIX-M25
+manual: false
+detail:
+    fingerprint:
+        name: MOBOTIX-M25
+    fofa: body="<span class=\"bold companyname\">mobotix</span><span class=\"bold featurestypeinfo\">m25"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="bold companyname">mobotix</span><span class="bold featurestypeinfo">m25')
+expression: r0()

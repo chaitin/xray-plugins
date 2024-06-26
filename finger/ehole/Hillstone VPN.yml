@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hillstone VPN
+manual: false
+detail:
+    fingerprint:
+        name: Hillstone VPN
+    fofa: header="Hillstone VPN" || title="Hillstone VPN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hillstone VPN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hillstone VPN")
+expression: r0() || r1()

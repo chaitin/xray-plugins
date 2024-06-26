@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TeamToy开源团队协同平台
+manual: false
+detail:
+    fingerprint:
+        name: TeamToy开源团队协同平台
+    fofa: title="TeamToy开源团队协同平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TeamToy开源团队协同平台")
+expression: r0()

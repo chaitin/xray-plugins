@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys FW
+manual: false
+detail:
+    fingerprint:
+        name: Linksys FW
+    fofa: header="Linksys FW"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys FW"))
+expression: r0()

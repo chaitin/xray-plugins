@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sierra Wireless Ace Manager (Airlink)
+manual: false
+detail:
+    fingerprint:
+        name: Sierra Wireless Ace Manager (Airlink)
+    fofa: icon_hash="-1571472432"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1571472432
+expression: r0()

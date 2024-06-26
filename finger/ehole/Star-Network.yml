@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Star-Network
+manual: false
+detail:
+    fingerprint:
+        name: Star-Network
+    fofa: body=">star network &amp; promotion ltd" && body=">star network and promotion ltd" && body="<a href=\"http://www.s4u.co.il " && body="<a href=\"http://www.starltd.net" || body="<a href=\"http://www.starltd.net" || body="<a href=\"http://www.s4u.co.il " || body=">star network,promotion ltd" || body=">star network &amp; promotion ltd" || body=">star network and promotion ltd" || body="<a href=\"http://www.s4u.co.il"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">star network &amp; promotion ltd") && response.body_string.contains(">star network and promotion ltd") && response.body_string.contains('<a href="http://www.s4u.co.il ') && response.body_string.contains('<a href="http://www.starltd.net')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.starltd.net')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.s4u.co.il ')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">star network,promotion ltd")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">star network &amp; promotion ltd")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">star network and promotion ltd")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.s4u.co.il')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

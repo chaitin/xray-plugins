@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Aruba-Device
+manual: false
+detail:
+    fingerprint:
+        name: Aruba-Device
+    fofa: body="/images/arubalogo.gif" && body="aruba networks" || body="/images/arubalogo.gif" || body="Aruba Networks" || body="aruba networks" && body="copyright" || body="aruba networks" || body="<form id=\"login-form\" method=\"post\" autocomplete=\"off\" action=\"/screens/wms/wms.login\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/arubalogo.gif") && response.body_string.contains("aruba networks")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/arubalogo.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Aruba Networks")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("aruba networks") && response.body_string.contains("copyright")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("aruba networks")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form id="login-form" method="post" autocomplete="off" action="/screens/wms/wms.login">')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

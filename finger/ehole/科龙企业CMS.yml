@@ -1,0 +1,16 @@
+name: fingerprint-yaml-科龙企业CMS
+manual: false
+detail:
+    fingerprint:
+        name: 科龙企业CMS
+    fofa: title="科龙企业CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("科龙企业CMS")
+expression: r0()

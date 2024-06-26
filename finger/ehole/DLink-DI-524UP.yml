@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DLink-DI-524UP
+manual: false
+detail:
+    fingerprint:
+        name: DLink-DI-524UP
+    fofa: header="realm=\"di-524up"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="di-524up'))
+expression: r0()

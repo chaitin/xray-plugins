@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AContent
+manual: false
+detail:
+    fingerprint:
+        name: AContent
+    fofa: 'body="<title>AContent: Learning Content Repository:" || body="<dt><span class=\"required\" title=\"Required Field\">*</span><label for=\"login\">Login Name or Email</label></dt>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>AContent: Learning Content Repository:")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<dt><span class="required" title="Required Field">*</span><label for="login">Login Name or Email</label></dt>')
+expression: r0() || r1()

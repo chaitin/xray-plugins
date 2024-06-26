@@ -1,0 +1,58 @@
+name: fingerprint-yaml-WAMP
+manual: false
+detail:
+    fingerprint:
+        name: WAMP
+    fofa: body="<li><a href=\"phpsysinfo/\">phpsysinfo</a></li>" && body="title and h1 heading" && body="<h1><abbr title=\"windows\">w</abbr><abbr title=\"apache\">a</abbr><abbr title=\"mysql\">m</abbr><abbr title=\"php\">p</abbr></h1>" || body="<h1><abbr title=\"windows\">w</abbr><abbr title=\"apache\">a</abbr><abbr title=\"mysql\">m</abbr><abbr title=\"php\">p</abbr></h1>" || body="title,h1 heading" || body="wampserver" && body="<li><a href=\"phpsysinfo/\">phpsysinfo</a></li>" || body="<li><a href=\"phpsysinfo/\">phpsysinfo</a></li>" || body="title and h1 heading" || title="wampserver homepage"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li><a href="phpsysinfo/">phpsysinfo</a></li>') && response.body_string.contains("title and h1 heading") && response.body_string.contains('<h1><abbr title="windows">w</abbr><abbr title="apache">a</abbr><abbr title="mysql">m</abbr><abbr title="php">p</abbr></h1>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1><abbr title="windows">w</abbr><abbr title="apache">a</abbr><abbr title="mysql">m</abbr><abbr title="php">p</abbr></h1>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("title,h1 heading")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wampserver") && response.body_string.contains('<li><a href="phpsysinfo/">phpsysinfo</a></li>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li><a href="phpsysinfo/">phpsysinfo</a></li>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("title and h1 heading")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wampserver homepage")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

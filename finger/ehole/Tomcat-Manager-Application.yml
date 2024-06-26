@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tomcat-Manager-Application
+manual: false
+detail:
+    fingerprint:
+        name: Tomcat-Manager-Application
+    fofa: header="tomcat manager application" || header="Tomcat Manager Application"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tomcat manager application"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tomcat Manager Application"))
+expression: r0() || r1()

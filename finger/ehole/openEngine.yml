@@ -1,0 +1,30 @@
+name: fingerprint-yaml-openEngine
+manual: false
+detail:
+    fingerprint:
+        name: openEngine
+    fofa: header="openEngine" || body="<!-- openEngine Comment START -->" || title="openEngine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("openEngine"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- openEngine Comment START -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("openEngine")
+expression: r0() || r1() || r2()

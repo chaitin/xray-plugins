@@ -1,0 +1,44 @@
+name: fingerprint-yaml-PHP-CSL
+manual: false
+detail:
+    fingerprint:
+        name: PHP-CSL
+    fofa: body="content=\"php code snippet" && body="title=\"php-csl\">php-csl" || body="title=\"php-csl\">php-csl" || body="content=\"php code snippet" || body="<meta name=\"description\" content=\"PHP Code Snippet Library stores all your code for you for easy access, runs on any PHP platform and does not require a database... easy to install and full of features.\">" || body="<!-- Please note the credit message below is required if you want support -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="php code snippet') && response.body_string.contains('title="php-csl">php-csl')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="php-csl">php-csl')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="php code snippet')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="PHP Code Snippet Library stores all your code for you for easy access, runs on any PHP platform and does not require a database... easy to install and full of features.">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Please note the credit message below is required if you want support -->")
+expression: r0() || r1() || r2() || r3() || r4()

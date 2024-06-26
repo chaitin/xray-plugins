@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LjCMS(良精)
+manual: false
+detail:
+    fingerprint:
+        name: LjCMS(良精)
+    fofa: title="LjCMS(良精)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LjCMS(良精)")
+expression: r0()

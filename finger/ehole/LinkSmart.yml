@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LinkSmart
+manual: false
+detail:
+    fingerprint:
+        name: LinkSmart
+    fofa: header="LinkSmart" || title="LinkSmart"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LinkSmart"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LinkSmart")
+expression: r0() || r1()

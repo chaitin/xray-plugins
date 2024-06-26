@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftExcel
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftExcel
+    fofa: title="Microsoft Excel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Excel")
+expression: r0()

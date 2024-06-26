@@ -1,0 +1,23 @@
+name: fingerprint-yaml-单点CRM系统
+manual: false
+detail:
+    fingerprint:
+        name: 单点CRM系统
+    fofa: body="URL=general/ERP/LOGIN/" || body="content=\"单点CRM系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("URL=general/ERP/LOGIN/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="单点CRM系统')
+expression: r0() || r1()

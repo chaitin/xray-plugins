@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SoftTr
+manual: false
+detail:
+    fingerprint:
+        name: SoftTr
+    fofa: header="SoftTr" || title="SoftTr"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SoftTr"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SoftTr")
+expression: r0() || r1()

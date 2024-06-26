@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MySQL管理系统_AMS
+manual: false
+detail:
+    fingerprint:
+        name: MySQL管理系统_AMS
+    fofa: title="MySQL管理系统_AMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MySQL管理系统_AMS")
+expression: r0()

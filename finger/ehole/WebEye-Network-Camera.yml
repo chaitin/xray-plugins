@@ -1,0 +1,93 @@
+name: fingerprint-yaml-WebEye-Network-Camera
+manual: false
+detail:
+    fingerprint:
+        name: WebEye-Network-Camera
+    fofa: body="<p>click <a href=\"./login.ml?form_method=get" && body="<meta name=\"generator\" content=\"webgateinc\">" || body="<meta name=\"generator\" content=\"webgateinc\">" || body="<p>click <a href=\"./login.ml?form_method=get" || body="<title>WebEye User Login</title>" || body="<title>WebEye Java Applet Page</title>" || body="<title>WebEye Index Page</title>" || body="<meta name=\"Author\" content=\"WebGateInc\">" || body="<p>Click <a href=\"./login.ml?FORM_METHOD=get\">here</a> if you have a problem to login ..." || body="<applet archive=\"/wg_jwebeye.jar\" code=WebEyeApplet.class codebase=. width=720 height=773>" || title="webeye java applet page" || title="webeye index page" || title="webeye user login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>click <a href="./login.ml?form_method=get') && response.body_string.contains('<meta name="generator" content="webgateinc">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="webgateinc">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>click <a href="./login.ml?form_method=get')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WebEye User Login</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WebEye Java Applet Page</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>WebEye Index Page</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Author" content="WebGateInc">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Click <a href="./login.ml?FORM_METHOD=get">here</a> if you have a problem to login ...')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<applet archive="/wg_jwebeye.jar" code=WebEyeApplet.class codebase=. width=720 height=773>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webeye java applet page")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webeye index page")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webeye user login")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

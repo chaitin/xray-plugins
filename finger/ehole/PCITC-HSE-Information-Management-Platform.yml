@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PCITC-HSE-Information-Management-Platform
+manual: false
+detail:
+    fingerprint:
+        name: PCITC-HSE-Information-Management-Platform
+    fofa: title="登录 | hse信息管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("登录 | hse信息管理平台")
+expression: r0()

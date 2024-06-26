@@ -1,0 +1,16 @@
+name: fingerprint-yaml-天融信设备
+manual: false
+detail:
+    fingerprint:
+        name: 天融信设备
+    fofa: icon_hash="-2019013898"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2019013898
+expression: r0()

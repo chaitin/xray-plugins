@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Netposa-Power-Video-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Netposa-Power-Video-Gateway
+    fofa: body="<span id=\"sysname\">power video gateway" || title="东方网力pvg_ocx_demo" || title="东方网力pvg视频系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="sysname">power video gateway')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("东方网力pvg_ocx_demo")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("东方网力pvg视频系统")
+expression: r0() || r1() || r2()

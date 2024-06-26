@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-WebManager
+manual: false
+detail:
+    fingerprint:
+        name: H3C-WebManager
+    fofa: title="web网管用户登录"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("web网管用户登录")
+expression: r0()

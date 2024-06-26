@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys Guests
+manual: false
+detail:
+    fingerprint:
+        name: Linksys Guests
+    fofa: header="Linksys Guests"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys Guests"))
+expression: r0()

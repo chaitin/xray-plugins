@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MoBan5
+manual: false
+detail:
+    fingerprint:
+        name: MoBan5
+    fofa: header="MoBan5" || title="MoBan5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MoBan5"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MoBan5")
+expression: r0() || r1()

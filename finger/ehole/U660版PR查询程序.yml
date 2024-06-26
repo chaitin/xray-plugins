@@ -1,0 +1,16 @@
+name: fingerprint-yaml-U660版PR查询程序
+manual: false
+detail:
+    fingerprint:
+        name: U660版PR查询程序
+    fofa: title="U660版PR查询程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("U660版PR查询程序")
+expression: r0()

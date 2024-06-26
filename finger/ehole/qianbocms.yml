@@ -1,0 +1,16 @@
+name: fingerprint-yaml-qianbocms
+manual: false
+detail:
+    fingerprint:
+        name: qianbocms
+    fofa: title="qianbocms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("qianbocms")
+expression: r0()

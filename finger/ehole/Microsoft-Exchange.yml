@@ -1,0 +1,170 @@
+name: fingerprint-yaml-Microsoft-Exchange
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-Exchange
+    fofa: 'header="microsoft outlook web access" && header="owalogocontainer" && header="<div class=\"signinheader\">outlook</div>" && header="/owa/" && header="/exchweb/bin/auth/owalogon.asp?url=" && header="owapage = asp.auth_logon_aspx" && header="aria-label=\"outlook web app" || body="outlook" && body="showpasswordcheck" && body="/owa/" && body="owapage = asp.auth_logon_aspx" || body="/owa/" && body="<div class=\"signinheader\">outlook</div>" || body="owalogocontainer" && body=".mouse .owalogocontainer, .twide .owalogocontainer" || body="aria-label=\"outlook web app" || body="themes/resources/segoeui-semibold.ttf" || body="<meta http-equiv=\"refresh\" contect=\"0;url=/owa\">" || body="window.location.replace(\"/owa/\" + window.location.hash);</script></head><body></body>" || body="href=\"/owa/auth/" || body="/exchweb/bin/auth/owalogon.asp?url=" || body="/exchweb/bin/auth/owalogon.asp" || body="<!-- owapage = asp.auth_logon_aspx" || body="owalgnbdy" || body="<div class=\"signinheader\">outlook</div>" && body="owalogocontainer" || body="/owa/" && body="owapage = asp.auth_logon_aspx" || body="/owa/" && body="showpasswordcheck" || body="outlook" || header="outlooksession" || header="x-owa-version" || header="owa" || header="Location: /owa/" && header="Server: Microsoft" || title="Microsoft Exchange" || title="microsoft outlook web access"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("microsoft outlook web access")) && response.raw_header.bcontains(bytes("owalogocontainer")) && response.raw_header.bcontains(bytes('<div class="signinheader">outlook</div>')) && response.raw_header.bcontains(bytes("/owa/")) && response.raw_header.bcontains(bytes("/exchweb/bin/auth/owalogon.asp?url=")) && response.raw_header.bcontains(bytes("owapage = asp.auth_logon_aspx")) && response.raw_header.bcontains(bytes('aria-label="outlook web app'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("outlook") && response.body_string.contains("showpasswordcheck") && response.body_string.contains("/owa/") && response.body_string.contains("owapage = asp.auth_logon_aspx")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/owa/") && response.body_string.contains('<div class="signinheader">outlook</div>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("owalogocontainer") && response.body_string.contains(".mouse .owalogocontainer, .twide .owalogocontainer")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('aria-label="outlook web app')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("themes/resources/segoeui-semibold.ttf")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" contect="0;url=/owa">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("/owa/" + window.location.hash);</script></head><body></body>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/owa/auth/')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/exchweb/bin/auth/owalogon.asp?url=")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/exchweb/bin/auth/owalogon.asp")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- owapage = asp.auth_logon_aspx")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("owalgnbdy")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="signinheader">outlook</div>') && response.body_string.contains("owalogocontainer")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/owa/") && response.body_string.contains("owapage = asp.auth_logon_aspx")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/owa/") && response.body_string.contains("showpasswordcheck")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("outlook")
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("outlooksession"))
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-owa-version"))
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("owa"))
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Location: /owa/")) && response.raw_header.bcontains(bytes("Server: Microsoft"))'
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Exchange")
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("microsoft outlook web access")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22()

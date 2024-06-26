@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Websense Email Security Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Websense Email Security Gateway
+    fofa: header="Websense Email Security Gateway" || title="Websense Email Security Gateway" || title="websense email security gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Websense Email Security Gateway"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Websense Email Security Gateway")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("websense email security gateway")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-方维购物分享
+manual: false
+detail:
+    fingerprint:
+        name: 方维购物分享
+    fofa: title="方维购物分享"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("方维购物分享")
+expression: r0()

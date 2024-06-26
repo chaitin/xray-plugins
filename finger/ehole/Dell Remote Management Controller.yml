@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dell Remote Management Controller
+manual: false
+detail:
+    fingerprint:
+        name: Dell Remote Management Controller
+    fofa: header="Dell Remote Management Controller" || title="Dell Remote Management Controller"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dell Remote Management Controller"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dell Remote Management Controller")
+expression: r0() || r1()

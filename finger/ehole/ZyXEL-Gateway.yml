@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-Gateway
+    fofa: header="realm=\"amg1001-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="amg1001-'))
+expression: r0()

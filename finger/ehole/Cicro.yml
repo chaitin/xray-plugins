@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Cicro
+manual: false
+detail:
+    fingerprint:
+        name: Cicro
+    fofa: body="window.location.href=" && body="structure/index" || body="index.files/cicro_userdefine.css" || body="content=\"cicro" || body="cws" && body="cicro" || body="cicro" && body="content=\"cicro" && body="cws" || body="structure/index" && body="window.location.href="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.location.href=") && response.body_string.contains("structure/index")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index.files/cicro_userdefine.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="cicro')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cws") && response.body_string.contains("cicro")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cicro") && response.body_string.contains('content="cicro') && response.body_string.contains("cws")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("structure/index") && response.body_string.contains("window.location.href=")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

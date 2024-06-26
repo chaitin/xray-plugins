@@ -1,0 +1,16 @@
+name: fingerprint-yaml-huachuang_router
+manual: false
+detail:
+    fingerprint:
+        name: huachuang_router
+    fofa: title="huachuang_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huachuang_router")
+expression: r0()

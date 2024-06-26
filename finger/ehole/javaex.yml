@@ -1,0 +1,23 @@
+name: fingerprint-yaml-javaex
+manual: false
+detail:
+    fingerprint:
+        name: javaex
+    fofa: header="javaex" || title="javaex"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("javaex"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("javaex")
+expression: r0() || r1()

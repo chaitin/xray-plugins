@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DLink-Internet-Camera
+manual: false
+detail:
+    fingerprint:
+        name: DLink-Internet-Camera
+    fofa: 'header="d-link internet camera" || header="D-Link Internet Camera" || header="server: d-link internet camera" || title="d-link internet camera"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("d-link internet camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link Internet Camera"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: d-link internet camera"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("d-link internet camera")
+expression: r0() || r1() || r2() || r3()

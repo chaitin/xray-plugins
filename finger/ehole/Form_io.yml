@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Form_io
+manual: false
+detail:
+    fingerprint:
+        name: Form.io
+    fofa: icon_hash="1319699698"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1319699698
+expression: r0()

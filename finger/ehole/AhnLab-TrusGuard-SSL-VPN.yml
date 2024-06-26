@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AhnLab-TrusGuard-SSL-VPN
+manual: false
+detail:
+    fingerprint:
+        name: AhnLab-TrusGuard-SSL-VPN
+    fofa: title="trusguard ssl vpn client"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("trusguard ssl vpn client")
+expression: r0()

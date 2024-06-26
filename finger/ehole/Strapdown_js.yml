@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Strapdown_js
+manual: false
+detail:
+    fingerprint:
+        name: Strapdown.js
+    fofa: title="Strapdown.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Strapdown.js")
+expression: r0()

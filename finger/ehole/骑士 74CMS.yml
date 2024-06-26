@@ -1,0 +1,23 @@
+name: fingerprint-yaml-骑士 74CMS
+manual: false
+detail:
+    fingerprint:
+        name: 骑士 74CMS
+    fofa: body="74cms" && body="qscms.root" && body="index.php" || header="QSCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("74cms") && response.body_string.contains("qscms.root") && response.body_string.contains("index.php")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QSCMS"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-tjtongyangkeji-System
+manual: false
+detail:
+    fingerprint:
+        name: tjtongyangkeji-System
+    fofa: body="/content/tongyang-login.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/content/tongyang-login.css")
+expression: r0()

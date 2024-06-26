@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kirona Open Street Map Server
+manual: false
+detail:
+    fingerprint:
+        name: Kirona Open Street Map Server
+    fofa: header="Kirona Open Street Map Server" || title="Kirona Open Street Map Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kirona Open Street Map Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kirona Open Street Map Server")
+expression: r0() || r1()

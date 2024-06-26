@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Exostar – Managed Access Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Exostar – Managed Access Gateway
+    fofa: icon_hash="420473080"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 420473080
+expression: r0()

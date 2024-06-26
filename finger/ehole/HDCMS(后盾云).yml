@@ -1,0 +1,37 @@
+name: fingerprint-yaml-HDCMS(后盾云)
+manual: false
+detail:
+    fingerprint:
+        name: HDCMS(后盾云)
+    fofa: body="HDCMS" || body="后盾云" || title="HDCMS" || title="后盾云"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("HDCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("后盾云")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HDCMS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("后盾云")
+expression: r0() || r1() || r2() || r3()

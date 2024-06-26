@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Go1984
+manual: false
+detail:
+    fingerprint:
+        name: Go1984
+    fofa: header="Go1984" || title="Go1984"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Go1984"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Go1984")
+expression: r0() || r1()

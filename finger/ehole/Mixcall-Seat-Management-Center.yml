@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Mixcall-Seat-Management-Center
+manual: false
+detail:
+    fingerprint:
+        name: Mixcall-Seat-Management-Center
+    fofa: body="深圳市深海捷科技有限公司" && body="/admin/modules/admin/statics/images/" || body="/admin/modules/admin/statics/images/" && body="深圳市深海捷科技有限公司" || body="深圳市深海捷科技有限公司" || body="/admin/modules/admin/statics/images/" || title="mixcall座席管理中心"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("深圳市深海捷科技有限公司") && response.body_string.contains("/admin/modules/admin/statics/images/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/admin/modules/admin/statics/images/") && response.body_string.contains("深圳市深海捷科技有限公司")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("深圳市深海捷科技有限公司")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/admin/modules/admin/statics/images/")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mixcall座席管理中心")
+expression: r0() || r1() || r2() || r3() || r4()

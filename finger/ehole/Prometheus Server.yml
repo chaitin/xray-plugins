@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Prometheus Server
+manual: false
+detail:
+    fingerprint:
+        name: Prometheus Server
+    fofa: title="Prometheus Time Series Collection and Processing Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Prometheus Time Series Collection and Processing Server")
+expression: r0()

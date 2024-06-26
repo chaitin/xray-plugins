@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Volusion (V1)
+manual: false
+detail:
+    fingerprint:
+        name: Volusion (V1)
+    fofa: header="Volusion (V1)" || title="Volusion (V1)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Volusion (V1)"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Volusion (V1)")
+expression: r0() || r1()

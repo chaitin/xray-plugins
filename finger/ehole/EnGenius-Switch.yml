@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EnGenius-Switch
+manual: false
+detail:
+    fingerprint:
+        name: EnGenius-Switch
+    fofa: body="conner_basic conner_gdl" || body="/egs-logo.png" && body="conner_basic conner_gdl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("conner_basic conner_gdl")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/egs-logo.png") && response.body_string.contains("conner_basic conner_gdl")
+expression: r0() || r1()

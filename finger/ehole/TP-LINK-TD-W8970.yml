@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TP-LINK-TD-W8970
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-TD-W8970
+    fofa: header="tp-link 300mbps wireless n gigabit adsl2+ modem router td-w8970" || header="TP-LINK TD-W8970"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link 300mbps wireless n gigabit adsl2+ modem router td-w8970"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TD-W8970"))
+expression: r0() || r1()

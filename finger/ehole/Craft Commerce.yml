@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Craft Commerce
+manual: false
+detail:
+    fingerprint:
+        name: Craft Commerce
+    fofa: header="Craft Commerce" || title="Craft Commerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Craft Commerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Craft Commerce")
+expression: r0() || r1()

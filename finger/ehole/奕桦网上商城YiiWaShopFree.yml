@@ -1,0 +1,23 @@
+name: fingerprint-yaml-奕桦网上商城YiiWaShopFree
+manual: false
+detail:
+    fingerprint:
+        name: 奕桦网上商城YiiWaShopFree
+    fofa: header="奕桦网上商城YiiWaShopFree" || title="奕桦网上商城YiiWaShopFree"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("奕桦网上商城YiiWaShopFree"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("奕桦网上商城YiiWaShopFree")
+expression: r0() || r1()

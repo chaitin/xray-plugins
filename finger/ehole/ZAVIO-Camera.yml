@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ZAVIO-Camera
+manual: false
+detail:
+    fingerprint:
+        name: ZAVIO-Camera
+    fofa: body="dynacolor" && body="osdcmdtb" || body="osdcmdtb" && body="dynacolor" || body="dynacolor" || body="osdcmdtb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dynacolor") && response.body_string.contains("osdcmdtb")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("osdcmdtb") && response.body_string.contains("dynacolor")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dynacolor")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("osdcmdtb")
+expression: r0() || r1() || r2() || r3()

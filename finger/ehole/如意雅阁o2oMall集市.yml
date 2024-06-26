@@ -1,0 +1,16 @@
+name: fingerprint-yaml-如意雅阁o2oMall集市
+manual: false
+detail:
+    fingerprint:
+        name: 如意雅阁o2oMall集市
+    fofa: title="如意雅阁o2oMall集市"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("如意雅阁o2oMall集市")
+expression: r0()

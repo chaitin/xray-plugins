@@ -1,0 +1,30 @@
+name: fingerprint-yaml-AirLive-Modem
+manual: false
+detail:
+    fingerprint:
+        name: AirLive-Modem
+    fofa: header="realm=\"airlive arm-" && header="realm=\"airlive arm201" || header="realm=\"airlive arm201" || header="realm=\"airlive arm-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive arm-')) && response.raw_header.bcontains(bytes('realm="airlive arm201'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive arm201'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive arm-'))
+expression: r0() || r1() || r2()

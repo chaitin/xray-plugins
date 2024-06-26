@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Flat UI
+manual: false
+detail:
+    fingerprint:
+        name: Flat UI
+    fofa: header="Flat UI" || title="Flat UI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Flat UI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Flat UI")
+expression: r0() || r1()

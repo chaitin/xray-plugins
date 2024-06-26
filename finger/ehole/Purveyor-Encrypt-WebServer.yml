@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Purveyor-Encrypt-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: Purveyor-Encrypt-WebServer
+    fofa: 'header="server: purveyor encrypt"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: purveyor encrypt"))'
+expression: r0()

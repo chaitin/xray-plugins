@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RestServer
+manual: false
+detail:
+    fingerprint:
+        name: RestServer
+    fofa: header="RestServer" || title="RestServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RestServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RestServer")
+expression: r0() || r1()

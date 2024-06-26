@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TOTOLINK (network)
+manual: false
+detail:
+    fingerprint:
+        name: TOTOLINK (network)
+    fofa: icon_hash="547474373"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 547474373
+expression: r0()

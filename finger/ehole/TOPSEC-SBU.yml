@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TOPSEC-SBU
+manual: false
+detail:
+    fingerprint:
+        name: TOPSEC-SBU
+    fofa: title="天融信数据安全系统sbu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天融信数据安全系统sbu")
+expression: r0()

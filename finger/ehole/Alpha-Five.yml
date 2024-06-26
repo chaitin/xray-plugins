@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Alpha-Five
+manual: false
+detail:
+    fingerprint:
+        name: Alpha-Five
+    fofa: header="alpha five" && header="a5wsessionid" || header="Alpha Five" || header="A5wSessionId" || header="a5wsessionid" || header="alpha five"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("alpha five")) && response.raw_header.bcontains(bytes("a5wsessionid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alpha Five"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("A5wSessionId"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("a5wsessionid"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("alpha five"))
+expression: r0() || r1() || r2() || r3() || r4()

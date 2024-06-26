@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Sun-GlassFish
+manual: false
+detail:
+    fingerprint:
+        name: Sun-GlassFish
+    fofa: 'body="webui/jsf" && body="glassfish community" || body="glassfish community" || body="webui/jsf" || body="glassfish community" && body="webui/jsf" || header="server: glassfish server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webui/jsf") && response.body_string.contains("glassfish community")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("glassfish community")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webui/jsf")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("glassfish community") && response.body_string.contains("webui/jsf")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: glassfish server"))'
+expression: r0() || r1() || r2() || r3() || r4()

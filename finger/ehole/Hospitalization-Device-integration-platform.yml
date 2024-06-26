@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hospitalization-Device-integration-platform
+manual: false
+detail:
+    fingerprint:
+        name: Hospitalization-Device-integration-platform
+    fofa: title="住院设备集成平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("住院设备集成平台")
+expression: r0()

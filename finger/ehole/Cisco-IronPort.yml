@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-IronPort
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-IronPort
+    fofa: header="cisco ironport" || header="Cisco IronPort"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco ironport"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco IronPort"))
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-iLON-SmartServer
+manual: false
+detail:
+    fingerprint:
+        name: iLON-SmartServer
+    fofa: header="windriver" && header="i.lon" || header="WindRiver" || header="i.LON" || header="i.lon" && header="windriver" || header="windriver" || header="i.lon"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("windriver")) && response.raw_header.bcontains(bytes("i.lon"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WindRiver"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("i.LON"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("i.lon")) && response.raw_header.bcontains(bytes("windriver"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("windriver"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("i.lon"))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

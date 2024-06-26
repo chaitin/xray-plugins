@@ -1,0 +1,16 @@
+name: fingerprint-yaml-kyphp_框架
+manual: false
+detail:
+    fingerprint:
+        name: kyphp_框架
+    fofa: title="kyphp_框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kyphp_框架")
+expression: r0()

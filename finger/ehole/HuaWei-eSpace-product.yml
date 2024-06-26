@@ -1,0 +1,37 @@
+name: fingerprint-yaml-HuaWei-eSpace-product
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-eSpace-product
+    fofa: 'header="realm=\"enterprise ip phone huawei espace" || header="sever-ver: " && header="espace" || header="realm=\"enterprise ip phone huawei espace " || title="huawei espace "'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="enterprise ip phone huawei espace'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("sever-ver: ")) && response.raw_header.bcontains(bytes("espace"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="enterprise ip phone huawei espace '))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huawei espace ")
+expression: r0() || r1() || r2() || r3()

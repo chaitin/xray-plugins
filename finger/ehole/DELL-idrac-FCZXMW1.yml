@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-idrac-FCZXMW1
+manual: false
+detail:
+    fingerprint:
+        name: DELL-idrac-FCZXMW1
+    fofa: body="var tmphn = \"idrac-fczxmw1\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var tmphn = "idrac-fczxmw1"')
+expression: r0()

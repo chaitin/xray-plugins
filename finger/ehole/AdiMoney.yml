@@ -1,0 +1,51 @@
+name: fingerprint-yaml-AdiMoney
+manual: false
+detail:
+    fingerprint:
+        name: AdiMoney
+    fofa: body="<img src=\"/img/logo.png\" alt=\"adimoney\"/>" && body="content=\"adimoney.com mobile advertisement network. " || body="content=\"adimoney.com mobile advertisement network. " || body="<img src=\"/img/logo.png\" alt=\"adimoney\"/>" || body="content=\"adimoney.com mobile advertisement network." || body="content=\"adimoney.com mobile advertisement network" || title="adimoney - mobile advertisement network"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/img/logo.png" alt="adimoney"/>') && response.body_string.contains('content="adimoney.com mobile advertisement network. ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="adimoney.com mobile advertisement network. ')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/img/logo.png" alt="adimoney"/>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="adimoney.com mobile advertisement network.')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="adimoney.com mobile advertisement network')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("adimoney - mobile advertisement network")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

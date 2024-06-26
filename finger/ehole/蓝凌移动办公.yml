@@ -1,0 +1,23 @@
+name: fingerprint-yaml-蓝凌移动办公
+manual: false
+detail:
+    fingerprint:
+        name: 蓝凌移动办公
+    fofa: header="蓝凌移动办公" || title="蓝凌移动办公"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("蓝凌移动办公"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("蓝凌移动办公")
+expression: r0() || r1()

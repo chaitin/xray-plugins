@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BMC FootPrints
+manual: false
+detail:
+    fingerprint:
+        name: BMC FootPrints
+    fofa: header="BMC FootPrints" || title="BMC FootPrints"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BMC FootPrints"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BMC FootPrints")
+expression: r0() || r1()

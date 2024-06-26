@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Quest-DR
+manual: false
+detail:
+    fingerprint:
+        name: Quest-DR
+    fofa: body="quest software" && body="cui-login-screen" || header="Quest DR" || body="cui-login-screen" && body="quest software" || body="quest software" || body="cui-login-screen" || title="Quest DR"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("quest software") && response.body_string.contains("cui-login-screen")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Quest DR"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cui-login-screen") && response.body_string.contains("quest software")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("quest software")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cui-login-screen")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Quest DR")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

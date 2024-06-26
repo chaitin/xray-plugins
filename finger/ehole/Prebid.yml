@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Prebid
+manual: false
+detail:
+    fingerprint:
+        name: Prebid
+    fofa: header="Prebid" || title="Prebid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Prebid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Prebid")
+expression: r0() || r1()

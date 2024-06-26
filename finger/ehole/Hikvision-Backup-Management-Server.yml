@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hikvision-Backup-Management-Server
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision-Backup-Management-Server
+    fofa: title="备份管理服务器 "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("备份管理服务器 ")
+expression: r0()

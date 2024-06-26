@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ASUS-RT-AC5300
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-RT-AC5300
+    fofa: body="<div class=\"prod_madelname\">rt-ac5300" || header="rt-ac5300" || body="asus rt-ac5300" && body="var mmc = {" || title="rt-ac5300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="prod_madelname">rt-ac5300')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rt-ac5300"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("asus rt-ac5300") && response.body_string.contains("var mmc = {")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rt-ac5300")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-网神SecFox安全审计系统
+manual: false
+detail:
+    fingerprint:
+        name: 网神SecFox安全审计系统
+    fofa: header="网神SecFox安全审计系统" || title="网神SecFox安全审计系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("网神SecFox安全审计系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网神SecFox安全审计系统")
+expression: r0() || r1()

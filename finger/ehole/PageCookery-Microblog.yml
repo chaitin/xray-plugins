@@ -1,0 +1,30 @@
+name: fingerprint-yaml-PageCookery-Microblog
+manual: false
+detail:
+    fingerprint:
+        name: PageCookery-Microblog
+    fofa: body="powered by <a href=\"http://pagecookery.com" || header="PageCookery Microblog" || title="PageCookery Microblog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://pagecookery.com')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PageCookery Microblog"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PageCookery Microblog")
+expression: r0() || r1() || r2()

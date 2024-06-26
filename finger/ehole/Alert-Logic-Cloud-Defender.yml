@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alert-Logic-Cloud-Defender
+manual: false
+detail:
+    fingerprint:
+        name: Alert-Logic-Cloud-Defender
+    fofa: title="alert logic appliance"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("alert logic appliance")
+expression: r0()

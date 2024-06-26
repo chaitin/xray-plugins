@@ -1,0 +1,16 @@
+name: fingerprint-yaml-e达OA办公管理系统_免费带OA办公小助手
+manual: false
+detail:
+    fingerprint:
+        name: e达OA办公管理系统_免费带OA办公小助手
+    fofa: title="e达OA办公管理系统_免费带OA办公小助手"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("e达OA办公管理系统_免费带OA办公小助手")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CMCC-Dial-Router
+manual: false
+detail:
+    fingerprint:
+        name: CMCC-Dial-Router
+    fofa: body="x_fib_register"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("x_fib_register")
+expression: r0()

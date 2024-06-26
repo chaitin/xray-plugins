@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WAG325N
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WAG325N
+    fofa: header="Linksys WAG325N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WAG325N"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sablog-X
+manual: false
+detail:
+    fingerprint:
+        name: Sablog-X
+    fofa: header="Sablog-X" || title="Sablog-X"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sablog-X"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sablog-X")
+expression: r0() || r1()

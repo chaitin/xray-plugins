@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetworX_Social
+manual: false
+detail:
+    fingerprint:
+        name: NetworX_Social
+    fofa: title="NetworX_Social"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NetworX_Social")
+expression: r0()

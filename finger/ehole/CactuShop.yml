@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CactuShop
+manual: false
+detail:
+    fingerprint:
+        name: CactuShop
+    fofa: body="<select name=\"numCurrencyID" || body="<!-- CactuShop" || header="CactuShop" || body="<select name=\"numCurrencyID\" class=\"currencymenu\" onchange=\"javascript:document.getElementById(\"currmenuform\").submit();\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select name="numCurrencyID')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- CactuShop")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CactuShop"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select name="numCurrencyID" class="currencymenu" onchange="javascript:document.getElementById("currmenuform").submit();">')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-致远 Analytics Cloud 分析云
+manual: false
+detail:
+    fingerprint:
+        name: 致远 Analytics Cloud 分析云
+    fofa: icon_hash="410106848"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 410106848
+expression: r0()

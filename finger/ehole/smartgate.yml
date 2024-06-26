@@ -1,0 +1,23 @@
+name: fingerprint-yaml-smartgate
+manual: false
+detail:
+    fingerprint:
+        name: smartgate
+    fofa: header="smartgate" || title="smartgate"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("smartgate"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("smartgate")
+expression: r0() || r1()

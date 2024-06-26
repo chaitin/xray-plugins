@@ -1,0 +1,16 @@
+name: fingerprint-yaml-畅捷CRM
+manual: false
+detail:
+    fingerprint:
+        name: 畅捷CRM
+    fofa: icon_hash="-1068428644"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1068428644
+expression: r0()

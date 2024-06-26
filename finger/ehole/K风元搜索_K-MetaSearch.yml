@@ -1,0 +1,16 @@
+name: fingerprint-yaml-K风元搜索_K-MetaSearch
+manual: false
+detail:
+    fingerprint:
+        name: K风元搜索_K-MetaSearch
+    fofa: title="K风元搜索_K-MetaSearch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("K风元搜索_K-MetaSearch")
+expression: r0()

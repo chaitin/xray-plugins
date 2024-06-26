@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Ultimate-Bulletin-Board
+manual: false
+detail:
+    fingerprint:
+        name: Ultimate-Bulletin-Board
+    fofa: body="<meta name=\"generator\" content=\"ubb.threads" && body="<a href=\"http://www.groupee.com/landing/goto.php?a=ubb.classic\">powered by ubb.classic&trade" || body="<a href=\"http://www.groupee.com/landing/goto.php?a=ubb.classic\">powered by ubb.classic&trade" || body="<meta name=\"generator\" content=\"ubb.threads"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="ubb.threads') && response.body_string.contains('<a href="http://www.groupee.com/landing/goto.php?a=ubb.classic">powered by ubb.classic&trade')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.groupee.com/landing/goto.php?a=ubb.classic">powered by ubb.classic&trade')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="ubb.threads')
+expression: r0() || r1() || r2()

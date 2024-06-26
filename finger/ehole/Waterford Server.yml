@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Waterford Server
+manual: false
+detail:
+    fingerprint:
+        name: Waterford Server
+    fofa: header="Waterford Server" || title="Waterford Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Waterford Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Waterford Server")
+expression: r0() || r1()

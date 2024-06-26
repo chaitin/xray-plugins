@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BlueCoat-ProxySG
+manual: false
+detail:
+    fingerprint:
+        name: BlueCoat-ProxySG
+    fofa: header="bluecoat internet proxy" || header="proxysg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("bluecoat internet proxy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("proxysg"))
+expression: r0() || r1()

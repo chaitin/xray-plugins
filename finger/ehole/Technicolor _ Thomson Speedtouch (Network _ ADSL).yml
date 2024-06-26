@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Technicolor _ Thomson Speedtouch (Network _ ADSL)
+manual: false
+detail:
+    fingerprint:
+        name: Technicolor / Thomson Speedtouch (Network / ADSL)
+    fofa: icon_hash="156312019"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 156312019
+expression: r0()

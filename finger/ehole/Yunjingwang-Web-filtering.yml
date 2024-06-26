@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Yunjingwang-Web-filtering
+manual: false
+detail:
+    fingerprint:
+        name: Yunjingwang-Web-filtering
+    fofa: title="云净网"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("云净网")
+expression: r0()

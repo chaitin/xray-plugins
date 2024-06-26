@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Jshop小程序商城
+manual: false
+detail:
+    fingerprint:
+        name: Jshop小程序商城
+    fofa: title="Jshop小程序商城"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Jshop小程序商城")
+expression: r0()

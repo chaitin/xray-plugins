@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LG Smart IP Device
+manual: false
+detail:
+    fingerprint:
+        name: LG Smart IP Device
+    fofa: header="LG Smart IP Device" || title="LG Smart IP Device"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LG Smart IP Device"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LG Smart IP Device")
+expression: r0() || r1()

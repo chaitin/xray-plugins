@@ -1,0 +1,16 @@
+name: fingerprint-yaml-阿里巴巴otter manager
+manual: false
+detail:
+    fingerprint:
+        name: 阿里巴巴otter manager
+    fofa: body="Otter Manager" && body="channelList"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Otter Manager") && response.body_string.contains("channelList")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-WNDR3400v2
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-WNDR3400v2
+    fofa: header="netgear wndr3400v2" || header="NETGEAR WNDR3400v2" || title="netgear router wndr3400v2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear wndr3400v2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WNDR3400v2"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear router wndr3400v2")
+expression: r0() || r1() || r2()

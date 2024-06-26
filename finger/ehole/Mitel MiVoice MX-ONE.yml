@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mitel MiVoice MX-ONE
+manual: false
+detail:
+    fingerprint:
+        name: Mitel MiVoice MX-ONE
+    fofa: header="Mitel MiVoice MX-ONE" || title="Mitel MiVoice MX-ONE"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mitel MiVoice MX-ONE"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mitel MiVoice MX-ONE")
+expression: r0() || r1()

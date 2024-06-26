@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H2 Database Console
+manual: false
+detail:
+    fingerprint:
+        name: H2 Database Console
+    fofa: icon_hash="-525659379"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -525659379
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Huawei user-login
+manual: false
+detail:
+    fingerprint:
+        name: Huawei user-login
+    fofa: header="Huawei Auth-Http"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Huawei Auth-Http"))
+expression: r0()

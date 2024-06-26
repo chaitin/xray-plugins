@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Intelbras-Roteador-Wireless-N-WIN300
+manual: false
+detail:
+    fingerprint:
+        name: Intelbras-Roteador-Wireless-N-WIN300
+    fofa: title="roteador wireless n win 300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("roteador wireless n win 300")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Gargoyle Router Management Utility
+manual: false
+detail:
+    fingerprint:
+        name: Gargoyle Router Management Utility
+    fofa: icon_hash="1862132268"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1862132268
+expression: r0()

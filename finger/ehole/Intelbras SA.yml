@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Intelbras SA
+manual: false
+detail:
+    fingerprint:
+        name: Intelbras SA
+    fofa: icon_hash="2006716043" || icon_hash="283740897" || icon_hash="-1343070146"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2006716043
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 283740897
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1343070146
+expression: r0() || r1() || r2()

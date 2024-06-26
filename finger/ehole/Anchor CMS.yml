@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Anchor CMS
+manual: false
+detail:
+    fingerprint:
+        name: Anchor CMS
+    fofa: header="Anchor CMS" || header="AnchorCMS" || title="Anchor CMS" || title="AnchorCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Anchor CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AnchorCMS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Anchor CMS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AnchorCMS")
+expression: r0() || r1() || r2() || r3()

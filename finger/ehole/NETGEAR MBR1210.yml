@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR MBR1210
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR MBR1210
+    fofa: header="NETGEAR MBR1210"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR MBR1210"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-W3MFC
+manual: false
+detail:
+    fingerprint:
+        name: W3MFC
+    fofa: 'header="server: w3mfc"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: w3mfc"))'
+expression: r0()

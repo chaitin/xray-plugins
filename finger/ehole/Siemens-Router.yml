@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Siemens-Router
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-Router
+    fofa: header="basic realm=\"siemens adsl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="siemens adsl'))
+expression: r0()

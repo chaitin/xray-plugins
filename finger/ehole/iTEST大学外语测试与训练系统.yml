@@ -1,0 +1,23 @@
+name: fingerprint-yaml-iTEST大学外语测试与训练系统
+manual: false
+detail:
+    fingerprint:
+        name: iTEST大学外语测试与训练系统
+    fofa: header="iTEST大学外语测试与训练系统" || title="iTEST大学外语测试与训练系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iTEST大学外语测试与训练系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iTEST大学外语测试与训练系统")
+expression: r0() || r1()

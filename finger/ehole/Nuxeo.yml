@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Nuxeo
+manual: false
+detail:
+    fingerprint:
+        name: Nuxeo
+    fofa: header="Nuxeo" || title="Nuxeo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nuxeo"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nuxeo")
+expression: r0() || r1()

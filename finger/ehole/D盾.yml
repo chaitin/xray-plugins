@@ -1,0 +1,16 @@
+name: fingerprint-yaml-D盾
+manual: false
+detail:
+    fingerprint:
+        name: D盾
+    fofa: title="D盾"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D盾")
+expression: r0()

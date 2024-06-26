@@ -1,0 +1,58 @@
+name: fingerprint-yaml-PCPIN-Chat
+manual: false
+detail:
+    fingerprint:
+        name: PCPIN-Chat
+    fofa: body="title=\"powered by pcpin chat" && body="onclick=\"document.loginform.register.value=0; document.loginform.lostpassword.value=0" && body="window.appname_='pcpin_chat'" || body="window.appname_=\"pcpin_chat\"" || body="onclick=\"document.loginform.register.value=0; document.loginform.lostpassword.value=0" || body="title=\"powered by pcpin chat" || body="<!-- Please don\"t remove next line. Thank You! -->" || body="<a href=\"http://www.pcpin.com\" style=\"font-size:10; color:#990000;\" target=\"_blank\">Powered by PCPIN.com</a>" || body="Powered by <a href=\"http://www.pcpin.com/\" target=\"_blank\" title=\"Powered by PCPIN Chat\">PCPIN Chat</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="powered by pcpin chat') && response.body_string.contains('onclick="document.loginform.register.value=0; document.loginform.lostpassword.value=0') && response.body_string.contains("window.appname_='pcpin_chat'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.appname_="pcpin_chat"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onclick="document.loginform.register.value=0; document.loginform.lostpassword.value=0')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="powered by pcpin chat')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- Please don"t remove next line. Thank You! -->')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.pcpin.com" style="font-size:10; color:#990000;" target="_blank">Powered by PCPIN.com</a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.pcpin.com/" target="_blank" title="Powered by PCPIN Chat">PCPIN Chat</a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

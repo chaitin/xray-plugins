@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ISAServer(Microsoft)
+manual: false
+detail:
+    fingerprint:
+        name: ISAServer(Microsoft)
+    fofa: title="ISA Server(Microsoft)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ISA Server(Microsoft)")
+expression: r0()

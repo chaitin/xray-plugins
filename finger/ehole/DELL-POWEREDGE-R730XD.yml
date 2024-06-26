@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-POWEREDGE-R730XD
+manual: false
+detail:
+    fingerprint:
+        name: DELL-POWEREDGE-R730XD
+    fofa: header="poweredge-r730xd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poweredge-r730xd"))
+expression: r0()

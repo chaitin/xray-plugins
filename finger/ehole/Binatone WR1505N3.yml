@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Binatone WR1505N3
+manual: false
+detail:
+    fingerprint:
+        name: Binatone WR1505N3
+    fofa: header="WR1505N3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WR1505N3"))
+expression: r0()

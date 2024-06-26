@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Accrisoft
+manual: false
+detail:
+    fingerprint:
+        name: Accrisoft
+    fofa: icon_hash="-1275148624"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1275148624
+expression: r0()

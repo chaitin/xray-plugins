@@ -1,0 +1,30 @@
+name: fingerprint-yaml-D_Link-DSR-250N
+manual: false
+detail:
+    fingerprint:
+        name: D_Link-DSR-250N
+    fofa: 'body="<div class=\"floatl txt01\">product page: dsr-250n" && body="unified services router - dsr-250n </div>" || body="unified services router - dsr-250n </div>" || body="<div class=\"floatl txt01\">product page: dsr-250n"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div class="floatl txt01">product page: dsr-250n'') && response.body_string.contains("unified services router - dsr-250n </div>")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("unified services router - dsr-250n </div>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div class="floatl txt01">product page: dsr-250n'')'
+expression: r0() || r1() || r2()

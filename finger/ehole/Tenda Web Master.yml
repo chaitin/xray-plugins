@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Tenda Web Master
+manual: false
+detail:
+    fingerprint:
+        name: Tenda Web Master
+    fofa: icon_hash="-2145085239"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2145085239
+expression: r0()

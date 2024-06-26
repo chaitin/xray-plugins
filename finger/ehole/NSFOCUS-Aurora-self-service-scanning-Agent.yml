@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NSFOCUS-Aurora-self-service-scanning-Agent
+manual: false
+detail:
+    fingerprint:
+        name: NSFOCUS-Aurora-self-service-scanning-Agent
+    fofa: body="/aurora_nsfocus.png" || title="绿盟云激活"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/aurora_nsfocus.png")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("绿盟云激活")
+expression: r0() || r1()

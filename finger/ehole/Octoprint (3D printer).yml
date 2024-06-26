@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Octoprint (3D printer)
+manual: false
+detail:
+    fingerprint:
+        name: Octoprint (3D printer)
+    fofa: icon_hash="1307375944"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1307375944
+expression: r0()

@@ -1,0 +1,79 @@
+name: fingerprint-yaml-ProcessMaker
+manual: false
+detail:
+    fingerprint:
+        name: ProcessMaker
+    fofa: body="processmaker ver" && body="href=\"http://www.processmaker.com\" alt=\"processmaker" && body="alt=\"powered by processmaker" || header="processmaker" || body="alt=\"powered by processmaker" || body="href=\"http://www.processmaker.com\" alt=\"processmaker" || body="processmaker ver" || body="<div class=\"companyLogo\"><img src=\"/images/processmaker2.logo2.png\"/></div>" || body="<a href=\"http://www.processmaker.com\" alt=\"Powered by ProcessMaker - Open Source Workflow & Business Process Management (BPM) Management Software\" title=\"Powered by ProcessMaker\" target=\"_blank\">" || body="<div class=\"content\"><a href=\"#\" onclick=\"openInfoPanel();return false;\" class=\"FooterLink\">| System Information |</a><br /><br />Copyright &copy; 2003-2012 <a href=\"http://www.colosa.com\" alt=\"Colosa, Inc.\" target=\"_blank\">Colosa, Inc.</a> All rights reserved." || body="<meta http-equiv=\"REFRESH\" content=\"0;URL=/sys/en/classic/login/login.html\" />" || title="processmaker"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("processmaker ver") && response.body_string.contains('href="http://www.processmaker.com" alt="processmaker') && response.body_string.contains('alt="powered by processmaker')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("processmaker"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="powered by processmaker')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.processmaker.com" alt="processmaker')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("processmaker ver")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="companyLogo"><img src="/images/processmaker2.logo2.png"/></div>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.processmaker.com" alt="Powered by ProcessMaker - Open Source Workflow & Business Process Management (BPM) Management Software" title="Powered by ProcessMaker" target="_blank">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="content"><a href="#" onclick="openInfoPanel();return false;" class="FooterLink">| System Information |</a><br /><br />Copyright &copy; 2003-2012 <a href="http://www.colosa.com" alt="Colosa, Inc." target="_blank">Colosa, Inc.</a> All rights reserved.')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="REFRESH" content="0;URL=/sys/en/classic/login/login.html" />')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("processmaker")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

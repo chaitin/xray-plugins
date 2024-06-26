@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Websale
+manual: false
+detail:
+    fingerprint:
+        name: Websale
+    fofa: header="Websale" || title="Websale"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Websale"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Websale")
+expression: r0() || r1()

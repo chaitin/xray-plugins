@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Axence Agent Server
+manual: false
+detail:
+    fingerprint:
+        name: Axence Agent Server
+    fofa: header="Axence Agent Server" || title="Axence Agent Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Axence Agent Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axence Agent Server")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Dlink Webcam
+manual: false
+detail:
+    fingerprint:
+        name: Dlink Webcam
+    fofa: icon_hash="31972968" || icon_hash="-1354933624" || icon_hash="1221759509" || icon_hash="1144925962"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 31972968
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1354933624
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1221759509
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1144925962
+expression: r0() || r1() || r2() || r3()

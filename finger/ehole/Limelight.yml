@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Limelight
+manual: false
+detail:
+    fingerprint:
+        name: Limelight
+    fofa: title="Limelight"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Limelight")
+expression: r0()

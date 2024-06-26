@@ -1,0 +1,65 @@
+name: fingerprint-yaml-SONY-Projector
+manual: false
+detail:
+    fingerprint:
+        name: SONY-Projector
+    fofa: body="<body onload=\"setwindowtitle(;showindex(;\">" && body="<script type=\"text/javascript\" src=\"sonylogojs.js\"></script>" || header="realm=\"projector" || body="<script type=\"text/javascript\" src=\"sonylogojs.js\"></script>" || body="<body onload=\"setwindowtitle();showindex();\">" || body="<body onload=\"setwindowtitle;showindex;\">" || body="<form Action=\"/Forms/index_1\" method=\"post\"  NAME=\"form1\">" || body="<frame src=\"index_bg.htm\" NAME=\"RIGHT\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" noresize>" || body="<TR><TD COLSPAN=\"2\"><script type=\"text/javascript\">sonylogo();</script></TD>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="setwindowtitle(;showindex(;">') && response.body_string.contains('<script type="text/javascript" src="sonylogojs.js"></script>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="projector'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="sonylogojs.js"></script>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="setwindowtitle();showindex();">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="setwindowtitle;showindex;">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form Action="/Forms/index_1" method="post"  NAME="form1">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="index_bg.htm" NAME="RIGHT" marginwidth="0" marginheight="0" scrolling="no" noresize>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TR><TD COLSPAN="2"><script type="text/javascript">sonylogo();</script></TD>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

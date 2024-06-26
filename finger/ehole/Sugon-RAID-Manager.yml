@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sugon-RAID-Manager
+manual: false
+detail:
+    fingerprint:
+        name: Sugon-RAID-Manager
+    fofa: title="sugon raid manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sugon raid manager")
+expression: r0()

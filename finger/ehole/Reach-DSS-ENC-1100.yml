@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Reach-DSS-ENC-1100
+manual: false
+detail:
+    fingerprint:
+        name: Reach-DSS-ENC-1100
+    fofa: title=":::encoder(dss-enc-1100):::"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains(":::encoder(dss-enc-1100):::")
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Willfar-Interface-Management-Tool
+manual: false
+detail:
+    fingerprint:
+        name: Willfar-Interface-Management-Tool
+    fofa: body="the wasion software foundation" && body="alt=\"接口应用管理工具\"" || body="alt=\"接口应用管理工具\"" && body="the wasion software foundation" || body="the wasion software foundation" || body="alt=\"接口应用管理工具\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("the wasion software foundation") && response.body_string.contains('alt="接口应用管理工具"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="接口应用管理工具"') && response.body_string.contains("the wasion software foundation")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("the wasion software foundation")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="接口应用管理工具"')
+expression: r0() || r1() || r2() || r3()

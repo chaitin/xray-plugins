@@ -1,0 +1,30 @@
+name: fingerprint-yaml-amazon-cloudfront
+manual: false
+detail:
+    fingerprint:
+        name: amazon-cloudfront
+    fofa: header="X-Amz-Cf-Id" || header="Amazon Cloudfront" || title="Amazon Cloudfront"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Amz-Cf-Id"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Amazon Cloudfront"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Amazon Cloudfront")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ng2-admin
+manual: false
+detail:
+    fingerprint:
+        name: ng2-admin
+    fofa: title="ng2-admin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ng2-admin")
+expression: r0()

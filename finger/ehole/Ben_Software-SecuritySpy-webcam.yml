@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ben_Software-SecuritySpy-webcam
+manual: false
+detail:
+    fingerprint:
+        name: Ben_Software-SecuritySpy-webcam
+    fofa: title="securityspy web server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("securityspy web server")
+expression: r0()

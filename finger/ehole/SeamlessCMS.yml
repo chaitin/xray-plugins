@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SeamlessCMS
+manual: false
+detail:
+    fingerprint:
+        name: SeamlessCMS
+    fofa: header="SeamlessCMS" || title="SeamlessCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SeamlessCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SeamlessCMS")
+expression: r0() || r1()

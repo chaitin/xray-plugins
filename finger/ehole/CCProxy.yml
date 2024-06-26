@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CCProxy
+manual: false
+detail:
+    fingerprint:
+        name: CCProxy
+    fofa: 'header=" realm=\"ccproxy " || header="Server:CCProxy" || header="server: ccproxy" || header="realm=\"ccproxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes(' realm="ccproxy '))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:CCProxy"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ccproxy"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ccproxy'))
+expression: r0() || r1() || r2() || r3()

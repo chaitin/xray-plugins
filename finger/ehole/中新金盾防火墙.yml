@@ -1,0 +1,16 @@
+name: fingerprint-yaml-中新金盾防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 中新金盾防火墙
+    fofa: body="<title>中新金盾防火墙</title>" && body="ZXFW"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>中新金盾防火墙</title>") && response.body_string.contains("ZXFW")
+expression: r0()

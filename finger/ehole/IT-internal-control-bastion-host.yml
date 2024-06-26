@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IT-internal-control-bastion-host
+manual: false
+detail:
+    fingerprint:
+        name: IT-internal-control-bastion-host
+    fofa: title="it内控堡垒主机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("it内控堡垒主机")
+expression: r0()

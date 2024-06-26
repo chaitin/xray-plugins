@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Snap-Appliance-Server
+manual: false
+detail:
+    fingerprint:
+        name: Snap-Appliance-Server
+    fofa: 'body="<A HREF=\"http://www.snapappliance.com/support\" TARGET=\"new\"><IMG SRC=\"/config/resource/Tech.gif\"  ALIGN=\"TOP\" NATURALSIZEFLAG=\"3\" BORDER=\"0\" ALT=\"\"></A>" || body="<A HREF=\"javascript:_ShowAbout()\" onMouseOver=\"window.status=\"About Snap Server\"; return true;\" onMouseOut=\"window.status=\"\"; return true;\"><IMG SRC=\"/config/resource/About.gif\"  ALIGN=\"TOP\" NATURALSIZEFLAG=\"3\" BORDER=\"0\" ALT=\"\"></A>" || body="window.open(\"/config?Func=AboutSend\",\"AboutSnap\",\"toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=500,height=395,resizable=yes,dependent=yes\");" || header="server: quantum corporation" || header="server: snap appliance" || title="snap server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<A HREF="http://www.snapappliance.com/support" TARGET="new"><IMG SRC="/config/resource/Tech.gif"  ALIGN="TOP" NATURALSIZEFLAG="3" BORDER="0" ALT=""></A>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<A HREF="javascript:_ShowAbout()" onMouseOver="window.status="About Snap Server"; return true;" onMouseOut="window.status=""; return true;"><IMG SRC="/config/resource/About.gif"  ALIGN="TOP" NATURALSIZEFLAG="3" BORDER="0" ALT=""></A>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("/config?Func=AboutSend","AboutSnap","toolbar=no,location=no,status=no,menubar=no,scrollbars=no,width=500,height=395,resizable=yes,dependent=yes");')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: quantum corporation"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: snap appliance"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("snap server")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

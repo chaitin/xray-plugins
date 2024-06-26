@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Runpu-Embedded-telephone-recording-system
+manual: false
+detail:
+    fingerprint:
+        name: Runpu-Embedded-telephone-recording-system
+    fofa: 'body="<th colspan=\"3\">润普嵌入式网络电话录音系统</th>" || header="/login.lgi?orgurl=/" && header="set-cookie: orgurl=/" || header="/login.lgi?orgurl=/" || header="set-cookie: orgurl=/" || title="润普嵌入式网络电话录音系统"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<th colspan="3">润普嵌入式网络电话录音系统</th>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("/login.lgi?orgurl=/")) && response.raw_header.bcontains(bytes("set-cookie: orgurl=/"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/login.lgi?orgurl=/"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: orgurl=/"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("润普嵌入式网络电话录音系统")
+expression: r0() || r1() || r2() || r3() || r4()

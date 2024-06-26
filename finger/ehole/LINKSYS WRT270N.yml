@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS WRT270N
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS WRT270N
+    fofa: header="LINKSYS WRT270N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS WRT270N"))
+expression: r0()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-IntelligentWarehouseManagementSystem
+manual: false
+detail:
+    fingerprint:
+        name: IntelligentWarehouseManagementSystem
+    fofa: body="name=\"toolkitscriptmanager1_hiddenfield\"" && body="class=\"headernav\"" && body="event.srcelement.type!='reset" || body="event.srcelement.type!=\"reset" && body="class=\"headernav\"" && body="name=\"toolkitscriptmanager1_hiddenfield\"" || body="name=\"toolkitscriptmanager1_hiddenfield\"" || body="class=\"headernav\"" || body="event.srcelement.type!=\"reset"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="toolkitscriptmanager1_hiddenfield"') && response.body_string.contains('class="headernav"') && response.body_string.contains("event.srcelement.type!='reset")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('event.srcelement.type!="reset') && response.body_string.contains('class="headernav"') && response.body_string.contains('name="toolkitscriptmanager1_hiddenfield"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="toolkitscriptmanager1_hiddenfield"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="headernav"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('event.srcelement.type!="reset')
+expression: r0() || r1() || r2() || r3() || r4()

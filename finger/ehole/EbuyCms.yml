@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EbuyCms
+manual: false
+detail:
+    fingerprint:
+        name: EbuyCms
+    fofa: header="EbuyCms" || title="EbuyCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EbuyCms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EbuyCms")
+expression: r0() || r1()

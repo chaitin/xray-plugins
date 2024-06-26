@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Universal Devices (UD)
+manual: false
+detail:
+    fingerprint:
+        name: Universal Devices (UD)
+    fofa: icon_hash="16202868"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 16202868
+expression: r0()

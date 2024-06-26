@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Sangfor-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Company's-product
+    fofa: body="arr[count++] = '%' + ('0'+(parseint(str.substr(i, 2, 16^key[i/2%32].tostring(16.touppercase(.slice(-2;" || body="arr[count++] = \"%\" + (\"0\"+(parseint(str.substr(i, 2), 16)^key[i/2%32]).tostring(16)).touppercase().slice(-2);" || body="arr[count++] = \"%\" + \"0\"+parseintstr.substri, 2, 16^key[i/2%32].tostring16.touppercase.slice-2;"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("arr[count++] = '%' + ('0'+(parseint(str.substr(i, 2, 16^key[i/2%32].tostring(16.touppercase(.slice(-2;")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('arr[count++] = "%" + ("0"+(parseint(str.substr(i, 2), 16)^key[i/2%32]).tostring(16)).touppercase().slice(-2);')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('arr[count++] = "%" + "0"+parseintstr.substri, 2, 16^key[i/2%32].tostring16.touppercase.slice-2;')
+expression: r0() || r1() || r2()

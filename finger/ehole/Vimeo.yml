@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Vimeo
+manual: false
+detail:
+    fingerprint:
+        name: Vimeo
+    fofa: header="Vimeo" || title="Vimeo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Vimeo"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Vimeo")
+expression: r0() || r1()

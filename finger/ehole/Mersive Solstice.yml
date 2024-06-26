@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mersive Solstice
+manual: false
+detail:
+    fingerprint:
+        name: Mersive Solstice
+    fofa: icon_hash="938616453"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 938616453
+expression: r0()

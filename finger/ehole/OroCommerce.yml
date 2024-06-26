@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OroCommerce
+manual: false
+detail:
+    fingerprint:
+        name: OroCommerce
+    fofa: header="OroCommerce" || title="OroCommerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OroCommerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OroCommerce")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-西默智能DNS
+manual: false
+detail:
+    fingerprint:
+        name: 西默智能DNS
+    fofa: header="西默智能DNS" || title="西默智能DNS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("西默智能DNS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("西默智能DNS")
+expression: r0() || r1()

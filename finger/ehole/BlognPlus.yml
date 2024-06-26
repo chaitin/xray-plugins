@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BlognPlus
+manual: false
+detail:
+    fingerprint:
+        name: BlognPlus
+    fofa: body="href=\"http://www.blogn.org"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.blogn.org')
+expression: r0()

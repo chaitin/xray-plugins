@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Collabtive
+manual: false
+detail:
+    fingerprint:
+        name: Collabtive
+    fofa: body="<title>Login @ Collabtive</title>" || body="<!--<div id = \"jslog\" style = \"color:red;position:absolute;top:60%;right:5%;width:300px;border:1px solid;background-color:grey;\"></div>-->" || body="<form id = \"loginform\" name = \"loginform\" method=\"post\" action=\"manageuser.php?action=login\"  onsubmit=\"return validateCompleteForm(this,\"input_error\");\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Login @ Collabtive</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!--<div id = "jslog" style = "color:red;position:absolute;top:60%;right:5%;width:300px;border:1px solid;background-color:grey;"></div>-->')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form id = "loginform" name = "loginform" method="post" action="manageuser.php?action=login"  onsubmit="return validateCompleteForm(this,"input_error");">')
+expression: r0() || r1() || r2()

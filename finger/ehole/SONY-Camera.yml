@@ -1,0 +1,51 @@
+name: fingerprint-yaml-SONY-Camera
+manual: false
+detail:
+    fingerprint:
+        name: SONY-Camera
+    fofa: body="inquiry.cgi?inqjs=system" && body="name=\"jsvframe" && body="setwindowvar = window.open(\"/adm/file.cgi?next_file=setting.htm\", \"adminwin\", setwinoptions;" || body="setwindowvar = window.open(\"/adm/file.cgi?next_file=setting.htm\", \"adminwin\", setwinoptions);" || body="name=\"jsvframe" || body="inquiry.cgi?inqjs=system" || body="setwindowvar = window.open\"/adm/file.cgi?next_file=setting.htm\", \"adminwin\", setwinoptions;" || title="sony network camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("inquiry.cgi?inqjs=system") && response.body_string.contains('name="jsvframe') && response.body_string.contains('setwindowvar = window.open("/adm/file.cgi?next_file=setting.htm", "adminwin", setwinoptions;')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('setwindowvar = window.open("/adm/file.cgi?next_file=setting.htm", "adminwin", setwinoptions);')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="jsvframe')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("inquiry.cgi?inqjs=system")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('setwindowvar = window.open"/adm/file.cgi?next_file=setting.htm", "adminwin", setwinoptions;')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sony network camera")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

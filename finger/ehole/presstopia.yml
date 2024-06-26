@@ -1,0 +1,16 @@
+name: fingerprint-yaml-presstopia
+manual: false
+detail:
+    fingerprint:
+        name: presstopia
+    fofa: title="presstopia"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("presstopia")
+expression: r0()

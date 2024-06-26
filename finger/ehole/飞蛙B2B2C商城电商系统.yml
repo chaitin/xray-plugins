@@ -1,0 +1,16 @@
+name: fingerprint-yaml-飞蛙B2B2C商城电商系统
+manual: false
+detail:
+    fingerprint:
+        name: 飞蛙B2B2C商城电商系统
+    fofa: title="飞蛙B2B2C商城电商系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("飞蛙B2B2C商城电商系统")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-百度云主机
+manual: false
+detail:
+    fingerprint:
+        name: 百度云主机
+    fofa: header="百度云主机" || title="百度云主机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("百度云主机"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("百度云主机")
+expression: r0() || r1()

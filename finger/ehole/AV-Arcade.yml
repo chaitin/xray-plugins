@@ -1,0 +1,51 @@
+name: fingerprint-yaml-AV-Arcade
+manual: false
+detail:
+    fingerprint:
+        name: AV-Arcade
+    fofa: body="powered by <a href=\"http://www.avscripts.net/avarcade/" || body="Powered by <a href=\"http://www.avscripts.net/avarcade/" || body="<!--MUST BE INCLUDED IN ALL TEMPLATES AND UNMODIFIED UNLESS YOU HAVE PAID FOR COPYRIGHT REMOVAL-->" || body="<b><span class=\"copytext\">Powered by <a href=\"http://www.avscripts.net/avarcade/\">AV Arcade Free Edition</a> - Copyright 2006-2010 <a href=\"http://www.avscripts.net\">AV Scripts</a></span></b>" || body="<b><span class=\"copytext\">Powered by <a href=\"http://www.avscripts.net/avarcade/\">AV Arcade v3</a> - Copyright 2006-2008 <a href=\"http://www.avscripts.net\">AV Scripts</a></span></b>" || body="Powered by <a href=\"http://www.avscripts.net/avarcade/\">AV Arcade Pro</a> - Copyright <a href=\"http://www.avscripts.net\">AV Scripts</a> 2006-2010 <a href=\"http://www.avscripts.net\"></a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.avscripts.net/avarcade/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.avscripts.net/avarcade/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--MUST BE INCLUDED IN ALL TEMPLATES AND UNMODIFIED UNLESS YOU HAVE PAID FOR COPYRIGHT REMOVAL-->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<b><span class="copytext">Powered by <a href="http://www.avscripts.net/avarcade/">AV Arcade Free Edition</a> - Copyright 2006-2010 <a href="http://www.avscripts.net">AV Scripts</a></span></b>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<b><span class="copytext">Powered by <a href="http://www.avscripts.net/avarcade/">AV Arcade v3</a> - Copyright 2006-2008 <a href="http://www.avscripts.net">AV Scripts</a></span></b>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.avscripts.net/avarcade/">AV Arcade Pro</a> - Copyright <a href="http://www.avscripts.net">AV Scripts</a> 2006-2010 <a href="http://www.avscripts.net"></a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

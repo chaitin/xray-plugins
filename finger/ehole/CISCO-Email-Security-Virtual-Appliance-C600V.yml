@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CISCO-Email-Security-Virtual-Appliance-C600V
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-Email-Security-Virtual-Appliance-C600V
+    fofa: title="email security virtual appliance   c600v"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("email security virtual appliance   c600v")
+expression: r0()

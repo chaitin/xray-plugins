@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Banorte
+manual: false
+detail:
+    fingerprint:
+        name: Banorte
+    fofa: header="Banorte" || title="Banorte"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Banorte"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Banorte")
+expression: r0() || r1()

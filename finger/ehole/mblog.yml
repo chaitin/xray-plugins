@@ -1,0 +1,23 @@
+name: fingerprint-yaml-mblog
+manual: false
+detail:
+    fingerprint:
+        name: mblog
+    fofa: header="mblog" || title="mblog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mblog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mblog")
+expression: r0() || r1()

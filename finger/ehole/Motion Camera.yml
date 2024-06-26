@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Motion Camera
+manual: false
+detail:
+    fingerprint:
+        name: Motion Camera
+    fofa: header="Motion Camera" || title="Motion Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Motion Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Motion Camera")
+expression: r0() || r1()

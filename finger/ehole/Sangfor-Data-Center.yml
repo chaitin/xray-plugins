@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Sangfor-Data-Center
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Data-Center
+    fofa: 'body="acloglogin.php" || header="location: ./src/acloglogin.php" || title="sangfor 数据中心"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("acloglogin.php")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: ./src/acloglogin.php"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sangfor 数据中心")
+expression: r0() || r1() || r2()

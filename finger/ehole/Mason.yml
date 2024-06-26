@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mason
+manual: false
+detail:
+    fingerprint:
+        name: Mason
+    fofa: 'header="x-powered-by: html::mason"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: html::mason"))'
+expression: r0()

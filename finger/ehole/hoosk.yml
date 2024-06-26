@@ -1,0 +1,23 @@
+name: fingerprint-yaml-hoosk
+manual: false
+detail:
+    fingerprint:
+        name: hoosk
+    fofa: header="hoosk" || title="hoosk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("hoosk"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hoosk")
+expression: r0() || r1()

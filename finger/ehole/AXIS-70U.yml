@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AXIS-70U
+manual: false
+detail:
+    fingerprint:
+        name: AXIS-70U
+    fofa: header="AXIS-70U" || title="AXIS-70U"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AXIS-70U"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AXIS-70U")
+expression: r0() || r1()

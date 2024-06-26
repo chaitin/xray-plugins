@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GV32-cms
+manual: false
+detail:
+    fingerprint:
+        name: GV32-cms
+    fofa: title="GV32-cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GV32-cms")
+expression: r0()

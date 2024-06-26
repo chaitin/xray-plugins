@@ -1,0 +1,30 @@
+name: fingerprint-yaml-PHP-Photo-Album
+manual: false
+detail:
+    fingerprint:
+        name: PHP-Photo-Album
+    fofa: body="<LINK REL=\"stylesheet\" HREF=\"main.php?cmd=theme&var1=style_css\" TYPE=\"text/css\">" || body="<font size=\"2\">Powered by </font><a class=\"me\" href=\"http://www.phpalbum.net\"><font size=\"2\">PHP Photo Album</font></a>" || body="<!-- <font size=\"2\">Powered by <a class=\"me\"href=\"http://www.phpalbum.net\">PHP Photo Album</font></a> -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<LINK REL="stylesheet" HREF="main.php?cmd=theme&var1=style_css" TYPE="text/css">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font size="2">Powered by </font><a class="me" href="http://www.phpalbum.net"><font size="2">PHP Photo Album</font></a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- <font size="2">Powered by <a class="me"href="http://www.phpalbum.net">PHP Photo Album</font></a> -->')
+expression: r0() || r1() || r2()

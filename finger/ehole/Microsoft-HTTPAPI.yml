@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Microsoft-HTTPAPI
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-HTTPAPI
+    fofa: header="microsoft-httpapi" || title="Microsoft HTTPAPI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("microsoft-httpapi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft HTTPAPI")
+expression: r0() || r1()

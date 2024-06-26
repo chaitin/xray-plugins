@@ -1,0 +1,79 @@
+name: fingerprint-yaml-JIRA
+manual: false
+detail:
+    fingerprint:
+        name: JIRA
+    fofa: 'icon_hash="855273746" || body="jira.webresources" && body="com.atlassian.plugins" || body="jira.webresources" && body="ams-build-number" && body="com.atlassian.plugins" && body="content=\"jira" && body="href=\"/secure/AboutPage.jspa\">About JIRA</a>" && body="<meta name=\"stp-license-product-name\" content=\"JIRA\"/>" || header="atlassian.xsrf.token" || body="jira.webresources" || body="ams-build-number" || body="com.atlassian.plugins" || body="content=\"jira" || header="Location: /secure/SetupMode!default.jspa" || title="system dashboard - "'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 855273746
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jira.webresources") && response.body_string.contains("com.atlassian.plugins")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jira.webresources") && response.body_string.contains("ams-build-number") && response.body_string.contains("com.atlassian.plugins") && response.body_string.contains('content="jira') && response.body_string.contains('href="/secure/AboutPage.jspa">About JIRA</a>') && response.body_string.contains('<meta name="stp-license-product-name" content="JIRA"/>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("atlassian.xsrf.token"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jira.webresources")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ams-build-number")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("com.atlassian.plugins")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="jira')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Location: /secure/SetupMode!default.jspa"))'
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("system dashboard - ")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

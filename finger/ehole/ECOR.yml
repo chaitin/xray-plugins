@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ECOR
+manual: false
+detail:
+    fingerprint:
+        name: ECOR
+    fofa: header="ecor264" || header="ECOR264"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ecor264"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ECOR264"))
+expression: r0() || r1()

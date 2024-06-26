@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Seagate Technology (NAS)
+manual: false
+detail:
+    fingerprint:
+        name: Seagate Technology (NAS)
+    fofa: icon_hash="240136437"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 240136437
+expression: r0()

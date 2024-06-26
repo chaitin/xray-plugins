@@ -1,0 +1,16 @@
+name: fingerprint-yaml-YOUKU-Router
+manual: false
+detail:
+    fingerprint:
+        name: YOUKU-Router
+    fofa: title="优酷土豆路由宝"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("优酷土豆路由宝")
+expression: r0()

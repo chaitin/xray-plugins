@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Aurion
+manual: false
+detail:
+    fingerprint:
+        name: Aurion
+    fofa: body="<!-- aurion teal will be used as the login-time default" || body="<!-- Aurion Teal will be used as the login-time default" || body="/aurion.js" || body="<br/>Please enable JavaScript in your browser or refer to you internal IT support for assistance.<br/><br/></div>" || body="<!-- Aurion Teal will be used as the login-time default. Shell layouts will replace these after login. -->" || body="<!-- teal.css has stuff needed for div#loading-noscript -->" || body="<meta http-equiv=\"X-UA-Compatible\" content=\"chrome=1; IE=8; IE=7\"> <!-- Stop Internet Explorer from using \"Compatability Mode\" -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- aurion teal will be used as the login-time default")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Aurion Teal will be used as the login-time default")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/aurion.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<br/>Please enable JavaScript in your browser or refer to you internal IT support for assistance.<br/><br/></div>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Aurion Teal will be used as the login-time default. Shell layouts will replace these after login. -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- teal.css has stuff needed for div#loading-noscript -->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="X-UA-Compatible" content="chrome=1; IE=8; IE=7"> <!-- Stop Internet Explorer from using "Compatability Mode" -->')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

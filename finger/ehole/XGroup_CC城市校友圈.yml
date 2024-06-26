@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XGroup_CC城市校友圈
+manual: false
+detail:
+    fingerprint:
+        name: XGroup_CC城市校友圈
+    fofa: title="XGroup_CC城市校友圈"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XGroup_CC城市校友圈")
+expression: r0()

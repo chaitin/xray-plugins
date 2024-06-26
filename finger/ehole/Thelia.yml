@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Thelia
+manual: false
+detail:
+    fingerprint:
+        name: Thelia
+    fofa: header="Thelia" || title="Thelia"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Thelia"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Thelia")
+expression: r0() || r1()

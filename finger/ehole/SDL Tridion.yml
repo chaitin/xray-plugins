@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SDL Tridion
+manual: false
+detail:
+    fingerprint:
+        name: SDL Tridion
+    fofa: header="SDL Tridion" || title="SDL Tridion"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SDL Tridion"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SDL Tridion")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftPowerPoint
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftPowerPoint
+    fofa: title="Microsoft PowerPoint"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft PowerPoint")
+expression: r0()

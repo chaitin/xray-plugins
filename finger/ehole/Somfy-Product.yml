@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Somfy-Product
+manual: false
+detail:
+    fingerprint:
+        name: Somfy-Product
+    fofa: title="somfy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("somfy")
+expression: r0()

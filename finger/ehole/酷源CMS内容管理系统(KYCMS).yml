@@ -1,0 +1,37 @@
+name: fingerprint-yaml-酷源CMS内容管理系统(KYCMS)
+manual: false
+detail:
+    fingerprint:
+        name: 酷源CMS内容管理系统(KYCMS)
+    fofa: body="酷源CMS内容管理系统" || body="KYCMS" || title="酷源CMS内容管理系统" || title="KYCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("酷源CMS内容管理系统")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("KYCMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("酷源CMS内容管理系统")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KYCMS")
+expression: r0() || r1() || r2() || r3()

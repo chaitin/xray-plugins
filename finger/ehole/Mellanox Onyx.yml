@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mellanox Onyx
+manual: false
+detail:
+    fingerprint:
+        name: Mellanox Onyx
+    fofa: header="Mellanox Onyx" || title="Mellanox Onyx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mellanox Onyx"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mellanox Onyx")
+expression: r0() || r1()

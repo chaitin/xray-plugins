@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Citrix-ConfProxy
+manual: false
+detail:
+    fingerprint:
+        name: Citrix-ConfProxy
+    fofa: 'header="server: confproxy" || header="confproxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: confproxy"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("confproxy"))
+expression: r0() || r1()

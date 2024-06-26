@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Maipu-VPN3005
+manual: false
+detail:
+    fingerprint:
+        name: Maipu-VPN3005
+    fofa: header="realm=\"mpsec vpn3005c"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="mpsec vpn3005c'))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DLink-Power-Line-Communication
+manual: false
+detail:
+    fingerprint:
+        name: DLink-Power-Line-Communication
+    fofa: header="server" && header="dhp-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("server")) && response.raw_header.bcontains(bytes("dhp-"))
+expression: r0()

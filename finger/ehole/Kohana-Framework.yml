@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Kohana-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Kohana-Framework
+    fofa: header="kohana framework" && header="kohanasession_data" || header="Kohana Framework" || header="kohanasession_data" || header="kohanasession" || header="kohana framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kohana framework")) && response.raw_header.bcontains(bytes("kohanasession_data"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kohana Framework"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kohanasession_data"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kohanasession"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kohana framework"))
+expression: r0() || r1() || r2() || r3() || r4()

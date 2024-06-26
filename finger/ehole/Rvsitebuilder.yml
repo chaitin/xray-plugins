@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Rvsitebuilder
+manual: false
+detail:
+    fingerprint:
+        name: Rvsitebuilder
+    fofa: header="Rvsitebuilder" || title="Rvsitebuilder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Rvsitebuilder"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Rvsitebuilder")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-VPP-EWS
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-VPP-EWS
+    fofa: 'header="server: huawei vpp ews"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: huawei vpp ews"))'
+expression: r0()

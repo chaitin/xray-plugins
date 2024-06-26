@@ -1,0 +1,128 @@
+name: fingerprint-yaml-Yonyou-Seeyon-OA
+manual: false
+detail:
+    fingerprint:
+        name: Yonyou-Seeyon-OA
+    fofa: 'body="/seeyon/user-data/images/login/login.gif" && body="a6-v5企业版" && body="seeyon" && body="seeyonproductid" && body="/seeyon/common/" && body="var _ctxpath = ''/seeyon''" && body="a8-v5企业版" && body="/seeyon/" || header="path=/yyoa" || body="/seeyon/" && body="a8-v5企业版" || body="var _ctxpath = \"/seeyon\"" && body="/seeyon/common/" || body="seeyonproductid" && body="seeyon" && body="a6-v5企业版" || body="/yyoa/" || body="/seeyon/user-data/images/login/login.gif" || body="a6-v5企业版" || body="seeyon" || body="seeyonproductid" || body="var _ctxpath = \"/seeyon\"" || body="a8-v5企业版" || body="/seeyon/" || body="seeyon" && body="seeyonproductid" || body="var _ctxpath = /seeyon\"" || header="server: sy8044" || title="用友致远a"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/seeyon/user-data/images/login/login.gif") && response.body_string.contains("a6-v5企业版") && response.body_string.contains("seeyon") && response.body_string.contains("seeyonproductid") && response.body_string.contains("/seeyon/common/") && response.body_string.contains("var _ctxpath = '/seeyon'") && response.body_string.contains("a8-v5企业版") && response.body_string.contains("/seeyon/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("path=/yyoa"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/seeyon/") && response.body_string.contains("a8-v5企业版")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var _ctxpath = "/seeyon"') && response.body_string.contains("/seeyon/common/")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("seeyonproductid") && response.body_string.contains("seeyon") && response.body_string.contains("a6-v5企业版")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/yyoa/")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/seeyon/user-data/images/login/login.gif")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("a6-v5企业版")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("seeyon")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("seeyonproductid")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var _ctxpath = "/seeyon"')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("a8-v5企业版")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/seeyon/")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("seeyon") && response.body_string.contains("seeyonproductid")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var _ctxpath = /seeyon"')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sy8044"))'
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("用友致远a")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Lightbox
+manual: false
+detail:
+    fingerprint:
+        name: Lightbox
+    fofa: header="Lightbox" || title="Lightbox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Lightbox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Lightbox")
+expression: r0() || r1()

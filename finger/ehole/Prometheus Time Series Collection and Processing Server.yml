@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Prometheus Time Series Collection and Processing Server
+manual: false
+detail:
+    fingerprint:
+        name: Prometheus Time Series Collection and Processing Server
+    fofa: icon_hash="-1399433489"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1399433489
+expression: r0()

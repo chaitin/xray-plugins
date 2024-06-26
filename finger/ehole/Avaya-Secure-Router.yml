@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Avaya-Secure-Router
+manual: false
+detail:
+    fingerprint:
+        name: Avaya-Secure-Router
+    fofa: 'body="<b>about avaya secure router</b>" && body="<span id=\"guiname\">avaya secure router" || header="server: avaya http server" || body="<b>About Avaya Secure Router</b>" || body="<span id=\"guiname\">Avaya Secure Router" || header="Avaya Http Server" || body="<span id=\"guiname\">avaya secure router" || body="<b>about avaya secure router</b>" || body="<td class=\"greytitle\" nowrap><b>About Avaya Secure Router</b></td>" || body="<td class=\"headtext\" nowrap><font class=\"yellowbullet\">&#149;</font> <a href=\"javascript:telnetToBox();\">Telnet</a></td>" || body="<font color=\"white\" style=\"font-size:30px;\"><span id=\"guiname\">Avaya Secure Router</span></font>" || title="avaya secure router"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>about avaya secure router</b>") && response.body_string.contains('<span id="guiname">avaya secure router')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: avaya http server"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>About Avaya Secure Router</b>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="guiname">Avaya Secure Router')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Avaya Http Server"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="guiname">avaya secure router')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>about avaya secure router</b>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="greytitle" nowrap><b>About Avaya Secure Router</b></td>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="headtext" nowrap><font class="yellowbullet">&#149;</font> <a href="javascript:telnetToBox();">Telnet</a></td>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font color="white" style="font-size:30px;"><span id="guiname">Avaya Secure Router</span></font>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("avaya secure router")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

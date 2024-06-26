@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Qianbo
+manual: false
+detail:
+    fingerprint:
+        name: Qianbo
+    fofa: header="Qianbo" || title="Qianbo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Qianbo"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Qianbo")
+expression: r0() || r1()

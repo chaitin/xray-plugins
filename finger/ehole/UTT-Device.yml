@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UTT-Device
+manual: false
+detail:
+    fingerprint:
+        name: UTT-Device
+    fofa: body="class=\"utt-inline-block\" src=\"./images/login_btmlogo.png\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="utt-inline-block" src="./images/login_btmlogo.png"')
+expression: r0()

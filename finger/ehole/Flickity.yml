@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Flickity
+manual: false
+detail:
+    fingerprint:
+        name: Flickity
+    fofa: header="Flickity" || title="Flickity"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Flickity"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Flickity")
+expression: r0() || r1()

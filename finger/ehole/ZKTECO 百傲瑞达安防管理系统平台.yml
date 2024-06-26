@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZKTECO 百傲瑞达安防管理系统平台
+manual: false
+detail:
+    fingerprint:
+        name: ZKTECO 百傲瑞达安防管理系统平台
+    fofa: header="ZKTECO 百傲瑞达安防管理系统平台" || title="ZKTECO 百傲瑞达安防管理系统平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZKTECO 百傲瑞达安防管理系统平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZKTECO 百傲瑞达安防管理系统平台")
+expression: r0() || r1()

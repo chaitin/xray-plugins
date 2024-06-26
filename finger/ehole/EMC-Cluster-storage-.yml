@@ -1,0 +1,37 @@
+name: fingerprint-yaml-EMC-Cluster-storage-
+manual: false
+detail:
+    fingerprint:
+        name: EMC-Cluster-storage-
+    fofa: body="isilon systems llc. all rights reserved" && body="id=\"dialog_title\">isilon administration</div>" || body="id=\"dialog_title\">isilon administration</div>" || body="isilon systems llc. all rights reserved" || title="login - isilon"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("isilon systems llc. all rights reserved") && response.body_string.contains('id="dialog_title">isilon administration</div>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="dialog_title">isilon administration</div>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("isilon systems llc. all rights reserved")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("login - isilon")
+expression: r0() || r1() || r2() || r3()

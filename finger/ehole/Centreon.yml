@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Centreon
+manual: false
+detail:
+    fingerprint:
+        name: Centreon
+    fofa: body="generator\" content=\"centreon - copyright" || body="Generator\" content=\"Centreon - Copyright" || body="<td class=\"LoginInvitLogo\" colspan=\"2\"><img src=\"img/centreon.gif\" alt=\"Centreon Logo\" title=\"Centreon Logo\" style=\"\" /></td>" || title="centreon - it & network monitoring"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="centreon - copyright')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Generator" content="Centreon - Copyright')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="LoginInvitLogo" colspan="2"><img src="img/centreon.gif" alt="Centreon Logo" title="Centreon Logo" style="" /></td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("centreon - it & network monitoring")
+expression: r0() || r1() || r2() || r3()

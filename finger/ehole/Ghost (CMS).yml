@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ghost (CMS)
+manual: false
+detail:
+    fingerprint:
+        name: Ghost (CMS)
+    fofa: icon_hash="-1015932800" || icon_hash="-1231681737"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1015932800
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1231681737
+expression: r0() || r1()

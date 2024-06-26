@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK-VPN
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-VPN
+    fofa: header="vpn" && header="tp-link"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vpn")) && response.raw_header.bcontains(bytes("tp-link"))
+expression: r0()

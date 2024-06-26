@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Movable-Type
+manual: false
+detail:
+    fingerprint:
+        name: Movable-Type
+    fofa: body="movable type version" && body="content=\"movable type" && body="rel=\"generator\">movable type" || header="Movable Type" || body="rel=\"generator\">movable type" || body="content=\"movable type" || body="movable type version" || body="<title>Movable Type System Check [mt-check.cgi]</title>" || title="Movable Type" || title="movabletype"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("movable type version") && response.body_string.contains('content="movable type') && response.body_string.contains('rel="generator">movable type')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Movable Type"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('rel="generator">movable type')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="movable type')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("movable type version")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Movable Type System Check [mt-check.cgi]</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Movable Type")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("movabletype")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

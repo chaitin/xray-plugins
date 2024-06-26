@@ -1,0 +1,23 @@
+name: fingerprint-yaml-xCharts
+manual: false
+detail:
+    fingerprint:
+        name: xCharts
+    fofa: header="xCharts" || title="xCharts"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("xCharts"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xCharts")
+expression: r0() || r1()

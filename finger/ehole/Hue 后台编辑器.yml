@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hue 后台编辑器
+manual: false
+detail:
+    fingerprint:
+        name: Hue 后台编辑器
+    fofa: title="Hue - 欢迎使用 Hue"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hue - 欢迎使用 Hue")
+expression: r0()

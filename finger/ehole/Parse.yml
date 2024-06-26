@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Parse
+manual: false
+detail:
+    fingerprint:
+        name: Parse
+    fofa: icon_hash="246145559"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 246145559
+expression: r0()

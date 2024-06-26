@@ -1,0 +1,23 @@
+name: fingerprint-yaml-贷齐乐p2p
+manual: false
+detail:
+    fingerprint:
+        name: 贷齐乐p2p
+    fofa: body="/js/jPackageCss/jPackage.css" || body="src=\"/js/jPackage"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/jPackageCss/jPackage.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/js/jPackage')
+expression: r0() || r1()

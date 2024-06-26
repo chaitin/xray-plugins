@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Haskell
+manual: false
+detail:
+    fingerprint:
+        name: Haskell
+    fofa: header="Haskell" || title="Haskell"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Haskell"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Haskell")
+expression: r0() || r1()

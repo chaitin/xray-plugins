@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ISC-SCADA-Service
+manual: false
+detail:
+    fingerprint:
+        name: ISC-SCADA-Service
+    fofa: header="ISC SCADA Service"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ISC SCADA Service"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Backdrop
+manual: false
+detail:
+    fingerprint:
+        name: Backdrop
+    fofa: header="Backdrop" || title="Backdrop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Backdrop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Backdrop")
+expression: r0() || r1()

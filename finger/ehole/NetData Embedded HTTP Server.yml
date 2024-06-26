@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NetData Embedded HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: NetData Embedded HTTP Server
+    fofa: header="NetData Embedded HTTP Server" || title="NetData Embedded HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetData Embedded HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NetData Embedded HTTP Server")
+expression: r0() || r1()

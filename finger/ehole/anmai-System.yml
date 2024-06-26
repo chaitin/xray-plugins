@@ -1,0 +1,44 @@
+name: fingerprint-yaml-anmai-System
+manual: false
+detail:
+    fingerprint:
+        name: anmai-System
+    fofa: body=" id=\"lblname\">版权所有：上海安脉计算机科技有限公司" && body="id=\"lblname1\">版权所有：上海安脉计算机科技有限公司" && body="<font color=\"#000000\">上海安脉计算机科技有限公司</font>" || body="<font color=\"#000000\">上海安脉计算机科技有限公司</font>" || body="id=\"lblname1\">版权所有：上海安脉计算机科技有限公司" || body=" id=\"lblname\">版权所有：上海安脉计算机科技有限公司" || body="id=\"lblname\">版权所有：上海安脉计算机科技有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' id="lblname">版权所有：上海安脉计算机科技有限公司') && response.body_string.contains('id="lblname1">版权所有：上海安脉计算机科技有限公司') && response.body_string.contains('<font color="#000000">上海安脉计算机科技有限公司</font>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font color="#000000">上海安脉计算机科技有限公司</font>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="lblname1">版权所有：上海安脉计算机科技有限公司')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' id="lblname">版权所有：上海安脉计算机科技有限公司')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="lblname">版权所有：上海安脉计算机科技有限公司')
+expression: r0() || r1() || r2() || r3() || r4()

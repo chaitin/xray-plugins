@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BoaServer
+manual: false
+detail:
+    fingerprint:
+        name: BoaServer
+    fofa: icon_hash="1169183049"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1169183049
+expression: r0()

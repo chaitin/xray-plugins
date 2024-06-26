@@ -1,0 +1,23 @@
+name: fingerprint-yaml-鹏为E_4 Cloud CRM
+manual: false
+detail:
+    fingerprint:
+        name: 鹏为E/4 Cloud CRM
+    fofa: header="鹏为E/4 Cloud CRM" || title="鹏为E/4 Cloud CRM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("鹏为E/4 Cloud CRM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("鹏为E/4 Cloud CRM")
+expression: r0() || r1()

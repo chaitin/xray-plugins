@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RAISECOM-ISCOM-S5600
+manual: false
+detail:
+    fingerprint:
+        name: RAISECOM-ISCOM-S5600
+    fofa: body="color=\"#000000\">iscom s5600"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#000000">iscom s5600')
+expression: r0()

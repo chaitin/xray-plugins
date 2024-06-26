@@ -1,0 +1,23 @@
+name: fingerprint-yaml-O2Security Succendo SSL VPN
+manual: false
+detail:
+    fingerprint:
+        name: O2Security Succendo SSL VPN
+    fofa: header="O2Security Succendo SSL VPN" || title="O2Security Succendo SSL VPN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("O2Security Succendo SSL VPN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("O2Security Succendo SSL VPN")
+expression: r0() || r1()

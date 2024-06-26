@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-SNC-DH110T
+manual: false
+detail:
+    fingerprint:
+        name: SONY-SNC-DH110T
+    fofa: header="realm=\"sony network camera snc-dh110t"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="sony network camera snc-dh110t'))
+expression: r0()

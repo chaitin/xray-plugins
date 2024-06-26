@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Seminole
+manual: false
+detail:
+    fingerprint:
+        name: Seminole
+    fofa: 'header="Server:Seminole" || header="server: seminole"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:Seminole"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: seminole"))'
+expression: r0() || r1()

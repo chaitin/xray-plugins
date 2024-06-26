@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DK动科cms
+manual: false
+detail:
+    fingerprint:
+        name: DK动科cms
+    fofa: title="DK动科cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DK动科cms")
+expression: r0()

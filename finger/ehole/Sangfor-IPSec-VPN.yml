@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sangfor-IPSec-VPN
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-IPSec-VPN
+    fofa: title="sangfor-ipsec"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sangfor-ipsec")
+expression: r0()

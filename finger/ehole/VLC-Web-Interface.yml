@@ -1,0 +1,58 @@
+name: fingerprint-yaml-VLC-Web-Interface
+manual: false
+detail:
+    fingerprint:
+        name: VLC-Web-Interface
+    fofa: body="<title>VLC media player - Web Interface</title>" || body="<title>VLC media player - Web Interface - Mosaic Wizard</title>" || body="<title>VLC media player - Web Interface with Flash Viewer</title>" || body="<title>VLC media player - Web Interface - VLM</title>" || body="<!-- do we need to browse in order to setup a mosaic ? for the background image maybe ... -->" || body="<input type=\"checkbox\" id=\"vlm_schedule_repeat\" onchange=\"toggle_schedule_repeat();update_vlm_add_schedule();\" />" || body="<input type=\"text\" name=\"sout_mrl\" id=\"sout_mrl\" size=\"60\" onkeypress=\"if( event.keyCode == 13 ) vlm_output_change();\"/>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>VLC media player - Web Interface</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>VLC media player - Web Interface - Mosaic Wizard</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>VLC media player - Web Interface with Flash Viewer</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>VLC media player - Web Interface - VLM</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- do we need to browse in order to setup a mosaic ? for the background image maybe ... -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="checkbox" id="vlm_schedule_repeat" onchange="toggle_schedule_repeat();update_vlm_add_schedule();" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="text" name="sout_mrl" id="sout_mrl" size="60" onkeypress="if( event.keyCode == 13 ) vlm_output_change();"/>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

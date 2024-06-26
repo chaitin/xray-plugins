@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VisualSVN
+manual: false
+detail:
+    fingerprint:
+        name: VisualSVN
+    fofa: header="realm=\"visualsvn server" || title="visualsvn server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="visualsvn server'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("visualsvn server")
+expression: r0() || r1()

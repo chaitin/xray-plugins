@@ -1,0 +1,37 @@
+name: fingerprint-yaml-微窗CMS(Vwins)
+manual: false
+detail:
+    fingerprint:
+        name: 微窗CMS(Vwins)
+    fofa: body="微窗CMS" || body="Vwins" || title="微窗CMS" || title="Vwins"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("微窗CMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Vwins")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("微窗CMS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Vwins")
+expression: r0() || r1() || r2() || r3()

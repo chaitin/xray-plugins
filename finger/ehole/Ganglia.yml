@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Ganglia
+manual: false
+detail:
+    fingerprint:
+        name: Ganglia
+    fofa: 'body="onchange=\"ganglia_form.submit(;" && body="name=\"ganglia_form" || header="gs=unspecified" || body="OnChange=\"ganglia_form.submit();" || body="NAME=\"ganglia_form" || body="name=\"ganglia_form" || body="onchange=\"ganglia_form.submit();" || body="onchange=\"ganglia_form.submit;" || body="<TITLE>Ganglia:: Cluster Report</TITLE>" || body="(Nodes colored by 1-minute load) | <A HREF=\"./node_legend.html\">Legend</A>" || body="<B>Metric</B>&nbsp;&nbsp;<SELECT NAME=\"m\" OnChange=\"ganglia_form.submit();\">" || title="ganglia:: cluster report"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onchange="ganglia_form.submit(;') && response.body_string.contains('name="ganglia_form')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("gs=unspecified"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('OnChange="ganglia_form.submit();')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('NAME="ganglia_form')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="ganglia_form')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onchange="ganglia_form.submit();')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onchange="ganglia_form.submit;')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<TITLE>Ganglia:: Cluster Report</TITLE>")'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('(Nodes colored by 1-minute load) | <A HREF="./node_legend.html">Legend</A>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<B>Metric</B>&nbsp;&nbsp;<SELECT NAME="m" OnChange="ganglia_form.submit();">')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("ganglia:: cluster report")'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

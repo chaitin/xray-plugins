@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Aten-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: Aten-Company's-product
+    fofa: body="<meta name=\"aten international co ltd." && body="action=\"/cgi/login.cgi" && body="name=\"aten international co ltd." && body="document.writeln(lang.lang_login_prompt" || body="document.writeln(lang.lang_login_prompt)" && body="name=\"aten international co ltd." || body="action=\"/cgi/login.cgi" && body="<meta name=\"aten international co ltd." || body="<meta name=\"aten international co ltd." || body="action=\"/cgi/login.cgi" || body="name=\"aten international co ltd." || body="document.writelnlang.lang_login_prompt"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="aten international co ltd.') && response.body_string.contains('action="/cgi/login.cgi') && response.body_string.contains('name="aten international co ltd.') && response.body_string.contains("document.writeln(lang.lang_login_prompt")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.writeln(lang.lang_login_prompt)") && response.body_string.contains('name="aten international co ltd.')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/cgi/login.cgi') && response.body_string.contains('<meta name="aten international co ltd.')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="aten international co ltd.')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/cgi/login.cgi')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="aten international co ltd.')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.writelnlang.lang_login_prompt")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

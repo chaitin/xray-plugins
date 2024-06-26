@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZyXEL ES-2108-G
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL ES-2108-G
+    fofa: header="ZyXEL ES-2108-G" || title="ZyXEL ES-2108-G"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZyXEL ES-2108-G"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZyXEL ES-2108-G")
+expression: r0() || r1()

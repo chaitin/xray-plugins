@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Novell-Open-Enterprise-Server
+manual: false
+detail:
+    fingerprint:
+        name: Novell-Open-Enterprise-Server
+    fofa: body="<!-- this is all just a super-duper redirect to the welcome page" && body="href=\"http://www.novell.com/products/openenterpriseserver" || header="Novell Open Enterprise Server" || body="href=\"http://www.novell.com/products/openenterpriseserver" || body="<!-- this is all just a super-duper redirect to the welcome page" || body="<title>Home - Novell Open Enterprise Server 2</title>" || body="<script type=\"text/javascript\" src=\"/welcome/inc/flashobj.js\"></script> <!-- required for javascript banners from Novell.com -->" || title="Novell Open Enterprise Server" || title="home - novell open enterprise server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- this is all just a super-duper redirect to the welcome page") && response.body_string.contains('href="http://www.novell.com/products/openenterpriseserver')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Novell Open Enterprise Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.novell.com/products/openenterpriseserver')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- this is all just a super-duper redirect to the welcome page")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Home - Novell Open Enterprise Server 2</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="/welcome/inc/flashobj.js"></script> <!-- required for javascript banners from Novell.com -->')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Novell Open Enterprise Server")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("home - novell open enterprise server")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

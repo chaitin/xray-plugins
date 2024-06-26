@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CX
+manual: false
+detail:
+    fingerprint:
+        name: CX
+    fofa: icon_hash="-532394952"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -532394952
+expression: r0()

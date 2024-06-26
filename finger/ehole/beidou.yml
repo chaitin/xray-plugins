@@ -1,0 +1,16 @@
+name: fingerprint-yaml-beidou
+manual: false
+detail:
+    fingerprint:
+        name: beidou
+    fofa: title="beidou"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("beidou")
+expression: r0()

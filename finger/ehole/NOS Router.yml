@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NOS Router
+manual: false
+detail:
+    fingerprint:
+        name: NOS Router
+    fofa: icon_hash="-831826827"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -831826827
+expression: r0()

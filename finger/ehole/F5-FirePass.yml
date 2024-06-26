@@ -1,0 +1,44 @@
+name: fingerprint-yaml-F5-FirePass
+manual: false
+detail:
+    fingerprint:
+        name: F5-FirePass
+    fofa: header="uroamtestcookie" && header="mrhcid" || header="mrhcid" || header="mrhintranetsession" || header="vhost" && header="mrhsession" || header="uroamtestcookie"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("uroamtestcookie")) && response.raw_header.bcontains(bytes("mrhcid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mrhcid"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mrhintranetsession"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vhost")) && response.raw_header.bcontains(bytes("mrhsession"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("uroamtestcookie"))
+expression: r0() || r1() || r2() || r3() || r4()

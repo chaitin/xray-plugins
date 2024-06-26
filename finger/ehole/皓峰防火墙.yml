@@ -1,0 +1,30 @@
+name: fingerprint-yaml-皓峰防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 皓峰防火墙
+    fofa: title="皓峰防火墙系统登录" || header="皓峰防火墙" || title="皓峰防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("皓峰防火墙系统登录")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("皓峰防火墙"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("皓峰防火墙")
+expression: r0() || r1() || r2()

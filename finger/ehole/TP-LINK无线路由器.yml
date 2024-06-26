@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK无线路由器
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK无线路由器
+    fofa: header="TP-LINK Wireless"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK Wireless"))
+expression: r0()

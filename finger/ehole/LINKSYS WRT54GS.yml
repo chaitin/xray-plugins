@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS WRT54GS
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS WRT54GS
+    fofa: header="LINKSYS WRT54GS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS WRT54GS"))
+expression: r0()

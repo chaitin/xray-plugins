@@ -1,0 +1,65 @@
+name: fingerprint-yaml-nopCommerce
+manual: false
+detail:
+    fingerprint:
+        name: nopCommerce
+    fofa: 'header="nopCommerce" || body="<!--Powered by nopCommerce - http://www.nopCommerce.com-->" || body="Powered by <a href=\"http://www.nopcommerce.com/\">nopCommerce</a>" || body="Powered by <a href=\"http://www.nopcommerce.com\" target=\"_blank\">nopCommerce</a>" || body="<input type=\"submit\" name=\"LoginForm$LoginButton\" value=\"Log in\" onclick=\"javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;LoginForm$LoginButton&quot;, &quot;&quot;, true, &quot;LoginForm&quot;, &quot;&quot;, false, false))\" id=\"LoginForm_LoginButton\" class=\"adminButtonBlue\" />" || body="<input id=\"LoginForm_RememberMe\" type=\"checkbox\" name=\"LoginForm$RememberMe\" checked=\"checked\" /><label for=\"LoginForm_RememberMe\">Remember me</label>" || body="var LoginForm_UserNameOrEmailRequired = document.all ? document.all[\"LoginForm_UserNameOrEmailRequired\"] : document.getElementById(\"LoginForm_UserNameOrEmailRequired\");" || title="nopCommerce"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nopCommerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--Powered by nopCommerce - http://www.nopCommerce.com-->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.nopcommerce.com/">nopCommerce</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.nopcommerce.com" target="_blank">nopCommerce</a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="submit" name="LoginForm$LoginButton" value="Log in" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;LoginForm$LoginButton&quot;, &quot;&quot;, true, &quot;LoginForm&quot;, &quot;&quot;, false, false))" id="LoginForm_LoginButton" class="adminButtonBlue" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input id="LoginForm_RememberMe" type="checkbox" name="LoginForm$RememberMe" checked="checked" /><label for="LoginForm_RememberMe">Remember me</label>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''var LoginForm_UserNameOrEmailRequired = document.all ? document.all["LoginForm_UserNameOrEmailRequired"] : document.getElementById("LoginForm_UserNameOrEmailRequired");'')'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nopCommerce")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

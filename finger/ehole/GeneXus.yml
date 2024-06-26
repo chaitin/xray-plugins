@@ -1,0 +1,30 @@
+name: fingerprint-yaml-GeneXus
+manual: false
+detail:
+    fingerprint:
+        name: GeneXus
+    fofa: header="GeneXus" || body="<meta name=\"Generator\" content=\"GeneXus\" />" || title="GeneXus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GeneXus"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Generator" content="GeneXus" />')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GeneXus")
+expression: r0() || r1() || r2()

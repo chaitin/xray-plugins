@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Siemens-SCALANCE-M873
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-SCALANCE-M873
+    fofa: header="realm=\"scalance m873"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="scalance m873'))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ossia (Provision SR) _ Webcam_IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: Ossia (Provision SR) | Webcam/IP Camera
+    fofa: icon_hash="-374235895"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -374235895
+expression: r0()

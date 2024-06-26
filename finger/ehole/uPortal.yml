@@ -1,0 +1,37 @@
+name: fingerprint-yaml-uPortal
+manual: false
+detail:
+    fingerprint:
+        name: uPortal
+    fofa: body="alt=\"powered by uportal" || header="uportal-version uportal_rel" || header="uPortal" || title="uPortal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="powered by uportal')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("uportal-version uportal_rel"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("uPortal"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("uPortal")
+expression: r0() || r1() || r2() || r3()

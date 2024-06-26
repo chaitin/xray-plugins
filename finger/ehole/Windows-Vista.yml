@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Windows-Vista
+manual: false
+detail:
+    fingerprint:
+        name: Windows-Vista
+    fofa: 'header="server: windows vista"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: windows vista"))'
+expression: r0()

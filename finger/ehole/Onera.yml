@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Onera
+manual: false
+detail:
+    fingerprint:
+        name: Onera
+    fofa: icon_hash="1234311970"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1234311970
+expression: r0()

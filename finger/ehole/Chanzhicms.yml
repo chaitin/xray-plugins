@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Chanzhicms
+manual: false
+detail:
+    fingerprint:
+        name: Chanzhicms
+    fofa: 'body="title=''cms系统，首选蝉知cms" && body="chanzhi.js" || header="set-cookie: frontsid" || body="poweredby\"><a href=\"http://www.chanzhi.org" || body="chanzhi.js" || body="title=\"cms系统，首选蝉知cms"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("title='cms系统，首选蝉知cms") && response.body_string.contains("chanzhi.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: frontsid"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('poweredby"><a href="http://www.chanzhi.org')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("chanzhi.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="cms系统，首选蝉知cms')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Yuanian-Accounting-Software
+manual: false
+detail:
+    fingerprint:
+        name: Yuanian-Accounting-Software
+    fofa: body="yuannian.css" && body="/image/logo/yuannian.gif" || body="/image/logo/yuannian.gif" || body="yuannian.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yuannian.css") && response.body_string.contains("/image/logo/yuannian.gif")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/image/logo/yuannian.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yuannian.css")
+expression: r0() || r1() || r2()

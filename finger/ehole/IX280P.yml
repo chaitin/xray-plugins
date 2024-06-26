@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IX280P
+manual: false
+detail:
+    fingerprint:
+        name: IX280P
+    fofa: 'title=".:: welcome to ix280p configuration ::."'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains(".:: welcome to ix280p configuration ::.")'
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Aruba-Mobility-Controller-Config-File
+manual: false
+detail:
+    fingerprint:
+        name: Aruba-Mobility-Controller-Config-File
+    fofa: body="logging level warnings stm" || body="packet-capture-defaults tcp disable udp disable sysmsg disable other disable" || body="ids-policy rate-frame-type-param disassoc node-time-interval"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logging level warnings stm")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("packet-capture-defaults tcp disable udp disable sysmsg disable other disable")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ids-policy rate-frame-type-param disassoc node-time-interval")
+expression: r0() || r1() || r2()

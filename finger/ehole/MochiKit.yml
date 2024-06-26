@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MochiKit
+manual: false
+detail:
+    fingerprint:
+        name: MochiKit
+    fofa: header="MochiKit" || title="MochiKit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MochiKit"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MochiKit")
+expression: r0() || r1()

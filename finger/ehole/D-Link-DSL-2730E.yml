@@ -1,0 +1,16 @@
+name: fingerprint-yaml-D-Link-DSL-2730E
+manual: false
+detail:
+    fingerprint:
+        name: D-Link-DSL-2730E
+    fofa: 'body="product page</span>: dsl-2730e"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("product page</span>: dsl-2730e")'
+expression: r0()

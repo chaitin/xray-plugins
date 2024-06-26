@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZyXEL-OMNI-ADSL
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-OMNI-ADSL
+    fofa: header="realm=\"omni adsl" && header="realm=\"zyxel keenetic omni" || header="realm=\"zyxel keenetic omni" || header="realm=\"omni adsl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="omni adsl')) && response.raw_header.bcontains(bytes('realm="zyxel keenetic omni'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="zyxel keenetic omni'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="omni adsl'))
+expression: r0() || r1() || r2()

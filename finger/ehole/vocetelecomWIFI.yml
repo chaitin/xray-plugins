@@ -1,0 +1,16 @@
+name: fingerprint-yaml-vocetelecomWIFI
+manual: false
+detail:
+    fingerprint:
+        name: vocetelecomWIFI
+    fofa: header="realm=\"vocetelecomwifi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="vocetelecomwifi'))
+expression: r0()

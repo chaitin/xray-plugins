@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SAMSUNG-SCX-2000FW
+manual: false
+detail:
+    fingerprint:
+        name: SAMSUNG-SCX-2000FW
+    fofa: 'header="server: scx-2000fw"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: scx-2000fw"))'
+expression: r0()

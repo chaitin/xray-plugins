@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CISCO-RV340
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-RV340
+    fofa: title="cisco rv340"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cisco rv340")
+expression: r0()

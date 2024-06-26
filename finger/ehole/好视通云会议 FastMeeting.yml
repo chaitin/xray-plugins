@@ -1,0 +1,23 @@
+name: fingerprint-yaml-好视通云会议 FastMeeting
+manual: false
+detail:
+    fingerprint:
+        name: 好视通云会议 FastMeeting
+    fofa: header="好视通云会议 FastMeeting" || title="好视通云会议 FastMeeting"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("好视通云会议 FastMeeting"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("好视通云会议 FastMeeting")
+expression: r0() || r1()

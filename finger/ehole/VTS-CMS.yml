@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VTS-CMS
+manual: false
+detail:
+    fingerprint:
+        name: VTS-CMS
+    fofa: body="errmag"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("errmag")
+expression: r0()

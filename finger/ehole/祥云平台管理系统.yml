@@ -1,0 +1,16 @@
+name: fingerprint-yaml-祥云平台管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 祥云平台管理系统
+    fofa: title="祥云平台管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("祥云平台管理系统")
+expression: r0()

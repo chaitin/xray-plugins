@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mobify
+manual: false
+detail:
+    fingerprint:
+        name: Mobify
+    fofa: header="Mobify" || title="Mobify"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mobify"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mobify")
+expression: r0() || r1()

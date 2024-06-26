@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SonicWALL-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: SonicWALL-Company's-product
+    fofa: 'header="server: sonicwall" || body="document.getelementbyid(\"nsa_banner" && body="web site blocked" || body="this request is blocked by the sonicwall"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sonicwall"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementbyid("nsa_banner') && response.body_string.contains("web site blocked")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("this request is blocked by the sonicwall")
+expression: r0() || r1() || r2()

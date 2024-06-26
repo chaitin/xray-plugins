@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK AC750
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK AC750
+    fofa: header="TP-LINK AC750"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK AC750"))
+expression: r0()

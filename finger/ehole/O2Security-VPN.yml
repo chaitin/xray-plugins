@@ -1,0 +1,16 @@
+name: fingerprint-yaml-O2Security-VPN
+manual: false
+detail:
+    fingerprint:
+        name: O2Security-VPN
+    fofa: header="client_param=install_active"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("client_param=install_active"))
+expression: r0()

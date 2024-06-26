@@ -1,0 +1,23 @@
+name: fingerprint-yaml-vaeThink
+manual: false
+detail:
+    fingerprint:
+        name: vaeThink
+    fofa: header="vaeThink" || title="vaeThink"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vaeThink"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vaeThink")
+expression: r0() || r1()

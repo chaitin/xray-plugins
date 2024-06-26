@@ -1,0 +1,23 @@
+name: fingerprint-yaml-时代网站信息管理系统SDCMS
+manual: false
+detail:
+    fingerprint:
+        name: 时代网站信息管理系统SDCMS
+    fofa: header="时代网站信息管理系统SDCMS" || title="时代网站信息管理系统SDCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("时代网站信息管理系统SDCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("时代网站信息管理系统SDCMS")
+expression: r0() || r1()

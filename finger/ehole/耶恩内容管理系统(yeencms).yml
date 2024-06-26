@@ -1,0 +1,51 @@
+name: fingerprint-yaml-耶恩内容管理系统(yeencms)
+manual: false
+detail:
+    fingerprint:
+        name: 耶恩内容管理系统(yeencms)
+    fofa: body="耶恩内容管理系统" || body="yeencms" || header="耶恩内容管理系统" || header="yeencms" || title="耶恩内容管理系统" || title="yeencms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("耶恩内容管理系统")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yeencms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("耶恩内容管理系统"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("yeencms"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("耶恩内容管理系统")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yeencms")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

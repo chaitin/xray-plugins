@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cotonti
+manual: false
+detail:
+    fingerprint:
+        name: Cotonti
+    fofa: title="Cotonti"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cotonti")
+expression: r0()

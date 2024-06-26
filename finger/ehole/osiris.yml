@@ -1,0 +1,23 @@
+name: fingerprint-yaml-osiris
+manual: false
+detail:
+    fingerprint:
+        name: osiris
+    fofa: header="osiris" || title="osiris"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("osiris"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("osiris")
+expression: r0() || r1()

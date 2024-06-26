@@ -1,0 +1,51 @@
+name: fingerprint-yaml-MySQLMan
+manual: false
+detail:
+    fingerprint:
+        name: MySQLMan
+    fofa: body="href=\"mysql.cgi?do=top_level_op" && body="1\">mysqlman" || header="mysqlman_url=" || body="size=\"1\">mysqlman" || body="href=\"mysql.cgi?do=top_level_op" || body="1\">mysqlman" || body="| <A href=\"mysql.cgi?do=top_level_op&data_source=&action=create_db\">Create</A>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mysql.cgi?do=top_level_op') && response.body_string.contains('1">mysqlman')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mysqlman_url="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('size="1">mysqlman')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mysql.cgi?do=top_level_op')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('1">mysqlman')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('| <A href="mysql.cgi?do=top_level_op&data_source=&action=create_db">Create</A>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

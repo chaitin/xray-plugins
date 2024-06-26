@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cPanel＆WHM
+manual: false
+detail:
+    fingerprint:
+        name: cPanel＆WHM
+    fofa: header="cPanel＆WHM" || title="cPanel＆WHM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cPanel＆WHM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cPanel＆WHM")
+expression: r0() || r1()

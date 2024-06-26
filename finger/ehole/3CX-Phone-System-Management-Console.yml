@@ -1,0 +1,37 @@
+name: fingerprint-yaml-3CX-Phone-System-Management-Console
+manual: false
+detail:
+    fingerprint:
+        name: 3CX-Phone-System-Management-Console
+    fofa: body="src=\"/public/vendor.26422846c5ea381c.js\"" && body="src=\"/public/app.807e10d98cfac19e.js\"" || body="src=\"/public/app.807e10d98cfac19e.js\"" || body="src=\"/public/vendor.26422846c5ea381c.js\"" || title="3cx phone system management console"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/public/vendor.26422846c5ea381c.js"') && response.body_string.contains('src="/public/app.807e10d98cfac19e.js"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/public/app.807e10d98cfac19e.js"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/public/vendor.26422846c5ea381c.js"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("3cx phone system management console")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SkyCaiji
+manual: false
+detail:
+    fingerprint:
+        name: SkyCaiji
+    fofa: header="SkyCaiji" || title="SkyCaiji"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SkyCaiji"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SkyCaiji")
+expression: r0() || r1()

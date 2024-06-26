@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mynetcap
+manual: false
+detail:
+    fingerprint:
+        name: Mynetcap
+    fofa: header="Mynetcap" || title="Mynetcap"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mynetcap"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mynetcap")
+expression: r0() || r1()

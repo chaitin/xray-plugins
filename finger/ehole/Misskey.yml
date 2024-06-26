@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Misskey
+manual: false
+detail:
+    fingerprint:
+        name: Misskey
+    fofa: header="Misskey" || title="Misskey"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Misskey"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Misskey")
+expression: r0() || r1()

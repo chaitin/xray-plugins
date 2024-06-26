@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Apahce-Unomi
+manual: false
+detail:
+    fingerprint:
+        name: Apahce-Unomi
+    fofa: body="logo apache unomi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logo apache unomi")
+expression: r0()

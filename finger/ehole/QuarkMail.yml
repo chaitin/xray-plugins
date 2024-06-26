@@ -1,0 +1,44 @@
+name: fingerprint-yaml-QuarkMail
+manual: false
+detail:
+    fingerprint:
+        name: QuarkMail
+    fofa: body="window.location.replace(\"/cgi-bin/web2cgi/index.cgi\";" && body="scrolling=\"no\" frameborder=" || body="window.location.replace\"/cgi-bin/web2cgi/index.cgi\";" || body="scrolling=\"no\" frameborder=" || body="window.location.replace(\"/cgi-bin/web2cgi/index.cgi\");" || body="<iframe src=\"/cgi-bin/web2cgi/index.cgi\" scrolling=\"no\" frameborder="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("/cgi-bin/web2cgi/index.cgi";') && response.body_string.contains('scrolling="no" frameborder=')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace"/cgi-bin/web2cgi/index.cgi";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('scrolling="no" frameborder=')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("/cgi-bin/web2cgi/index.cgi");')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe src="/cgi-bin/web2cgi/index.cgi" scrolling="no" frameborder=')
+expression: r0() || r1() || r2() || r3() || r4()

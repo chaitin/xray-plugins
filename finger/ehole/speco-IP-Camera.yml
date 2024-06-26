@@ -1,0 +1,16 @@
+name: fingerprint-yaml-speco-IP-Camera
+manual: false
+detail:
+    fingerprint:
+        name: speco-IP-Camera
+    fofa: title="speco ip camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("speco ip camera")
+expression: r0()

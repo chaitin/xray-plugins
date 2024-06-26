@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lucee!
+manual: false
+detail:
+    fingerprint:
+        name: Lucee!
+    fofa: icon_hash="784872924"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 784872924
+expression: r0()

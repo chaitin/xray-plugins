@@ -1,0 +1,23 @@
+name: fingerprint-yaml-eYou Email Defender
+manual: false
+detail:
+    fingerprint:
+        name: eYou Email Defender
+    fofa: header="eYou Email Defender" || title="eYou Email Defender"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eYou Email Defender"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eYou Email Defender")
+expression: r0() || r1()

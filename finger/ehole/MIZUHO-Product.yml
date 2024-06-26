@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MIZUHO-Product
+manual: false
+detail:
+    fingerprint:
+        name: MIZUHO-Product
+    fofa: body="mizuho bank, ltd."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mizuho bank, ltd.")
+expression: r0()

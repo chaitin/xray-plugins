@@ -1,0 +1,16 @@
+name: fingerprint-yaml-APPEX-CPE
+manual: false
+detail:
+    fingerprint:
+        name: APPEX-CPE
+    fofa: title="appex cpe"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("appex cpe")
+expression: r0()

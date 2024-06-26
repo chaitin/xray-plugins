@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Platform_sh
+manual: false
+detail:
+    fingerprint:
+        name: Platform.sh
+    fofa: header="Platform.sh" || title="Platform.sh"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Platform.sh"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Platform.sh")
+expression: r0() || r1()

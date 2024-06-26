@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Colasoft-TSA
+manual: false
+detail:
+    fingerprint:
+        name: Colasoft-TSA
+    fofa: body="data-i18n=\"[html]username\">#username&nbsp;&nbsp;</td>" && body="nfr=\"true\"" || body="nfr=\"true\"" && body="data-i18n=\"[html]username\">#username&nbsp;&nbsp;</td>" || body="data-i18n=\"[html]username\">#username&nbsp;&nbsp;</td>" || title="科来网络全流量安全分析系统 - 服务器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('data-i18n="[html]username">#username&nbsp;&nbsp;</td>') && response.body_string.contains('nfr="true"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('nfr="true"') && response.body_string.contains('data-i18n="[html]username">#username&nbsp;&nbsp;</td>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('data-i18n="[html]username">#username&nbsp;&nbsp;</td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("科来网络全流量安全分析系统 - 服务器")
+expression: r0() || r1() || r2() || r3()

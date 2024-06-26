@@ -1,0 +1,16 @@
+name: fingerprint-yaml-rosewill RNX-N300RT
+manual: false
+detail:
+    fingerprint:
+        name: rosewill RNX-N300RT
+    fofa: header="RNX-N300RT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RNX-N300RT"))
+expression: r0()

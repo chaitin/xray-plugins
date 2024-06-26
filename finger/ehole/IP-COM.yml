@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IP-COM
+manual: false
+detail:
+    fingerprint:
+        name: IP-COM
+    fofa: title="ip-com | login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ip-com | login")
+expression: r0()

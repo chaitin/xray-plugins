@@ -1,0 +1,30 @@
+name: fingerprint-yaml-dahua-DH-NVR2108HS
+manual: false
+detail:
+    fingerprint:
+        name: dahua-DH-NVR2108HS
+    fofa: header="id=dhi-nvr2108hs" && header="id=dh-nvr2108hs" || header="id=dh-nvr2108hs" || header="id=dhi-nvr2108hs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("id=dhi-nvr2108hs")) && response.raw_header.bcontains(bytes("id=dh-nvr2108hs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("id=dh-nvr2108hs"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("id=dhi-nvr2108hs"))
+expression: r0() || r1() || r2()

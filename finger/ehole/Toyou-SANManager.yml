@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Toyou-SANManager
+manual: false
+detail:
+    fingerprint:
+        name: Toyou-SANManager
+    fofa: title="toyou sanmanager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("toyou sanmanager")
+expression: r0()

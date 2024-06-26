@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SierraMonitor-FS-QS-1210
+manual: false
+detail:
+    fingerprint:
+        name: SierraMonitor-FS-QS-1210
+    fofa: header="realm=\"fs-qs-1210"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="fs-qs-1210'))
+expression: r0()

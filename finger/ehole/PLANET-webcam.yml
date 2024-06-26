@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PLANET-webcam
+manual: false
+detail:
+    fingerprint:
+        name: PLANET-webcam
+    fofa: title="planet ip surveillance"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("planet ip surveillance")
+expression: r0()

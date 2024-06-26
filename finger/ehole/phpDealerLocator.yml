@@ -1,0 +1,51 @@
+name: fingerprint-yaml-phpDealerLocator
+manual: false
+detail:
+    fingerprint:
+        name: phpDealerLocator
+    fofa: 'body="class=\"pythonselect" && body="for=\"dealer_radiuss_dealer_zip" || body="for=\"dealer_radiuss_dealer_zip" || body="class=\"pythonselect" || body="<select class=\"PythonSelect\" name=\"s_Dealer_Radius\">" || body="</td></tr></table><b>Database error:</b> Invalid SQL: SELECT Cat_Text FROM ( dealer_category_matrix RIGHT JOIN dealers ON dealers.Dealer_ID = dealer_category_matrix.DCM_Dealer_ID ) RIGHT JOIN category ON dealer_category_matrix.DCM_Cat_ID = category.Cat_ID WHERE Dealer_ID =  AND (Dealer_Publish = \"Y\") AND (Dealer_Approved = \"Y\")<br>" || body="<td><label for=\"Dealer_Radiuss_Dealer_Zip\">Zipcode/Postal Code</label></td>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="pythonselect') && response.body_string.contains('for="dealer_radiuss_dealer_zip')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('for="dealer_radiuss_dealer_zip')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="pythonselect')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select class="PythonSelect" name="s_Dealer_Radius">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''</td></tr></table><b>Database error:</b> Invalid SQL: SELECT Cat_Text FROM ( dealer_category_matrix RIGHT JOIN dealers ON dealers.Dealer_ID = dealer_category_matrix.DCM_Dealer_ID ) RIGHT JOIN category ON dealer_category_matrix.DCM_Cat_ID = category.Cat_ID WHERE Dealer_ID =  AND (Dealer_Publish = "Y") AND (Dealer_Approved = "Y")<br>'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><label for="Dealer_Radiuss_Dealer_Zip">Zipcode/Postal Code</label></td>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

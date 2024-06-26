@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Shenzhen coship electronics co_
+manual: false
+detail:
+    fingerprint:
+        name: Shenzhen coship electronics co.
+    fofa: icon_hash="224536051"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 224536051
+expression: r0()

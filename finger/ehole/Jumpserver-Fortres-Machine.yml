@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Jumpserver-Fortres-Machine
+manual: false
+detail:
+    fingerprint:
+        name: Jumpserver-Fortres-Machine
+    fofa: body="<input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"密码\" required=\"\">" && body="csrfmiddlewaretoken" && body="<a href=\"/users/password/forgot/\">" || body="<input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"密码\" required=\"\">" && body="csrfmiddlewaretoken" || title="jumpserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="password" class="form-control" name="password" placeholder="密码" required="">') && response.body_string.contains("csrfmiddlewaretoken") && response.body_string.contains('<a href="/users/password/forgot/">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="password" class="form-control" name="password" placeholder="密码" required="">') && response.body_string.contains("csrfmiddlewaretoken")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jumpserver")
+expression: r0() || r1() || r2()

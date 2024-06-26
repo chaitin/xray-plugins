@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Net112blog_博客系统
+manual: false
+detail:
+    fingerprint:
+        name: Net112blog_博客系统
+    fofa: title="Net112blog_博客系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Net112blog_博客系统")
+expression: r0()

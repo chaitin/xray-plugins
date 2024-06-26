@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TOTO_LINK-WIRELESS-ROUTER
+manual: false
+detail:
+    fingerprint:
+        name: TOTO_LINK-WIRELESS-ROUTER
+    fofa: title="totolink corp. | wireless router" || title="totolink"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totolink corp. | wireless router")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totolink")
+expression: r0() || r1()

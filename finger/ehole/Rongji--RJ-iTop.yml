@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Rongji--RJ-iTop
+manual: false
+detail:
+    fingerprint:
+        name: Rongji--RJ-iTop
+    fofa: 'header="server: rj-itop" || title="安拓.榕基网络隐患扫描系统"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rj-itop"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安拓.榕基网络隐患扫描系统")
+expression: r0() || r1()

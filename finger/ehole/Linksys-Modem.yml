@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys-Modem
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-Modem
+    fofa: body="content=\"belkin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="belkin')
+expression: r0()

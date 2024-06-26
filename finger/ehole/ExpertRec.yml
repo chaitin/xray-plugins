@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ExpertRec
+manual: false
+detail:
+    fingerprint:
+        name: ExpertRec
+    fofa: header="ExpertRec" || title="ExpertRec"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ExpertRec"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ExpertRec")
+expression: r0() || r1()

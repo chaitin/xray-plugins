@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Panasonic webcam
+manual: false
+detail:
+    fingerprint:
+        name: Panasonic webcam
+    fofa: header="Panasonic webcam" || title="Panasonic webcam"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Panasonic webcam"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Panasonic webcam")
+expression: r0() || r1()

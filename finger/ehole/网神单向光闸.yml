@@ -1,0 +1,23 @@
+name: fingerprint-yaml-网神单向光闸
+manual: false
+detail:
+    fingerprint:
+        name: 网神单向光闸
+    fofa: header="网神单向光闸" || title="网神单向光闸"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("网神单向光闸"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网神单向光闸")
+expression: r0() || r1()

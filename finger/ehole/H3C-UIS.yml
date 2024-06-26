@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C-UIS
+manual: false
+detail:
+    fingerprint:
+        name: H3C-UIS
+    fofa: body="uisalert" || title="h3c uis 统一管理矩阵"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("uisalert")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("h3c uis 统一管理矩阵")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lwIP
+manual: false
+detail:
+    fingerprint:
+        name: lwIP
+    fofa: 'header="server: /projects/lwip" && header="server: lwip"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: /projects/lwip")) && response.raw_header.bcontains(bytes("server: lwip"))'
+expression: r0()

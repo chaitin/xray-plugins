@@ -1,0 +1,16 @@
+name: fingerprint-yaml-linksys-linux
+manual: false
+detail:
+    fingerprint:
+        name: linksys-linux
+    fofa: header="linksys-linux"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys-linux"))
+expression: r0()

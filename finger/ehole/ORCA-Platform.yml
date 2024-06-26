@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ORCA-Platform
+manual: false
+detail:
+    fingerprint:
+        name: ORCA-Platform
+    fofa: body="<meta name=\"author\" content=\"ORCA Websites\"/>" || body="<meta name=\"generator\" content=\"ORCA Platform - http://www.orcawebsites.com\"/>" || body="<a href=\"http://www.orcawebsites.com/\" title=\"Powered By ORCA Websites\">Powered By ORCA Websites</a>" || body="<p class=\"orca\">Powered By <a href=\"http://www.orcawebsites.com/\" title=\"ORCA Websites\">ORCA Websites</a></p>" || body="<!-- Macro Initialisation - Don\"t Touch! -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="ORCA Websites"/>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="ORCA Platform - http://www.orcawebsites.com"/>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.orcawebsites.com/" title="Powered By ORCA Websites">Powered By ORCA Websites</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="orca">Powered By <a href="http://www.orcawebsites.com/" title="ORCA Websites">ORCA Websites</a></p>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- Macro Initialisation - Don"t Touch! -->')
+expression: r0() || r1() || r2() || r3() || r4()

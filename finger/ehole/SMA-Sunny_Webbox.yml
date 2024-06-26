@@ -1,0 +1,65 @@
+name: fingerprint-yaml-SMA-Sunny_Webbox
+manual: false
+detail:
+    fingerprint:
+        name: SMA-Sunny_Webbox
+    fofa: 'body="<meta http-equiv=\"refresh\" content=\"0; url=/culture/index.dml\">" || header="Server:WebBox-20" || header="SMA Sunny Webbox" || header="server: sunny webbox" || header="server: webbox-20" || title="SMA Sunny Webbox" || title="sunny webbox" || title="sma sunny webbox"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0; url=/culture/index.dml">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:WebBox-20"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SMA Sunny Webbox"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sunny webbox"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: webbox-20"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SMA Sunny Webbox")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sunny webbox")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sma sunny webbox")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

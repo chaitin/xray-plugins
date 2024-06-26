@@ -1,0 +1,58 @@
+name: fingerprint-yaml-D-Link-DIR-615
+manual: false
+detail:
+    fingerprint:
+        name: D-Link-DIR-615
+    fofa: body="content=\"d-link device" && body="content=\"dir-615" && body="<a href='http://support.dlink.com.tw'  target=_blank><font class=l_tb>dir-615" && body="var modemver=\"dir-615\"" && body="<div class=\"modelname\">dir-615" || header="realm=\"d-link dir-615" || body="<div class=\"modelname\">dir-615" || body="var modemver=\"dir-615\"" || body="<a href=\"http://support.dlink.com.tw\"  target=_blank><font class=l_tb>dir-615" || body="content=\"d-link device" || body="content=\"dir-615"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="d-link device') && response.body_string.contains('content="dir-615') && response.body_string.contains("<a href='http://support.dlink.com.tw'  target=_blank><font class=l_tb>dir-615") && response.body_string.contains('var modemver="dir-615"') && response.body_string.contains('<div class="modelname">dir-615')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="d-link dir-615'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="modelname">dir-615')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var modemver="dir-615"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://support.dlink.com.tw"  target=_blank><font class=l_tb>dir-615')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="d-link device')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="dir-615')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

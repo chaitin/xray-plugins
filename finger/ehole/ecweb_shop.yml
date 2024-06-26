@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ecweb_shop
+manual: false
+detail:
+    fingerprint:
+        name: ecweb_shop
+    fofa: title="ecweb_shop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ecweb_shop")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LINKSYS RV082
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS RV082
+    fofa: header="LINKSYS RV082" || header="Linksys-RV082"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS RV082"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys-RV082"))
+expression: r0() || r1()

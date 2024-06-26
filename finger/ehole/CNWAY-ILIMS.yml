@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CNWAY-ILIMS
+manual: false
+detail:
+    fingerprint:
+        name: CNWAY-ILIMS
+    fofa: body="src=\"/extjs/adapter/ext/ext-base-js" && body="/js/allpagefunction.js" || body="/js/allpagefunction.js" && body="src=\"/extjs/adapter/ext/ext-base-js" || body="src=\"/extjs/adapter/ext/ext-base-js" || body="/js/allpagefunction.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/extjs/adapter/ext/ext-base-js') && response.body_string.contains("/js/allpagefunction.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/allpagefunction.js") && response.body_string.contains('src="/extjs/adapter/ext/ext-base-js')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/extjs/adapter/ext/ext-base-js')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/allpagefunction.js")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GitLab CI
+manual: false
+detail:
+    fingerprint:
+        name: GitLab CI
+    fofa: header="GitLab CI" || title="GitLab CI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GitLab CI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GitLab CI")
+expression: r0() || r1()

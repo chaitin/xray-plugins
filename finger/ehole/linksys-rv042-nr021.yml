@@ -1,0 +1,16 @@
+name: fingerprint-yaml-linksys-rv042-nr021
+manual: false
+detail:
+    fingerprint:
+        name: linksys-rv042-nr021
+    fofa: header="linksys-rv042-nr021"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys-rv042-nr021"))
+expression: r0()

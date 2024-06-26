@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Rickshaw
+manual: false
+detail:
+    fingerprint:
+        name: Rickshaw
+    fofa: header="Rickshaw" || title="Rickshaw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Rickshaw"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Rickshaw")
+expression: r0() || r1()

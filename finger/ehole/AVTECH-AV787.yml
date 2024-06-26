@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AVTECH-AV787
+manual: false
+detail:
+    fingerprint:
+        name: AVTECH-AV787
+    fofa: 'header="server: av-tech av787"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: av-tech av787"))'
+expression: r0()

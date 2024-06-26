@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OTENET OnDSL Live Camera
+manual: false
+detail:
+    fingerprint:
+        name: OTENET OnDSL Live Camera
+    fofa: header="OTENET OnDSL Live Camera" || title="OTENET OnDSL Live Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OTENET OnDSL Live Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OTENET OnDSL Live Camera")
+expression: r0() || r1()

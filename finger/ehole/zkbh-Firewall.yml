@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zkbh-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: zkbh-Firewall
+    fofa: title="博华网龙防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("博华网龙防火墙")
+expression: r0()

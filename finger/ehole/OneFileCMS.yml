@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OneFileCMS
+manual: false
+detail:
+    fingerprint:
+        name: OneFileCMS
+    fofa: body="<p>This site powered by <a href=\"http://onefilecms.com/\">OneFileCMS</a>. [<a href=\"onefilecms.php?f=index.php\">Admin</a>]</p>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>This site powered by <a href="http://onefilecms.com/">OneFileCMS</a>. [<a href="onefilecms.php?f=index.php">Admin</a>]</p>')
+expression: r0()

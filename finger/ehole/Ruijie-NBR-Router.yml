@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Ruijie-NBR-Router
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-NBR-Router
+    fofa: body="ruijie - nbr" && body="support.ruijie.com.cn" && body="<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器" && body="class=\"line resource\" id=\"nbr_1\"" || body="class=\"line resource\" id=\"nbr_1\"" || body="<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器" && body="support.ruijie.com.cn" || body="ruijie - nbr" || body="support.ruijie.com.cn" || body="<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ruijie - nbr") && response.body_string.contains("support.ruijie.com.cn") && response.body_string.contains("<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器") && response.body_string.contains('class="line resource" id="nbr_1"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="line resource" id="nbr_1"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器") && response.body_string.contains("support.ruijie.com.cn")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ruijie - nbr")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("support.ruijie.com.cn")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<p>系统负荷过高，导致网络拥塞，建议降低系统负荷或重启路由器")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

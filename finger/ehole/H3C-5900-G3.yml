@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C-5900-G3
+manual: false
+detail:
+    fingerprint:
+        name: H3C-5900-G3
+    fofa: body="5900-g3" || header="5900-g3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("5900-g3")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("5900-g3"))
+expression: r0() || r1()

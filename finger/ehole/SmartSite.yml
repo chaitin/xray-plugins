@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SmartSite
+manual: false
+detail:
+    fingerprint:
+        name: SmartSite
+    fofa: header="SmartSite" || title="SmartSite"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SmartSite"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SmartSite")
+expression: r0() || r1()

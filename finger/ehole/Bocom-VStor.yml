@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Bocom-VStor
+manual: false
+detail:
+    fingerprint:
+        name: Bocom-VStor
+    fofa: body="bocom_titile_font" && body="src=\"images/bocom.png" && body=".bocom_titile_font{" || body=".bocom_titile_font{" || body="src=\"images/bocom.png" || body="bocom_titile_font"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bocom_titile_font") && response.body_string.contains('src="images/bocom.png') && response.body_string.contains(".bocom_titile_font{")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(".bocom_titile_font{")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/bocom.png')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bocom_titile_font")
+expression: r0() || r1() || r2() || r3()

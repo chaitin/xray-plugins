@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RealTek-Network-adapter
+manual: false
+detail:
+    fingerprint:
+        name: RealTek-Network-adapter
+    fofa: header="realm=\"realtek.com.tw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="realtek.com.tw'))
+expression: r0()

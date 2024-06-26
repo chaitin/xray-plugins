@@ -1,0 +1,23 @@
+name: fingerprint-yaml-百卓 Smart
+manual: false
+detail:
+    fingerprint:
+        name: 百卓 Smart
+    fofa: header="百卓 Smart" || title="百卓 Smart"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("百卓 Smart"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("百卓 Smart")
+expression: r0() || r1()

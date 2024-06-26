@@ -1,0 +1,23 @@
+name: fingerprint-yaml-mozart-framework
+manual: false
+detail:
+    fingerprint:
+        name: mozart-framework
+    fofa: header="mozart framework" || header="Mozart Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mozart framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mozart Framework"))
+expression: r0() || r1()

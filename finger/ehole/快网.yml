@@ -1,0 +1,16 @@
+name: fingerprint-yaml-快网
+manual: false
+detail:
+    fingerprint:
+        name: 快网
+    fofa: header="Fw-Via:"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fw-Via:"))
+expression: r0()

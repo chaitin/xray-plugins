@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Windows-Server-2016
+manual: false
+detail:
+    fingerprint:
+        name: Windows-Server-2016
+    fofa: 'header="server: windows server 2016"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: windows server 2016"))'
+expression: r0()

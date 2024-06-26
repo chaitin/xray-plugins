@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear WGR614L
+manual: false
+detail:
+    fingerprint:
+        name: Netgear WGR614L
+    fofa: header="Netgear WGR614L"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netgear WGR614L"))
+expression: r0()

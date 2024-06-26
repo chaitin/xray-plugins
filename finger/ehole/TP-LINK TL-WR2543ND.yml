@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK TL-WR2543ND
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK TL-WR2543ND
+    fofa: header="TP-LINK TL-WR2543ND"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TL-WR2543ND"))
+expression: r0()

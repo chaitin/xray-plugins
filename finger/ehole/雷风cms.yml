@@ -1,0 +1,23 @@
+name: fingerprint-yaml-雷风cms
+manual: false
+detail:
+    fingerprint:
+        name: 雷风cms
+    fofa: header="雷风cms" || title="雷风cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("雷风cms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("雷风cms")
+expression: r0() || r1()

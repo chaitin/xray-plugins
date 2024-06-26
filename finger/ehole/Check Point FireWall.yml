@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Check Point FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Check Point FireWall
+    fofa: 'header="Check Point FireWall" || header="server: checkpoint firewall" || title="Check Point FireWall"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Check Point FireWall"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: checkpoint firewall"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Check Point FireWall")
+expression: r0() || r1() || r2()

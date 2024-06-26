@@ -1,0 +1,58 @@
+name: fingerprint-yaml-kingosoft
+manual: false
+detail:
+    fingerprint:
+        name: kingosoft
+    fofa: body="setkingoencypt.jsp" && body="/jkingo.js" || body="青果" && body="kingosoft" || body="/jkingo.js" || body="setkingoencypt.jsp" || body="/jkingo.js" && body="kingosoft" || body="青果" || title="kingosoft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("setkingoencypt.jsp") && response.body_string.contains("/jkingo.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("青果") && response.body_string.contains("kingosoft")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/jkingo.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("setkingoencypt.jsp")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/jkingo.js") && response.body_string.contains("kingosoft")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("青果")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kingosoft")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

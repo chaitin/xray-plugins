@@ -1,0 +1,37 @@
+name: fingerprint-yaml-AirLive-Firmware&Driver
+manual: false
+detail:
+    fingerprint:
+        name: AirLive-Firmware&Driver
+    fofa: header="airlive airmax5" && header="airlive airmax2" || header="airlive airmax2" || header="realm=\"airlive wha-" || header="airlive airmax5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("airlive airmax5")) && response.raw_header.bcontains(bytes("airlive airmax2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("airlive airmax2"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive wha-'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("airlive airmax5"))
+expression: r0() || r1() || r2() || r3()

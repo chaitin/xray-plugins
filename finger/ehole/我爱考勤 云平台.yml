@@ -1,0 +1,30 @@
+name: fingerprint-yaml-我爱考勤 云平台
+manual: false
+detail:
+    fingerprint:
+        name: 我爱考勤 云平台
+    fofa: header="我爱考勤 云平台" || title="我爱考勤 云平台" || title="我爱考勤云平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("我爱考勤 云平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("我爱考勤 云平台")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("我爱考勤云平台")
+expression: r0() || r1() || r2()

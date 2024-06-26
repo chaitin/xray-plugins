@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SentinelProtectionServer
+manual: false
+detail:
+    fingerprint:
+        name: SentinelProtectionServer
+    fofa: title="Sentinel Protection Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sentinel Protection Server")
+expression: r0()

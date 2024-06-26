@@ -1,0 +1,58 @@
+name: fingerprint-yaml-TMSoft-MyAuth-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: TMSoft-MyAuth-Gateway
+    fofa: header="tmsoft solucoes (www.tmsoft.com.br" && header="set-cookie myauth" || header="set-cookie myauth" || header="x-manager-by myauth gateway" || header="x-software-owner patrick brandao" || header="x-software-info myauth gateway" || header="tmsoft solucoes (www.tmsoft.com.br)" || header="tmsoft solucoes www.tmsoft.com.br"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tmsoft solucoes (www.tmsoft.com.br")) && response.raw_header.bcontains(bytes("set-cookie myauth"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("set-cookie myauth"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-manager-by myauth gateway"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-software-owner patrick brandao"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-software-info myauth gateway"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tmsoft solucoes (www.tmsoft.com.br)"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tmsoft solucoes www.tmsoft.com.br"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

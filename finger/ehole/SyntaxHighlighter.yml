@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SyntaxHighlighter
+manual: false
+detail:
+    fingerprint:
+        name: SyntaxHighlighter
+    fofa: header="SyntaxHighlighter" || title="SyntaxHighlighter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SyntaxHighlighter"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SyntaxHighlighter")
+expression: r0() || r1()

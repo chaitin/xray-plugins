@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CSmail
+manual: false
+detail:
+    fingerprint:
+        name: CSmail
+    fofa: body="<frame src=\"/mainframe_zh-cn.html\" />" || header="CSmail" || title="CSmail" || title="csmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="/mainframe_zh-cn.html" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CSmail"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CSmail")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("csmail")
+expression: r0() || r1() || r2() || r3()

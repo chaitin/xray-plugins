@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Roundcube Webmail
+manual: false
+detail:
+    fingerprint:
+        name: Roundcube Webmail
+    fofa: icon_hash="-976235259" || icon_hash="-2140379067"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -976235259
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2140379067
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-CirCarLife Scada
+manual: false
+detail:
+    fingerprint:
+        name: CirCarLife Scada
+    fofa: 'header="CirCarLife Scada" || header="server: circarlife scada" || title="CirCarLife Scada"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CirCarLife Scada"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: circarlife scada"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CirCarLife Scada")
+expression: r0() || r1() || r2()

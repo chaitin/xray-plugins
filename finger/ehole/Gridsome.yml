@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gridsome
+manual: false
+detail:
+    fingerprint:
+        name: Gridsome
+    fofa: header="Gridsome" || title="Gridsome"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Gridsome"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Gridsome")
+expression: r0() || r1()

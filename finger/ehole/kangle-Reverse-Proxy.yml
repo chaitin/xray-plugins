@@ -1,0 +1,23 @@
+name: fingerprint-yaml-kangle-Reverse-Proxy
+manual: false
+detail:
+    fingerprint:
+        name: kangle-Reverse-Proxy
+    fofa: header="kangle" || title="welcome use kangle"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kangle"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome use kangle")
+expression: r0() || r1()

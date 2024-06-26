@@ -1,0 +1,23 @@
+name: fingerprint-yaml-M_R_ Inc BoxyOS
+manual: false
+detail:
+    fingerprint:
+        name: M.R. Inc BoxyOS
+    fofa: header="M.R. Inc BoxyOS" || title="M.R. Inc BoxyOS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("M.R. Inc BoxyOS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("M.R. Inc BoxyOS")
+expression: r0() || r1()

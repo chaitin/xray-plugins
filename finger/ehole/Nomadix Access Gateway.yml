@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Nomadix Access Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Nomadix Access Gateway
+    fofa: icon_hash="2071993228"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2071993228
+expression: r0()

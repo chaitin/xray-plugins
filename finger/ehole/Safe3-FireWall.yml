@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Safe3-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Safe3-FireWall
+    fofa: title="Safe3-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Safe3-FireWall")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Integratedoperationplatform
+manual: false
+detail:
+    fingerprint:
+        name: Integratedoperationplatform
+    fofa: title="天宫一体化运营平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天宫一体化运营平台")
+expression: r0()

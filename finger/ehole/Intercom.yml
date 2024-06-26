@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Intercom
+manual: false
+detail:
+    fingerprint:
+        name: Intercom
+    fofa: header="Intercom" || title="Intercom"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Intercom"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Intercom")
+expression: r0() || r1()

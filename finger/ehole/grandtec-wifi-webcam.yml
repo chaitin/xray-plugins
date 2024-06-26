@@ -1,0 +1,16 @@
+name: fingerprint-yaml-grandtec-wifi-webcam
+manual: false
+detail:
+    fingerprint:
+        name: grandtec-wifi-webcam
+    fofa: header="basic realm=\"welcome to ipcam !\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="welcome to ipcam !"'))
+expression: r0()

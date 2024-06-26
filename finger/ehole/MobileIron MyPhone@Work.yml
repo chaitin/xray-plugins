@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MobileIron MyPhone@Work
+manual: false
+detail:
+    fingerprint:
+        name: MobileIron MyPhone@Work
+    fofa: header="MobileIron MyPhone@Work" || title="MobileIron MyPhone@Work"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MobileIron MyPhone@Work"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MobileIron MyPhone@Work")
+expression: r0() || r1()

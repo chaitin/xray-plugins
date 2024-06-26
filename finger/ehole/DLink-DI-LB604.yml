@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DLink-DI-LB604
+manual: false
+detail:
+    fingerprint:
+        name: DLink-DI-LB604
+    fofa: header="di-lb604"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("di-lb604"))
+expression: r0()

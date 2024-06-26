@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETIASPOT (Network)
+manual: false
+detail:
+    fingerprint:
+        name: NETIASPOT (Network)
+    fofa: icon_hash="-978656757"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -978656757
+expression: r0()

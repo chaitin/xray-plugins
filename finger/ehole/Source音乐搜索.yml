@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Source音乐搜索
+manual: false
+detail:
+    fingerprint:
+        name: Source音乐搜索
+    fofa: title="Source音乐搜索"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Source音乐搜索")
+expression: r0()

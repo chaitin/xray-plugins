@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Easycrm_2012
+manual: false
+detail:
+    fingerprint:
+        name: Easycrm_2012
+    fofa: title="Easycrm_2012"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Easycrm_2012")
+expression: r0()

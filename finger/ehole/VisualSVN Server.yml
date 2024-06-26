@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VisualSVN Server
+manual: false
+detail:
+    fingerprint:
+        name: VisualSVN Server
+    fofa: icon_hash="706602230"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 706602230
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-sztaiji_zw
+manual: false
+detail:
+    fingerprint:
+        name: sztaiji_zw
+    fofa: title="sztaiji_zw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sztaiji_zw")
+expression: r0()

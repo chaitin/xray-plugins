@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FireMon
+manual: false
+detail:
+    fingerprint:
+        name: FireMon
+    fofa: title="firemon"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("firemon")
+expression: r0()

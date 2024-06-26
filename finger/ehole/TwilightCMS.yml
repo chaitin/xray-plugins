@@ -1,0 +1,30 @@
+name: fingerprint-yaml-TwilightCMS
+manual: false
+detail:
+    fingerprint:
+        name: TwilightCMS
+    fofa: header="X-Powered-Cms:Twilight CMS" || header="Twilight CMS" || title="Twilight CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-Cms:Twilight CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Twilight CMS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Twilight CMS")
+expression: r0() || r1() || r2()

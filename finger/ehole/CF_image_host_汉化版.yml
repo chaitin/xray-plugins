@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CF_image_host_汉化版
+manual: false
+detail:
+    fingerprint:
+        name: CF_image_host_汉化版
+    fofa: title="CF_image_host_汉化版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CF_image_host_汉化版")
+expression: r0()

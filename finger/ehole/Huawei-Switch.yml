@@ -1,0 +1,100 @@
+name: fingerprint-yaml-Huawei-Switch
+manual: false
+detail:
+    fingerprint:
+        name: Huawei-Switch
+    fofa: 'header="server: lanswitch" && header="/view/login.html" || header="Huawei switch" || body="/simple/view/main/modifypwd.html" || body=" body, p, a, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, img" || body="copyright.manufacturer !== \"huawei\"" || body="<div id=\"zhtip\" style=\"display:none\">web网管系统初始化中，请稍后</div>" || body="var msg = http.packagemsg(" && body="window.location.href=\"main.html?sid=" && body="entphysicalsoftwarerev" || body="huawei technologies co., ltd" && body="background: url(\"../style/default/image/diaphapic.png\");" || header="server: quidway" && header="/view/login.html" || header="/simple/view/login.html?redirect=" || header="server: lanswitch" || header="/view/login.html" || title="Huawei switch"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lanswitch")) && response.raw_header.bcontains(bytes("/view/login.html"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Huawei switch"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/simple/view/main/modifypwd.html")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(" body, p, a, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, img")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('copyright.manufacturer !== "huawei"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="zhtip" style="display:none">web网管系统初始化中，请稍后</div>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var msg = http.packagemsg(") && response.body_string.contains('window.location.href="main.html?sid=') && response.body_string.contains("entphysicalsoftwarerev")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("huawei technologies co., ltd") && response.body_string.contains(''background: url("../style/default/image/diaphapic.png");'')'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: quidway")) && response.raw_header.bcontains(bytes("/view/login.html"))'
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/simple/view/login.html?redirect="))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lanswitch"))'
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/view/login.html"))
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Huawei switch")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

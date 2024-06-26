@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SmartLAN_G
+manual: false
+detail:
+    fingerprint:
+        name: SmartLAN/G
+    fofa: icon_hash="-644617577"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -644617577
+expression: r0()

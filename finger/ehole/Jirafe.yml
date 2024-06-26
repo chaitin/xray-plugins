@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Jirafe
+manual: false
+detail:
+    fingerprint:
+        name: Jirafe
+    fofa: body="jira.webresources" || body="ams-build-number" || body="com.atlassian.plugins" || header="atlassian.xsrf.token"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jira.webresources")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ams-build-number")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("com.atlassian.plugins")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("atlassian.xsrf.token"))
+expression: r0() || r1() || r2() || r3()

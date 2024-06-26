@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Xweibo
+manual: false
+detail:
+    fingerprint:
+        name: Xweibo
+    fofa: title="Xweibo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xweibo")
+expression: r0()

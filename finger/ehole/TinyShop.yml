@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TinyShop
+manual: false
+detail:
+    fingerprint:
+        name: TinyShop
+    fofa: title="TinyShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TinyShop")
+expression: r0()

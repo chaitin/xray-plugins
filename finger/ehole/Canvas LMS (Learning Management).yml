@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Canvas LMS (Learning Management)
+manual: false
+detail:
+    fingerprint:
+        name: Canvas LMS (Learning Management)
+    fofa: icon_hash="575613323"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 575613323
+expression: r0()

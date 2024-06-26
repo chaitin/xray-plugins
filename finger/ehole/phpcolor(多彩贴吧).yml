@@ -1,0 +1,51 @@
+name: fingerprint-yaml-phpcolor(多彩贴吧)
+manual: false
+detail:
+    fingerprint:
+        name: phpcolor(多彩贴吧)
+    fofa: body="phpcolor" || body="多彩贴吧" || header="phpcolor" || header="多彩贴吧" || title="phpcolor" || title="多彩贴吧"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phpcolor")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("多彩贴吧")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("phpcolor"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("多彩贴吧"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("phpcolor")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("多彩贴吧")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

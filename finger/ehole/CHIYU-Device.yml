@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CHIYU-Device
+manual: false
+detail:
+    fingerprint:
+        name: CHIYU-Device
+    fofa: body="cmdbar.htm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cmdbar.htm")
+expression: r0()

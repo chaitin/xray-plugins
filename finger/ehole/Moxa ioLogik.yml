@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Moxa ioLogik
+manual: false
+detail:
+    fingerprint:
+        name: Moxa ioLogik
+    fofa: header="Moxa ioLogik" || title="Moxa ioLogik"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Moxa ioLogik"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Moxa ioLogik")
+expression: r0() || r1()

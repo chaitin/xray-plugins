@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS TG
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS TG
+    fofa: header="LINKSYS TG"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS TG"))
+expression: r0()

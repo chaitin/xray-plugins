@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LocazoList-Classifieds
+manual: false
+detail:
+    fingerprint:
+        name: LocazoList-Classifieds
+    fofa: body="<link rel=\"stylesheet\" href=\"includes/lczFonts.css\" type=\"text/css\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="includes/lczFonts.css" type="text/css">')
+expression: r0()

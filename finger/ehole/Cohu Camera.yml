@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cohu Camera
+manual: false
+detail:
+    fingerprint:
+        name: Cohu Camera
+    fofa: header="Cohu Camera" || title="Cohu Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cohu Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cohu Camera")
+expression: r0() || r1()

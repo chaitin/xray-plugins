@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHP_Address_Book
+manual: false
+detail:
+    fingerprint:
+        name: PHP_Address_Book
+    fofa: title="PHP_Address_Book"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHP_Address_Book")
+expression: r0()

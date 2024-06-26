@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OmWeb
+manual: false
+detail:
+    fingerprint:
+        name: OmWeb
+    fofa: title="OmWeb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OmWeb")
+expression: r0()

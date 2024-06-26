@@ -1,0 +1,37 @@
+name: fingerprint-yaml-BASE-Security
+manual: false
+detail:
+    fingerprint:
+        name: BASE-Security
+    fofa: body="<!-- basic analysis and security engine (base -->" && body="mailto:base@secureideas.net" || body="mailto:base@secureideas.net" || body="<!-- basic analysis,security engine (base) -->" || body="<!-- basic analysis and security engine base -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- basic analysis and security engine (base -->") && response.body_string.contains("mailto:base@secureideas.net")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mailto:base@secureideas.net")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- basic analysis,security engine (base) -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- basic analysis and security engine base -->")
+expression: r0() || r1() || r2() || r3()

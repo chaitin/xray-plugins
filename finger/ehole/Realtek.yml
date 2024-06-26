@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Realtek
+manual: false
+detail:
+    fingerprint:
+        name: Realtek
+    fofa: icon_hash="2055322029"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2055322029
+expression: r0()

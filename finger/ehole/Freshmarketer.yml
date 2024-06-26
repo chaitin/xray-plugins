@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Freshmarketer
+manual: false
+detail:
+    fingerprint:
+        name: Freshmarketer
+    fofa: header="Freshmarketer" || title="Freshmarketer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Freshmarketer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Freshmarketer")
+expression: r0() || r1()

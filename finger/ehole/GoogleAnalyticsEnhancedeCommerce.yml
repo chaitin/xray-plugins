@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoogleAnalyticsEnhancedeCommerce
+manual: false
+detail:
+    fingerprint:
+        name: GoogleAnalyticsEnhancedeCommerce
+    fofa: title="Google Analytics Enhanced eCommerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Analytics Enhanced eCommerce")
+expression: r0()

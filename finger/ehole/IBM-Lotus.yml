@@ -1,0 +1,86 @@
+name: fingerprint-yaml-IBM-Lotus
+manual: false
+detail:
+    fingerprint:
+        name: IBM-Lotus
+    fofa: body="href='/domcfg.nsf/csslogin?readform'>" && body="action=\"/names.nsf?login\" name=\"_dominoform" && body="软标科技" && body="domcfg.nsf" && body="login.nsf" && body="main.nsf" || body="main.nsf" && body="esoaisapp/login.jsp" || body="login.nsf" && body="domcfg.nsf" || body="href=\"/domcfg.nsf/csslogin?readform\">" || body="action=\"/names.nsf?login\" name=\"_dominoform" || body="软标科技" || body="domcfg.nsf" || body="login.nsf" || body="main.nsf" || body="domcfg.nsf" && body="login.nsf" || body="esoaisapp/login.jsp" && body="main.nsf"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href='/domcfg.nsf/csslogin?readform'>") && response.body_string.contains('action="/names.nsf?login" name="_dominoform') && response.body_string.contains("软标科技") && response.body_string.contains("domcfg.nsf") && response.body_string.contains("login.nsf") && response.body_string.contains("main.nsf")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("main.nsf") && response.body_string.contains("esoaisapp/login.jsp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login.nsf") && response.body_string.contains("domcfg.nsf")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/domcfg.nsf/csslogin?readform">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/names.nsf?login" name="_dominoform')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("软标科技")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("domcfg.nsf")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login.nsf")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("main.nsf")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("domcfg.nsf") && response.body_string.contains("login.nsf")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("esoaisapp/login.jsp") && response.body_string.contains("main.nsf")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

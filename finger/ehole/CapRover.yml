@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CapRover
+manual: false
+detail:
+    fingerprint:
+        name: CapRover
+    fofa: icon_hash="988422585"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 988422585
+expression: r0()

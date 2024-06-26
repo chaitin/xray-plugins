@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SAMSUNG-SNB-2000
+manual: false
+detail:
+    fingerprint:
+        name: SAMSUNG-SNB-2000
+    fofa: header="digest realm=\"net-i\", nonce" || header="digest realm=\"net-i\", nonce" && header="must-revalidate"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('digest realm="net-i", nonce'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('digest realm="net-i", nonce')) && response.raw_header.bcontains(bytes("must-revalidate"))
+expression: r0() || r1()

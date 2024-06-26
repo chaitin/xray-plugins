@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-Intelligent-Call-Center
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-Intelligent-Call-Center
+    fofa: title="huawei 智能呼叫中心"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huawei 智能呼叫中心")
+expression: r0()

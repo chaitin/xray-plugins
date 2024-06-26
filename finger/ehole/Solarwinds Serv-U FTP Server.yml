@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Solarwinds Serv-U FTP Server
+manual: false
+detail:
+    fingerprint:
+        name: Solarwinds Serv-U FTP Server
+    fofa: icon_hash="812385209"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 812385209
+expression: r0()

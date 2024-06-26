@@ -1,0 +1,44 @@
+name: fingerprint-yaml-EDIMAX
+manual: false
+detail:
+    fingerprint:
+        name: EDIMAX
+    fofa: body="content=\"Edimax" || body="<title>EDIMAX Technology</title>" || body="<title>Access Point Status</title>" || body="cdwindow=window.open(\"countdown.asp\",\"CountDown\",\"channelmode=0, directories=0,fullscreen=0,height=100,location=0,menubar=0,resizable=1,scrollbars=0,status=0,titlebar=0,toolbar=0,width=450\",\"false\");" || body="<link rel=\"stylesheet\" href=\"edimax.css\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Edimax')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>EDIMAX Technology</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Access Point Status</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('cdwindow=window.open("countdown.asp","CountDown","channelmode=0, directories=0,fullscreen=0,height=100,location=0,menubar=0,resizable=1,scrollbars=0,status=0,titlebar=0,toolbar=0,width=450","false");')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="edimax.css">')
+expression: r0() || r1() || r2() || r3() || r4()

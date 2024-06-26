@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BarracudaHTTP
+manual: false
+detail:
+    fingerprint:
+        name: BarracudaHTTP
+    fofa: header="BarracudaHTTP" || title="BarracudaHTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BarracudaHTTP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BarracudaHTTP")
+expression: r0() || r1()

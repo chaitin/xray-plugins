@@ -1,0 +1,16 @@
+name: fingerprint-yaml-炫客P2P视频直播聊天系统ImChat
+manual: false
+detail:
+    fingerprint:
+        name: 炫客P2P视频直播聊天系统ImChat
+    fofa: title="炫客P2P视频直播聊天系统ImChat"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("炫客P2P视频直播聊天系统ImChat")
+expression: r0()

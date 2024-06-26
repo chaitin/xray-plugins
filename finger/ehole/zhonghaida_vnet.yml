@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zhonghaida_vnet
+manual: false
+detail:
+    fingerprint:
+        name: zhonghaida_vnet
+    fofa: title="zhonghaida_vnet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zhonghaida_vnet")
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-AM4SS
+manual: false
+detail:
+    fingerprint:
+        name: AM4SS
+    fofa: body="Powered by am4ss" || body="am4ss.css" || body="<!-- Header end and right block start -->" || body="Powered By <a href=\"http://am4ss.com\"><font color=\"#FF000\">AM4SS</font></a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by am4ss")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("am4ss.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Header end and right block start -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://am4ss.com"><font color="#FF000">AM4SS</font></a>')
+expression: r0() || r1() || r2() || r3()

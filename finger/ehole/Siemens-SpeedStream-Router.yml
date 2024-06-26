@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Siemens-SpeedStream-Router
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-SpeedStream-Router
+    fofa: body="<title>speedstream router management interface</title>" && body="siemens subscriber networks -->" || body="siemens subscriber networks -->" || body="<title>speedstream router management interface</title>" || body="<FRAME SRC=\"pflogin.htm\" NAME=\"rightFrame\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>speedstream router management interface</title>") && response.body_string.contains("siemens subscriber networks -->")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("siemens subscriber networks -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>speedstream router management interface</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FRAME SRC="pflogin.htm" NAME="rightFrame"')
+expression: r0() || r1() || r2() || r3()

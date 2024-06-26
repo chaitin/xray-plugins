@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Piwigo_开源相册系统
+manual: false
+detail:
+    fingerprint:
+        name: Piwigo_开源相册系统
+    fofa: header="Piwigo_开源相册系统" || title="Piwigo_开源相册系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Piwigo_开源相册系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Piwigo_开源相册系统")
+expression: r0() || r1()

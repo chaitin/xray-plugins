@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Hotaru-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Hotaru-CMS
+    fofa: body="content=\"Hotaru" || header="Hotaru CMS" || title="Hotaru CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Hotaru')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hotaru CMS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hotaru CMS")
+expression: r0() || r1() || r2()

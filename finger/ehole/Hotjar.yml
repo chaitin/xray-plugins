@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hotjar
+manual: false
+detail:
+    fingerprint:
+        name: Hotjar
+    fofa: header="Hotjar" || title="Hotjar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hotjar"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hotjar")
+expression: r0() || r1()

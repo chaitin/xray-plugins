@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ADT-IAM
+manual: false
+detail:
+    fingerprint:
+        name: ADT-IAM
+    fofa: body="content=\"tpn,vpn,内网安全,内网控制,主机防护\"" || body="iam" && body="src=\"/page/assets/javascripts/adt.js\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="tpn,vpn,内网安全,内网控制,主机防护"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("iam") && response.body_string.contains('src="/page/assets/javascripts/adt.js"')
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-baimaohui-vulfocus
+manual: false
+detail:
+    fingerprint:
+        name: baimaohui-vulfocus
+    fofa: title="vulfocus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vulfocus")
+expression: r0()

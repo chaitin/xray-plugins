@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WOWZA-WowzaStreamingEngine
+manual: false
+detail:
+    fingerprint:
+        name: WOWZA-WowzaStreamingEngine
+    fofa: 'header="server: wowzastreamingengine"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: wowzastreamingengine"))'
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FNO Server
+manual: false
+detail:
+    fingerprint:
+        name: FNO Server
+    fofa: header="FNO Server" || title="FNO Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FNO Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FNO Server")
+expression: r0() || r1()

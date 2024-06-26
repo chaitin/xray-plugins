@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CKEditor
+manual: false
+detail:
+    fingerprint:
+        name: CKEditor
+    fofa: title="CKEditor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CKEditor")
+expression: r0()

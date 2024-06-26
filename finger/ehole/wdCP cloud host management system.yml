@@ -1,0 +1,23 @@
+name: fingerprint-yaml-wdCP cloud host management system
+manual: false
+detail:
+    fingerprint:
+        name: wdCP cloud host management system
+    fofa: icon_hash="255892555" || icon_hash="1786752597"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 255892555
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1786752597
+expression: r0() || r1()

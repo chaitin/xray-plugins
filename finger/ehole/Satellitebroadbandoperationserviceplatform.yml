@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Satellitebroadbandoperationserviceplatform
+manual: false
+detail:
+    fingerprint:
+        name: Satellitebroadbandoperationserviceplatform
+    fofa: title="卫星宽带运营服务平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("卫星宽带运营服务平台")
+expression: r0()

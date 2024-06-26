@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MERCURY-MW313R
+manual: false
+detail:
+    fingerprint:
+        name: MERCURY-MW313R
+    fofa: 'header="server: mw313r" || title="mw313r"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mw313r"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mw313r")
+expression: r0() || r1()

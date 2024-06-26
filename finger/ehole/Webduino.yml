@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Webduino
+manual: false
+detail:
+    fingerprint:
+        name: Webduino
+    fofa: 'header="Webduino" || header="server: webduino" || title="Webduino"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Webduino"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: webduino"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Webduino")
+expression: r0() || r1() || r2()

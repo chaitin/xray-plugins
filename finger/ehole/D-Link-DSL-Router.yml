@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link-DSL-Router
+manual: false
+detail:
+    fingerprint:
+        name: D-Link-DSL-Router
+    fofa: header="realm=\"dsl router" || title="dsl router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dsl router'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dsl router")
+expression: r0() || r1()

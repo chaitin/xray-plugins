@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cachefly
+manual: false
+detail:
+    fingerprint:
+        name: Cachefly
+    fofa: header="Cachefly" || title="Cachefly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cachefly"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cachefly")
+expression: r0() || r1()

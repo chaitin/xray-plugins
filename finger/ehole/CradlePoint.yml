@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CradlePoint
+manual: false
+detail:
+    fingerprint:
+        name: CradlePoint
+    fofa: icon_hash="-1457536113"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1457536113
+expression: r0()

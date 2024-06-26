@@ -1,0 +1,30 @@
+name: fingerprint-yaml-WebPy
+manual: false
+detail:
+    fingerprint:
+        name: WebPy
+    fofa: header="webpy_session_id" || header="WebPy" || title="WebPy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webpy_session_id"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebPy"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebPy")
+expression: r0() || r1() || r2()

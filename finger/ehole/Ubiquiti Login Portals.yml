@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ubiquiti Login Portals
+manual: false
+detail:
+    fingerprint:
+        name: Ubiquiti Login Portals
+    fofa: icon_hash="-1446794564"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1446794564
+expression: r0()

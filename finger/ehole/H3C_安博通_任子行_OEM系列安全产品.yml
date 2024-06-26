@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C_安博通_任子行_OEM系列安全产品
+manual: false
+detail:
+    fingerprint:
+        name: H3C/安博通/任子行/OEM系列安全产品
+    fofa: body="webui/js/jquerylib/jquery-1.7.2.min.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webui/js/jquerylib/jquery-1.7.2.min.js")
+expression: r0()

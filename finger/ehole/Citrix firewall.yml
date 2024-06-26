@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Citrix firewall
+manual: false
+detail:
+    fingerprint:
+        name: Citrix firewall
+    fofa: header="Citrix firewall" || title="Citrix firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix firewall"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix firewall")
+expression: r0() || r1()

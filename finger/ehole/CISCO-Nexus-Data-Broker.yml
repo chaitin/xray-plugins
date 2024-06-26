@@ -1,0 +1,30 @@
+name: fingerprint-yaml-CISCO-Nexus-Data-Broker
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-Nexus-Data-Broker
+    fofa: body="j_security_check" && body="window.location.href = '/monitor';" || body="window.location.href = \"/monitor\";" && body="j_security_check" || body="window.location.href = /monitor\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("j_security_check") && response.body_string.contains("window.location.href = '/monitor';")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = "/monitor";') && response.body_string.contains("j_security_check")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = /monitor";')
+expression: r0() || r1() || r2()

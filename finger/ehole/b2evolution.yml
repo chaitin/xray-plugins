@@ -1,0 +1,44 @@
+name: fingerprint-yaml-b2evolution
+manual: false
+detail:
+    fingerprint:
+        name: b2evolution
+    fofa: body="/powered-by-b2evolution-150t.gif" && body="powered by b2evolution" && body="content=\"b2evolution" || body="/powered-by-b2evolution-150t.gif" || body="Powered by b2evolution" || body="content=\"b2evolution" || body="powered by b2evolution"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/powered-by-b2evolution-150t.gif") && response.body_string.contains("powered by b2evolution") && response.body_string.contains('content="b2evolution')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/powered-by-b2evolution-150t.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by b2evolution")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="b2evolution')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by b2evolution")
+expression: r0() || r1() || r2() || r3() || r4()

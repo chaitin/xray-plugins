@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZFAKA发卡平台
+manual: false
+detail:
+    fingerprint:
+        name: ZFAKA发卡平台
+    fofa: title="ZFAKA发卡平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZFAKA发卡平台")
+expression: r0()

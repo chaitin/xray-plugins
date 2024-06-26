@@ -1,0 +1,16 @@
+name: fingerprint-yaml-安全狗
+manual: false
+detail:
+    fingerprint:
+        name: 安全狗
+    fofa: header="WAF/2.0"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WAF/2.0"))
+expression: r0()

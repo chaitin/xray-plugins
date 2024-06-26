@@ -1,0 +1,149 @@
+name: fingerprint-yaml-Panasonic-Network-Camera
+manual: false
+detail:
+    fingerprint:
+        name: Panasonic-Network-Camera
+    fofa: 'body="multicameraframe?mode=motion&language" && body="cgitagmenu?page=top&language=" && body="src=\"cgitagmenu?page=" && body="var svideoinput=\"pal" && body="content=\"(c panasonic syetem networks co.,ltd." && body="/js/cmsgtab.js" && body="src=\"barfoot.html\"" || body="MultiCameraFrame?Mode=Motion&Language" || body="src=\"barfoot.html\"" || body="/js/cmsgtab.js" && body="content=\"(c) panasonic syetem networks co.,ltd." || body="var svideoinput=\"pal" || body="src=\"cgitagmenu?page=" || body="name=bar src=\"cgitagmenu?page=top&language=" || body="multicameraframe?mode=motion&language" || body="cgitagmenu?page=top&language=" || body="content=\"c panasonic syetem networks co.,ltd." || body="/js/cmsgtab.js" || body="<HEAD><TITLE>WJ-NT104 MAIN PAGE</TITLE></HEAD>" || body="<FONT FACE=\"Arial\" STYLE=\"font-size: 24px\" COLOR=\"#ffffff\"><B>Network Camera</B></FONT>" || body="<META name=\"copyright\" content=\"Copyright (C) 2003 Matsushita Electric Industrial Co., Ltd. All rights reserved.\">" || body="<TITLE>Digital Disk Recorder WJ-HD220 CONTROL MAIN PAGE</TITLE>" || body="<TITLE>WJ-HD200 DigitalDiskRecorder CONTROL MAIN PAGE</TITLE>" || body="window.location.replace(\"/view/idconv.cgi?UID=%i&FILE=/hdrindex.html&PAGE=\"+myDate.getTime());" || header="server: ver2.4 rev0" || header="server: u s software web server" || title="wj-nt104 main page"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("multicameraframe?mode=motion&language") && response.body_string.contains("cgitagmenu?page=top&language=") && response.body_string.contains('src="cgitagmenu?page=') && response.body_string.contains('var svideoinput="pal') && response.body_string.contains('content="(c panasonic syetem networks co.,ltd.') && response.body_string.contains("/js/cmsgtab.js") && response.body_string.contains('src="barfoot.html"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("MultiCameraFrame?Mode=Motion&Language")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="barfoot.html"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/cmsgtab.js") && response.body_string.contains('content="(c) panasonic syetem networks co.,ltd.')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var svideoinput="pal')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="cgitagmenu?page=')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name=bar src="cgitagmenu?page=top&language=')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("multicameraframe?mode=motion&language")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cgitagmenu?page=top&language=")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="c panasonic syetem networks co.,ltd.')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/cmsgtab.js")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HEAD><TITLE>WJ-NT104 MAIN PAGE</TITLE></HEAD>")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<FONT FACE="Arial" STYLE="font-size: 24px" COLOR="#ffffff"><B>Network Camera</B></FONT>'')'
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META name="copyright" content="Copyright (C) 2003 Matsushita Electric Industrial Co., Ltd. All rights reserved.">')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>Digital Disk Recorder WJ-HD220 CONTROL MAIN PAGE</TITLE>")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>WJ-HD200 DigitalDiskRecorder CONTROL MAIN PAGE</TITLE>")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("/view/idconv.cgi?UID=%i&FILE=/hdrindex.html&PAGE="+myDate.getTime());')
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ver2.4 rev0"))'
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: u s software web server"))'
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wj-nt104 main page")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19()

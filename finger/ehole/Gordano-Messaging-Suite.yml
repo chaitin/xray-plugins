@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gordano-Messaging-Suite
+manual: false
+detail:
+    fingerprint:
+        name: Gordano-Messaging-Suite
+    fofa: 'header="server: gordano" || header="Gordano"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: gordano"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Gordano"))
+expression: r0() || r1()

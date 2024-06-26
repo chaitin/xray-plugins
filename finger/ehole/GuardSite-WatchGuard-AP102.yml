@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GuardSite-WatchGuard-AP102
+manual: false
+detail:
+    fingerprint:
+        name: GuardSite-WatchGuard-AP102
+    fofa: title="watchguard ap102"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("watchguard ap102")
+expression: r0()

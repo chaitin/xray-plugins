@@ -1,0 +1,16 @@
+name: fingerprint-yaml-35企业邮箱系统
+manual: false
+detail:
+    fingerprint:
+        name: 35企业邮箱系统
+    fofa: icon_hash="1676919780"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1676919780
+expression: r0()

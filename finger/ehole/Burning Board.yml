@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Burning Board
+manual: false
+detail:
+    fingerprint:
+        name: Burning Board
+    fofa: header="Burning Board" || title="Burning Board"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Burning Board"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Burning Board")
+expression: r0() || r1()

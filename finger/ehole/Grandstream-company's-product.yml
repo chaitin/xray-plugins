@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Grandstream-company's-product
+manual: false
+detail:
+    fingerprint:
+        name: Grandstream-company's-product
+    fofa: header="grandstream" || title="grandstream device configuration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("grandstream"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("grandstream device configuration")
+expression: r0() || r1()

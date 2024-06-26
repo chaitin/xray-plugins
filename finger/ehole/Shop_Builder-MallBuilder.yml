@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Shop_Builder-MallBuilder
+manual: false
+detail:
+    fingerprint:
+        name: Shop_Builder-MallBuilder
+    fofa: body="content=\"mallbuilder" && body="powered by mallbuilder" || body="powered by mallbuilder" || body="content=\"mallbuilder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="mallbuilder') && response.body_string.contains("powered by mallbuilder")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by mallbuilder")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="mallbuilder')
+expression: r0() || r1() || r2()

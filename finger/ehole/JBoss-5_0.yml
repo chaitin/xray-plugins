@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JBoss-5_0
+manual: false
+detail:
+    fingerprint:
+        name: JBoss-5.0
+    fofa: 'header="server: jboss-5.0"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: jboss-5.0"))'
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rainier-Internet-product
+manual: false
+detail:
+    fingerprint:
+        name: Rainier-Internet-product
+    fofa: body="<a href=\"http://www.rainier.net.cn\">北京润尼尔网络科技有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.rainier.net.cn">北京润尼尔网络科技有限公司')
+expression: r0()

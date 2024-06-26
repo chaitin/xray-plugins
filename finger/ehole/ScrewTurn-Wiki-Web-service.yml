@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ScrewTurn-Wiki-Web-service
+manual: false
+detail:
+    fingerprint:
+        name: ScrewTurn-Wiki-Web-service
+    fofa: body="powered by <a class=\"externallink\" href=\"http:" && body="title=\"screwturn wiki\" target=\"_blank\">screwturn wiki" || body="title=\"screwturn wiki\" target=\"_blank\">screwturn wiki" || body="powered by <a class=\"externallink\" href=\"http:" || title="screwturn-wiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a class="externallink" href="http:') && response.body_string.contains('title="screwturn wiki" target="_blank">screwturn wiki')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="screwturn wiki" target="_blank">screwturn wiki')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a class="externallink" href="http:')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("screwturn-wiki")
+expression: r0() || r1() || r2() || r3()

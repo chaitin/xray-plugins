@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Synology VPN Plus
+manual: false
+detail:
+    fingerprint:
+        name: Synology VPN Plus
+    fofa: icon_hash="1235070469"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1235070469
+expression: r0()

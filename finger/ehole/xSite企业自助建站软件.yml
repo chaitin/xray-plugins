@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xSite企业自助建站软件
+manual: false
+detail:
+    fingerprint:
+        name: xSite企业自助建站软件
+    fofa: title="xSite企业自助建站软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xSite企业自助建站软件")
+expression: r0()

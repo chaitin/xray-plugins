@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yongyou_ehr
+manual: false
+detail:
+    fingerprint:
+        name: yongyou_ehr
+    fofa: title="yongyou_ehr"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yongyou_ehr")
+expression: r0()

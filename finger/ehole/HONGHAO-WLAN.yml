@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HONGHAO-WLAN
+manual: false
+detail:
+    fingerprint:
+        name: HONGHAO-WLAN
+    fofa: title="弘浩明传 - 集中无线控制器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("弘浩明传 - 集中无线控制器")
+expression: r0()

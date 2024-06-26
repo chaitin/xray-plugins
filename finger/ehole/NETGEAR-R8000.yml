@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NETGEAR-R8000
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-R8000
+    fofa: header="netgear r8000" || header="NETGEAR R8000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear r8000"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR R8000"))
+expression: r0() || r1()

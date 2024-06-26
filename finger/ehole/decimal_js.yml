@@ -1,0 +1,16 @@
+name: fingerprint-yaml-decimal_js
+manual: false
+detail:
+    fingerprint:
+        name: decimal.js
+    fofa: title="decimal.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("decimal.js")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-思途CMS
+manual: false
+detail:
+    fingerprint:
+        name: 思途CMS
+    fofa: header="思途CMS" || title="思途CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("思途CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("思途CMS")
+expression: r0() || r1()

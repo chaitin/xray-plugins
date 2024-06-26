@@ -1,0 +1,107 @@
+name: fingerprint-yaml-S-CMS
+manual: false
+detail:
+    fingerprint:
+        name: S-CMS
+    fofa: body="class=\"scms_container w1200\"" && body="<p class=\"alignright\">powered by s:cms - copyright ©" && body="<!-- inizio righe di indicizzazione nei motori di ricerca -->" && body="www.smartlogic.com" && body="/media/20151019095214828.png" && body="<h2>闪灵cms建站系统</h2>" && body="type=news&s_id=" && body="type=newsinfo&s_id=" || header="S-CMS" || body="type=newsinfo&s_id=" || body="type=news&s_id=" || body="<h2>闪灵cms建站系统</h2>" || body="/media/20151019095214828.png" || body="www.smartlogic.com" || body="<!-- inizio righe di indicizzazione nei motori di ricerca -->" || body="<p class=\"alignright\">powered by s:cms - copyright ©" || body="class=\"scms_container w1200\"" || body="<title>SCMS</title>" || body="<p class=\"alignright\">powered by s:cms - copyright ©" && body="class=\"scms_container w1200\"" || title="S-CMS" || title="scms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="scms_container w1200"') && response.body_string.contains('<p class="alignright">powered by s:cms - copyright ©') && response.body_string.contains("<!-- inizio righe di indicizzazione nei motori di ricerca -->") && response.body_string.contains("www.smartlogic.com") && response.body_string.contains("/media/20151019095214828.png") && response.body_string.contains("<h2>闪灵cms建站系统</h2>") && response.body_string.contains("type=news&s_id=") && response.body_string.contains("type=newsinfo&s_id=")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("S-CMS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("type=newsinfo&s_id=")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("type=news&s_id=")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>闪灵cms建站系统</h2>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/media/20151019095214828.png")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.smartlogic.com")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- inizio righe di indicizzazione nei motori di ricerca -->")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="alignright">powered by s:cms - copyright ©')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="scms_container w1200"')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>SCMS</title>")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="alignright">powered by s:cms - copyright ©') && response.body_string.contains('class="scms_container w1200"')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("S-CMS")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("scms")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

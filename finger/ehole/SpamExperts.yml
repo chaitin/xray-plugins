@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SpamExperts
+manual: false
+detail:
+    fingerprint:
+        name: SpamExperts
+    fofa: icon_hash="-1688698891"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1688698891
+expression: r0()

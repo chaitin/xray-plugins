@@ -1,0 +1,44 @@
+name: fingerprint-yaml-OSSIM
+manual: false
+detail:
+    fingerprint:
+        name: OSSIM
+    fofa: body="<title> AlienVault - Open Source SIM </title>" || body="<table align=\"center\" style=\"padding:1px;background-color:#f2f2f2;border-color:#aaaaaa\" class=nobborder><tr><td class=\"nobborder\">" || body="<table align=\"center\" cellspacing=4 cellpadding=2 style=\"background-color:#eeeeee;border-color:#dedede\">" || title="alienvault ossim" || title="alienvault - open source sim"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title> AlienVault - Open Source SIM </title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<table align="center" style="padding:1px;background-color:#f2f2f2;border-color:#aaaaaa" class=nobborder><tr><td class="nobborder">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<table align="center" cellspacing=4 cellpadding=2 style="background-color:#eeeeee;border-color:#dedede">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("alienvault ossim")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("alienvault - open source sim")
+expression: r0() || r1() || r2() || r3() || r4()

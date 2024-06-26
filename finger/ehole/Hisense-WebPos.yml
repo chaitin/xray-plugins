@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Hisense-WebPos
+manual: false
+detail:
+    fingerprint:
+        name: Hisense-WebPos
+    fofa: body="<legend><img src=\"../../content/images/hisense.bmp\" style=\"height:20px; padding-left:-10px\"/>webpos登录</legend>" && body="content/images/hisense.bmp" || body="content/images/hisense.bmp" || body="<legend><img src=\"../../content/images/hisense.bmp\" style=\"height:20px; padding-left:-10px\"/>webpos登录</legend>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<legend><img src="../../content/images/hisense.bmp" style="height:20px; padding-left:-10px"/>webpos登录</legend>') && response.body_string.contains("content/images/hisense.bmp")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("content/images/hisense.bmp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<legend><img src="../../content/images/hisense.bmp" style="height:20px; padding-left:-10px"/>webpos登录</legend>')
+expression: r0() || r1() || r2()

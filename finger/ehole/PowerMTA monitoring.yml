@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PowerMTA monitoring
+manual: false
+detail:
+    fingerprint:
+        name: PowerMTA monitoring
+    fofa: icon_hash="-1788112745"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1788112745
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-LTE6101
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-LTE6101
+    fofa: title="lte6101"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lte6101")
+expression: r0()

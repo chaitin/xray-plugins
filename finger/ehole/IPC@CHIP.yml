@@ -1,0 +1,30 @@
+name: fingerprint-yaml-IPC@CHIP
+manual: false
+detail:
+    fingerprint:
+        name: IPC@CHIP
+    fofa: 'header="IPC@CHIP" || header="server: ipc@chip" || title="IPC@CHIP"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPC@CHIP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ipc@chip"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPC@CHIP")
+expression: r0() || r1() || r2()

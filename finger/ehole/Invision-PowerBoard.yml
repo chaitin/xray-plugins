@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Invision-PowerBoard
+manual: false
+detail:
+    fingerprint:
+        name: Invision-PowerBoard
+    fofa: body="powered by <a href=\"http://www.invisionboard.com" || body="Powered by <a href=\"http://www.invisionboard.com" || body="(Powered by Invision Power Board)</title>" || body="index.php?app=core&amp;module=global&amp;section=rss&amp;type=forums&amp;id=" || body="<a href=\"#j_content\" title=\"Jump to content\" accesskey=\"m\">Jump to content</a>" || body="<div id=\"ipbwrapper\">" || body="Powered By <a href=\"http://www.invisionboard.com\" style=\"text-decoration:none\" target=\"_blank\">IP.Board</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.invisionboard.com')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.invisionboard.com')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("(Powered by Invision Power Board)</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index.php?app=core&amp;module=global&amp;section=rss&amp;type=forums&amp;id=")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="#j_content" title="Jump to content" accesskey="m">Jump to content</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="ipbwrapper">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.invisionboard.com" style="text-decoration:none" target="_blank">IP.Board</a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SIYUCMS
+manual: false
+detail:
+    fingerprint:
+        name: SIYUCMS
+    fofa: header="SIYUCMS" || title="SIYUCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SIYUCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SIYUCMS")
+expression: r0() || r1()

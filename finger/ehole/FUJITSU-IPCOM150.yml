@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FUJITSU-IPCOM150
+manual: false
+detail:
+    fingerprint:
+        name: FUJITSU-IPCOM150
+    fofa: 'header="server: fujitsu-ipcom150"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: fujitsu-ipcom150"))'
+expression: r0()

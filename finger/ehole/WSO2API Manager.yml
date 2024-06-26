@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WSO2API Manager
+manual: false
+detail:
+    fingerprint:
+        name: WSO2API Manager
+    fofa: body="WSO2 API MANAGER"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("WSO2 API MANAGER")
+expression: r0()

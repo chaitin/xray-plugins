@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Koobi_CMS
+manual: false
+detail:
+    fingerprint:
+        name: Koobi_CMS
+    fofa: header="Koobi_CMS" || title="Koobi_CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Koobi_CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Koobi_CMS")
+expression: r0() || r1()

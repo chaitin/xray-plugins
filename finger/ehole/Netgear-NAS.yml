@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Netgear-NAS
+manual: false
+detail:
+    fingerprint:
+        name: Netgear-NAS
+    fofa: header="netgear" && header="100nas" || header="100nas" && header="netgear" || header="100nas"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear")) && response.raw_header.bcontains(bytes("100nas"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("100nas")) && response.raw_header.bcontains(bytes("netgear"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("100nas"))
+expression: r0() || r1() || r2()

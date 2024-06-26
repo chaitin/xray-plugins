@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Cowboy
+manual: false
+detail:
+    fingerprint:
+        name: Cowboy
+    fofa: 'header="Cowboy" || header="server: cowboy" || title="Cowboy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cowboy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cowboy"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cowboy")
+expression: r0() || r1() || r2()

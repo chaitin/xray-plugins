@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Footprint
+manual: false
+detail:
+    fingerprint:
+        name: Footprint
+    fofa: 'header="server: footprint " || header="Footprint" || header="server: footprint"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: footprint "))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Footprint"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: footprint"))'
+expression: r0() || r1() || r2()

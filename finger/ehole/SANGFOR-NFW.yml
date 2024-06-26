@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SANGFOR-NFW
+manual: false
+detail:
+    fingerprint:
+        name: SANGFOR-NFW
+    fofa: body="window.open(\"/loginout.php\", \"_top\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("/loginout.php", "_top"')
+expression: r0()

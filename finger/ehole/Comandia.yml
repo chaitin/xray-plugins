@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Comandia
+manual: false
+detail:
+    fingerprint:
+        name: Comandia
+    fofa: header="Comandia" || title="Comandia"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Comandia"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Comandia")
+expression: r0() || r1()

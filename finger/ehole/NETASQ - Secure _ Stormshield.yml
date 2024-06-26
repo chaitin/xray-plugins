@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETASQ - Secure _ Stormshield
+manual: false
+detail:
+    fingerprint:
+        name: NETASQ - Secure / Stormshield
+    fofa: icon_hash="-1929912510"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1929912510
+expression: r0()

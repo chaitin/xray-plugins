@@ -1,0 +1,51 @@
+name: fingerprint-yaml-OpenNemas
+manual: false
+detail:
+    fingerprint:
+        name: OpenNemas
+    fofa: body="content=\"opennemas " || header="OpenNemas" || body="content=\"opennemas" || body="content=\"opennema" || title="OpenNemas" || title="- opennemas administration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="opennemas ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OpenNemas"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="opennemas')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="opennema')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OpenNemas")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("- opennemas administration")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

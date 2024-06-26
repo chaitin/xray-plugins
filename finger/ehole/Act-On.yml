@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Act-On
+manual: false
+detail:
+    fingerprint:
+        name: Act-On
+    fofa: header="Act-On" || title="Act-On"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Act-On"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Act-On")
+expression: r0() || r1()

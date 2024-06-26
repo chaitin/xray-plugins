@@ -1,0 +1,37 @@
+name: fingerprint-yaml-PCITC-Management-Platform
+manual: false
+detail:
+    fingerprint:
+        name: PCITC-Management-Platform
+    fofa: body="window.open(\"http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view\"; }  " || body="window.open\"http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view\"; }" || body="window.open(\"http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view\"); }  " || body="window.open(\"http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view\"); "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view"; }  ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open"http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view"; }')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view"); }  ')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("http://itmc.mmsh.sinopec.com/itgk/sysmgr/productregister/yunweiproregister.view"); ')
+expression: r0() || r1() || r2() || r3()

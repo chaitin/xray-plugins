@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Danneo CMS
+manual: false
+detail:
+    fingerprint:
+        name: Danneo CMS
+    fofa: header="Danneo CMS" || title="Danneo CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Danneo CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Danneo CMS")
+expression: r0() || r1()

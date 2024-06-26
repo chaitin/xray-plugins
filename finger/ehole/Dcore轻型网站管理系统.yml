@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dcore轻型网站管理系统
+manual: false
+detail:
+    fingerprint:
+        name: Dcore轻型网站管理系统
+    fofa: title="Dcore轻型网站管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dcore轻型网站管理系统")
+expression: r0()

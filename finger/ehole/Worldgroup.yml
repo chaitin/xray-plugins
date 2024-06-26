@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Worldgroup
+manual: false
+detail:
+    fingerprint:
+        name: Worldgroup
+    fofa: header="Worldgroup" || title="Worldgroup"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Worldgroup"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Worldgroup")
+expression: r0() || r1()

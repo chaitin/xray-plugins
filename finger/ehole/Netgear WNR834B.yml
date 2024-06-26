@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear WNR834B
+manual: false
+detail:
+    fingerprint:
+        name: Netgear WNR834B
+    fofa: header="Netgear WNR834B"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netgear WNR834B"))
+expression: r0()

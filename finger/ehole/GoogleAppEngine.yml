@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoogleAppEngine
+manual: false
+detail:
+    fingerprint:
+        name: GoogleAppEngine
+    fofa: title="Google App Engine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google App Engine")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Apache Hadoop Map_Reduce
+manual: false
+detail:
+    fingerprint:
+        name: Apache Hadoop Map_Reduce
+    fofa: header="Apache Hadoop Map_Reduce" || title="Apache Hadoop Map_Reduce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Hadoop Map_Reduce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Hadoop Map_Reduce")
+expression: r0() || r1()

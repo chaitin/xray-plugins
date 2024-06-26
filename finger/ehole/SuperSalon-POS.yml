@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SuperSalon-POS
+manual: false
+detail:
+    fingerprint:
+        name: SuperSalon-POS
+    fofa: header="realm=\"supersalon pos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="supersalon pos'))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-网神下一代极速防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 网神下一代极速防火墙
+    fofa: body="网神信息技术" && body="login" && body="防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("网神信息技术") && response.body_string.contains("login") && response.body_string.contains("防火墙")
+expression: r0()

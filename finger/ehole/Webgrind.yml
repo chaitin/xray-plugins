@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Webgrind
+manual: false
+detail:
+    fingerprint:
+        name: Webgrind
+    fofa: body="<span id=\"invocation_sum\"></span> different functions called in <span id=\"runtime_sum" || body="<span id=\"invocation_sum\"></span> different functions called in <span id=\"runtime_sum\"></span> milliseconds (<span id=\"runs\"></span> runs, <span id=\"shown_sum\"></span> shown)" || body="<img class=\"list_reload\" src=\"img/reload.png\" onclick=\"reloadFilelist()\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="invocation_sum"></span> different functions called in <span id="runtime_sum')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="invocation_sum"></span> different functions called in <span id="runtime_sum"></span> milliseconds (<span id="runs"></span> runs, <span id="shown_sum"></span> shown)')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img class="list_reload" src="img/reload.png" onclick="reloadFilelist()">')
+expression: r0() || r1() || r2()

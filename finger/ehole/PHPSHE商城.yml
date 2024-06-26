@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPSHE商城
+manual: false
+detail:
+    fingerprint:
+        name: PHPSHE商城
+    fofa: header="PHPSHE商城" || title="PHPSHE商城"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPSHE商城"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPSHE商城")
+expression: r0() || r1()

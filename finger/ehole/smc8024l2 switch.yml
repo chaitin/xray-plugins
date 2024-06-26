@@ -1,0 +1,23 @@
+name: fingerprint-yaml-smc8024l2 switch
+manual: false
+detail:
+    fingerprint:
+        name: smc8024l2 switch
+    fofa: header="smc8024l2 switch" || title="smc8024l2 switch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("smc8024l2 switch"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("smc8024l2 switch")
+expression: r0() || r1()

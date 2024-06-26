@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dreamer CMS-Shiro
+manual: false
+detail:
+    fingerprint:
+        name: Dreamer CMS-Shiro
+    fofa: header="dreamer-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dreamer-"))
+expression: r0()

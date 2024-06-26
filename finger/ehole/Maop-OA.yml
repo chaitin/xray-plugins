@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Maop-OA
+manual: false
+detail:
+    fingerprint:
+        name: Maop-OA
+    fofa: body="pwd yahei16" && body="www.oooa.cn" && body="href=\"http://www.oooa.cn\">重庆猫扑网络科技有限公司</a>" || body="href=\"http://www.oooa.cn\">重庆猫扑网络科技有限公司</a>" || body="www.oooa.cn" && body="pwd yahei16" || body="pwd yahei16" || body="www.oooa.cn" || title="maopoa" || title="for 猫扑oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pwd yahei16") && response.body_string.contains("www.oooa.cn") && response.body_string.contains('href="http://www.oooa.cn">重庆猫扑网络科技有限公司</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.oooa.cn">重庆猫扑网络科技有限公司</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.oooa.cn") && response.body_string.contains("pwd yahei16")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pwd yahei16")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.oooa.cn")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("maopoa")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("for 猫扑oa")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

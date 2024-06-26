@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fingerprintjs
+manual: false
+detail:
+    fingerprint:
+        name: Fingerprintjs
+    fofa: title="Fingerprintjs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fingerprintjs")
+expression: r0()

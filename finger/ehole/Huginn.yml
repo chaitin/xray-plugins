@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Huginn
+manual: false
+detail:
+    fingerprint:
+        name: Huginn
+    fofa: body="<a tabindex=\"-1\" href=\"https://github.com/huginn/huginn\">About</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a tabindex="-1" href="https://github.com/huginn/huginn">About</a>')
+expression: r0()

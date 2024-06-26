@@ -1,0 +1,30 @@
+name: fingerprint-yaml-IDA-VOIP
+manual: false
+detail:
+    fingerprint:
+        name: IDA-VOIP
+    fofa: header="realm=\"ida 20-28 voip" && header="realm=\"ida voip" || header="realm=\"ida voip" || header="realm=\"ida 20-28 voip"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ida 20-28 voip')) && response.raw_header.bcontains(bytes('realm="ida voip'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ida voip'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ida 20-28 voip'))
+expression: r0() || r1() || r2()

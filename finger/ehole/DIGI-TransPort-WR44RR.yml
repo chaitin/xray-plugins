@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DIGI-TransPort-WR44RR
+manual: false
+detail:
+    fingerprint:
+        name: DIGI-TransPort-WR44RR
+    fofa: title="transport wr44rr"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("transport wr44rr")
+expression: r0()

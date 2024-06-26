@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Spiceworks
+manual: false
+detail:
+    fingerprint:
+        name: Spiceworks
+    fofa: body="<meta name=\"author\" content=\"spiceworks, inc.\" />" && body="<link href=\"/stylesheets/general.css?" && body="<h1><img alt=\"spiceworks\" src=\"/images/logos/large.png" || body="<h1><img alt=\"spiceworks\" src=\"/images/logos/large.png" || body="<link href=\"/stylesheets/general.css?" || body="<meta name=\"author\" content=\"spiceworks, inc.\" />" || body="<p>Spiceworks is compatible with <a href=\"http://community.spiceworks.com/help/Spiceworks_Requirements#Browser\">modern browsers</a>, and requires JavaScript, Cookies, and Stylesheets (CSS) to function correctly.</p>" || body="<title>Spiceworks - Login Required</title>" || title="Spiceworks"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="spiceworks, inc." />') && response.body_string.contains('<link href="/stylesheets/general.css?') && response.body_string.contains('<h1><img alt="spiceworks" src="/images/logos/large.png')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1><img alt="spiceworks" src="/images/logos/large.png')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="/stylesheets/general.css?')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="spiceworks, inc." />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Spiceworks is compatible with <a href="http://community.spiceworks.com/help/Spiceworks_Requirements#Browser">modern browsers</a>, and requires JavaScript, Cookies, and Stylesheets (CSS) to function correctly.</p>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Spiceworks - Login Required</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Spiceworks")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

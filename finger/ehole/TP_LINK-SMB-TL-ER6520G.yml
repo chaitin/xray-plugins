@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP_LINK-SMB-TL-ER6520G
+manual: false
+detail:
+    fingerprint:
+        name: TP_LINK-SMB-TL-ER6520G
+    fofa: 'header="server: tp-link smb tl-er6520g"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tp-link smb tl-er6520g"))'
+expression: r0()

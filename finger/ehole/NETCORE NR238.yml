@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETCORE NR238
+manual: false
+detail:
+    fingerprint:
+        name: NETCORE NR238
+    fofa: header="NETCORE NR238"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETCORE NR238"))
+expression: r0()

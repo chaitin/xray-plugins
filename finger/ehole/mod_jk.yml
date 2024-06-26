@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mod_jk
+manual: false
+detail:
+    fingerprint:
+        name: mod_jk
+    fofa: header="mod_jk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mod_jk"))
+expression: r0()

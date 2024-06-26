@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IgniteNet-Access-Point
+manual: false
+detail:
+    fingerprint:
+        name: IgniteNet-Access-Point
+    fofa: title="ignitenet access point configuration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ignitenet access point configuration")
+expression: r0()

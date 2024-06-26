@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xinzuobiao
+manual: false
+detail:
+    fingerprint:
+        name: xinzuobiao
+    fofa: title="xinzuobiao"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xinzuobiao")
+expression: r0()

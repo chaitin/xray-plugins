@@ -1,0 +1,23 @@
+name: fingerprint-yaml-欧途智能通关云平台
+manual: false
+detail:
+    fingerprint:
+        name: 欧途智能通关云平台
+    fofa: header="欧途智能通关云平台" || title="欧途智能通关云平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("欧途智能通关云平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欧途智能通关云平台")
+expression: r0() || r1()

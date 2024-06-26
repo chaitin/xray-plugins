@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Alcatel_Lucent-Omniswitch
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-Omniswitch
+    fofa: header="/web/content/login.html" && header="agranat-emweb" || body="document.write(errmsg==\"\"?\"&nbsp;\"" || body="<title>Webview Logon Page</title>" || body="document.write(errMsg==\"\"?\"&nbsp;\":(\"<u>Error</u>&nbsp;-&nbsp;\" + errMsg));" || header="agranat-emweb" && header="/web/content/login.html" || header="/web/content/login.html" || header="agranat-emweb" || title="webview logon page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/web/content/login.html")) && response.raw_header.bcontains(bytes("agranat-emweb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.write(errmsg==""?"&nbsp;"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Webview Logon Page</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.write(errMsg==""?"&nbsp;":("<u>Error</u>&nbsp;-&nbsp;" + errMsg));')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("agranat-emweb")) && response.raw_header.bcontains(bytes("/web/content/login.html"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/web/content/login.html"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("agranat-emweb"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webview logon page")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

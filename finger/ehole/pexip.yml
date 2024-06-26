@@ -1,0 +1,58 @@
+name: fingerprint-yaml-pexip
+manual: false
+detail:
+    fingerprint:
+        name: pexip
+    fofa: body="<h2>pexip infinity</h2>" && body="<h2>会议平台</h2>" && body="pexip infinity" || body="pex-app" && body="pexip infinity" || body="<h2>会议平台</h2>" && body="<h2>pexip infinity</h2>" || body="<h2>pexip infinity</h2>" || body="<h2>会议平台</h2>" || body="pexip infinity" || body="pex-app"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>pexip infinity</h2>") && response.body_string.contains("<h2>会议平台</h2>") && response.body_string.contains("pexip infinity")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pex-app") && response.body_string.contains("pexip infinity")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>会议平台</h2>") && response.body_string.contains("<h2>pexip infinity</h2>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>pexip infinity</h2>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>会议平台</h2>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pexip infinity")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pex-app")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

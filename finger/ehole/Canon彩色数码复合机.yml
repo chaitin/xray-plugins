@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Canon彩色数码复合机
+manual: false
+detail:
+    fingerprint:
+        name: Canon彩色数码复合机
+    fofa: header="Canon彩色数码复合机" || title="Canon彩色数码复合机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Canon彩色数码复合机"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Canon彩色数码复合机")
+expression: r0() || r1()

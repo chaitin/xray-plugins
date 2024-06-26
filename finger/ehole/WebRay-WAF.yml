@@ -1,0 +1,30 @@
+name: fingerprint-yaml-WebRay-WAF
+manual: false
+detail:
+    fingerprint:
+        name: WebRay-WAF
+    fofa: 'header="rayengine" && header="drivedby: raysrv" || header="drivedby: raysrv" || header="rayengine"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("rayengine")) && response.raw_header.bcontains(bytes("drivedby: raysrv"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("drivedby: raysrv"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rayengine"))
+expression: r0() || r1() || r2()

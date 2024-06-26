@@ -1,0 +1,65 @@
+name: fingerprint-yaml-iWebShop
+manual: false
+detail:
+    fingerprint:
+        name: iWebShop
+    fofa: body="_skinpath" && body="_themepath" && body="_weburl" && body="class=\"pro_title\">iwebshop支付测试" || body="/runtime/default/systemjs" || body="class=\"pro_title\">iwebshop支付测试" || body="_weburl" && body="_themepath" && body="_skinpath" || body="_skinpath" || body="_themepath" || body="_weburl" || body="_weburl" && body="class=\"pro_title\">iwebshop支付测试"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_skinpath") && response.body_string.contains("_themepath") && response.body_string.contains("_weburl") && response.body_string.contains('class="pro_title">iwebshop支付测试')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/runtime/default/systemjs")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="pro_title">iwebshop支付测试')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_weburl") && response.body_string.contains("_themepath") && response.body_string.contains("_skinpath")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_skinpath")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_themepath")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_weburl")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_weburl") && response.body_string.contains('class="pro_title">iwebshop支付测试')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

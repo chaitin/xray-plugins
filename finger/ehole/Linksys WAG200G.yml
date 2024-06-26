@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WAG200G
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WAG200G
+    fofa: header="Linksys WAG200G"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WAG200G"))
+expression: r0()

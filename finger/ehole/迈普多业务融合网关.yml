@@ -1,0 +1,16 @@
+name: fingerprint-yaml-迈普多业务融合网关
+manual: false
+detail:
+    fingerprint:
+        name: 迈普多业务融合网关
+    fofa: icon_hash="-1234665500"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1234665500
+expression: r0()

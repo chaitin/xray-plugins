@@ -1,0 +1,72 @@
+name: fingerprint-yaml-BEA-WebLogic-Server
+manual: false
+detail:
+    fingerprint:
+        name: BEA-WebLogic-Server
+    fofa: 'body="<h1>bea weblogic server" && body="weblogic server" && body="<h1>welcome to weblogic application" && body="<h1>bea weblogic server" || body="<h1>BEA WebLogic Server" || body="WebLogic" || body="<h1>bea weblogic server" || body="<h1>welcome to weblogic application" || body="content=\"weblogic server" || body="weblogic server" || body="<title>Default BEA WebLogic Server Web Server Index Page</title>" || header="server: weblogic"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>bea weblogic server") && response.body_string.contains("weblogic server") && response.body_string.contains("<h1>welcome to weblogic application") && response.body_string.contains("<h1>bea weblogic server")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>BEA WebLogic Server")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("WebLogic")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>bea weblogic server")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>welcome to weblogic application")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="weblogic server')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("weblogic server")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Default BEA WebLogic Server Web Server Index Page</title>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: weblogic"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

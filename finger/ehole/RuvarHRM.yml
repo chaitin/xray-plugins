@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RuvarHRM
+manual: false
+detail:
+    fingerprint:
+        name: RuvarHRM
+    fofa: body="src=\"/ruvarhrm/web_login/login.aspx" || title="ruvarhrm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/ruvarhrm/web_login/login.aspx')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ruvarhrm")
+expression: r0() || r1()

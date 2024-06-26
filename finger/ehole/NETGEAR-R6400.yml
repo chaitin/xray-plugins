@@ -1,0 +1,51 @@
+name: fingerprint-yaml-NETGEAR-R6400
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-R6400
+    fofa: body="netgear r6400" && body="content=\"r6400\"" || header="netgear r6400" || header="NETGEAR R6400" || body="netgear r6400" && body="var mmc = {" || body="netgear r6400" || body="content=\"r6400\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netgear r6400") && response.body_string.contains('content="r6400"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear r6400"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR R6400"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netgear r6400") && response.body_string.contains("var mmc = {")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netgear r6400")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="r6400"')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MIMVICbbs
+manual: false
+detail:
+    fingerprint:
+        name: MIMVICbbs
+    fofa: title="MIMVICbbs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MIMVICbbs")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Siteglide
+manual: false
+detail:
+    fingerprint:
+        name: Siteglide
+    fofa: header="Siteglide" || title="Siteglide"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Siteglide"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Siteglide")
+expression: r0() || r1()

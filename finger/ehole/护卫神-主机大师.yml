@@ -1,0 +1,16 @@
+name: fingerprint-yaml-护卫神-主机大师
+manual: false
+detail:
+    fingerprint:
+        name: 护卫神·主机大师
+    fofa: icon_hash="1188645141"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1188645141
+expression: r0()

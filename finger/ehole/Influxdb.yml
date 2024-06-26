@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Influxdb
+manual: false
+detail:
+    fingerprint:
+        name: Influxdb
+    fofa: header="X-Influxdb" || header="InfluxDb" || title="InfluxDb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Influxdb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("InfluxDb"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("InfluxDb")
+expression: r0() || r1() || r2()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Apache Roller
+manual: false
+detail:
+    fingerprint:
+        name: Apache Roller
+    fofa: header="Apache Roller" || title="Apache Roller"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Roller"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Roller")
+expression: r0() || r1()

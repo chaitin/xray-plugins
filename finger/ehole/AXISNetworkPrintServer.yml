@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AXISNetworkPrintServer
+manual: false
+detail:
+    fingerprint:
+        name: AXISNetworkPrintServer
+    fofa: title="Axis"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axis")
+expression: r0()

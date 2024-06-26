@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Caudium
+manual: false
+detail:
+    fingerprint:
+        name: Caudium
+    fofa: 'header="caudium" && header="x-got-fish: pike" || header="Caudium" || header="X-Got-Fish:Pike" || header="x-got-fish: pike" || header="caudium"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("caudium")) && response.raw_header.bcontains(bytes("x-got-fish: pike"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Caudium"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Got-Fish:Pike"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-got-fish: pike"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("caudium"))
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,79 @@
+name: fingerprint-yaml-H3C-Switch
+manual: false
+detail:
+    fingerprint:
+        name: H3C-Switch
+    fofa: 'body="nlanguagesupported" && body="window.location = \"/wcn/banner?lang=" && body="style=\"background-color: #e1e9f5;\" onload=\"onbodyload" && body="window.location = slang + \"/login.html\";" && body="window.location = \"en/login.html\";" && body="window.location = \"/web/device/login?lang=\"+slang;" && body="<h2>web网管中" || header="h3c httpd" || body="style=\"background-color: #e1e9f5;\" onload=\"onbodyload()" && body="window.location = \"/wcn/banner?lang=" || body="nlanguagesupported" || body="window.location = \"/wcn/banner?lang=" || body="style=\"background-color: #e1e9f5;\" onload=\"onbodyload" || body="window.location = slang + \"/login.html\";" || body="window.location = \"en/login.html\";" || body="window.location = \"/web/device/login?lang=\"+slang;" || body="<h2>web网管中"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("nlanguagesupported") && response.body_string.contains(''window.location = "/wcn/banner?lang='') && response.body_string.contains(''style="background-color: #e1e9f5;" onload="onbodyload'') && response.body_string.contains(''window.location = slang + "/login.html";'') && response.body_string.contains(''window.location = "en/login.html";'') && response.body_string.contains(''window.location = "/web/device/login?lang="+slang;'') && response.body_string.contains("<h2>web网管中")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("h3c httpd"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''style="background-color: #e1e9f5;" onload="onbodyload()'') && response.body_string.contains(''window.location = "/wcn/banner?lang='')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nlanguagesupported")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "/wcn/banner?lang=')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''style="background-color: #e1e9f5;" onload="onbodyload'')'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = slang + "/login.html";')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "en/login.html";')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "/web/device/login?lang="+slang;')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>web网管中")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

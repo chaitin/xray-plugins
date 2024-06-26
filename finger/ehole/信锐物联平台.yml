@@ -1,0 +1,16 @@
+name: fingerprint-yaml-信锐物联平台
+manual: false
+detail:
+    fingerprint:
+        name: 信锐物联平台
+    fofa: icon_hash="147973611"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 147973611
+expression: r0()

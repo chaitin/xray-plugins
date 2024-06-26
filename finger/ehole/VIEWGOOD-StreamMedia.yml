@@ -1,0 +1,58 @@
+name: fingerprint-yaml-VIEWGOOD-StreamMedia
+manual: false
+detail:
+    fingerprint:
+        name: VIEWGOOD-StreamMedia
+    fofa: body="src=\"/viewgood/pc/" || body="var webvirtualdiretory = \"viewgood\";" || body="location.href" && body="viewgood" && body="fgetquery" || body="fgetquery" || body="viewgood" || body="location.href" && body="var webvirtualdiretory = \"viewgood\";" || body="location.href" && body="var webvirtualdiretory = viewgood\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/viewgood/pc/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var webvirtualdiretory = "viewgood";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("location.href") && response.body_string.contains("viewgood") && response.body_string.contains("fgetquery")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fgetquery")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("viewgood")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("location.href") && response.body_string.contains('var webvirtualdiretory = "viewgood";')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("location.href") && response.body_string.contains('var webvirtualdiretory = viewgood";')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

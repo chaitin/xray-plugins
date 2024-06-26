@@ -1,0 +1,37 @@
+name: fingerprint-yaml-EnGenius-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: EnGenius-Wireless-Router
+    fofa: body="engeniusrouter" && body="/logo_engenius.png" || body="/logo_engenius.png" || body="engeniusrouter" && body="firmwarever" || body="engeniusrouter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("engeniusrouter") && response.body_string.contains("/logo_engenius.png")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/logo_engenius.png")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("engeniusrouter") && response.body_string.contains("firmwarever")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("engeniusrouter")
+expression: r0() || r1() || r2() || r3()

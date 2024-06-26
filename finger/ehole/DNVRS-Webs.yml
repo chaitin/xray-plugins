@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DNVRS-Webs
+manual: false
+detail:
+    fingerprint:
+        name: DNVRS-Webs
+    fofa: header="DNVRS-Webs" || title="DNVRS-Webs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DNVRS-Webs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DNVRS-Webs")
+expression: r0() || r1()

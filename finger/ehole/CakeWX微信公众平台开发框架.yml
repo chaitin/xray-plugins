@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CakeWX微信公众平台开发框架
+manual: false
+detail:
+    fingerprint:
+        name: CakeWX微信公众平台开发框架
+    fofa: title="CakeWX微信公众平台开发框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CakeWX微信公众平台开发框架")
+expression: r0()

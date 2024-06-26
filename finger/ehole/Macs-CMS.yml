@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Macs-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Macs-CMS
+    fofa: 'body="<title>Mac\"s CMS - Admin Login</title>" || body="<!-- START: This block contains all code that the framework generates -->" || body="Site Powered by Mac\"s PHP MVC Framework <a href=\"http://macs-framework.sourceforge.net/\" target=\"_blank\">Framework of the future</a><br />"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<title>Mac"s CMS - Admin Login</title>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- START: This block contains all code that the framework generates -->")'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Site Powered by Mac"s PHP MVC Framework <a href="http://macs-framework.sourceforge.net/" target="_blank">Framework of the future</a><br />')
+expression: r0() || r1() || r2()

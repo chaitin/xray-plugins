@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Axigen Webmail
+manual: false
+detail:
+    fingerprint:
+        name: Axigen Webmail
+    fofa: header="Axigen Webmail" || title="Axigen Webmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Axigen Webmail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axigen Webmail")
+expression: r0() || r1()

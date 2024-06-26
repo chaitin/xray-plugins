@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AsiaInfo-System
+manual: false
+detail:
+    fingerprint:
+        name: AsiaInfo-System
+    fofa: title="智测云平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("智测云平台")
+expression: r0()

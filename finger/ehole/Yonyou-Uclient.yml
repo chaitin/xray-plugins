@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Yonyou-Uclient
+manual: false
+detail:
+    fingerprint:
+        name: Yonyou-Uclient
+    fofa: body="http-equiv=refresh content=0;url=index.jsp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http-equiv=refresh content=0;url=index.jsp")
+expression: r0()

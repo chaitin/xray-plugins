@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Arbor Networks
+manual: false
+detail:
+    fingerprint:
+        name: Arbor Networks
+    fofa: icon_hash="-1745552996"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1745552996
+expression: r0()

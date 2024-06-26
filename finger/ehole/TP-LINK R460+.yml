@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK R460+
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK R460+
+    fofa: header="TP-LINK R460+"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK R460+"))
+expression: r0()

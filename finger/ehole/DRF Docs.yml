@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DRF Docs
+manual: false
+detail:
+    fingerprint:
+        name: DRF Docs
+    fofa: header="DRF Docs" || title="DRF Docs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DRF Docs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DRF Docs")
+expression: r0() || r1()

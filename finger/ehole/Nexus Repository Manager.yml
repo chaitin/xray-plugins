@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Nexus Repository Manager
+manual: false
+detail:
+    fingerprint:
+        name: Nexus Repository Manager
+    fofa: 'title="Nexus Repository Manager" || icon_hash="1323738809" || body="nexus repository manager" && body="progressmessage(''initializing ...''" && body="Sonatype Nexus Repository Manager" && body="Nexus Repository Manager" && body="(Server: Nexus" || header="Nexus Repository Manager" || body="progressmessage(\"initializing ...\")" && body=" nexus repository manager" || body="<title>Nexus Repository Manager</title>" || body=" nexus repository manager" || body="progressmessage(\"initializing ...\")" || header="server: nexus/"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nexus Repository Manager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1323738809
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("nexus repository manager") && response.body_string.contains("progressmessage(''initializing ...''") && response.body_string.contains("Sonatype Nexus Repository Manager") && response.body_string.contains("Nexus Repository Manager") && response.body_string.contains("(Server: Nexus")'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nexus Repository Manager"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('progressmessage("initializing ...")') && response.body_string.contains(" nexus repository manager")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Nexus Repository Manager</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(" nexus repository manager")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('progressmessage("initializing ...")')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nexus/"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

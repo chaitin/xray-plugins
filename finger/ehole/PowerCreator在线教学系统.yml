@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PowerCreator在线教学系统
+manual: false
+detail:
+    fingerprint:
+        name: PowerCreator在线教学系统
+    fofa: title="PowerCreator在线教学系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PowerCreator在线教学系统")
+expression: r0()

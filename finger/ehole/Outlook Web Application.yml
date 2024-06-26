@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Outlook Web Application
+manual: false
+detail:
+    fingerprint:
+        name: Outlook Web Application
+    fofa: icon_hash="1768726119" || icon_hash="1356662359"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1768726119
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1356662359
+expression: r0() || r1()

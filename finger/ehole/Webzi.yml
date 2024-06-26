@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Webzi
+manual: false
+detail:
+    fingerprint:
+        name: Webzi
+    fofa: header="Webzi" || title="Webzi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Webzi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Webzi")
+expression: r0() || r1()

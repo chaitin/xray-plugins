@@ -1,0 +1,16 @@
+name: fingerprint-yaml-华测监测预警系统
+manual: false
+detail:
+    fingerprint:
+        name: 华测监测预警系统
+    fofa: icon_hash="-628229493"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -628229493
+expression: r0()

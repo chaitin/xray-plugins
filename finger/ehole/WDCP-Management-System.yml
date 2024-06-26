@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WDCP-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: WDCP-Management-System
+    fofa: title="lanmp_wdcp 安装成功" || title="wdcp服务器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lanmp_wdcp 安装成功")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wdcp服务器")
+expression: r0() || r1()

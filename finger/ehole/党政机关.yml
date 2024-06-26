@@ -1,0 +1,16 @@
+name: fingerprint-yaml-党政机关
+manual: false
+detail:
+    fingerprint:
+        name: 党政机关
+    fofa: body="bszs.conac.cn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bszs.conac.cn")
+expression: r0()

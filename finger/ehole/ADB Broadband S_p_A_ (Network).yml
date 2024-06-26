@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ADB Broadband S_p_A_ (Network)
+manual: false
+detail:
+    fingerprint:
+        name: ADB Broadband S.p.A. (Network)
+    fofa: icon_hash="-587741716"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -587741716
+expression: r0()

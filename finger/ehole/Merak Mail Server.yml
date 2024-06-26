@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Merak Mail Server
+manual: false
+detail:
+    fingerprint:
+        name: Merak Mail Server
+    fofa: header="Merak Mail Server" || title="Merak Mail Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Merak Mail Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Merak Mail Server")
+expression: r0() || r1()

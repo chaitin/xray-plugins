@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Afosto
+manual: false
+detail:
+    fingerprint:
+        name: Afosto
+    fofa: header="Afosto" || title="Afosto"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Afosto"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Afosto")
+expression: r0() || r1()

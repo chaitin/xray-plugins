@@ -1,0 +1,16 @@
+name: fingerprint-yaml-G2EX微社区
+manual: false
+detail:
+    fingerprint:
+        name: G2EX微社区
+    fofa: title="G2EX微社区"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("G2EX微社区")
+expression: r0()

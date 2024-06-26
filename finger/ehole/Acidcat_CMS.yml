@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Acidcat_CMS
+manual: false
+detail:
+    fingerprint:
+        name: Acidcat_CMS
+    fofa: 'body="Start Acidcat CMS footer information" || body="Powered by Acidcat CMS" || body="/css/admin_import.css" || body="<!-- Start Acidcat CMS footer information. Note: this code is not to be edited or removed in the free version. -->" || body="<tr><td colspan=\"2\" valign=\"top\" class=\"ac_menuleftbg\" ><table width=\"100%\" cellspacing=\"0\" border=\"0\"><tr>" || body="<tr><td colspan=\"2\" valign=\"top\" class=\"ac_menuleftbg\" ><table cellspacing=\"0\" border=\"0\"><tr>" || body="<td class=\"ac_footer_menu\">&nbsp;<br /><br /></td></tr></table></td>" || body="<td class=\"ac_footer_menu\">&nbsp;<br /></td></tr></table></td>" || body="<table cellspacing=\"0\" class=\"ac_admin_main\">" || body="<link href=\"admin/css/admin_import.css\" rel=\"stylesheet\" type=\"text/css\" />" || body="<br><center><table border=1 class=errorTable><tr><td class=\"login_view\"><img src=images/acidcat_logo.gif><td colspan=1 class=\"login_view\"><b>Acidcat CMS Error"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Start Acidcat CMS footer information")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Acidcat CMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/admin_import.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- Start Acidcat CMS footer information. Note: this code is not to be edited or removed in the free version. -->")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td colspan="2" valign="top" class="ac_menuleftbg" ><table width="100%" cellspacing="0" border="0"><tr>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td colspan="2" valign="top" class="ac_menuleftbg" ><table cellspacing="0" border="0"><tr>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="ac_footer_menu">&nbsp;<br /><br /></td></tr></table></td>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="ac_footer_menu">&nbsp;<br /></td></tr></table></td>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<table cellspacing="0" class="ac_admin_main">')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="admin/css/admin_import.css" rel="stylesheet" type="text/css" />')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<br><center><table border=1 class=errorTable><tr><td class="login_view"><img src=images/acidcat_logo.gif><td colspan=1 class="login_view"><b>Acidcat CMS Error')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

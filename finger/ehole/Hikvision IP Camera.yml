@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hikvision IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision IP Camera
+    fofa: icon_hash="999357577"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 999357577
+expression: r0()

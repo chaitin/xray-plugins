@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WP Engine
+manual: false
+detail:
+    fingerprint:
+        name: WP Engine
+    fofa: header="WP Engine" || title="WP Engine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WP Engine"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WP Engine")
+expression: r0() || r1()

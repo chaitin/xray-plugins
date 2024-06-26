@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-ECR3316-HF
+manual: false
+detail:
+    fingerprint:
+        name: uniview-ECR3316-HF
+    fofa: title="ecr3316-hf"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ecr3316-hf")
+expression: r0()

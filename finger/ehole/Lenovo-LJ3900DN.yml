@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lenovo-LJ3900DN
+manual: false
+detail:
+    fingerprint:
+        name: Lenovo-LJ3900DN
+    fofa: title="lenovo lj3900dn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lenovo lj3900dn")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-奇趣CMS
+manual: false
+detail:
+    fingerprint:
+        name: 奇趣CMS
+    fofa: title="奇趣CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("奇趣CMS")
+expression: r0()

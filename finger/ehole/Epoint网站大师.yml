@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Epoint网站大师
+manual: false
+detail:
+    fingerprint:
+        name: Epoint网站大师
+    fofa: title="Epoint 网站大师"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Epoint 网站大师")
+expression: r0()

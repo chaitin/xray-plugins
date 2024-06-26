@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AWS (Ada Web Server)
+manual: false
+detail:
+    fingerprint:
+        name: AWS (Ada Web Server)
+    fofa: header="AWS (Ada Web Server)" || title="AWS (Ada Web Server)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AWS (Ada Web Server)"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AWS (Ada Web Server)")
+expression: r0() || r1()

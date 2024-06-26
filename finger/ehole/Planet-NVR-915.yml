@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Planet-NVR-915
+manual: false
+detail:
+    fingerprint:
+        name: Planet-NVR-915
+    fofa: header="realm=\"nvr-915"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="nvr-915'))
+expression: r0()

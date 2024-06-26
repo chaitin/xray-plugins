@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Inspectlet
+manual: false
+detail:
+    fingerprint:
+        name: Inspectlet
+    fofa: header="Inspectlet" || title="Inspectlet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Inspectlet"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Inspectlet")
+expression: r0() || r1()

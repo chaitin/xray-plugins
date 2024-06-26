@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Zotonic
+manual: false
+detail:
+    fingerprint:
+        name: Zotonic
+    fofa: 'body="powered by: zotonic" && body="/internal/js/apps/zotonic-1.0" || body="powered by: Zotonic" || body="/lib/js/apps/zotonic-1.0" || body="powered by: zotonic" || body="/internal/js/apps/zotonic-1.0" || body="/lib/js/apps/zotonic-1.0" && body="powered by: zotonic"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("powered by: zotonic") && response.body_string.contains("/internal/js/apps/zotonic-1.0")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("powered by: Zotonic")'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/lib/js/apps/zotonic-1.0")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("powered by: zotonic")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/internal/js/apps/zotonic-1.0")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("/lib/js/apps/zotonic-1.0") && response.body_string.contains("powered by: zotonic")'
+expression: r0() || r1() || r2() || r3() || r4() || r5()

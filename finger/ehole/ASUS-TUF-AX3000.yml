@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ASUS-TUF-AX3000
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-TUF-AX3000
+    fofa: body="document.getelementsbyclassname(\"model-name\"[0].innerhtml = \"tuf-ax3000\"" && body="class=\"prod_madelname\">tuf-ax3000</div>" || body="document.getelementsbyclassname\"model-name\"[0].innerhtml = \"tuf-ax3000\"" || body="class=\"prod_madelname\">tuf-ax3000</div>" || body="class=\"prod_madelname\">tuf-ax3000</div>" && body="document.getelementsbyclassname(\"model-name\"[0].innerhtml = \"tuf-ax3000\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementsbyclassname("model-name"[0].innerhtml = "tuf-ax3000"') && response.body_string.contains('class="prod_madelname">tuf-ax3000</div>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementsbyclassname"model-name"[0].innerhtml = "tuf-ax3000"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="prod_madelname">tuf-ax3000</div>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="prod_madelname">tuf-ax3000</div>') && response.body_string.contains('document.getelementsbyclassname("model-name"[0].innerhtml = "tuf-ax3000"')
+expression: r0() || r1() || r2() || r3()

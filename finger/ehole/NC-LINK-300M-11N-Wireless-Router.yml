@@ -1,0 +1,37 @@
+name: fingerprint-yaml-NC-LINK-300M-11N-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: NC-LINK-300M-11N-Wireless-Router
+    fofa: body="href='img/amtc_logo.png'" && body="href=\"http://www.nc-link.cn/\"" || body="href=\"http://www.nc-link.cn/\"" && body="href=\"img/amtc_logo.png\"" || body="href=\"img/amtc_logo.png\"" || body="href=\"http://www.nc-link.cn/\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href='img/amtc_logo.png'") && response.body_string.contains('href="http://www.nc-link.cn/"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.nc-link.cn/"') && response.body_string.contains('href="img/amtc_logo.png"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="img/amtc_logo.png"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.nc-link.cn/"')
+expression: r0() || r1() || r2() || r3()

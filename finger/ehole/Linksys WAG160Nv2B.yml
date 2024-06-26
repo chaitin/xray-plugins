@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WAG160Nv2B
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WAG160Nv2B
+    fofa: header="Linksys WAG160Nv2B"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WAG160Nv2B"))
+expression: r0()

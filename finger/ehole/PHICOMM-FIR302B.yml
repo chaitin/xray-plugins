@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHICOMM-FIR302B
+manual: false
+detail:
+    fingerprint:
+        name: PHICOMM-FIR302B
+    fofa: title="fir302b"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("fir302b")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-VMware-ESXi-Server
+manual: false
+detail:
+    fingerprint:
+        name: VMware-ESXi-Server
+    fofa: body="<script type=\"text/javascript\">document.write(\"<title>\" + ID_EESX_Welcome + \"</title>\");</script>" || body="<meta name=\"description\" content=\"VMware ESXi Server is virtual infrastructure software for partitioning, consolidating, and managing systems in mission-critical environments. VMware ESXi Server provides a highly scalable virtual machine platform with advanced resource management capabilities, which can be managed by VMware vCenter Server.\">" || body="<h1><script type=\"text/javascript\">document.write(ID_EESXServer3);</script></h1>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript">document.write("<title>" + ID_EESX_Welcome + "</title>");</script>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="VMware ESXi Server is virtual infrastructure software for partitioning, consolidating, and managing systems in mission-critical environments. VMware ESXi Server provides a highly scalable virtual machine platform with advanced resource management capabilities, which can be managed by VMware vCenter Server.">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1><script type="text/javascript">document.write(ID_EESXServer3);</script></h1>')
+expression: r0() || r1() || r2()

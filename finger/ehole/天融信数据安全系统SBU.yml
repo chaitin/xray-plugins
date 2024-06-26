@@ -1,0 +1,23 @@
+name: fingerprint-yaml-天融信数据安全系统SBU
+manual: false
+detail:
+    fingerprint:
+        name: 天融信数据安全系统SBU
+    fofa: header="天融信数据安全系统SBU" || title="天融信数据安全系统SBU"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("天融信数据安全系统SBU"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天融信数据安全系统SBU")
+expression: r0() || r1()

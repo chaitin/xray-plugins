@@ -1,0 +1,16 @@
+name: fingerprint-yaml-N168多用户微信公众平台
+manual: false
+detail:
+    fingerprint:
+        name: N168多用户微信公众平台
+    fofa: title="N168多用户微信公众平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("N168多用户微信公众平台")
+expression: r0()

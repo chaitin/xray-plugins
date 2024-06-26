@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ewon-SAVPN
+manual: false
+detail:
+    fingerprint:
+        name: Ewon-SAVPN
+    fofa: 'header="server: ewon"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ewon"))'
+expression: r0()

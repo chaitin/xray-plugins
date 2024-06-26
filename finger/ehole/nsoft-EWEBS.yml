@@ -1,0 +1,30 @@
+name: fingerprint-yaml-nsoft-EWEBS
+manual: false
+detail:
+    fingerprint:
+        name: nsoft-EWEBS
+    fofa: body="/js/xajax05/xajax_js/xajax_core.js" && body="<a href='../client/ewebsclientsetup.exe'></a> </td>" || body="<a href=\"../client/ewebsclientsetup.exe\"></a> </td>" || body="/js/xajax05/xajax_js/xajax_core.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/xajax05/xajax_js/xajax_core.js") && response.body_string.contains("<a href='../client/ewebsclientsetup.exe'></a> </td>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="../client/ewebsclientsetup.exe"></a> </td>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/xajax05/xajax_js/xajax_core.js")
+expression: r0() || r1() || r2()

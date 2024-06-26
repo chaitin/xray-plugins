@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetGear DVG1000
+manual: false
+detail:
+    fingerprint:
+        name: NetGear DVG1000
+    fofa: header="NetGear DVG1000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetGear DVG1000"))
+expression: r0()

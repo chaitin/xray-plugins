@@ -1,0 +1,16 @@
+name: fingerprint-yaml-StruxureWare (Schneider Electric)
+manual: false
+detail:
+    fingerprint:
+        name: StruxureWare (Schneider Electric)
+    fofa: icon_hash="979634648"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 979634648
+expression: r0()

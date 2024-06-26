@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WN-AC1167R
+manual: false
+detail:
+    fingerprint:
+        name: WN-AC1167R
+    fofa: title="wn-ac1167r"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wn-ac1167r")
+expression: r0()

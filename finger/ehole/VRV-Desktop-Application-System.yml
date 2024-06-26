@@ -1,0 +1,44 @@
+name: fingerprint-yaml-VRV-Desktop-Application-System
+manual: false
+detail:
+    fingerprint:
+        name: VRV-Desktop-Application-System
+    fofa: body="<span id=\"lblvalidcompany\" class=\"validcompany\">vrv" && body="var vver = $('#hidverify'.val(;" || body="var vver = $(\"#hidverify\").val();" && body="<span id=\"lblvalidcompany\" class=\"validcompany\">vrv" || body="<span id=\"lblvalidcompany\" class=\"validcompany\">vrv" || body="var vver = $\"#hidverify\".val;" || body="var vver = $(\"#hidverify\").val();"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="lblvalidcompany" class="validcompany">vrv') && response.body_string.contains("var vver = $('#hidverify'.val(;")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var vver = $("#hidverify").val();') && response.body_string.contains('<span id="lblvalidcompany" class="validcompany">vrv')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="lblvalidcompany" class="validcompany">vrv')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var vver = $"#hidverify".val;')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var vver = $("#hidverify").val();')
+expression: r0() || r1() || r2() || r3() || r4()

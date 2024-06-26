@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FiberHome
+manual: false
+detail:
+    fingerprint:
+        name: FiberHome
+    fofa: header="FiberHome" || title="FiberHome"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FiberHome"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FiberHome")
+expression: r0() || r1()

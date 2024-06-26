@@ -1,0 +1,16 @@
+name: fingerprint-yaml-gooine_sqjz
+manual: false
+detail:
+    fingerprint:
+        name: gooine_sqjz
+    fofa: title="gooine_sqjz"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gooine_sqjz")
+expression: r0()

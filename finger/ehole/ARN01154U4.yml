@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ARN01154U4
+manual: false
+detail:
+    fingerprint:
+        name: ARN01154U4
+    fofa: header="ARN01154U4"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ARN01154U4"))
+expression: r0()

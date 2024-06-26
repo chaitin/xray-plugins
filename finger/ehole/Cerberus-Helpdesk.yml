@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Cerberus-Helpdesk
+manual: false
+detail:
+    fingerprint:
+        name: Cerberus-Helpdesk
+    fofa: body="<!-- if you have your own stylesheet for html elements, you can remove the cerberus-html.css link" || header="cerberuspublicgui" || body="<!-- If you have your own stylesheet for HTML elements, you can remove the cerberus-html.css link" || header="CerberusPublicGUI" || body="<!-- If you have your own stylesheet for HTML elements, you can remove the cerberus-html.css link -->" || body="<td width=\"519\" class=\"kb_most_viewed_articles\">Most Viewed Knowledgebase Articles</td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- if you have your own stylesheet for html elements, you can remove the cerberus-html.css link")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cerberuspublicgui"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- If you have your own stylesheet for HTML elements, you can remove the cerberus-html.css link")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CerberusPublicGUI"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- If you have your own stylesheet for HTML elements, you can remove the cerberus-html.css link -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td width="519" class="kb_most_viewed_articles">Most Viewed Knowledgebase Articles</td>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

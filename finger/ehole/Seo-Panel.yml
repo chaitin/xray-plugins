@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Seo-Panel
+manual: false
+detail:
+    fingerprint:
+        name: Seo-Panel
+    fofa: 'body="<p class=\"note error\">javascript is turned off in your web browser. turn it on to take full advantage of this site, then refresh the page.</p>" && body="var wantproceed = ''do you really want to proceed?'';" && body="var wantproceed = ''wollen sie wirklich fortfahren?'';" || body="var wantproceed = \"wollen sie wirklich fortfahren?\";" || body="var wantproceed = \"do you really want to proceed?\";" || body="<p class=\"note error\">javascript is turned off in your web browser. turn it on to take full advantage of this site, then refresh the page.</p>" || body="<title>Seo Panel: Login section</title>" || body="<p class=\"note error\"><p style=\"color:red\">You don\"t have permission to access this page!</p></p>" || body="<meta name=\"description\" content=\"Login to Seo Panel and utilise seo tools and plugins to increase the perfomance of your site.\" />" || body="var wantproceed = \"do you really want to proceed?\";" && body="var wantproceed = \"wollen sie wirklich fortfahren?\";" || body="var wantproceed = do you really want to proceed?\";" && body="var wantproceed = wollen sie wirklich fortfahren?\";"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="note error">javascript is turned off in your web browser. turn it on to take full advantage of this site, then refresh the page.</p>') && response.body_string.contains("var wantproceed = 'do you really want to proceed?';") && response.body_string.contains("var wantproceed = 'wollen sie wirklich fortfahren?';")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var wantproceed = "wollen sie wirklich fortfahren?";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var wantproceed = "do you really want to proceed?";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="note error">javascript is turned off in your web browser. turn it on to take full advantage of this site, then refresh the page.</p>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>Seo Panel: Login section</title>")'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="note error"><p style="color:red">You don"t have permission to access this page!</p></p>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="Login to Seo Panel and utilise seo tools and plugins to increase the perfomance of your site." />')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var wantproceed = "do you really want to proceed?";') && response.body_string.contains('var wantproceed = "wollen sie wirklich fortfahren?";')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var wantproceed = do you really want to proceed?";') && response.body_string.contains('var wantproceed = wollen sie wirklich fortfahren?";')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HIKVISION-IntelligentSafeguardSystems
+manual: false
+detail:
+    fingerprint:
+        name: HIKVISION-IntelligentSafeguardSystems
+    fofa: body="window.location.href.indexof(\"/index/carfile/\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href.indexof("/index/carfile/"')
+expression: r0()

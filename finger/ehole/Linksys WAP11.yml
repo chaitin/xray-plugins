@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WAP11
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WAP11
+    fofa: header="Linksys WAP11"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WAP11"))
+expression: r0()

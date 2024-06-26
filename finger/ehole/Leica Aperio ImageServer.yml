@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Leica Aperio ImageServer
+manual: false
+detail:
+    fingerprint:
+        name: Leica Aperio ImageServer
+    fofa: header="Leica Aperio ImageServer" || title="Leica Aperio ImageServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Leica Aperio ImageServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Leica Aperio ImageServer")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-cPanel Login
+manual: false
+detail:
+    fingerprint:
+        name: cPanel Login
+    fofa: icon_hash="1993518473" || icon_hash="1544230796" || icon_hash="1244636413"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1993518473
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1544230796
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1244636413
+expression: r0() || r1() || r2()

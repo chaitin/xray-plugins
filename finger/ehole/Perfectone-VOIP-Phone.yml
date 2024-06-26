@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Perfectone-VOIP-Phone
+manual: false
+detail:
+    fingerprint:
+        name: Perfectone-VOIP-Phone
+    fofa: 'body="color=\"#ffffff\"><b>login voip" && body="onload=\"javascript:document.loginform.user.focus(" || body="onload=\"javascript:document.loginform.user.focus()" || body="color=\"#ffffff\"><b>login voip" || body="onload=\"javascript:document.loginform.user.focus" || body="<body OnLoad=\"JavaScript:document.loginform.user.focus();\">" || body="<p style=\"margin-top: 5px\"><font face=\"Arial\"><input type=submit value=\"Login\" onClick=\"return saveChanges()\">" || body="<font face=\"Arial\" color=\"#FFFFFF\"><b>Login VoIP</b></font></i></td> </tr>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#ffffff"><b>login voip') && response.body_string.contains('onload="javascript:document.loginform.user.focus(')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onload="javascript:document.loginform.user.focus()')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#ffffff"><b>login voip')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onload="javascript:document.loginform.user.focus')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body OnLoad="JavaScript:document.loginform.user.focus();">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<p style="margin-top: 5px"><font face="Arial"><input type=submit value="Login" onClick="return saveChanges()">'')'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font face="Arial" color="#FFFFFF"><b>Login VoIP</b></font></i></td> </tr>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

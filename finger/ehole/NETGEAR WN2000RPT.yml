@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WN2000RPT
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WN2000RPT
+    fofa: header="NETGEAR WN2000RPT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WN2000RPT"))
+expression: r0()

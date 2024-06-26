@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETDOIT
+manual: false
+detail:
+    fingerprint:
+        name: NETDOIT
+    fofa: body="power by netdoit" && body="align=\"center\"><a href=\"http://www.net-doit.com\" target=\"_blank" || body="align=\"center\"><a href=\"http://www.net-doit.com\" target=\"_blank" || body="power by netdoit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("power by netdoit") && response.body_string.contains('align="center"><a href="http://www.net-doit.com" target="_blank')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('align="center"><a href="http://www.net-doit.com" target="_blank')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("power by netdoit")
+expression: r0() || r1() || r2()

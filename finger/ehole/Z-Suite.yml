@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Z-Suite
+manual: false
+detail:
+    fingerprint:
+        name: Z-Suite
+    fofa: body="contentdiv imgposition desw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("contentdiv imgposition desw")
+expression: r0()

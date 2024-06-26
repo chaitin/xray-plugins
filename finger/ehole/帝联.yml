@@ -1,0 +1,23 @@
+name: fingerprint-yaml-帝联
+manual: false
+detail:
+    fingerprint:
+        name: 帝联
+    fofa: header="fastcdn.com" || header="Server:DNION"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fastcdn.com"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:DNION"))
+expression: r0() || r1()

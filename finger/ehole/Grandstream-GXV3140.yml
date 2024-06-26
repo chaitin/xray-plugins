@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Grandstream-GXV3140
+manual: false
+detail:
+    fingerprint:
+        name: Grandstream-GXV3140
+    fofa: body="document.title = \"gxv3140\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.title = "gxv3140"')
+expression: r0()

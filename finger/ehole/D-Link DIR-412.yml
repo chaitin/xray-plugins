@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link DIR-412
+manual: false
+detail:
+    fingerprint:
+        name: D-Link DIR-412
+    fofa: header="D-Link DIR-412" || title="D-Link DIR-412"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link DIR-412"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link DIR-412")
+expression: r0() || r1()

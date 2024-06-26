@@ -1,0 +1,16 @@
+name: fingerprint-yaml-蓝科CMS
+manual: false
+detail:
+    fingerprint:
+        name: 蓝科CMS
+    fofa: title="蓝科CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("蓝科CMS")
+expression: r0()

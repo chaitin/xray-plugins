@@ -1,0 +1,16 @@
+name: fingerprint-yaml-fs-company_企业网站系统
+manual: false
+detail:
+    fingerprint:
+        name: fs-company_企业网站系统
+    fofa: title="fs-company_企业网站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("fs-company_企业网站系统")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-R6850
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-R6850
+    fofa: header="realm=\"netgear netgear r6850" && header="realm=\"netgear r6850" || header="realm=\"netgear r6850" || header="realm=\"netgear netgear r6850"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netgear netgear r6850')) && response.raw_header.bcontains(bytes('realm="netgear r6850'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netgear r6850'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netgear netgear r6850'))
+expression: r0() || r1() || r2()

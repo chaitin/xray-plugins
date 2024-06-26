@@ -1,0 +1,65 @@
+name: fingerprint-yaml-WatchGuard-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: WatchGuard-Firewall
+    fofa: 'body="/auth_portal/default/logo" && body="watchguard" && body="watchguard" && body="watchguard" && body="watchguard" || header="basic realm=\"watchguard" && header="digest realm=\"watchguard" || body="/auth_portal/default/logo" || body="watchguard" || header="digest realm=\"watchguard" || header="server: watchguard firewall" || header="basic realm=\"watchguard" || title="WatchGuard-FireWall"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/auth_portal/default/logo") && response.body_string.contains("watchguard") && response.body_string.contains("watchguard") && response.body_string.contains("watchguard") && response.body_string.contains("watchguard")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="watchguard')) && response.raw_header.bcontains(bytes('digest realm="watchguard'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/auth_portal/default/logo")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("watchguard")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('digest realm="watchguard'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: watchguard firewall"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="watchguard'))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WatchGuard-FireWall")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

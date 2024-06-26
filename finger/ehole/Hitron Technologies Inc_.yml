@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hitron Technologies Inc_
+manual: false
+detail:
+    fingerprint:
+        name: Hitron Technologies Inc.
+    fofa: icon_hash="711742418"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 711742418
+expression: r0()

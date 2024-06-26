@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dahua Storm (IP Camera)
+manual: false
+detail:
+    fingerprint:
+        name: Dahua Storm (IP Camera)
+    fofa: icon_hash="2019488876" || icon_hash="833190513"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2019488876
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 833190513
+expression: r0() || r1()

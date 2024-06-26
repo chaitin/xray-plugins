@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Redmi 路由器
+manual: false
+detail:
+    fingerprint:
+        name: Redmi 路由器
+    fofa: body="<title>小米路由器</title>" || body="<title>Redmi路由器</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>小米路由器</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Redmi路由器</title>")
+expression: r0() || r1()

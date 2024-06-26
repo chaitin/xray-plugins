@@ -1,0 +1,16 @@
+name: fingerprint-yaml-anymacromail
+manual: false
+detail:
+    fingerprint:
+        name: anymacromail
+    fofa: title="anymacromail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("anymacromail")
+expression: r0()

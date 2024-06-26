@@ -1,0 +1,23 @@
+name: fingerprint-yaml-QBServer
+manual: false
+detail:
+    fingerprint:
+        name: QBServer
+    fofa: header="QBServer" || title="QBServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QBServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QBServer")
+expression: r0() || r1()

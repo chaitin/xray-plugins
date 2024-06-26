@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ALIBI NVR
+manual: false
+detail:
+    fingerprint:
+        name: ALIBI NVR
+    fofa: icon_hash="1876585825"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1876585825
+expression: r0()

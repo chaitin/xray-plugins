@@ -1,0 +1,30 @@
+name: fingerprint-yaml-AfterLogic-WebMail
+manual: false
+detail:
+    fingerprint:
+        name: AfterLogic-WebMail
+    fofa: header="phpwebmailsessid" || header="PHPWEBMAILSESSID" || title="afterlogic webmail pro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("phpwebmailsessid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPWEBMAILSESSID"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("afterlogic webmail pro")
+expression: r0() || r1() || r2()

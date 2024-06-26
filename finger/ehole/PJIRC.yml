@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PJIRC
+manual: false
+detail:
+    fingerprint:
+        name: PJIRC
+    fofa: 'body="<body onload=\"document.login.nick.focus();\" style=\"margin: 5px;\">" || body="document.writeln(\"<input name=\"jsenabled\" type=\"hidden\" value=\"1\" \\/>\");"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<body onload="document.login.nick.focus();" style="margin: 5px;">'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.writeln("<input name="jsenabled" type="hidden" value="1" \\/>");')
+expression: r0() || r1()

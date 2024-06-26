@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MyQEE开源PHP多项目及模块化开发框架
+manual: false
+detail:
+    fingerprint:
+        name: MyQEE开源PHP多项目及模块化开发框架
+    fofa: title="MyQEE开源PHP多项目及模块化开发框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MyQEE开源PHP多项目及模块化开发框架")
+expression: r0()

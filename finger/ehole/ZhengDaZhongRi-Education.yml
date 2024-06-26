@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ZhengDaZhongRi-Education
+manual: false
+detail:
+    fingerprint:
+        name: ZhengDaZhongRi-Education
+    fofa: body="images/lgline.gif" && body="onclick=\"safecodeclick\" src=\"safecode.aspx" || body="onclick=\"safecodeclick\" src=\"safecode.aspx" || body="lb_hint" && body="images/lgline.gif" || body="images/lgline.gif" || body="lb_hint" && body="onclick=\"safecodeclick\" src=\"safecode.aspx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/lgline.gif") && response.body_string.contains('onclick="safecodeclick" src="safecode.aspx')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onclick="safecodeclick" src="safecode.aspx')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("lb_hint") && response.body_string.contains("images/lgline.gif")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/lgline.gif")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("lb_hint") && response.body_string.contains('onclick="safecodeclick" src="safecode.aspx')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WHM
+manual: false
+detail:
+    fingerprint:
+        name: WHM
+    fofa: icon_hash="-649378830" || header="whostmgrsession"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -649378830
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("whostmgrsession"))
+expression: r0() || r1()

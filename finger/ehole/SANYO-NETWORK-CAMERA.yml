@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SANYO-NETWORK-CAMERA
+manual: false
+detail:
+    fingerprint:
+        name: SANYO-NETWORK-CAMERA
+    fofa: title="sanyo network camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sanyo network camera")
+expression: r0()

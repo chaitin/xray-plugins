@@ -1,0 +1,30 @@
+name: fingerprint-yaml-pintsize_css
+manual: false
+detail:
+    fingerprint:
+        name: pintsize.css
+    fofa: body="pintsize.min.css" && body="pintsize.css" || body="pintsize.css" || body="pintsize.min.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pintsize.min.css") && response.body_string.contains("pintsize.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pintsize.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pintsize.min.css")
+expression: r0() || r1() || r2()

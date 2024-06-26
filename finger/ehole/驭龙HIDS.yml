@@ -1,0 +1,23 @@
+name: fingerprint-yaml-驭龙HIDS
+manual: false
+detail:
+    fingerprint:
+        name: 驭龙HIDS
+    fofa: header="驭龙HIDS" || title="驭龙HIDS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("驭龙HIDS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("驭龙HIDS")
+expression: r0() || r1()

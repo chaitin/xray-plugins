@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iceflow_vpn_router
+manual: false
+detail:
+    fingerprint:
+        name: iceflow_vpn_router
+    fofa: title="iceflow_vpn_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iceflow_vpn_router")
+expression: r0()

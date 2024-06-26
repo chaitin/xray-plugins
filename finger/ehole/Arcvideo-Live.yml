@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Arcvideo-Live
+manual: false
+detail:
+    fingerprint:
+        name: Arcvideo-Live
+    fofa: 'header="server: arcvideo" || title="arcvideo live"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: arcvideo"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("arcvideo live")
+expression: r0() || r1()

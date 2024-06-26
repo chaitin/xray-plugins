@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZOHO-ManageEngine-Desktop
+manual: false
+detail:
+    fingerprint:
+        name: ZOHO-ManageEngine-Desktop
+    fofa: title="manageengine desktop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("manageengine desktop")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Data-ONTAP
+manual: false
+detail:
+    fingerprint:
+        name: Data-ONTAP
+    fofa: header="Data ONTAP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Data ONTAP"))
+expression: r0()

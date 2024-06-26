@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UCloud
+manual: false
+detail:
+    fingerprint:
+        name: UCloud
+    fofa: title="UCloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("UCloud")
+expression: r0()

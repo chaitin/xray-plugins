@@ -1,0 +1,30 @@
+name: fingerprint-yaml-october cms
+manual: false
+detail:
+    fingerprint:
+        name: october cms
+    fofa: header="october cms" || title="october cms" || title="OctoberCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("october cms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("october cms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OctoberCMS")
+expression: r0() || r1() || r2()

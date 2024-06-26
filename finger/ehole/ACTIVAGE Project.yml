@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ACTIVAGE Project
+manual: false
+detail:
+    fingerprint:
+        name: ACTIVAGE Project
+    fofa: header="ACTIVAGE Project" || title="ACTIVAGE Project"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ACTIVAGE Project"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ACTIVAGE Project")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-山石网科(HillstoneNetworks)
+manual: false
+detail:
+    fingerprint:
+        name: 山石网科(HillstoneNetworks)
+    fofa: body="山石网科" || body="HillstoneNetworks" || title="山石网科" || title="HillstoneNetworks"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("山石网科")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("HillstoneNetworks")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("山石网科")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HillstoneNetworks")
+expression: r0() || r1() || r2() || r3()

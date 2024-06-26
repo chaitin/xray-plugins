@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Azul Embedded HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: Azul Embedded HTTP Server
+    fofa: header="Azul Embedded HTTP Server" || title="Azul Embedded HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Azul Embedded HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Azul Embedded HTTP Server")
+expression: r0() || r1()

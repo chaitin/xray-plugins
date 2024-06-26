@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VeryCMS
+manual: false
+detail:
+    fingerprint:
+        name: VeryCMS
+    fofa: header="VeryCMS" || title="VeryCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("VeryCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VeryCMS")
+expression: r0() || r1()

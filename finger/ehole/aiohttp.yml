@@ -1,0 +1,30 @@
+name: fingerprint-yaml-aiohttp
+manual: false
+detail:
+    fingerprint:
+        name: aiohttp
+    fofa: 'header="aiohttp" || header="server: aiphttp" || title="aiohttp"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("aiohttp"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: aiphttp"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("aiohttp")
+expression: r0() || r1() || r2()

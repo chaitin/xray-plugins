@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Loowei笑话程序
+manual: false
+detail:
+    fingerprint:
+        name: Loowei笑话程序
+    fofa: title="Loowei笑话程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Loowei笑话程序")
+expression: r0()

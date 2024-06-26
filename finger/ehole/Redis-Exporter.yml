@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Redis-Exporter
+manual: false
+detail:
+    fingerprint:
+        name: Redis-Exporter
+    fofa: title="redis exporter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("redis exporter")
+expression: r0()

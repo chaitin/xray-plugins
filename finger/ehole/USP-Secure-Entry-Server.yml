@@ -1,0 +1,23 @@
+name: fingerprint-yaml-USP-Secure-Entry-Server
+manual: false
+detail:
+    fingerprint:
+        name: USP-Secure-Entry-Server
+    fofa: header="secure entry server" || header="Secure Entry Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("secure entry server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Secure Entry Server"))
+expression: r0() || r1()

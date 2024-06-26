@@ -1,0 +1,16 @@
+name: fingerprint-yaml-chinags-SC
+manual: false
+detail:
+    fingerprint:
+        name: chinags-SC
+    fofa: body="src=\"/animation/images/teacher_2.png\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/animation/images/teacher_2.png"')
+expression: r0()

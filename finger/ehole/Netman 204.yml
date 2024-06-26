@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Netman 204
+manual: false
+detail:
+    fingerprint:
+        name: Netman 204
+    fofa: header="Netman 204" || title="Netman 204"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netman 204"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Netman 204")
+expression: r0() || r1()

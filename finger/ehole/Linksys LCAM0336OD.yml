@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys LCAM0336OD
+manual: false
+detail:
+    fingerprint:
+        name: Linksys LCAM0336OD
+    fofa: header="Linksys LCAM0336OD"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys LCAM0336OD"))
+expression: r0()

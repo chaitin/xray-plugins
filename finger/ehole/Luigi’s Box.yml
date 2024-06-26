@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Luigi’s Box
+manual: false
+detail:
+    fingerprint:
+        name: Luigi’s Box
+    fofa: header="Luigi’s Box" || title="Luigi’s Box"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Luigi’s Box"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Luigi’s Box")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Comcast_Business_Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Comcast_Business_Gateway
+    fofa: body="Comcast Business Gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Comcast Business Gateway")
+expression: r0()

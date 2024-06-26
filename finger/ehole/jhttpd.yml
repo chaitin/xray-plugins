@@ -1,0 +1,23 @@
+name: fingerprint-yaml-jhttpd
+manual: false
+detail:
+    fingerprint:
+        name: jhttpd
+    fofa: header="jhttpd" || title="jhttpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jhttpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jhttpd")
+expression: r0() || r1()

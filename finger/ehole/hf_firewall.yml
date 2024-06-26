@@ -1,0 +1,16 @@
+name: fingerprint-yaml-hf_firewall
+manual: false
+detail:
+    fingerprint:
+        name: hf_firewall
+    fofa: title="hf_firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hf_firewall")
+expression: r0()

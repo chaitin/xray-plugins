@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BASrouter
+manual: false
+detail:
+    fingerprint:
+        name: BASrouter
+    fofa: header="BASrouter" || title="BASrouter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BASrouter"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BASrouter")
+expression: r0() || r1()

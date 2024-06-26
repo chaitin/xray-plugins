@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Sierra-ADSL
+manual: false
+detail:
+    fingerprint:
+        name: Sierra-ADSL
+    fofa: 'body="sierra wireless, inc." || header="sierra wireless inc, embedded server" || body="acemanager" && body="sierra wireless, inc." || title="::: acemanager :::"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sierra wireless, inc.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sierra wireless inc, embedded server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("acemanager") && response.body_string.contains("sierra wireless, inc.")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("::: acemanager :::")'
+expression: r0() || r1() || r2() || r3()

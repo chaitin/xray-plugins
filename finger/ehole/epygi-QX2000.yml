@@ -1,0 +1,23 @@
+name: fingerprint-yaml-epygi-QX2000
+manual: false
+detail:
+    fingerprint:
+        name: epygi-QX2000
+    fofa: body="epygi        <span class=\"product-name\">qx2000" || title="epygi qx2000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('epygi        <span class="product-name">qx2000')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("epygi qx2000")
+expression: r0() || r1()

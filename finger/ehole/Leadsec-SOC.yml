@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Leadsec-SOC
+manual: false
+detail:
+    fingerprint:
+        name: Leadsec-SOC
+    fofa: body="/leadsec-soc" && body="action=\"/leadsec-soc/signin" || body="action=\"/leadsec-soc/signin" || body="/leadsec-soc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/leadsec-soc") && response.body_string.contains('action="/leadsec-soc/signin')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/leadsec-soc/signin')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/leadsec-soc")
+expression: r0() || r1() || r2()

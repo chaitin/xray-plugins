@@ -1,0 +1,23 @@
+name: fingerprint-yaml-adikiss ASIK
+manual: false
+detail:
+    fingerprint:
+        name: adikiss ASIK
+    fofa: header="adikiss ASIK" || title="adikiss ASIK"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("adikiss ASIK"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("adikiss ASIK")
+expression: r0() || r1()

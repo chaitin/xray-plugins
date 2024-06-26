@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Google
+manual: false
+detail:
+    fingerprint:
+        name: Google
+    fofa: icon_hash="708578229"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 708578229
+expression: r0()

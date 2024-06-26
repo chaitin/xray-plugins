@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TalkPiece_开源垂直社区
+manual: false
+detail:
+    fingerprint:
+        name: TalkPiece_开源垂直社区
+    fofa: title="TalkPiece_开源垂直社区"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TalkPiece_开源垂直社区")
+expression: r0()

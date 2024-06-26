@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WhiteBoard
+manual: false
+detail:
+    fingerprint:
+        name: WhiteBoard
+    fofa: body="&copy; <a href=\"http://www.powerwd.com\">SaroSoftware</a><br />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('&copy; <a href="http://www.powerwd.com">SaroSoftware</a><br />')
+expression: r0()

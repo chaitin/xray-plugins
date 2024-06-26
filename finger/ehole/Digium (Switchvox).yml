@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Digium (Switchvox)
+manual: false
+detail:
+    fingerprint:
+        name: Digium (Switchvox)
+    fofa: icon_hash="2068154487"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2068154487
+expression: r0()

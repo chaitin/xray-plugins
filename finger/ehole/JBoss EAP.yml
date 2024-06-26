@@ -1,0 +1,37 @@
+name: fingerprint-yaml-JBoss EAP
+manual: false
+detail:
+    fingerprint:
+        name: JBoss EAP
+    fofa: body="title>EAP" && body="eap.css" && body="JBoss" || body="<h3>your jboss enterprise application platform is running.</h3>" || body="href=\"eap.css" || title="eap 6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("title>EAP") && response.body_string.contains("eap.css") && response.body_string.contains("JBoss")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h3>your jboss enterprise application platform is running.</h3>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="eap.css')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eap 6")
+expression: r0() || r1() || r2() || r3()

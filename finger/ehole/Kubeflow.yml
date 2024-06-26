@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Kubeflow
+manual: false
+detail:
+    fingerprint:
+        name: Kubeflow
+    fofa: icon_hash="-1203021870"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1203021870
+expression: r0()

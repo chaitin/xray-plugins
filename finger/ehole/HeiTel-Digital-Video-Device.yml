@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HeiTel-Digital-Video-Device
+manual: false
+detail:
+    fingerprint:
+        name: HeiTel-Digital-Video-Device
+    fofa: 'header="server: heitel gmbh web server" || header="HeiTel GmbH Web Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: heitel gmbh web server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HeiTel GmbH Web Server"))
+expression: r0() || r1()

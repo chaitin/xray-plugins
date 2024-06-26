@@ -1,0 +1,16 @@
+name: fingerprint-yaml-baiaozhi
+manual: false
+detail:
+    fingerprint:
+        name: baiaozhi
+    fofa: title="baiaozhi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("baiaozhi")
+expression: r0()

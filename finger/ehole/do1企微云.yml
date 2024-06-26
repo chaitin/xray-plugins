@@ -1,0 +1,23 @@
+name: fingerprint-yaml-do1企微云
+manual: false
+detail:
+    fingerprint:
+        name: do1企微云
+    fofa: header="do1企微云" || title="do1企微云"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("do1企微云"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("do1企微云")
+expression: r0() || r1()

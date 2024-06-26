@@ -1,0 +1,23 @@
+name: fingerprint-yaml-mIoT-Backend
+manual: false
+detail:
+    fingerprint:
+        name: mIoT-Backend
+    fofa: header="mIoT-Backend" || title="mIoT-Backend"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mIoT-Backend"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mIoT-Backend")
+expression: r0() || r1()

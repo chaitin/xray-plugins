@@ -1,0 +1,16 @@
+name: fingerprint-yaml-qizhitong_manager
+manual: false
+detail:
+    fingerprint:
+        name: qizhitong_manager
+    fofa: title="qizhitong_manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("qizhitong_manager")
+expression: r0()

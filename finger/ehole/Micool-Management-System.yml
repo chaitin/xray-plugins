@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Micool-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: Micool-Management-System
+    fofa: body="米酷影视 版权所有" && body="name=\"keywords\" content=\"电影,视频大全,在线高清电影,付费电影,免费电影,剧集,电影,在线观看,vip高清电影直播\"" && body="bplay.php?play=" || body="bplay.php?play=" || body="name=\"keywords\" content=\"电影,视频大全,在线高清电影,付费电影,免费电影,剧集,电影,在线观看,vip高清电影直播\"" || body="米酷影视 版权所有"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("米酷影视 版权所有") && response.body_string.contains('name="keywords" content="电影,视频大全,在线高清电影,付费电影,免费电影,剧集,电影,在线观看,vip高清电影直播"') && response.body_string.contains("bplay.php?play=")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bplay.php?play=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="keywords" content="电影,视频大全,在线高清电影,付费电影,免费电影,剧集,电影,在线观看,vip高清电影直播"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("米酷影视 版权所有")
+expression: r0() || r1() || r2() || r3()

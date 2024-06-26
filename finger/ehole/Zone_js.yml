@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Zone_js
+manual: false
+detail:
+    fingerprint:
+        name: Zone.js
+    fofa: title="Zone.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Zone.js")
+expression: r0()

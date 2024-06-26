@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Fnord httpd
+manual: false
+detail:
+    fingerprint:
+        name: Fnord httpd
+    fofa: header="Fnord httpd" || title="Fnord httpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fnord httpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fnord httpd")
+expression: r0() || r1()

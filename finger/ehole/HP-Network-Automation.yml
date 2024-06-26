@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-Network-Automation
+manual: false
+detail:
+    fingerprint:
+        name: HP-Network-Automation
+    fofa: title="hp network automation"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hp network automation")
+expression: r0()

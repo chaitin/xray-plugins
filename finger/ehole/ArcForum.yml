@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ArcForum
+manual: false
+detail:
+    fingerprint:
+        name: ArcForum
+    fofa: title="Arc Forum"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Arc Forum")
+expression: r0()

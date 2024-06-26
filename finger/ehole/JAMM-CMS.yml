@@ -1,0 +1,30 @@
+name: fingerprint-yaml-JAMM-CMS
+manual: false
+detail:
+    fingerprint:
+        name: JAMM-CMS
+    fofa: body="<META NAME=\"Author\" CONTENT=\"JAMM MEDIA Technologies Team 2005\">" || body="<META NAME=   \"author\" CONTENT=\"JAMM MEDIA Team 2001\">" || body="<!--- Content Management System JAMM CMS OWEN - Visit www.jamm-media.de for more informations -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META NAME="Author" CONTENT="JAMM MEDIA Technologies Team 2005">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META NAME=   "author" CONTENT="JAMM MEDIA Team 2001">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--- Content Management System JAMM CMS OWEN - Visit www.jamm-media.de for more informations -->")
+expression: r0() || r1() || r2()

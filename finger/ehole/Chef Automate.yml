@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Chef Automate
+manual: false
+detail:
+    fingerprint:
+        name: Chef Automate
+    fofa: icon_hash="-276759139"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -276759139
+expression: r0()

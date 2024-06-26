@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Streamline-PHP-Media-Server
+manual: false
+detail:
+    fingerprint:
+        name: Streamline-PHP-Media-Server
+    fofa: 'body="<div style=\"font-size: 10pt\">A PHP Streaming Media Server</div>" || body="<title>Streamline Media Installation Wizard</title>" || body="&copy; 2003-2010 Streamline"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div style="font-size: 10pt">A PHP Streaming Media Server</div>'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Streamline Media Installation Wizard</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("&copy; 2003-2010 Streamline")
+expression: r0() || r1() || r2()

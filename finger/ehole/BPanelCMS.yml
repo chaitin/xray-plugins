@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BPanelCMS
+manual: false
+detail:
+    fingerprint:
+        name: BPanelCMS
+    fofa: header="X-Powered-Cms:BPanel CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-Cms:BPanel CMS"))
+expression: r0()

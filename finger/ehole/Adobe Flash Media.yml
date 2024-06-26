@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Adobe Flash Media
+manual: false
+detail:
+    fingerprint:
+        name: Adobe Flash Media
+    fofa: header="Adobe Flash Media" || title="Adobe Flash Media"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Adobe Flash Media"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Adobe Flash Media")
+expression: r0() || r1()

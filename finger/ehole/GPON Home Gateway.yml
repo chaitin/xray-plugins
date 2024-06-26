@@ -1,0 +1,51 @@
+name: fingerprint-yaml-GPON Home Gateway
+manual: false
+detail:
+    fingerprint:
+        name: GPON Home Gateway
+    fofa: icon_hash="251106693" || body="/gponform/loginform" && body="xwebpagename" || body="xwebpagename" && body="/gponform/loginform" || body="/gponform/loginform" || body="xwebpagename" || title="gpon home gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 251106693
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/gponform/loginform") && response.body_string.contains("xwebpagename")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xwebpagename") && response.body_string.contains("/gponform/loginform")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/gponform/loginform")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xwebpagename")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gpon home gateway")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

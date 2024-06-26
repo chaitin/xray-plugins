@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Avaya-IP-Office
+manual: false
+detail:
+    fingerprint:
+        name: Avaya-IP-Office
+    fofa: body="action=\"/login/index.php?st=11&lng=" || header="ipoffice" || header="IPOffice" || body="<html><head><title>IP Office System Status</title><style" || title="about ip office"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/login/index.php?st=11&lng=')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ipoffice"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPOffice"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<html><head><title>IP Office System Status</title><style")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("about ip office")
+expression: r0() || r1() || r2() || r3() || r4()

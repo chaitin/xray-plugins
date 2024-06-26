@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cisco-SX20
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-SX20
+    fofa: header="Cisco-SX20"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco-SX20"))
+expression: r0()

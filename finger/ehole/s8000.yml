@@ -1,0 +1,16 @@
+name: fingerprint-yaml-s8000
+manual: false
+detail:
+    fingerprint:
+        name: s8000
+    fofa: title="s8000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("s8000")
+expression: r0()

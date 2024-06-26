@@ -1,0 +1,23 @@
+name: fingerprint-yaml-fang5173
+manual: false
+detail:
+    fingerprint:
+        name: fang5173
+    fofa: body="xWin" || title="fang5173"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("xWin")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("fang5173")
+expression: r0() || r1()

@@ -1,0 +1,72 @@
+name: fingerprint-yaml-EMC-Documentum-Webtop
+manual: false
+detail:
+    fingerprint:
+        name: EMC-Documentum-Webtop
+    fofa: body="/webtop/index.js" && body="/webtop/webtop/theme/documentum/css/webtop.css" || body="/webtop/index.js" || body="/webtop/webtop/theme/documentum/css/webtop.css" || body="<body  marginwidth=\"0\" topmargin=\"40\" bottommargin=\"0\" class=\"contentBackground\" leftmargin=\"0\" rightmargin=\"0\" marginheight=\"40\">" || body="<select name=\"Login_docbase_0\" id=\"DocbaseName\" title=\"Repository\" size=\"0\" class=defaultDropdownListStyle onchange=\"setKeys(event);" || body="<td scope=\"row\" align=\"right\" class=\"fieldlabel\" height=\"30\"><span  class=\"defaultLabelStyle\">Repository</span></td><td class=\"defaultcolumnspacer\">:&nbsp;</td>" || body="<td nowrap class=\"logintitletext\" height=\"23\" valign=\"top\"><span  class=\"dialogTitle\">Webtop Login" || body="<script type=\"text/javascript\">var g_virtualRoot = \"/webtop\";</script>" || body="<td><input type=\"text\" name=\"MyLogin_username_0\" id=\"LoginUsername\" title=\"Login Name\" size=\"40\" onkeypress=\"handleKeyPress(event)\"></td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/webtop/index.js") && response.body_string.contains("/webtop/webtop/theme/documentum/css/webtop.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/webtop/index.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/webtop/webtop/theme/documentum/css/webtop.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body  marginwidth="0" topmargin="40" bottommargin="0" class="contentBackground" leftmargin="0" rightmargin="0" marginheight="40">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select name="Login_docbase_0" id="DocbaseName" title="Repository" size="0" class=defaultDropdownListStyle onchange="setKeys(event);')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td scope="row" align="right" class="fieldlabel" height="30"><span  class="defaultLabelStyle">Repository</span></td><td class="defaultcolumnspacer">:&nbsp;</td>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td nowrap class="logintitletext" height="23" valign="top"><span  class="dialogTitle">Webtop Login')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript">var g_virtualRoot = "/webtop";</script>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><input type="text" name="MyLogin_username_0" id="LoginUsername" title="Login Name" size="40" onkeypress="handleKeyPress(event)"></td>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

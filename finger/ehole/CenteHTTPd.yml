@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CenteHTTPd
+manual: false
+detail:
+    fingerprint:
+        name: CenteHTTPd
+    fofa: title="CenteHTTPd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CenteHTTPd")
+expression: r0()

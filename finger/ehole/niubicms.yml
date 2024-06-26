@@ -1,0 +1,23 @@
+name: fingerprint-yaml-niubicms
+manual: false
+detail:
+    fingerprint:
+        name: niubicms
+    fofa: header="niubicms" || title="niubicms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("niubicms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("niubicms")
+expression: r0() || r1()

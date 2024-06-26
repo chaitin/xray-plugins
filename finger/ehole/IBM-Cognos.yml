@@ -1,0 +1,51 @@
+name: fingerprint-yaml-IBM-Cognos
+manual: false
+detail:
+    fingerprint:
+        name: IBM-Cognos
+    fofa: body="/cgi-bin/cognos.cgi" && body="cognos &#26159; international business machines corp" || body="cognos &#26159; international business machines corp" || body="/cgi-bin/cognos.cgi" || body="<meta name=\"Trademark\" content=\"Licensed Material - Property of IBM Corp. IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.\"/>" || body="<td nowrap class=\"copyright\" id=\"loginLegalContainer\">Licensed Material - Property of IBM Corp.<br>(C) Copyright IBM Corporation and its licensors 2005, 2009.<br>IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.</td>" || title="ibm cognos business intelligence"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/cognos.cgi") && response.body_string.contains("cognos &#26159; international business machines corp")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cognos &#26159; international business machines corp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/cognos.cgi")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Trademark" content="Licensed Material - Property of IBM Corp. IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide."/>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td nowrap class="copyright" id="loginLegalContainer">Licensed Material - Property of IBM Corp.<br>(C) Copyright IBM Corporation and its licensors 2005, 2009.<br>IBM, the IBM logo, and Cognos are trademarks of IBM Corp., registered in many jurisdictions worldwide.</td>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ibm cognos business intelligence")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Axis-PrintServer
+manual: false
+detail:
+    fingerprint:
+        name: Axis-PrintServer
+    fofa: body="psb_printjobs.gif" && body="/cgi-bin/prodhelp?prod=" || body="psb_printjobs.gif" || body="/cgi-bin/prodhelp?prod=" || body="<h2>Welcome to AXIS 540/542 Network Print Server</h2>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("psb_printjobs.gif") && response.body_string.contains("/cgi-bin/prodhelp?prod=")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("psb_printjobs.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/prodhelp?prod=")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>Welcome to AXIS 540/542 Network Print Server</h2>")
+expression: r0() || r1() || r2() || r3()

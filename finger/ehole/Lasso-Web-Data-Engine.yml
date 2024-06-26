@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lasso-Web-Data-Engine
+manual: false
+detail:
+    fingerprint:
+        name: Lasso-Web-Data-Engine
+    fofa: 'header="server: lasso"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lasso"))'
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Bounce Exchange
+manual: false
+detail:
+    fingerprint:
+        name: Bounce Exchange
+    fofa: header="Bounce Exchange" || title="Bounce Exchange"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Bounce Exchange"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Bounce Exchange")
+expression: r0() || r1()

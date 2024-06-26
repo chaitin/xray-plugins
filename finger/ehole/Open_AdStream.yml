@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Open_AdStream
+manual: false
+detail:
+    fingerprint:
+        name: Open_AdStream
+    fofa: body="OAS_AD" || header="Open AdStream" || title="Open AdStream"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("OAS_AD")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Open AdStream"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Open AdStream")
+expression: r0() || r1() || r2()

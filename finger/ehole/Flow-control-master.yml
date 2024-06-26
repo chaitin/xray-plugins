@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Flow-control-master
+manual: false
+detail:
+    fingerprint:
+        name: Flow-control-master
+    fofa: title="流控大师" || title="netzone"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("流控大师")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netzone")
+expression: r0() || r1()

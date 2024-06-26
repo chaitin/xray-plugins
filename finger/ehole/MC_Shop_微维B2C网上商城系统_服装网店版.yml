@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MC_Shop_微维B2C网上商城系统_服装网店版
+manual: false
+detail:
+    fingerprint:
+        name: MC_Shop_微维B2C网上商城系统_服装网店版
+    fofa: title="MC_Shop_微维B2C网上商城系统_服装网店版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MC_Shop_微维B2C网上商城系统_服装网店版")
+expression: r0()

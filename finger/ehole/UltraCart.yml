@@ -1,0 +1,23 @@
+name: fingerprint-yaml-UltraCart
+manual: false
+detail:
+    fingerprint:
+        name: UltraCart
+    fofa: header="UltraCart" || title="UltraCart"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("UltraCart"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("UltraCart")
+expression: r0() || r1()

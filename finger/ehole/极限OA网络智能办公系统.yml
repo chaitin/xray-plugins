@@ -1,0 +1,16 @@
+name: fingerprint-yaml-极限OA网络智能办公系统
+manual: false
+detail:
+    fingerprint:
+        name: 极限OA网络智能办公系统
+    fofa: icon_hash="1967132225"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1967132225
+expression: r0()

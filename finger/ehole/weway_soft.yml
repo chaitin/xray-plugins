@@ -1,0 +1,16 @@
+name: fingerprint-yaml-weway_soft
+manual: false
+detail:
+    fingerprint:
+        name: weway_soft
+    fofa: title="weway_soft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("weway_soft")
+expression: r0()

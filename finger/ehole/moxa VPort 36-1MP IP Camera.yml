@@ -1,0 +1,23 @@
+name: fingerprint-yaml-moxa VPort 36-1MP IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: moxa VPort 36-1MP IP Camera
+    fofa: header="moxa VPort 36-1MP IP Camera" || title="moxa VPort 36-1MP IP Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("moxa VPort 36-1MP IP Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("moxa VPort 36-1MP IP Camera")
+expression: r0() || r1()

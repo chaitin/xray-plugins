@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AVIZIO-Network-Camera
+manual: false
+detail:
+    fingerprint:
+        name: AVIZIO-Network-Camera
+    fofa: title="avizio network camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("avizio network camera")
+expression: r0()

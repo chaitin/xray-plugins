@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fay_blog
+manual: false
+detail:
+    fingerprint:
+        name: Fay_blog
+    fofa: title="Fay_blog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fay_blog")
+expression: r0()

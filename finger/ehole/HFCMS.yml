@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HFCMS
+manual: false
+detail:
+    fingerprint:
+        name: HFCMS
+    fofa: title="HFCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HFCMS")
+expression: r0()

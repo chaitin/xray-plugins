@@ -1,0 +1,51 @@
+name: fingerprint-yaml-PhotoStore
+manual: false
+detail:
+    fingerprint:
+        name: PhotoStore
+    fofa: body="powered by <a href=\"http://www.ktools.net/photostore/index.php" || body="Powered By <a href=\"http://www.ktools.net/photostore/index.php\" title=\"Sell your photos online with PhotoStore, online proofing and sales.\" target=\"_blank\"><u>PhotoStore | Sell Photos Online</u></a> by <a href=\"http://www.ktools.net\" title=\"Ktools LLC\" target=\"_blank\"><u>Ktools.net LLC</u></a>" || body="Powered By <a href=\"http://www.ktools.net/photoshow/index.php\" title=\"Show your photos online with PhotoShow, an online photo gallery.\" target=\"_blank\"><u>PhotoShow | Photo Gallery</u></a> by <a href=\"http://www.ktools.net\" title=\"Ktools LLC\" target=\"_blank\"><u>Ktools.net LLC</u></a>" || body="<b>Search:</b> <input type=\"textbox\" name=\"search\" class=\"search_box\">" || body="<form action=\"mgr_actions.php?pmode=login\" name=\"login_form\" method=\"post\">" || body="<body bgcolor=\"#13387E\" topmargin=\"0\" leftmargin=\"0\" marginheight=\"0\" marginwidth=\"0\" onLoad=\"document.login_form.username.focus();\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.ktools.net/photostore/index.php')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.ktools.net/photostore/index.php" title="Sell your photos online with PhotoStore, online proofing and sales." target="_blank"><u>PhotoStore | Sell Photos Online</u></a> by <a href="http://www.ktools.net" title="Ktools LLC" target="_blank"><u>Ktools.net LLC</u></a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.ktools.net/photoshow/index.php" title="Show your photos online with PhotoShow, an online photo gallery." target="_blank"><u>PhotoShow | Photo Gallery</u></a> by <a href="http://www.ktools.net" title="Ktools LLC" target="_blank"><u>Ktools.net LLC</u></a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<b>Search:</b> <input type="textbox" name="search" class="search_box">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form action="mgr_actions.php?pmode=login" name="login_form" method="post">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body bgcolor="#13387E" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" onLoad="document.login_form.username.focus();">')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

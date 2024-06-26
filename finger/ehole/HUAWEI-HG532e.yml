@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-HG532e
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-HG532e
+    fofa: title="hg532e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hg532e")
+expression: r0()

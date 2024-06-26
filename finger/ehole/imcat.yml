@@ -1,0 +1,23 @@
+name: fingerprint-yaml-imcat
+manual: false
+detail:
+    fingerprint:
+        name: imcat
+    fofa: header="imcat" || title="imcat"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("imcat"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("imcat")
+expression: r0() || r1()

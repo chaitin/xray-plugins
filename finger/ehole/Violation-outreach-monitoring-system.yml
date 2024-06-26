@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Violation-outreach-monitoring-system
+manual: false
+detail:
+    fingerprint:
+        name: Violation-outreach-monitoring-system
+    fofa: body="<body onload=\"forward_to_logon(\">" && body="window.location='login.action';" && body="欢迎登录违规外联平台" || body="欢迎登录违规外联平台" || body="window.location=\"login.action\";" && body="<body onload=\"forward_to_logon()\">" || body="<body onload=\"forward_to_logon\">" || body="window.location=\"login.action\";" || body="<body onload=\"forward_to_logon()\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="forward_to_logon(">') && response.body_string.contains("window.location='login.action';") && response.body_string.contains("欢迎登录违规外联平台")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎登录违规外联平台")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location="login.action";') && response.body_string.contains('<body onload="forward_to_logon()">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="forward_to_logon">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location="login.action";')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="forward_to_logon()">')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

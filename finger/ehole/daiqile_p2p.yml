@@ -1,0 +1,16 @@
+name: fingerprint-yaml-daiqile_p2p
+manual: false
+detail:
+    fingerprint:
+        name: daiqile_p2p
+    fofa: title="daiqile_p2p"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("daiqile_p2p")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-bzfshop
+manual: false
+detail:
+    fingerprint:
+        name: bzfshop
+    fofa: header="bzfshop" || title="bzfshop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("bzfshop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bzfshop")
+expression: r0() || r1()

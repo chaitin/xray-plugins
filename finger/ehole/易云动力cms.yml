@@ -1,0 +1,16 @@
+name: fingerprint-yaml-易云动力cms
+manual: false
+detail:
+    fingerprint:
+        name: 易云动力cms
+    fofa: title="易云动力cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("易云动力cms")
+expression: r0()

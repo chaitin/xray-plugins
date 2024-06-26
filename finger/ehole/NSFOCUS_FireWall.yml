@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NSFOCUS_FireWall
+manual: false
+detail:
+    fingerprint:
+        name: NSFOCUS_FireWall
+    fofa: header="NSFOCUS_FireWall" || title="NSFOCUS_FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NSFOCUS_FireWall"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NSFOCUS_FireWall")
+expression: r0() || r1()

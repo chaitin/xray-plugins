@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ARRIS-Router
+manual: false
+detail:
+    fingerprint:
+        name: ARRIS-Router
+    fofa: body="arris" && body="strhtml=\"<title>\"+i1+\"</title>\";" || body="content=\"arris 2307\"" || body="/arris_style.css" || body="arris group" && body="copyright" || header="realm=\"arris"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("arris") && response.body_string.contains('strhtml="<title>"+i1+"</title>";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="arris 2307"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/arris_style.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("arris group") && response.body_string.contains("copyright")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="arris'))
+expression: r0() || r1() || r2() || r3() || r4()

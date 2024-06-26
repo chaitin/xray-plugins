@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Microsoft-Forefront-TMG
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-Forefront-TMG
+    fofa: title="microsoft forefront tmg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("microsoft forefront tmg")
+expression: r0()

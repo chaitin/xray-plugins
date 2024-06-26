@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Siemens Gigaset
+manual: false
+detail:
+    fingerprint:
+        name: Siemens Gigaset
+    fofa: header="Siemens Gigaset" || title="Siemens Gigaset"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Siemens Gigaset"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Siemens Gigaset")
+expression: r0() || r1()

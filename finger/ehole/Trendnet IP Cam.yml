@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Trendnet IP Cam
+manual: false
+detail:
+    fingerprint:
+        name: Trendnet IP Cam
+    fofa: header="Basic realm=\"netcam\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('Basic realm="netcam"'))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Taurus-Server-Appliance
+manual: false
+detail:
+    fingerprint:
+        name: Taurus-Server-Appliance
+    fofa: body="<title>The Taurus Server Appliance</title>" || body="<b><font color=#FFFFFF>Welcome to Taurus </font></b>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>The Taurus Server Appliance</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b><font color=#FFFFFF>Welcome to Taurus </font></b>")
+expression: r0() || r1()

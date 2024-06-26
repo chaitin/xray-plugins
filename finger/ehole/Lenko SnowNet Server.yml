@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Lenko SnowNet Server
+manual: false
+detail:
+    fingerprint:
+        name: Lenko SnowNet Server
+    fofa: header="Lenko SnowNet Server" || title="Lenko SnowNet Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Lenko SnowNet Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Lenko SnowNet Server")
+expression: r0() || r1()

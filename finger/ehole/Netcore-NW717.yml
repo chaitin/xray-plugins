@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netcore-NW717
+manual: false
+detail:
+    fingerprint:
+        name: Netcore-NW717
+    fofa: header="realm=\"netcorenw717"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netcorenw717'))
+expression: r0()

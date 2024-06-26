@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear DM111PUSPv2
+manual: false
+detail:
+    fingerprint:
+        name: Netgear DM111PUSPv2
+    fofa: header="Netgear DM111PUSPv2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netgear DM111PUSPv2"))
+expression: r0()

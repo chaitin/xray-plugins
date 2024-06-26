@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IX-Series-IX3100
+manual: false
+detail:
+    fingerprint:
+        name: IX-Series-IX3100
+    fofa: 'header="server: ix series ix3100"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ix series ix3100"))'
+expression: r0()

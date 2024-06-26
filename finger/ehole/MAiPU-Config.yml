@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MAiPU-Config
+manual: false
+detail:
+    fingerprint:
+        name: MAiPU-Config
+    fofa: header="maipu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("maipu"))
+expression: r0()

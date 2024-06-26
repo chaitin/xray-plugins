@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetApp-NetCache-Appliance
+manual: false
+detail:
+    fingerprint:
+        name: NetApp-NetCache-Appliance
+    fofa: 'header="server: netcache appliance"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: netcache appliance"))'
+expression: r0()

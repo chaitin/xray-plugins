@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Venustech-TianQing-WAG
+manual: false
+detail:
+    fingerprint:
+        name: Venustech-TianQing-WAG
+    fofa: header="vwphpsessid=" || title="venusense waf" || title="天清wag"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vwphpsessid="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("venusense waf")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天清wag")
+expression: r0() || r1() || r2()

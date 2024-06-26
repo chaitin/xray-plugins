@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rising-SDS
+manual: false
+detail:
+    fingerprint:
+        name: Rising-SDS
+    fofa: title="瑞星网络安全预警系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("瑞星网络安全预警系统")
+expression: r0()

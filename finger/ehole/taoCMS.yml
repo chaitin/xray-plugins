@@ -1,0 +1,37 @@
+name: fingerprint-yaml-taoCMS
+manual: false
+detail:
+    fingerprint:
+        name: taoCMS
+    fofa: body="template/taocms" && body="src=\"/taocms/code/calendar.js\"" || body=">taoCMS<" || body="src=\"/taocms/code/calendar.js\"" || body="template/taocms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("template/taocms") && response.body_string.contains('src="/taocms/code/calendar.js"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">taoCMS<")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/taocms/code/calendar.js"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("template/taocms")
+expression: r0() || r1() || r2() || r3()

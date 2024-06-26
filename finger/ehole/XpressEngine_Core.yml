@@ -1,0 +1,23 @@
+name: fingerprint-yaml-XpressEngine_Core
+manual: false
+detail:
+    fingerprint:
+        name: XpressEngine_Core
+    fofa: header="XpressEngine_Core" || title="XpressEngine_Core"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XpressEngine_Core"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XpressEngine_Core")
+expression: r0() || r1()

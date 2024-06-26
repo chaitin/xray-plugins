@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DataTables
+manual: false
+detail:
+    fingerprint:
+        name: DataTables
+    fofa: header="DataTables" || title="DataTables"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DataTables"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DataTables")
+expression: r0() || r1()

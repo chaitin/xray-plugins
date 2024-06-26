@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aplikasi
+manual: false
+detail:
+    fingerprint:
+        name: Aplikasi
+    fofa: icon_hash="494866796"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 494866796
+expression: r0()

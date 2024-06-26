@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XML导航系统
+manual: false
+detail:
+    fingerprint:
+        name: XML导航系统
+    fofa: title="XML导航系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XML导航系统")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-santang
+manual: false
+detail:
+    fingerprint:
+        name: santang
+    fofa: title="santang"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("santang")
+expression: r0()

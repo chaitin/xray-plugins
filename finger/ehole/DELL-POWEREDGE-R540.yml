@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-POWEREDGE-R540
+manual: false
+detail:
+    fingerprint:
+        name: DELL-POWEREDGE-R540
+    fofa: title="poweredge-r540"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("poweredge-r540")
+expression: r0()

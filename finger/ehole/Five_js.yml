@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Five_js
+manual: false
+detail:
+    fingerprint:
+        name: Five.js
+    fofa: title="Five.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Five.js")
+expression: r0()

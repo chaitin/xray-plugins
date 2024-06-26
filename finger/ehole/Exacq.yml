@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Exacq
+manual: false
+detail:
+    fingerprint:
+        name: Exacq
+    fofa: icon_hash="476213314"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 476213314
+expression: r0()

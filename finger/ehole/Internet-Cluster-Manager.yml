@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Internet-Cluster-Manager
+manual: false
+detail:
+    fingerprint:
+        name: Internet-Cluster-Manager
+    fofa: 'header="server: internet cluster manager" || header="Internet Cluster Manager"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: internet cluster manager"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Internet Cluster Manager"))
+expression: r0() || r1()

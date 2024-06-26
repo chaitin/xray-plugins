@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ManageEngine FacilitiesDesk
+manual: false
+detail:
+    fingerprint:
+        name: ManageEngine FacilitiesDesk
+    fofa: header="ManageEngine FacilitiesDesk" || title="ManageEngine FacilitiesDesk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ManageEngine FacilitiesDesk"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ManageEngine FacilitiesDesk")
+expression: r0() || r1()

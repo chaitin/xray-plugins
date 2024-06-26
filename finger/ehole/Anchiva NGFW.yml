@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Anchiva NGFW
+manual: false
+detail:
+    fingerprint:
+        name: Anchiva NGFW
+    fofa: header="Anchiva NGFW" || title="Anchiva NGFW" || title="安信华下一代防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Anchiva NGFW"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Anchiva NGFW")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安信华下一代防火墙")
+expression: r0() || r1() || r2()

@@ -1,0 +1,93 @@
+name: fingerprint-yaml-HP-LaserJet-Printer
+manual: false
+detail:
+    fingerprint:
+        name: HP-LaserJet-Printer
+    fofa: 'body="<FORM method=\"post\" ACTION=\"/hp/device/supplies_status.html\">" && body="<h1>HP LaserJet" || header="hp-chaisoe" || header="HP-ChaiServer" || header="HP-ChaiSOE" || body="<FORM method=\"post\" ACTION=\"/hp/device/supplies_status.html\">" || body="<img src=\"images/logo.gif\" alt=\"Click this Hewlett-Packard logo to open a new browser window, which takes you to the external HP.com Web site.\" /></a>" || body="<a href=\"#skipnavigation\" title=\"Jump to main content. Please activate this if you would like to skip the navigation and jump directly to the main content.\"></a><a href=\"http://www.hp.com\" onclick=\"target = new Date().valueOf().toString(); if (window.open) window.open(\"http://www.hp.com\",target,\"resizable=yes,scrollbars=yes,menubar=yes,location=yes,toolbar=yes,status=yes\"); return false;\" title=\"Go to HP corporate web site: external link\">" || body="HP 9250C Digital Sender Series</title>" || body="hp 9200C Digital Sender</title>" || title="hp &raquo; &#35774;&#22791;&#29366;&#24577;" || title="hp laserjet" || title="hp color laserjet"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FORM method="post" ACTION="/hp/device/supplies_status.html">') && response.body_string.contains("<h1>HP LaserJet")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("hp-chaisoe"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HP-ChaiServer"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HP-ChaiSOE"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FORM method="post" ACTION="/hp/device/supplies_status.html">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="images/logo.gif" alt="Click this Hewlett-Packard logo to open a new browser window, which takes you to the external HP.com Web site." /></a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<a href="#skipnavigation" title="Jump to main content. Please activate this if you would like to skip the navigation and jump directly to the main content."></a><a href="http://www.hp.com" onclick="target = new Date().valueOf().toString(); if (window.open) window.open("http://www.hp.com",target,"resizable=yes,scrollbars=yes,menubar=yes,location=yes,toolbar=yes,status=yes"); return false;" title="Go to HP corporate web site: external link">'')'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("HP 9250C Digital Sender Series</title>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hp 9200C Digital Sender</title>")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hp &raquo; &#35774;&#22791;&#29366;&#24577;")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hp laserjet")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hp color laserjet")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

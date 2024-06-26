@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Web Client Pro
+manual: false
+detail:
+    fingerprint:
+        name: Web Client Pro
+    fofa: icon_hash="-956471263"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -956471263
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-维网VCMS
+manual: false
+detail:
+    fingerprint:
+        name: 维网VCMS
+    fofa: title="维网VCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("维网VCMS")
+expression: r0()

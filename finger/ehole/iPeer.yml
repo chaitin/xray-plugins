@@ -1,0 +1,58 @@
+name: fingerprint-yaml-iPeer
+manual: false
+detail:
+    fingerprint:
+        name: iPeer
+    fofa: body="powered by ipeer" && body="/js/ipeer.js" && body="/css/ipeer.css" || header="ipeer=" || header="IPEER=" || body="/css/ipeer.css" || body="/js/ipeer.js" || body="powered by ipeer" || body="<h1 align=\"center\"><span class=\"footer\">Powered by iPeer and TeamMaker - Created by UBC and Rose-Hulman</span></h1>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by ipeer") && response.body_string.contains("/js/ipeer.js") && response.body_string.contains("/css/ipeer.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ipeer="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPEER="))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/ipeer.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/ipeer.js")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by ipeer")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1 align="center"><span class="footer">Powered by iPeer and TeamMaker - Created by UBC and Rose-Hulman</span></h1>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

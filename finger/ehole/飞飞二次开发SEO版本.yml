@@ -1,0 +1,16 @@
+name: fingerprint-yaml-飞飞二次开发SEO版本
+manual: false
+detail:
+    fingerprint:
+        name: 飞飞二次开发SEO版本
+    fofa: title="飞飞二次开发SEO版本"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("飞飞二次开发SEO版本")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MyShell
+manual: false
+detail:
+    fingerprint:
+        name: MyShell
+    fofa: body="&nbsp;| ::::::::::&nbsp;<a href=\"http://www.digitart.net\" target=\"_blank\" style=\"text-decoration:none\"><b>MyShell</b> &copy;2001 Digitart Producciones</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('&nbsp;| ::::::::::&nbsp;<a href="http://www.digitart.net" target="_blank" style="text-decoration:none"><b>MyShell</b> &copy;2001 Digitart Producciones</a>')
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FE业务协作平台
+manual: false
+detail:
+    fingerprint:
+        name: FE业务协作平台
+    fofa: icon_hash="-391577146"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -391577146
+expression: r0()

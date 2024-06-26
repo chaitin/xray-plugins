@@ -1,0 +1,23 @@
+name: fingerprint-yaml-New Relic
+manual: false
+detail:
+    fingerprint:
+        name: New Relic
+    fofa: header="New Relic" || title="New Relic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("New Relic"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("New Relic")
+expression: r0() || r1()

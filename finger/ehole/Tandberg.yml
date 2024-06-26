@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Tandberg
+manual: false
+detail:
+    fingerprint:
+        name: Tandberg
+    fofa: icon_hash="97604680"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 97604680
+expression: r0()

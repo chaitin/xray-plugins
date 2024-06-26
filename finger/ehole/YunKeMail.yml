@@ -1,0 +1,37 @@
+name: fingerprint-yaml-YunKeMail
+manual: false
+detail:
+    fingerprint:
+        name: YunKeMail
+    fofa: body="action=\"/alimail/error/browserlog" && body="content=\"阿里企业邮箱" || header="alimail_browser_instance" || body="content=\"阿里企业邮箱" || body="action=\"/alimail/error/browserlog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/alimail/error/browserlog') && response.body_string.contains('content="阿里企业邮箱')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("alimail_browser_instance"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="阿里企业邮箱')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/alimail/error/browserlog')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-Acceleration
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-Acceleration
+    fofa: header="cisco acceleration" || header="Cisco Acceleration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco acceleration"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco Acceleration"))
+expression: r0() || r1()

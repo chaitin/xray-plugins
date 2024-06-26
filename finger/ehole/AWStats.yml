@@ -1,0 +1,79 @@
+name: fingerprint-yaml-AWStats
+manual: false
+detail:
+    fingerprint:
+        name: AWStats
+    fofa: body="generator\" content=\"awstats" && body="<frame name=\"mainleft\" src=\"awstats.pl?configs=" && body="<a href=\"http://www.awstats.org\" target=\"awstatshome\">created by awstats " || body="awstats.pl?config=" || body="<a href=\"http://www.awstats.org\" target=\"awstatshome\">created by awstats " || body="<frame name=\"mainleft\" src=\"awstats.pl?config=" || body="generator\" content=\"awstats" || body="<frame name=\"mainleft\" src=\"awstats.pl?configs=" || body="<a href=\"http://www.awstats.org\" target=\"awstatshome\">created by awstats" || body="<a href=\"http://awstats.sourceforge.net\" target=\"_newawstats\">Created by awstats</a><br>" || body="<meta http-equiv=\"description\" content=\"Awstats - Advanced Web Statistics for" || body="<a href=\"http://awstats.sourceforge.net\" target=\"_newawstats\"><img src=\"/icon/other/awstats_logo1.png\" border=0 alt=\"awstats Official Web Site\" title=\"awstats Official Web Site\"></a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="awstats') && response.body_string.contains('<frame name="mainleft" src="awstats.pl?configs=') && response.body_string.contains('<a href="http://www.awstats.org" target="awstatshome">created by awstats ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("awstats.pl?config=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.awstats.org" target="awstatshome">created by awstats ')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame name="mainleft" src="awstats.pl?config=')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="awstats')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame name="mainleft" src="awstats.pl?configs=')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.awstats.org" target="awstatshome">created by awstats')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://awstats.sourceforge.net" target="_newawstats">Created by awstats</a><br>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="description" content="Awstats - Advanced Web Statistics for')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://awstats.sourceforge.net" target="_newawstats"><img src="/icon/other/awstats_logo1.png" border=0 alt="awstats Official Web Site" title="awstats Official Web Site"></a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

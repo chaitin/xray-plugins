@@ -1,0 +1,23 @@
+name: fingerprint-yaml-深圳竹云统一认证
+manual: false
+detail:
+    fingerprint:
+        name: 深圳竹云统一认证
+    fofa: header="深圳竹云统一认证" || title="深圳竹云统一认证"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("深圳竹云统一认证"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("深圳竹云统一认证")
+expression: r0() || r1()

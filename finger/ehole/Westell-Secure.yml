@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Westell-Secure
+manual: false
+detail:
+    fingerprint:
+        name: Westell-Secure
+    fofa: 'header="server: wstl cpe" && header="realm=\"westell secure" || header="realm=\"westell secure" || header="realm" && header="server: wstl cpe" || header="server: wstl cpe"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: wstl cpe")) && response.raw_header.bcontains(bytes(''realm="westell secure''))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="westell secure'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("realm")) && response.raw_header.bcontains(bytes("server: wstl cpe"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: wstl cpe"))'
+expression: r0() || r1() || r2() || r3()

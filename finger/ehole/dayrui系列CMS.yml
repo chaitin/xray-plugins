@@ -1,0 +1,16 @@
+name: fingerprint-yaml-dayrui系列CMS
+manual: false
+detail:
+    fingerprint:
+        name: dayrui系列CMS
+    fofa: header="dr_ci_session"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dr_ci_session"))
+expression: r0()

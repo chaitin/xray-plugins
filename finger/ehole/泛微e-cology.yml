@@ -1,0 +1,23 @@
+name: fingerprint-yaml-泛微e-cology
+manual: false
+detail:
+    fingerprint:
+        name: 泛微e-cology
+    fofa: header="泛微e-cology" || title="泛微e-cology"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("泛微e-cology"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("泛微e-cology")
+expression: r0() || r1()

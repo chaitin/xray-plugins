@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CumulusClips
+manual: false
+detail:
+    fingerprint:
+        name: CumulusClips
+    fofa: header="CumulusClips" || title="CumulusClips"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CumulusClips"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CumulusClips")
+expression: r0() || r1()

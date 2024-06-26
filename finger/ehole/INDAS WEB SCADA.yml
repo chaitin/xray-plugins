@@ -1,0 +1,23 @@
+name: fingerprint-yaml-INDAS WEB SCADA
+manual: false
+detail:
+    fingerprint:
+        name: INDAS WEB SCADA
+    fofa: header="INDAS WEB SCADA" || title="INDAS WEB SCADA"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("INDAS WEB SCADA"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("INDAS WEB SCADA")
+expression: r0() || r1()

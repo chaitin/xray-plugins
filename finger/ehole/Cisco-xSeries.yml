@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-xSeries
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-xSeries
+    fofa: header="cisco xseries" || header="Cisco xSeries"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco xseries"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco xSeries"))
+expression: r0() || r1()

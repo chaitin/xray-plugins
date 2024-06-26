@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Openfiler
+manual: false
+detail:
+    fingerprint:
+        name: Openfiler
+    fofa: 'body="href=\"http://www.openfiler.com/\">openfiler" && body="</strong>openfiler nas/san appliance" || body="</strong>openfiler nas/san appliance" || body="href=\"http://www.openfiler.com/\">openfiler" || body="<div id=\"uptimeDiv\" class=\"uptimeDiv\"><span style=\"line-height: 10px;\" id=\"uptimeData\"></span> </div></body>" || body="<body bgcolor=\"#4c555a\" style=\"margin: 0; padding: 0\" onload=\"getSysUptime()\">"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.openfiler.com/">openfiler') && response.body_string.contains("</strong>openfiler nas/san appliance")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("</strong>openfiler nas/san appliance")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.openfiler.com/">openfiler')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div id="uptimeDiv" class="uptimeDiv"><span style="line-height: 10px;" id="uptimeData"></span> </div></body>'')'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<body bgcolor="#4c555a" style="margin: 0; padding: 0" onload="getSysUptime()">'')'
+expression: r0() || r1() || r2() || r3() || r4()

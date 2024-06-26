@@ -1,0 +1,23 @@
+name: fingerprint-yaml-blog_fc2
+manual: false
+detail:
+    fingerprint:
+        name: blog_fc2
+    fofa: header="bloguid" || header="cookietest=test"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("bloguid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cookietest=test"))
+expression: r0() || r1()

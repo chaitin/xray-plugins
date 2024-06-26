@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Tencent-CDN
+manual: false
+detail:
+    fingerprint:
+        name: Tencent-CDN
+    fofa: 'header="server: nwss" && header="server: tencent-cdn" || header="server: tencent-cdn" || header="server: nwss"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nwss")) && response.raw_header.bcontains(bytes("server: tencent-cdn"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tencent-cdn"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nwss"))'
+expression: r0() || r1() || r2()

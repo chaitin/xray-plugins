@@ -1,0 +1,16 @@
+name: fingerprint-yaml-艺帆企业CMS
+manual: false
+detail:
+    fingerprint:
+        name: 艺帆企业CMS
+    fofa: title="艺帆企业CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("艺帆企业CMS")
+expression: r0()

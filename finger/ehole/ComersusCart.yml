@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ComersusCart
+manual: false
+detail:
+    fingerprint:
+        name: ComersusCart
+    fofa: body="CONTENT=\"Powered by Comersus" || body="href=\"comersus_showCart.asp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('CONTENT="Powered by Comersus')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="comersus_showCart.asp')
+expression: r0() || r1()

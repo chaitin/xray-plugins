@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SERCOMM-DRG600
+manual: false
+detail:
+    fingerprint:
+        name: SERCOMM-DRG600
+    fofa: header="realm=\"drg600.wifi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="drg600.wifi'))
+expression: r0()

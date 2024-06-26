@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Embedthis-Appweb
+manual: false
+detail:
+    fingerprint:
+        name: Embedthis-Appweb
+    fofa: 'header="server: embedthis-appweb" || header="EmbedThis Appweb" || title="EmbedThis Appweb"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: embedthis-appweb"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EmbedThis Appweb"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EmbedThis Appweb")
+expression: r0() || r1() || r2()

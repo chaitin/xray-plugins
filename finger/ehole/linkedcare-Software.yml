@@ -1,0 +1,16 @@
+name: fingerprint-yaml-linkedcare-Software
+manual: false
+detail:
+    fingerprint:
+        name: linkedcare-Software
+    fofa: title="e看牙云口腔"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("e看牙云口腔")
+expression: r0()

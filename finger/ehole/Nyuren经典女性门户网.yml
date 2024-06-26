@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Nyuren经典女性门户网
+manual: false
+detail:
+    fingerprint:
+        name: Nyuren经典女性门户网
+    fofa: title="Nyuren经典女性门户网"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nyuren经典女性门户网")
+expression: r0()

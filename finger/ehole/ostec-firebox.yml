@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ostec-firebox
+manual: false
+detail:
+    fingerprint:
+        name: ostec-firebox
+    fofa: 'body="background-image: url(''/icones/fundo_firebox.png''" && body="http://colorzilla.com/" || body="http://colorzilla.com/" && body="background-image: url(\"/icones/fundo_firebox.png\")" || body="background-image: url\"/icones/fundo_firebox.png\"" || body="http://colorzilla.com/" || body="background-image: url(\"/icones/fundo_firebox.png\")"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("background-image: url(''/icones/fundo_firebox.png''") && response.body_string.contains("http://colorzilla.com/")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("http://colorzilla.com/") && response.body_string.contains(''background-image: url("/icones/fundo_firebox.png")'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''background-image: url"/icones/fundo_firebox.png"'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://colorzilla.com/")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''background-image: url("/icones/fundo_firebox.png")'')'
+expression: r0() || r1() || r2() || r3() || r4()

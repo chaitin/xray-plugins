@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sangfor-Virtualization-Management
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Virtualization-Management
+    fofa: body="id=\"privacytipwin\"" && body="content=\"webkit|ie-stand\"" || body="content=\"webkit|ie-stand\"" && body="id=\"privacytipwin\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="privacytipwin"') && response.body_string.contains('content="webkit|ie-stand"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="webkit|ie-stand"') && response.body_string.contains('id="privacytipwin"')
+expression: r0() || r1()

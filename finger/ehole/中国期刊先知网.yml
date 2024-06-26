@@ -1,0 +1,23 @@
+name: fingerprint-yaml-中国期刊先知网
+manual: false
+detail:
+    fingerprint:
+        name: 中国期刊先知网
+    fofa: body="本系统由<span class=\"STYLE1\" ><a href=\"http://www.firstknow.cn" || body="<img src=\"images/logoknow.png\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('本系统由<span class="STYLE1" ><a href="http://www.firstknow.cn')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="images/logoknow.png"')
+expression: r0() || r1()

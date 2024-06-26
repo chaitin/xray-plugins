@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BSSNASSoundweb-London
+manual: false
+detail:
+    fingerprint:
+        name: BSSNASSoundweb-London
+    fofa: 'header="server: soundweb london"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: soundweb london"))'
+expression: r0()

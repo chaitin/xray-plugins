@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netflix
+manual: false
+detail:
+    fingerprint:
+        name: Netflix
+    fofa: icon_hash="902521196"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 902521196
+expression: r0()

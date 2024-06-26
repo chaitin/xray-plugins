@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HP LaserJet Pro Printer
+manual: false
+detail:
+    fingerprint:
+        name: HP LaserJet Pro Printer
+    fofa: header="HP LaserJet Pro Printer" || title="HP LaserJet Pro Printer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HP LaserJet Pro Printer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HP LaserJet Pro Printer")
+expression: r0() || r1()

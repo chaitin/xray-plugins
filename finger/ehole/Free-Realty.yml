@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Free-Realty
+manual: false
+detail:
+    fingerprint:
+        name: Free-Realty
+    fofa: body="<font class=\"foot\">This tool is Open Source and released under the <a href=\"http://www.gnu.org/copyleft/gpl.html\">GPL</a></font>" || body="<!-- THUS ENDETH THE MAIN CONTENT -->" || body="<!-- HERE BEGINNETH THE FOOTER --><div class=\"foot\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font class="foot">This tool is Open Source and released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></font>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- THUS ENDETH THE MAIN CONTENT -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- HERE BEGINNETH THE FOOTER --><div class="foot">')
+expression: r0() || r1() || r2()

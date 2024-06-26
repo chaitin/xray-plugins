@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Co_MZ_企业系统
+manual: false
+detail:
+    fingerprint:
+        name: Co.MZ_企业系统
+    fofa: header="Co.MZ_企业系统" || title="Co.MZ_企业系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Co.MZ_企业系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Co.MZ_企业系统")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Direct-Packet-Device
+manual: false
+detail:
+    fingerprint:
+        name: Direct-Packet-Device
+    fofa: 'header="server: dpwebserver" || header="DPWebServer" || body="<body bgcolor=#efefef link=# vlink=# text=#3f3f3f background=  >" || body="<td height=\"30\" class=\"login\"><b><font color=\"ffffff\" size=\"2\" face=\"Arial, Helvetica, sans-serif\">Password</font></b></td>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dpwebserver"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DPWebServer"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<body bgcolor=#efefef link=# vlink=# text=#3f3f3f background=  >")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td height="30" class="login"><b><font color="ffffff" size="2" face="Arial, Helvetica, sans-serif">Password</font></b></td>')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OTRS (Open Ticket Request System)
+manual: false
+detail:
+    fingerprint:
+        name: OTRS (Open Ticket Request System)
+    fofa: icon_hash="-2006308185"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2006308185
+expression: r0()

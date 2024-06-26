@@ -1,0 +1,30 @@
+name: fingerprint-yaml-YouHua-iEMOS_CW
+manual: false
+detail:
+    fingerprint:
+        name: YouHua-iEMOS_CW
+    fofa: body="var id = document.getelementbyid(\"txtyhmm\".value" || body="var id = document.getelementbyid\"txtyhmm\".value" || body="var id = document.getelementbyid(\"txtyhmm\").value"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var id = document.getelementbyid("txtyhmm".value')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var id = document.getelementbyid"txtyhmm".value')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var id = document.getelementbyid("txtyhmm").value')
+expression: r0() || r1() || r2()

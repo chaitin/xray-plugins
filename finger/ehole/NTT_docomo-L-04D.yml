@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NTT_docomo-L-04D
+manual: false
+detail:
+    fingerprint:
+        name: NTT_docomo-L-04D
+    fofa: body="model name -->l-04d connection manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("model name -->l-04d connection manager")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoAccess-Log
+manual: false
+detail:
+    fingerprint:
+        name: GoAccess-Log
+    fofa: body="by <a href=\"https://goaccess.io/\">goaccess</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('by <a href="https://goaccess.io/">goaccess</a>')
+expression: r0()

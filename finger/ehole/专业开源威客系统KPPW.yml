@@ -1,0 +1,16 @@
+name: fingerprint-yaml-专业开源威客系统KPPW
+manual: false
+detail:
+    fingerprint:
+        name: 专业开源威客系统KPPW
+    fofa: title="专业开源威客系统KPPW"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("专业开源威客系统KPPW")
+expression: r0()

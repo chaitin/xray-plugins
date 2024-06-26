@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Jataayu AdminServer
+manual: false
+detail:
+    fingerprint:
+        name: Jataayu AdminServer
+    fofa: header="Jataayu AdminServer" || title="Jataayu AdminServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Jataayu AdminServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Jataayu AdminServer")
+expression: r0() || r1()

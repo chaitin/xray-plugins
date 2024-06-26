@@ -1,0 +1,16 @@
+name: fingerprint-yaml-华为_HUAWEI_SRG1220
+manual: false
+detail:
+    fingerprint:
+        name: 华为_HUAWEI_SRG1220
+    fofa: header="HUAWEI SRG1220"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI SRG1220"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cable_DSL-Router
+manual: false
+detail:
+    fingerprint:
+        name: Cable/DSL-Router
+    fofa: header="realm=\"cable/dsl router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="cable/dsl router'))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-KeyHelp (Keyweb AG)
+manual: false
+detail:
+    fingerprint:
+        name: KeyHelp (Keyweb AG)
+    fofa: icon_hash="-1267819858" || icon_hash="726817668"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1267819858
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 726817668
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Contentful
+manual: false
+detail:
+    fingerprint:
+        name: Contentful
+    fofa: header="Contentful" || title="Contentful"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Contentful"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Contentful")
+expression: r0() || r1()

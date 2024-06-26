@@ -1,0 +1,30 @@
+name: fingerprint-yaml-BlockDos
+manual: false
+detail:
+    fingerprint:
+        name: BlockDos
+    fofa: 'header="BlockDos.net" || header="server: blockdos" || header="server: blockdos.net"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BlockDos.net"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: blockdos"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: blockdos.net"))'
+expression: r0() || r1() || r2()

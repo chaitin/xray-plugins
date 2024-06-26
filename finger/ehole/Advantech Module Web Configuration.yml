@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Advantech Module Web Configuration
+manual: false
+detail:
+    fingerprint:
+        name: Advantech Module Web Configuration
+    fofa: header="Advantech Module Web Configuration" || title="Advantech Module Web Configuration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Advantech Module Web Configuration"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Advantech Module Web Configuration")
+expression: r0() || r1()

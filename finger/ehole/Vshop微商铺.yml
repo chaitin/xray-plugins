@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vshop微商铺
+manual: false
+detail:
+    fingerprint:
+        name: Vshop微商铺
+    fofa: title="Vshop微商铺"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Vshop微商铺")
+expression: r0()

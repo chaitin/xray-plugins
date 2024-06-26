@@ -1,0 +1,51 @@
+name: fingerprint-yaml-CMS-Made-Simple
+manual: false
+detail:
+    fingerprint:
+        name: CMS-Made-Simple
+    fofa: body="content=\"CMS Made Simple" || header="CMSSESSID" || header="CMS Made Simple" || body="<meta name=\"Generator\" content=\"CMS Made Simple" || body="<title>Login to CMS Made Simple</title>" || title="CMS Made Simple"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="CMS Made Simple')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CMSSESSID"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CMS Made Simple"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Generator" content="CMS Made Simple')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Login to CMS Made Simple</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CMS Made Simple")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

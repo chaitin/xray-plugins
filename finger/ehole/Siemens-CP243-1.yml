@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Siemens-CP243-1
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-CP243-1
+    fofa: header="cp243-1 it" || header="CP243-1 IT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cp243-1 it"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CP243-1 IT"))
+expression: r0() || r1()

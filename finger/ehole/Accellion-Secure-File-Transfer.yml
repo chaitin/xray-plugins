@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Accellion-Secure-File-Transfer
+manual: false
+detail:
+    fingerprint:
+        name: Accellion-Secure-File-Transfer
+    fofa: body="secured by accellion" || header="sfcurl=deleted;" || body="Secured by Accellion" || body="<form name=\"form1\" method=\"post\" action=\"mail_user_login_exec.html\" onsubmit=\"document.form1.submit.disabled=true;\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("secured by accellion")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sfcurl=deleted;"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Secured by Accellion")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="form1" method="post" action="mail_user_login_exec.html" onsubmit="document.form1.submit.disabled=true;">')
+expression: r0() || r1() || r2() || r3()

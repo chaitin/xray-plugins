@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vesta Hosting Control Panel
+manual: false
+detail:
+    fingerprint:
+        name: Vesta Hosting Control Panel
+    fofa: icon_hash="1954835352"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1954835352
+expression: r0()

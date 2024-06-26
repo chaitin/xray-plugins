@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Car-Portal
+manual: false
+detail:
+    fingerprint:
+        name: Car-Portal
+    fofa: body="Powered by <a href=\"http://www.netartmedia.net/carsportal" || body="class=\"bodyfontwhite\"><strong>&nbsp;Car Script" || body="<div onmousedown=\"javascript:gSubmitForm()\" class=\"main_form_search_button\">SEARCH</div>" || body="Powered by <a href=\"http://www.netartmedia.net/carsportal\">Car Portal</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.netartmedia.net/carsportal')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="bodyfontwhite"><strong>&nbsp;Car Script')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div onmousedown="javascript:gSubmitForm()" class="main_form_search_button">SEARCH</div>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.netartmedia.net/carsportal">Car Portal</a>')
+expression: r0() || r1() || r2() || r3()

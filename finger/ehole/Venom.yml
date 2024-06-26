@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Venom
+manual: false
+detail:
+    fingerprint:
+        name: Venom
+    fofa: header="venom-dev"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("venom-dev"))
+expression: r0()

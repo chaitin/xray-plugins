@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Automattic
+manual: false
+detail:
+    fingerprint:
+        name: Automattic
+    fofa: header="Automattic" || title="Automattic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Automattic"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Automattic")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-H3C公司产品
+manual: false
+detail:
+    fingerprint:
+        name: H3C公司产品
+    fofa: body="service@h3c.com" || body="H3C Corporation" || body="icg_helpScript.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("service@h3c.com")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("H3C Corporation")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("icg_helpScript.js")
+expression: r0() || r1() || r2()

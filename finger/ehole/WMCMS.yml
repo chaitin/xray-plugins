@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WMCMS
+manual: false
+detail:
+    fingerprint:
+        name: WMCMS
+    fofa: header="WMCMS" || title="WMCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WMCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WMCMS")
+expression: r0() || r1()

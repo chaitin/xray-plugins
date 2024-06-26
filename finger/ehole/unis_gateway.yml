@@ -1,0 +1,16 @@
+name: fingerprint-yaml-unis_gateway
+manual: false
+detail:
+    fingerprint:
+        name: unis_gateway
+    fofa: title="unis_gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("unis_gateway")
+expression: r0()

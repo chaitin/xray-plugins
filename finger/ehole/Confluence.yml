@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Confluence
+manual: false
+detail:
+    fingerprint:
+        name: Confluence
+    fofa: 'body="name=\"confluence-base-url\"" && body="id=\"com-atlassian-confluence" || body="x-confluence-" && body="tp-link router upnp" || header="x-confluence" || body="id=\"com-atlassian-confluence" && body="name=\"confluence-base-url\"" || body="<meta id=\"confluence-context-path\" name=\"confluence-context-path\" content=\"\">" || body="<li class=\"noprint\"><a href=\"http://www.atlassian.com/software/confluence\" class=\"hover-footer-link\">Atlassian Confluence</a>" || header="X-Confluence-Request-Time: *" || header="Location: /login.action?os_destination=" && header="X-Confluence-Request-Time: *" || title="atlassian confluence"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="confluence-base-url"') && response.body_string.contains('id="com-atlassian-confluence')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("x-confluence-") && response.body_string.contains("tp-link router upnp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-confluence"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="com-atlassian-confluence') && response.body_string.contains('name="confluence-base-url"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta id="confluence-context-path" name="confluence-context-path" content="">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li class="noprint"><a href="http://www.atlassian.com/software/confluence" class="hover-footer-link">Atlassian Confluence</a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("X-Confluence-Request-Time: *"))'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Location: /login.action?os_destination=")) && response.raw_header.bcontains(bytes("X-Confluence-Request-Time: *"))'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("atlassian confluence")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

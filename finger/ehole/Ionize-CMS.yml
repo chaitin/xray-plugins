@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Ionize-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Ionize-CMS
+    fofa: 'body="<div id=\"loginWindow\" class=\" clearfix\">" || body="<div id=\"content\" class=\"content\" onKeyPress=\"javascript:doSubmit(event);\">" || body="<p class=\"note\">view : <b>default/article</b></p>" || body="<p class=\"article-date\">07.09.2010</p>" || body="<meta name=\"description\" content=\"HandMade, an Ionize theme\" />"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="loginWindow" class=" clearfix">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="content" class="content" onKeyPress="javascript:doSubmit(event);">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<p class="note">view : <b>default/article</b></p>'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="article-date">07.09.2010</p>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="HandMade, an Ionize theme" />')
+expression: r0() || r1() || r2() || r3() || r4()

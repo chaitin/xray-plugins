@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Infogo-ASM6000
+manual: false
+detail:
+    fingerprint:
+        name: Infogo-ASM6000
+    fofa: body="判断是否为特殊项目??石化项目" && body="中石化统一认证项目的跳转地址" || body="判断是否为特殊项目??石化项目" || body="中石化统一认证项目的跳转地址"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("判断是否为特殊项目??石化项目") && response.body_string.contains("中石化统一认证项目的跳转地址")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("判断是否为特殊项目??石化项目")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("中石化统一认证项目的跳转地址")
+expression: r0() || r1() || r2()

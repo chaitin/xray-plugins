@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alog_Xun_简体_utf-8
+manual: false
+detail:
+    fingerprint:
+        name: Alog_Xun_简体_utf-8
+    fofa: title="Alog_Xun_简体_utf-8"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Alog_Xun_简体_utf-8")
+expression: r0()

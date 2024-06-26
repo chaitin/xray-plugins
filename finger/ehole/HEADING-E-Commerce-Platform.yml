@@ -1,0 +1,30 @@
+name: fingerprint-yaml-HEADING-E-Commerce-Platform
+manual: false
+detail:
+    fingerprint:
+        name: HEADING-E-Commerce-Platform
+    fofa: body="window.location.replace('/bin/hdnet.dll/login'" || body="window.location.replace\"/bin/hdnet.dll/login\"" || body="window.location.replace(\"/bin/hdnet.dll/login\")"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.location.replace('/bin/hdnet.dll/login'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace"/bin/hdnet.dll/login"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("/bin/hdnet.dll/login")')
+expression: r0() || r1() || r2()

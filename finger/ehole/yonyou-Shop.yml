@@ -1,0 +1,51 @@
+name: fingerprint-yaml-yonyou-Shop
+manual: false
+detail:
+    fingerprint:
+        name: yonyou-Shop
+    fofa: body="/shophome/ajaxgetcompetemessagelist.action" && body="/shopfront/shoppingcar/gotoshoppingcartajax.action" || body="/shophome/ajaxgetcompetemessagelist.action" || body="/shopfront/shoppingcar/gotoshoppingcartajax.action" || body="url:\"/shophome/ajaxgetcompetemessagelist.action\"," || body="$.post(\"/shopfront/shoppingcar/gotoshoppingcartajax.action\",function(data){" || body="北京用友政务软件股份有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/shophome/ajaxgetcompetemessagelist.action") && response.body_string.contains("/shopfront/shoppingcar/gotoshoppingcartajax.action")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/shophome/ajaxgetcompetemessagelist.action")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/shopfront/shoppingcar/gotoshoppingcartajax.action")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('url:"/shophome/ajaxgetcompetemessagelist.action",')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('$.post("/shopfront/shoppingcar/gotoshoppingcartajax.action",function(data){')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("北京用友政务软件股份有限公司")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

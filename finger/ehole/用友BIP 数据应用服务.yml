@@ -1,0 +1,16 @@
+name: fingerprint-yaml-用友BIP 数据应用服务
+manual: false
+detail:
+    fingerprint:
+        name: 用友BIP 数据应用服务
+    fofa: icon_hash="1183274548"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1183274548
+expression: r0()

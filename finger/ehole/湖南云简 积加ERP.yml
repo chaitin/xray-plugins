@@ -1,0 +1,23 @@
+name: fingerprint-yaml-湖南云简 积加ERP
+manual: false
+detail:
+    fingerprint:
+        name: 湖南云简 积加ERP
+    fofa: header="湖南云简 积加ERP" || title="湖南云简 积加ERP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("湖南云简 积加ERP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("湖南云简 积加ERP")
+expression: r0() || r1()

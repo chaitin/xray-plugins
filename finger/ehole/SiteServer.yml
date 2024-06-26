@@ -1,0 +1,93 @@
+name: fingerprint-yaml-SiteServer
+manual: false
+detail:
+    fingerprint:
+        name: SiteServer
+    fofa: body="http://www.siteserver.cn" && body="siteserver cms" || body="http://www.siteserver.cn" || body="T_系统首页模板" || body="siteserver" || body="sitefiles" && body="siteserver" || body="t_系统首页模板" || body="siteserver cms" && body="http://www.siteserver.cn" && body="powered by" || body="siteserver cms" || body="http://www.siteserver.cn" && body="powered by" || body="siteserver" && body="t_系统首页模板" || body="sitefiles" || title="powered by siteserver cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.siteserver.cn") && response.body_string.contains("siteserver cms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.siteserver.cn")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("T_系统首页模板")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("siteserver")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sitefiles") && response.body_string.contains("siteserver")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("t_系统首页模板")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("siteserver cms") && response.body_string.contains("http://www.siteserver.cn") && response.body_string.contains("powered by")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("siteserver cms")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.siteserver.cn") && response.body_string.contains("powered by")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("siteserver") && response.body_string.contains("t_系统首页模板")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sitefiles")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("powered by siteserver cms")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

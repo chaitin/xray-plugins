@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Ruvar-OA
+manual: false
+detail:
+    fingerprint:
+        name: Ruvar-OA
+    fofa: body="<iframe id=\"ifrm\" width=\"100%\" height=\"100%\" frameborder=\"0\" scrolling=\"no\" src=\"/include/login.aspx" || body="<frame" && body="<iframe " || body="<frame" && body="<ifram" || title="ruvar_oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe id="ifrm" width="100%" height="100%" frameborder="0" scrolling="no" src="/include/login.aspx')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<frame") && response.body_string.contains("<iframe ")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<frame") && response.body_string.contains("<ifram")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ruvar_oa")
+expression: r0() || r1() || r2() || r3()

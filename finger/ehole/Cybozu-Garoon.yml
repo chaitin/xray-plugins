@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cybozu-Garoon
+manual: false
+detail:
+    fingerprint:
+        name: Cybozu-Garoon
+    fofa: 'header="server: cybozu-ws" || header="Cybozu-WS"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cybozu-ws"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cybozu-WS"))
+expression: r0() || r1()

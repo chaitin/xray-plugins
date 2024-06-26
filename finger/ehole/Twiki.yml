@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Twiki
+manual: false
+detail:
+    fingerprint:
+        name: Twiki
+    fofa: header="Twiki" || body="<title>Welcome to TWiki - A Web-based Collaboration Platform</title>" || title="Twiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Twiki"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Welcome to TWiki - A Web-based Collaboration Platform</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Twiki")
+expression: r0() || r1() || r2()

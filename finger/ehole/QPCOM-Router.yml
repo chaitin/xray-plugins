@@ -1,0 +1,16 @@
+name: fingerprint-yaml-QPCOM-Router
+manual: false
+detail:
+    fingerprint:
+        name: QPCOM-Router
+    fofa: title="qpcom | login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("qpcom | login")
+expression: r0()

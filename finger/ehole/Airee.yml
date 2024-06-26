@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Airee
+manual: false
+detail:
+    fingerprint:
+        name: Airee
+    fofa: header="Airee" || title="Airee"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Airee"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Airee")
+expression: r0() || r1()

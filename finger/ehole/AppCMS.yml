@@ -1,0 +1,37 @@
+name: fingerprint-yaml-AppCMS
+manual: false
+detail:
+    fingerprint:
+        name: AppCMS
+    fofa: body="powerd by appcms" || body="Powerd by AppCMS" || body="app cms" || title="app cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powerd by appcms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powerd by AppCMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("app cms")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("app cms")
+expression: r0() || r1() || r2() || r3()

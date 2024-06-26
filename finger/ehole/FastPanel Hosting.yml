@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FastPanel Hosting
+manual: false
+detail:
+    fingerprint:
+        name: FastPanel Hosting
+    fofa: icon_hash="774252049"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 774252049
+expression: r0()

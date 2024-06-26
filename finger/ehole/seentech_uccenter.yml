@@ -1,0 +1,16 @@
+name: fingerprint-yaml-seentech_uccenter
+manual: false
+detail:
+    fingerprint:
+        name: seentech_uccenter
+    fofa: title="seentech_uccenter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("seentech_uccenter")
+expression: r0()

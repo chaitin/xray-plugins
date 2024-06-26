@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mondo Media
+manual: false
+detail:
+    fingerprint:
+        name: Mondo Media
+    fofa: header="Mondo Media" || title="Mondo Media"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mondo Media"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mondo Media")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Kaspersky-Secure-Mail-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Kaspersky-Secure-Mail-Gateway
+    fofa: title="kaspersky secure mail gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kaspersky secure mail gateway")
+expression: r0()

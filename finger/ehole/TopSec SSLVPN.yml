@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TopSec SSLVPN
+manual: false
+detail:
+    fingerprint:
+        name: TopSec SSLVPN
+    fofa: header="TopSec SSLVPN" || title="TopSec SSLVPN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TopSec SSLVPN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TopSec SSLVPN")
+expression: r0() || r1()

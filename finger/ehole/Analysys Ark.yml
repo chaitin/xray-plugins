@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Analysys Ark
+manual: false
+detail:
+    fingerprint:
+        name: Analysys Ark
+    fofa: header="Analysys Ark" || title="Analysys Ark"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Analysys Ark"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Analysys Ark")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Sundray-Enterprise-AP
+manual: false
+detail:
+    fingerprint:
+        name: Sundray-Enterprise-AP
+    fofa: body="url = '/cgi-bin/dispatcher.cgi?cmd=0&login_language='+idx" && body="/login-btn.png" || body="/login-btn.png" && body="url = \"/cgi-bin/dispatcher.cgi?cmd=0&login_language=\"+idx" || body="url = \"/cgi-bin/dispatcher.cgi?cmd=0&login_language=\"+idx" || body="/login-btn.png"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("url = '/cgi-bin/dispatcher.cgi?cmd=0&login_language='+idx") && response.body_string.contains("/login-btn.png")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/login-btn.png") && response.body_string.contains('url = "/cgi-bin/dispatcher.cgi?cmd=0&login_language="+idx')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('url = "/cgi-bin/dispatcher.cgi?cmd=0&login_language="+idx')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/login-btn.png")
+expression: r0() || r1() || r2() || r3()

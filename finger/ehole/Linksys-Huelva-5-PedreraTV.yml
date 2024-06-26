@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys-Huelva-5-PedreraTV
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-Huelva-5-PedreraTV
+    fofa: header="Linksys-Huelva-5-PedreraTV"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys-Huelva-5-PedreraTV"))
+expression: r0()

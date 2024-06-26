@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Useforum轻论坛
+manual: false
+detail:
+    fingerprint:
+        name: Useforum轻论坛
+    fofa: title="Useforum轻论坛"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Useforum轻论坛")
+expression: r0()

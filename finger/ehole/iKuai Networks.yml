@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iKuai Networks
+manual: false
+detail:
+    fingerprint:
+        name: iKuai Networks
+    fofa: icon_hash="-271448102"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -271448102
+expression: r0()

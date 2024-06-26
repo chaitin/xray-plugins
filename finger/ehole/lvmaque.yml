@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lvmaque
+manual: false
+detail:
+    fingerprint:
+        name: lvmaque
+    fofa: title="lvmaque"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lvmaque")
+expression: r0()

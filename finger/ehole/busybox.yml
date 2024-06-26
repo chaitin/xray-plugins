@@ -1,0 +1,23 @@
+name: fingerprint-yaml-busybox
+manual: false
+detail:
+    fingerprint:
+        name: busybox
+    fofa: header="busybox" || title="busybox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("busybox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("busybox")
+expression: r0() || r1()

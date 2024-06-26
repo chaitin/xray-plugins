@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Openfire Admin Console
+manual: false
+detail:
+    fingerprint:
+        name: Openfire Admin Console
+    fofa: icon_hash="1211608009"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1211608009
+expression: r0()

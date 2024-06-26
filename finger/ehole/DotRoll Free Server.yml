@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DotRoll Free Server
+manual: false
+detail:
+    fingerprint:
+        name: DotRoll Free Server
+    fofa: header="DotRoll Free Server" || title="DotRoll Free Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DotRoll Free Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DotRoll Free Server")
+expression: r0() || r1()

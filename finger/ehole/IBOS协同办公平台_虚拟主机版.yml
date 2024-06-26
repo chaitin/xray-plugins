@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBOS协同办公平台_虚拟主机版
+manual: false
+detail:
+    fingerprint:
+        name: IBOS协同办公平台_虚拟主机版
+    fofa: title="IBOS协同办公平台_虚拟主机版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBOS协同办公平台_虚拟主机版")
+expression: r0()

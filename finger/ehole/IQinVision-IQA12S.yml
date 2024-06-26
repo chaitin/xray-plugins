@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IQinVision-IQA12S
+manual: false
+detail:
+    fingerprint:
+        name: IQinVision-IQA12S
+    fofa: title="iqa12s"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iqa12s")
+expression: r0()

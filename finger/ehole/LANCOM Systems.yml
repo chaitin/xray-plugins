@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LANCOM Systems
+manual: false
+detail:
+    fingerprint:
+        name: LANCOM Systems
+    fofa: icon_hash="-325082670"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -325082670
+expression: r0()

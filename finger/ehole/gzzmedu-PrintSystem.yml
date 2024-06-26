@@ -1,0 +1,16 @@
+name: fingerprint-yaml-gzzmedu-PrintSystem
+manual: false
+detail:
+    fingerprint:
+        name: gzzmedu-PrintSystem
+    fofa: title="文件信息真伪验证"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("文件信息真伪验证")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ICP备案查询程序
+manual: false
+detail:
+    fingerprint:
+        name: ICP备案查询程序
+    fofa: title="ICP备案查询程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ICP备案查询程序")
+expression: r0()

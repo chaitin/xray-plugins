@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SMF论坛_Simple_Machines_Forum
+manual: false
+detail:
+    fingerprint:
+        name: SMF论坛_Simple_Machines_Forum
+    fofa: header="SMF论坛_Simple_Machines_Forum" || title="SMF论坛_Simple_Machines_Forum"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SMF论坛_Simple_Machines_Forum"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SMF论坛_Simple_Machines_Forum")
+expression: r0() || r1()

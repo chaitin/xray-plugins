@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ngx_openresty
+manual: false
+detail:
+    fingerprint:
+        name: ngx_openresty
+    fofa: header="ngx_openresty"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ngx_openresty"))
+expression: r0()

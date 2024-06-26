@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Diaobao-Fortres-Machine
+manual: false
+detail:
+    fingerprint:
+        name: Diaobao-Fortres-Machine
+    fofa: title=" 碉堡堡垒机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains(" 碉堡堡垒机")
+expression: r0()

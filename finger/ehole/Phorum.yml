@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Phorum
+manual: false
+detail:
+    fingerprint:
+        name: Phorum
+    fofa: body="powered by <a href=\"http://www.phorum.org" || body="<!-- end of div id=user-info -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.phorum.org')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- end of div id=user-info -->")
+expression: r0() || r1()

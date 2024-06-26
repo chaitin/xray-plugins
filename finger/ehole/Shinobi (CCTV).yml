@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Shinobi (CCTV)
+manual: false
+detail:
+    fingerprint:
+        name: Shinobi (CCTV)
+    fofa: icon_hash="-10974981"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -10974981
+expression: r0()

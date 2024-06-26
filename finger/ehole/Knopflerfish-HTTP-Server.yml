@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Knopflerfish-HTTP-Server
+manual: false
+detail:
+    fingerprint:
+        name: Knopflerfish-HTTP-Server
+    fofa: 'header="server: the knopflerfish http server" || header="The Knopflerfish HTTP Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: the knopflerfish http server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("The Knopflerfish HTTP Server"))
+expression: r0() || r1()

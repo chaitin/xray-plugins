@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ASUS AiCloud
+manual: false
+detail:
+    fingerprint:
+        name: ASUS AiCloud
+    fofa: icon_hash="552592949" || body="href=\"/smb/css/startup.png\"" || title="ASUS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 552592949
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/smb/css/startup.png"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ASUS")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-开源域名注册系统_BoxBilling
+manual: false
+detail:
+    fingerprint:
+        name: 开源域名注册系统_BoxBilling
+    fofa: title="开源域名注册系统_BoxBilling"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("开源域名注册系统_BoxBilling")
+expression: r0()

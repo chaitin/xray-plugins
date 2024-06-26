@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK-TL-SC2000N
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-TL-SC2000N
+    fofa: title="tl-sc2000n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tl-sc2000n")
+expression: r0()

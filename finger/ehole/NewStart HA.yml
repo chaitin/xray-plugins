@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NewStart HA
+manual: false
+detail:
+    fingerprint:
+        name: NewStart HA
+    fofa: header="NewStart HA" || title="NewStart HA"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NewStart HA"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NewStart HA")
+expression: r0() || r1()

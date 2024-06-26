@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Comanche
+manual: false
+detail:
+    fingerprint:
+        name: Comanche
+    fofa: 'header="Comanche" || header="server: comanche"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Comanche"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: comanche"))'
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VWebServer
+manual: false
+detail:
+    fingerprint:
+        name: VWebServer
+    fofa: header="VWebServer" || title="VWebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("VWebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VWebServer")
+expression: r0() || r1()

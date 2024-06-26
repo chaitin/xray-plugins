@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Archivematica
+manual: false
+detail:
+    fingerprint:
+        name: Archivematica
+    fofa: icon_hash="-1378182799"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1378182799
+expression: r0()

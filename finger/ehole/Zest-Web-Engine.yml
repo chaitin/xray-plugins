@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Zest-Web-Engine
+manual: false
+detail:
+    fingerprint:
+        name: Zest-Web-Engine
+    fofa: body="/cgi-bin/web.asp?title" || body="Powered by the <a href=\"http://www.zest-leisure.com/\">Zest Web Engine</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/web.asp?title")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by the <a href="http://www.zest-leisure.com/">Zest Web Engine</a>')
+expression: r0() || r1()

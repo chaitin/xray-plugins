@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gordano NTMail
+manual: false
+detail:
+    fingerprint:
+        name: Gordano NTMail
+    fofa: header="Gordano NTMail" || title="Gordano NTMail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Gordano NTMail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Gordano NTMail")
+expression: r0() || r1()

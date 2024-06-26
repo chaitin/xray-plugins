@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SiteEngine
+manual: false
+detail:
+    fingerprint:
+        name: SiteEngine
+    fofa: body="content=\"boka siteengine" || body="content=\"Boka SiteEngine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="boka siteengine')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Boka SiteEngine')
+expression: r0() || r1()

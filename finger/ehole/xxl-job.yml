@@ -1,0 +1,44 @@
+name: fingerprint-yaml-xxl-job
+manual: false
+detail:
+    fingerprint:
+        name: xxl-job
+    fofa: body="/static/adminlte/dist/css/AdminLTE.min.css" && body="bower_components/PACE/pace.min.js" || header="XXL-JOB" || body="static/js/login.1.js" && body="任务调度中心" || body="分布式任务调度平台XXL-JOB" || title="XXL-JOB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/static/adminlte/dist/css/AdminLTE.min.css") && response.body_string.contains("bower_components/PACE/pace.min.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XXL-JOB"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("static/js/login.1.js") && response.body_string.contains("任务调度中心")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("分布式任务调度平台XXL-JOB")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XXL-JOB")
+expression: r0() || r1() || r2() || r3() || r4()

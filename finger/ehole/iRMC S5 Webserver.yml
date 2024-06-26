@@ -1,0 +1,23 @@
+name: fingerprint-yaml-iRMC S5 Webserver
+manual: false
+detail:
+    fingerprint:
+        name: iRMC S5 Webserver
+    fofa: header="iRMC S5 Webserver" || title="iRMC S5 Webserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iRMC S5 Webserver"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iRMC S5 Webserver")
+expression: r0() || r1()

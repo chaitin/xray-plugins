@@ -1,0 +1,30 @@
+name: fingerprint-yaml-FCMS
+manual: false
+detail:
+    fingerprint:
+        name: FCMS
+    fofa: body="content=\"Ryan Haudenschilt" || body="Powered by Family Connections" || body="<meta name=\"author\" content=\"Ryan Haudenschilt\"/>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Ryan Haudenschilt')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Family Connections")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Ryan Haudenschilt"/>')
+expression: r0() || r1() || r2()

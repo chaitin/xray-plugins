@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kendo UI
+manual: false
+detail:
+    fingerprint:
+        name: Kendo UI
+    fofa: header="Kendo UI" || title="Kendo UI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kendo UI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kendo UI")
+expression: r0() || r1()

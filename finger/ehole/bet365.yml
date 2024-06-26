@@ -1,0 +1,16 @@
+name: fingerprint-yaml-bet365
+manual: false
+detail:
+    fingerprint:
+        name: bet365
+    fofa: icon_hash="-2116540786"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2116540786
+expression: r0()

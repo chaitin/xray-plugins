@@ -1,0 +1,37 @@
+name: fingerprint-yaml-mojoPortal
+manual: false
+detail:
+    fingerprint:
+        name: mojoPortal
+    fofa: body="<a href=\"http://www.mojoportal.com\" >Powered by mojoPortal</a>" || body="<a href=\"http://www.mojoportal.com\"  title=\"mojoPortal.com\">Powered by mojoPortal</a>" || body="<img src=\"../Data/SiteImages/mojoportal-logo-med.gif\" alt=\"mojoPortal Content Management System\" />" || body="<link id=\"Link1\" runat=\"server\" rel=\"stylesheet\" href=\"../Data/style/setup.css\" type=\"text/css\"  />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.mojoportal.com" >Powered by mojoPortal</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.mojoportal.com"  title="mojoPortal.com">Powered by mojoPortal</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="../Data/SiteImages/mojoportal-logo-med.gif" alt="mojoPortal Content Management System" />')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link id="Link1" runat="server" rel="stylesheet" href="../Data/style/setup.css" type="text/css"  />')
+expression: r0() || r1() || r2() || r3()

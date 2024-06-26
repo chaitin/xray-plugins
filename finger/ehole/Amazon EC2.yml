@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Amazon EC2
+manual: false
+detail:
+    fingerprint:
+        name: Amazon EC2
+    fofa: header="Amazon EC2" || title="Amazon EC2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Amazon EC2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Amazon EC2")
+expression: r0() || r1()

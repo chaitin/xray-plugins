@@ -1,0 +1,23 @@
+name: fingerprint-yaml-德讯科技数据中心
+manual: false
+detail:
+    fingerprint:
+        name: 德讯科技数据中心
+    fofa: header="德讯科技数据中心" || title="德讯科技数据中心"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("德讯科技数据中心"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("德讯科技数据中心")
+expression: r0() || r1()

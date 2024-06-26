@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Basic-PHP-Events-Lister
+manual: false
+detail:
+    fingerprint:
+        name: Basic-PHP-Events-Lister
+    fofa: 'body="powered by: <a href=\"http://www.mevin.com/\">" || body="Powered by: <a href=\"http://www.mevin.com/\">" || body="Powered by: <a href=\"http://www.mevin.com/\">mevin productions</a>" || body="<br /><center><input class=\"text\" type=\"submit\" name=\"submitBtn\" value=\"Login\" /></center>" || body="<center><br> <a href=recover.php>Lost your password?</a></center>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''powered by: <a href="http://www.mevin.com/">'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Powered by: <a href="http://www.mevin.com/">'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Powered by: <a href="http://www.mevin.com/">mevin productions</a>'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<br /><center><input class="text" type="submit" name="submitBtn" value="Login" /></center>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<center><br> <a href=recover.php>Lost your password?</a></center>")
+expression: r0() || r1() || r2() || r3() || r4()

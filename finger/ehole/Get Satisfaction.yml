@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Get Satisfaction
+manual: false
+detail:
+    fingerprint:
+        name: Get Satisfaction
+    fofa: header="Get Satisfaction" || title="Get Satisfaction"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Get Satisfaction"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Get Satisfaction")
+expression: r0() || r1()

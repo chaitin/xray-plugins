@@ -1,0 +1,37 @@
+name: fingerprint-yaml-iRealty
+manual: false
+detail:
+    fingerprint:
+        name: iRealty
+    fofa: body="Powered by <a href=\"http://www.irealty.com/\" title=\"iRealty\"> iRealty </a>" || body="<a target=\"_blank\" href=\"http://www.irealtysoft.com/\">- Powered by iRealty</a>" || body="Powered by <a target=\"_blank\" title=\"iRealty &mdash; Real Estate Listing Software\" href=\"http://www.irealtysoft.com/\">iRealty</a>," || body="Powered by <a target=\"_blank\" title=\"iRealty &mdash; Real Estate Listing Software\" href=\"http://www.worksforweb.com/products/iRealty/\">iRealty</a>,"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.irealty.com/" title="iRealty"> iRealty </a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a target="_blank" href="http://www.irealtysoft.com/">- Powered by iRealty</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a target="_blank" title="iRealty &mdash; Real Estate Listing Software" href="http://www.irealtysoft.com/">iRealty</a>,')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a target="_blank" title="iRealty &mdash; Real Estate Listing Software" href="http://www.worksforweb.com/products/iRealty/">iRealty</a>,')
+expression: r0() || r1() || r2() || r3()

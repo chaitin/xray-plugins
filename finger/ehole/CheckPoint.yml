@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CheckPoint
+manual: false
+detail:
+    fingerprint:
+        name: CheckPoint
+    fofa: icon_hash="794809961"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 794809961
+expression: r0()

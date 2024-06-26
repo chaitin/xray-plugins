@@ -1,0 +1,23 @@
+name: fingerprint-yaml-XATABoost
+manual: false
+detail:
+    fingerprint:
+        name: XATABoost
+    fofa: header="XATABoost" || title="XATABoost"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XATABoost"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XATABoost")
+expression: r0() || r1()

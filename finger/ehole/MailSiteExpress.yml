@@ -1,0 +1,86 @@
+name: fingerprint-yaml-MailSiteExpress
+manual: false
+detail:
+    fingerprint:
+        name: MailSiteExpress
+    fofa: body="<b>mailsite <em>express" && body="onsubmit=\"openexpress(document.expresslogin" && body="rockliffe systems, inc." || header="MailSite Express" || body="rockliffe systems, inc." || body="onsubmit=\"openexpress(document.expresslogin)" || body="<b>mailsite <em>express" || body="onsubmit=\"openexpressdocument.expresslogin" || body="<title>MailSite Express</title>" || body="<b>MailSite <em>Express</em> Login</b>" || body="onSubmit=\"OpenExpress(document.ExpressLogin)\"" || title="MailSite Express" || title="mailsite express"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>mailsite <em>express") && response.body_string.contains('onsubmit="openexpress(document.expresslogin') && response.body_string.contains("rockliffe systems, inc.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MailSite Express"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("rockliffe systems, inc.")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="openexpress(document.expresslogin)')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>mailsite <em>express")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="openexpressdocument.expresslogin')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>MailSite Express</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>MailSite <em>Express</em> Login</b>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onSubmit="OpenExpress(document.ExpressLogin)"')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MailSite Express")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailsite express")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

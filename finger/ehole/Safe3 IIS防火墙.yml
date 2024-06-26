@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Safe3 IIS防火墙
+manual: false
+detail:
+    fingerprint:
+        name: Safe3 IIS防火墙
+    fofa: header="Safe3 IIS防火墙" || title="Safe3 IIS防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Safe3 IIS防火墙"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Safe3 IIS防火墙")
+expression: r0() || r1()

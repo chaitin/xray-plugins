@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Level3
+manual: false
+detail:
+    fingerprint:
+        name: Level3
+    fofa: title="Level3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Level3")
+expression: r0()

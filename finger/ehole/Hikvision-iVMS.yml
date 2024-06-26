@@ -1,0 +1,226 @@
+name: fingerprint-yaml-Hikvision-iVMS
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision-iVMS
+    fofa: 'body="g_szcachetime" && body="tab-border code-iivms\">" && body="class=\"enname\">ivms-4200" && body="//caoshiyan modify 2015-06-30 中转页面" && body="/home/locationindex.action?time=" && body="<div class=\"enname\">ivms-4200" || body="g_szcachetime" && body="tab-border code-iivms\">" && body=" window.document.location = ''/license!getexpiredateofdays.action'';" && body="2b73083e-9b29-4005-a123-1d4ec47a36d5\"; // 用于检测vms是否超时, chenliangyf1" && body="class=\"enname\">ivms-4200" && body="larempassword" && body="//caoshiyan modify 2015-06-30 中转页面" && body="/home/locationindex.action?time=" && body="<div class=\"enname\">ivms-4200" && body="out\"><a href=\"download/ivms-" || body="reset.bmp" && body="login.bmp" && body="loginbg.bmp" || body="<!--警示提示处-->" && body="<h1 class=\"logo\">安防综合管理平台</h1>" && body="杭州海康威视系统技术有限公司 版权所有" && body="serviceip" || body="class=\"out\"><a href=\"download/ivms-" || body="if (refreshurl==null,refreshurl==\"\") { window.location.reload();}" || body="<div class=\"enname\">ivms-4200" || body="/home/locationindex.action?time=" && body="//caoshiyan modify 2015-06-30 中转页面" || body="larempassword" && body="class=\"enname\">ivms-4200" || body="var uuid = \"2b73083e-9b29-4005-a123-1d4ec47a36d5\"; // 用于检测vms是否超时, chenliangyf1" || body=" window.document.location = \"/license!getexpiredateofdays.action\";" || body="tab-border code-iivms\">" || body="ivms" && body="g_szcachetime" || body="serviceip" && body="杭州海康威视系统技术有限公司 版权所有" && body="<h1 class=\"logo\">安防综合管理平台</h1>" || body="<!--警示提示处-->" || body="g_szcachetime" || body="class=\"enname\">ivms-4200" || body="//caoshiyan modify 2015-06-30 中转页面" || body="/home/locationindex.action?time=" || body="window.document.location = \"/license!getexpiredateofdays.action\";" || body="2b73083e-9b29-4005-a123-1d4ec47a36d5\"; // 用于检测vms是否超时, chenliangyf1" || body="larempassword" || body="out\"><a href=\"download/ivms-" || body="reset.bmp" || body="login.bmp" || body="loginbg.bmp" || body="<h1 class=\"logo\">安防综合管理平台</h1>" || body="杭州海康威视系统技术有限公司 版权所有" || body="serviceip" || header="server: if you want know, you can ask me" || title="ivms-"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("g_szcachetime") && response.body_string.contains('tab-border code-iivms">') && response.body_string.contains('class="enname">ivms-4200') && response.body_string.contains("//caoshiyan modify 2015-06-30 中转页面") && response.body_string.contains("/home/locationindex.action?time=") && response.body_string.contains('<div class="enname">ivms-4200')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("g_szcachetime") && response.body_string.contains('tab-border code-iivms">') && response.body_string.contains(" window.document.location = '/license!getexpiredateofdays.action';") && response.body_string.contains('2b73083e-9b29-4005-a123-1d4ec47a36d5"; // 用于检测vms是否超时, chenliangyf1') && response.body_string.contains('class="enname">ivms-4200') && response.body_string.contains("larempassword") && response.body_string.contains("//caoshiyan modify 2015-06-30 中转页面") && response.body_string.contains("/home/locationindex.action?time=") && response.body_string.contains('<div class="enname">ivms-4200') && response.body_string.contains('out"><a href="download/ivms-')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("reset.bmp") && response.body_string.contains("login.bmp") && response.body_string.contains("loginbg.bmp")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--警示提示处-->") && response.body_string.contains('<h1 class="logo">安防综合管理平台</h1>') && response.body_string.contains("杭州海康威视系统技术有限公司 版权所有") && response.body_string.contains("serviceip")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="out"><a href="download/ivms-')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('if (refreshurl==null,refreshurl=="") { window.location.reload();}')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="enname">ivms-4200')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/home/locationindex.action?time=") && response.body_string.contains("//caoshiyan modify 2015-06-30 中转页面")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("larempassword") && response.body_string.contains('class="enname">ivms-4200')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var uuid = "2b73083e-9b29-4005-a123-1d4ec47a36d5"; // 用于检测vms是否超时, chenliangyf1')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' window.document.location = "/license!getexpiredateofdays.action";')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('tab-border code-iivms">')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ivms") && response.body_string.contains("g_szcachetime")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("serviceip") && response.body_string.contains("杭州海康威视系统技术有限公司 版权所有") && response.body_string.contains('<h1 class="logo">安防综合管理平台</h1>')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--警示提示处-->")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("g_szcachetime")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="enname">ivms-4200')
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("//caoshiyan modify 2015-06-30 中转页面")
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/home/locationindex.action?time=")
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.document.location = "/license!getexpiredateofdays.action";')
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('2b73083e-9b29-4005-a123-1d4ec47a36d5"; // 用于检测vms是否超时, chenliangyf1')
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("larempassword")
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('out"><a href="download/ivms-')
+    r23:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("reset.bmp")
+    r24:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login.bmp")
+    r25:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("loginbg.bmp")
+    r26:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1 class="logo">安防综合管理平台</h1>')
+    r27:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("杭州海康威视系统技术有限公司 版权所有")
+    r28:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("serviceip")
+    r29:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: if you want know, you can ask me"))'
+    r30:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ivms-")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25() || r26() || r27() || r28() || r29() || r30()

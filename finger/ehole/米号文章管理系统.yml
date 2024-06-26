@@ -1,0 +1,16 @@
+name: fingerprint-yaml-米号文章管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 米号文章管理系统
+    fofa: title="米号文章管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("米号文章管理系统")
+expression: r0()

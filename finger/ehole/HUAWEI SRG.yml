@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI SRG
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI SRG
+    fofa: header="HUAWEI SRG" || title="HUAWEI SRG"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI SRG"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HUAWEI SRG")
+expression: r0() || r1()

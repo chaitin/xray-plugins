@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-PowerConnect-Ethernet-Switches
+manual: false
+detail:
+    fingerprint:
+        name: DELL-PowerConnect-Ethernet-Switches
+    fofa: body="branding.html"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("branding.html")
+expression: r0()

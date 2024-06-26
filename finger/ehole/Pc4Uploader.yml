@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Pc4Uploader
+manual: false
+detail:
+    fingerprint:
+        name: Pc4Uploader
+    fofa: body="powered by pc4uploader" && body="pc4uploader <font color" || body="pc4uploader <font color" || body="powered by pc4uploader" || body="eval(\"page\" + id + \" = window.open(URL, \"\" + id + \"\", \"toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=650,height=400,left = 199.5,top = 196.5\");\");"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by pc4uploader") && response.body_string.contains("pc4uploader <font color")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pc4uploader <font color")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by pc4uploader")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('eval("page" + id + " = window.open(URL, "" + id + "", "toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=650,height=400,left = 199.5,top = 196.5");");')
+expression: r0() || r1() || r2() || r3()

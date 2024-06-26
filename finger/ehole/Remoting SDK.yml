@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Remoting SDK
+manual: false
+detail:
+    fingerprint:
+        name: Remoting SDK
+    fofa: header="Remoting SDK" || title="Remoting SDK"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Remoting SDK"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Remoting SDK")
+expression: r0() || r1()

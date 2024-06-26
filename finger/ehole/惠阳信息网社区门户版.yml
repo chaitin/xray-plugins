@@ -1,0 +1,16 @@
+name: fingerprint-yaml-惠阳信息网社区门户版
+manual: false
+detail:
+    fingerprint:
+        name: 惠阳信息网社区门户版
+    fofa: title="惠阳信息网社区门户版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("惠阳信息网社区门户版")
+expression: r0()

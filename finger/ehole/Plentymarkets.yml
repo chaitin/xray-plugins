@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Plentymarkets
+manual: false
+detail:
+    fingerprint:
+        name: Plentymarkets
+    fofa: header="Plentymarkets" || title="Plentymarkets"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Plentymarkets"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Plentymarkets")
+expression: r0() || r1()

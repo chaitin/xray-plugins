@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MDaemon Remote Administration
+manual: false
+detail:
+    fingerprint:
+        name: MDaemon Remote Administration
+    fofa: icon_hash="99432374"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 99432374
+expression: r0()

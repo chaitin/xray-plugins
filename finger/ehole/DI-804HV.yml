@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DI-804HV
+manual: false
+detail:
+    fingerprint:
+        name: DI-804HV
+    fofa: header="DI-804HV"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DI-804HV"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OEmarry婚嫁电子商务系统免费版
+manual: false
+detail:
+    fingerprint:
+        name: OEmarry婚嫁电子商务系统免费版
+    fofa: header="OEmarry婚嫁电子商务系统免费版" || title="OEmarry婚嫁电子商务系统免费版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OEmarry婚嫁电子商务系统免费版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OEmarry婚嫁电子商务系统免费版")
+expression: r0() || r1()

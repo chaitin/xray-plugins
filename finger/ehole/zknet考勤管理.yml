@@ -1,0 +1,23 @@
+name: fingerprint-yaml-zknet考勤管理
+manual: false
+detail:
+    fingerprint:
+        name: zknet考勤管理
+    fofa: header="zknet考勤管理" || title="zknet考勤管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zknet考勤管理"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zknet考勤管理")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Palladium-Core4A-UTM
+manual: false
+detail:
+    fingerprint:
+        name: Palladium-Core4A-UTM
+    fofa: title="帕拉迪 icore-4a" || title="帕拉迪core4a-utm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("帕拉迪 icore-4a")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("帕拉迪core4a-utm")
+expression: r0() || r1()

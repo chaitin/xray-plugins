@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Veoxa
+manual: false
+detail:
+    fingerprint:
+        name: Veoxa
+    fofa: header="Veoxa" || title="Veoxa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Veoxa"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Veoxa")
+expression: r0() || r1()

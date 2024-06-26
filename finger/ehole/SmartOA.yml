@@ -1,0 +1,65 @@
+name: fingerprint-yaml-SmartOA
+manual: false
+detail:
+    fingerprint:
+        name: SmartOA
+    fofa: body="content/images/login_background.jpg" && body="href=\"http://www.smartoa.com.cn/download/smartoa.apk\">安卓客户端</a>" || header="smartoa" || body="/smartoa.plist" || body="href=\"http://www.smartoa.com.cn/download/smartoa.apk\">安卓客户端</a>" || body="iframeheight()" && body="content/images/login_background.jpg" || body="content/images/login_background.jpg" || body="iframeheight()" || title="smart_oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("content/images/login_background.jpg") && response.body_string.contains('href="http://www.smartoa.com.cn/download/smartoa.apk">安卓客户端</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("smartoa"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/smartoa.plist")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.smartoa.com.cn/download/smartoa.apk">安卓客户端</a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("iframeheight()") && response.body_string.contains("content/images/login_background.jpg")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("content/images/login_background.jpg")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("iframeheight()")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("smart_oa")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

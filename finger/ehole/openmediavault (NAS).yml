@@ -1,0 +1,16 @@
+name: fingerprint-yaml-openmediavault (NAS)
+manual: false
+detail:
+    fingerprint:
+        name: openmediavault (NAS)
+    fofa: icon_hash="-693082538"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -693082538
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-huashi_tv
+manual: false
+detail:
+    fingerprint:
+        name: huashi_tv
+    fofa: title="huashi_tv"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huashi_tv")
+expression: r0()

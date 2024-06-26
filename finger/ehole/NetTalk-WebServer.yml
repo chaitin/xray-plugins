@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NetTalk-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: NetTalk-WebServer
+    fofa: 'header="server: nettalk-webserver" || header="NetTalk WebServer" || title="NetTalk WebServer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nettalk-webserver"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetTalk WebServer"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NetTalk WebServer")
+expression: r0() || r1() || r2()

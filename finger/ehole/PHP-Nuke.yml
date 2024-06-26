@@ -1,0 +1,58 @@
+name: fingerprint-yaml-PHP-Nuke
+manual: false
+detail:
+    fingerprint:
+        name: PHP-Nuke
+    fofa: header="PHP-Nuke" || body="<a href=\"modules.php?name=Your_Account\">" || body="<META NAME=\"RATING\" CONTENT=\"GENERAL\">" || body="<a href=\"http://phpnuke.org/files/gpl.txt\">" || body="<a href=\"modules.php?name=Feedback\">Feedback</a>" || body="<a href=\"http://www.phpnuke.org\"><img src=\"images/powered/phpnuke.gif\" title=\"The engine code is copyright of PHP-Nuke.\" border=\"0\"></a>" || title="PHP-Nuke"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHP-Nuke"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="modules.php?name=Your_Account">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META NAME="RATING" CONTENT="GENERAL">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://phpnuke.org/files/gpl.txt">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="modules.php?name=Feedback">Feedback</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.phpnuke.org"><img src="images/powered/phpnuke.gif" title="The engine code is copyright of PHP-Nuke." border="0"></a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHP-Nuke")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

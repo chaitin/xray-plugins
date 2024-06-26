@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Contensis
+manual: false
+detail:
+    fingerprint:
+        name: Contensis
+    fofa: header="Contensis" || title="Contensis"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Contensis"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Contensis")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK WR741ND
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK WR741ND
+    fofa: header="TP-LINK WR741ND"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK WR741ND"))
+expression: r0()

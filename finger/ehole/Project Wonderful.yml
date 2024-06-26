@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Project Wonderful
+manual: false
+detail:
+    fingerprint:
+        name: Project Wonderful
+    fofa: header="Project Wonderful" || title="Project Wonderful"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Project Wonderful"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Project Wonderful")
+expression: r0() || r1()

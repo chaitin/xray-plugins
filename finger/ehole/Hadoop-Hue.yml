@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Hadoop-Hue
+manual: false
+detail:
+    fingerprint:
+        name: Hadoop-Hue
+    fofa: body="jhuehdfstreeglobals" && body="hue and the hue logo are trademarks of cloudera, inc." || body="hue,the hue logo are trademarks of cloudera, inc." || body="id=\"jhuenotify" || body="jhuehdfstreeglobals" || body="hue and the hue logo are trademarks of cloudera, inc." || body="hue and the hue logo are trademarks of cloudera, inc." && body="id=\"jhuenotify" || title="hue - welcome to hue"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jhuehdfstreeglobals") && response.body_string.contains("hue and the hue logo are trademarks of cloudera, inc.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hue,the hue logo are trademarks of cloudera, inc.")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="jhuenotify')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jhuehdfstreeglobals")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hue and the hue logo are trademarks of cloudera, inc.")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hue and the hue logo are trademarks of cloudera, inc.") && response.body_string.contains('id="jhuenotify')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hue - welcome to hue")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

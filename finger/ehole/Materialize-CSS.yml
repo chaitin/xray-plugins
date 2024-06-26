@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Materialize-CSS
+manual: false
+detail:
+    fingerprint:
+        name: Materialize-CSS
+    fofa: body="/materialize.css" && body="/materialize.min.css" && body="materialize/materialize" && body="materialize/css" || body="materialize/css" || body="materialize/materialize" || body="/materialize.min.css" || body="/materialize.css" || title="Materialize CSS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/materialize.css") && response.body_string.contains("/materialize.min.css") && response.body_string.contains("materialize/materialize") && response.body_string.contains("materialize/css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("materialize/css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("materialize/materialize")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/materialize.min.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/materialize.css")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Materialize CSS")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

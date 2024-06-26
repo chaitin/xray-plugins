@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BoldGrid
+manual: false
+detail:
+    fingerprint:
+        name: BoldGrid
+    fofa: header="BoldGrid" || title="BoldGrid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BoldGrid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BoldGrid")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-innovaphone
+manual: false
+detail:
+    fingerprint:
+        name: innovaphone
+    fofa: icon_hash="671221099"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 671221099
+expression: r0()

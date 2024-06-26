@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-BRC-H800
+manual: false
+detail:
+    fingerprint:
+        name: SONY-BRC-H800
+    fofa: header="realm=\"brc-h800"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="brc-h800'))
+expression: r0()

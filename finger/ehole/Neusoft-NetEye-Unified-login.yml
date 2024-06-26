@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Neusoft-NetEye-Unified-login
+manual: false
+detail:
+    fingerprint:
+        name: Neusoft-NetEye-Unified-login
+    fofa: title="neteye 统一身份管控系统登录"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("neteye 统一身份管控系统登录")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Plura
+manual: false
+detail:
+    fingerprint:
+        name: Plura
+    fofa: title="Plura"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Plura")
+expression: r0()

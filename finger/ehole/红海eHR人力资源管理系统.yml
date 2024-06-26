@@ -1,0 +1,16 @@
+name: fingerprint-yaml-红海eHR人力资源管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 红海eHR人力资源管理系统
+    fofa: icon_hash="3279470843"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 3279470843
+expression: r0()

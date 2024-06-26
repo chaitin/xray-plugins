@@ -1,0 +1,72 @@
+name: fingerprint-yaml-w7-OfficialAccounts
+manual: false
+detail:
+    fingerprint:
+        name: w7-OfficialAccounts
+    fofa: body="class=\"copyright\">powered by <a href=\"http://www.we7.cc\"><b>微擎</b>" && body="onsubmit=\"return formcheck(;\" class=\"we7-form\">" && body="content=\"微擎,微信" && body="powered by we7.cc" || body="powered by we7.cc" || body="content=\"微擎,微信" || body="onsubmit=\"return formcheck();\" class=\"we7-form\">" || body="class=\"copyright\">powered by <a href=\"http://www.we7.cc\"><b>微擎</b>" || body="onsubmit=\"return formcheck;\" class=\"we7-form\">" || body="content=\"微擎,微信" && body="onsubmit=\"return formcheck();\" class=\"we7-form\">" || title="powered by we7.cc" || title="微擎 - 公众平台自助引擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="copyright">powered by <a href="http://www.we7.cc"><b>微擎</b>') && response.body_string.contains('onsubmit="return formcheck(;" class="we7-form">') && response.body_string.contains('content="微擎,微信') && response.body_string.contains("powered by we7.cc")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by we7.cc")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="微擎,微信')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="return formcheck();" class="we7-form">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="copyright">powered by <a href="http://www.we7.cc"><b>微擎</b>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="return formcheck;" class="we7-form">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="微擎,微信') && response.body_string.contains('onsubmit="return formcheck();" class="we7-form">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("powered by we7.cc")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("微擎 - 公众平台自助引擎")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

@@ -1,0 +1,107 @@
+name: fingerprint-yaml-Netsweeper
+manual: false
+detail:
+    fingerprint:
+        name: Netsweeper
+    fofa: 'body="netsweepersmbtextatbottomofloginscreen" && body="href=\"http://www.poweredbynetsweeper.com\"><img " || header="set-cookie: webadmin=" || body="href=\"http://www.poweredbynetsweeper.com\"><img " || body="netsweepersmbtextatbottomofloginscreen" || body="href=\"http://www.poweredbynetsweeper.com\"><img" || body="<DIV id=\"overDiv\" style=\"position:absolute; visibility:hidden; z-index:104;\"></DIV>" || body="<!-- Body of content starts here -->" || body="<BR><SPAN class=\"netsweepersmbtextatbottomofloginscreen\">" || body="<!-- full_page_header.html START -->" || body="<!-- full_page_footer.html START-->" || body="<a target=_parent href=\"../\" >Please click <u>here</u> to continue.</a>" || body="<a href=\"http://www.poweredbynetsweeper.com\"><img src=\"http://www.poweredbynetsweeper.com/images/deny/global/poweredbynetsweeper.gif\" border=\"0\" alt=\"\" align=\"top\" /></a></td>" || body="<a href=\"http://www.poweredbynetsweeper.com\"><img align=top border=0 src=\"http://www.poweredbynetsweeper.com/images/deny/global/poweredbynetsweeper.gif\"></a>" || body="href=\"http://www.poweredbynetsweeper.com\"><im"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netsweepersmbtextatbottomofloginscreen") && response.body_string.contains('href="http://www.poweredbynetsweeper.com"><img ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: webadmin="))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.poweredbynetsweeper.com"><img ')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netsweepersmbtextatbottomofloginscreen")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.poweredbynetsweeper.com"><img')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<DIV id="overDiv" style="position:absolute; visibility:hidden; z-index:104;"></DIV>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Body of content starts here -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<BR><SPAN class="netsweepersmbtextatbottomofloginscreen">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- full_page_header.html START -->")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- full_page_footer.html START-->")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a target=_parent href="../" >Please click <u>here</u> to continue.</a>')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.poweredbynetsweeper.com"><img src="http://www.poweredbynetsweeper.com/images/deny/global/poweredbynetsweeper.gif" border="0" alt="" align="top" /></a></td>')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.poweredbynetsweeper.com"><img align=top border=0 src="http://www.poweredbynetsweeper.com/images/deny/global/poweredbynetsweeper.gif"></a>')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.poweredbynetsweeper.com"><im')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JEUS
+manual: false
+detail:
+    fingerprint:
+        name: JEUS
+    fofa: header="Jeus WebContainer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Jeus WebContainer"))
+expression: r0()

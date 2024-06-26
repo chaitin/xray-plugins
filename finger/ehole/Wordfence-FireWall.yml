@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Wordfence-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Wordfence-FireWall
+    fofa: title="Wordfence-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Wordfence-FireWall")
+expression: r0()

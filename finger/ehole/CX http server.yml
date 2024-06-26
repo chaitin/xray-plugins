@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CX http server
+manual: false
+detail:
+    fingerprint:
+        name: CX http server
+    fofa: header="CX http server" || title="CX http server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CX http server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CX http server")
+expression: r0() || r1()

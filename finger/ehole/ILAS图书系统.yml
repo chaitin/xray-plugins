@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ILAS图书系统
+manual: false
+detail:
+    fingerprint:
+        name: ILAS图书系统
+    fofa: title="ILAS图书系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ILAS图书系统")
+expression: r0()
