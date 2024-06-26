@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Varnish
+manual: false
+detail:
+    fingerprint:
+        name: Varnish
+    fofa: 'header="x-varnish" || header="X-Varnish" || header="server: varnish"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-varnish"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Varnish"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: varnish"))'
+expression: r0() || r1() || r2()

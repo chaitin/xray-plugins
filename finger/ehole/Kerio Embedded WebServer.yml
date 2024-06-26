@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kerio Embedded WebServer
+manual: false
+detail:
+    fingerprint:
+        name: Kerio Embedded WebServer
+    fofa: header="Kerio Embedded WebServer" || title="Kerio Embedded WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kerio Embedded WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kerio Embedded WebServer")
+expression: r0() || r1()

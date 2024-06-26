@@ -1,0 +1,23 @@
+name: fingerprint-yaml-1C-Bitrix
+manual: false
+detail:
+    fingerprint:
+        name: 1C-Bitrix
+    fofa: header="1C-Bitrix" || title="1C-Bitrix"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("1C-Bitrix"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("1C-Bitrix")
+expression: r0() || r1()

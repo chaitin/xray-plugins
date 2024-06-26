@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cosmoshop
+manual: false
+detail:
+    fingerprint:
+        name: cosmoshop
+    fofa: header="cosmoshop" || title="cosmoshop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cosmoshop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cosmoshop")
+expression: r0() || r1()

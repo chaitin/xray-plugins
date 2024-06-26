@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHPnew_Blog
+manual: false
+detail:
+    fingerprint:
+        name: PHPnew_Blog
+    fofa: title="PHPnew_Blog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPnew_Blog")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NAGRA-OpenTV
+manual: false
+detail:
+    fingerprint:
+        name: NAGRA-OpenTV
+    fofa: 'header="server: opentv"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: opentv"))'
+expression: r0()

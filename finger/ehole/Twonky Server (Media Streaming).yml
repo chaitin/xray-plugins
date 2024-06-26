@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Twonky Server (Media Streaming)
+manual: false
+detail:
+    fingerprint:
+        name: Twonky Server (Media Streaming)
+    fofa: icon_hash="-878891718"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -878891718
+expression: r0()

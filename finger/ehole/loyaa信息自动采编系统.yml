@@ -1,0 +1,16 @@
+name: fingerprint-yaml-loyaa信息自动采编系统
+manual: false
+detail:
+    fingerprint:
+        name: loyaa信息自动采编系统
+    fofa: body="/Loyaa/common.lib.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/Loyaa/common.lib.js")
+expression: r0()

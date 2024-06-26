@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Technicolor
+manual: false
+detail:
+    fingerprint:
+        name: Technicolor
+    fofa: icon_hash="1594377337" || icon_hash="-2138771289"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1594377337
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2138771289
+expression: r0() || r1()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Rockwell-MicroLogix-1400
+manual: false
+detail:
+    fingerprint:
+        name: Rockwell-MicroLogix-1400
+    fofa: body="<font face=\"helvetica\" size=6>micrologix 1400 " || header="Rockwell MicroLogix 1400" || body="<font face=\"helvetica\" size=6>micrologix 1400" || title="Rockwell MicroLogix 1400" || title="micrologix 1400"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font face="helvetica" size=6>micrologix 1400 ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Rockwell MicroLogix 1400"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font face="helvetica" size=6>micrologix 1400')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Rockwell MicroLogix 1400")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("micrologix 1400")
+expression: r0() || r1() || r2() || r3() || r4()

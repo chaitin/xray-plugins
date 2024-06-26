@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LANCOM-VPN
+manual: false
+detail:
+    fingerprint:
+        name: LANCOM-VPN
+    fofa: header="vpn" && header="lancom"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vpn")) && response.raw_header.bcontains(bytes("lancom"))
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Nostromo
+manual: false
+detail:
+    fingerprint:
+        name: Nostromo
+    fofa: 'header="Nostromo" || header="server: nostromo" || title="Nostromo"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nostromo"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nostromo"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nostromo")
+expression: r0() || r1() || r2()

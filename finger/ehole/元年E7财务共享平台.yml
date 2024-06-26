@@ -1,0 +1,23 @@
+name: fingerprint-yaml-元年E7财务共享平台
+manual: false
+detail:
+    fingerprint:
+        name: 元年E7财务共享平台
+    fofa: header="元年E7财务共享平台" || title="元年E7财务共享平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("元年E7财务共享平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("元年E7财务共享平台")
+expression: r0() || r1()

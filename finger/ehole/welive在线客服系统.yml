@@ -1,0 +1,16 @@
+name: fingerprint-yaml-welive在线客服系统
+manual: false
+detail:
+    fingerprint:
+        name: welive在线客服系统
+    fofa: title="welive在线客服系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welive在线客服系统")
+expression: r0()

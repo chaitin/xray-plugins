@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Interact
+manual: false
+detail:
+    fingerprint:
+        name: Interact
+    fofa: header="Interact" || title="Interact"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Interact"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Interact")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FreeRDP 远程RDP工具
+manual: false
+detail:
+    fingerprint:
+        name: FreeRDP 远程RDP工具
+    fofa: icon_hash="-2052468252"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2052468252
+expression: r0()

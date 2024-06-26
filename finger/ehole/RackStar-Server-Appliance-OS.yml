@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RackStar-Server-Appliance-OS
+manual: false
+detail:
+    fingerprint:
+        name: RackStar-Server-Appliance-OS
+    fofa: 'header="server: this server is powered by the rackstar server appliance os"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: this server is powered by the rackstar server appliance os"))'
+expression: r0()

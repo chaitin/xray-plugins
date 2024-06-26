@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mongrel
+manual: false
+detail:
+    fingerprint:
+        name: Mongrel
+    fofa: header="Mongrel" || title="Mongrel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mongrel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mongrel")
+expression: r0() || r1()

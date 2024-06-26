@@ -1,0 +1,16 @@
+name: fingerprint-yaml-tianbo_train
+manual: false
+detail:
+    fingerprint:
+        name: tianbo_train
+    fofa: title="tianbo_train"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tianbo_train")
+expression: r0()

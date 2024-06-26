@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Asustor
+manual: false
+detail:
+    fingerprint:
+        name: Asustor
+    fofa: icon_hash="1678170702"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1678170702
+expression: r0()

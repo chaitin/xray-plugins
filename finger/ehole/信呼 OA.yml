@@ -1,0 +1,16 @@
+name: fingerprint-yaml-信呼 OA
+manual: false
+detail:
+    fingerprint:
+        name: 信呼 OA
+    fofa: icon_hash="1652488516"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1652488516
+expression: r0()

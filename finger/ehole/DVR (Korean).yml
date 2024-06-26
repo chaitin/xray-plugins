@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DVR (Korean)
+manual: false
+detail:
+    fingerprint:
+        name: DVR (Korean)
+    fofa: icon_hash="-560297467"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -560297467
+expression: r0()

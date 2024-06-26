@@ -1,0 +1,16 @@
+name: fingerprint-yaml-爱青檬CMS音乐程序系统
+manual: false
+detail:
+    fingerprint:
+        name: 爱青檬CMS音乐程序系统
+    fofa: title="爱青檬CMS音乐程序系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("爱青檬CMS音乐程序系统")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-enVision
+manual: false
+detail:
+    fingerprint:
+        name: enVision
+    fofa: header="Content Interface Corp - enVision"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Content Interface Corp - enVision"))
+expression: r0()

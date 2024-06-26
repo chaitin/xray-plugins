@@ -1,0 +1,72 @@
+name: fingerprint-yaml-CODESYS-WebVisu
+manual: false
+detail:
+    fingerprint:
+        name: CODESYS-WebVisu
+    fofa: body="<param name=\"startvisu\" value=\"plc_visu\">" && body="codesys webvisualization" && body="<applet codebase=. code=webvisu/webvisu.class name=\"webvisu" || header="/plc/webvisu.htm " && header="wago_webs" || body="<applet codebase=. code=webvisu/webvisu.class name=\"webvisu" || body="<param name=\"startvisu\" value=\"plc_visu\">" || body="codesys webvisualization" || header="wago_webs" || header="/plc/webvisu.htm " || header="/plc/webvisu.htm" || title="codesys webvisualization"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<param name="startvisu" value="plc_visu">') && response.body_string.contains("codesys webvisualization") && response.body_string.contains('<applet codebase=. code=webvisu/webvisu.class name="webvisu')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/plc/webvisu.htm ")) && response.raw_header.bcontains(bytes("wago_webs"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<applet codebase=. code=webvisu/webvisu.class name="webvisu')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<param name="startvisu" value="plc_visu">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("codesys webvisualization")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wago_webs"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/plc/webvisu.htm "))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/plc/webvisu.htm"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("codesys webvisualization")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETENTSEC-Web-accelerator
+manual: false
+detail:
+    fingerprint:
+        name: NETENTSEC-Web-accelerator
+    fofa: title="网康广域网加速网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网康广域网加速网关")
+expression: r0()

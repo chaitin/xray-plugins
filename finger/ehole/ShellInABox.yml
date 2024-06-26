@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ShellInABox
+manual: false
+detail:
+    fingerprint:
+        name: ShellInABox
+    fofa: header="ShellInABox" || title="ShellInABox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ShellInABox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ShellInABox")
+expression: r0() || r1()

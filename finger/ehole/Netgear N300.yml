@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear N300
+manual: false
+detail:
+    fingerprint:
+        name: Netgear N300
+    fofa: header="Netgear N300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Netgear N300"))
+expression: r0()

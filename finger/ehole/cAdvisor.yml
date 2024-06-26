@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cAdvisor
+manual: false
+detail:
+    fingerprint:
+        name: cAdvisor
+    fofa: header="cAdvisor" || title="cAdvisor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cAdvisor"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cAdvisor")
+expression: r0() || r1()

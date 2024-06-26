@@ -1,0 +1,30 @@
+name: fingerprint-yaml-3gmeeting
+manual: false
+detail:
+    fingerprint:
+        name: 3gmeeting
+    fofa: header="3gmeeting" || title="3gmeeting" || title="3gmeeting视讯系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("3gmeeting"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("3gmeeting")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("3gmeeting视讯系统")
+expression: r0() || r1() || r2()

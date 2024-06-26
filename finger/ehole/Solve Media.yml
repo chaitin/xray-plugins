@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Solve Media
+manual: false
+detail:
+    fingerprint:
+        name: Solve Media
+    fofa: header="Solve Media" || title="Solve Media"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Solve Media"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Solve Media")
+expression: r0() || r1()

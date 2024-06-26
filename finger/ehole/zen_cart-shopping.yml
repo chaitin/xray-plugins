@@ -1,0 +1,37 @@
+name: fingerprint-yaml-zen_cart-shopping
+manual: false
+detail:
+    fingerprint:
+        name: zen_cart-shopping
+    fofa: 'body="shopping cart program by zen cart" || header="set-cookie: zenid=" && header="shoppingcartsession=" || header="shoppingcartsession=" || header="set-cookie: zenid="'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("shopping cart program by zen cart")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: zenid=")) && response.raw_header.bcontains(bytes("shoppingcartsession="))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("shoppingcartsession="))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: zenid="))'
+expression: r0() || r1() || r2() || r3()

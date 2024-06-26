@@ -1,0 +1,37 @@
+name: fingerprint-yaml-LifeSize-Control
+manual: false
+detail:
+    fingerprint:
+        name: LifeSize-Control
+    fofa: body="/lifesizecontrol/asp/index.html" || header="lifesizecontrol" || body="<title>LifeSize Control flash check</title>" || body="<h3><font color=\"#999999\" face=\"Arial, Helvetica, sans-serif\">You don\"t have the latest version of Adobe Flash Player.</font></h3>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/lifesizecontrol/asp/index.html")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("lifesizecontrol"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>LifeSize Control flash check</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h3><font color="#999999" face="Arial, Helvetica, sans-serif">You don"t have the latest version of Adobe Flash Player.</font></h3>')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IQinVision-IQeye302
+manual: false
+detail:
+    fingerprint:
+        name: IQinVision-IQeye302
+    fofa: title="iqeye302"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iqeye302")
+expression: r0()

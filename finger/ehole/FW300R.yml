@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FW300R
+manual: false
+detail:
+    fingerprint:
+        name: FW300R
+    fofa: header="FW300R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FW300R"))
+expression: r0()

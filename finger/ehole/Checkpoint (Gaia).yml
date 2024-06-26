@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Checkpoint (Gaia)
+manual: false
+detail:
+    fingerprint:
+        name: Checkpoint (Gaia)
+    fofa: icon_hash="-1822098181"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1822098181
+expression: r0()

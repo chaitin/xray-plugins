@@ -1,0 +1,23 @@
+name: fingerprint-yaml-光阴科技 社区矫正综合监管平台
+manual: false
+detail:
+    fingerprint:
+        name: 光阴科技 社区矫正综合监管平台
+    fofa: header="光阴科技 社区矫正综合监管平台" || title="光阴科技 社区矫正综合监管平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("光阴科技 社区矫正综合监管平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("光阴科技 社区矫正综合监管平台")
+expression: r0() || r1()

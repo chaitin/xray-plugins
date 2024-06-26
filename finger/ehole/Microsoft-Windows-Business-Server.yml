@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Microsoft-Windows-Business-Server
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-Windows-Business-Server
+    fofa: body="<title>Welcome to Windows Small Business Server 2003</title>" || body="<title>Welcome to Windows Small Business Server 2008</title>" || body="<TD id=\"Remote_Link\" class=\"linkHeader\"><A HREF=\"/Remote\">Remote Web Workplace</A></TD>" || body="<IMG alt=\"\" src=\"images/sbslogo.gif\" border=\"0\" width=\"200\" height=\"55\">" || body="</title><link href=\"signinStyle.css\" rel=\"stylesheet\" type=\"text/css\" />" || body="<input id=\"rememberMe\" type=\"checkbox\" name=\"rememberMe\" tabindex=\"3\" /><label for=\"rememberMe\">Remember me on this computer</label>" || body="<meta name=\"copyright\" content=\"Copyright (c) Microsoft Corporation.  All rights reserved.\" />" || body="<head id=\"Head1\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Welcome to Windows Small Business Server 2003</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Welcome to Windows Small Business Server 2008</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TD id="Remote_Link" class="linkHeader"><A HREF="/Remote">Remote Web Workplace</A></TD>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG alt="" src="images/sbslogo.gif" border="0" width="200" height="55">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('</title><link href="signinStyle.css" rel="stylesheet" type="text/css" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input id="rememberMe" type="checkbox" name="rememberMe" tabindex="3" /><label for="rememberMe">Remember me on this computer</label>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="copyright" content="Copyright (c) Microsoft Corporation.  All rights reserved." />')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

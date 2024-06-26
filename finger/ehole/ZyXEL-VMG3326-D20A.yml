@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-VMG3326-D20A
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-VMG3326-D20A
+    fofa: title="vmg3326-d20a"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vmg3326-d20a")
+expression: r0()

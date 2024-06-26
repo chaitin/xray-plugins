@@ -1,0 +1,16 @@
+name: fingerprint-yaml-qht_study
+manual: false
+detail:
+    fingerprint:
+        name: qht_study
+    fofa: title="qht_study"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("qht_study")
+expression: r0()

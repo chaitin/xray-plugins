@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ynedut_campus
+manual: false
+detail:
+    fingerprint:
+        name: ynedut_campus
+    fofa: title="ynedut_campus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ynedut_campus")
+expression: r0()

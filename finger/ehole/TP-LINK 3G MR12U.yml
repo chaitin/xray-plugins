@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK 3G MR12U
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK 3G MR12U
+    fofa: header="TP-LINK 3G MR12U"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK 3G MR12U"))
+expression: r0()

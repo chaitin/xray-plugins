@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Puppet Node Manager
+manual: false
+detail:
+    fingerprint:
+        name: Puppet Node Manager
+    fofa: header="Puppet Node Manager" || title="Puppet Node Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Puppet Node Manager"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Puppet Node Manager")
+expression: r0() || r1()

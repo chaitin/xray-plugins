@@ -1,0 +1,44 @@
+name: fingerprint-yaml-BlueQuartz
+manual: false
+detail:
+    fingerprint:
+        name: BlueQuartz
+    fofa: body="value=\"copyright (c 2000, cobalt networks" || body="VALUE=\"Copyright (C) 2000, Cobalt Networks" || body="value=\"copyright (c) 2000, cobalt networks" || body="value=\"copyright c 2000, cobalt networks" || title="login - bluequartz"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="copyright (c 2000, cobalt networks')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('VALUE="Copyright (C) 2000, Cobalt Networks')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="copyright (c) 2000, cobalt networks')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="copyright c 2000, cobalt networks')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("login - bluequartz")
+expression: r0() || r1() || r2() || r3() || r4()

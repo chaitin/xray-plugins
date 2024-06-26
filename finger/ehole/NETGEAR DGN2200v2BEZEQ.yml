@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DGN2200v2BEZEQ
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DGN2200v2BEZEQ
+    fofa: header="NETGEAR DGN2200v2BEZEQ"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DGN2200v2BEZEQ"))
+expression: r0()

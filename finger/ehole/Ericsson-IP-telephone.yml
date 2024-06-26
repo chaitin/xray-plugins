@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ericsson-IP-telephone
+manual: false
+detail:
+    fingerprint:
+        name: Ericsson-IP-telephone
+    fofa: title="ericsson ip telephone"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ericsson ip telephone")
+expression: r0()

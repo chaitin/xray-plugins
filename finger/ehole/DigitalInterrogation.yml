@@ -1,0 +1,30 @@
+name: fingerprint-yaml-DigitalInterrogation
+manual: false
+detail:
+    fingerprint:
+        name: DigitalInterrogation
+    fofa: body="classid='clsid:e77e049b-23fc-4db8-b756-60529a35fad5'" || body="刻录" && body="classid=\"clsid:e77e049b-23fc-4db8-b756-60529a35fad5\"" || body="classid=\"clsid:e77e049b-23fc-4db8-b756-60529a35fad5\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("classid='clsid:e77e049b-23fc-4db8-b756-60529a35fad5'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("刻录") && response.body_string.contains('classid="clsid:e77e049b-23fc-4db8-b756-60529a35fad5"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:e77e049b-23fc-4db8-b756-60529a35fad5"')
+expression: r0() || r1() || r2()

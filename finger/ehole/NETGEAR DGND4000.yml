@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DGND4000
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DGND4000
+    fofa: header="NETGEAR DGND4000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DGND4000"))
+expression: r0()

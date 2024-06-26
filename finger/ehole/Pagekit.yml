@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Pagekit
+manual: false
+detail:
+    fingerprint:
+        name: Pagekit
+    fofa: title="Pagekit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Pagekit")
+expression: r0()

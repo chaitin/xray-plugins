@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RADVISION iVIEW Suite
+manual: false
+detail:
+    fingerprint:
+        name: RADVISION iVIEW Suite
+    fofa: header="RADVISION iVIEW Suite" || title="RADVISION iVIEW Suite"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RADVISION iVIEW Suite"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RADVISION iVIEW Suite")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Orange Livebox
+manual: false
+detail:
+    fingerprint:
+        name: Orange Livebox
+    fofa: header="Orange Livebox" || title="Orange Livebox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Orange Livebox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Orange Livebox")
+expression: r0() || r1()

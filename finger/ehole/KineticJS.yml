@@ -1,0 +1,16 @@
+name: fingerprint-yaml-KineticJS
+manual: false
+detail:
+    fingerprint:
+        name: KineticJS
+    fofa: title="KineticJS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KineticJS")
+expression: r0()

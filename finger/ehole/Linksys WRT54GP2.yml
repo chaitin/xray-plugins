@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WRT54GP2
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WRT54GP2
+    fofa: header="Linksys WRT54GP2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WRT54GP2"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-黑色幻想舞曲程序_HSHXDJcms
+manual: false
+detail:
+    fingerprint:
+        name: 黑色幻想舞曲程序_HSHXDJcms
+    fofa: title="黑色幻想舞曲程序_HSHXDJcms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("黑色幻想舞曲程序_HSHXDJcms")
+expression: r0()

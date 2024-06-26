@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Linksys-IP-Cameras
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-IP-Cameras
+    fofa: body="content=\"wvc54gca" && body="content=\"wvc80n" && body="<img border=\"0\" src=\"linksys_blue_logo.gif\"></td>" && body="<a href=\"http://www.linksys.com/\" class=\"mainmenu\" target=\"_blank\"><script>dw(tm05</script></a></td>" && body="content=\"lcs 3024" && body="align=\"center\">compact wireless-g" || body="align=\"center\">compact wireless-g" || body="content=\"lcs 3024" || body="<a href=\"http://www.linksys.com/\" class=\"mainmenu\" target=\"_blank\"><script>dw(tm05)</script></a></td>" || body="<img border=\"0\" src=\"linksys_blue_logo.gif\"></td>" || body="content=\"wvc80n" || body="content=\"wvc54gca" || body="<a href=\"http://www.linksys.com/\" class=\"mainmenu\" target=\"_blank\"><script>dwtm05</script></a></td>" || title="+tm01+"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="wvc54gca') && response.body_string.contains('content="wvc80n') && response.body_string.contains('<img border="0" src="linksys_blue_logo.gif"></td>') && response.body_string.contains('<a href="http://www.linksys.com/" class="mainmenu" target="_blank"><script>dw(tm05</script></a></td>') && response.body_string.contains('content="lcs 3024') && response.body_string.contains('align="center">compact wireless-g')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('align="center">compact wireless-g')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="lcs 3024')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.linksys.com/" class="mainmenu" target="_blank"><script>dw(tm05)</script></a></td>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img border="0" src="linksys_blue_logo.gif"></td>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="wvc80n')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="wvc54gca')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.linksys.com/" class="mainmenu" target="_blank"><script>dwtm05</script></a></td>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("+tm01+")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

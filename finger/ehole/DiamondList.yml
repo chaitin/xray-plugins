@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DiamondList
+manual: false
+detail:
+    fingerprint:
+        name: DiamondList
+    fofa: body="Powered by <a href=\"http://www.hulihanapplications.com/projects/diamondlist\"><b>DiamondList</b>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.hulihanapplications.com/projects/diamondlist"><b>DiamondList</b>')
+expression: r0()

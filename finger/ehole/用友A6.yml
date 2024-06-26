@@ -1,0 +1,16 @@
+name: fingerprint-yaml-用友A6
+manual: false
+detail:
+    fingerprint:
+        name: 用友A6
+    fofa: title="用友A6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("用友A6")
+expression: r0()

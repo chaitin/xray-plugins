@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Digifort
+manual: false
+detail:
+    fingerprint:
+        name: Digifort
+    fofa: body="content=\"digifort" && body="href=\"http://www.digifort.jp/\"><img src=\"/user_data/packages/digifort_pc/img/common/logo.gif" && body="digifort http " && body="serveur digifort http" && body="digifort http " && body="serveur digifort http" || header="realm=\"digifort http " && header="realm=\"serveur digifort http" || body="href=\"http://www.digifort.jp/\"><img src=\"/user_data/packages/digifort_pc/img/common/logo.gif" || body="content=\"digifort" || body="digifort http" || body="serveur digifort http" || header="realm=\"serveur digifort http" || header="realm=\"digifort http " || header="realm=\"digifort http"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="digifort') && response.body_string.contains('href="http://www.digifort.jp/"><img src="/user_data/packages/digifort_pc/img/common/logo.gif') && response.body_string.contains("digifort http ") && response.body_string.contains("serveur digifort http") && response.body_string.contains("digifort http ") && response.body_string.contains("serveur digifort http")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="digifort http ')) && response.raw_header.bcontains(bytes('realm="serveur digifort http'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.digifort.jp/"><img src="/user_data/packages/digifort_pc/img/common/logo.gif')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="digifort')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("digifort http")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("serveur digifort http")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="serveur digifort http'))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="digifort http '))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="digifort http'))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

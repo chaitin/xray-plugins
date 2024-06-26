@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WebServer(IPCamera_Logo)
+manual: false
+detail:
+    fingerprint:
+        name: WebServer(IPCamera_Logo)
+    fofa: 'header="server: webserver(ipcamera_logo)"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: webserver(ipcamera_logo)"))'
+expression: r0()

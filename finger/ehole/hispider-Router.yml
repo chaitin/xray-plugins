@@ -1,0 +1,37 @@
+name: fingerprint-yaml-hispider-Router
+manual: false
+detail:
+    fingerprint:
+        name: hispider-Router
+    fofa: body="action=\"login.pl\" method=\"post\"  onsubmit=\"encryptpasswd(" || body="action=\"login.pl\" method=\"post\"  onsubmit=\"encryptpasswd()" || body="action=\"login.pl\" method=\"post\"  onsubmit=\"encryptpasswd" || body="action=\"login.pl\" method=\"post\" onsubmit=\"encryptpasswd()"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="login.pl" method="post"  onsubmit="encryptpasswd(')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="login.pl" method="post"  onsubmit="encryptpasswd()')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="login.pl" method="post"  onsubmit="encryptpasswd')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="login.pl" method="post" onsubmit="encryptpasswd()')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xhlis-RuleManager
+manual: false
+detail:
+    fingerprint:
+        name: xhlis-RuleManager
+    fofa: title="杏和智能规则管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("杏和智能规则管理")
+expression: r0()

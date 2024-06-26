@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-J4812A
+manual: false
+detail:
+    fingerprint:
+        name: HP-J4812A
+    fofa: header="realm=\"hp j4812a"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="hp j4812a'))
+expression: r0()

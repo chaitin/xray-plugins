@@ -1,0 +1,44 @@
+name: fingerprint-yaml-H3C-HDM
+manual: false
+detail:
+    fingerprint:
+        name: H3C-HDM
+    fofa: 'body="/video_record.jnlp" && body="<iframe frameborder=\"0\" class=\"framelayout\" src=\"./page/blank.html\" name=\"mainframe\" id=\"mainframe" || body="<iframe frameborder=\"0\" class=\"framelayout\" src=\"./page/blank.html\" name=\"mainframe\" id=\"mainframe" && body="/video_record.jnlp" || body="/video_record.jnlp" || body="<iframe frameborder=\"0\" class=\"framelayout\" src=\"./page/blank.html\" name=\"mainframe\" id=\"mainframe" || header="server: h3c-hdm"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/video_record.jnlp") && response.body_string.contains('<iframe frameborder="0" class="framelayout" src="./page/blank.html" name="mainframe" id="mainframe')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe frameborder="0" class="framelayout" src="./page/blank.html" name="mainframe" id="mainframe') && response.body_string.contains("/video_record.jnlp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/video_record.jnlp")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe frameborder="0" class="framelayout" src="./page/blank.html" name="mainframe" id="mainframe')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: h3c-hdm"))'
+expression: r0() || r1() || r2() || r3() || r4()

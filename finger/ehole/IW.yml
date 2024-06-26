@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IW
+manual: false
+detail:
+    fingerprint:
+        name: IW
+    fofa: icon_hash="896412703"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 896412703
+expression: r0()

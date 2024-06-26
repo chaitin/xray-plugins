@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Dell-OpenManage-Switch-Administrator
+manual: false
+detail:
+    fingerprint:
+        name: Dell-OpenManage-Switch-Administrator
+    fofa: body="window.top.location.href = \"dell_login.html" && body="progressgraphicnone" || body="progressgraphicnone" && body="window.top.location.href = \"dell_login.html" || body="window.top.location.href = \"dell_login.html" || body="progressgraphicnone" || body="Web Server" || body="<title>Dell OpenManage Switch Administrator</title>" || body="window.top.location.href = \"dell_login.html\";" || title="dell openmanage switch administrator"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.top.location.href = "dell_login.html') && response.body_string.contains("progressgraphicnone")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("progressgraphicnone") && response.body_string.contains('window.top.location.href = "dell_login.html')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.top.location.href = "dell_login.html')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("progressgraphicnone")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Web Server")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Dell OpenManage Switch Administrator</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.top.location.href = "dell_login.html";')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dell openmanage switch administrator")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

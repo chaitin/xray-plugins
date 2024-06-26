@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Windows Azure
+manual: false
+detail:
+    fingerprint:
+        name: Windows Azure
+    fofa: icon_hash="-2125083197"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2125083197
+expression: r0()

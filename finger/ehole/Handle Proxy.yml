@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Handle Proxy
+manual: false
+detail:
+    fingerprint:
+        name: Handle Proxy
+    fofa: icon_hash="926501571"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 926501571
+expression: r0()

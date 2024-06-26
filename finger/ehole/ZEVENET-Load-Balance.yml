@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZEVENET-Load-Balance
+manual: false
+detail:
+    fingerprint:
+        name: ZEVENET-Load-Balance
+    fofa: header="realm=\"zen load balancer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="zen load balancer'))
+expression: r0()

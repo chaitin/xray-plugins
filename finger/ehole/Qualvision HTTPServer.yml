@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Qualvision HTTPServer
+manual: false
+detail:
+    fingerprint:
+        name: Qualvision HTTPServer
+    fofa: header="Qualvision HTTPServer" || title="Qualvision HTTPServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Qualvision HTTPServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Qualvision HTTPServer")
+expression: r0() || r1()

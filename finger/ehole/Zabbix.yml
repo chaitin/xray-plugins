@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Zabbix
+manual: false
+detail:
+    fingerprint:
+        name: Zabbix
+    fofa: body="zabbix" && body="Zabbix SIA" || icon_hash="892542951" || body="images/general/zabbix.ico" && body="meta name=\"author\" content=\"zabbix sia\"" || header="zbx_sessionid" || body="href=\"https://www.zabbix.com/support\"" || body="images/general/zabbix.ico" || body="meta name=\"Author\" content=\"Zabbix SIA\"" || body="meta name=\"author\" content=\"zabbix sia\"" || body="Zabbix SIA" && body="zabbix"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("zabbix") && response.body_string.contains("Zabbix SIA")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 892542951
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/general/zabbix.ico") && response.body_string.contains('meta name="author" content="zabbix sia"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zbx_sessionid"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="https://www.zabbix.com/support"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/general/zabbix.ico")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('meta name="Author" content="Zabbix SIA"')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('meta name="author" content="zabbix sia"')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Zabbix SIA") && response.body_string.contains("zabbix")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

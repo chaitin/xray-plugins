@@ -1,0 +1,30 @@
+name: fingerprint-yaml-mas-mobile-agent-serve
+manual: false
+detail:
+    fingerprint:
+        name: mas-mobile-agent-serve
+    fofa: body="action=\"/mas_security_check\">" || body="if(!isnotnull(document.forms[0].filepath.value, \"证书文件\"))" || title="mas移动代理服务器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/mas_security_check">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('if(!isnotnull(document.forms[0].filepath.value, "证书文件"))')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mas移动代理服务器")
+expression: r0() || r1() || r2()

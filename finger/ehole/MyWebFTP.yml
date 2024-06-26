@@ -1,0 +1,72 @@
+name: fingerprint-yaml-MyWebFTP
+manual: false
+detail:
+    fingerprint:
+        name: MyWebFTP
+    fofa: body="href='mwftp/common/mwftp.css" && body="mwftp/common/mwftp.js" || body=">mywebftp</a>" || body="mwftp/common/mwftp.js" || body="href=\"mwftp/common/mwftp.css" || body="<TITLE>MyWebFTP</TITLE>" || body="<FORM METHOD=post NAME=\"mwForm\" ENCTYPE=\"multipart/form-data\" ACTION=\"" || body="<LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"mwftp/common/mwftp.css\">" || body="<SCRIPT LANGUAGE=JAVASCRIPT SRC=\"mwftp/common/mwftp.js\"></SCRIPT>" || title="MyWebFTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("href='mwftp/common/mwftp.css") && response.body_string.contains("mwftp/common/mwftp.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">mywebftp</a>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mwftp/common/mwftp.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mwftp/common/mwftp.css')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>MyWebFTP</TITLE>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FORM METHOD=post NAME="mwForm" ENCTYPE="multipart/form-data" ACTION="')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<LINK REL="stylesheet" TYPE="text/css" HREF="mwftp/common/mwftp.css">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<SCRIPT LANGUAGE=JAVASCRIPT SRC="mwftp/common/mwftp.js"></SCRIPT>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MyWebFTP")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

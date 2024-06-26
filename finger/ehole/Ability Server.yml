@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ability Server
+manual: false
+detail:
+    fingerprint:
+        name: Ability Server
+    fofa: header="Ability Server" || title="Ability Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ability Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ability Server")
+expression: r0() || r1()

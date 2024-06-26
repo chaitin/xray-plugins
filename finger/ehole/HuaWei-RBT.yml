@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-RBT
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-RBT
+    fofa: title="rbt gateway management system"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rbt gateway management system")
+expression: r0()

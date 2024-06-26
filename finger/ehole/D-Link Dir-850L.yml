@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link Dir-850L
+manual: false
+detail:
+    fingerprint:
+        name: D-Link Dir-850L
+    fofa: header="D-Link Dir-850L" || title="D-Link Dir-850L"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link Dir-850L"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link Dir-850L")
+expression: r0() || r1()

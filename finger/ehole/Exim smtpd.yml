@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Exim smtpd
+manual: false
+detail:
+    fingerprint:
+        name: Exim smtpd
+    fofa: header="Exim smtpd" || title="Exim smtpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Exim smtpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Exim smtpd")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-verydows
+manual: false
+detail:
+    fingerprint:
+        name: verydows
+    fofa: header="verydows" || title="verydows"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("verydows"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("verydows")
+expression: r0() || r1()

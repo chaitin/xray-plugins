@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-IBR1150LPE
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-IBR1150LPE
+    fofa: 'title="login :: ibr1150lpe"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("login :: ibr1150lpe")'
+expression: r0()

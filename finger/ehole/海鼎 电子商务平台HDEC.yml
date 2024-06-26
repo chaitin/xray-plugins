@@ -1,0 +1,23 @@
+name: fingerprint-yaml-海鼎 电子商务平台HDEC
+manual: false
+detail:
+    fingerprint:
+        name: 海鼎 电子商务平台HDEC
+    fofa: header="海鼎 电子商务平台HDEC" || title="海鼎 电子商务平台HDEC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("海鼎 电子商务平台HDEC"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("海鼎 电子商务平台HDEC")
+expression: r0() || r1()

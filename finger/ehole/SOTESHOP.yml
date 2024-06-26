@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SOTESHOP
+manual: false
+detail:
+    fingerprint:
+        name: SOTESHOP
+    fofa: header="SOTESHOP" || title="SOTESHOP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SOTESHOP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SOTESHOP")
+expression: r0() || r1()

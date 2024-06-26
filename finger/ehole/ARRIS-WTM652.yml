@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ARRIS-WTM652
+manual: false
+detail:
+    fingerprint:
+        name: ARRIS-WTM652
+    fofa: body="wtm652" && body="strhtml=\"<title>\"+i1+\"</title>\";" && body="content=\"arris 2307\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wtm652") && response.body_string.contains('strhtml="<title>"+i1+"</title>";') && response.body_string.contains('content="arris 2307"')
+expression: r0()

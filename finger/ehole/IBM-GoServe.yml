@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBM-GoServe
+manual: false
+detail:
+    fingerprint:
+        name: IBM-GoServe
+    fofa: 'header="server: goserve"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: goserve"))'
+expression: r0()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Veo-Observer
+manual: false
+detail:
+    fingerprint:
+        name: Veo-Observer
+    fofa: body="<title>Veo Observer XT</title>" || body="<frame src=\"/en/sitemonitor.html\" name=\"sitecheck\" scrolling=\"NO\" noresize>" || body="<title>Veo Observer Web Client</title>" || body="<object classid=\"clsid:0957C19A-D854-482A-A4F9-18856C723D7D\" id=\"VeoNetCamAcx\" width=\"0\" height=\"0\" codebase=\"XNC600NetCam.cab#version" || title="veo observer web client" || title="veo observer xt"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Veo Observer XT</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="/en/sitemonitor.html" name="sitecheck" scrolling="NO" noresize>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Veo Observer Web Client</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<object classid="clsid:0957C19A-D854-482A-A4F9-18856C723D7D" id="VeoNetCamAcx" width="0" height="0" codebase="XNC600NetCam.cab#version')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("veo observer web client")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("veo observer xt")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

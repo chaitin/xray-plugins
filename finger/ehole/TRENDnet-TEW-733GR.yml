@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TRENDnet-TEW-733GR
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TEW-733GR
+    fofa: 'header="server: tew-733gr"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tew-733gr"))'
+expression: r0()

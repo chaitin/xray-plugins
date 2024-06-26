@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Rumba-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Rumba-CMS
+    fofa: body="<center><small><a href=http://rumba.net.ru>Powered by Rumba CMS</a></small></center></body>" || body="<center><small><a href=http://rumbacms.com>Powered by Rumba CMS</a></small></center></body>" || body="Powered by <a rel=\"nofollow\" target=\"_blank\" href=\"http://rumba.net.ru/\">Rumba CMS</a></p>" || body="<meta name=\"generator\" content=\"Rumba Easy http://rumba.net.ru\" />" || body="<meta name=\"generator\" content=\"Rumba Easy http://rumbacms.com\" />" || body="<meta name=\"generator\" content=\"http://rumba.net.ru\" />" || body="<meta name=\"generator\" content=\"Rumba Wiki http://rumba.net.ru/\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<center><small><a href=http://rumba.net.ru>Powered by Rumba CMS</a></small></center></body>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<center><small><a href=http://rumbacms.com>Powered by Rumba CMS</a></small></center></body>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a rel="nofollow" target="_blank" href="http://rumba.net.ru/">Rumba CMS</a></p>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Rumba Easy http://rumba.net.ru" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Rumba Easy http://rumbacms.com" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="http://rumba.net.ru" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Rumba Wiki http://rumba.net.ru/" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

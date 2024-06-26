@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-GCT
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-GCT
+    fofa: header="cisco gct" || header="Cisco GCT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco gct"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco GCT"))
+expression: r0() || r1()

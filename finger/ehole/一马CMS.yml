@@ -1,0 +1,23 @@
+name: fingerprint-yaml-一马CMS
+manual: false
+detail:
+    fingerprint:
+        name: 一马CMS
+    fofa: body="一马CMS" || title="一马CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("一马CMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("一马CMS")
+expression: r0() || r1()

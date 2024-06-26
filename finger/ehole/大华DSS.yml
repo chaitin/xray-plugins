@@ -1,0 +1,23 @@
+name: fingerprint-yaml-大华DSS
+manual: false
+detail:
+    fingerprint:
+        name: 大华DSS
+    fofa: header="大华DSS" || title="大华DSS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("大华DSS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("大华DSS")
+expression: r0() || r1()

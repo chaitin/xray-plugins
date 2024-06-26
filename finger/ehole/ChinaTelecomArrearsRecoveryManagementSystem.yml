@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ChinaTelecomArrearsRecoveryManagementSystem
+manual: false
+detail:
+    fingerprint:
+        name: ChinaTelecomArrearsRecoveryManagementSystem
+    fofa: body="id=\"v_login_container\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="v_login_container"')
+expression: r0()

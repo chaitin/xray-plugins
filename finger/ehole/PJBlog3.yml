@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PJBlog3
+manual: false
+detail:
+    fingerprint:
+        name: PJBlog3
+    fofa: title="PJBlog3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PJBlog3")
+expression: r0()

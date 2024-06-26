@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBOS酷办公OA系统
+manual: false
+detail:
+    fingerprint:
+        name: IBOS酷办公OA系统
+    fofa: body="IBOS" && body="login-panel" && body="loginsubmit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("IBOS") && response.body_string.contains("login-panel") && response.body_string.contains("loginsubmit")
+expression: r0()

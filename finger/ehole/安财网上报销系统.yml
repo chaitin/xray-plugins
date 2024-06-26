@@ -1,0 +1,23 @@
+name: fingerprint-yaml-安财网上报销系统
+manual: false
+detail:
+    fingerprint:
+        name: 安财网上报销系统
+    fofa: header="安财网上报销系统" || title="安财网上报销系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("安财网上报销系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安财网上报销系统")
+expression: r0() || r1()

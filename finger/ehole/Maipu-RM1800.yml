@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Maipu-RM1800
+manual: false
+detail:
+    fingerprint:
+        name: Maipu-RM1800
+    fofa: header="realm=\"rm1800"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="rm1800'))
+expression: r0()

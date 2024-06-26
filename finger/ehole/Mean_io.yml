@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mean_io
+manual: false
+detail:
+    fingerprint:
+        name: Mean.io
+    fofa: header="Mean.io" || title="Mean.io"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mean.io"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mean.io")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sunny WebBox
+manual: false
+detail:
+    fingerprint:
+        name: Sunny WebBox
+    fofa: icon_hash="1975413433"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1975413433
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hanwha-SRN-K3570S
+manual: false
+detail:
+    fingerprint:
+        name: Hanwha-SRN-K3570S
+    fofa: body="$.nvr.model_name=\"srn-k3570s\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('$.nvr.model_name="srn-k3570s"')
+expression: r0()

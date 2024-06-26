@@ -1,0 +1,44 @@
+name: fingerprint-yaml-泛微协同办公OA
+manual: false
+detail:
+    fingerprint:
+        name: 泛微协同办公OA
+    fofa: body="/wui/common/css/w7OVFont.css" || header="testBanCookie" || body="cloudstore/resource/pc/polyfill/polyfill.min.js" || body="wui/theme/ecology8/page/images/login/username_wev8.png" || body="/wui/index.html#/?logintype=1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/wui/common/css/w7OVFont.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("testBanCookie"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cloudstore/resource/pc/polyfill/polyfill.min.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wui/theme/ecology8/page/images/login/username_wev8.png")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/wui/index.html#/?logintype=1")
+expression: r0() || r1() || r2() || r3() || r4()

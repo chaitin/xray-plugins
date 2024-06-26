@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DesignCMS
+manual: false
+detail:
+    fingerprint:
+        name: DesignCMS
+    fofa: title="DesignCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DesignCMS")
+expression: r0()

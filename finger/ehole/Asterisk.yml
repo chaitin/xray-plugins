@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Asterisk
+manual: false
+detail:
+    fingerprint:
+        name: Asterisk
+    fofa: body="asterisk_rawmanPath" || header="Asterisk" || body="asterisk_rawmanpath" || body="<link href=\"stylesheets/cfgbasic.css\" media=\"all\" rel=\"Stylesheet\" type=\"text/css\" />" || body="<div id=\"ACTIVE_CONTENT\"><noscript>You need to enable Javascript in your browser !!</noscript></div>" || header="asterisk" || title="asterisk"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("asterisk_rawmanPath")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Asterisk"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("asterisk_rawmanpath")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="stylesheets/cfgbasic.css" media="all" rel="Stylesheet" type="text/css" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="ACTIVE_CONTENT"><noscript>You need to enable Javascript in your browser !!</noscript></div>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asterisk"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("asterisk")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

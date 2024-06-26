@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Seeyon-Server
+manual: false
+detail:
+    fingerprint:
+        name: Seeyon-Server
+    fofa: 'header="server: seeyon-server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: seeyon-server"))'
+expression: r0()

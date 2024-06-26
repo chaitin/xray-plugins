@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Kentico-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Kentico-CMS
+    fofa: body="content=\"kentico cms" && body="/cmspages/getresource.ashx" || header="cmspreferredculture" || body="content=\"Kentico CMS" || header="CMSPreferredCulture" || header="Kentico CMS" || body="kentico" && body="/cmspages/getresource.ashx" || body="content=\"kentico cms" || body="/cmspages/getresource.ashx" || body="/cmspages/getresource.ashx" && body="content=\"kentico cms" || body="kentico" || title="Kentico CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="kentico cms') && response.body_string.contains("/cmspages/getresource.ashx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cmspreferredculture"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Kentico CMS')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CMSPreferredCulture"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kentico CMS"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("kentico") && response.body_string.contains("/cmspages/getresource.ashx")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="kentico cms')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cmspages/getresource.ashx")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cmspages/getresource.ashx") && response.body_string.contains('content="kentico cms')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("kentico")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kentico CMS")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IoT-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: IoT-Gateway
+    fofa: title="物联网网关-北京融智兴华科技有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("物联网网关-北京融智兴华科技有限公司")
+expression: r0()

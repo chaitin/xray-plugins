@@ -1,0 +1,30 @@
+name: fingerprint-yaml-HighWire-Press
+manual: false
+detail:
+    fingerprint:
+        name: HighWire-Press
+    fofa: header="x-firenze-processing" && header="x-highwire-sessionid" || header="x-firenze-processing" || header="x-highwire-sessionid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-firenze-processing")) && response.raw_header.bcontains(bytes("x-highwire-sessionid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-firenze-processing"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-highwire-sessionid"))
+expression: r0() || r1() || r2()

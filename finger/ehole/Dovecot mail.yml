@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dovecot mail
+manual: false
+detail:
+    fingerprint:
+        name: Dovecot mail
+    fofa: header="Dovecot mail" || title="Dovecot mail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dovecot mail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dovecot mail")
+expression: r0() || r1()

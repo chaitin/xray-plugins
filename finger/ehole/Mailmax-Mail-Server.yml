@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mailmax-Mail-Server
+manual: false
+detail:
+    fingerprint:
+        name: Mailmax-Mail-Server
+    fofa: title="mailmax"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailmax")
+expression: r0()

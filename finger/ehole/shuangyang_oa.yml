@@ -1,0 +1,16 @@
+name: fingerprint-yaml-shuangyang_oa
+manual: false
+detail:
+    fingerprint:
+        name: shuangyang_oa
+    fofa: title="shuangyang_oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("shuangyang_oa")
+expression: r0()

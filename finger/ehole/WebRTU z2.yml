@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebRTU z2
+manual: false
+detail:
+    fingerprint:
+        name: WebRTU z2
+    fofa: header="WebRTU z2" || title="WebRTU z2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebRTU z2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebRTU z2")
+expression: r0() || r1()

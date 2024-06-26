@@ -1,0 +1,23 @@
+name: fingerprint-yaml-快网CDN
+manual: false
+detail:
+    fingerprint:
+        name: 快网CDN
+    fofa: header="快网CDN" || title="快网CDN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("快网CDN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("快网CDN")
+expression: r0() || r1()

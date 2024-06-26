@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Robin
+manual: false
+detail:
+    fingerprint:
+        name: Robin
+    fofa: header="Robin" || title="Robin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Robin"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Robin")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AXIS-240
+manual: false
+detail:
+    fingerprint:
+        name: AXIS-240
+    fofa: title="axis 240 camera server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("axis 240 camera server")
+expression: r0()

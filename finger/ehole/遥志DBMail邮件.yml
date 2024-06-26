@@ -1,0 +1,23 @@
+name: fingerprint-yaml-遥志DBMail邮件
+manual: false
+detail:
+    fingerprint:
+        name: 遥志DBMail邮件
+    fofa: header="遥志DBMail邮件" || title="遥志DBMail邮件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("遥志DBMail邮件"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("遥志DBMail邮件")
+expression: r0() || r1()

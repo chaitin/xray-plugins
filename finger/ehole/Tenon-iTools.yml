@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Tenon-iTools
+manual: false
+detail:
+    fingerprint:
+        name: Tenon-iTools
+    fofa: header="itools" && header="mac os x" || header="mac os x" && header="(itools" || header="itools" || header="mac os x"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("itools")) && response.raw_header.bcontains(bytes("mac os x"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mac os x")) && response.raw_header.bcontains(bytes("(itools"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("itools"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mac os x"))
+expression: r0() || r1() || r2() || r3()

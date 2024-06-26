@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Microsoft-Cassini
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft-Cassini
+    fofa: title="Microsoft-Cassini"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft-Cassini")
+expression: r0()

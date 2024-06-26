@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cisco (eg_Conference Room Login Page)
+manual: false
+detail:
+    fingerprint:
+        name: Cisco (eg:Conference Room Login Page)
+    fofa: icon_hash="-646322113"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -646322113
+expression: r0()

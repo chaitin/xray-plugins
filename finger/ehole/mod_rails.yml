@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mod_rails
+manual: false
+detail:
+    fingerprint:
+        name: mod_rails
+    fofa: header="mod_rails"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mod_rails"))
+expression: r0()

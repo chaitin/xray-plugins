@@ -1,0 +1,51 @@
+name: fingerprint-yaml-TP-LINK-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-Wireless-Router
+    fofa: 'body="javascript:gourl(''http://www.tp-link.com.cn'';" || header="tp-link" && header="wireless" || body="javascript:gourl(\"http://www.tp-link.com.cn\");" || body="javascript:gourl\"http://www.tp-link.com.cn\";" || header="server: tl-" && header="server: tp-link" || header="wireless" && header="tp-link"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("javascript:gourl('http://www.tp-link.com.cn';")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link")) && response.raw_header.bcontains(bytes("wireless"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('javascript:gourl("http://www.tp-link.com.cn");')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('javascript:gourl"http://www.tp-link.com.cn";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tl-")) && response.raw_header.bcontains(bytes("server: tp-link"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wireless")) && response.raw_header.bcontains(bytes("tp-link"))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

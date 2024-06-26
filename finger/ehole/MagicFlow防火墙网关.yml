@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MagicFlow防火墙网关
+manual: false
+detail:
+    fingerprint:
+        name: MagicFlow防火墙网关
+    fofa: header="MagicFlow防火墙网关" || title="MagicFlow防火墙网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MagicFlow防火墙网关"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MagicFlow防火墙网关")
+expression: r0() || r1()

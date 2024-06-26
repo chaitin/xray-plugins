@@ -1,0 +1,37 @@
+name: fingerprint-yaml-phpRemoteView
+manual: false
+detail:
+    fingerprint:
+        name: phpRemoteView
+    fofa: 'body="style=''font: 8pt verdana''>phpremoteview" || body="style=\"font: 8pt verdana\">phpremoteview" || body="\"><font face=fixedsys size=+2>*</font></a><font size=5><b>Index of</b></font>" || title="phpremoteview"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("style=''font: 8pt verdana''>phpremoteview")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''style="font: 8pt verdana">phpremoteview'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('"><font face=fixedsys size=+2>*</font></a><font size=5><b>Index of</b></font>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("phpremoteview")
+expression: r0() || r1() || r2() || r3()

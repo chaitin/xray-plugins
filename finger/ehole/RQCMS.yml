@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RQCMS
+manual: false
+detail:
+    fingerprint:
+        name: RQCMS
+    fofa: title="RQCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RQCMS")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Avigilon
+manual: false
+detail:
+    fingerprint:
+        name: Avigilon
+    fofa: icon_hash="1318124267"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1318124267
+expression: r0()

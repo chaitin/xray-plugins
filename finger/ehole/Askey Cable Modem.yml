@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Askey Cable Modem
+manual: false
+detail:
+    fingerprint:
+        name: Askey Cable Modem
+    fofa: icon_hash="-1710631084" || icon_hash="89321398"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1710631084
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 89321398
+expression: r0() || r1()

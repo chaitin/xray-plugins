@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Logsign-SIEM
+manual: false
+detail:
+    fingerprint:
+        name: Logsign-SIEM
+    fofa: body="window.location = '/ui/modules/login/'" || body="window.location = \"/ui/modules/login/\"" || body="window.location = /ui/modules/login/\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.location = '/ui/modules/login/'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "/ui/modules/login/"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = /ui/modules/login/"')
+expression: r0() || r1() || r2()

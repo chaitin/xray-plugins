@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Serendipity-php-architecture
+manual: false
+detail:
+    fingerprint:
+        name: Serendipity-php-architecture
+    fofa: 'body="serendipity_editor.js" || header="x-serendipity-contentlang" && header="x-serendipity-interfacelang" || header="x-serendipity-interfacelang" || header="x-blog: serendipity" || header="x-serendipity-contentlang"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("serendipity_editor.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-serendipity-contentlang")) && response.raw_header.bcontains(bytes("x-serendipity-interfacelang"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-serendipity-interfacelang"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-blog: serendipity"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-serendipity-contentlang"))
+expression: r0() || r1() || r2() || r3() || r4()

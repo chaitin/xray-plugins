@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VisionWEB
+manual: false
+detail:
+    fingerprint:
+        name: VisionWEB
+    fofa: body="<b>CIEFFE srl</b> - \"We power Your eyes\"<br"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<b>CIEFFE srl</b> - "We power Your eyes"<br')
+expression: r0()

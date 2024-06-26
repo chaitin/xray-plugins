@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Iisexport
+manual: false
+detail:
+    fingerprint:
+        name: Iisexport
+    fofa: header="iisexport" || header="Iisexport"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iisexport"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Iisexport"))
+expression: r0() || r1()

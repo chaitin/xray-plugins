@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Palo Alto Networks PANOS
+manual: false
+detail:
+    fingerprint:
+        name: Palo Alto Networks PANOS
+    fofa: header="Palo Alto Networks PANOS" || title="Palo Alto Networks PANOS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Palo Alto Networks PANOS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Palo Alto Networks PANOS")
+expression: r0() || r1()

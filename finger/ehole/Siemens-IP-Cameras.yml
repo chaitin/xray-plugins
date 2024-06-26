@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Siemens-IP-Cameras
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-IP-Cameras
+    fofa: header="compact siemens ip camera" && header="compact siemens wifi camera" || header="compact siemens wifi camera" || header="compact siemens ip camera" || title="siemens ip camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("compact siemens ip camera")) && response.raw_header.bcontains(bytes("compact siemens wifi camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("compact siemens wifi camera"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("compact siemens ip camera"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("siemens ip camera")
+expression: r0() || r1() || r2() || r3()

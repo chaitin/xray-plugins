@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SANGFOR-Reporting
+manual: false
+detail:
+    fingerprint:
+        name: SANGFOR-Reporting
+    fofa: body="ad report" && body="user_blur();" || body="user_blur();" || body="ad report"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ad report") && response.body_string.contains("user_blur();")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("user_blur();")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ad report")
+expression: r0() || r1() || r2()

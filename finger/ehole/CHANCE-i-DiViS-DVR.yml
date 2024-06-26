@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CHANCE-i-DiViS-DVR
+manual: false
+detail:
+    fingerprint:
+        name: CHANCE-i-DiViS-DVR
+    fofa: header="techno vision security system ver" || header="Techno Vision Security System Ver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("techno vision security system ver"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Techno Vision Security System Ver"))
+expression: r0() || r1()

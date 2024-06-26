@@ -1,0 +1,16 @@
+name: fingerprint-yaml-e创站
+manual: false
+detail:
+    fingerprint:
+        name: e创站
+    fofa: title="e创站"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("e创站")
+expression: r0()

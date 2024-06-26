@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hanwha-SNP-6230RH
+manual: false
+detail:
+    fingerprint:
+        name: Hanwha-SNP-6230RH
+    fofa: body="var defaultfilename = \"snp-6230rh\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var defaultfilename = "snp-6230rh"')
+expression: r0()

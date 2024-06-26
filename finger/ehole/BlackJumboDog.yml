@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BlackJumboDog
+manual: false
+detail:
+    fingerprint:
+        name: BlackJumboDog
+    fofa: 'header="server: blackjumbodog" || header="BlackJumboDog"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: blackjumbodog"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BlackJumboDog"))
+expression: r0() || r1()

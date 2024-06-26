@@ -1,0 +1,51 @@
+name: fingerprint-yaml-ASUS-RT-N56U
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-RT-N56U
+    fofa: body="<div class=\"prod_madelname\">rt-n56u" && body="class=\"prod_madelname\" style=\"margin-left:78px;\">rt-n56u" && body="var product_name='rt-n56u'" || header="realm=\"rt-n56u" || body="var product_name=\"rt-n56u\"" || body="class=\"prod_madelname\" style=\"margin-left:78px;\">rt-n56u" || body="<div class=\"prod_madelname\">rt-n56u" || title="rt-n56u wireless router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="prod_madelname">rt-n56u') && response.body_string.contains('class="prod_madelname" style="margin-left:78px;">rt-n56u') && response.body_string.contains("var product_name='rt-n56u'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="rt-n56u'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var product_name="rt-n56u"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="prod_madelname" style="margin-left:78px;">rt-n56u')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="prod_madelname">rt-n56u')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rt-n56u wireless router")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

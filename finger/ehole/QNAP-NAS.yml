@@ -1,0 +1,156 @@
+name: fingerprint-yaml-QNAP-NAS
+manual: false
+detail:
+    fingerprint:
+        name: QNAP-NAS
+    fofa: body="redirect_suffix" && body="/css/qnap-default.css" && body="/redirect.html?count=\"+math.random(" && body="/indexnas.cgi?counter=" || body="/indexnas.cgi?counter=" || body="/redirect.html?count=\"+math.random()" || body="/css/qnap-default.css" || body="redirect_suffix" || body="/redirect.html?count=\"+math.random" || body="<title>QNAP Photo Station</title>" || body="<title>QNAP Download Station</title>" || body="<TITLE>QNAP Multimedia Station (Photo Album)</TITLE>" || body="<TITLE>Multimedia Station</TITLE>" || body="NavPage(\"http://\"+ location_hostname_for_ipv6(location.hostname) +\":\"+ qweb_port +\"/\", 0);" || body="location.href=pr+\"://[\"+location.hostname+\"]\"+pt+redirect_suffix;" || body="<a href=\"http://www.qnap.com\"><img src=\"/ajax_obj/images/qnap_logo_w.gif\" alt=\"QNAP Turbo NAS\" title=\"QNAP Turbo NAS\"" || body="<td class=\"header_tb_logo\"><img id=\"qlogo\" src=\"/ajax_obj/images/qnap_logo_dark.gif\" width=\"158\" height=\"75\"></td>" || body="<table width=\"100%\" border=\"0\" background=\"/v3_menu/images/admin_header.jpg\" cellpadding=\"0\" cellspacing=\"0\" class=\"12-blue\">" || body="<img id=\"img_webserver\" src=\"/ajax_obj/images/login_main_2.jpg\" longdesc=\"javascript:onQuickLinkChange(2);\" alt=\"Web Server\" />" || body="<img id=\"img_multimedia\" src=\"/ajax_obj/images/login_main_3.jpg\" longdesc=\"javascript:onQuickLinkChange(3);\" alt=\"Multimedia Station\" />" || body="<img id=\"img_download\" src=\"/ajax_obj/images/login_main_4.jpg\" longdesc=\"javascript:onQuickLinkChange(4);\" alt=\"Download Station\" />" || body="<img id=\"img_webfile\" src=\"/ajax_obj/images/login_main_5.jpg\" longdesc=\"javascript:onQuickLinkChange(5);\" alt=\"Web File Manager\" />" || body="<img id=\"img_surveillance\" src=\"/ajax_obj/images/login_main_6.jpg\" longdesc=\"javascript:onQuickLinkChange(6);\" alt=\"Surveillance Station\" />" || body="<title>Welcome to QNAP Turbo NAS</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("redirect_suffix") && response.body_string.contains("/css/qnap-default.css") && response.body_string.contains('/redirect.html?count="+math.random(') && response.body_string.contains("/indexnas.cgi?counter=")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/indexnas.cgi?counter=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/redirect.html?count="+math.random()')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/qnap-default.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("redirect_suffix")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/redirect.html?count="+math.random')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>QNAP Photo Station</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>QNAP Download Station</title>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>QNAP Multimedia Station (Photo Album)</TITLE>")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>Multimedia Station</TITLE>")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('NavPage("http://"+ location_hostname_for_ipv6(location.hostname) +":"+ qweb_port +"/", 0);')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href=pr+"://["+location.hostname+"]"+pt+redirect_suffix;')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.qnap.com"><img src="/ajax_obj/images/qnap_logo_w.gif" alt="QNAP Turbo NAS" title="QNAP Turbo NAS"')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="header_tb_logo"><img id="qlogo" src="/ajax_obj/images/qnap_logo_dark.gif" width="158" height="75"></td>')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<table width="100%" border="0" background="/v3_menu/images/admin_header.jpg" cellpadding="0" cellspacing="0" class="12-blue">')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="img_webserver" src="/ajax_obj/images/login_main_2.jpg" longdesc="javascript:onQuickLinkChange(2);" alt="Web Server" />')
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="img_multimedia" src="/ajax_obj/images/login_main_3.jpg" longdesc="javascript:onQuickLinkChange(3);" alt="Multimedia Station" />')
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="img_download" src="/ajax_obj/images/login_main_4.jpg" longdesc="javascript:onQuickLinkChange(4);" alt="Download Station" />')
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="img_webfile" src="/ajax_obj/images/login_main_5.jpg" longdesc="javascript:onQuickLinkChange(5);" alt="Web File Manager" />')
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="img_surveillance" src="/ajax_obj/images/login_main_6.jpg" longdesc="javascript:onQuickLinkChange(6);" alt="Surveillance Station" />')
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Welcome to QNAP Turbo NAS</title>")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-TeLinXinXi-527meeting
+manual: false
+detail:
+    fingerprint:
+        name: TeLinXinXi-527meeting
+    fofa: body="527meeting" && body=" content=\"轻会议\"" || body=" content=\"轻会议\"" && body="527meeting" || body="527meeting" || body="content=\"轻会议\"" || body=" content=\"轻会议\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("527meeting") && response.body_string.contains(' content="轻会议"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' content="轻会议"') && response.body_string.contains("527meeting")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("527meeting")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="轻会议"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(' content="轻会议"')
+expression: r0() || r1() || r2() || r3() || r4()

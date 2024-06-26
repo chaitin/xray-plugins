@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Siemens-HG-1500
+manual: false
+detail:
+    fingerprint:
+        name: Siemens-HG-1500
+    fofa: title="hg 1500"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hg 1500")
+expression: r0()

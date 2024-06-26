@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tribiq CMS
+manual: false
+detail:
+    fingerprint:
+        name: Tribiq CMS
+    fofa: header="Tribiq CMS" || title="Tribiq CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tribiq CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tribiq CMS")
+expression: r0() || r1()

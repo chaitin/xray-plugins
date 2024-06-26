@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Cachelogic-Expired-Domains-Script
+manual: false
+detail:
+    fingerprint:
+        name: Cachelogic-Expired-Domains-Script
+    fofa: body="href=\"http://cachelogic.net\">Cachelogic.net" || body="<option value=\"30\">Last 30 days</option><option value=\"21\">Last 21 days</option><option value=\"14\">Last 14 days</option><option value=\"7\">Last 7 days</option><option value=\"6\">Last 6 days</option><option value=\"5\">Last 5 days</option><option value=\"4\">Last 4 days</option><option value=\"3\">Last 3 days</option><option value=\"2\">Last 2 days</option><option value=\"1\">Last 1 days</option>" || body="<option value=\"15\">15</option><option value=\"12\">12</option><option value=\"10\">10</option><option value=\"8\">8</option><option value=\"7\">7</option><option value=\"6\">6</option><option value=\"5\">5</option><option value=\"4\">4</option><option value=\"3\">3</option><option value=\"2\">2</option>" || body="<br><br><br>Website is powered by <a href=\"http://cachelogic.net\">Cachelogic.net</a>" || body="<!-- Please do not remove. It is illegal to remove this footer in Cachelogic Expired Domains Free Edition-->" || body="href=\"http://cachelogic.net\">Cachelogic.net</a></td></tr>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://cachelogic.net">Cachelogic.net')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<option value="30">Last 30 days</option><option value="21">Last 21 days</option><option value="14">Last 14 days</option><option value="7">Last 7 days</option><option value="6">Last 6 days</option><option value="5">Last 5 days</option><option value="4">Last 4 days</option><option value="3">Last 3 days</option><option value="2">Last 2 days</option><option value="1">Last 1 days</option>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<option value="15">15</option><option value="12">12</option><option value="10">10</option><option value="8">8</option><option value="7">7</option><option value="6">6</option><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<br><br><br>Website is powered by <a href="http://cachelogic.net">Cachelogic.net</a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Please do not remove. It is illegal to remove this footer in Cachelogic Expired Domains Free Edition-->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://cachelogic.net">Cachelogic.net</a></td></tr>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

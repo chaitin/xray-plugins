@@ -1,0 +1,23 @@
+name: fingerprint-yaml-金山TimeOn云杀毒
+manual: false
+detail:
+    fingerprint:
+        name: 金山TimeOn云杀毒
+    fofa: body="<title>TimeOn" && body="iepngfix/iepngfix_tilebg.js" || body="TimeOn" && body="iepngfix/iepngfix_tilebg.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>TimeOn") && response.body_string.contains("iepngfix/iepngfix_tilebg.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("TimeOn") && response.body_string.contains("iepngfix/iepngfix_tilebg.js")
+expression: r0() || r1()

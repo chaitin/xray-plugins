@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Open eShop
+manual: false
+detail:
+    fingerprint:
+        name: Open eShop
+    fofa: header="Open eShop" || title="Open eShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Open eShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Open eShop")
+expression: r0() || r1()

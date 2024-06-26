@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ruijie Networks (Login)
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie Networks (Login)
+    fofa: icon_hash="-692947551"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -692947551
+expression: r0()

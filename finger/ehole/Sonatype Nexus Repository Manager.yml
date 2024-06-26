@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sonatype Nexus Repository Manager
+manual: false
+detail:
+    fingerprint:
+        name: Sonatype Nexus Repository Manager
+    fofa: icon_hash="-1546574541"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1546574541
+expression: r0()

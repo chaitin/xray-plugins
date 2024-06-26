@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IPS Community Suite
+manual: false
+detail:
+    fingerprint:
+        name: IPS Community Suite
+    fofa: header="IPS Community Suite" || title="IPS Community Suite"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPS Community Suite"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPS Community Suite")
+expression: r0() || r1()

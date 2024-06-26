@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebYep CMS
+manual: false
+detail:
+    fingerprint:
+        name: WebYep CMS
+    fofa: header="WebYep CMS" || title="WebYep CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebYep CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebYep CMS")
+expression: r0() || r1()

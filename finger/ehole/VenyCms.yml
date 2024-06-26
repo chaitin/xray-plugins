@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VenyCms
+manual: false
+detail:
+    fingerprint:
+        name: VenyCms
+    fofa: title="VenyCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VenyCms")
+expression: r0()

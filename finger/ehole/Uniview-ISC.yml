@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Uniview-ISC
+manual: false
+detail:
+    fingerprint:
+        name: Uniview-ISC
+    fofa: body="clsid:9677f3f4-9c86-405c-897a-2aeaab2d085c' id='recordmanager_activex" && body="clsid:ebb0d154-7f02-44c7-a828-bed07c28469b" && body="recordmanager_activex" && body="playactivexobj = document.getelementbyid('recordmanager_activex';" && body="location.href = location.href.substring(0,location.href.indexof(\"?\"+\"?langinfo=\"+" || body="clsid:9677f3f4-9c86-405c-897a-2aeaab2d085c\" id=\"recordmanager_activex" || body="clsid:ebb0d154-7f02-44c7-a828-bed07c28469b" || body="playactivexobj = document.getelementbyid\"recordmanager_activex\";" || body="location.href = location.href.substring0,location.href.indexof\"?\"+\"?langinfo=\"+" || body="location.href = location.href.substring(0,location.href.indexof(\"?\")+\"?langinfo=\"+" && body="playactivexobj = document.getelementbyid(\"recordmanager_activex\");" || body="recordmanager_activex" && body="clsid:ebb0d154-7f02-44c7-a828-bed07c28469b"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("clsid:9677f3f4-9c86-405c-897a-2aeaab2d085c' id='recordmanager_activex") && response.body_string.contains("clsid:ebb0d154-7f02-44c7-a828-bed07c28469b") && response.body_string.contains("recordmanager_activex") && response.body_string.contains("playactivexobj = document.getelementbyid('recordmanager_activex';") && response.body_string.contains('location.href = location.href.substring(0,location.href.indexof("?"+"?langinfo="+')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('clsid:9677f3f4-9c86-405c-897a-2aeaab2d085c" id="recordmanager_activex')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("clsid:ebb0d154-7f02-44c7-a828-bed07c28469b")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('playactivexobj = document.getelementbyid"recordmanager_activex";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = location.href.substring0,location.href.indexof"?"+"?langinfo="+')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = location.href.substring(0,location.href.indexof("?")+"?langinfo="+') && response.body_string.contains('playactivexobj = document.getelementbyid("recordmanager_activex");')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("recordmanager_activex") && response.body_string.contains("clsid:ebb0d154-7f02-44c7-a828-bed07c28469b")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

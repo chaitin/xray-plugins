@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PCITC-Cloud-Wireless-Platform
+manual: false
+detail:
+    fingerprint:
+        name: PCITC-Cloud-Wireless-Platform
+    fofa: title="石化盈科云无线平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("石化盈科云无线平台")
+expression: r0()

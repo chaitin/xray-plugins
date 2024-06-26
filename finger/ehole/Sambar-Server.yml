@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sambar-Server
+manual: false
+detail:
+    fingerprint:
+        name: Sambar-Server
+    fofa: 'header="server: sambar"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sambar"))'
+expression: r0()

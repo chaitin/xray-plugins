@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alcatel_Lucent-OmniVista-8770-NMS
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-OmniVista-8770-NMS
+    fofa: title="alcatel-lucent omnivista 8770 nms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("alcatel-lucent omnivista 8770 nms")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Qinzhe-EXCEL
+manual: false
+detail:
+    fingerprint:
+        name: Qinzhe-EXCEL
+    fofa: body="如果能访问到qinzhe网站上的图片，说明网络是通的，显示新闻" && body="id=\"chkworkbyreplacer\" type=\"checkbox\"" || body="id=\"chkworkbyreplacer\" type=\"checkbox\"" || body="如果能访问到qinzhe网站上的图片，说明网络是通的，显示新闻"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("如果能访问到qinzhe网站上的图片，说明网络是通的，显示新闻") && response.body_string.contains('id="chkworkbyreplacer" type="checkbox"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="chkworkbyreplacer" type="checkbox"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("如果能访问到qinzhe网站上的图片，说明网络是通的，显示新闻")
+expression: r0() || r1() || r2()

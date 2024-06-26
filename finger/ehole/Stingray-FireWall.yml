@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Stingray-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Stingray-FireWall
+    fofa: title="Stingray-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Stingray-FireWall")
+expression: r0()

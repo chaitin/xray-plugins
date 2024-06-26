@@ -1,0 +1,23 @@
+name: fingerprint-yaml-webcamXP
+manual: false
+detail:
+    fingerprint:
+        name: webcamXP
+    fofa: 'header="server: webcamxp 5" || title="webcamxp"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: webcamxp 5"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webcamxp")
+expression: r0() || r1()

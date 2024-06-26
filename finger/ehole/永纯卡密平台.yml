@@ -1,0 +1,16 @@
+name: fingerprint-yaml-永纯卡密平台
+manual: false
+detail:
+    fingerprint:
+        name: 永纯卡密平台
+    fofa: title="永纯卡密平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("永纯卡密平台")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Oracle Dynamic Monitoring Service
+manual: false
+detail:
+    fingerprint:
+        name: Oracle Dynamic Monitoring Service
+    fofa: header="Oracle Dynamic Monitoring Service" || title="Oracle Dynamic Monitoring Service"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle Dynamic Monitoring Service"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oracle Dynamic Monitoring Service")
+expression: r0() || r1()

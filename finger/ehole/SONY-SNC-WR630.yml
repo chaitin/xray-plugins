@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-SNC-WR630
+manual: false
+detail:
+    fingerprint:
+        name: SONY-SNC-WR630
+    fofa: header="realm=\"snc-wr630"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="snc-wr630'))
+expression: r0()

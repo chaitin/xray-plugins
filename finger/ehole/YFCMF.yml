@@ -1,0 +1,23 @@
+name: fingerprint-yaml-YFCMF
+manual: false
+detail:
+    fingerprint:
+        name: YFCMF
+    fofa: header="YFCMF" || title="YFCMF"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YFCMF"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YFCMF")
+expression: r0() || r1()

@@ -1,0 +1,86 @@
+name: fingerprint-yaml-poMMo
+manual: false
+detail:
+    fingerprint:
+        name: poMMo
+    fofa: body="powered by <a href=\"http://www.pommo.org/" && body="pommo.confirmmsg = " || header="poMMo" || body="pommo.confirmmsg = " || body="powered by <a href=\"http://www.pommo.org/" || body="pommo.confirmmsg =" || body="Page fueled by <a href=\"http://www.pommo.org/\">poMMo</a> mailing management software" || body="Page fueled by <a href=\"http://pommo.sourceforge.net/\">poMMo</a> mailing management software" || body="<title>. ..poMMo.. .</title>" || body="pommo.confirmmsg " || title="poMMo" || title="..pommo.. ."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.pommo.org/') && response.body_string.contains("pommo.confirmmsg = ")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poMMo"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pommo.confirmmsg = ")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.pommo.org/')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pommo.confirmmsg =")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Page fueled by <a href="http://www.pommo.org/">poMMo</a> mailing management software')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Page fueled by <a href="http://pommo.sourceforge.net/">poMMo</a> mailing management software')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>. ..poMMo.. .</title>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pommo.confirmmsg ")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("poMMo")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("..pommo.. .")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

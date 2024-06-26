@@ -1,0 +1,44 @@
+name: fingerprint-yaml-AliyunOSS
+manual: false
+detail:
+    fingerprint:
+        name: AliyunOSS
+    fofa: 'header="server: aliyunoss" && header="x-oss-request-id" || header="AliyunOSS" || header="x-oss-request-id" || header="server: aliyunoss" || title="AliyunOSS"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: aliyunoss")) && response.raw_header.bcontains(bytes("x-oss-request-id"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AliyunOSS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-oss-request-id"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: aliyunoss"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AliyunOSS")
+expression: r0() || r1() || r2() || r3() || r4()

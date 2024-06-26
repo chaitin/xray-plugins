@@ -1,0 +1,93 @@
+name: fingerprint-yaml-ASUS-RT-N66U
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-RT-N66U
+    fofa: body="<div class=\"prod_madelname\">rt-n66u" && body="capture(status_router.sys_model</script></div> asus rt-n66u&nbsp;" && body="capture(status_router.sys_model</script></div>asus rt-n66u" && body="class=\"prod_madelname\" style=\"margin-left:78px;\">rt-n66u" || header="rt-n66u" && header="asus rt-n66u " || body="class=\"prod_madelname\" style=\"margin-left:78px;\">rt-n66u" || body="capture(status_router.sys_model)</script></div>asus rt-n66u" || body="capture(status_router.sys_model)</script></div> asus rt-n66u&nbsp;" || body="<div class=\"prod_madelname\">rt-n66u" || body="capturestatus_router.sys_model</script></div> asus rt-n66u&nbsp;" || body="capturestatus_router.sys_model</script></div>asus rt-n66u" || header="asus rt-n66u " || header="rt-n66u" || header="asus rt-n66u" || title="rt-n66u"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="prod_madelname">rt-n66u') && response.body_string.contains("capture(status_router.sys_model</script></div> asus rt-n66u&nbsp;") && response.body_string.contains("capture(status_router.sys_model</script></div>asus rt-n66u") && response.body_string.contains('class="prod_madelname" style="margin-left:78px;">rt-n66u')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rt-n66u")) && response.raw_header.bcontains(bytes("asus rt-n66u "))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="prod_madelname" style="margin-left:78px;">rt-n66u')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("capture(status_router.sys_model)</script></div>asus rt-n66u")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("capture(status_router.sys_model)</script></div> asus rt-n66u&nbsp;")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="prod_madelname">rt-n66u')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("capturestatus_router.sys_model</script></div> asus rt-n66u&nbsp;")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("capturestatus_router.sys_model</script></div>asus rt-n66u")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asus rt-n66u "))
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rt-n66u"))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asus rt-n66u"))
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rt-n66u")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

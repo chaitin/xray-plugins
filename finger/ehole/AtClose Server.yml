@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AtClose Server
+manual: false
+detail:
+    fingerprint:
+        name: AtClose Server
+    fofa: header="AtClose Server" || title="AtClose Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AtClose Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AtClose Server")
+expression: r0() || r1()

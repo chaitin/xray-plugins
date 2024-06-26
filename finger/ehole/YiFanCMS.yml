@@ -1,0 +1,16 @@
+name: fingerprint-yaml-YiFanCMS
+manual: false
+detail:
+    fingerprint:
+        name: YiFanCMS
+    fofa: title="YiFanCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YiFanCMS")
+expression: r0()

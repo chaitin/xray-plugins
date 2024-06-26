@@ -1,0 +1,16 @@
+name: fingerprint-yaml-planet WNRT-617G
+manual: false
+detail:
+    fingerprint:
+        name: planet WNRT-617G
+    fofa: header="WNRT-617G"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WNRT-617G"))
+expression: r0()

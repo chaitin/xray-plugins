@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AirLink-modem
+manual: false
+detail:
+    fingerprint:
+        name: AirLink-modem
+    fofa: header="modem@airlink.com" || header="Modem@AirLink.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("modem@airlink.com"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Modem@AirLink.com"))
+expression: r0() || r1()

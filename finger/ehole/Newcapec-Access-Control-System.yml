@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Newcapec-Access-Control-System
+manual: false
+detail:
+    fingerprint:
+        name: Newcapec-Access-Control-System
+    fofa: header="realm=\"正普门禁系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="正普门禁系统'))
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-TP-LINK-TD-W8960N
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-TD-W8960N
+    fofa: body="align='right'>model no. td-w8960n</div>" || header="wireless n adsl2+ modem router td-w8960n" || body="align=\"right\">model no. td-w8960n</div>" || title="td-w8960n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("align='right'>model no. td-w8960n</div>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wireless n adsl2+ modem router td-w8960n"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('align="right">model no. td-w8960n</div>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("td-w8960n")
+expression: r0() || r1() || r2() || r3()

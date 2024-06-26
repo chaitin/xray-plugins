@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PhP框架DoitPHP
+manual: false
+detail:
+    fingerprint:
+        name: PhP框架DoitPHP
+    fofa: title="PhP框架DoitPHP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PhP框架DoitPHP")
+expression: r0()

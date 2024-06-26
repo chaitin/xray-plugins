@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Russian-Apache
+manual: false
+detail:
+    fingerprint:
+        name: Russian-Apache
+    fofa: 'header="server: rus/"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rus/"))'
+expression: r0()

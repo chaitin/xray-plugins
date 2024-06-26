@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rtsp-Server
+manual: false
+detail:
+    fingerprint:
+        name: Rtsp-Server
+    fofa: 'header="server: rtsp server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rtsp server"))'
+expression: r0()

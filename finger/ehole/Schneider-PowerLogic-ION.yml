@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Schneider-PowerLogic-ION
+manual: false
+detail:
+    fingerprint:
+        name: Schneider-PowerLogic-ION
+    fofa: header="allegro-software-rompager" && header="6200 ion" || header="6200 ion" || header="7300 ion" || header="8600 ion" || header="8650 ion" || header="7550 ion" || header="7650 ion" || header="allegro-software-rompager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("allegro-software-rompager")) && response.raw_header.bcontains(bytes("6200 ion"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("6200 ion"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("7300 ion"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("8600 ion"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("8650 ion"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("7550 ion"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("7650 ion"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("allegro-software-rompager"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

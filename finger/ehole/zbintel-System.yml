@@ -1,0 +1,23 @@
+name: fingerprint-yaml-zbintel-System
+manual: false
+detail:
+    fingerprint:
+        name: zbintel-System
+    fofa: body="background=\"images/login_sample_bgz.jpg\"" || title="智邦国际企业管理软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('background="images/login_sample_bgz.jpg"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("智邦国际企业管理软件")
+expression: r0() || r1()

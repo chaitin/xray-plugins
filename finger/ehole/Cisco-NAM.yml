@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-NAM
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-NAM
+    fofa: body="nam traffic analyzer</span>" || title="nam web manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nam traffic analyzer</span>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nam web manager")
+expression: r0() || r1()

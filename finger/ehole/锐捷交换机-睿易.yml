@@ -1,0 +1,16 @@
+name: fingerprint-yaml-锐捷交换机-睿易
+manual: false
+detail:
+    fingerprint:
+        name: 锐捷交换机-睿易
+    fofa: body="cgi-bin/luci" && body="#f47f3e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cgi-bin/luci") && response.body_string.contains("#f47f3e")
+expression: r0()

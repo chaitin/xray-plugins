@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Bubble
+manual: false
+detail:
+    fingerprint:
+        name: Bubble
+    fofa: header="Bubble" || title="Bubble"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Bubble"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Bubble")
+expression: r0() || r1()

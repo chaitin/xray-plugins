@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Samsung-Printer
+manual: false
+detail:
+    fingerprint:
+        name: Samsung-Printer
+    fofa: body="href=\"css/sws-all.css\"" && body="sws_loading_wait" && body="redirecttosws" && body="location = \"/sws/index.html\";" || header="Samsung printer" || body="location = \"/sws/index.html\";" && body="redirecttosws" || body="sws_loading_wait" || body="href=\"css/sws-all.css\"" || body="redirecttosws" || body="location = \"/sws/index.html\";" || body="var debugMode = (\"$$GSI_TCPIP_IP_ADDR$$\".indexOf(\".\")" || title="Samsung printer" || title="syncthru web service"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="css/sws-all.css"') && response.body_string.contains("sws_loading_wait") && response.body_string.contains("redirecttosws") && response.body_string.contains('location = "/sws/index.html";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Samsung printer"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location = "/sws/index.html";') && response.body_string.contains("redirecttosws")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sws_loading_wait")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="css/sws-all.css"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("redirecttosws")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location = "/sws/index.html";')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var debugMode = ("$$GSI_TCPIP_IP_ADDR$$".indexOf(".")')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Samsung printer")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("syncthru web service")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

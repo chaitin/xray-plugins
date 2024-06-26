@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SonarQubes
+manual: false
+detail:
+    fingerprint:
+        name: SonarQubes
+    fofa: header="SonarQubes" || title="SonarQubes"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SonarQubes"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SonarQubes")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SecureMatrix
+manual: false
+detail:
+    fingerprint:
+        name: SecureMatrix
+    fofa: 'header="set-cookie: securematrix="'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: securematrix="))'
+expression: r0()

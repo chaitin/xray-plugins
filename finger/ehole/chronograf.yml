@@ -1,0 +1,16 @@
+name: fingerprint-yaml-chronograf
+manual: false
+detail:
+    fingerprint:
+        name: chronograf
+    fofa: title="chronograf"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("chronograf")
+expression: r0()

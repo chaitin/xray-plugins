@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Webmatic
+manual: false
+detail:
+    fingerprint:
+        name: Webmatic
+    fofa: body="Powered&nbsp;by&nbsp;<a href=\"http://www.webmatic.it\">Webmatic</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered&nbsp;by&nbsp;<a href="http://www.webmatic.it">Webmatic</a>')
+expression: r0()

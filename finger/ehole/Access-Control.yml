@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Access-Control
+manual: false
+detail:
+    fingerprint:
+        name: Access-Control
+    fofa: header="Access-Control-Allow-Methods"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Access-Control-Allow-Methods"))
+expression: r0()

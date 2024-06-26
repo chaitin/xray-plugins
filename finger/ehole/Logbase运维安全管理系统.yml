@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Logbase运维安全管理系统
+manual: false
+detail:
+    fingerprint:
+        name: Logbase运维安全管理系统
+    fofa: header="Logbase运维安全管理系统" || title="Logbase运维安全管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Logbase运维安全管理系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Logbase运维安全管理系统")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Section_io
+manual: false
+detail:
+    fingerprint:
+        name: Section.io
+    fofa: header="Section.io" || title="Section.io"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Section.io"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Section.io")
+expression: r0() || r1()

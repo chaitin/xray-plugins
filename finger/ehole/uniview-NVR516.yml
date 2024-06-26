@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-NVR516
+manual: false
+detail:
+    fingerprint:
+        name: uniview-NVR516
+    fofa: header="realm=\"nvr516"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="nvr516'))
+expression: r0()

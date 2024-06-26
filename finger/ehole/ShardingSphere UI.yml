@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ShardingSphere UI
+manual: false
+detail:
+    fingerprint:
+        name: ShardingSphere UI
+    fofa: header="ShardingSphere UI" || title="ShardingSphere UI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ShardingSphere UI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ShardingSphere UI")
+expression: r0() || r1()

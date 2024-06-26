@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ContentBox
+manual: false
+detail:
+    fingerprint:
+        name: ContentBox
+    fofa: header="ContentBox" || title="ContentBox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ContentBox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ContentBox")
+expression: r0() || r1()

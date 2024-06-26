@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoPro-HERO3-camera
+manual: false
+detail:
+    fingerprint:
+        name: GoPro-HERO3-camera
+    fofa: 'header="server: gopro web server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: gopro web server"))'
+expression: r0()

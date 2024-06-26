@@ -1,0 +1,16 @@
+name: fingerprint-yaml-慧星自来水营业管理信息系统
+manual: false
+detail:
+    fingerprint:
+        name: 慧星自来水营业管理信息系统
+    fofa: icon_hash="1704826498"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1704826498
+expression: r0()

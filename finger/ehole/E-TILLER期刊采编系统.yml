@@ -1,0 +1,23 @@
+name: fingerprint-yaml-E-TILLER期刊采编系统
+manual: false
+detail:
+    fingerprint:
+        name: E-TILLER期刊采编系统
+    fofa: header="E-TILLER期刊采编系统" || title="E-TILLER期刊采编系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("E-TILLER期刊采编系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("E-TILLER期刊采编系统")
+expression: r0() || r1()

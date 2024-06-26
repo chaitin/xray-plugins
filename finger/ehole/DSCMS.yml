@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DSCMS
+manual: false
+detail:
+    fingerprint:
+        name: DSCMS
+    fofa: header="DSCMS" || title="DSCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DSCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DSCMS")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-JBoss-AS
+manual: false
+detail:
+    fingerprint:
+        name: JBoss-AS
+    fofa: body="manage this jboss as instance" || header="jbossas" || body="Manage this JBoss AS Instance" || title="welcome to jboss as"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("manage this jboss as instance")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jbossas"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Manage this JBoss AS Instance")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome to jboss as")
+expression: r0() || r1() || r2() || r3()

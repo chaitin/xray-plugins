@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Sun-ONE-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Sun-ONE-Web-Server
+    fofa: 'header="Sun-ONE-Web-Server" || header="Sun ONE Web Server" || header="server: sun-one-web-server" || title="Sun ONE Web Server" || title="sun[tm] one web server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sun-ONE-Web-Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sun ONE Web Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sun-one-web-server"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sun ONE Web Server")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sun[tm] one web server")
+expression: r0() || r1() || r2() || r3() || r4()

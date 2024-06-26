@@ -1,0 +1,23 @@
+name: fingerprint-yaml-gosun-cdn-server
+manual: false
+detail:
+    fingerprint:
+        name: gosun-cdn-server
+    fofa: header="gosun-cdn-server" || title="gosun-cdn-server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("gosun-cdn-server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gosun-cdn-server")
+expression: r0() || r1()

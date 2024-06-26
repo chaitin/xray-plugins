@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Xinnet-Enterprise-mail
+manual: false
+detail:
+    fingerprint:
+        name: Xinnet-Enterprise-mail
+    fofa: body="北京新网数码信息技术有限公司 版权所有" || body="webmail" && body="mail" && body="北京新网数码信息技术有限公司 版权所有</span>" || body="北京新网数码信息技术有限公司 版权所有</span>" || body="mail" && body="webmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("北京新网数码信息技术有限公司 版权所有")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webmail") && response.body_string.contains("mail") && response.body_string.contains("北京新网数码信息技术有限公司 版权所有</span>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("北京新网数码信息技术有限公司 版权所有</span>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mail") && response.body_string.contains("webmail")
+expression: r0() || r1() || r2() || r3()

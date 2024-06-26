@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Mihalism-Multi-Host
+manual: false
+detail:
+    fingerprint:
+        name: Mihalism-Multi-Host
+    fofa: 'body="http://www.mihalism.com/product/mmh/\">mihalism multi host" && body="powered by mihalism multi host" && body="content=\"mihalism multi host" || body="content=\"mihalism multi host" || body="powered by mihalism multi host" || body="http://www.mihalism.com/product/mmh/\">mihalism multi host" || body="Powered by <a href=\"http://www.mihalism.com/product/mmh/\">Mihalism Multi Host</a>" || body="<title>Fatal Error (Powered by Mihalism Multi Host)</title>" || body="<title>MySQL Error (Powered by Mihalism Multi Host)</title>" || body="<title>Mihalism Multi Host » Installation</title>" || body="<b style=\"color: #F00;\">Warning:</b> Using this installer will erase any already existing Mihalism Multi Host installation."'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('http://www.mihalism.com/product/mmh/">mihalism multi host') && response.body_string.contains("powered by mihalism multi host") && response.body_string.contains('content="mihalism multi host')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="mihalism multi host')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by mihalism multi host")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('http://www.mihalism.com/product/mmh/">mihalism multi host')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.mihalism.com/product/mmh/">Mihalism Multi Host</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Fatal Error (Powered by Mihalism Multi Host)</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>MySQL Error (Powered by Mihalism Multi Host)</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Mihalism Multi Host » Installation</title>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<b style="color: #F00;">Warning:</b> Using this installer will erase any already existing Mihalism Multi Host installation.'')'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

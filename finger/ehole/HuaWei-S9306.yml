@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-S9306
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-S9306
+    fofa: 'header="server: s9306"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: s9306"))'
+expression: r0()

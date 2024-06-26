@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LINKSYS-E3000
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS-E3000
+    fofa: header="LINKSYS-E3000" || header="Linksys E3000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS-E3000"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys E3000"))
+expression: r0() || r1()

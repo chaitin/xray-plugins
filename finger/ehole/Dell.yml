@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dell
+manual: false
+detail:
+    fingerprint:
+        name: Dell
+    fofa: icon_hash="-1153950306"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1153950306
+expression: r0()

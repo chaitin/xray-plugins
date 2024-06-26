@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Novell-iChain
+manual: false
+detail:
+    fingerprint:
+        name: Novell-iChain
+    fofa: body="src=\"ichainerrors/alertbar.gif" || header="host name received is not for this web site" || body="<td height=\"20\" align=\"center\"><img height=\"8\" width=\"445\" src=\"ICHAINErrors/alertbar.gif\"></td>" || body="<HTML><HEAD><TITLE>Novell iChain</TITLE></HEAD><BODY><b><p>Your old browser does not support a 302 Redirect.</b></BODY></HTML>" || body="<HTML><HEAD><TITLE>Novell Proxy</TITLE></HEAD><BODY><b><p>HTTP request is being redirected to HTTPS.</b></BODY></HTML>" || title="novell proxy" || title="novell ichain"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="ichainerrors/alertbar.gif')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("host name received is not for this web site"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td height="20" align="center"><img height="8" width="445" src="ICHAINErrors/alertbar.gif"></td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML><HEAD><TITLE>Novell iChain</TITLE></HEAD><BODY><b><p>Your old browser does not support a 302 Redirect.</b></BODY></HTML>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML><HEAD><TITLE>Novell Proxy</TITLE></HEAD><BODY><b><p>HTTP request is being redirected to HTTPS.</b></BODY></HTML>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("novell proxy")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("novell ichain")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DSShop
+manual: false
+detail:
+    fingerprint:
+        name: DSShop
+    fofa: header="DSShop" || title="DSShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DSShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DSShop")
+expression: r0() || r1()

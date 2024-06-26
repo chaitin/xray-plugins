@@ -1,0 +1,16 @@
+name: fingerprint-yaml-易企邮
+manual: false
+detail:
+    fingerprint:
+        name: 易企邮
+    fofa: title="易企邮"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("易企邮")
+expression: r0()

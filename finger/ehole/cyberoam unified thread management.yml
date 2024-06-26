@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cyberoam unified thread management
+manual: false
+detail:
+    fingerprint:
+        name: cyberoam unified thread management
+    fofa: header="cyberoam unified thread management" || title="cyberoam unified thread management"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cyberoam unified thread management"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cyberoam unified thread management")
+expression: r0() || r1()

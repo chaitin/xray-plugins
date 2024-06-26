@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Oracle-DMS
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-DMS
+    fofa: header="x-oracle-dms-ecid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-oracle-dms-ecid"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Robustel Router
+manual: false
+detail:
+    fingerprint:
+        name: Robustel Router
+    fofa: header="Robustel Router" || title="Robustel Router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Robustel Router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Robustel Router")
+expression: r0() || r1()

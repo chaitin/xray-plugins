@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Superred-Management-system
+manual: false
+detail:
+    fingerprint:
+        name: Superred-Management-system
+    fofa: body="class=\"style8\">北京万里红科技股份有限公司</span>" || header="onceas-webcontainer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="style8">北京万里红科技股份有限公司</span>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("onceas-webcontainer"))
+expression: r0() || r1()

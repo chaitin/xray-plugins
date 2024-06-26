@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wavlink-WN579X3
+manual: false
+detail:
+    fingerprint:
+        name: wavlink-WN579X3
+    fofa: body="var model=\"wn579x3\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var model="wn579x3"')
+expression: r0()

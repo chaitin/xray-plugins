@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SoftNAS Cloud
+manual: false
+detail:
+    fingerprint:
+        name: SoftNAS Cloud
+    fofa: header="SoftNAS Cloud" || title="SoftNAS Cloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SoftNAS Cloud"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SoftNAS Cloud")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Neusoft-NetEye-BitSaver
+manual: false
+detail:
+    fingerprint:
+        name: Neusoft-NetEye-BitSaver
+    fofa: body="action=\"/ntars/loginaction.do" || body="href=\"/ntars/css/" || title="neteye网络流量分析与响应系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/ntars/loginaction.do')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/ntars/css/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("neteye网络流量分析与响应系统")
+expression: r0() || r1() || r2()

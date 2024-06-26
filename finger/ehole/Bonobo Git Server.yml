@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Bonobo Git Server
+manual: false
+detail:
+    fingerprint:
+        name: Bonobo Git Server
+    fofa: icon_hash="-219625874"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -219625874
+expression: r0()

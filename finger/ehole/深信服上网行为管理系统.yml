@@ -1,0 +1,23 @@
+name: fingerprint-yaml-深信服上网行为管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 深信服上网行为管理系统
+    fofa: body="utccjfaewjb = function(str, key)" || body="document.write(WRFWWCSFBXMIGKRKHXFJ"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("utccjfaewjb = function(str, key)")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("document.write(WRFWWCSFBXMIGKRKHXFJ")
+expression: r0() || r1()

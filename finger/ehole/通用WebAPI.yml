@@ -1,0 +1,23 @@
+name: fingerprint-yaml-通用WebAPI
+manual: false
+detail:
+    fingerprint:
+        name: 通用WebAPI
+    fofa: header="通用WebAPI" || title="通用WebAPI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("通用WebAPI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("通用WebAPI")
+expression: r0() || r1()

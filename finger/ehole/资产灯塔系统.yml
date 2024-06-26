@@ -1,0 +1,16 @@
+name: fingerprint-yaml-资产灯塔系统
+manual: false
+detail:
+    fingerprint:
+        name: 资产灯塔系统
+    fofa: icon_hash="1708240621"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1708240621
+expression: r0()

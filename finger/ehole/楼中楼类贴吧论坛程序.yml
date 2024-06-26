@@ -1,0 +1,16 @@
+name: fingerprint-yaml-楼中楼类贴吧论坛程序
+manual: false
+detail:
+    fingerprint:
+        name: 楼中楼类贴吧论坛程序
+    fofa: title="楼中楼类贴吧论坛程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("楼中楼类贴吧论坛程序")
+expression: r0()

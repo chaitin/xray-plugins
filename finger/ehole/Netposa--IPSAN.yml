@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netposa--IPSAN
+manual: false
+detail:
+    fingerprint:
+        name: Netposa--IPSAN
+    fofa: title="netposa ipsanmanager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netposa ipsanmanager")
+expression: r0()

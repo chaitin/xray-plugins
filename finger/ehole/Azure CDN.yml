@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Azure CDN
+manual: false
+detail:
+    fingerprint:
+        name: Azure CDN
+    fofa: header="Azure CDN" || title="Azure CDN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Azure CDN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Azure CDN")
+expression: r0() || r1()

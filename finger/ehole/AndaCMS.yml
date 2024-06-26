@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AndaCMS
+manual: false
+detail:
+    fingerprint:
+        name: AndaCMS
+    fofa: title="AndaCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AndaCMS")
+expression: r0()

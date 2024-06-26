@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sucuri-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Sucuri-FireWall
+    fofa: header="Sucuri/Cloudproxy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sucuri/Cloudproxy"))
+expression: r0()

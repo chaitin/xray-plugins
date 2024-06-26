@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GraphQL
+manual: false
+detail:
+    fingerprint:
+        name: GraphQL
+    fofa: icon_hash="-1067420240"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1067420240
+expression: r0()

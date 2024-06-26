@@ -1,0 +1,16 @@
+name: fingerprint-yaml-金老师链接自助交换系统
+manual: false
+detail:
+    fingerprint:
+        name: 金老师链接自助交换系统
+    fofa: title="金老师链接自助交换系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("金老师链接自助交换系统")
+expression: r0()

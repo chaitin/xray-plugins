@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftWindowsMediaServices
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftWindowsMediaServices
+    fofa: title="Microsoft Windows Media Services"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Windows Media Services")
+expression: r0()

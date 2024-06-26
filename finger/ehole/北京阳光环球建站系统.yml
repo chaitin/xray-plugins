@@ -1,0 +1,16 @@
+name: fingerprint-yaml-北京阳光环球建站系统
+manual: false
+detail:
+    fingerprint:
+        name: 北京阳光环球建站系统
+    fofa: body="bigSortProduct.asp?bigid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bigSortProduct.asp?bigid")
+expression: r0()

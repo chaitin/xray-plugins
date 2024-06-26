@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JfinalUIB
+manual: false
+detail:
+    fingerprint:
+        name: JfinalUIB
+    fofa: title="JfinalUIB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JfinalUIB")
+expression: r0()

@@ -1,0 +1,58 @@
+name: fingerprint-yaml-marathon
+manual: false
+detail:
+    fingerprint:
+        name: marathon
+    fofa: body="<div id=\"marathon\"></div>" && body="href=\"img/marathon-favicon.ico" || header="x-marathon-leader" || header="Marathon" || body="href=\"img/marathon-favicon.ico" || body="<div id=\"marathon\"></div>" || title="Marathon" || title="marathon"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="marathon"></div>') && response.body_string.contains('href="img/marathon-favicon.ico')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-marathon-leader"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Marathon"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="img/marathon-favicon.ico')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="marathon"></div>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Marathon")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("marathon")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fortinet – Forticlient
+manual: false
+detail:
+    fingerprint:
+        name: Fortinet – Forticlient
+    fofa: icon_hash="945408572"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 945408572
+expression: r0()

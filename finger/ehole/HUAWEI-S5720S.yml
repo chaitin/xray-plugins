@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI-S5720S
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-S5720S
+    fofa: 'header="server: huawei-s5720s" || header="server: s5720s"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: huawei-s5720s"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: s5720s"))'
+expression: r0() || r1()

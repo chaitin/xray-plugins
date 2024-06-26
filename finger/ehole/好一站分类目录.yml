@@ -1,0 +1,16 @@
+name: fingerprint-yaml-好一站分类目录
+manual: false
+detail:
+    fingerprint:
+        name: 好一站分类目录
+    fofa: title="好一站分类目录"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("好一站分类目录")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebSphere SOAP Connector
+manual: false
+detail:
+    fingerprint:
+        name: WebSphere SOAP Connector
+    fofa: header="WebSphere SOAP Connector" || title="WebSphere SOAP Connector"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebSphere SOAP Connector"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebSphere SOAP Connector")
+expression: r0() || r1()

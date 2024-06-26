@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ZendServer
+manual: false
+detail:
+    fingerprint:
+        name: ZendServer
+    fofa: header="zendserver" && header="tp-link wr720n" || header="ZendServer" || header="zendserver" || header="tp-link wr720n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zendserver")) && response.raw_header.bcontains(bytes("tp-link wr720n"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZendServer"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zendserver"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link wr720n"))
+expression: r0() || r1() || r2() || r3()

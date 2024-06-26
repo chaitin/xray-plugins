@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AhnLab-MDS
+manual: false
+detail:
+    fingerprint:
+        name: AhnLab-MDS
+    fofa: title="ahnlab mds"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ahnlab mds")
+expression: r0()

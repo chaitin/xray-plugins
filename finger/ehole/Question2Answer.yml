@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Question2Answer
+manual: false
+detail:
+    fingerprint:
+        name: Question2Answer
+    fofa: title="Question2Answer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Question2Answer")
+expression: r0()

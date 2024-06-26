@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Axios
+manual: false
+detail:
+    fingerprint:
+        name: Axios
+    fofa: title="Axios"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axios")
+expression: r0()

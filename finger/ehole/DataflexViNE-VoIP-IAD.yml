@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DataflexViNE-VoIP-IAD
+manual: false
+detail:
+    fingerprint:
+        name: DataflexViNE-VoIP-IAD
+    fofa: 'header="server: dataflexvine-webserver" || header="DataflexViNE-Webserver"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dataflexvine-webserver"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DataflexViNE-Webserver"))
+expression: r0() || r1()

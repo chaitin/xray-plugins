@@ -1,0 +1,16 @@
+name: fingerprint-yaml-讯迈S6门户协同平台_V6_0
+manual: false
+detail:
+    fingerprint:
+        name: 讯迈S6门户协同平台_V6.0
+    fofa: title="讯迈S6门户协同平台_V6.0"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("讯迈S6门户协同平台_V6.0")
+expression: r0()

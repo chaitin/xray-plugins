@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netmind-Product
+manual: false
+detail:
+    fingerprint:
+        name: Netmind-Product
+    fofa: header="netmindsessionid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netmindsessionid"))
+expression: r0()

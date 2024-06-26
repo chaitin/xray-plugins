@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Acme_Serve
+manual: false
+detail:
+    fingerprint:
+        name: Acme.Serve
+    fofa: header="Acme.Serve" || title="Acme.Serve"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Acme.Serve"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Acme.Serve")
+expression: r0() || r1()

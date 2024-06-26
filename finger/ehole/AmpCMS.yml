@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AmpCMS
+manual: false
+detail:
+    fingerprint:
+        name: AmpCMS
+    fofa: title="AmpCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AmpCMS")
+expression: r0()

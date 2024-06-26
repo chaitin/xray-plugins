@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sarka-SPIP
+manual: false
+detail:
+    fingerprint:
+        name: Sarka-SPIP
+    fofa: header="Sarka-SPIP" || title="Sarka-SPIP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sarka-SPIP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sarka-SPIP")
+expression: r0() || r1()

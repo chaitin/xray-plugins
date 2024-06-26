@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Ipswitch-IMail
+manual: false
+detail:
+    fingerprint:
+        name: Ipswitch-IMail
+    fofa: header="Ipswitch-IMail" || header="Ipswitch IMail" || title="Ipswitch IMail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ipswitch-IMail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ipswitch IMail"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ipswitch IMail")
+expression: r0() || r1() || r2()

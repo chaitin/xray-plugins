@@ -1,0 +1,37 @@
+name: fingerprint-yaml-PbootCMS
+manual: false
+detail:
+    fingerprint:
+        name: PbootCMS
+    fofa: 'header="PbootSystem" || header="PbootCMS" || header="set-cookie: pbootsystem=" || title="PbootCMS"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PbootSystem"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PbootCMS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: pbootsystem="))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PbootCMS")
+expression: r0() || r1() || r2() || r3()

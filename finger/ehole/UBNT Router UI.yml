@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UBNT Router UI
+manual: false
+detail:
+    fingerprint:
+        name: UBNT Router UI
+    fofa: icon_hash="-1677255344"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1677255344
+expression: r0()

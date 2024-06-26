@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TOTO_LINK-N300RE
+manual: false
+detail:
+    fingerprint:
+        name: TOTO_LINK-N300RE
+    fofa: header="realm=\"n300re" || title="totolink n300re"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="n300re'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totolink n300re")
+expression: r0() || r1()

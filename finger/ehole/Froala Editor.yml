@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Froala Editor
+manual: false
+detail:
+    fingerprint:
+        name: Froala Editor
+    fofa: header="Froala Editor" || title="Froala Editor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Froala Editor"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Froala Editor")
+expression: r0() || r1()

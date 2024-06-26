@@ -1,0 +1,37 @@
+name: fingerprint-yaml-feifeicms
+manual: false
+detail:
+    fingerprint:
+        name: feifeicms
+    fofa: body="data-target=\"#navbar-feifeicms\"" || body="feifeicms" || header="FeiFeiCMS" || title="FeiFeiCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('data-target="#navbar-feifeicms"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("feifeicms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FeiFeiCMS"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FeiFeiCMS")
+expression: r0() || r1() || r2() || r3()

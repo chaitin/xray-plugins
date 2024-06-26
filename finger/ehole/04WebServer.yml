@@ -1,0 +1,23 @@
+name: fingerprint-yaml-04WebServer
+manual: false
+detail:
+    fingerprint:
+        name: 04WebServer
+    fofa: header="04WebServer" || title="04WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("04WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("04WebServer")
+expression: r0() || r1()

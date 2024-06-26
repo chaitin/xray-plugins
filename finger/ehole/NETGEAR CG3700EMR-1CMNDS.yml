@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR CG3700EMR-1CMNDS
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR CG3700EMR-1CMNDS
+    fofa: header="NETGEAR CG3700EMR-1CMNDS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR CG3700EMR-1CMNDS"))
+expression: r0()

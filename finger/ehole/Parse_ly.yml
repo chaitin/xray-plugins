@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Parse_ly
+manual: false
+detail:
+    fingerprint:
+        name: Parse.ly
+    fofa: header="Parse.ly" || title="Parse.ly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Parse.ly"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Parse.ly")
+expression: r0() || r1()

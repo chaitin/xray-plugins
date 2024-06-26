@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Apache-Mesos
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Mesos
+    fofa: body="href=\"/static/css/mesos.css" && body="<img src=\"/static/img/mesos_logo.png\" alt=\"apache mesos\">" || body="<img src=\"/static/img/mesos_logo.png\" alt=\"apache mesos\">" || body="href=\"/static/css/mesos.css" || title="mesos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/static/css/mesos.css') && response.body_string.contains('<img src="/static/img/mesos_logo.png" alt="apache mesos">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/static/img/mesos_logo.png" alt="apache mesos">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/static/css/mesos.css')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mesos")
+expression: r0() || r1() || r2() || r3()

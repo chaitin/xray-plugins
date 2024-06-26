@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HumHub
+manual: false
+detail:
+    fingerprint:
+        name: HumHub
+    fofa: body="Animate.css - http://daneden.me/animate" || title="HumHub"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Animate.css - http://daneden.me/animate")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HumHub")
+expression: r0() || r1()

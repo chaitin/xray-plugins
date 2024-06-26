@@ -1,0 +1,23 @@
+name: fingerprint-yaml-eBrigade
+manual: false
+detail:
+    fingerprint:
+        name: eBrigade
+    fofa: header="eBrigade" || title="eBrigade"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eBrigade"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eBrigade")
+expression: r0() || r1()

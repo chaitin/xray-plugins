@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TRENDnet-TV-IP320PI
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TV-IP320PI
+    fofa: header="realm=\"tv-ip320pi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv-ip320pi'))
+expression: r0()

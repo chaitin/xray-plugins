@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mofinetwork
+manual: false
+detail:
+    fingerprint:
+        name: mofinetwork
+    fofa: icon_hash="-1702393021"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1702393021
+expression: r0()

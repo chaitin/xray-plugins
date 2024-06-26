@@ -1,0 +1,16 @@
+name: fingerprint-yaml-B2C开源网店系统Yuncart
+manual: false
+detail:
+    fingerprint:
+        name: B2C开源网店系统Yuncart
+    fofa: title="B2C开源网店系统Yuncart"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("B2C开源网店系统Yuncart")
+expression: r0()

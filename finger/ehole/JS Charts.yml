@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JS Charts
+manual: false
+detail:
+    fingerprint:
+        name: JS Charts
+    fofa: header="JS Charts" || title="JS Charts"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JS Charts"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JS Charts")
+expression: r0() || r1()

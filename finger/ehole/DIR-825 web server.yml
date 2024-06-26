@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DIR-825 web server
+manual: false
+detail:
+    fingerprint:
+        name: DIR-825 web server
+    fofa: header="DIR-825 web server" || title="DIR-825 web server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DIR-825 web server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DIR-825 web server")
+expression: r0() || r1()

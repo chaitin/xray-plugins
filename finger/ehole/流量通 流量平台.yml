@@ -1,0 +1,16 @@
+name: fingerprint-yaml-流量通 流量平台
+manual: false
+detail:
+    fingerprint:
+        name: 流量通 流量平台
+    fofa: icon_hash="325583172"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 325583172
+expression: r0()

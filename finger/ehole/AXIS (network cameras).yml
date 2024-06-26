@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AXIS (network cameras)
+manual: false
+detail:
+    fingerprint:
+        name: AXIS (network cameras)
+    fofa: icon_hash="-1616143106"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1616143106
+expression: r0()

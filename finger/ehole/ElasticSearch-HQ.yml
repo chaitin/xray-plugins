@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ElasticSearch-HQ
+manual: false
+detail:
+    fingerprint:
+        name: ElasticSearch-HQ
+    fofa: title="elastic search - hq"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("elastic search - hq")
+expression: r0()

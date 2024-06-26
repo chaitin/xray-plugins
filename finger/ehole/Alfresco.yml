@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alfresco
+manual: false
+detail:
+    fingerprint:
+        name: Alfresco
+    fofa: icon_hash="1333537166"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1333537166
+expression: r0()

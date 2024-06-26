@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Crestron Webserver
+manual: false
+detail:
+    fingerprint:
+        name: Crestron Webserver
+    fofa: header="Crestron Webserver" || title="Crestron Webserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Crestron Webserver"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Crestron Webserver")
+expression: r0() || r1()

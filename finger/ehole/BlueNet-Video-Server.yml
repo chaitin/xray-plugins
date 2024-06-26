@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BlueNet-Video-Server
+manual: false
+detail:
+    fingerprint:
+        name: BlueNet-Video-Server
+    fofa: body="window.location.href=\"/cgi-bin/client_execute.cgi?tUD=0\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href="/cgi-bin/client_execute.cgi?tUD=0";')
+expression: r0()

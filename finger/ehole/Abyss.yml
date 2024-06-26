@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Abyss
+manual: false
+detail:
+    fingerprint:
+        name: Abyss
+    fofa: 'header="Server:Abyss" || header="server: abyss"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:Abyss"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: abyss"))'
+expression: r0() || r1()

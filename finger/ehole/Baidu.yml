@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Baidu
+manual: false
+detail:
+    fingerprint:
+        name: Baidu
+    fofa: icon_hash="1118684072"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1118684072
+expression: r0()

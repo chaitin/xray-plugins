@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Apusic
+manual: false
+detail:
+    fingerprint:
+        name: Apusic
+    fofa: 'body="<td>管理apusic应用服务器</td>" || header="server: apusic application server" || title="欢迎使用apusic应用服务器"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td>管理apusic应用服务器</td>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: apusic application server"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎使用apusic应用服务器")
+expression: r0() || r1() || r2()

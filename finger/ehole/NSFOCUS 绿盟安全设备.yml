@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NSFOCUS 绿盟安全设备
+manual: false
+detail:
+    fingerprint:
+        name: NSFOCUS 绿盟安全设备
+    fofa: header="NSFOCUS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NSFOCUS"))
+expression: r0()

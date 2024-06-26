@@ -1,0 +1,16 @@
+name: fingerprint-yaml-trs_lunwen
+manual: false
+detail:
+    fingerprint:
+        name: trs_lunwen
+    fofa: title="trs_lunwen"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("trs_lunwen")
+expression: r0()

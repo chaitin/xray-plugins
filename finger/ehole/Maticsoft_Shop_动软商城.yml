@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Maticsoft_Shop_动软商城
+manual: false
+detail:
+    fingerprint:
+        name: Maticsoft_Shop_动软商城
+    fofa: body="Maticsoft Shop" || body="maticsoft" || body="/Areas/Shop/"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Maticsoft Shop")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("maticsoft")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/Areas/Shop/")
+expression: r0() || r1() || r2()

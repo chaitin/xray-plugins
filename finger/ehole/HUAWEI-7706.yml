@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-7706
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-7706
+    fofa: header="simple/view/login.html"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("simple/view/login.html"))
+expression: r0()

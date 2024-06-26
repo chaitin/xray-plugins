@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Jigsaw
+manual: false
+detail:
+    fingerprint:
+        name: Jigsaw
+    fofa: 'header="server: jigsaw" || header="Jigsaw"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: jigsaw"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Jigsaw"))
+expression: r0() || r1()

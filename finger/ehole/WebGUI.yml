@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebGUI
+manual: false
+detail:
+    fingerprint:
+        name: WebGUI
+    fofa: header="WebGUI" || title="WebGUI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebGUI"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebGUI")
+expression: r0() || r1()

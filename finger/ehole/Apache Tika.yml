@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Apache Tika
+manual: false
+detail:
+    fingerprint:
+        name: Apache Tika
+    fofa: header="Apache Tika" || title="Apache Tika"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Tika"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Tika")
+expression: r0() || r1()

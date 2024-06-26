@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Traffic CMS
+manual: false
+detail:
+    fingerprint:
+        name: Traffic CMS
+    fofa: header="Traffic CMS" || title="Traffic CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Traffic CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Traffic CMS")
+expression: r0() || r1()

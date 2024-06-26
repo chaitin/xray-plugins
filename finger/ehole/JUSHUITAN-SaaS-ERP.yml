@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JUSHUITAN-SaaS-ERP
+manual: false
+detail:
+    fingerprint:
+        name: JUSHUITAN-SaaS-ERP
+    fofa: title="聚水潭saas协同平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("聚水潭saas协同平台")
+expression: r0()

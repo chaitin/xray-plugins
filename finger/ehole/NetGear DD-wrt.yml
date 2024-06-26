@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetGear DD-wrt
+manual: false
+detail:
+    fingerprint:
+        name: NetGear DD-wrt
+    fofa: header="NetGear DD-wrt"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetGear DD-wrt"))
+expression: r0()

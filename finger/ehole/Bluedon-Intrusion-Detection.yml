@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Bluedon-Intrusion-Detection
+manual: false
+detail:
+    fingerprint:
+        name: Bluedon-Intrusion-Detection
+    fofa: title="bluedon-idp - login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bluedon-idp - login")
+expression: r0()

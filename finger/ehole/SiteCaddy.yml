@@ -1,0 +1,44 @@
+name: fingerprint-yaml-SiteCaddy
+manual: false
+detail:
+    fingerprint:
+        name: SiteCaddy
+    fofa: 'body="<!-- SECTION: bottom branding -->" || body="<!-- write title and meta tags -->" || body="<ul class=\"siteCaddyMenu menuLevel0 bottomNav\" id=\"primaryNav\">" || body="<a href=\"http://www.sitecaddy.com\" title=\"Powered by SiteCaddy.com\">" || body="<img src=\"/mysitecaddy/assets3/common/images/poweredbysitecaddy.gif\" alt=\"Powered by SiteCaddy.com\">"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- SECTION: bottom branding -->")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- write title and meta tags -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<ul class="siteCaddyMenu menuLevel0 bottomNav" id="primaryNav">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.sitecaddy.com" title="Powered by SiteCaddy.com">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/mysitecaddy/assets3/common/images/poweredbysitecaddy.gif" alt="Powered by SiteCaddy.com">')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ikuai-flow-control-router
+manual: false
+detail:
+    fingerprint:
+        name: ikuai-flow-control-router
+    fofa: body="/resources/images/land_prompt_ico01.gif" && body="<li><a href=\"http://www.ikuai8.com\" target=\"_blank\">官网</a></li>" && body="src=/static/js/manifest.6513b08df486af67396b.js>" || body="src=/static/js/manifest.6513b08df486af67396b.js>" || body="<li><a href=\"http://www.ikuai8.com\" target=\"_blank\">官网</a></li>" || body="/resources/images/land_prompt_ico01.gif" || title="登录爱快流控路由"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/resources/images/land_prompt_ico01.gif") && response.body_string.contains('<li><a href="http://www.ikuai8.com" target="_blank">官网</a></li>') && response.body_string.contains("src=/static/js/manifest.6513b08df486af67396b.js>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("src=/static/js/manifest.6513b08df486af67396b.js>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li><a href="http://www.ikuai8.com" target="_blank">官网</a></li>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/resources/images/land_prompt_ico01.gif")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("登录爱快流控路由")
+expression: r0() || r1() || r2() || r3() || r4()

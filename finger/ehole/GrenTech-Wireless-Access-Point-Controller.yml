@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GrenTech-Wireless-Access-Point-Controller
+manual: false
+detail:
+    fingerprint:
+        name: GrenTech-Wireless-Access-Point-Controller
+    fofa: title="国人通信 - 集中无线控制器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("国人通信 - 集中无线控制器")
+expression: r0()

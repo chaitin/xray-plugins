@@ -1,0 +1,44 @@
+name: fingerprint-yaml-5iKQ
+manual: false
+detail:
+    fingerprint:
+        name: 5iKQ
+    fofa: body="content=\"我爱考勤云平台" && body="我爱考勤云平台</span>" && body="<input type=\"text\" class=\"form-control\" name=\"mobilenumber\" value=\"\" placeholder=\"手机号码\" />" || body="<input type=\"text\" class=\"form-control\" name=\"mobilenumber\" value=\"\" placeholder=\"手机号码\" />" || body="我爱考勤云平台</span>" || body="content=\"我爱考勤云平台" || title="我爱考勤云平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="我爱考勤云平台') && response.body_string.contains("我爱考勤云平台</span>") && response.body_string.contains('<input type="text" class="form-control" name="mobilenumber" value="" placeholder="手机号码" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="text" class="form-control" name="mobilenumber" value="" placeholder="手机号码" />')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("我爱考勤云平台</span>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="我爱考勤云平台')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("我爱考勤云平台")
+expression: r0() || r1() || r2() || r3() || r4()

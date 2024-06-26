@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Leadsec-SSL-VPN
+manual: false
+detail:
+    fingerprint:
+        name: Leadsec-SSL-VPN
+    fofa: 'body="欢迎使用leadsec网御ssl vpn" && body="/ssl/down/usbkey.exe" && body="content=\"ssl,vpn,sslvpn" && body="/ssl/down/images_pc/" || body="passworduserlogin" || body="/ssl/down/images_pc/" || body="content=\"ssl,vpn,sslvpn" || body="/ssl/down/usbkey.exe" || body="欢迎使用leadsec网御ssl vpn" || header="server: xdaemon v1.0"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎使用leadsec网御ssl vpn") && response.body_string.contains("/ssl/down/usbkey.exe") && response.body_string.contains('content="ssl,vpn,sslvpn') && response.body_string.contains("/ssl/down/images_pc/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("passworduserlogin")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ssl/down/images_pc/")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="ssl,vpn,sslvpn')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ssl/down/usbkey.exe")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎使用leadsec网御ssl vpn")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: xdaemon v1.0"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

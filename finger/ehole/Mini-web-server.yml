@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mini-web-server
+manual: false
+detail:
+    fingerprint:
+        name: Mini-web-server
+    fofa: 'header="server: zte corp" && header="server: mini web server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: zte corp")) && response.raw_header.bcontains(bytes("server: mini web server"))'
+expression: r0()

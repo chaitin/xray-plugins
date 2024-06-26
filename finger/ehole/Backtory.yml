@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Backtory
+manual: false
+detail:
+    fingerprint:
+        name: Backtory
+    fofa: header="Backtory" || title="Backtory"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Backtory"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Backtory")
+expression: r0() || r1()

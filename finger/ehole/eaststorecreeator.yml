@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eaststorecreeator
+manual: false
+detail:
+    fingerprint:
+        name: eaststorecreeator
+    fofa: header="easystorecreator1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("easystorecreator1"))
+expression: r0()

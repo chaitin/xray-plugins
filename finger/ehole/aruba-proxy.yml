@@ -1,0 +1,23 @@
+name: fingerprint-yaml-aruba-proxy
+manual: false
+detail:
+    fingerprint:
+        name: aruba-proxy
+    fofa: header="aruba-proxy" || title="aruba-proxy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("aruba-proxy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("aruba-proxy")
+expression: r0() || r1()

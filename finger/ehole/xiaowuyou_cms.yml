@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xiaowuyou_cms
+manual: false
+detail:
+    fingerprint:
+        name: xiaowuyou_cms
+    fofa: title="xiaowuyou_cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xiaowuyou_cms")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WNHD3002G
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WNHD3002G
+    fofa: header="NETGEAR WNHD3002G"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WNHD3002G"))
+expression: r0()

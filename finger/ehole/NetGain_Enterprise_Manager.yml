@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NetGain_Enterprise_Manager
+manual: false
+detail:
+    fingerprint:
+        name: NetGain_Enterprise_Manager
+    fofa: title="netgain enterprise manager" || title="netgain em"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgain enterprise manager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgain em")
+expression: r0() || r1()

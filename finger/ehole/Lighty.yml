@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Lighty
+manual: false
+detail:
+    fingerprint:
+        name: Lighty
+    fofa: header="Lighty" || title="Lighty"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Lighty"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Lighty")
+expression: r0() || r1()

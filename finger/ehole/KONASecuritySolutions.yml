@@ -1,0 +1,16 @@
+name: fingerprint-yaml-KONASecuritySolutions
+manual: false
+detail:
+    fingerprint:
+        name: KONASecuritySolutions
+    fofa: title="KONA Security Solutions"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KONA Security Solutions")
+expression: r0()

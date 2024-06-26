@@ -1,0 +1,16 @@
+name: fingerprint-yaml-远江盛邦
+manual: false
+detail:
+    fingerprint:
+        name: 远江盛邦
+    fofa: title="远江盛邦"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("远江盛邦")
+expression: r0()

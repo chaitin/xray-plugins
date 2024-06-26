@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WPN824N
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WPN824N
+    fofa: header="NETGEAR WPN824N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WPN824N"))
+expression: r0()

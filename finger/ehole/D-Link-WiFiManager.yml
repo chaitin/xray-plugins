@@ -1,0 +1,16 @@
+name: fingerprint-yaml-D-Link-WiFiManager
+manual: false
+detail:
+    fingerprint:
+        name: D-Link-WiFiManager
+    fofa: title="d-link central wifimanager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("d-link central wifimanager")
+expression: r0()

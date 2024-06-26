@@ -1,0 +1,16 @@
+name: fingerprint-yaml-kamailio-sip-server
+manual: false
+detail:
+    fingerprint:
+        name: kamailio-sip-server
+    fofa: 'header="server: kamailio"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: kamailio"))'
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VMware vRealize Operations Manager
+manual: false
+detail:
+    fingerprint:
+        name: VMware vRealize Operations Manager
+    fofa: body="vRealize" && body="VMware" && body="Identity Manager" || body="Identity Manager" && body="VMware"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("vRealize") && response.body_string.contains("VMware") && response.body_string.contains("Identity Manager")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Identity Manager") && response.body_string.contains("VMware")
+expression: r0() || r1()

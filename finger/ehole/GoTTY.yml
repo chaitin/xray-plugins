@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GoTTY
+manual: false
+detail:
+    fingerprint:
+        name: GoTTY
+    fofa: 'header="server: gotty" || title="gotty"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: gotty"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gotty")
+expression: r0() || r1()

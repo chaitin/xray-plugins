@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SprintBoot
+manual: false
+detail:
+    fingerprint:
+        name: SprintBoot
+    fofa: title="SprintBoot"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SprintBoot")
+expression: r0()

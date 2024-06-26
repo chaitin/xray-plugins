@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EFM-Networks-ipTIME-N604T
+manual: false
+detail:
+    fingerprint:
+        name: EFM-Networks-ipTIME-N604T
+    fofa: body="src=\"/images2/login_title.n604t.gif\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images2/login_title.n604t.gif"')
+expression: r0()

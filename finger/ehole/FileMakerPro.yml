@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FileMakerPro
+manual: false
+detail:
+    fingerprint:
+        name: FileMakerPro
+    fofa: 'header="server: filemakerpro" || header="FileMakerPro"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: filemakerpro"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FileMakerPro"))
+expression: r0() || r1()

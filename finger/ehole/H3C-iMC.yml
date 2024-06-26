@@ -1,0 +1,107 @@
+name: fingerprint-yaml-H3C-iMC
+manual: false
+detail:
+    fingerprint:
+        name: H3C-iMC
+    fofa: body="imc来宾接入自助管理系统" && body="login_logo_h3c.png.jsf" && body="com_h3c_imc_usr_usermgr_alluser_overlaydiv" && body="action=\"/imc/login.jsf" && body="src=\"/imc/javax.faces.resource/images/login_logo_h3c.png.jsf?ln=primefaces-imc-new-webui" && body="<span class=\"cmn_mn_normalfont\">h3c 智能管理中心" && body="src=\"/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/" && body="h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>" && body="href=\"/selfservice/javax.faces.resource/theme.css.xhtml?ln=primefaces-imc-classic-blue\"" || body="window.location.href='/imc/login.jsf'" || body="href=\"/selfservice/javax.faces.resource/theme.css.xhtml?ln=primefaces-imc-classic-blue\"" || body="h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>" || body="src=\"/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/" || body="<span class=\"cmn_mn_normalfont\">h3c 智能管理中心" || body="src=\"/imc/javax.faces.resource/images/login_logo_h3c.png.jsf?ln=primefaces-imc-new-webui" || body="action=\"/imc/login.jsf" || body="com_h3c_imc_usr_usermgr_alluser_overlaydiv" || body="login_logo_h3c.png.jsf" && body="imc来宾接入自助管理系统" || body="imc来宾接入自助管理系统" || body="login_logo_h3c.png.jsf" || body="/imc/login.jsf" || body="h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>" && body="src=\"/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("imc来宾接入自助管理系统") && response.body_string.contains("login_logo_h3c.png.jsf") && response.body_string.contains("com_h3c_imc_usr_usermgr_alluser_overlaydiv") && response.body_string.contains('action="/imc/login.jsf') && response.body_string.contains('src="/imc/javax.faces.resource/images/login_logo_h3c.png.jsf?ln=primefaces-imc-new-webui') && response.body_string.contains('<span class="cmn_mn_normalfont">h3c 智能管理中心') && response.body_string.contains('src="/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/') && response.body_string.contains("h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>") && response.body_string.contains('href="/selfservice/javax.faces.resource/theme.css.xhtml?ln=primefaces-imc-classic-blue"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.location.href='/imc/login.jsf'")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/selfservice/javax.faces.resource/theme.css.xhtml?ln=primefaces-imc-classic-blue"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="cmn_mn_normalfont">h3c 智能管理中心')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/imc/javax.faces.resource/images/login_logo_h3c.png.jsf?ln=primefaces-imc-new-webui')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/imc/login.jsf')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("com_h3c_imc_usr_usermgr_alluser_overlaydiv")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login_logo_h3c.png.jsf") && response.body_string.contains("imc来宾接入自助管理系统")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("imc来宾接入自助管理系统")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login_logo_h3c.png.jsf")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/imc/login.jsf")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("h3c &#26234;&#33021;&#31649;&#29702;&#20013;&#24515;</span>") && response.body_string.contains('src="/imc/faces/extensionresource/com.h3c.imc.component.util.extensionresourceloader/')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-yadongsoft-FS3
+manual: false
+detail:
+    fingerprint:
+        name: yadongsoft-FS3
+    fofa: body="神盾fs<sup>3</sup>文档安全共享系统v2.0</div>" || title="神盾fs3文档安全共享系统v2.0"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("神盾fs<sup>3</sup>文档安全共享系统v2.0</div>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("神盾fs3文档安全共享系统v2.0")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-MOBOTIX Camera
+manual: false
+detail:
+    fingerprint:
+        name: MOBOTIX Camera
+    fofa: icon_hash="661332347" || body="content=\"mobotix ag" || header="mobotix camera" || header="MOBOTIX Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 661332347
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="mobotix ag')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mobotix camera"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MOBOTIX Camera"))
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Maticsoft-SNS
+manual: false
+detail:
+    fingerprint:
+        name: Maticsoft-SNS
+    fofa: body="maticsoftsns" && body="maticsoft" && body="/areas/sns/" || body="/areas/sns/" && body="maticsoft" || body="maticsoftsns" || body="maticsoft" || body="/areas/sns/"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("maticsoftsns") && response.body_string.contains("maticsoft") && response.body_string.contains("/areas/sns/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/areas/sns/") && response.body_string.contains("maticsoft")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("maticsoftsns")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("maticsoft")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/areas/sns/")
+expression: r0() || r1() || r2() || r3() || r4()

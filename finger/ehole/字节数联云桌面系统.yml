@@ -1,0 +1,16 @@
+name: fingerprint-yaml-字节数联云桌面系统
+manual: false
+detail:
+    fingerprint:
+        name: 字节数联云桌面系统
+    fofa: icon_hash="-1142582922"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1142582922
+expression: r0()

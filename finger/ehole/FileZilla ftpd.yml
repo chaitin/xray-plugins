@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FileZilla ftpd
+manual: false
+detail:
+    fingerprint:
+        name: FileZilla ftpd
+    fofa: header="FileZilla ftpd" || title="FileZilla ftpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FileZilla ftpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FileZilla ftpd")
+expression: r0() || r1()

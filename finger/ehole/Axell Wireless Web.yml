@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Axell Wireless Web
+manual: false
+detail:
+    fingerprint:
+        name: Axell Wireless Web
+    fofa: header="Axell Wireless Web" || title="Axell Wireless Web"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Axell Wireless Web"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Axell Wireless Web")
+expression: r0() || r1()

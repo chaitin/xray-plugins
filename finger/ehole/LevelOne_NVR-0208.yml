@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LevelOne_NVR-0208
+manual: false
+detail:
+    fingerprint:
+        name: LevelOne_NVR-0208
+    fofa: header="realm=\"nvr-0208"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="nvr-0208'))
+expression: r0()

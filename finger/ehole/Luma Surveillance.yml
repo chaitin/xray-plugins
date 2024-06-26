@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Luma Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Luma Surveillance
+    fofa: icon_hash="-1351901211"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1351901211
+expression: r0()

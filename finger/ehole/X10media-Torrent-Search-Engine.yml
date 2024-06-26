@@ -1,0 +1,44 @@
+name: fingerprint-yaml-X10media-Torrent-Search-Engine
+manual: false
+detail:
+    fingerprint:
+        name: X10media-Torrent-Search-Engine
+    fofa: body="This search engine is in no way intended for illegal downloads." || body="<meta name=\"copyright\" content=\"X10Media\"/>" || body="<meta name=\"contributor\" content=\"X10Media\"/>" || body="<title>Torrent Search Engine Script</title>" || body="Powered by <a href=\"http://www.x10media.com/torrent-search-engine-script/\" target=\"_blank\">x10media Torrent Search Engine Script</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("This search engine is in no way intended for illegal downloads.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="copyright" content="X10Media"/>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="contributor" content="X10Media"/>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Torrent Search Engine Script</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.x10media.com/torrent-search-engine-script/" target="_blank">x10media Torrent Search Engine Script</a>')
+expression: r0() || r1() || r2() || r3() || r4()

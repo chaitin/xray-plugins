@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TR-701NW
+manual: false
+detail:
+    fingerprint:
+        name: TR-701NW
+    fofa: title="tr-701nw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tr-701nw")
+expression: r0()

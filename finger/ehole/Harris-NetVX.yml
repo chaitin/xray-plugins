@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Harris-NetVX
+manual: false
+detail:
+    fingerprint:
+        name: Harris-NetVX
+    fofa: body="<a href=\"\" onclick=\"window.open(\"http://www.goahead.com\")\" title=\"Powered by the GoAhead Web Server.\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="" onclick="window.open("http://www.goahead.com")" title="Powered by the GoAhead Web Server.">')
+expression: r0()

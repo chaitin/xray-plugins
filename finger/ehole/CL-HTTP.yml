@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CL-HTTP
+manual: false
+detail:
+    fingerprint:
+        name: CL-HTTP
+    fofa: 'header="server: cl-http" || header="CL-HTTP"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cl-http"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CL-HTTP"))
+expression: r0() || r1()

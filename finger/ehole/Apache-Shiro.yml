@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Apache-Shiro
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Shiro
+    fofa: 'body="</i> shiro</li>" || header="Apache Shiro" || header="rememberme=deleteme" || header="shiro-cas" || header="Set-Cookie: rememberMe=deleteMe" || title="Apache Shiro" || title="apache shiro quickstart"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("</i> shiro</li>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Shiro"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rememberme=deleteme"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("shiro-cas"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Set-Cookie: rememberMe=deleteMe"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Shiro")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("apache shiro quickstart")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

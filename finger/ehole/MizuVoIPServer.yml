@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MizuVoIPServer
+manual: false
+detail:
+    fingerprint:
+        name: MizuVoIPServer
+    fofa: header="MizuVoIPServer" || title="MizuVoIPServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MizuVoIPServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MizuVoIPServer")
+expression: r0() || r1()

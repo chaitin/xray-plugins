@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Digi-ConnectPort-WAN-VPN
+manual: false
+detail:
+    fingerprint:
+        name: Digi-ConnectPort-WAN-VPN
+    fofa: header="realm=\"connectport wan vpn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="connectport wan vpn'))
+expression: r0()

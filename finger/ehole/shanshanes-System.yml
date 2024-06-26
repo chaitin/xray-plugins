@@ -1,0 +1,44 @@
+name: fingerprint-yaml-shanshanes-System
+manual: false
+detail:
+    fingerprint:
+        name: shanshanes-System
+    fofa: body="<title>杉杉储能监控平台</title>" && body="amap.mousetool,amap.districtsearch" && body="/dist/libs/layui/css/layui.css" || body="/dist/libs/layui/css/layui.css" && body="amap.mousetool,amap.districtsearch" && body="<title>杉杉储能监控平台</title>" || body="<title>杉杉储能监控平台</title>" || body="amap.mousetool,amap.districtsearch" || body="/dist/libs/layui/css/layui.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>杉杉储能监控平台</title>") && response.body_string.contains("amap.mousetool,amap.districtsearch") && response.body_string.contains("/dist/libs/layui/css/layui.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dist/libs/layui/css/layui.css") && response.body_string.contains("amap.mousetool,amap.districtsearch") && response.body_string.contains("<title>杉杉储能监控平台</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>杉杉储能监控平台</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amap.mousetool,amap.districtsearch")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dist/libs/layui/css/layui.css")
+expression: r0() || r1() || r2() || r3() || r4()

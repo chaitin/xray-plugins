@@ -1,0 +1,23 @@
+name: fingerprint-yaml-miniBB中文版
+manual: false
+detail:
+    fingerprint:
+        name: miniBB中文版
+    fofa: header="miniBB中文版" || title="miniBB中文版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("miniBB中文版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("miniBB中文版")
+expression: r0() || r1()

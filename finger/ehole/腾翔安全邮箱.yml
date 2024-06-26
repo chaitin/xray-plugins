@@ -1,0 +1,23 @@
+name: fingerprint-yaml-腾翔安全邮箱
+manual: false
+detail:
+    fingerprint:
+        name: 腾翔安全邮箱
+    fofa: header="腾翔安全邮箱" || title="腾翔安全邮箱"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("腾翔安全邮箱"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("腾翔安全邮箱")
+expression: r0() || r1()

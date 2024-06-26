@@ -1,0 +1,16 @@
+name: fingerprint-yaml-用友-畅捷通OEM
+manual: false
+detail:
+    fingerprint:
+        name: 用友-畅捷通OEM
+    fofa: body="GNRemote.dll" && body="Web_sc/login.gn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("GNRemote.dll") && response.body_string.contains("Web_sc/login.gn")
+expression: r0()

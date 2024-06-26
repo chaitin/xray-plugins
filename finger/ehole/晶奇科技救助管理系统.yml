@@ -1,0 +1,16 @@
+name: fingerprint-yaml-晶奇科技救助管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 晶奇科技救助管理系统
+    fofa: icon_hash="-1185226132"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1185226132
+expression: r0()

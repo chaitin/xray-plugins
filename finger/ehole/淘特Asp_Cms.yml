@@ -1,0 +1,23 @@
+name: fingerprint-yaml-淘特Asp_Cms
+manual: false
+detail:
+    fingerprint:
+        name: 淘特Asp_Cms
+    fofa: body="淘特Asp_Cms" || title="淘特Asp_Cms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("淘特Asp_Cms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("淘特Asp_Cms")
+expression: r0() || r1()

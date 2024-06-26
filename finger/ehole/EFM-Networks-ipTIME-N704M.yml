@@ -1,0 +1,30 @@
+name: fingerprint-yaml-EFM-Networks-ipTIME-N704M
+manual: false
+detail:
+    fingerprint:
+        name: EFM-Networks-ipTIME-N704M
+    fofa: body="src =\"/images2/login_title.n704m.gif\"" && body="src =\"/images2/login_title.n704mlg.gif\"" || body="src =\"/images2/login_title.n704mlg.gif\"" || body="src =\"/images2/login_title.n704m.gif\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src ="/images2/login_title.n704m.gif"') && response.body_string.contains('src ="/images2/login_title.n704mlg.gif"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src ="/images2/login_title.n704mlg.gif"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src ="/images2/login_title.n704m.gif"')
+expression: r0() || r1() || r2()

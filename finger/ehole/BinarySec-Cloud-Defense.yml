@@ -1,0 +1,30 @@
+name: fingerprint-yaml-BinarySec-Cloud-Defense
+manual: false
+detail:
+    fingerprint:
+        name: BinarySec-Cloud-Defense
+    fofa: header="x-binarysec" && header="x-binarysec-nocache" || header="x-binarysec-nocache" || header="x-binarysec"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-binarysec")) && response.raw_header.bcontains(bytes("x-binarysec-nocache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-binarysec-nocache"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-binarysec"))
+expression: r0() || r1() || r2()

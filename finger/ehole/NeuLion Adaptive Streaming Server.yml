@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NeuLion Adaptive Streaming Server
+manual: false
+detail:
+    fingerprint:
+        name: NeuLion Adaptive Streaming Server
+    fofa: header="NeuLion Adaptive Streaming Server" || title="NeuLion Adaptive Streaming Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NeuLion Adaptive Streaming Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NeuLion Adaptive Streaming Server")
+expression: r0() || r1()

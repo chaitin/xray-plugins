@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR R7300
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR R7300
+    fofa: header="NETGEAR R7300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR R7300"))
+expression: r0()

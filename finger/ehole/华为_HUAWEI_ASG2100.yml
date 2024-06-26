@@ -1,0 +1,16 @@
+name: fingerprint-yaml-华为_HUAWEI_ASG2100
+manual: false
+detail:
+    fingerprint:
+        name: 华为_HUAWEI_ASG2100
+    fofa: header="HUAWEI ASG2100"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI ASG2100"))
+expression: r0()

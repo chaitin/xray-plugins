@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JYmusic音乐程序
+manual: false
+detail:
+    fingerprint:
+        name: JYmusic音乐程序
+    fofa: header="JYmusic音乐程序" || title="JYmusic音乐程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JYmusic音乐程序"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JYmusic音乐程序")
+expression: r0() || r1()

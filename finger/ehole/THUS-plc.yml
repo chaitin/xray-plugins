@@ -1,0 +1,37 @@
+name: fingerprint-yaml-THUS-plc
+manual: false
+detail:
+    fingerprint:
+        name: THUS-plc
+    fofa: body="copyright (c 2003 thus plc" && body="<img src=\"thuslogo.gif\" width=" || body="<img src=\"thuslogo.gif\" width=" || body="copyright (c) 2003 thus plc" || body="copyright c 2003 thus plc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright (c 2003 thus plc") && response.body_string.contains('<img src="thuslogo.gif" width=')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="thuslogo.gif" width=')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright (c) 2003 thus plc")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright c 2003 thus plc")
+expression: r0() || r1() || r2() || r3()

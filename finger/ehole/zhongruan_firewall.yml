@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zhongruan_firewall
+manual: false
+detail:
+    fingerprint:
+        name: zhongruan_firewall
+    fofa: title="zhongruan_firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zhongruan_firewall")
+expression: r0()

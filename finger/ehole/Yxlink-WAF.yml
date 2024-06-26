@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Yxlink-WAF
+manual: false
+detail:
+    fingerprint:
+        name: Yxlink-WAF
+    fofa: 'header="server: yxlinkwaf" || title="铱迅web应用防护系统"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: yxlinkwaf"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("铱迅web应用防护系统")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WorldClient for Mdaemon
+manual: false
+detail:
+    fingerprint:
+        name: WorldClient for Mdaemon
+    fofa: icon_hash="1985721423" || icon_hash="-35107086"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1985721423
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -35107086
+expression: r0() || r1()

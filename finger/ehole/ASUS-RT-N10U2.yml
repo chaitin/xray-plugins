@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ASUS-RT-N10U2
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-RT-N10U2
+    fofa: header="realm=\"rt-n10u2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="rt-n10u2'))
+expression: r0()

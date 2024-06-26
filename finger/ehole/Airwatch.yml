@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Airwatch
+manual: false
+detail:
+    fingerprint:
+        name: Airwatch
+    fofa: icon_hash="321909464" || icon_hash="-1153873472" || icon_hash="1095915848" || icon_hash="788771792" || icon_hash="-1863663974"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 321909464
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1153873472
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1095915848
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 788771792
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1863663974
+expression: r0() || r1() || r2() || r3() || r4()

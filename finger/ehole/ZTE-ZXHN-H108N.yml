@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZTE-ZXHN-H108N
+manual: false
+detail:
+    fingerprint:
+        name: ZTE-ZXHN-H108N
+    fofa: body="<modelname>zxhn h108n</modelname>" || header="realm=\"zxhn h108n" || title="zxhn h108n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<modelname>zxhn h108n</modelname>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="zxhn h108n'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zxhn h108n")
+expression: r0() || r1() || r2()

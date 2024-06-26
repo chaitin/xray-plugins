@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Digi Connect EM
+manual: false
+detail:
+    fingerprint:
+        name: Digi Connect EM
+    fofa: header="Digi Connect EM" || title="Digi Connect EM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Digi Connect EM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Digi Connect EM")
+expression: r0() || r1()

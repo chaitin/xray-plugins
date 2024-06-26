@@ -1,0 +1,44 @@
+name: fingerprint-yaml-AiCart
+manual: false
+detail:
+    fingerprint:
+        name: AiCart
+    fofa: body="APP_authenticate" || body="\" for = \"l_password\">Password <span class=\"req\">*</span></label>" || body="<input id = \"l_password\" name = \"l_password\" class = \"field text medium\" type = \"password\" maxlength = \"255\" value = \"\" />" || body="<input id=\"l_remember_me\" name=\"l_remember_me\" class = \"field checkbox\" type = \"checkbox\" value = \"1\" />" || body="<input name=\"APP_authenticate\" type=\"hidden\" id=\"APP_authenticate\" value=\"frmLogin\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("APP_authenticate")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('" for = "l_password">Password <span class="req">*</span></label>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input id = "l_password" name = "l_password" class = "field text medium" type = "password" maxlength = "255" value = "" />')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input id="l_remember_me" name="l_remember_me" class = "field checkbox" type = "checkbox" value = "1" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input name="APP_authenticate" type="hidden" id="APP_authenticate" value="frmLogin" />')
+expression: r0() || r1() || r2() || r3() || r4()

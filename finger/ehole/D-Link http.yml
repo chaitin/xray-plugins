@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link http
+manual: false
+detail:
+    fingerprint:
+        name: D-Link http
+    fofa: header="D-Link http" || title="D-Link http"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link http"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link http")
+expression: r0() || r1()

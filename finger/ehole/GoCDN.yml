@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GoCDN
+manual: false
+detail:
+    fingerprint:
+        name: GoCDN
+    fofa: header="gocdn" || header="GOCDN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("gocdn"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GOCDN"))
+expression: r0() || r1()

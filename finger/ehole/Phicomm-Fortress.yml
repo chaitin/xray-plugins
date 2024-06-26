@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Phicomm-Fortress
+manual: false
+detail:
+    fingerprint:
+        name: Phicomm-Fortress
+    fofa: title="斐讯fortress防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("斐讯fortress防火墙")
+expression: r0()

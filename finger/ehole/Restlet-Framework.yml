@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Restlet-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Restlet-Framework
+    fofa: header="restlet-framework" || header="Restlet-Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("restlet-framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Restlet-Framework"))
+expression: r0() || r1()

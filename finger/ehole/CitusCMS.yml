@@ -1,0 +1,65 @@
+name: fingerprint-yaml-CitusCMS
+manual: false
+detail:
+    fingerprint:
+        name: CitusCMS
+    fofa: body="Powered by CitusCMS" || body="<strong>CitusCMS</strong>" || body="content=\"CitusCMS" || body="<title>Administration &#149; Webseitenname</title>" || body="<!-- Powered by CitusCMS - http://www.citus-cms.org -->" || body="Powered by <a href=\"http://www.citus-cms.org\" target=\"_blank\" title=\"Powered by CitusCMS\"><strong>CitusCMS</strong></a>" || body="<meta name=\"generator\" content=\"CitusCMS - http://www.citus-cms.org\" />" || body="<meta name=\"generator\" content=\"CitusCMS [http://www.citus-cms.org]\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by CitusCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<strong>CitusCMS</strong>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="CitusCMS')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Administration &#149; Webseitenname</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Powered by CitusCMS - http://www.citus-cms.org -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.citus-cms.org" target="_blank" title="Powered by CitusCMS"><strong>CitusCMS</strong></a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="CitusCMS - http://www.citus-cms.org" />')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="CitusCMS [http://www.citus-cms.org]" />')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

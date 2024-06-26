@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JishiGou
+manual: false
+detail:
+    fingerprint:
+        name: JishiGou
+    fofa: header="JishiGou" || title="JishiGou"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JishiGou"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JishiGou")
+expression: r0() || r1()

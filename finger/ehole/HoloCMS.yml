@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HoloCMS
+manual: false
+detail:
+    fingerprint:
+        name: HoloCMS
+    fofa: body="Powered by HoloCMS" || body="<div id=\"remember-me-notification\" class=\"bottom-bubble\" style=\"display:none;\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by HoloCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="remember-me-notification" class="bottom-bubble" style="display:none;">')
+expression: r0() || r1()

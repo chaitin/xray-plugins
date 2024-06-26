@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AnZuWAF
+manual: false
+detail:
+    fingerprint:
+        name: AnZuWAF
+    fofa: header="anzuwaf" || header="AnZuWAF"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("anzuwaf"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AnZuWAF"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-蓝海卓越
+manual: false
+detail:
+    fingerprint:
+        name: 蓝海卓越
+    fofa: title="蓝海卓越"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("蓝海卓越")
+expression: r0()

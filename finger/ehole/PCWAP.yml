@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PCWAP
+manual: false
+detail:
+    fingerprint:
+        name: PCWAP
+    fofa: header="PCWAP" || title="PCWAP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PCWAP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PCWAP")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ali-CDN
+manual: false
+detail:
+    fingerprint:
+        name: Ali-CDN
+    fofa: 'header="x-cache" && header="server: tengine" || header="Server: tengine"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-cache")) && response.raw_header.bcontains(bytes("server: tengine"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Server: tengine"))'
+expression: r0() || r1()

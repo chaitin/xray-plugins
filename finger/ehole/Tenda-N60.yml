@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Tenda-N60
+manual: false
+detail:
+    fingerprint:
+        name: Tenda-N60
+    fofa: body="class=\"loagin_title\">tenda n60" && body="tenda n60" && body="tenda n60" || header="realm=\"tenda n60" || body="class=\"loagin_title\">tenda n60" || body="tenda n60"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="loagin_title">tenda n60') && response.body_string.contains("tenda n60") && response.body_string.contains("tenda n60")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tenda n60'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="loagin_title">tenda n60')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("tenda n60")
+expression: r0() || r1() || r2() || r3()

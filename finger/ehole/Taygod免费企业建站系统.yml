@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Taygod免费企业建站系统
+manual: false
+detail:
+    fingerprint:
+        name: Taygod免费企业建站系统
+    fofa: title="Taygod免费企业建站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Taygod免费企业建站系统")
+expression: r0()

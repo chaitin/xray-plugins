@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Matomo
+manual: false
+detail:
+    fingerprint:
+        name: Matomo
+    fofa: body="_paq.push([\"enableLinkTracking\"])" || body="<title>Sign in - Matomo</title>" || body="# Matomo Platform Changelog" || body="MATOMO_SESSID"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('_paq.push(["enableLinkTracking"])')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Sign in - Matomo</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("# Matomo Platform Changelog")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("MATOMO_SESSID")
+expression: r0() || r1() || r2() || r3()

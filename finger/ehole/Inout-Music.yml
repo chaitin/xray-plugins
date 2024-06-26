@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Inout-Music
+manual: false
+detail:
+    fingerprint:
+        name: Inout-Music
+    fofa: body="href=\"http://www.inoutscripts.com/?r=13\">Powered by Inoutscripts</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.inoutscripts.com/?r=13">Powered by Inoutscripts</a>')
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NetVanta
+manual: false
+detail:
+    fingerprint:
+        name: NetVanta
+    fofa: header="NetVanta" || title="NetVanta"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetVanta"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NetVanta")
+expression: r0() || r1()

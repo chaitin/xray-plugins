@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HttpOnly
+manual: false
+detail:
+    fingerprint:
+        name: HttpOnly
+    fofa: header="httponly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("httponly"))
+expression: r0()

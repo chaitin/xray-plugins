@@ -1,0 +1,23 @@
+name: fingerprint-yaml-西安金讯通
+manual: false
+detail:
+    fingerprint:
+        name: 西安金讯通
+    fofa: header="西安金讯通" || title="西安金讯通"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("西安金讯通"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("西安金讯通")
+expression: r0() || r1()

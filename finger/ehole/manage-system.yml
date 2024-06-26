@@ -1,0 +1,16 @@
+name: fingerprint-yaml-manage-system
+manual: false
+detail:
+    fingerprint:
+        name: manage-system
+    fofa: body="content=\"基于vue2 + element ui 的后台管理系统解决方案"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="基于vue2 + element ui 的后台管理系统解决方案')
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ModSecurity-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: ModSecurity-FireWall
+    fofa: title="ModSecurity-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ModSecurity-FireWall")
+expression: r0()

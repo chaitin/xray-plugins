@@ -1,0 +1,16 @@
+name: fingerprint-yaml-21百合婚恋网系统
+manual: false
+detail:
+    fingerprint:
+        name: 21百合婚恋网系统
+    fofa: title="21百合婚恋网系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("21百合婚恋网系统")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Integrating-Century-EPBP
+manual: false
+detail:
+    fingerprint:
+        name: Integrating-Century-EPBP
+    fofa: title="中国石化勘探开发业务平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("中国石化勘探开发业务平台")
+expression: r0()

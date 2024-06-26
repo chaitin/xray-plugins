@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI EchoLife HG8245H
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI EchoLife HG8245H
+    fofa: header="HUAWEI EchoLife HG8245H" || title="HUAWEI EchoLife HG8245H"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI EchoLife HG8245H"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HUAWEI EchoLife HG8245H")
+expression: r0() || r1()

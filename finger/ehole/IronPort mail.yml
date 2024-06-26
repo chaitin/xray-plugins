@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IronPort mail
+manual: false
+detail:
+    fingerprint:
+        name: IronPort mail
+    fofa: header="IronPort mail" || title="IronPort mail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IronPort mail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IronPort mail")
+expression: r0() || r1()

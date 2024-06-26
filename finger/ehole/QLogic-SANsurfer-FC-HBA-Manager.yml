@@ -1,0 +1,23 @@
+name: fingerprint-yaml-QLogic-SANsurfer-FC-HBA-Manager
+manual: false
+detail:
+    fingerprint:
+        name: QLogic-SANsurfer-FC-HBA-Manager
+    fofa: body="<!-- Developers should be aware that for Gecko-based browsers (NS 6.x)" || body="<!---- This initializes the navigator.family object ---->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Developers should be aware that for Gecko-based browsers (NS 6.x)")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!---- This initializes the navigator.family object ---->")
+expression: r0() || r1()

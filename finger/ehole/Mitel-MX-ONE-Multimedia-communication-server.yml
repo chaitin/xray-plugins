@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mitel-MX-ONE-Multimedia-communication-server
+manual: false
+detail:
+    fingerprint:
+        name: Mitel-MX-ONE-Multimedia-communication-server
+    fofa: title="mivoice mx-one provisioning manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mivoice mx-one provisioning manager")
+expression: r0()

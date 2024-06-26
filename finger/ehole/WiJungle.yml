@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WiJungle
+manual: false
+detail:
+    fingerprint:
+        name: WiJungle
+    fofa: icon_hash="2113497004"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2113497004
+expression: r0()

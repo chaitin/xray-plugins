@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WiseGrid慧敏应用交付网关
+manual: false
+detail:
+    fingerprint:
+        name: WiseGrid慧敏应用交付网关
+    fofa: icon_hash="910523681"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 910523681
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Tongda
+manual: false
+detail:
+    fingerprint:
+        name: Tongda
+    fofa: icon_hash="-759108386"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -759108386
+expression: r0()

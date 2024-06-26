@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WilmarOA系统
+manual: false
+detail:
+    fingerprint:
+        name: WilmarOA系统
+    fofa: title="WilmarOA系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WilmarOA系统")
+expression: r0()

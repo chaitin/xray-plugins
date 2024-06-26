@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK SOHO R406
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK SOHO R406
+    fofa: header="TP-LINK SOHO R406"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK SOHO R406"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mitmproxy
+manual: false
+detail:
+    fingerprint:
+        name: mitmproxy
+    fofa: 'header="server: mitmproxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mitmproxy"))'
+expression: r0()

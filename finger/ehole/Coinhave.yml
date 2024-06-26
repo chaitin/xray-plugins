@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Coinhave
+manual: false
+detail:
+    fingerprint:
+        name: Coinhave
+    fofa: header="Coinhave" || title="Coinhave"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Coinhave"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Coinhave")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-POWEREDGE-T110-II
+manual: false
+detail:
+    fingerprint:
+        name: DELL-POWEREDGE-T110-II
+    fofa: header="poweredge-t110-ii"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poweredge-t110-ii"))
+expression: r0()

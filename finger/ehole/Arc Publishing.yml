@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Arc Publishing
+manual: false
+detail:
+    fingerprint:
+        name: Arc Publishing
+    fofa: header="Arc Publishing" || title="Arc Publishing"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Arc Publishing"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Arc Publishing")
+expression: r0() || r1()

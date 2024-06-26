@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cradlepoint-AER2200-600M
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-AER2200-600M
+    fofa: 'body="cplogin.model = \"aer2200-fips-600m\";" || title="login :: aer2200-600m"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('cplogin.model = "aer2200-fips-600m";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("login :: aer2200-600m")'
+expression: r0() || r1()

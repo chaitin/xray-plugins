@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys LCAB03VLNOD
+manual: false
+detail:
+    fingerprint:
+        name: Linksys LCAB03VLNOD
+    fofa: header="Linksys LCAB03VLNOD"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys LCAB03VLNOD"))
+expression: r0()

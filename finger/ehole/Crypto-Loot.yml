@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Crypto-Loot
+manual: false
+detail:
+    fingerprint:
+        name: Crypto-Loot
+    fofa: header="Crypto-Loot" || title="Crypto-Loot"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Crypto-Loot"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Crypto-Loot")
+expression: r0() || r1()

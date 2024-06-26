@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WET11
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WET11
+    fofa: header="Linksys WET11"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WET11"))
+expression: r0()

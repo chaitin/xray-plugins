@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Daisy
+manual: false
+detail:
+    fingerprint:
+        name: Daisy
+    fofa: header="x-daisy-version"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-daisy-version"))
+expression: r0()

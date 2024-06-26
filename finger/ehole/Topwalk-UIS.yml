@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Topwalk-UIS
+manual: false
+detail:
+    fingerprint:
+        name: Topwalk-UIS
+    fofa: body="<meta http-equiv=\"refresh\" content=\"0;url=/usermainaction.action\" />" || title="天行安全单向导入系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0;url=/usermainaction.action" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天行安全单向导入系统")
+expression: r0() || r1()

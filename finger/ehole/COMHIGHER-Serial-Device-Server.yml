@@ -1,0 +1,23 @@
+name: fingerprint-yaml-COMHIGHER-Serial-Device-Server
+manual: false
+detail:
+    fingerprint:
+        name: COMHIGHER-Serial-Device-Server
+    fofa: title="comhigher web configuration" || title="comhigher serial io server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("comhigher web configuration")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("comhigher serial io server")
+expression: r0() || r1()

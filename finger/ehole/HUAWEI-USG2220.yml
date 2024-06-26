@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG2220
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG2220
+    fofa: header="usg2220"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("usg2220"))
+expression: r0()

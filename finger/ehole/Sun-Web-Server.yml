@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sun-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Sun-Web-Server
+    fofa: 'header="server: sun-web-server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sun-web-server"))'
+expression: r0()

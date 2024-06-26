@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Kordil-EDMS
+manual: false
+detail:
+    fingerprint:
+        name: Kordil-EDMS
+    fofa: body=">kordil edms" || header="kordil_edms" || body="stm_aix(\"p6i3\",\"p1i0\",[0,\" Kordil EDMS\\\" website\",\"\",\"\",-1,-1,0,\"http://www.kordil.net\"],150,20);"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">kordil edms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("kordil_edms"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('stm_aix("p6i3","p1i0",[0," Kordil EDMS\\" website","","",-1,-1,0,"http://www.kordil.net"],150,20);')
+expression: r0() || r1() || r2()

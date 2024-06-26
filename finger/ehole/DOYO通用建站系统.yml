@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DOYO通用建站系统
+manual: false
+detail:
+    fingerprint:
+        name: DOYO通用建站系统
+    fofa: title="DOYO通用建站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DOYO通用建站系统")
+expression: r0()

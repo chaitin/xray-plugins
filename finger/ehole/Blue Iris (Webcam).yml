@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Blue Iris (Webcam)
+manual: false
+detail:
+    fingerprint:
+        name: Blue Iris (Webcam)
+    fofa: icon_hash="-520888198"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -520888198
+expression: r0()

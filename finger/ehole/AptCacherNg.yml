@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AptCacherNg
+manual: false
+detail:
+    fingerprint:
+        name: AptCacherNg
+    fofa: header="AptCacherNg" || title="AptCacherNg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AptCacherNg"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AptCacherNg")
+expression: r0() || r1()

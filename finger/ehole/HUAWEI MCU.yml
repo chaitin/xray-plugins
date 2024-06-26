@@ -1,0 +1,44 @@
+name: fingerprint-yaml-HUAWEI MCU
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI MCU
+    fofa: header="HUAWEI MCU" || body="mcutype.js" || body="mcur5-min.js" || title="HUAWEI MCU" || title="huawei mcu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI MCU"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mcutype.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mcur5-min.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HUAWEI MCU")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huawei mcu")
+expression: r0() || r1() || r2() || r3() || r4()

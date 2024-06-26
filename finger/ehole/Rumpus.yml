@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rumpus
+manual: false
+detail:
+    fingerprint:
+        name: Rumpus
+    fofa: icon_hash="-1528414776"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1528414776
+expression: r0()

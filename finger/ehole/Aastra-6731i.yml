@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aastra-6731i
+manual: false
+detail:
+    fingerprint:
+        name: Aastra-6731i
+    fofa: header="aastra 6731i"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("aastra 6731i"))
+expression: r0()

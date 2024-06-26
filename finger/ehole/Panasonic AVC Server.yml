@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Panasonic AVC Server
+manual: false
+detail:
+    fingerprint:
+        name: Panasonic AVC Server
+    fofa: header="Panasonic AVC Server" || title="Panasonic AVC Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Panasonic AVC Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Panasonic AVC Server")
+expression: r0() || r1()

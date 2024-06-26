@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Kedacom-TrueSens
+manual: false
+detail:
+    fingerprint:
+        name: Kedacom-TrueSens
+    fofa: body="/img/kedacom-logo.jpg" || header="KEDACOM" || body="<body><span style=\"font:12px;\">Loading...</span></body>" || body="<img src=\"./img/kedacom-logo.jpg\" alt=\"WEB CONSOLE\" /></td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/img/kedacom-logo.jpg")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KEDACOM"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body><span style="font:12px;">Loading...</span></body>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="./img/kedacom-logo.jpg" alt="WEB CONSOLE" /></td>')
+expression: r0() || r1() || r2() || r3()

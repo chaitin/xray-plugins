@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tictail
+manual: false
+detail:
+    fingerprint:
+        name: Tictail
+    fofa: header="Tictail" || title="Tictail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tictail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tictail")
+expression: r0() || r1()

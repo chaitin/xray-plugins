@@ -1,0 +1,16 @@
+name: fingerprint-yaml-明源云MIP集成平台
+manual: false
+detail:
+    fingerprint:
+        name: 明源云MIP集成平台
+    fofa: icon_hash="-834208471"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -834208471
+expression: r0()

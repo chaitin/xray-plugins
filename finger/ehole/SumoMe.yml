@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SumoMe
+manual: false
+detail:
+    fingerprint:
+        name: SumoMe
+    fofa: header="SumoMe" || title="SumoMe"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SumoMe"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SumoMe")
+expression: r0() || r1()

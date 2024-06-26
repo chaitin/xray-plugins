@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SinGooCMS
+manual: false
+detail:
+    fingerprint:
+        name: SinGooCMS
+    fofa: header="SinGooCMS" || title="SinGooCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SinGooCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SinGooCMS")
+expression: r0() || r1()

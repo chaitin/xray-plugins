@@ -1,0 +1,30 @@
+name: fingerprint-yaml-dir2web-CMS
+manual: false
+detail:
+    fingerprint:
+        name: dir2web-CMS
+    fofa: body="<link href=\"default/styles/d2w_object_page.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" /></head>" || body="<div class=\"d2w-back_link\" id=\"start\">" || body="<img src=\"_themes\\/d2w\\d\\/images\\/logo_hp\\.jpg\" title=\"dir2web \\d logo\" alt=\"dir2web \\d logo\"/>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="default/styles/d2w_object_page.css" rel="stylesheet" type="text/css" media="screen" /></head>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="d2w-back_link" id="start">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="_themes\\/d2w\\d\\/images\\/logo_hp\\.jpg" title="dir2web \\d logo" alt="dir2web \\d logo"/>')
+expression: r0() || r1() || r2()

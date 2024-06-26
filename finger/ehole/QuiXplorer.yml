@@ -1,0 +1,51 @@
+name: fingerprint-yaml-QuiXplorer
+manual: false
+detail:
+    fingerprint:
+        name: QuiXplorer
+    fofa: body="href=\"http://quixplorer.sourceforge.net\" target=" && body="target=\"_blank\">the quix project</a></small>" || header="QuiXplorer" || body="target=\"_blank\">the quix project</a></small>" || body="href=\"http://quixplorer.sourceforge.net\" target=" || body="<A class=\"title\" href=\"http://quixplorer.sourceforge.net\" target=\"_blank\">QuiXplorer</A> - <A href=\"http://quix.tk\" target=\"_blank\">the QuiX project</A></SMALL>" || title="QuiXplorer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://quixplorer.sourceforge.net" target=') && response.body_string.contains('target="_blank">the quix project</a></small>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QuiXplorer"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank">the quix project</a></small>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://quixplorer.sourceforge.net" target=')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<A class="title" href="http://quixplorer.sourceforge.net" target="_blank">QuiXplorer</A> - <A href="http://quix.tk" target="_blank">the QuiX project</A></SMALL>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QuiXplorer")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

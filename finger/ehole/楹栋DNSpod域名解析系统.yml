@@ -1,0 +1,16 @@
+name: fingerprint-yaml-楹栋DNSpod域名解析系统
+manual: false
+detail:
+    fingerprint:
+        name: 楹栋DNSpod域名解析系统
+    fofa: title="楹栋DNSpod域名解析系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("楹栋DNSpod域名解析系统")
+expression: r0()

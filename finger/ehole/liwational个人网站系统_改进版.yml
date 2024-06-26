@@ -1,0 +1,16 @@
+name: fingerprint-yaml-liwational个人网站系统_改进版
+manual: false
+detail:
+    fingerprint:
+        name: liwational个人网站系统_改进版
+    fofa: title="liwational个人网站系统_改进版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("liwational个人网站系统_改进版")
+expression: r0()

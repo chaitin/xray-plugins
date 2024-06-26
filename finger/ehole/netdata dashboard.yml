@@ -1,0 +1,23 @@
+name: fingerprint-yaml-netdata dashboard
+manual: false
+detail:
+    fingerprint:
+        name: netdata dashboard
+    fofa: icon_hash="-182423204" || icon_hash="1585145626"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -182423204
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1585145626
+expression: r0() || r1()

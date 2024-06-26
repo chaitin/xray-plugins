@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Apache-Forrest
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Forrest
+    fofa: body="content=\"apache forrest" && body="name=\"forrest" || body="content=\"Apache Forrest" || body="name=\"Forrest" || body="name=\"forrest" || body="content=\"apache forrest" || body="<meta content=\"Apache Forrest\" name=\"Generator\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="apache forrest') && response.body_string.contains('name="forrest')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Apache Forrest')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="Forrest')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="forrest')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="apache forrest')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta content="Apache Forrest" name="Generator"')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

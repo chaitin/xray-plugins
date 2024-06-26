@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Lenovo-iomega
+manual: false
+detail:
+    fingerprint:
+        name: Lenovo-iomega
+    fofa: 'body="href=\"foldercontent.html?folder=pictures" && body="var defaultpageprefix = \"page\";" || header="set-cookie: iomega" || body="var defaultpageprefix = \"page\";" || body="href=\"foldercontent.html?folder=pictures" || title="iomega-ix2"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="foldercontent.html?folder=pictures') && response.body_string.contains('var defaultpageprefix = "page";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: iomega"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var defaultpageprefix = "page";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="foldercontent.html?folder=pictures')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iomega-ix2")
+expression: r0() || r1() || r2() || r3() || r4()

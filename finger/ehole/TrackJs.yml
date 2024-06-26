@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TrackJs
+manual: false
+detail:
+    fingerprint:
+        name: TrackJs
+    fofa: title="TrackJs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TrackJs")
+expression: r0()

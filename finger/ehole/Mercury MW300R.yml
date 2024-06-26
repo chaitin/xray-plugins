@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mercury MW300R
+manual: false
+detail:
+    fingerprint:
+        name: Mercury MW300R
+    fofa: header="Mercury MW300R" || title="Mercury MW300R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mercury MW300R"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mercury MW300R")
+expression: r0() || r1()

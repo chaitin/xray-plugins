@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Musicbox
+manual: false
+detail:
+    fingerprint:
+        name: Musicbox
+    fofa: body="<!-- THE FOLLOWING IS NEEDED FOR THE AUTO-COMPLETE SEARCH BOX -->" || body="<link rel=\"stylesheet\" href=\"template/musicboxv2.css\" type=\"text/css\">" || body="<!-- Please dont edit this unless you are advanced coder -->" || body="<tr><td align=\"left\"><a href=\"../userinfo.php?user=admin\" target=\"_blank\">My Account</a></td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- THE FOLLOWING IS NEEDED FOR THE AUTO-COMPLETE SEARCH BOX -->")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="template/musicboxv2.css" type="text/css">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Please dont edit this unless you are advanced coder -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td align="left"><a href="../userinfo.php?user=admin" target="_blank">My Account</a></td>')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Oracle CordaServer
+manual: false
+detail:
+    fingerprint:
+        name: Oracle CordaServer
+    fofa: header="Oracle CordaServer" || title="Oracle CordaServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle CordaServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oracle CordaServer")
+expression: r0() || r1()

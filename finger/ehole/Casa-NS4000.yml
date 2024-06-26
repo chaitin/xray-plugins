@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Casa-NS4000
+manual: false
+detail:
+    fingerprint:
+        name: Casa-NS4000
+    fofa: body="url=https://ns4000.twinservers.net" || header="ns4000.twinservers.net"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("url=https://ns4000.twinservers.net")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ns4000.twinservers.net"))
+expression: r0() || r1()

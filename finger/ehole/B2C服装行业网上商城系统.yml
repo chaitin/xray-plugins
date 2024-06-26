@@ -1,0 +1,16 @@
+name: fingerprint-yaml-B2C服装行业网上商城系统
+manual: false
+detail:
+    fingerprint:
+        name: B2C服装行业网上商城系统
+    fofa: title="B2C服装行业网上商城系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("B2C服装行业网上商城系统")
+expression: r0()

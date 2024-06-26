@@ -1,0 +1,30 @@
+name: fingerprint-yaml-flask
+manual: false
+detail:
+    fingerprint:
+        name: flask
+    fofa: 'header="etag: flask" && header="x-powered-by: flask" || header="x-powered-by: flask" || header="etag: flask"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("etag: flask")) && response.raw_header.bcontains(bytes("x-powered-by: flask"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: flask"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("etag: flask"))'
+expression: r0() || r1() || r2()

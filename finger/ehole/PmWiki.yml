@@ -1,0 +1,51 @@
+name: fingerprint-yaml-PmWiki
+manual: false
+detail:
+    fingerprint:
+        name: PmWiki
+    fofa: body="<span class='commentout-pmwikiorg'>" && body="<a href=\"http://www.pmwiki.org/\" target=" || header="imstime=" || body="<a href=\"http://www.pmwiki.org/\" target=" || body="<span class=\"commentout-pmwikiorg\">" || body="<!--PageLeftFmt-->" || title="pmwiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span class='commentout-pmwikiorg'>") && response.body_string.contains('<a href="http://www.pmwiki.org/" target=')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("imstime="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.pmwiki.org/" target=')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="commentout-pmwikiorg">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--PageLeftFmt-->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("pmwiki")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

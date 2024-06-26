@@ -1,0 +1,198 @@
+name: fingerprint-yaml-Dahua-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Dahua-Cameras-and-Surveillance
+    fofa: 'body="id=\"search_card_label\" for=\"search_plateenable\">车牌号码</label>" && body="dahuartsp" && body="var g_isdeviceinited = true" && body="widget/js/jquery.ui.widget.js" && body="title::com_menu.title_setup" && body="css/playbackindex.css" && body="class=\"j_content j_min_width\"" && body="j_sub_con j_loginbox" && body="overflow:hidden;background-color" && body="js/urlparser.js" && body="id=\"lab_loading\" class=\"j_load_p" && body="src=\"/cap.js\"" && body="''nav_margin''.style.visibility = ''visible" && body="web service" && body="/css/oem.css" && body="loginfoot\">web视频监控系统" && body="webapp.ability.getwebcap(''showgb28181client''" && body="class=\"ui-tip-container\" id=\"remark_modu\"" && body="class=\"login_inputbox ui-input fn-width163\"" && body="tl(\"huazhonghua\"" || body="var g_isdeviceinited = true" && body="widget/js/jquery.ui.widget.js" && body="title::com_menu.title_setup" && body="css/playbackindex.css" && body="class=\"j_content j_min_width\"" && body="j_sub_con j_loginbox" && body="overflow:hidden;background-color" && body="js/urlparser.js" && body="id=\"lab_loading\" class=\"j_load_p" && body="src=\"/cap.js\"" && body="''nav_margin''.style.visibility = ''visible" && body="web service" && body="/css/oem.css" && body="loginfoot\">web视频监控系统" && body="webapp.ability.getwebcap(''showgb28181client''" && body="class=\"ui-tip-container\" id=\"remark_modu\"" && body="class=\"login_inputbox ui-input fn-width163\"" && body="tl(\"huazhonghua\"" || header="server: dahua drs" || body="tl(\"huazhonghua\"" || body="js/urlparser.js" && body="overflow:hidden;background-color" && body="j_sub_con j_loginbox" || body="class=\"j_content j_min_width\"" && body="css/playbackindex.css" || body="id=\"search_card_label\" for=\"search_plateenable\">车牌号码</label>" || body="dahuartsp" || body="var g_isdeviceinited = true" || body="widget/js/jquery.ui.widget.js" || body="title::com_menu.title_setup" || body="css/playbackindex.css" || body="class=\"j_content j_min_width\"" || body="j_sub_con j_loginbox" || body="overflow:hidden;background-color" || body="js/urlparser.js" || body="id=\"lab_loading\" class=\"j_load_p" || body="src=\"/cap.js\"" || body="\"nav_margin\".style.visibility = \"visible" || body="web service" || body="/css/oem.css" || body="loginfoot\">web视频监控系统" || body="webapp.ability.getwebcap\"showgb28181client\"" || body="class=\"ui-tip-container\" id=\"remark_modu\"" || body="class=\"login_inputbox ui-input fn-width163\"" || body="tl\"huazhonghua\"" || header="server: dahua rtsp server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="search_card_label" for="search_plateenable">车牌号码</label>') && response.body_string.contains("dahuartsp") && response.body_string.contains("var g_isdeviceinited = true") && response.body_string.contains("widget/js/jquery.ui.widget.js") && response.body_string.contains("title::com_menu.title_setup") && response.body_string.contains("css/playbackindex.css") && response.body_string.contains('class="j_content j_min_width"') && response.body_string.contains("j_sub_con j_loginbox") && response.body_string.contains("overflow:hidden;background-color") && response.body_string.contains("js/urlparser.js") && response.body_string.contains('id="lab_loading" class="j_load_p') && response.body_string.contains('src="/cap.js"') && response.body_string.contains("'nav_margin'.style.visibility = 'visible") && response.body_string.contains("web service") && response.body_string.contains("/css/oem.css") && response.body_string.contains('loginfoot">web视频监控系统') && response.body_string.contains("webapp.ability.getwebcap('showgb28181client'") && response.body_string.contains('class="ui-tip-container" id="remark_modu"') && response.body_string.contains('class="login_inputbox ui-input fn-width163"') && response.body_string.contains('tl("huazhonghua"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var g_isdeviceinited = true") && response.body_string.contains("widget/js/jquery.ui.widget.js") && response.body_string.contains("title::com_menu.title_setup") && response.body_string.contains("css/playbackindex.css") && response.body_string.contains('class="j_content j_min_width"') && response.body_string.contains("j_sub_con j_loginbox") && response.body_string.contains("overflow:hidden;background-color") && response.body_string.contains("js/urlparser.js") && response.body_string.contains('id="lab_loading" class="j_load_p') && response.body_string.contains('src="/cap.js"') && response.body_string.contains("'nav_margin'.style.visibility = 'visible") && response.body_string.contains("web service") && response.body_string.contains("/css/oem.css") && response.body_string.contains('loginfoot">web视频监控系统') && response.body_string.contains("webapp.ability.getwebcap('showgb28181client'") && response.body_string.contains('class="ui-tip-container" id="remark_modu"') && response.body_string.contains('class="login_inputbox ui-input fn-width163"') && response.body_string.contains('tl("huazhonghua"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dahua drs"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('tl("huazhonghua"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/urlparser.js") && response.body_string.contains("overflow:hidden;background-color") && response.body_string.contains("j_sub_con j_loginbox")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="j_content j_min_width"') && response.body_string.contains("css/playbackindex.css")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="search_card_label" for="search_plateenable">车牌号码</label>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dahuartsp")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var g_isdeviceinited = true")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("widget/js/jquery.ui.widget.js")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("title::com_menu.title_setup")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("css/playbackindex.css")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="j_content j_min_width"')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("j_sub_con j_loginbox")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("overflow:hidden;background-color")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/urlparser.js")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="lab_loading" class="j_load_p')
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/cap.js"')
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('"nav_margin".style.visibility = "visible')
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("web service")
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/oem.css")
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('loginfoot">web视频监控系统')
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('webapp.ability.getwebcap"showgb28181client"')
+    r23:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="ui-tip-container" id="remark_modu"')
+    r24:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="login_inputbox ui-input fn-width163"')
+    r25:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('tl"huazhonghua"')
+    r26:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: dahua rtsp server"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25() || r26()

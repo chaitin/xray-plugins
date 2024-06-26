@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM WebSphere Portal
+manual: false
+detail:
+    fingerprint:
+        name: IBM WebSphere Portal
+    fofa: header="IBM WebSphere Portal" || title="IBM WebSphere Portal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM WebSphere Portal"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBM WebSphere Portal")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MIPCMS
+manual: false
+detail:
+    fingerprint:
+        name: MIPCMS
+    fofa: title="MIPCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MIPCMS")
+expression: r0()

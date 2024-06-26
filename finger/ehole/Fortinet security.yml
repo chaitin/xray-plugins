@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Fortinet security
+manual: false
+detail:
+    fingerprint:
+        name: Fortinet security
+    fofa: header="Fortinet security" || title="Fortinet security"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fortinet security"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fortinet security")
+expression: r0() || r1()

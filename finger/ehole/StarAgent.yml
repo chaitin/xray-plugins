@@ -1,0 +1,44 @@
+name: fingerprint-yaml-StarAgent
+manual: false
+detail:
+    fingerprint:
+        name: StarAgent
+    fofa: body="window.location = \"/user/home.jsx\";" && body="href=\"/aisc/aisc.css" || header="StarAgent" || body="href=\"/aisc/aisc.css" || body="window.location = \"/user/home.jsx\";" || title="StarAgent"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "/user/home.jsx";') && response.body_string.contains('href="/aisc/aisc.css')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("StarAgent"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/aisc/aisc.css')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "/user/home.jsx";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("StarAgent")
+expression: r0() || r1() || r2() || r3() || r4()

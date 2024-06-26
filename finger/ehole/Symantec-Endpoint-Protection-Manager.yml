@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Symantec-Endpoint-Protection-Manager
+manual: false
+detail:
+    fingerprint:
+        name: Symantec-Endpoint-Protection-Manager
+    fofa: 'body="<div style=\"font-family: tahoma, verdana, arial, helvetica, sans-serif; font-size:11px;\">version" && body="/portal/about.jsp" && body="<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->" && body="<tr><td align=\"left\" style=\"font-family:arial; font-size:18pt\"><b>symantec endpoint protection manager<br>web access</b></td></tr>" || header="symantec endpoint protection manager" || body="<tr><td align=\"left\" style=\"font-family:arial; font-size:18pt\"><b>symantec endpoint protection manager<br>web access</b></td></tr>" || body="<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->" || body="/portal/about.jsp" || body="<div style=\"font-family: tahoma, verdana, arial, helvetica, sans-serif; font-size:11px;\">version" || body="/portal/about.jsp" && body="<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->" || header="server: sepm"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div style="font-family: tahoma, verdana, arial, helvetica, sans-serif; font-size:11px;">version'') && response.body_string.contains("/portal/about.jsp") && response.body_string.contains("<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->") && response.body_string.contains(''<tr><td align="left" style="font-family:arial; font-size:18pt"><b>symantec endpoint protection manager<br>web access</b></td></tr>'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("symantec endpoint protection manager"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td align="left" style="font-family:arial; font-size:18pt"><b>symantec endpoint protection manager<br>web access</b></td></tr>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/portal/about.jsp")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div style="font-family: tahoma, verdana, arial, helvetica, sans-serif; font-size:11px;">version'')'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/portal/about.jsp") && response.body_string.contains("<!-- now, if it is ie on windows platform, we check to see which version of jws is installed -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sepm"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

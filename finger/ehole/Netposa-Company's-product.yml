@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Netposa-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: Netposa-Company's-product
+    fofa: 'body="<h1>万解 - 东方网力: </h1>" && body="<span class=\"copyright\">东方网力科技股份有限公司" && body="<a href=\"http://www.netposa.com/\">关于我们</a>" && body="<span class=\"big\">东方网力科技股份有限公司" || body="<span class=\"big\">东方网力科技股份有限公司" || body="<a href=\"http://www.netposa.com/\">关于我们</a>" || body="<span class=\"copyright\">东方网力科技股份有限公司" || body="<h1>万解 - 东方网力: </h1>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<h1>万解 - 东方网力: </h1>") && response.body_string.contains(''<span class="copyright">东方网力科技股份有限公司'') && response.body_string.contains(''<a href="http://www.netposa.com/">关于我们</a>'') && response.body_string.contains(''<span class="big">东方网力科技股份有限公司'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="big">东方网力科技股份有限公司')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.netposa.com/">关于我们</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="copyright">东方网力科技股份有限公司')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<h1>万解 - 东方网力: </h1>")'
+expression: r0() || r1() || r2() || r3() || r4()

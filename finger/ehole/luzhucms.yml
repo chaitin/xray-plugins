@@ -1,0 +1,16 @@
+name: fingerprint-yaml-luzhucms
+manual: false
+detail:
+    fingerprint:
+        name: luzhucms
+    fofa: title="luzhucms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("luzhucms")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Microsoft Outlook
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft Outlook
+    fofa: icon_hash="-1249852061"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1249852061
+expression: r0()

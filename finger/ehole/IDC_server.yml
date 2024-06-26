@@ -1,0 +1,65 @@
+name: fingerprint-yaml-IDC_server
+manual: false
+detail:
+    fingerprint:
+        name: IDC_server
+    fofa: 'header="location: https://54.79.99.238:2087/" && header="location: https://www.belleproperty.com/lane-cove/" || header="location: https://www.belleproperty.com/lane-cove/" || header="location: https://13.236.211.161/" || header="set-cookie: asp.net_sessionid=tjrshwv3w1sp0n4pbjvw0w0v; path=/; httponly; samesite=lax" || header="location: https://www.xczimi.com/" || header="location: https://35.183.123.252:80/" || header="link: ; rel=\"https://api.w.org/\", ; rel=shortlink" || header="location: https://54.79.99.238:2087/"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://54.79.99.238:2087/")) && response.raw_header.bcontains(bytes("location: https://www.belleproperty.com/lane-cove/"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://www.belleproperty.com/lane-cove/"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://13.236.211.161/"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: asp.net_sessionid=tjrshwv3w1sp0n4pbjvw0w0v; path=/; httponly; samesite=lax"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://www.xczimi.com/"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://35.183.123.252:80/"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes(''link: ; rel="https://api.w.org/", ; rel=shortlink''))'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("location: https://54.79.99.238:2087/"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

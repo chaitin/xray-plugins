@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-ProLiant-ML350
+manual: false
+detail:
+    fingerprint:
+        name: HP-ProLiant-ML350
+    fofa: header="proliant-ml350"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("proliant-ml350"))
+expression: r0()

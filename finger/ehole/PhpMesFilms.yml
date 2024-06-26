@@ -1,0 +1,37 @@
+name: fingerprint-yaml-PhpMesFilms
+manual: false
+detail:
+    fingerprint:
+        name: PhpMesFilms
+    fofa: body="<title>PhpMesFilms - Administration</title>" || body="<title>PhpMesFilms - Liste</title>" || body="<title>PhpMesFilms - Fiche film</title>" || body="powered by <a href=\"http://phpmesfilms.dyndns.org/\">PhpMesFilms</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PhpMesFilms - Administration</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PhpMesFilms - Liste</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PhpMesFilms - Fiche film</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://phpmesfilms.dyndns.org/">PhpMesFilms</a>')
+expression: r0() || r1() || r2() || r3()

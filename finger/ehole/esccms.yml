@@ -1,0 +1,16 @@
+name: fingerprint-yaml-esccms
+manual: false
+detail:
+    fingerprint:
+        name: esccms
+    fofa: title="esccms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("esccms")
+expression: r0()

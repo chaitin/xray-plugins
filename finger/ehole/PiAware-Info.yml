@@ -1,0 +1,44 @@
+name: fingerprint-yaml-PiAware-Info
+manual: false
+detail:
+    fingerprint:
+        name: PiAware-Info
+    fofa: body="piaware status" && body="<%= t('this is a piaware ads-b feeder' %>." || body="<%= t(\"this is a piaware ads-b feeder\") %>." || body="piaware status" || body="<%= t\"this is a piaware ads-b feeder\" %>." || title="piaware info"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("piaware status") && response.body_string.contains("<%= t('this is a piaware ads-b feeder' %>.")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<%= t("this is a piaware ads-b feeder") %>.')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("piaware status")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<%= t"this is a piaware ads-b feeder" %>.')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("piaware info")
+expression: r0() || r1() || r2() || r3() || r4()

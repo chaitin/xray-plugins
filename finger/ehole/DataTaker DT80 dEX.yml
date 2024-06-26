@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DataTaker DT80 dEX
+manual: false
+detail:
+    fingerprint:
+        name: DataTaker DT80 dEX
+    fofa: header="DataTaker DT80 dEX" || title="DataTaker DT80 dEX"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DataTaker DT80 dEX"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DataTaker DT80 dEX")
+expression: r0() || r1()

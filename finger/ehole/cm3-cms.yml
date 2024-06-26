@@ -1,0 +1,72 @@
+name: fingerprint-yaml-cm3-cms
+manual: false
+detail:
+    fingerprint:
+        name: cm3-cms
+    fofa: 'body="content=\"cm3 content manager" || header="cm3session" || body="top.cm2_home.location.href" || body="name=\"cm2_top\" id=\"cm2_top\"" || body="name=\"cm25_main\"" || body="name=\"id=\"cm3top\" name=\"cm3top\"" || body="logo_cm3_top.gif\" border=\"0\"" || body="alt=\"Content management system: cm3 built and powered\"" || body="cm3powered_green.gif\""'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="cm3 content manager')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cm3session"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("top.cm2_home.location.href")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="cm2_top" id="cm2_top"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="cm25_main"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="id="cm3top" name="cm3top"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('logo_cm3_top.gif" border="0"')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''alt="Content management system: cm3 built and powered"'')'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('cm3powered_green.gif"')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

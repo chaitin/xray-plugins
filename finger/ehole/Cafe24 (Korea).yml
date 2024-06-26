@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cafe24 (Korea)
+manual: false
+detail:
+    fingerprint:
+        name: Cafe24 (Korea)
+    fofa: icon_hash="1251810433"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1251810433
+expression: r0()

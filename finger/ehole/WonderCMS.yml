@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WonderCMS
+manual: false
+detail:
+    fingerprint:
+        name: WonderCMS
+    fofa: header="WonderCMS" || title="WonderCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WonderCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WonderCMS")
+expression: r0() || r1()

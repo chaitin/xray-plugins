@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TTIC-webcam
+manual: false
+detail:
+    fingerprint:
+        name: TTIC-webcam
+    fofa: title="ttic webserver client"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ttic webserver client")
+expression: r0()

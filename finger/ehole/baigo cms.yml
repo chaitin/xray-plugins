@@ -1,0 +1,30 @@
+name: fingerprint-yaml-baigo cms
+manual: false
+detail:
+    fingerprint:
+        name: baigo cms
+    fofa: header="baigo cms" || title="baigo cms" || title="baigo_CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("baigo cms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("baigo cms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("baigo_CMS")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-youBBS
+manual: false
+detail:
+    fingerprint:
+        name: youBBS
+    fofa: title="youBBS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("youBBS")
+expression: r0()

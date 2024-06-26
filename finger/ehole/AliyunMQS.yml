@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AliyunMQS
+manual: false
+detail:
+    fingerprint:
+        name: AliyunMQS
+    fofa: 'header="server: aliyunmqs"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: aliyunmqs"))'
+expression: r0()

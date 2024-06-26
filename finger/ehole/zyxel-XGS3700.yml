@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zyxel-XGS3700
+manual: false
+detail:
+    fingerprint:
+        name: zyxel-XGS3700
+    fofa: header="realm=\"xgs3700"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="xgs3700'))
+expression: r0()

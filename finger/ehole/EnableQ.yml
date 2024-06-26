@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EnableQ
+manual: false
+detail:
+    fingerprint:
+        name: EnableQ
+    fofa: body="/enableq.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/enableq.css")
+expression: r0()

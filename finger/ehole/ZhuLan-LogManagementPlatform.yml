@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZhuLan-LogManagementPlatform
+manual: false
+detail:
+    fingerprint:
+        name: ZhuLan-LogManagementPlatform
+    fofa: title="琢蓝日志大数据管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("琢蓝日志大数据管理平台")
+expression: r0()

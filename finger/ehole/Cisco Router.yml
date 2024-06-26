@@ -1,0 +1,121 @@
+name: fingerprint-yaml-Cisco Router
+manual: false
+detail:
+    fingerprint:
+        name: Cisco Router
+    fofa: icon_hash="-299287097" || body="router.copyright" && body="cisco_logo_about.png" && body="src='/image/small_bg.jpg'" && body="src=\"/images/login_progress.gif" || header="realm=\"pa cisco router" && header="level_1_or_view_access" || header="Cisco router" || body="src=\"/image/small_bg.jpg\"" || body="cisco_logo_about.png" && body="cisco" && body="router.copyright" || body="router.copyright" || body="cisco_logo_about.png" || body="src=\"/images/login_progress.gif" || header="level_1_or_view_access" || header="level_15,view_access" || header="realm=\"level_15_access" || header="realm=\"level 15 access" || header="realm=\"cisco-router" || header="realm=\"pa cisco router" || title="Cisco router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -299287097
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("router.copyright") && response.body_string.contains("cisco_logo_about.png") && response.body_string.contains("src='/image/small_bg.jpg'") && response.body_string.contains('src="/images/login_progress.gif')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="pa cisco router')) && response.raw_header.bcontains(bytes("level_1_or_view_access"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco router"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/image/small_bg.jpg"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cisco_logo_about.png") && response.body_string.contains("cisco") && response.body_string.contains("router.copyright")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("router.copyright")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cisco_logo_about.png")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images/login_progress.gif')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("level_1_or_view_access"))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("level_15,view_access"))
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="level_15_access'))
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="level 15 access'))
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="cisco-router'))
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="pa cisco router'))
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cisco router")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15()

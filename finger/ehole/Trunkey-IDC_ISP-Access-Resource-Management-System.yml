@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Trunkey-IDC_ISP-Access-Resource-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: Trunkey-IDC/ISP-Access-Resource-Management-System
+    fofa: body="href=\"http://www.trunkey.com/\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.trunkey.com/"')
+expression: r0()

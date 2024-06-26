@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Event Calendar
+manual: false
+detail:
+    fingerprint:
+        name: Event Calendar
+    fofa: header="Event Calendar" || title="Event Calendar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Event Calendar"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Event Calendar")
+expression: r0() || r1()

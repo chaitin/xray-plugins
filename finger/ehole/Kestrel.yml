@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kestrel
+manual: false
+detail:
+    fingerprint:
+        name: Kestrel
+    fofa: header="Kestrel" || title="Kestrel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kestrel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kestrel")
+expression: r0() || r1()

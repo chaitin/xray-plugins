@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Tektroniks
+manual: false
+detail:
+    fingerprint:
+        name: Tektroniks
+    fofa: 'body="<td width=\"100\"><label id=\"au_login_id_label\" for=\"au_login_id\" datatype=\"\" required=\"true\">user name:</label></td>" || header="basic realm=\"datacentre" || body="<p>Transfering you to login page in 2 seconds...</p>" || body="Basic realm=\"Tektroniks\"" || header="server: tektroniks"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td width="100"><label id="au_login_id_label" for="au_login_id" datatype="" required="true">user name:</label></td>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="datacentre'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<p>Transfering you to login page in 2 seconds...</p>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Basic realm="Tektroniks"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tektroniks"))'
+expression: r0() || r1() || r2() || r3() || r4()

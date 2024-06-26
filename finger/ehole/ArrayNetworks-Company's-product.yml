@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ArrayNetworks-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: ArrayNetworks-Company's-product
+    fofa: header="realm=\"array networks webui"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="array networks webui'))
+expression: r0()

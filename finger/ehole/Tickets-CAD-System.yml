@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Tickets-CAD-System
+manual: false
+detail:
+    fingerprint:
+        name: Tickets-CAD-System
+    fofa: body="<HEAD><TITLE>Tickets - Top Frame</TITLE>" || body="<HEAD><TITLE>Tickets - Login Module</TITLE>" || body="<TR CLASS=\"even\"><TD ROWSPAN=6 VALIGN=\"middle\" ALIGN=\"left\" bgcolor=#EFEFEF><BR /><BR />&nbsp;&nbsp;<IMG BORDER=0 SRC=\"open_source_button.png\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HEAD><TITLE>Tickets - Top Frame</TITLE>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HEAD><TITLE>Tickets - Login Module</TITLE>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TR CLASS="even"><TD ROWSPAN=6 VALIGN="middle" ALIGN="left" bgcolor=#EFEFEF><BR /><BR />&nbsp;&nbsp;<IMG BORDER=0 SRC="open_source_button.png">')
+expression: r0() || r1() || r2()

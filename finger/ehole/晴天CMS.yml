@@ -1,0 +1,23 @@
+name: fingerprint-yaml-晴天CMS
+manual: false
+detail:
+    fingerprint:
+        name: 晴天CMS
+    fofa: header="晴天CMS" || title="晴天CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("晴天CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("晴天CMS")
+expression: r0() || r1()

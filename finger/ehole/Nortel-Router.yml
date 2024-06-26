@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Nortel-Router
+manual: false
+detail:
+    fingerprint:
+        name: Nortel-Router
+    fofa: 'body="nowrap>router model:" && body="about nortel secure router" || body="about nortel secure router" || body="nowrap>router model:" || body="<td class=\"greytitle\" nowrap><b>About Nortel Secure Router</b></td>" || header="server: nortel http server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nowrap>router model:") && response.body_string.contains("about nortel secure router")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("about nortel secure router")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nowrap>router model:")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="greytitle" nowrap><b>About Nortel Secure Router</b></td>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nortel http server"))'
+expression: r0() || r1() || r2() || r3() || r4()

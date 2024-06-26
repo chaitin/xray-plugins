@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Astaro-Security-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Astaro-Security-Gateway
+    fofa: body="/acc_aggregated_reporting.js" || body="wfe/asg/js/app_selector.js?t=" || body="/doc/astaro-license.txt" || body="/js/_variables_from_backend.js?t=" || body="<script src=\"wfe/asg/js/app_selector.js?t=" || body="<script src=\"wfe/asg/js/_variables_from_backend.js?t=" || title="astaro security gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/acc_aggregated_reporting.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wfe/asg/js/app_selector.js?t=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/doc/astaro-license.txt")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/js/_variables_from_backend.js?t=")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="wfe/asg/js/app_selector.js?t=')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="wfe/asg/js/_variables_from_backend.js?t=')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("astaro security gateway")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

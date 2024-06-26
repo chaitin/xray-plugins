@@ -1,0 +1,16 @@
+name: fingerprint-yaml-网游语音公会创业系统正式版
+manual: false
+detail:
+    fingerprint:
+        name: 网游语音公会创业系统正式版
+    fofa: title="网游语音公会创业系统正式版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网游语音公会创业系统正式版")
+expression: r0()

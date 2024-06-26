@@ -1,0 +1,72 @@
+name: fingerprint-yaml-lkpowerOA
+manual: false
+detail:
+    fingerprint:
+        name: lkpowerOA
+    fofa: body="/lksys_windowcontrolscript.js" && body="onload=\"lksys_pubmaxwin(" && body="id=\"lkblogin\" href=\"javascript:__dopostback('lkblogin',''" && body="identityvalidator" && body="hhctrlmax" || body="hhctrlmax" && body="identityvalidator" || body="id=\"lkblogin\" href=\"javascript:__dopostback(\"lkblogin\",\"\")" || body="onload=\"lksys_pubmaxwin()" || body="/lksys_windowcontrolscript.js" || body="onload=\"lksys_pubmaxwin" || body="id=\"lkblogin\" href=\"javascript:__dopostback\"lkblogin\",\"\"" || body="identityvalidator" || body="hhctrlmax"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/lksys_windowcontrolscript.js") && response.body_string.contains('onload="lksys_pubmaxwin(') && response.body_string.contains("id=\"lkblogin\" href=\"javascript:__dopostback('lkblogin',''") && response.body_string.contains("identityvalidator") && response.body_string.contains("hhctrlmax")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hhctrlmax") && response.body_string.contains("identityvalidator")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="lkblogin" href="javascript:__dopostback("lkblogin","")')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onload="lksys_pubmaxwin()')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/lksys_windowcontrolscript.js")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onload="lksys_pubmaxwin')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="lkblogin" href="javascript:__dopostback"lkblogin",""')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("identityvalidator")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hhctrlmax")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

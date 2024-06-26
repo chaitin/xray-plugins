@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Emerson-permasense
+manual: false
+detail:
+    fingerprint:
+        name: Emerson-permasense
+    fofa: body="href=\"/permasense/app/webroot/flot/css/layout.print.ie.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/permasense/app/webroot/flot/css/layout.print.ie.css')
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Bigcommerce
+manual: false
+detail:
+    fingerprint:
+        name: Bigcommerce
+    fofa: header="SHOP_SESSION_TOKEN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SHOP_SESSION_TOKEN"))
+expression: r0()

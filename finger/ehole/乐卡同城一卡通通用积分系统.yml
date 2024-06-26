@@ -1,0 +1,16 @@
+name: fingerprint-yaml-乐卡同城一卡通通用积分系统
+manual: false
+detail:
+    fingerprint:
+        name: 乐卡同城一卡通通用积分系统
+    fofa: title="乐卡同城一卡通通用积分系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("乐卡同城一卡通通用积分系统")
+expression: r0()

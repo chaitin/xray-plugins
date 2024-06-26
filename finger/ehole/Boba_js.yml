@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Boba_js
+manual: false
+detail:
+    fingerprint:
+        name: Boba.js
+    fofa: title="Boba.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Boba.js")
+expression: r0()

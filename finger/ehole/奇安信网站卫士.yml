@@ -1,0 +1,23 @@
+name: fingerprint-yaml-奇安信网站卫士
+manual: false
+detail:
+    fingerprint:
+        name: 奇安信网站卫士
+    fofa: header="奇安信网站卫士" || title="奇安信网站卫士"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("奇安信网站卫士"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("奇安信网站卫士")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-eyoucms
+manual: false
+detail:
+    fingerprint:
+        name: eyoucms
+    fofa: body="powered by eyoucms" && body="name=\"generator\" content=\"eyoucms" || body="name=\"generator\" content=\"eyoucms" || body="powered by eyoucms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by eyoucms") && response.body_string.contains('name="generator" content="eyoucms')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="generator" content="eyoucms')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by eyoucms")
+expression: r0() || r1() || r2()

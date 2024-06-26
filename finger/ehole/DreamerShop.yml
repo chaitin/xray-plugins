@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DreamerShop
+manual: false
+detail:
+    fingerprint:
+        name: DreamerShop
+    fofa: header="DreamerShop" || title="DreamerShop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DreamerShop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DreamerShop")
+expression: r0() || r1()

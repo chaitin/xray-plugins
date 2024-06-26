@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VisualRoute NOC Edition
+manual: false
+detail:
+    fingerprint:
+        name: VisualRoute NOC Edition
+    fofa: header="VisualRoute NOC Edition" || title="VisualRoute NOC Edition"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("VisualRoute NOC Edition"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VisualRoute NOC Edition")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OECMS企业网站系统
+manual: false
+detail:
+    fingerprint:
+        name: OECMS企业网站系统
+    fofa: header="OECMS企业网站系统" || title="OECMS企业网站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OECMS企业网站系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OECMS企业网站系统")
+expression: r0() || r1()

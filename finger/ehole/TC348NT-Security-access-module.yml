@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TC348NT-Security-access-module
+manual: false
+detail:
+    fingerprint:
+        name: TC348NT-Security-access-module
+    fofa: title="tc348nt pannel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tc348nt pannel")
+expression: r0()

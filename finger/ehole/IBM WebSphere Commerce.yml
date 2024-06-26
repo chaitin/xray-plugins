@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM WebSphere Commerce
+manual: false
+detail:
+    fingerprint:
+        name: IBM WebSphere Commerce
+    fofa: header="IBM WebSphere Commerce" || title="IBM WebSphere Commerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM WebSphere Commerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBM WebSphere Commerce")
+expression: r0() || r1()

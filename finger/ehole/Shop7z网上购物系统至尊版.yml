@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Shop7z网上购物系统至尊版
+manual: false
+detail:
+    fingerprint:
+        name: Shop7z网上购物系统至尊版
+    fofa: header="Shop7z网上购物系统至尊版" || title="Shop7z网上购物系统至尊版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Shop7z网上购物系统至尊版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Shop7z网上购物系统至尊版")
+expression: r0() || r1()

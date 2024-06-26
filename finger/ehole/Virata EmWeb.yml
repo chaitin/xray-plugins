@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Virata EmWeb
+manual: false
+detail:
+    fingerprint:
+        name: Virata EmWeb
+    fofa: header="Virata EmWeb" || title="Virata EmWeb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Virata EmWeb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Virata EmWeb")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DGN1000v3
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DGN1000v3
+    fofa: header="NETGEAR DGN1000v3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DGN1000v3"))
+expression: r0()

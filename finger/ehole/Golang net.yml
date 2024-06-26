@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Golang net
+manual: false
+detail:
+    fingerprint:
+        name: Golang net
+    fofa: header="Golang net" || title="Golang net"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Golang net"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Golang net")
+expression: r0() || r1()

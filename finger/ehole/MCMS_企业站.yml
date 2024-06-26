@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MCMS_企业站
+manual: false
+detail:
+    fingerprint:
+        name: MCMS_企业站
+    fofa: title="MCMS_企业站"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MCMS_企业站")
+expression: r0()

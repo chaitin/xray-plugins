@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CreateLiveCms3_0
+manual: false
+detail:
+    fingerprint:
+        name: CreateLiveCms3.0
+    fofa: title="CreateLive Cms 3.0"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CreateLive Cms 3.0")
+expression: r0()

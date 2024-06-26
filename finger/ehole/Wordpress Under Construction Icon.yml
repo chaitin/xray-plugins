@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Wordpress Under Construction Icon
+manual: false
+detail:
+    fingerprint:
+        name: Wordpress Under Construction Icon
+    fofa: icon_hash="191654058"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 191654058
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Barracuda
+manual: false
+detail:
+    fingerprint:
+        name: Barracuda
+    fofa: icon_hash="1436966696"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1436966696
+expression: r0()

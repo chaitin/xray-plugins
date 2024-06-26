@@ -1,0 +1,23 @@
+name: fingerprint-yaml-KobiMaster
+manual: false
+detail:
+    fingerprint:
+        name: KobiMaster
+    fofa: header="KobiMaster" || title="KobiMaster"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KobiMaster"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KobiMaster")
+expression: r0() || r1()

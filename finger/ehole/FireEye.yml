@@ -1,0 +1,72 @@
+name: fingerprint-yaml-FireEye
+manual: false
+detail:
+    fingerprint:
+        name: FireEye
+    fofa: icon_hash="95271369" || icon_hash="1476335317" || icon_hash="-842192932" || icon_hash="105083909" || icon_hash="240606739" || icon_hash="2121539357" || header="fireeye" || body="FireEye" || body="fireeye" && body="mobsc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 95271369
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1476335317
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -842192932
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 105083909
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 240606739
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2121539357
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fireeye"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("FireEye")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fireeye") && response.body_string.contains("mobsc")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

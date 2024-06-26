@@ -1,0 +1,30 @@
+name: fingerprint-yaml-YONYOU NC
+manual: false
+detail:
+    fingerprint:
+        name: YONYOU NC
+    fofa: body="uclient.yonyou.com" && body="UClient" || body="url=nccloud" || body="YONYOU NC" && body="img/logo_small.ico"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("uclient.yonyou.com") && response.body_string.contains("UClient")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("url=nccloud")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("YONYOU NC") && response.body_string.contains("img/logo_small.ico")
+expression: r0() || r1() || r2()

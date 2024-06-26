@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Easy-File-Sharing-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Easy-File-Sharing-Web-Server
+    fofa: 'header="server: easy file sharing web server" || header="Easy File Sharing Web Server" || header="easy file sharing web server" || title="easy file sharing web server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: easy file sharing web server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Easy File Sharing Web Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("easy file sharing web server"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("easy file sharing web server")
+expression: r0() || r1() || r2() || r3()

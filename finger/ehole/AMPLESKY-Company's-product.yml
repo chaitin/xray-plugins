@@ -1,0 +1,30 @@
+name: fingerprint-yaml-AMPLESKY-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: AMPLESKY-Company's-product
+    fofa: body="var fullmessage = \"天地阳光通信科技（北京）有限公司" || title="流媒体单元管理平台---天地阳光通信科技（北京）有限公司" || title="amplesky tc5000d"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var fullmessage = "天地阳光通信科技（北京）有限公司')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("流媒体单元管理平台---天地阳光通信科技（北京）有限公司")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("amplesky tc5000d")
+expression: r0() || r1() || r2()

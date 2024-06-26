@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Moxa Nport串口服务器
+manual: false
+detail:
+    fingerprint:
+        name: Moxa Nport串口服务器
+    fofa: header="MoxaHttp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MoxaHttp"))
+expression: r0()

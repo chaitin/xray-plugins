@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rowisoft-skyBlue
+manual: false
+detail:
+    fingerprint:
+        name: Rowisoft-skyBlue
+    fofa: 'header="server: rowisoft skyblue"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rowisoft skyblue"))'
+expression: r0()

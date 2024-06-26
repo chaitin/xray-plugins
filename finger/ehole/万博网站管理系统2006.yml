@@ -1,0 +1,16 @@
+name: fingerprint-yaml-万博网站管理系统2006
+manual: false
+detail:
+    fingerprint:
+        name: 万博网站管理系统2006
+    fofa: title="万博网站管理系统2006"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("万博网站管理系统2006")
+expression: r0()

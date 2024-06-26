@@ -1,0 +1,16 @@
+name: fingerprint-yaml-InfiNet Wireless _ WANFleX (Network)
+manual: false
+detail:
+    fingerprint:
+        name: InfiNet Wireless | WANFleX (Network)
+    fofa: icon_hash="1648531157"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1648531157
+expression: r0()

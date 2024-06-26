@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Clarity
+manual: false
+detail:
+    fingerprint:
+        name: Clarity
+    fofa: header="Clarity" || title="Clarity"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Clarity"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Clarity")
+expression: r0() || r1()

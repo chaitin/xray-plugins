@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PANSITE
+manual: false
+detail:
+    fingerprint:
+        name: PANSITE
+    fofa: header="PANSITE" || title="PANSITE"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PANSITE"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PANSITE")
+expression: r0() || r1()

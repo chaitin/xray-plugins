@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lussumo-Vanilla
+manual: false
+detail:
+    fingerprint:
+        name: Lussumo-Vanilla
+    fofa: 'header="x-powered-by: lussumo vanilla"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: lussumo vanilla"))'
+expression: r0()

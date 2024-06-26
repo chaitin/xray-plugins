@@ -1,0 +1,16 @@
+name: fingerprint-yaml-佳蓝人工智能开源框架
+manual: false
+detail:
+    fingerprint:
+        name: 佳蓝人工智能开源框架
+    fofa: title="佳蓝人工智能开源框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("佳蓝人工智能开源框架")
+expression: r0()

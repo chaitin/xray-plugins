@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Open-Source-Ticket-Request-System
+manual: false
+detail:
+    fingerprint:
+        name: Open-Source-Ticket-Request-System
+    fofa: 'body="href=\"mailto:otrs@bearingpoint.com" && body="src=\"/otrs-web/images/" || body="src=\"/otrs-web/images/" || body="href=\"mailto:otrs@bearingpoint.com" || body="<title>OTRS  :: Login</title>" || title="otrs  :: login"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mailto:otrs@bearingpoint.com') && response.body_string.contains('src="/otrs-web/images/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/otrs-web/images/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="mailto:otrs@bearingpoint.com')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>OTRS  :: Login</title>")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("otrs  :: login")'
+expression: r0() || r1() || r2() || r3() || r4()

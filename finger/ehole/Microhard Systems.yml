@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Microhard Systems
+manual: false
+detail:
+    fingerprint:
+        name: Microhard Systems
+    fofa: icon_hash="-1723752240"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1723752240
+expression: r0()

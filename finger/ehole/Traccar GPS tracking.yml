@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Traccar GPS tracking
+manual: false
+detail:
+    fingerprint:
+        name: Traccar GPS tracking
+    fofa: icon_hash="-335153896"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -335153896
+expression: r0()

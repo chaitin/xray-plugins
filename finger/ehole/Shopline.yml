@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Shopline
+manual: false
+detail:
+    fingerprint:
+        name: Shopline
+    fofa: header="Shopline" || title="Shopline"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Shopline"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Shopline")
+expression: r0() || r1()

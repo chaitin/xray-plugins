@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PCS-G50-Web-Control
+manual: false
+detail:
+    fingerprint:
+        name: PCS-G50-Web-Control
+    fofa: header="realm=\"pcs-g50 web control"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="pcs-g50 web control'))
+expression: r0()

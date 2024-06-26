@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LiteSpeed
+manual: false
+detail:
+    fingerprint:
+        name: LiteSpeed
+    fofa: 'header="server: litespeed" || header="Server:LiteSpeed"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: litespeed"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:LiteSpeed"))
+expression: r0() || r1()

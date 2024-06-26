@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CubeCoders McMyAdmin
+manual: false
+detail:
+    fingerprint:
+        name: CubeCoders McMyAdmin
+    fofa: header="CubeCoders McMyAdmin" || title="CubeCoders McMyAdmin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CubeCoders McMyAdmin"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CubeCoders McMyAdmin")
+expression: r0() || r1()

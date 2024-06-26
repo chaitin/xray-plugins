@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Topsec-Single-Sign-On
+manual: false
+detail:
+    fingerprint:
+        name: Topsec-Single-Sign-On
+    fofa: title="topsec单点登录系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("topsec单点登录系统")
+expression: r0()

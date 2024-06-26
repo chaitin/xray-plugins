@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Foosun
+manual: false
+detail:
+    fingerprint:
+        name: Foosun
+    fofa: body="created by dotnetcms" && body="powered by www.foosun.net,products:foosun content manage system" || body="Created by DotNetCMS" || body="For Foosun" || body="Powered by www.Foosun.net,Products:Foosun Content Manage system" || body="foosun" || body="powered by www.foosun.net,products:foosun content manage system" || body="for foosun" || body="created by dotnetcms" || body="created by dotnetcms" && body="for foosun"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("created by dotnetcms") && response.body_string.contains("powered by www.foosun.net,products:foosun content manage system")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Created by DotNetCMS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("For Foosun")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by www.Foosun.net,Products:Foosun Content Manage system")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("foosun")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by www.foosun.net,products:foosun content manage system")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("for foosun")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("created by dotnetcms")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("created by dotnetcms") && response.body_string.contains("for foosun")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

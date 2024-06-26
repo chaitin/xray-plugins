@@ -1,0 +1,44 @@
+name: fingerprint-yaml-NETGEAR-WNDR3400v3
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-WNDR3400v3
+    fofa: body="netgear wndr3400v3&nbsp;" || header="netgear wndr3400v3" || header="NETGEAR WNDR3400v3" || body="netgear wndr3400v3&nbsp;" && body="var mmc = {" || title="netgear router wndr3400v3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netgear wndr3400v3&nbsp;")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear wndr3400v3"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WNDR3400v3"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netgear wndr3400v3&nbsp;") && response.body_string.contains("var mmc = {")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear router wndr3400v3")
+expression: r0() || r1() || r2() || r3() || r4()

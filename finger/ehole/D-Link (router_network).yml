@@ -1,0 +1,30 @@
+name: fingerprint-yaml-D-Link (router_network)
+manual: false
+detail:
+    fingerprint:
+        name: D-Link (router/network)
+    fofa: icon_hash="1703788174" || icon_hash="517158172" || icon_hash="1038500535"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1703788174
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 517158172
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1038500535
+expression: r0() || r1() || r2()

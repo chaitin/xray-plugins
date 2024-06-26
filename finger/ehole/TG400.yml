@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TG400
+manual: false
+detail:
+    fingerprint:
+        name: TG400
+    fofa: title="tg400"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tg400")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ricoh-Aficio-Printer
+manual: false
+detail:
+    fingerprint:
+        name: Ricoh-Aficio-Printer
+    fofa: title="ricoh aficio "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ricoh aficio ")
+expression: r0()

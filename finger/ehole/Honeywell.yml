@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Honeywell
+manual: false
+detail:
+    fingerprint:
+        name: Honeywell
+    fofa: icon_hash="903086190"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 903086190
+expression: r0()

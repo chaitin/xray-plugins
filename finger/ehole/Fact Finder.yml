@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Fact Finder
+manual: false
+detail:
+    fingerprint:
+        name: Fact Finder
+    fofa: header="Fact Finder" || title="Fact Finder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fact Finder"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fact Finder")
+expression: r0() || r1()

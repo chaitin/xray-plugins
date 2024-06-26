@@ -1,0 +1,58 @@
+name: fingerprint-yaml-gzqxrh-System
+manual: false
+detail:
+    fingerprint:
+        name: gzqxrh-System
+    fofa: 'body="广州全息若海信息科技有限公司" && body="src=\"/scripts/easyui/jquery.easyui.min.js\"" && body="style=\"vertical-align: middle; cursor: pointer" && body="响应键盘的回车事件" || body="响应键盘的回车事件" && body="style=\"vertical-align: middle; cursor: pointer" || body="src=\"/scripts/easyui/jquery.easyui.min.js\"" && body="广州全息若海信息科技有限公司" || body="广州全息若海信息科技有限公司" || body="src=\"/scripts/easyui/jquery.easyui.min.js\"" || body="style=\"vertical-align: middle; cursor: pointer" || body="响应键盘的回车事件"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("广州全息若海信息科技有限公司") && response.body_string.contains(''src="/scripts/easyui/jquery.easyui.min.js"'') && response.body_string.contains(''style="vertical-align: middle; cursor: pointer'') && response.body_string.contains("响应键盘的回车事件")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("响应键盘的回车事件") && response.body_string.contains(''style="vertical-align: middle; cursor: pointer'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/scripts/easyui/jquery.easyui.min.js"') && response.body_string.contains("广州全息若海信息科技有限公司")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("广州全息若海信息科技有限公司")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/scripts/easyui/jquery.easyui.min.js"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''style="vertical-align: middle; cursor: pointer'')'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("响应键盘的回车事件")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BOMGAR Support Portal
+manual: false
+detail:
+    fingerprint:
+        name: BOMGAR Support Portal
+    fofa: icon_hash="829321644"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 829321644
+expression: r0()

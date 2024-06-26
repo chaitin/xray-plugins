@@ -1,0 +1,23 @@
+name: fingerprint-yaml-菲尔教学管理ERP
+manual: false
+detail:
+    fingerprint:
+        name: 菲尔教学管理ERP
+    fofa: header="菲尔教学管理ERP" || title="菲尔教学管理ERP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("菲尔教学管理ERP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("菲尔教学管理ERP")
+expression: r0() || r1()

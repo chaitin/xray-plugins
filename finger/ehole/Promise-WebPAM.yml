@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Promise-WebPAM
+manual: false
+detail:
+    fingerprint:
+        name: Promise-WebPAM
+    fofa: body="js/promise/themes/apple/images/logo_promise.png" && body="src=\"js/dojo/promise.js" || body="src=\"js/dojo/promise.js" || body="js/promise/themes/apple/images/logo_promise.png"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/promise/themes/apple/images/logo_promise.png") && response.body_string.contains('src="js/dojo/promise.js')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="js/dojo/promise.js')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/promise/themes/apple/images/logo_promise.png")
+expression: r0() || r1() || r2()

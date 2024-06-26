@@ -1,0 +1,16 @@
+name: fingerprint-yaml-abitech-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: abitech-Wireless-Router
+    fofa: title="abi  wireless router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("abi  wireless router")
+expression: r0()

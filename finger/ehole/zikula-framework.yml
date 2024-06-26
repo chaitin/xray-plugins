@@ -1,0 +1,58 @@
+name: fingerprint-yaml-zikula-framework
+manual: false
+detail:
+    fingerprint:
+        name: zikula-framework
+    fofa: header="zikulasid1" && header="zikulasid3" || header="ZIKULASID1" || header="ZIKULASID2" || header="ZIKULASID3" || header="zikulasid3" || header="zikulasid2" || header="zikulasid1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zikulasid1")) && response.raw_header.bcontains(bytes("zikulasid3"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZIKULASID1"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZIKULASID2"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZIKULASID3"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zikulasid3"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zikulasid2"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zikulasid1"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

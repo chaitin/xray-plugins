@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DAVOLINK-Router
+manual: false
+detail:
+    fingerprint:
+        name: DAVOLINK-Router
+    fofa: 'header="set-cookie: acookie="'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: acookie="))'
+expression: r0()

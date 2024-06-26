@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CuzCms成创网站内容管理系统
+manual: false
+detail:
+    fingerprint:
+        name: CuzCms成创网站内容管理系统
+    fofa: title="CuzCms成创网站内容管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CuzCms成创网站内容管理系统")
+expression: r0()

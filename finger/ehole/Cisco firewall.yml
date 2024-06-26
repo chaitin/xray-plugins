@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco firewall
+manual: false
+detail:
+    fingerprint:
+        name: Cisco firewall
+    fofa: header="Cisco firewall" || title="Cisco firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco firewall"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cisco firewall")
+expression: r0() || r1()

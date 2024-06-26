@@ -1,0 +1,16 @@
+name: fingerprint-yaml-凯旋网络供求信息网
+manual: false
+detail:
+    fingerprint:
+        name: 凯旋网络供求信息网
+    fofa: title="凯旋网络供求信息网"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("凯旋网络供求信息网")
+expression: r0()

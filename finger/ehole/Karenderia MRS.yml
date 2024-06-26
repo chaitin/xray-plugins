@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Karenderia MRS
+manual: false
+detail:
+    fingerprint:
+        name: Karenderia MRS
+    fofa: header="Karenderia MRS" || title="Karenderia MRS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Karenderia MRS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Karenderia MRS")
+expression: r0() || r1()

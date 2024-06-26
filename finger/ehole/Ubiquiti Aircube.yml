@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ubiquiti Aircube
+manual: false
+detail:
+    fingerprint:
+        name: Ubiquiti Aircube
+    fofa: icon_hash="1249285083"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1249285083
+expression: r0()

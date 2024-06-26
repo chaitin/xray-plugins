@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys EA4500OQ
+manual: false
+detail:
+    fingerprint:
+        name: Linksys EA4500OQ
+    fofa: header="Linksys EA4500OQ"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys EA4500OQ"))
+expression: r0()

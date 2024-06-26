@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Saia Burgess Controls – PCD
+manual: false
+detail:
+    fingerprint:
+        name: Saia Burgess Controls – PCD
+    fofa: icon_hash="-1547576879"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1547576879
+expression: r0()

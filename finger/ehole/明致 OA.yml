@@ -1,0 +1,16 @@
+name: fingerprint-yaml-明致 OA
+manual: false
+detail:
+    fingerprint:
+        name: 明致 OA
+    fofa: icon_hash="1591287747"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1591287747
+expression: r0()

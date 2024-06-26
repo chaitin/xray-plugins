@@ -1,0 +1,16 @@
+name: fingerprint-yaml-百卓byzoro-安全网关
+manual: false
+detail:
+    fingerprint:
+        name: 百卓byzoro-安全网关
+    fofa: body="北京百卓" && body="PatrolFlow" && body="login.php"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("北京百卓") && response.body_string.contains("PatrolFlow") && response.body_string.contains("login.php")
+expression: r0()

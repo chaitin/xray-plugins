@@ -1,0 +1,16 @@
+name: fingerprint-yaml-dstmedia-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: dstmedia-Cameras-and-Surveillance
+    fofa: header="realm=\"dstmedia authentication"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dstmedia authentication'))
+expression: r0()

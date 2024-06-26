@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DASAN-H150N
+manual: false
+detail:
+    fingerprint:
+        name: DASAN-H150N
+    fofa: header="realm=\"h150n tr-069 admin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="h150n tr-069 admin'))
+expression: r0()

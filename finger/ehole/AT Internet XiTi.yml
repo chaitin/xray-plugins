@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AT Internet XiTi
+manual: false
+detail:
+    fingerprint:
+        name: AT Internet XiTi
+    fofa: header="AT Internet XiTi" || title="AT Internet XiTi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AT Internet XiTi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AT Internet XiTi")
+expression: r0() || r1()

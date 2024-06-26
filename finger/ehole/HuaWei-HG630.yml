@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HuaWei-HG630
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-HG630
+    fofa: title="hg630 v2 home gateway" || title="huawei hg630"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hg630 v2 home gateway")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huawei hg630")
+expression: r0() || r1()

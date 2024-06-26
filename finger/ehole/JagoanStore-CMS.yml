@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JagoanStore-CMS
+manual: false
+detail:
+    fingerprint:
+        name: JagoanStore-CMS
+    fofa: body="CMS <a style=\"color:#fff;font-size:11px;\" href=\"http://www.jagoanstore.com/\" target=\"_blank\">Toko Online</a> by <a href=\"http://www.jagoanstore.com/\" target=\"_blank\"><img src=\"http://www.jagoanstore.com/jagstorecom-lil.png\" border=0 align=\"absmiddle\" /></a></div>\");"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('CMS <a style="color:#fff;font-size:11px;" href="http://www.jagoanstore.com/" target="_blank">Toko Online</a> by <a href="http://www.jagoanstore.com/" target="_blank"><img src="http://www.jagoanstore.com/jagstorecom-lil.png" border=0 align="absmiddle" /></a></div>");')
+expression: r0()

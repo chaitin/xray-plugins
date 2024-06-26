@@ -1,0 +1,16 @@
+name: fingerprint-yaml-phoenixcontact-router
+manual: false
+detail:
+    fingerprint:
+        name: phoenixcontact-router
+    fofa: title="psi-modem-3g/router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("psi-modem-3g/router")
+expression: r0()

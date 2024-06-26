@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PeopleSoft
+manual: false
+detail:
+    fingerprint:
+        name: PeopleSoft
+    fofa: title="PeopleSoft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PeopleSoft")
+expression: r0()

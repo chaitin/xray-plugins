@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Axigen-Mail-Server
+manual: false
+detail:
+    fingerprint:
+        name: Axigen-Mail-Server
+    fofa: header="axigen-webmail" || header="Axigen-Webmail" || body="top.opener.location.href=\"/?login=\";" || body="<div>Powered by <a href=\"http://www.axigen.com\" target=\"_blank\" class=\"gray\">Axigen Mail Server</a></div>" || body="Powered by <a href=\"http://www.axigen.com/\" target=\"_blank\">Axigen Mail Server</a>" || body="<div class=\"nojsContainer\"><h1>In order to access AXIGEN Webmail, <br />you must enable Javascript in your browser!</h1></div>" || title="axigen webmail - "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("axigen-webmail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Axigen-Webmail"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('top.opener.location.href="/?login=";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div>Powered by <a href="http://www.axigen.com" target="_blank" class="gray">Axigen Mail Server</a></div>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.axigen.com/" target="_blank">Axigen Mail Server</a>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="nojsContainer"><h1>In order to access AXIGEN Webmail, <br />you must enable Javascript in your browser!</h1></div>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("axigen webmail - ")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

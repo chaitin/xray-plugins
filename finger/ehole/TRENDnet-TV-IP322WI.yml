@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TRENDnet-TV-IP322WI
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TV-IP322WI
+    fofa: header="realm=\"tv-ip322wi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tv-ip322wi'))
+expression: r0()

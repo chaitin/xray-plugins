@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Ioa
+manual: false
+detail:
+    fingerprint:
+        name: Ioa
+    fofa: body="<a href=\"https://www.ioa.cn/official/download.html\" target=\"_blank\">爱办公app</a>" && body="id=\"foot_version\">厦门容能科技有限公司" || body="id=\"foot_version\">厦门容能科技有限公司" || body="<a href=\"https://www.ioa.cn/official/download.html\" target=\"_blank\">爱办公app</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="https://www.ioa.cn/official/download.html" target="_blank">爱办公app</a>') && response.body_string.contains('id="foot_version">厦门容能科技有限公司')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="foot_version">厦门容能科技有限公司')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="https://www.ioa.cn/official/download.html" target="_blank">爱办公app</a>')
+expression: r0() || r1() || r2()

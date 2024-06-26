@@ -1,0 +1,16 @@
+name: fingerprint-yaml-microHttp
+manual: false
+detail:
+    fingerprint:
+        name: microHttp
+    fofa: 'header="server: microhttp"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: microhttp"))'
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-ER3108G
+manual: false
+detail:
+    fingerprint:
+        name: H3C-ER3108G
+    fofa: title="er3108g系统管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("er3108g系统管理")
+expression: r0()

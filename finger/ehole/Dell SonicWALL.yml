@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dell SonicWALL
+manual: false
+detail:
+    fingerprint:
+        name: Dell SonicWALL
+    fofa: icon_hash="363324987"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 363324987
+expression: r0()

@@ -1,0 +1,121 @@
+name: fingerprint-yaml-NetWin-Surgemail
+manual: false
+detail:
+    fingerprint:
+        name: NetWin-Surgemail
+    fofa: body="href=\"/about_mail.htm\">about surgemail" && body="surgemail." && body="surgemail." && body="/surgemail.css" || header="basic realm=\"surgemail." || body="/surgemail.css" || body="href=\"/about_mail.htm\">about surgemail" || body="surgemail." || body="<!-- Start of index.htm --><!-- delayed after doctype-->" || body="<title>SurgeMail Welcome Page</title>" || body="<meta name=\"GENERATOR\" content=\"Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]\">" || body="/surgeweb\" target=\"client\"><input type=\"button\" name=\"\" value=\"Secure WebMail 2.0 Login\" onmouseover=\"MO(event)\" onmouseout=\"MU(event)\" onclick=\"MC3(event)\" class=spbutton></a></td>" || body="<a href=\"/cgi/user.cgi\">User account self management</a> - <font class=\"small_font\">users and domain administrators can modify passwords, forwarding, create new accounts</font></blockquote>" || body="<td colspan=\"2\" class=\"about_wrapper\"><img src=\"/web/redline.gif\"><br><a class=\"about_link\" href=\"/about_mail.htm\">about SurgeMail</a></td>" || body="<!-- Start of na_login.htm --><!-- delayed after doctype-->" || body="<!--<body bgcolor=\"#FFFFFF\" onload=\"window.focus();document.main.username.focus();\">-->" || body="<a class=\"about_mail\" target=\"_top\" href=\"/about_mail.htm\">about SurgeMail </a></font> </td>" || body="<form action=\"/scripts/webmail.exe\" method=\"post\" name=\"reloginform\">" || title="surgemail welcome page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/about_mail.htm">about surgemail') && response.body_string.contains("surgemail.") && response.body_string.contains("surgemail.") && response.body_string.contains("/surgemail.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="surgemail.'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/surgemail.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/about_mail.htm">about surgemail')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("surgemail.")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Start of index.htm --><!-- delayed after doctype-->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>SurgeMail Welcome Page</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="GENERATOR" content="Mozilla/4.75 [en] (Windows NT 5.0; U) [Netscape]">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/surgeweb" target="client"><input type="button" name="" value="Secure WebMail 2.0 Login" onmouseover="MO(event)" onmouseout="MU(event)" onclick="MC3(event)" class=spbutton></a></td>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="/cgi/user.cgi">User account self management</a> - <font class="small_font">users and domain administrators can modify passwords, forwarding, create new accounts</font></blockquote>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td colspan="2" class="about_wrapper"><img src="/web/redline.gif"><br><a class="about_link" href="/about_mail.htm">about SurgeMail</a></td>')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Start of na_login.htm --><!-- delayed after doctype-->")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!--<body bgcolor="#FFFFFF" onload="window.focus();document.main.username.focus();">-->')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a class="about_mail" target="_top" href="/about_mail.htm">about SurgeMail </a></font> </td>')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form action="/scripts/webmail.exe" method="post" name="reloginform">')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("surgemail welcome page")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MongoPress
+manual: false
+detail:
+    fingerprint:
+        name: MongoPress
+    fofa: title="MongoPress"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MongoPress")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-vibecommerce
+manual: false
+detail:
+    fingerprint:
+        name: vibecommerce
+    fofa: header="vibecommerce" || title="vibecommerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("vibecommerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vibecommerce")
+expression: r0() || r1()

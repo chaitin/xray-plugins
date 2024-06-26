@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fireware Watchguard
+manual: false
+detail:
+    fingerprint:
+        name: Fireware Watchguard
+    fofa: icon_hash="-569941107"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -569941107
+expression: r0()

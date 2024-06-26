@@ -1,0 +1,16 @@
+name: fingerprint-yaml-majordomo
+manual: false
+detail:
+    fingerprint:
+        name: majordomo
+    fofa: title="majordomo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("majordomo")
+expression: r0()

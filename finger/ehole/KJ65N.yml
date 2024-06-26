@@ -1,0 +1,51 @@
+name: fingerprint-yaml-KJ65N
+manual: false
+detail:
+    fingerprint:
+        name: KJ65N
+    fofa: body="images/login/top002.gif" && body="worlddesktop/webform1.aspx" || header="KJ65N" || body="worlddesktop/webform1.aspx" && body="images/login/top002.gif" || body="images/login/top002.gif" || body="worlddesktop/webform1.aspx" || title="KJ65N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/login/top002.gif") && response.body_string.contains("worlddesktop/webform1.aspx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KJ65N"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("worlddesktop/webform1.aspx") && response.body_string.contains("images/login/top002.gif")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/login/top002.gif")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("worlddesktop/webform1.aspx")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KJ65N")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

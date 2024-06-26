@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-ZYWALL-1100
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-ZYWALL-1100
+    fofa: title="zywall 1100"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zywall 1100")
+expression: r0()

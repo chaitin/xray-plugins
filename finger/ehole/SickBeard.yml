@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SickBeard
+manual: false
+detail:
+    fingerprint:
+        name: SickBeard
+    fofa: header="SickBeard" || title="SickBeard"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SickBeard"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SickBeard")
+expression: r0() || r1()

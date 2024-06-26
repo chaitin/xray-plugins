@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XiaoerCMS
+manual: false
+detail:
+    fingerprint:
+        name: XiaoerCMS
+    fofa: title="XiaoerCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XiaoerCMS")
+expression: r0()

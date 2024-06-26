@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dancer
+manual: false
+detail:
+    fingerprint:
+        name: Dancer
+    fofa: header="Dancer" || title="Dancer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dancer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dancer")
+expression: r0() || r1()

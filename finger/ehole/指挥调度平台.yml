@@ -1,0 +1,16 @@
+name: fingerprint-yaml-指挥调度平台
+manual: false
+detail:
+    fingerprint:
+        name: 指挥调度平台
+    fofa: icon_hash="-1971504131"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1971504131
+expression: r0()

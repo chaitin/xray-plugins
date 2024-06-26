@@ -1,0 +1,23 @@
+name: fingerprint-yaml-chyrp
+manual: false
+detail:
+    fingerprint:
+        name: chyrp
+    fofa: header="chyrp" || title="chyrp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("chyrp"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("chyrp")
+expression: r0() || r1()

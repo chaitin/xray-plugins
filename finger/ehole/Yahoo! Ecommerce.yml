@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Yahoo! Ecommerce
+manual: false
+detail:
+    fingerprint:
+        name: Yahoo! Ecommerce
+    fofa: header="Yahoo! Ecommerce" || title="Yahoo! Ecommerce"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Yahoo! Ecommerce"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Yahoo! Ecommerce")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Quokka
+manual: false
+detail:
+    fingerprint:
+        name: Quokka
+    fofa: header="Quokka" || title="Quokka"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Quokka"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Quokka")
+expression: r0() || r1()

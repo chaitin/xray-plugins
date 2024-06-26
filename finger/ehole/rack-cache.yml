@@ -1,0 +1,30 @@
+name: fingerprint-yaml-rack-cache
+manual: false
+detail:
+    fingerprint:
+        name: rack-cache
+    fofa: header="X-Rack-Cache" || header="RackCache" || title="RackCache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Rack-Cache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RackCache"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RackCache")
+expression: r0() || r1() || r2()

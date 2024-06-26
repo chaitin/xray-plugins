@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Infowarelab-System-Management-Center
+manual: false
+detail:
+    fingerprint:
+        name: Infowarelab-System-Management-Center
+    fofa: body="class=\"main_loginbar" && body="<div class=\"main_supporterbar\">" || body="<div class=\"main_supporterbar\">" && body="class=\"main_loginbar" || body="class=\"main_loginbar" || body="<div class=\"main_supporterbar\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="main_loginbar') && response.body_string.contains('<div class="main_supporterbar">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="main_supporterbar">') && response.body_string.contains('class="main_loginbar')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="main_loginbar')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="main_supporterbar">')
+expression: r0() || r1() || r2() || r3()

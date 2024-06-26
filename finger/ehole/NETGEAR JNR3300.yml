@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR JNR3300
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR JNR3300
+    fofa: header="NETGEAR JNR3300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR JNR3300"))
+expression: r0()

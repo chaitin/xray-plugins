@@ -1,0 +1,23 @@
+name: fingerprint-yaml-dkcms
+manual: false
+detail:
+    fingerprint:
+        name: dkcms
+    fofa: header="dkcms" || title="dkcms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dkcms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dkcms")
+expression: r0() || r1()

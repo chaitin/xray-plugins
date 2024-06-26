@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IdoSell Shop
+manual: false
+detail:
+    fingerprint:
+        name: IdoSell Shop
+    fofa: header="IdoSell Shop" || title="IdoSell Shop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IdoSell Shop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IdoSell Shop")
+expression: r0() || r1()

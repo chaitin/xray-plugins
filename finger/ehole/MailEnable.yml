@@ -1,0 +1,65 @@
+name: fingerprint-yaml-MailEnable
+manual: false
+detail:
+    fingerprint:
+        name: MailEnable
+    fofa: body="<!-- loginpanel_shell_table -->" && body="mailenable - webmail" && body="class=\"loginpanel_botleft_div" || body="class=\"loginpanel_botleft_div" || body="<!-- loginpanel_shell_table -->" || body="mailenable - webmail" || body="</table><!-- loginPanel_shell_table -->" || body="<td class=\"loginPanel_botLeft\"><div class=\"loginPanel_botLeft_div\"></div></td>" || body="<title>MailEnable - Webmail</title>" || title="mailenable - webmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- loginpanel_shell_table -->") && response.body_string.contains("mailenable - webmail") && response.body_string.contains('class="loginpanel_botleft_div')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="loginpanel_botleft_div')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- loginpanel_shell_table -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mailenable - webmail")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("</table><!-- loginPanel_shell_table -->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="loginPanel_botLeft"><div class="loginPanel_botLeft_div"></div></td>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>MailEnable - Webmail</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailenable - webmail")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

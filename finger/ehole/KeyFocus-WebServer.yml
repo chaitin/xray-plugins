@@ -1,0 +1,23 @@
+name: fingerprint-yaml-KeyFocus-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: KeyFocus-WebServer
+    fofa: 'header="server: kfwebserver" || header="KFWebServer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: kfwebserver"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KFWebServer"))
+expression: r0() || r1()

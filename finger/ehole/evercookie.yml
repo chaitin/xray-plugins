@@ -1,0 +1,44 @@
+name: fingerprint-yaml-evercookie
+manual: false
+detail:
+    fingerprint:
+        name: evercookie
+    fofa: 'body="evercookie.js" && body="var ec = new evercookie(;" || body="evercookie.js" || body="var ec = new evercookie();" || body="var ec = new evercookie;" || body="*  by samy kamkar : code@samy.pl : http://samy.pl"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("evercookie.js") && response.body_string.contains("var ec = new evercookie(;")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("evercookie.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var ec = new evercookie();")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var ec = new evercookie;")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("*  by samy kamkar : code@samy.pl : http://samy.pl")'
+expression: r0() || r1() || r2() || r3() || r4()

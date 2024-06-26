@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GitHub Pages
+manual: false
+detail:
+    fingerprint:
+        name: GitHub Pages
+    fofa: header="GitHub Pages" || title="GitHub Pages"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GitHub Pages"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GitHub Pages")
+expression: r0() || r1()

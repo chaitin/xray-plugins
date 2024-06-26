@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ubiquit AirControl
+manual: false
+detail:
+    fingerprint:
+        name: Ubiquit AirControl
+    fofa: header="Ubiquit AirControl" || title="Ubiquit AirControl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ubiquit AirControl"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ubiquit AirControl")
+expression: r0() || r1()

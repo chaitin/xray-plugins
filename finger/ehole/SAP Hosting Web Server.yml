@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SAP Hosting Web Server
+manual: false
+detail:
+    fingerprint:
+        name: SAP Hosting Web Server
+    fofa: header="SAP Hosting Web Server" || title="SAP Hosting Web Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SAP Hosting Web Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SAP Hosting Web Server")
+expression: r0() || r1()

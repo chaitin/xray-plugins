@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CMS FdT
+manual: false
+detail:
+    fingerprint:
+        name: CMS FdT
+    fofa: header="CMS FdT" || title="CMS FdT"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CMS FdT"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CMS FdT")
+expression: r0() || r1()

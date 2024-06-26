@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gemtek-Router
+manual: false
+detail:
+    fingerprint:
+        name: Gemtek-Router
+    fofa: body="alt=\"歡迎使用中保無限路由器\"" || title="後台登入-中保無限路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="歡迎使用中保無限路由器"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("後台登入-中保無限路由器")
+expression: r0() || r1()

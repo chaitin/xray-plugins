@@ -1,0 +1,16 @@
+name: fingerprint-yaml-天玥运维安全网关
+manual: false
+detail:
+    fingerprint:
+        name: 天玥运维安全网关
+    fofa: body="css/fw/full.css" && body="js/p/login.js" && body="login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("css/fw/full.css") && response.body_string.contains("js/p/login.js") && response.body_string.contains("login")
+expression: r0()

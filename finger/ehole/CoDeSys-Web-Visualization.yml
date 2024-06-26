@@ -1,0 +1,44 @@
+name: fingerprint-yaml-CoDeSys-Web-Visualization
+manual: false
+detail:
+    fingerprint:
+        name: CoDeSys-Web-Visualization
+    fofa: header="WAGO_Webs" || body="<TITLE>CoDeSys WebVisualization</TITLE>" || body="<APPLET CODEBASE=. CODE=webvisu/WebVisu.class name=\"WebVisu\" width=\"100%\" height=\"100%\" id=\"webvisuapplet\">" || body="<APPLET CODEBASE=. CODE=webvisu/WebVisu.class name=\"WebVisu\" width=\"99%\" height=\"99%\" id=\"webvisuapplet\">" || body="<param name=\"archive\" value=\"webvisu.jar,minml.jar\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WAGO_Webs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>CoDeSys WebVisualization</TITLE>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<APPLET CODEBASE=. CODE=webvisu/WebVisu.class name="WebVisu" width="100%" height="100%" id="webvisuapplet">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<APPLET CODEBASE=. CODE=webvisu/WebVisu.class name="WebVisu" width="99%" height="99%" id="webvisuapplet">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<param name="archive" value="webvisu.jar,minml.jar">')
+expression: r0() || r1() || r2() || r3() || r4()

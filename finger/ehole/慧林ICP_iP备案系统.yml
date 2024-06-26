@@ -1,0 +1,16 @@
+name: fingerprint-yaml-慧林ICP_iP备案系统
+manual: false
+detail:
+    fingerprint:
+        name: 慧林ICP/iP备案系统
+    fofa: icon_hash="-556918553"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -556918553
+expression: r0()

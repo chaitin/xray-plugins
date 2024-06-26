@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alcatel_Lucent-OmniVista-2500-NMS
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-OmniVista-2500-NMS
+    fofa: title="omnivista 2500 nms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("omnivista 2500 nms")
+expression: r0()

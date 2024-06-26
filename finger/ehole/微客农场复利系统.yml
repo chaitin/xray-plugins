@@ -1,0 +1,16 @@
+name: fingerprint-yaml-微客农场复利系统
+manual: false
+detail:
+    fingerprint:
+        name: 微客农场复利系统
+    fofa: title="微客农场复利系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("微客农场复利系统")
+expression: r0()

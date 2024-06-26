@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link DHP
+manual: false
+detail:
+    fingerprint:
+        name: D-Link DHP
+    fofa: header="D-Link DHP" || title="D-Link DHP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link DHP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link DHP")
+expression: r0() || r1()

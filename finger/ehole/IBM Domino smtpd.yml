@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM Domino smtpd
+manual: false
+detail:
+    fingerprint:
+        name: IBM Domino smtpd
+    fofa: header="IBM Domino smtpd" || title="IBM Domino smtpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM Domino smtpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBM Domino smtpd")
+expression: r0() || r1()

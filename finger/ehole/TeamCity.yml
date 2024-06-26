@@ -1,0 +1,30 @@
+name: fingerprint-yaml-TeamCity
+manual: false
+detail:
+    fingerprint:
+        name: TeamCity
+    fofa: icon_hash="-1944119648" || header="TeamCity" || title="TeamCity"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1944119648
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TeamCity"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TeamCity")
+expression: r0() || r1() || r2()

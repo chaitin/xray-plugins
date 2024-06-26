@@ -1,0 +1,30 @@
+name: fingerprint-yaml-MiniServ
+manual: false
+detail:
+    fingerprint:
+        name: MiniServ
+    fofa: 'header="MiniServ" || header="server: miniserv" || title="MiniServ"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MiniServ"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: miniserv"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MiniServ")
+expression: r0() || r1() || r2()

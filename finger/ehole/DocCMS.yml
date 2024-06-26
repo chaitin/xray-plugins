@@ -1,0 +1,30 @@
+name: fingerprint-yaml-DocCMS
+manual: false
+detail:
+    fingerprint:
+        name: DocCMS
+    fofa: body="power by doccms" || body="Power by DocCms" || body="DocCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("power by doccms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Power by DocCms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("DocCms")
+expression: r0() || r1() || r2()

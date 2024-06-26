@@ -1,0 +1,16 @@
+name: fingerprint-yaml-水星MW300R
+manual: false
+detail:
+    fingerprint:
+        name: 水星MW300R
+    fofa: header="MW300R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MW300R"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iPowerCMS
+manual: false
+detail:
+    fingerprint:
+        name: iPowerCMS
+    fofa: title="iPowerCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iPowerCMS")
+expression: r0()

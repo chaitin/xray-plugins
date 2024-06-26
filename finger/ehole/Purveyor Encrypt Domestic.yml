@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Purveyor Encrypt Domestic
+manual: false
+detail:
+    fingerprint:
+        name: Purveyor Encrypt Domestic
+    fofa: header="Purveyor Encrypt Domestic" || title="Purveyor Encrypt Domestic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Purveyor Encrypt Domestic"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Purveyor Encrypt Domestic")
+expression: r0() || r1()

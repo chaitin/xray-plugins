@@ -1,0 +1,51 @@
+name: fingerprint-yaml-zzzcms(zzzphp)
+manual: false
+detail:
+    fingerprint:
+        name: zzzcms(zzzphp)
+    fofa: body="zzzcms" || body="zzzphp" || header="zzzcms" || header="zzzphp" || title="zzzcms" || title="zzzphp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("zzzcms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("zzzphp")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zzzcms"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zzzphp"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zzzcms")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zzzphp")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

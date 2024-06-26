@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUACAM-Cyclops-IP-camera
+manual: false
+detail:
+    fingerprint:
+        name: HUACAM-Cyclops-IP-camera
+    fofa: body="please update your documents to reflect the new location"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("please update your documents to reflect the new location")
+expression: r0()

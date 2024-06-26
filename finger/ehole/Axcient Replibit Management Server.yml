@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Axcient Replibit Management Server
+manual: false
+detail:
+    fingerprint:
+        name: Axcient Replibit Management Server
+    fofa: icon_hash="475379699"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 475379699
+expression: r0()

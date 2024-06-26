@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WN1000RP
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WN1000RP
+    fofa: header="NETGEAR WN1000RP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WN1000RP"))
+expression: r0()

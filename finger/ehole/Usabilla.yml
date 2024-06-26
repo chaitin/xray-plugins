@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Usabilla
+manual: false
+detail:
+    fingerprint:
+        name: Usabilla
+    fofa: header="Usabilla" || title="Usabilla"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Usabilla"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Usabilla")
+expression: r0() || r1()

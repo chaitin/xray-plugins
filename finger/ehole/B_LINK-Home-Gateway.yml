@@ -1,0 +1,16 @@
+name: fingerprint-yaml-B_LINK-Home-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: B_LINK-Home-Gateway
+    fofa: header="realm=\"b-link home gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="b-link home gateway'))
+expression: r0()

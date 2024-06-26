@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CMS001
+manual: false
+detail:
+    fingerprint:
+        name: CMS001
+    fofa: body="CMS001" || title="CMS001"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("CMS001")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CMS001")
+expression: r0() || r1()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-CISCO-IMC-Supervisor
+manual: false
+detail:
+    fingerprint:
+        name: CISCO-IMC-Supervisor
+    fofa: 'body="font-family: \"ciscosansthin\"" && body="cisco imc supervisor" || body="cisco imc supervisor" && body="font-family: \"ciscosansthin\"" || body="font-family: \"ciscosansthin\"" || body="cisco imc supervisor"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''font-family: "ciscosansthin"'') && response.body_string.contains("cisco imc supervisor")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("cisco imc supervisor") && response.body_string.contains(''font-family: "ciscosansthin"'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''font-family: "ciscosansthin"'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cisco imc supervisor")
+expression: r0() || r1() || r2() || r3()

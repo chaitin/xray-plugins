@@ -1,0 +1,16 @@
+name: fingerprint-yaml-智邦国际-企业管理软件
+manual: false
+detail:
+    fingerprint:
+        name: 智邦国际-企业管理软件
+    fofa: body="index2.asp" && body="update/exec.asp" && body="images/full.gif"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("index2.asp") && response.body_string.contains("update/exec.asp") && response.body_string.contains("images/full.gif")
+expression: r0()

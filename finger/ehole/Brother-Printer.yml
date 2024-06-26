@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Brother-Printer
+manual: false
+detail:
+    fingerprint:
+        name: Brother-Printer
+    fofa: body="<frame src=\"/printer/inc_head.html" && body="<img src=\"/common/image/hl4040cn" || body="<FRAME SRC=\"/printer/inc_head.html" || body="<IMG src=\"/common/image/HL4040CN" || body="<img src=\"/common/image/hl4040cn" || body="<frame src=\"/printer/inc_head.html" || body="<FRAME SRC=\"/printer/inc_head.html\" NAME=\"header\" NORESIZE SCROLLING=\"no\">" || body="<IMG src=\"/common/image/HL4040CN.gif\" border=0>" || body="<IMG src=\"/common/image/HL4040CDN.gif\" border=0>" || body="<IMG src=\"/common/image/HL4050CDN.gif\" border=0>" || body="<IMG src=\"/common/image/HL4070CDW.gif\" border=0>" || title="brother mfc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="/printer/inc_head.html') && response.body_string.contains('<img src="/common/image/hl4040cn')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FRAME SRC="/printer/inc_head.html')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG src="/common/image/HL4040CN')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/common/image/hl4040cn')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="/printer/inc_head.html')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FRAME SRC="/printer/inc_head.html" NAME="header" NORESIZE SCROLLING="no">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG src="/common/image/HL4040CN.gif" border=0>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG src="/common/image/HL4040CDN.gif" border=0>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG src="/common/image/HL4050CDN.gif" border=0>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG src="/common/image/HL4070CDW.gif" border=0>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("brother mfc")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Eltex (Router)
+manual: false
+detail:
+    fingerprint:
+        name: Eltex (Router)
+    fofa: icon_hash="1877797890"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1877797890
+expression: r0()

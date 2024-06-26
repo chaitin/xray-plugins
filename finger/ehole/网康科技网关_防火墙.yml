@@ -1,0 +1,16 @@
+name: fingerprint-yaml-网康科技网关_防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 网康科技网关/防火墙
+    fofa: icon_hash="5471989"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 5471989
+expression: r0()

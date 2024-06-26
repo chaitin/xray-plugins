@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS EA6500
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS EA6500
+    fofa: header="LINKSYS EA6500"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS EA6500"))
+expression: r0()

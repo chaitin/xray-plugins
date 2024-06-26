@@ -1,0 +1,44 @@
+name: fingerprint-yaml-织梦CMS(DedeCMS)
+manual: false
+detail:
+    fingerprint:
+        name: 织梦CMS(DedeCMS)
+    fofa: body="Powered by <a target=\"_blank\" href=\"http://www.dedecms.com/\">DedeCMS</a>" || body="Power by DedeCms" || body="http://www.dedecms.com/" || body="DedeCMS" || body="/templets/default/style/dedecms.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a target="_blank" href="http://www.dedecms.com/">DedeCMS</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Power by DedeCms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.dedecms.com/")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("DedeCMS")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/templets/default/style/dedecms.css")
+expression: r0() || r1() || r2() || r3() || r4()

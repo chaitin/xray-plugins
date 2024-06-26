@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ATEN SN0116 HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: ATEN SN0116 HTTP Server
+    fofa: header="ATEN SN0116 HTTP Server" || title="ATEN SN0116 HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ATEN SN0116 HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ATEN SN0116 HTTP Server")
+expression: r0() || r1()

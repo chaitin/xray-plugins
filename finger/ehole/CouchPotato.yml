@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CouchPotato
+manual: false
+detail:
+    fingerprint:
+        name: CouchPotato
+    fofa: body="<html><body><h1>Error 401 Unauthorized</h1>Something unexpected has happened.</body></html>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<html><body><h1>Error 401 Unauthorized</h1>Something unexpected has happened.</body></html>")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-macOS Server (Apple)
+manual: false
+detail:
+    fingerprint:
+        name: macOS Server (Apple)
+    fofa: icon_hash="1629518721"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1629518721
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-vmware-vsphere
+manual: false
+detail:
+    fingerprint:
+        name: vmware-vsphere
+    fofa: body="<meta name=\"description\" content=\"VMware vSphere"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="VMware vSphere')
+expression: r0()

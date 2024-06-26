@@ -1,0 +1,23 @@
+name: fingerprint-yaml-GIANTS Dedicated Server
+manual: false
+detail:
+    fingerprint:
+        name: GIANTS Dedicated Server
+    fofa: header="GIANTS Dedicated Server" || title="GIANTS Dedicated Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("GIANTS Dedicated Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GIANTS Dedicated Server")
+expression: r0() || r1()

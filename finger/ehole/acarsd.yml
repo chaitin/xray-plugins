@@ -1,0 +1,23 @@
+name: fingerprint-yaml-acarsd
+manual: false
+detail:
+    fingerprint:
+        name: acarsd
+    fofa: body="<meta name=\"author\" content=\"KjM <acarsd@acarsd.org>\">" || body="<!-- MAIN PART OF WEBACARS -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="KjM <acarsd@acarsd.org>">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- MAIN PART OF WEBACARS -->")
+expression: r0() || r1()

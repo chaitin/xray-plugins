@@ -1,0 +1,23 @@
+name: fingerprint-yaml-海康威视综合安防管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 海康威视综合安防管理平台
+    fofa: title="综合安防管理平台" || icon_hash="-808437027"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("综合安防管理平台")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -808437027
+expression: r0() || r1()

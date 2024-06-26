@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CM4all Webserver
+manual: false
+detail:
+    fingerprint:
+        name: CM4all Webserver
+    fofa: header="CM4all Webserver" || title="CM4all Webserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CM4all Webserver"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CM4all Webserver")
+expression: r0() || r1()

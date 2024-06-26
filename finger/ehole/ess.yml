@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ess
+manual: false
+detail:
+    fingerprint:
+        name: ess
+    fofa: header="essframepls_2i_jsessionid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("essframepls_2i_jsessionid"))
+expression: r0()

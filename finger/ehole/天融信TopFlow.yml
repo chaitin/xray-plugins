@@ -1,0 +1,16 @@
+name: fingerprint-yaml-天融信TopFlow
+manual: false
+detail:
+    fingerprint:
+        name: 天融信TopFlow
+    fofa: body="天融信TopFlow"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("天融信TopFlow")
+expression: r0()

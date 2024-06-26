@@ -1,0 +1,16 @@
+name: fingerprint-yaml-a2billingVOIP通讯系统
+manual: false
+detail:
+    fingerprint:
+        name: a2billingVOIP通讯系统
+    fofa: title="a2billing VOIP通讯系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("a2billing VOIP通讯系统")
+expression: r0()

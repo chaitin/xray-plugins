@@ -1,0 +1,51 @@
+name: fingerprint-yaml-HuaWei-ISM
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-ISM
+    fofa: body="<link href=\"ismb014.css\"" && body="class=\"contextgray\">oceanstor" && body="document.location.href=thisurl + \"index_cn.cgi\";" && body="//begin h90005710  redirect http to https" || body="//begin h90005710  redirect http to https" || body="document.location.href=thisurl + \"index_cn.cgi\";" || body="class=\"contextgray\">oceanstor" || body="<link href=\"ismb014.css\"" || title="oceanstor ism"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="ismb014.css"') && response.body_string.contains('class="contextgray">oceanstor') && response.body_string.contains('document.location.href=thisurl + "index_cn.cgi";') && response.body_string.contains("//begin h90005710  redirect http to https")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("//begin h90005710  redirect http to https")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.location.href=thisurl + "index_cn.cgi";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="contextgray">oceanstor')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="ismb014.css"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("oceanstor ism")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

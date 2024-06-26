@@ -1,0 +1,65 @@
+name: fingerprint-yaml-TightVNC
+manual: false
+detail:
+    fingerprint:
+        name: TightVNC
+    fofa: body="<applet archive=\"tightvnc-jviewer.jar\" " && body="<a href=\"http://www.tightvnc.com/\">www.tightvnc.com" && body="js/thinvnc.sdk.js" && body="js/thinvnc.app.js" || body="js/thinvnc.app.js" || body="js/thinvnc.sdk.js" || body="<a href=\"http://www.tightvnc.com/\">www.tightvnc.com" || body="<applet archive=\"tightvnc-jviewer.jar\" " || body="<applet archive=\"tightvnc-jviewer.jar\"" || title="vnc desktop" || title="tightvnc "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<applet archive="tightvnc-jviewer.jar" ') && response.body_string.contains('<a href="http://www.tightvnc.com/">www.tightvnc.com') && response.body_string.contains("js/thinvnc.sdk.js") && response.body_string.contains("js/thinvnc.app.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/thinvnc.app.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/thinvnc.sdk.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.tightvnc.com/">www.tightvnc.com')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<applet archive="tightvnc-jviewer.jar" ')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<applet archive="tightvnc-jviewer.jar"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vnc desktop")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tightvnc ")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-AlstraSoft-EPay-Enterprise
+manual: false
+detail:
+    fingerprint:
+        name: AlstraSoft-EPay-Enterprise
+    fofa: body="Powered by EPay Enterprise" || body="/shop.htm?action=view" || body="<a class=copy href=\"http://www.alstrasoft.com/\" target=\"_blank\">Powered by EPay Enterprise.</a>&nbsp;" || body="<tr><td align=center><input class=submit type=submit name=send value=\"LOGIN NOW!\"></td></tr>" || body="<tr><td class=capl><a href=\"/shop.htm?action=view\">TOP CATEGORIES</a>&nbsp;&nbsp;&gt;&gt;&nbsp;"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by EPay Enterprise")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/shop.htm?action=view")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a class=copy href="http://www.alstrasoft.com/" target="_blank">Powered by EPay Enterprise.</a>&nbsp;')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td align=center><input class=submit type=submit name=send value="LOGIN NOW!"></td></tr>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td class=capl><a href="/shop.htm?action=view">TOP CATEGORIES</a>&nbsp;&nbsp;&gt;&gt;&nbsp;')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JUNIPer-SRX550
+manual: false
+detail:
+    fingerprint:
+        name: JUNIPer-SRX550
+    fofa: body="class=\"jweb-title uppercase\"> - srx550"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="jweb-title uppercase"> - srx550')
+expression: r0()

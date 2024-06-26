@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sigmahoster Multimedia
+manual: false
+detail:
+    fingerprint:
+        name: Sigmahoster Multimedia
+    fofa: header="Sigmahoster Multimedia" || title="Sigmahoster Multimedia"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sigmahoster Multimedia"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sigmahoster Multimedia")
+expression: r0() || r1()

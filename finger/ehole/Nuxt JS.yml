@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Nuxt JS
+manual: false
+detail:
+    fingerprint:
+        name: Nuxt JS
+    fofa: icon_hash="-1442789563"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1442789563
+expression: r0()

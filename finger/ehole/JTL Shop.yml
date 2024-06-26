@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JTL Shop
+manual: false
+detail:
+    fingerprint:
+        name: JTL Shop
+    fofa: header="JTL Shop" || title="JTL Shop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("JTL Shop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JTL Shop")
+expression: r0() || r1()

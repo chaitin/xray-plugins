@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINK_ONE-Roteador-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: LINK_ONE-Roteador-Wireless-Router
+    fofa: title="roteador wireless n 300 mbps"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("roteador wireless n 300 mbps")
+expression: r0()

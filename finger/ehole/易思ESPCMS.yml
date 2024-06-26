@@ -1,0 +1,23 @@
+name: fingerprint-yaml-易思ESPCMS
+manual: false
+detail:
+    fingerprint:
+        name: 易思ESPCMS
+    fofa: body="易思ESPCMS" || title="易思ESPCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("易思ESPCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("易思ESPCMS")
+expression: r0() || r1()

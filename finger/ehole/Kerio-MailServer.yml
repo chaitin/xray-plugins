@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kerio-MailServer
+manual: false
+detail:
+    fingerprint:
+        name: Kerio-MailServer
+    fofa: 'header="server: kerio mailserver" || header="Kerio MailServer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: kerio mailserver"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kerio MailServer"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftWindowsKerberos
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftWindowsKerberos
+    fofa: title="Microsoft Windows Kerberos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Windows Kerberos")
+expression: r0()

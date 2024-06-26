@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS-PLANTA
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS-PLANTA
+    fofa: header="LINKSYS-PLANTA"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINKSYS-PLANTA"))
+expression: r0()

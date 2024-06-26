@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Gitblit
+manual: false
+detail:
+    fingerprint:
+        name: Gitblit
+    fofa: body="gitblt-favicon.png" && body="gitblit" || body="<a title=\"gitblit homepage\" href=\"http://gitblit.com/\">" || title="gitblit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gitblt-favicon.png") && response.body_string.contains("gitblit")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a title="gitblit homepage" href="http://gitblit.com/">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gitblit")
+expression: r0() || r1() || r2()

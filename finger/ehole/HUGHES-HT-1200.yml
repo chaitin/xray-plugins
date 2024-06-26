@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUGHES-HT-1200
+manual: false
+detail:
+    fingerprint:
+        name: HUGHES-HT-1200
+    fofa: header="hughes ht1200"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("hughes ht1200"))
+expression: r0()

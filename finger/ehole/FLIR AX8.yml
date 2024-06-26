@@ -1,0 +1,30 @@
+name: fingerprint-yaml-FLIR AX8
+manual: false
+detail:
+    fingerprint:
+        name: FLIR AX8
+    fofa: 'header="FLIR AX8" || body="<p style=\"display: inline-block\" id=\"login-title\">FLIR AX8" || title="FLIR AX8"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FLIR AX8"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<p style="display: inline-block" id="login-title">FLIR AX8'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FLIR AX8")
+expression: r0() || r1() || r2()

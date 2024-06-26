@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Juniper Networks Web Management
+manual: false
+detail:
+    fingerprint:
+        name: Juniper Networks Web Management
+    fofa: header="Juniper Networks Web Management" || title="Juniper Networks Web Management"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Juniper Networks Web Management"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Juniper Networks Web Management")
+expression: r0() || r1()

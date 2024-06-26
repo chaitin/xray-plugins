@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Baidu (IP error page)
+manual: false
+detail:
+    fingerprint:
+        name: Baidu (IP error page)
+    fofa: icon_hash="-1507567067"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1507567067
+expression: r0()

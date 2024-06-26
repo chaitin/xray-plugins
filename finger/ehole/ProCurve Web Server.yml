@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ProCurve Web Server
+manual: false
+detail:
+    fingerprint:
+        name: ProCurve Web Server
+    fofa: header="ProCurve Web Server" || title="ProCurve Web Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ProCurve Web Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ProCurve Web Server")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AD_RS设备
+manual: false
+detail:
+    fingerprint:
+        name: AD_RS设备
+    fofa: header="AD_RS_COOKIE"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AD_RS_COOKIE"))
+expression: r0()

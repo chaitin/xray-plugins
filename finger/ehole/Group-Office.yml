@@ -1,0 +1,107 @@
+name: fingerprint-yaml-Group-Office
+manual: false
+detail:
+    fingerprint:
+        name: Group-Office
+    fofa: 'body="powered by group-office" && body="\"theme\":\"group-office\"" || header="groupoffice=" || body="powered by Group-Office" || body="theme:\"Group-Office\"" || body="\"theme\":\"group-office\"," || body="powered by group-office" || body="<!-- include everything after the loading indicator -->" || body="<meta name=\"description\" content=\"Take your office online. Share projects, calendars, files and e-mail online with co-workers and clients. Easy to use and fully customizable, Group-Office takes online colaboration to the next level.\" />." || body="<a style=\"color: white;\" target=\"_blank\" href=\"http://www.group-office.com\">powered by Group-Office</a>" || body="Powered by Group-Office: <a target=\"_blank\" class=\"normal-link\" href=\"http://www.group-office.com\">http://www.group-office.com</a>" || body="alert(\"The Group-Office javascripts were not loaded. Check the host property in config.php and see if the file_storage_path folder and it\\\"s contents are writable\");" || body="alert(\"Could not load the application javascripts. Check the \"host\" property in config.php and see if the \"file_storage_path\" folder and it\\\"s contents are writable\");" || title="GroupOffice" || title="group-office"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by group-office") && response.body_string.contains('"theme":"group-office"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("groupoffice="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by Group-Office")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('theme:"Group-Office"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('"theme":"group-office",')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by group-office")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- include everything after the loading indicator -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="Take your office online. Share projects, calendars, files and e-mail online with co-workers and clients. Easy to use and fully customizable, Group-Office takes online colaboration to the next level." />.')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<a style="color: white;" target="_blank" href="http://www.group-office.com">powered by Group-Office</a>'')'
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Powered by Group-Office: <a target="_blank" class="normal-link" href="http://www.group-office.com">http://www.group-office.com</a>'')'
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("The Group-Office javascripts were not loaded. Check the host property in config.php and see if the file_storage_path folder and it\\"s contents are writable");')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("Could not load the application javascripts. Check the "host" property in config.php and see if the "file_storage_path" folder and it\\"s contents are writable");')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GroupOffice")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("group-office")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13()

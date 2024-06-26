@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-P-660HNU-F1
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-P-660HNU-F1
+    fofa: title="p-660hnu-f1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("p-660hnu-f1")
+expression: r0()

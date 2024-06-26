@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Apache-Dubbo
+manual: false
+detail:
+    fingerprint:
+        name: Apache-Dubbo
+    fofa: header=" basic realm=\"dubbo\"" || header="Apache Dubbo" || title="Apache Dubbo" || title="dubbo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes(' basic realm="dubbo"'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apache Dubbo"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Dubbo")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dubbo")
+expression: r0() || r1() || r2() || r3()

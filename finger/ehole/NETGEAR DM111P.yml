@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DM111P
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DM111P
+    fofa: header="NETGEAR DM111P"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DM111P"))
+expression: r0()

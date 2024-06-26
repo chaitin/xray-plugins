@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IPCamera-Webs
+manual: false
+detail:
+    fingerprint:
+        name: IPCamera-Webs
+    fofa: header="IPCamera-Webs" || title="IPCamera-Webs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPCamera-Webs"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPCamera-Webs")
+expression: r0() || r1()

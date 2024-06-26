@@ -1,0 +1,23 @@
+name: fingerprint-yaml-c99-Shell
+manual: false
+detail:
+    fingerprint:
+        name: c99-Shell
+    fofa: 'body="Dir: <input type=\"text\" name=\"directory\" method=\"get\"> <input type=\"submit\" value=\"List Directory\"><br><br> eg: /etc/<br>" || body="<center>Php Safe-Mode Bypass (List Directories):     <form action=\""'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Dir: <input type="text" name="directory" method="get"> <input type="submit" value="List Directory"><br><br> eg: /etc/<br>'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<center>Php Safe-Mode Bypass (List Directories):     <form action="'')'
+expression: r0() || r1()

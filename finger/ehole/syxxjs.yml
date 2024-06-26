@@ -1,0 +1,16 @@
+name: fingerprint-yaml-syxxjs
+manual: false
+detail:
+    fingerprint:
+        name: syxxjs
+    fofa: title="syxxjs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("syxxjs")
+expression: r0()

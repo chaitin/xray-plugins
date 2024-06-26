@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ACTI视频监控
+manual: false
+detail:
+    fingerprint:
+        name: ACTI视频监控
+    fofa: body="/cgi-bin/system?SYSTEM_INFO" && body="/cgi-bin/system?" || body="Web Configurator" && body="images/header_logo.jpg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/system?SYSTEM_INFO") && response.body_string.contains("/cgi-bin/system?")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Web Configurator") && response.body_string.contains("images/header_logo.jpg")
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Bugzilla
+manual: false
+detail:
+    fingerprint:
+        name: Bugzilla
+    fofa: body="enter_bug.cgi" && body="/cgi-bin/bugzilla/" || header="bugzilla_login_request_cookie" || body="enter_bug.cgi" || body="/cgi-bin/bugzilla/" || header="Bugzilla_login_request_cookie" || title="bugzilla main page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("enter_bug.cgi") && response.body_string.contains("/cgi-bin/bugzilla/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("bugzilla_login_request_cookie"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("enter_bug.cgi")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/bugzilla/")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Bugzilla_login_request_cookie"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bugzilla main page")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

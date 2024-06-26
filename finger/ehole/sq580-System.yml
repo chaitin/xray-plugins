@@ -1,0 +1,23 @@
+name: fingerprint-yaml-sq580-System
+manual: false
+detail:
+    fingerprint:
+        name: sq580-System
+    fofa: body="3cspan id='cnzz_stat_icon_1274142628" || body="3cspan id=\"cnzz_stat_icon_1274142628"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("3cspan id='cnzz_stat_icon_1274142628")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('3cspan id="cnzz_stat_icon_1274142628')
+expression: r0() || r1()

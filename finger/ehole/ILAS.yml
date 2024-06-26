@@ -1,0 +1,58 @@
+name: fingerprint-yaml-ILAS
+manual: false
+detail:
+    fingerprint:
+        name: ILAS
+    fofa: body="<iframe name=\"content\"  src=\"index_middle.html\" frameborder=\"auto" && body="<select id=\"selprovince\"   onchange=\"getcity(this.options[this.selectedindex].value\">" || body="<iframe name=\"content\"  src=\"index_middle.html\" frameborder=\"auto" || body="<select id=\"selprovince\"   onchange=\"getcitythis.options[this.selectedindex].value\">" || body="<iframe name=\"content\" src=\"index_middle.html\" frameborder=\"auto" || body="<select id=\"selprovince\" onchange=\"getcity(this.options[this.selectedindex].value)\">" || title="欢迎使用ilas小型版" || title="欢迎您使用ilas网上图书馆"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe name="content"  src="index_middle.html" frameborder="auto') && response.body_string.contains('<select id="selprovince"   onchange="getcity(this.options[this.selectedindex].value">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe name="content"  src="index_middle.html" frameborder="auto')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select id="selprovince"   onchange="getcitythis.options[this.selectedindex].value">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe name="content" src="index_middle.html" frameborder="auto')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select id="selprovince" onchange="getcity(this.options[this.selectedindex].value)">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎使用ilas小型版")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎您使用ilas网上图书馆")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

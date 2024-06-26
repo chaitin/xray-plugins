@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Captch Me
+manual: false
+detail:
+    fingerprint:
+        name: Captch Me
+    fofa: header="Captch Me" || title="Captch Me"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Captch Me"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Captch Me")
+expression: r0() || r1()

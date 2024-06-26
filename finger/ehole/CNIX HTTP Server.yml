@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CNIX HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: CNIX HTTP Server
+    fofa: header="CNIX HTTP Server" || title="CNIX HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CNIX HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CNIX HTTP Server")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OKI-Printer
+manual: false
+detail:
+    fingerprint:
+        name: OKI-Printer
+    fofa: header="okidata-httpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("okidata-httpd"))
+expression: r0()

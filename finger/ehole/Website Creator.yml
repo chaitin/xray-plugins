@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Website Creator
+manual: false
+detail:
+    fingerprint:
+        name: Website Creator
+    fofa: header="Website Creator" || title="Website Creator"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Website Creator"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Website Creator")
+expression: r0() || r1()

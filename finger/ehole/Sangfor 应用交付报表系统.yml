@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sangfor 应用交付报表系统
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor 应用交付报表系统
+    fofa: icon_hash="-1810847295"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1810847295
+expression: r0()

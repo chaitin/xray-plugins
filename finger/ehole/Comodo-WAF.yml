@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Comodo-WAF
+manual: false
+detail:
+    fingerprint:
+        name: Comodo-WAF
+    fofa: 'header="server: protected by comodo waf"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: protected by comodo waf"))'
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DCN-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: DCN-Firewall
+    fofa: title="dcfos web management"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dcfos web management")
+expression: r0()

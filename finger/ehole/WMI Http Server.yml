@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WMI Http Server
+manual: false
+detail:
+    fingerprint:
+        name: WMI Http Server
+    fofa: header="WMI Http Server" || title="WMI Http Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WMI Http Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WMI Http Server")
+expression: r0() || r1()

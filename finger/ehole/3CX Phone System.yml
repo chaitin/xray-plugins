@@ -1,0 +1,16 @@
+name: fingerprint-yaml-3CX Phone System
+manual: false
+detail:
+    fingerprint:
+        name: 3CX Phone System
+    fofa: icon_hash="970132176"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 970132176
+expression: r0()

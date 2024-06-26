@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR XAU2511
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR XAU2511
+    fofa: header="NETGEAR XAU2511"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR XAU2511"))
+expression: r0()

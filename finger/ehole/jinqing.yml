@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jinqing
+manual: false
+detail:
+    fingerprint:
+        name: jinqing
+    fofa: body="action=\"/j_spring_security_check"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/j_spring_security_check')
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ionicons
+manual: false
+detail:
+    fingerprint:
+        name: Ionicons
+    fofa: header="Ionicons" || title="Ionicons"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ionicons"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ionicons")
+expression: r0() || r1()

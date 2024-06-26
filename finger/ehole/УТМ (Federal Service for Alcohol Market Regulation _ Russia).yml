@@ -1,0 +1,16 @@
+name: fingerprint-yaml-УТМ (Federal Service for Alcohol Market Regulation _ Russia)
+manual: false
+detail:
+    fingerprint:
+        name: УТМ (Federal Service for Alcohol Market Regulation | Russia)
+    fofa: icon_hash="-1131689409"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1131689409
+expression: r0()

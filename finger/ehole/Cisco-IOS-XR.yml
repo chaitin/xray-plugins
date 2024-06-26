@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Cisco-IOS-XR
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-IOS-XR
+    fofa: 'header="cisco ios-xr" || header="Cisco IOS-XR" || header="server: cisco ios-xr"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cisco ios-xr"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco IOS-XR"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cisco ios-xr"))'
+expression: r0() || r1() || r2()

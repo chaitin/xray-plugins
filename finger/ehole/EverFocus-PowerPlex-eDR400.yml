@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EverFocus-PowerPlex-eDR400
+manual: false
+detail:
+    fingerprint:
+        name: EverFocus-PowerPlex-eDR400
+    fofa: title="welcome to edr400"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome to edr400")
+expression: r0()

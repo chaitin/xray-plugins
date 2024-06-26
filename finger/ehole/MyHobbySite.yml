@@ -1,0 +1,30 @@
+name: fingerprint-yaml-MyHobbySite
+manual: false
+detail:
+    fingerprint:
+        name: MyHobbySite
+    fofa: body="(Powered by MyHobbySite)</title>" || body="<!-- Removing the copyright notice without purchasing the MyHobbySite Copyright Removal License voids the MyHobbySite End User License Agreement -->" || body="<a name=\"top\"></a> <!-- Necessary for the \"jump to the top of the page\" links -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("(Powered by MyHobbySite)</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Removing the copyright notice without purchasing the MyHobbySite Copyright Removal License voids the MyHobbySite End User License Agreement -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a name="top"></a> <!-- Necessary for the "jump to the top of the page" links -->')
+expression: r0() || r1() || r2()

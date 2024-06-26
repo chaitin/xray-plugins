@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ExtremeWare-Company's-product
+manual: false
+detail:
+    fingerprint:
+        name: ExtremeWare-Company's-product
+    fofa: 'body="<frame src=\"extremetop" || header="server: extremeware"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="extremetop')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: extremeware"))'
+expression: r0() || r1()

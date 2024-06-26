@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SOYAL Serial Device Server
+manual: false
+detail:
+    fingerprint:
+        name: SOYAL Serial Device Server
+    fofa: icon_hash="1777351344"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1777351344
+expression: r0()

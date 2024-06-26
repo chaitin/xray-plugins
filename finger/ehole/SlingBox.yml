@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SlingBox
+manual: false
+detail:
+    fingerprint:
+        name: SlingBox
+    fofa: 'header="set-cookie: _sling_skey" || header="Slingbox" || title="Slingbox"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: _sling_skey"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Slingbox"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Slingbox")
+expression: r0() || r1() || r2()

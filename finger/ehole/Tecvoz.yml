@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tecvoz
+manual: false
+detail:
+    fingerprint:
+        name: Tecvoz
+    fofa: icon_hash="-1452159623" || icon_hash="1059329877"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1452159623
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1059329877
+expression: r0() || r1()

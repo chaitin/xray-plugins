@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uplink-Product
+manual: false
+detail:
+    fingerprint:
+        name: uplink-Product
+    fofa: body="up-link systems, inc."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("up-link systems, inc.")
+expression: r0()

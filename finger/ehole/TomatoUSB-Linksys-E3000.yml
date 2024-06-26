@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TomatoUSB-Linksys-E3000
+manual: false
+detail:
+    fingerprint:
+        name: TomatoUSB-Linksys-E3000
+    fofa: header="realm=\"linksys e3000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="linksys e3000'))
+expression: r0()

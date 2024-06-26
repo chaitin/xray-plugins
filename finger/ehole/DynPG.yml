@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DynPG
+manual: false
+detail:
+    fingerprint:
+        name: DynPG
+    fofa: header="DynPG" || title="DynPG"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DynPG"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DynPG")
+expression: r0() || r1()

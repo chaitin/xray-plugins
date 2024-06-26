@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Cameras-and-Surveillance
+    fofa: title="mpeg2/4 dvswebserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mpeg2/4 dvswebserver")
+expression: r0()

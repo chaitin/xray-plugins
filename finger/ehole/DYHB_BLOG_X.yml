@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DYHB_BLOG_X
+manual: false
+detail:
+    fingerprint:
+        name: DYHB.BLOG_X
+    fofa: title="DYHB.BLOG_X"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DYHB.BLOG_X")
+expression: r0()

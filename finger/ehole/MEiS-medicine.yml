@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MEiS-medicine
+manual: false
+detail:
+    fingerprint:
+        name: MEiS-medicine
+    fofa: body="<h1 class=\"logo\">欢迎使用 <span class=\"logo_icon\">meis</span> 医疗信息管理系统</h1>" || title="meis 医疗信息管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h1 class="logo">欢迎使用 <span class="logo_icon">meis</span> 医疗信息管理系统</h1>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("meis 医疗信息管理系统")
+expression: r0() || r1()

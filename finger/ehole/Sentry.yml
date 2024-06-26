@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sentry
+manual: false
+detail:
+    fingerprint:
+        name: Sentry
+    fofa: icon_hash="2063428236"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2063428236
+expression: r0()

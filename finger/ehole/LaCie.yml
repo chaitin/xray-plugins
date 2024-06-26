@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LaCie
+manual: false
+detail:
+    fingerprint:
+        name: LaCie
+    fofa: icon_hash="-1277814690"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1277814690
+expression: r0()

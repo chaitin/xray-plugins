@@ -1,0 +1,23 @@
+name: fingerprint-yaml-iHTML
+manual: false
+detail:
+    fingerprint:
+        name: iHTML
+    fofa: header="using ihtml" || header="iHTML"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("using ihtml"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iHTML"))
+expression: r0() || r1()

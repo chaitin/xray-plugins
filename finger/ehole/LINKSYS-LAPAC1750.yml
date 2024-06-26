@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LINKSYS-LAPAC1750
+manual: false
+detail:
+    fingerprint:
+        name: LINKSYS-LAPAC1750
+    fofa: title="lapac1750 wireless ac1750 access point with poe"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lapac1750 wireless ac1750 access point with poe")
+expression: r0()

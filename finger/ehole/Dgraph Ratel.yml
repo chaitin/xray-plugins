@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dgraph Ratel
+manual: false
+detail:
+    fingerprint:
+        name: Dgraph Ratel
+    fofa: icon_hash="-1961046099"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1961046099
+expression: r0()

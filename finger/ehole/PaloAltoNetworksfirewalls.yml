@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PaloAltoNetworksfirewalls
+manual: false
+detail:
+    fingerprint:
+        name: PaloAltoNetworksfirewalls
+    fofa: title="Palo Alto Networks firewalls"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Palo Alto Networks firewalls")
+expression: r0()

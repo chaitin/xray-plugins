@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-ISC3608-SC
+manual: false
+detail:
+    fingerprint:
+        name: uniview-ISC3608-SC
+    fofa: title="isc3608-sc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc3608-sc")
+expression: r0()

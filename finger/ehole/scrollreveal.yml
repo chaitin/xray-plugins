@@ -1,0 +1,23 @@
+name: fingerprint-yaml-scrollreveal
+manual: false
+detail:
+    fingerprint:
+        name: scrollreveal
+    fofa: header="scrollreveal" || title="scrollreveal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("scrollreveal"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("scrollreveal")
+expression: r0() || r1()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Uebimiau-Webmail
+manual: false
+detail:
+    fingerprint:
+        name: Uebimiau-Webmail
+    fofa: body="<script type=\"text/javascript\" src=\"themes/default/js/webmail.js\"></script>" || body="<title>Uebimiau ( Installer )</title>" || body="<p>You are about to re-install Uebimiau Webmail on you system.<br>Thanks to log with your UebiMiau Admin ID and password to continue.</p>" || body="<meta name=\"keywords\" content=\"uebimiau,tdah,uebimiau,webmail,email,mail,client,application,pop3,php,open     source,free,sourceforge,development\" />" || title="uebimiau"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="themes/default/js/webmail.js"></script>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Uebimiau ( Installer )</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<p>You are about to re-install Uebimiau Webmail on you system.<br>Thanks to log with your UebiMiau Admin ID and password to continue.</p>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="keywords" content="uebimiau,tdah,uebimiau,webmail,email,mail,client,application,pop3,php,open     source,free,sourceforge,development" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("uebimiau")
+expression: r0() || r1() || r2() || r3() || r4()

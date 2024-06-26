@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-CBA750B
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-CBA750B
+    fofa: 'title="login :: cba750b"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("login :: cba750b")'
+expression: r0()

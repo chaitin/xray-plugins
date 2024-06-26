@@ -1,0 +1,16 @@
+name: fingerprint-yaml-landray
+manual: false
+detail:
+    fingerprint:
+        name: landray
+    fofa: title="landray"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("landray")
+expression: r0()

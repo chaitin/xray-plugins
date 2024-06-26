@@ -1,0 +1,30 @@
+name: fingerprint-yaml-E-PLUGGER-SRM
+manual: false
+detail:
+    fingerprint:
+        name: E-PLUGGER-SRM
+    fofa: body="lan12-jingbian-hong" && body="科研管理系统，北京易普拉格科技" || body="科研管理系统，北京易普拉格科技" || body="lan12-jingbian-hong"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("lan12-jingbian-hong") && response.body_string.contains("科研管理系统，北京易普拉格科技")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("科研管理系统，北京易普拉格科技")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("lan12-jingbian-hong")
+expression: r0() || r1() || r2()

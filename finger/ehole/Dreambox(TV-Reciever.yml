@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dreambox(TV-Reciever
+manual: false
+detail:
+    fingerprint:
+        name: Dreambox(TV-Reciever
+    fofa: header="basic realm=\"dreambox\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="dreambox"'))
+expression: r0()

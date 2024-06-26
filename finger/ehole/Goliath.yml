@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Goliath
+manual: false
+detail:
+    fingerprint:
+        name: Goliath
+    fofa: header="Goliath" || title="Goliath"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Goliath"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Goliath")
+expression: r0() || r1()

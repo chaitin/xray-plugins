@@ -1,0 +1,16 @@
+name: fingerprint-yaml-极简论坛系统
+manual: false
+detail:
+    fingerprint:
+        name: 极简论坛系统
+    fofa: title="极简论坛系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("极简论坛系统")
+expression: r0()

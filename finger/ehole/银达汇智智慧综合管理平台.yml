@@ -1,0 +1,30 @@
+name: fingerprint-yaml-银达汇智智慧综合管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 银达汇智智慧综合管理平台
+    fofa: body="福州银达云创信息科技有限公司" && body="miniui/crypto/CodeManage.js" || body="miniui" && body="Help ?" && body="main.aspx" || icon_hash="1170487960"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("福州银达云创信息科技有限公司") && response.body_string.contains("miniui/crypto/CodeManage.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("miniui") && response.body_string.contains("Help ?") && response.body_string.contains("main.aspx")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1170487960
+expression: r0() || r1() || r2()

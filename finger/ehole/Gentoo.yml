@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Gentoo
+manual: false
+detail:
+    fingerprint:
+        name: Gentoo
+    fofa: title="Gentoo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Gentoo")
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-SAP Netweaver
+manual: false
+detail:
+    fingerprint:
+        name: SAP Netweaver
+    fofa: icon_hash="-266008933" || header="SAP NetWeaver" || title="SAP NetWeaver" || title="SAPNetWeaver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -266008933
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SAP NetWeaver"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SAP NetWeaver")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SAPNetWeaver")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HiMail邮件系统
+manual: false
+detail:
+    fingerprint:
+        name: HiMail邮件系统
+    fofa: header="HiMail邮件系统" || title="HiMail邮件系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HiMail邮件系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HiMail邮件系统")
+expression: r0() || r1()

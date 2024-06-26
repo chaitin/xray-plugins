@@ -1,0 +1,23 @@
+name: fingerprint-yaml-bbsmax
+manual: false
+detail:
+    fingerprint:
+        name: bbsmax
+    fofa: header="bbsmax" || title="bbsmax"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("bbsmax"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bbsmax")
+expression: r0() || r1()

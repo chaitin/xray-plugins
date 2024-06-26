@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WSNCM-System
+manual: false
+detail:
+    fingerprint:
+        name: WSNCM-System
+    fofa: body="class=\"login\">wsncm动态仓单系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="login">wsncm动态仓单系统')
+expression: r0()

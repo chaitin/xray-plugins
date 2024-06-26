@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK TD-VG3511
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK TD-VG3511
+    fofa: header="TP-LINK TD-VG3511"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TD-VG3511"))
+expression: r0()

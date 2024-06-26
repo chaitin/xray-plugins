@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HP-J4110A
+manual: false
+detail:
+    fingerprint:
+        name: HP-J4110A
+    fofa: header="realm=\"hp j4110a"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="hp j4110a'))
+expression: r0()

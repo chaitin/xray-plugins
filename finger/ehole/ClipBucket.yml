@@ -1,0 +1,128 @@
+name: fingerprint-yaml-ClipBucket
+manual: false
+detail:
+    fingerprint:
+        name: ClipBucket
+    fofa: body="content=\"clipbucket" && body="<!-- clipbucket" && body="<!-- forged by clipbucket" && body="href=\"http://clip-bucket.com/\">clipbucket" || body="content=\"ClipBucket" || body="<!-- ClipBucket" || body="<!-- Forged by ClipBucket" || body="href=\"http://clip-bucket.com/\">ClipBucket" || body="href=\"http://clip-bucket.com/\">clipbucket" || body="<!-- forged by clipbucket" || body="<!-- clipbucket" || body="content=\"clipbucket" || body="<meta name=\"author\" content=\"Arslan Hassan - http://clip-bucket.com/arslan-hassan\" />" || body="<!-- ClipBucket v2 -->" || body="<!-- Setting Template Variables -->" || body="<!-- Forged by ClipBucket -->" || body="<!-- Forged by ClipBucket ends -->" || body="<!-- Please do not remove this unless you have license -->" || body="Forged by <a href=\"http://clip-bucket.com/\">ClipBucket</a>" || body="<!-- clipbucket" && body="content=\"clipbucket"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="clipbucket') && response.body_string.contains("<!-- clipbucket") && response.body_string.contains("<!-- forged by clipbucket") && response.body_string.contains('href="http://clip-bucket.com/">clipbucket')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="ClipBucket')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- ClipBucket")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Forged by ClipBucket")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://clip-bucket.com/">ClipBucket')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://clip-bucket.com/">clipbucket')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- forged by clipbucket")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- clipbucket")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="clipbucket')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Arslan Hassan - http://clip-bucket.com/arslan-hassan" />')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- ClipBucket v2 -->")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Setting Template Variables -->")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Forged by ClipBucket -->")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Forged by ClipBucket ends -->")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Please do not remove this unless you have license -->")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Forged by <a href="http://clip-bucket.com/">ClipBucket</a>')
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- clipbucket") && response.body_string.contains('content="clipbucket')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-hoge厚建
+manual: false
+detail:
+    fingerprint:
+        name: hoge厚建
+    fofa: title="hoge厚建"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hoge厚建")
+expression: r0()

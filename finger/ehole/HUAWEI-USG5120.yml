@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG5120
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG5120
+    fofa: header="usg5120"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("usg5120"))
+expression: r0()

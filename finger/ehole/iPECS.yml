@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iPECS
+manual: false
+detail:
+    fingerprint:
+        name: iPECS
+    fofa: icon_hash="-195508437"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -195508437
+expression: r0()

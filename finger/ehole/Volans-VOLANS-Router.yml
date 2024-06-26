@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Volans-VOLANS-Router
+manual: false
+detail:
+    fingerprint:
+        name: Volans-VOLANS-Router
+    fofa: header="飞鱼星科技volans" || header="路由器" && header="飞鱼星科技volans"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("飞鱼星科技volans"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("路由器")) && response.raw_header.bcontains(bytes("飞鱼星科技volans"))
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Huawei Wireless ADSL2+ Router
+manual: false
+detail:
+    fingerprint:
+        name: Huawei Wireless ADSL2+ Router
+    fofa: header="Huawei Wireless ADSL2+ Router" || title="Huawei Wireless ADSL2+ Router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Huawei Wireless ADSL2+ Router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Huawei Wireless ADSL2+ Router")
+expression: r0() || r1()

@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Cogent-DataHub
+manual: false
+detail:
+    fingerprint:
+        name: Cogent-DataHub
+    fofa: body="/images/cogent.gif" || body="/images/Cogent.gif" || body="timerID = setTimeout (\"DataHubConnection.updateTimer()\", this.timerTick);" || body="<link type=\"text/css\" rel=\"stylesheet\" href=\"css/dhwebserver.css\" />" || body="<img src=\"images/Cogent.gif\" alt=\"\" width=\"449\" height=\"47\" border=\"0\">" || body="<!-- The DataHub script that determines if the DataPid is running is at the top of this file. The DataHub script is not visable" || body="<title>Cogent DataHub WebView</title>" || body="<!-- The following ASP code generates the table of DataHub point values -->" || title="cogent datahub webview"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/cogent.gif")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/Cogent.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('timerID = setTimeout ("DataHubConnection.updateTimer()", this.timerTick);')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link type="text/css" rel="stylesheet" href="css/dhwebserver.css" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="images/Cogent.gif" alt="" width="449" height="47" border="0">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- The DataHub script that determines if the DataPid is running is at the top of this file. The DataHub script is not visable")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Cogent DataHub WebView</title>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- The following ASP code generates the table of DataHub point values -->")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cogent datahub webview")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

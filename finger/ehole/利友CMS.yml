@@ -1,0 +1,23 @@
+name: fingerprint-yaml-利友CMS
+manual: false
+detail:
+    fingerprint:
+        name: 利友CMS
+    fofa: header="利友CMS" || title="利友CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("利友CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("利友CMS")
+expression: r0() || r1()

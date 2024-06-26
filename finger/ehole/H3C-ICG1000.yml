@@ -1,0 +1,30 @@
+name: fingerprint-yaml-H3C-ICG1000
+manual: false
+detail:
+    fingerprint:
+        name: H3C-ICG1000
+    fofa: header="h3c icg 1000" || title="icg 1000系统管理" || title="icg1000系统管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("h3c icg 1000"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("icg 1000系统管理")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("icg1000系统管理")
+expression: r0() || r1() || r2()

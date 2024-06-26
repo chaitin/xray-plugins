@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TOTO_LINK-N302R-Plus
+manual: false
+detail:
+    fingerprint:
+        name: TOTO_LINK-N302R-Plus
+    fofa: title="totolink n302r plus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totolink n302r plus")
+expression: r0()

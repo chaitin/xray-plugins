@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RiteCMS
+manual: false
+detail:
+    fingerprint:
+        name: RiteCMS
+    fofa: header="RiteCMS" || title="RiteCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RiteCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RiteCMS")
+expression: r0() || r1()

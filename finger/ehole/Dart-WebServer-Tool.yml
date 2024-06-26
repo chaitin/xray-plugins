@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dart-WebServer-Tool
+manual: false
+detail:
+    fingerprint:
+        name: Dart-WebServer-Tool
+    fofa: header="Dart WebServer Tool"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dart WebServer Tool"))
+expression: r0()

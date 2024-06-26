@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dell-KACE-Appliance
+manual: false
+detail:
+    fingerprint:
+        name: Dell-KACE-Appliance
+    fofa: header="x-dellkace-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-dellkace-"))
+expression: r0()

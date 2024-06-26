@@ -1,0 +1,23 @@
+name: fingerprint-yaml-博世 安防
+manual: false
+detail:
+    fingerprint:
+        name: 博世 安防
+    fofa: header="博世 安防" || title="博世 安防"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("博世 安防"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("博世 安防")
+expression: r0() || r1()

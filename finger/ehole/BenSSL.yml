@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BenSSL
+manual: false
+detail:
+    fingerprint:
+        name: BenSSL
+    fofa: header="ben-ssl" || header="Ben-SSL"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ben-ssl"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ben-SSL"))
+expression: r0() || r1()

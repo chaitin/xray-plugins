@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Hisense-Business-Management-Platform
+manual: false
+detail:
+    fingerprint:
+        name: Hisense-Business-Management-Platform
+    fofa: body="src=\"up.jpg\"" && body="src=\"left.jpg\"" || body="src=\"left.jpg\"" && body="src=\"up.jpg\"" || body="src=\"up.jpg\"" || body="src=\"left.jpg\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="up.jpg"') && response.body_string.contains('src="left.jpg"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="left.jpg"') && response.body_string.contains('src="up.jpg"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="up.jpg"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="left.jpg"')
+expression: r0() || r1() || r2() || r3()

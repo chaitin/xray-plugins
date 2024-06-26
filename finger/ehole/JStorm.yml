@@ -1,0 +1,23 @@
+name: fingerprint-yaml-JStorm
+manual: false
+detail:
+    fingerprint:
+        name: JStorm
+    fofa: body="content=\"jstorm" || title="jstorm ui "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="jstorm')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jstorm ui ")
+expression: r0() || r1()

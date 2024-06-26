@@ -1,0 +1,23 @@
+name: fingerprint-yaml-i3micro
+manual: false
+detail:
+    fingerprint:
+        name: i3micro
+    fofa: header="realm=\"i3micro" || header="i3micro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="i3micro'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("i3micro"))
+expression: r0() || r1()

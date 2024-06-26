@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ALPHA-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: ALPHA-WebServer
+    fofa: header="ALPHA-WebServer" || title="ALPHA-WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ALPHA-WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ALPHA-WebServer")
+expression: r0() || r1()

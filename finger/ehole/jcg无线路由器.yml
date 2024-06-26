@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jcg无线路由器
+manual: false
+detail:
+    fingerprint:
+        name: jcg无线路由器
+    fofa: body="http://www.jcgcn.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.jcgcn.com")
+expression: r0()

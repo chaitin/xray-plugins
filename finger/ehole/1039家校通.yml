@@ -1,0 +1,23 @@
+name: fingerprint-yaml-1039家校通
+manual: false
+detail:
+    fingerprint:
+        name: 1039家校通
+    fofa: header="1039家校通" || title="1039家校通"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("1039家校通"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("1039家校通")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZTE-D401
+manual: false
+detail:
+    fingerprint:
+        name: ZTE-D401
+    fofa: body="d401</font></div>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("d401</font></div>")
+expression: r0()

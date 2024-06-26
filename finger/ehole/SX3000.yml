@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SX3000
+manual: false
+detail:
+    fingerprint:
+        name: SX3000
+    fofa: title="sx3000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sx3000")
+expression: r0()

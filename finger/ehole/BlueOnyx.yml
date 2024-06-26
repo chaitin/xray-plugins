@@ -1,0 +1,58 @@
+name: fingerprint-yaml-BlueOnyx
+manual: false
+detail:
+    fingerprint:
+        name: BlueOnyx
+    fofa: body="thank you for using the blueonyx" || body="Thank you for using the BlueOnyx" || body="<BODY BGCOLOR=\"#FFFFFF\" onLoad=\"focuslogin()\" onResize=\"if(navigator.appName == \"Netscape\") location.reload()\" LINK=\"#FFFFFF\" VLINK=\"#FFFFFF\">" || body="<META NAME=\"Copyright\" VALUE=\"Copyright (C) 2000, Cobalt Networks, Inc.  All rights reserved.\">" || body="var url = \"/login.php?expired=true&target=\"+escape(pathname+top.location.search+top.location.hash);" || body="<BODY onLoad=\"location=\"http://\"+location.host+\"/login/\"\">" || title="login - blueonyx"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("thank you for using the blueonyx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Thank you for using the BlueOnyx")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<BODY BGCOLOR="#FFFFFF" onLoad="focuslogin()" onResize="if(navigator.appName == "Netscape") location.reload()" LINK="#FFFFFF" VLINK="#FFFFFF">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META NAME="Copyright" VALUE="Copyright (C) 2000, Cobalt Networks, Inc.  All rights reserved.">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var url = "/login.php?expired=true&target="+escape(pathname+top.location.search+top.location.hash);')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<BODY onLoad="location="http://"+location.host+"/login/"">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("login - blueonyx")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

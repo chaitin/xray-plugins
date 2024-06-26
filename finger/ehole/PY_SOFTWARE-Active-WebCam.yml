@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PY_SOFTWARE-Active-WebCam
+manual: false
+detail:
+    fingerprint:
+        name: PY_SOFTWARE-Active-WebCam
+    fofa: header="basic realm=\"py software active webcam\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="py software active webcam"'))
+expression: r0()

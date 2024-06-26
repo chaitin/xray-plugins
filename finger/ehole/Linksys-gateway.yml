@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Linksys-gateway
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-gateway
+    fofa: header="realm=\"linksys gateway" || header="Linksys gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="linksys gateway'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys gateway"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZiGuangHuaYu-Attendance Management System
+manual: false
+detail:
+    fingerprint:
+        name: ZiGuangHuaYu-Attendance Management System
+    fofa: body="广州紫光华宇信息技术有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("广州紫光华宇信息技术有限公司")
+expression: r0()

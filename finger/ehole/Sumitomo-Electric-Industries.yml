@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sumitomo-Electric-Industries
+manual: false
+detail:
+    fingerprint:
+        name: Sumitomo-Electric-Industries
+    fofa: header="realm=\"sumitomo electric industries"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="sumitomo electric industries'))
+expression: r0()

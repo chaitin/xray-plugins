@@ -1,0 +1,23 @@
+name: fingerprint-yaml-深信服 VPN
+manual: false
+detail:
+    fingerprint:
+        name: 深信服 VPN
+    fofa: header="深信服 VPN" || title="深信服 VPN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("深信服 VPN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("深信服 VPN")
+expression: r0() || r1()

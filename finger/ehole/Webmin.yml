@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Webmin
+manual: false
+detail:
+    fingerprint:
+        name: Webmin
+    fofa: icon_hash="1453890729" || icon_hash="-1038557304" || icon_hash="1280907310" || icon_hash="479413330" || body="Webmin" && body="session_login" || body="webmin server on" || body="Webmin server on" || title="login to webmin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1453890729
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1038557304
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1280907310
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 479413330
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Webmin") && response.body_string.contains("session_login")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webmin server on")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Webmin server on")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("login to webmin")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

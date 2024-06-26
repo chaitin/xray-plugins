@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EQPHP_中文免费开源TPS-MVC框架
+manual: false
+detail:
+    fingerprint:
+        name: EQPHP_中文免费开源TPS-MVC框架
+    fofa: title="EQPHP_中文免费开源TPS-MVC框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EQPHP_中文免费开源TPS-MVC框架")
+expression: r0()

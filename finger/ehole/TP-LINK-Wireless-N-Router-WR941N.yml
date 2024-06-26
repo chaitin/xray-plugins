@@ -1,0 +1,51 @@
+name: fingerprint-yaml-TP-LINK-Wireless-N-Router-WR941N
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-Wireless-N-Router-WR941N
+    fofa: 'header="realm=\"tp-link wireless n router wr941n" && header="tp-link wireless wr941n" || header="server: wireless n router wr941n" || header="tp-link wireless wr941n" || header="tp-link tl-wr941n" || header="realm=\"tp-link wireless n router wr941n" || title="tl-wr941n"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tp-link wireless n router wr941n')) && response.raw_header.bcontains(bytes("tp-link wireless wr941n"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: wireless n router wr941n"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link wireless wr941n"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link tl-wr941n"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tp-link wireless n router wr941n'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tl-wr941n")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Winiis-ISP-Access-Resource-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: Winiis-ISP-Access-Resource-Management-System
+    fofa: body="winisp.gif"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("winisp.gif")
+expression: r0()

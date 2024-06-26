@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Flussonic (Video Streaming)
+manual: false
+detail:
+    fingerprint:
+        name: Flussonic (Video Streaming)
+    fofa: icon_hash="-393788031"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -393788031
+expression: r0()

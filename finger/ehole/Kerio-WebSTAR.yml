@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Kerio-WebSTAR
+manual: false
+detail:
+    fingerprint:
+        name: Kerio-WebSTAR
+    fofa: 'header="server: kerio_webstar" && header="4d_webstar" || header="Kerio_WebSTAR" || header="WebSTAR" || header="4D_WebStar" || header="4d_webstar" || header="server: webstar" || header="server: kerio_webstar"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: kerio_webstar")) && response.raw_header.bcontains(bytes("4d_webstar"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kerio_WebSTAR"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebSTAR"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("4D_WebStar"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("4d_webstar"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: webstar"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: kerio_webstar"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

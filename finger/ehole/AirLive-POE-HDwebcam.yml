@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AirLive-POE-HDwebcam
+manual: false
+detail:
+    fingerprint:
+        name: AirLive-POE-HDwebcam
+    fofa: body="js/variable_6.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/variable_6.js")
+expression: r0()

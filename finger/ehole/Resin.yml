@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Resin
+manual: false
+detail:
+    fingerprint:
+        name: Resin
+    fofa: 'body="<script type=\"text/javascript\" src=\"/resin-doc/js/default.js\">" || header="Server: Resin" || header="Server:Resin" || header="server: resin"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/javascript" src="/resin-doc/js/default.js">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Server: Resin"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:Resin"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: resin"))'
+expression: r0() || r1() || r2() || r3()

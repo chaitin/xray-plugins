@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ExagonConcept
+manual: false
+detail:
+    fingerprint:
+        name: ExagonConcept
+    fofa: title="Exagon Concept"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Exagon Concept")
+expression: r0()

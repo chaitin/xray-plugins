@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yfCDN
+manual: false
+detail:
+    fingerprint:
+        name: yfCDN
+    fofa: 'header="server: yunfancdn"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: yunfancdn"))'
+expression: r0()

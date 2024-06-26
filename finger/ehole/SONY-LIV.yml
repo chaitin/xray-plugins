@@ -1,0 +1,51 @@
+name: fingerprint-yaml-SONY-LIV
+manual: false
+detail:
+    fingerprint:
+        name: SONY-LIV
+    fofa: body="http://sonyliv.com/asset/socialsharelogo" && body="<meta name=\"author\" content=\"sony pictures networks india pvt. ltd\">" && body="<meta name=\"twitter:image\" content=\"http://sonyliv.com/asset/socialsharelogo\"/>" && body="content=\"sony liv" || body="content=\"sony liv" || body="<meta name=\"twitter:image\" content=\"http://sonyliv.com/asset/socialsharelogo\"/>" || body="<meta name=\"author\" content=\"sony pictures networks india pvt. ltd\">" || body="http://sonyliv.com/asset/socialsharelogo" || title="sony liv"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://sonyliv.com/asset/socialsharelogo") && response.body_string.contains('<meta name="author" content="sony pictures networks india pvt. ltd">') && response.body_string.contains('<meta name="twitter:image" content="http://sonyliv.com/asset/socialsharelogo"/>') && response.body_string.contains('content="sony liv')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="sony liv')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="twitter:image" content="http://sonyliv.com/asset/socialsharelogo"/>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="sony pictures networks india pvt. ltd">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://sonyliv.com/asset/socialsharelogo")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sony liv")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

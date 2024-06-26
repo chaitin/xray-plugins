@@ -1,0 +1,37 @@
+name: fingerprint-yaml-WeBid
+manual: false
+detail:
+    fingerprint:
+        name: WeBid
+    fofa: body="powered by <a href=\"http://www.webidsupport.com/\">webid" && body="<meta name=\"generator\" content=\"webid\">" || header="set-cookie webid_online=" || body="<meta name=\"generator\" content=\"webid\">" || body="powered by <a href=\"http://www.webidsupport.com/\">webid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.webidsupport.com/">webid') && response.body_string.contains('<meta name="generator" content="webid">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("set-cookie webid_online="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="webid">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.webidsupport.com/">webid')
+expression: r0() || r1() || r2() || r3()

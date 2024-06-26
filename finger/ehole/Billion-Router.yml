@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Billion-Router
+manual: false
+detail:
+    fingerprint:
+        name: Billion-Router
+    fofa: header="billion sky" && header="basic realm=\"webadmin" || header="Billion Sky" || header="Conexant-EmWeb" || header="Basic realm=\"WebAdmin" || header="basic realm=\"webadmin" && header="conexant-emweb" || header="billion sky" || header="basic realm=\"webadmin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("billion sky")) && response.raw_header.bcontains(bytes('basic realm="webadmin'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Billion Sky"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Conexant-EmWeb"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('Basic realm="WebAdmin'))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="webadmin')) && response.raw_header.bcontains(bytes("conexant-emweb"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("billion sky"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="webadmin'))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

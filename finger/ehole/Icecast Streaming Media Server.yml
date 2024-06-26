@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Icecast Streaming Media Server
+manual: false
+detail:
+    fingerprint:
+        name: Icecast Streaming Media Server
+    fofa: icon_hash="1424295654"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1424295654
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-速达荣耀G5_net
+manual: false
+detail:
+    fingerprint:
+        name: 速达荣耀G5.net
+    fofa: header="速达荣耀G5.net" || title="速达荣耀G5.net"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("速达荣耀G5.net"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("速达荣耀G5.net")
+expression: r0() || r1()

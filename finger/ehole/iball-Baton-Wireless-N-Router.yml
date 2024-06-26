@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iball-Baton-Wireless-N-Router
+manual: false
+detail:
+    fingerprint:
+        name: iball-Baton-Wireless-N-Router
+    fofa: title="iball baton wireless-n router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iball baton wireless-n router")
+expression: r0()

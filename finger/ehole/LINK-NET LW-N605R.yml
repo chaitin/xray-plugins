@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LINK-NET LW-N605R
+manual: false
+detail:
+    fingerprint:
+        name: LINK-NET LW-N605R
+    fofa: header="LINK-NET LW-N605R" || title="LINK-NET LW-N605R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LINK-NET LW-N605R"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LINK-NET LW-N605R")
+expression: r0() || r1()

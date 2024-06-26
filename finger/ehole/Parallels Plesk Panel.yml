@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Parallels Plesk Panel
+manual: false
+detail:
+    fingerprint:
+        name: Parallels Plesk Panel
+    fofa: icon_hash="-652508439" || icon_hash="-519765377" || icon_hash="-771764544" || body="parallels ip holdings gmbh" && body="<img src=\"./img/panel-logo.png\" alt=\"parallels plesk panel\"></a>" || header="plesk-panel" || body="Parallels IP Holdings GmbH" || body="<img src=\"./img/panel-logo.png\" alt=\"parallels plesk panel\"></a>" || body="parallels ip holdings gmbh" || title="default parallels plesk page" || title="default parallels plesk panel page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -652508439
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -519765377
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -771764544
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("parallels ip holdings gmbh") && response.body_string.contains('<img src="./img/panel-logo.png" alt="parallels plesk panel"></a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("plesk-panel"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Parallels IP Holdings GmbH")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="./img/panel-logo.png" alt="parallels plesk panel"></a>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("parallels ip holdings gmbh")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("default parallels plesk page")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("default parallels plesk panel page")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

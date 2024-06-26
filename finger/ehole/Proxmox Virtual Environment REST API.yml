@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Proxmox Virtual Environment REST API
+manual: false
+detail:
+    fingerprint:
+        name: Proxmox Virtual Environment REST API
+    fofa: header="Proxmox Virtual Environment REST API" || title="Proxmox Virtual Environment REST API"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Proxmox Virtual Environment REST API"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Proxmox Virtual Environment REST API")
+expression: r0() || r1()

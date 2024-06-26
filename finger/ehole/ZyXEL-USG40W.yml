@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-USG40W
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-USG40W
+    fofa: title="usg40w"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("usg40w")
+expression: r0()

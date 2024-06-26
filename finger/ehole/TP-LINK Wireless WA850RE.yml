@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK Wireless WA850RE
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK Wireless WA850RE
+    fofa: header="TP-LINK Wireless WA850RE"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK Wireless WA850RE"))
+expression: r0()

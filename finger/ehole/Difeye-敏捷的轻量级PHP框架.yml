@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Difeye-敏捷的轻量级PHP框架
+manual: false
+detail:
+    fingerprint:
+        name: Difeye-敏捷的轻量级PHP框架
+    fofa: title="Difeye-敏捷的轻量级PHP框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Difeye-敏捷的轻量级PHP框架")
+expression: r0()

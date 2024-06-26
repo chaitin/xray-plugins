@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Venustech-Taihe-information-security-operation-center
+manual: false
+detail:
+    fingerprint:
+        name: Venustech-Taihe-information-security-operation-center
+    fofa: title="泰合信息安全运营中心"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("泰合信息安全运营中心")
+expression: r0()

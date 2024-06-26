@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MULTILASER-Roteador-Wireless-N300
+manual: false
+detail:
+    fingerprint:
+        name: MULTILASER-Roteador-Wireless-N300
+    fofa: body="rel=\"shortcut icon\" href=\"./multi_icone.ico\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('rel="shortcut icon" href="./multi_icone.ico"')
+expression: r0()

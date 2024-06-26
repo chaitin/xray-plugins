@@ -1,0 +1,44 @@
+name: fingerprint-yaml-seacms(海洋CMS)
+manual: false
+detail:
+    fingerprint:
+        name: seacms(海洋CMS)
+    fofa: body="seacms" || body="Powered by SeaCms" || body="content=\"seacms" || header="seacms" || title="seacms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("seacms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by SeaCms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="seacms')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("seacms"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("seacms")
+expression: r0() || r1() || r2() || r3() || r4()

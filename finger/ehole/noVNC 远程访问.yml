@@ -1,0 +1,16 @@
+name: fingerprint-yaml-noVNC 远程访问
+manual: false
+detail:
+    fingerprint:
+        name: noVNC 远程访问
+    fofa: body="noVNC" && body="<span>no</span>" && body="host"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("noVNC") && response.body_string.contains("<span>no</span>") && response.body_string.contains("host")
+expression: r0()

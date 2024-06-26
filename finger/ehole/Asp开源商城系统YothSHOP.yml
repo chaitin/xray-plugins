@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Asp开源商城系统YothSHOP
+manual: false
+detail:
+    fingerprint:
+        name: Asp开源商城系统YothSHOP
+    fofa: title="Asp开源商城系统YothSHOP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Asp开源商城系统YothSHOP")
+expression: r0()

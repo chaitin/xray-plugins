@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SimpleHTTP
+manual: false
+detail:
+    fingerprint:
+        name: SimpleHTTP
+    fofa: header="SimpleHTTP" || title="SimpleHTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SimpleHTTP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SimpleHTTP")
+expression: r0() || r1()

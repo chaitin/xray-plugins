@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vodafone (Technicolor)
+manual: false
+detail:
+    fingerprint:
+        name: Vodafone (Technicolor)
+    fofa: icon_hash="165976831"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 165976831
+expression: r0()

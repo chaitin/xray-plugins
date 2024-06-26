@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Gxlcms
+manual: false
+detail:
+    fingerprint:
+        name: Gxlcms
+    fofa: header="Gxlcms" || title="Gxlcms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Gxlcms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Gxlcms")
+expression: r0() || r1()

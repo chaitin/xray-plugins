@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DotGraphics
+manual: false
+detail:
+    fingerprint:
+        name: DotGraphics
+    fofa: header="DotGraphics" || title="DotGraphics"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DotGraphics"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DotGraphics")
+expression: r0() || r1()

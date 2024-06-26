@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jingci_printer
+manual: false
+detail:
+    fingerprint:
+        name: jingci_printer
+    fofa: title="jingci_printer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jingci_printer")
+expression: r0()

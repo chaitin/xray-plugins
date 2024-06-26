@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sophos-Cyberoam-Product
+manual: false
+detail:
+    fingerprint:
+        name: Sophos-Cyberoam-Product
+    fofa: body="href=\"http://www.cyberoam.com\" target=\"_blank\">www.cyberoam.com" || header="webpages/login.jsp "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.cyberoam.com" target="_blank">www.cyberoam.com')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webpages/login.jsp "))
+expression: r0() || r1()

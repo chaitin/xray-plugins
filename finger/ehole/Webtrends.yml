@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Webtrends
+manual: false
+detail:
+    fingerprint:
+        name: Webtrends
+    fofa: header="Webtrends" || title="Webtrends"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Webtrends"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Webtrends")
+expression: r0() || r1()

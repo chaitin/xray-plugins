@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PLANET-ADN-4101
+manual: false
+detail:
+    fingerprint:
+        name: PLANET-ADN-4101
+    fofa: header="realm=\"adn-4101" || title="planet adn-4101"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="adn-4101'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("planet adn-4101")
+expression: r0() || r1()

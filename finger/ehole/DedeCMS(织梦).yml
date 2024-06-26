@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DedeCMS(织梦)
+manual: false
+detail:
+    fingerprint:
+        name: DedeCMS(织梦)
+    fofa: body="dedecms" || title="DedeCMS(织梦)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dedecms")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DedeCMS(织梦)")
+expression: r0() || r1()

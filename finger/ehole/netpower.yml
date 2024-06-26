@@ -1,0 +1,16 @@
+name: fingerprint-yaml-netpower
+manual: false
+detail:
+    fingerprint:
+        name: netpower
+    fofa: title="netpower"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netpower")
+expression: r0()

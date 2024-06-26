@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lazy_js
+manual: false
+detail:
+    fingerprint:
+        name: Lazy.js
+    fofa: title="Lazy.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Lazy.js")
+expression: r0()

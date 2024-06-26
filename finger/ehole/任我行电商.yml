@@ -1,0 +1,16 @@
+name: fingerprint-yaml-任我行电商
+manual: false
+detail:
+    fingerprint:
+        name: 任我行电商
+    fofa: body="content=\"366EC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="366EC')
+expression: r0()

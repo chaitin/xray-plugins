@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Citrix-Web-PN-Server
+manual: false
+detail:
+    fingerprint:
+        name: Citrix-Web-PN-Server
+    fofa: 'header="server: citrix web pn server" || header="Citrix Web PN Server" || title="Citrix Web PN Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: citrix web pn server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix Web PN Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix Web PN Server")
+expression: r0() || r1() || r2()

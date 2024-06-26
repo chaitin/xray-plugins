@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fedora
+manual: false
+detail:
+    fingerprint:
+        name: Fedora
+    fofa: header="Fedora"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fedora"))
+expression: r0()

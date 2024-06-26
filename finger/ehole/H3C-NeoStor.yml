@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-NeoStor
+manual: false
+detail:
+    fingerprint:
+        name: H3C-NeoStor
+    fofa: title="h3c neostor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("h3c neostor")
+expression: r0()

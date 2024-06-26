@@ -1,0 +1,23 @@
+name: fingerprint-yaml-oracle-tns
+manual: false
+detail:
+    fingerprint:
+        name: oracle-tns
+    fofa: header="oracle-tns" || title="oracle-tns"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("oracle-tns"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("oracle-tns")
+expression: r0() || r1()

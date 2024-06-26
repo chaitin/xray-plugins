@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR C7000-100NAS
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR C7000-100NAS
+    fofa: header="NETGEAR C7000-100NAS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR C7000-100NAS"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys BEFSR81
+manual: false
+detail:
+    fingerprint:
+        name: Linksys BEFSR81
+    fofa: header="Linksys BEFSR81"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys BEFSR81"))
+expression: r0()

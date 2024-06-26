@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Saia PCD
+manual: false
+detail:
+    fingerprint:
+        name: Saia PCD
+    fofa: header="Saia PCD" || title="Saia PCD"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Saia PCD"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Saia PCD")
+expression: r0() || r1()

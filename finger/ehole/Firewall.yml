@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Firewall
+    fofa: title="睿峰网云防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("睿峰网云防火墙")
+expression: r0()

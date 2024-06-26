@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ContentXXL
+manual: false
+detail:
+    fingerprint:
+        name: ContentXXL
+    fofa: body="content=\"contentxxl" || body="content=\"contentXXL"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="contentxxl')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="contentXXL')
+expression: r0() || r1()

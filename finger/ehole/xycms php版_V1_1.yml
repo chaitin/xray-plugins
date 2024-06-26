@@ -1,0 +1,23 @@
+name: fingerprint-yaml-xycms php版_V1_1
+manual: false
+detail:
+    fingerprint:
+        name: xycms php版_V1.1
+    fofa: header="xycms php版_V1.1" || title="xycms php版_V1.1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("xycms php版_V1.1"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xycms php版_V1.1")
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ARRIS-Netopia-Router
+manual: false
+detail:
+    fingerprint:
+        name: ARRIS-Netopia-Router
+    fofa: header="realm=\"netopia-" && header="netopia-payments." || header="netopia-payments." || header="realm=\"netopia-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netopia-')) && response.raw_header.bcontains(bytes("netopia-payments."))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netopia-payments."))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="netopia-'))
+expression: r0() || r1() || r2()

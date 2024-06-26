@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Ruijie-Switch
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-Switch
+    fofa: body="ap设备中的配置并不重要" && body="id=\"a_lang_switch\"" || body="id=\"a_lang_switch\"" && body="ap设备中的配置并不重要" || body="ap设备中的配置并不重要" || body="id=\"a_lang_switch\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ap设备中的配置并不重要") && response.body_string.contains('id="a_lang_switch"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="a_lang_switch"') && response.body_string.contains("ap设备中的配置并不重要")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("ap设备中的配置并不重要")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="a_lang_switch"')
+expression: r0() || r1() || r2() || r3()

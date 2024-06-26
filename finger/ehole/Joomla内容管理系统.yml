@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Joomla内容管理系统
+manual: false
+detail:
+    fingerprint:
+        name: Joomla内容管理系统
+    fofa: icon_hash="1747282642"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1747282642
+expression: r0()

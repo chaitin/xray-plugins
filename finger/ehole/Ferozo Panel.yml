@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ferozo Panel
+manual: false
+detail:
+    fingerprint:
+        name: Ferozo Panel
+    fofa: icon_hash="2072198544"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2072198544
+expression: r0()

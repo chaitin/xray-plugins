@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Trend-Aicache
+manual: false
+detail:
+    fingerprint:
+        name: Trend-Aicache
+    fofa: header="x-aicache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-aicache"))
+expression: r0()

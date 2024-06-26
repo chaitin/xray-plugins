@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Slack
+manual: false
+detail:
+    fingerprint:
+        name: Slack
+    fofa: icon_hash="-43161126"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -43161126
+expression: r0()

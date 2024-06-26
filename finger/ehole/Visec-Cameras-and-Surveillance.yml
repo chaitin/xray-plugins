@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Visec-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Visec-Cameras-and-Surveillance
+    fofa: 'header="server: visec"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: visec"))'
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jfrog-Artifactory
+manual: false
+detail:
+    fingerprint:
+        name: jfrog-Artifactory
+    fofa: 'header="server: artifactory"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: artifactory"))'
+expression: r0()

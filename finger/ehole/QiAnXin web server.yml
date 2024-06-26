@@ -1,0 +1,23 @@
+name: fingerprint-yaml-QiAnXin web server
+manual: false
+detail:
+    fingerprint:
+        name: QiAnXin web server
+    fofa: header="QiAnXin web server" || title="QiAnXin web server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QiAnXin web server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QiAnXin web server")
+expression: r0() || r1()

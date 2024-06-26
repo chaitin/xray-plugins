@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHP121
+manual: false
+detail:
+    fingerprint:
+        name: PHP121
+    fofa: body="<title>PHP121 - Please login or register</title>" || body="<title>PHP121 - New User</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PHP121 - Please login or register</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>PHP121 - New User</title>")
+expression: r0() || r1()

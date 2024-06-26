@@ -1,0 +1,79 @@
+name: fingerprint-yaml-ZyXEL-Router
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-Router
+    fofa: 'body="<friendlyname>zyxel router</friendlyname>" || body="<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv=\"content-type\" content=\"text/html;charset=iso-8859-1\">" || body="<form method=\"post\" action=\"/Forms/rpAuth_1\" onSubmit=\"LoginClick(document.forms[0].hiddenPassword, document.forms[0].LoginPassword);\"><p>&nbsp;</p>" || body="Welcome to your router Configuration Interface<p></p>Enter your password and press enter or click \"Login\"<p></p><img src=\"Images/i_key.gif\" width=\"11\" height=\"17\"  align=\"absmiddle\"> <strong>" || body="<font size=\"3\" color=\"3366CC\" face=\"Arial\"><b><i>Vantage Service Gateway</i>&nbsp;</b></font>" || body="<frameset rows=\"75,97%,25\" framespacing=\"0\" border=\"0\" frameborder=\"0\">" || body="loginPassword.value = \"ZyXEL ZyWALL Series\";" || title="zyxel router" || title="welcome to zyrouter" || title="do router zyxel"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<friendlyname>zyxel router</friendlyname>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<title>.:: Welcome to the Web-Based Configurator::.</title><meta http-equiv="content-type" content="text/html;charset=iso-8859-1">'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form method="post" action="/Forms/rpAuth_1" onSubmit="LoginClick(document.forms[0].hiddenPassword, document.forms[0].LoginPassword);"><p>&nbsp;</p>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Welcome to your router Configuration Interface<p></p>Enter your password and press enter or click "Login"<p></p><img src="Images/i_key.gif" width="11" height="17"  align="absmiddle"> <strong>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font size="3" color="3366CC" face="Arial"><b><i>Vantage Service Gateway</i>&nbsp;</b></font>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frameset rows="75,97%,25" framespacing="0" border="0" frameborder="0">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('loginPassword.value = "ZyXEL ZyWALL Series";')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zyxel router")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("welcome to zyrouter")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("do router zyxel")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

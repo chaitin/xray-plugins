@@ -1,0 +1,51 @@
+name: fingerprint-yaml-EagleEye-Networks
+manual: false
+detail:
+    fingerprint:
+        name: EagleEye-Networks
+    fofa: 'body="href=\"css/eagle.base_efafdad3.css" && body="title=\"eagle eye networks\">eagle eye networks</a></h1>" || header="x-ee-lb-hostname: " || body="title=\"eagle eye networks\">eagle eye networks</a></h1>" || body="href=\"css/eagle.base_efafdad3.css" || header="x-ee-lb-hostname:" || title="eagle eye networks"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="css/eagle.base_efafdad3.css') && response.body_string.contains('title="eagle eye networks">eagle eye networks</a></h1>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-ee-lb-hostname: "))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="eagle eye networks">eagle eye networks</a></h1>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="css/eagle.base_efafdad3.css')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-ee-lb-hostname:"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eagle eye networks")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

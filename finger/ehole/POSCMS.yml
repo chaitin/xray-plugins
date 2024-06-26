@@ -1,0 +1,23 @@
+name: fingerprint-yaml-POSCMS
+manual: false
+detail:
+    fingerprint:
+        name: POSCMS
+    fofa: header="POSCMS" || title="POSCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("POSCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("POSCMS")
+expression: r0() || r1()

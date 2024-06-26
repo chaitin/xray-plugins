@@ -1,0 +1,58 @@
+name: fingerprint-yaml-linkSpheric
+manual: false
+detail:
+    fingerprint:
+        name: linkSpheric
+    fofa: 'body="<style type=\"text/css\" media=\"screen\">@import \"styles/ls_orange.css\";</style>\"" || body="<title>linkSpheric Installer</title>" || body="<p style=\"text-align: center;\"><a href=\"admin/index.php\"><img src=\"images/ls_logo.png\" width=\"190\" height=\"75\" alt=\"Powered by linkSpheric\" /></a></p>" || body="<strong>linkSpheric Administrator:</strong>" || body="<!--License terms require you to leave this link attribution intact.  You are only permitted to remove it by special arrangement with dataSpheric-->" || body="<!--License terms require you to leave this link attribution intact. You are only permitted to remove it by special arrangement with dataSpheric-->" || body="Powered by <a href=\"http://dataspheric.com/services/software/ls/\" style=\"text-decoration: none; color: #000;\"><strong>link<span style=\"font-size: 1.3em; color: #f60;\">S</span>pheric</strong></a>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<style type="text/css" media="screen">@import "styles/ls_orange.css";</style>"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>linkSpheric Installer</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<p style="text-align: center;"><a href="admin/index.php"><img src="images/ls_logo.png" width="190" height="75" alt="Powered by linkSpheric" /></a></p>'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<strong>linkSpheric Administrator:</strong>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--License terms require you to leave this link attribution intact.  You are only permitted to remove it by special arrangement with dataSpheric-->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--License terms require you to leave this link attribution intact. You are only permitted to remove it by special arrangement with dataSpheric-->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Powered by <a href="http://dataspheric.com/services/software/ls/" style="text-decoration: none; color: #000;"><strong>link<span style="font-size: 1.3em; color: #f60;">S</span>pheric</strong></a>'')'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

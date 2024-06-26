@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Joomla
+manual: false
+detail:
+    fingerprint:
+        name: Joomla
+    fofa: icon_hash="1627330242" || icon_hash="-1950415971" || icon_hash="366524387" || body="content=\"joomla" && body="/media/system/js/core.js" && body="/media/system/js/mootools-core.js" || body="content=\"Joomla" || body="/media/system/js/mootools-core.js" && body="/media/system/js/core.js" || body="content=\"joomla" || body="Powered by <a href=\"http://www.joomla.org\">Joomla!</a>." || body="<meta name=\"keywords\" content=\"joomla, Joomla\" />" || body="/media/system/js/core.js" || body="/media/system/js/mootools-core.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1627330242
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1950415971
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 366524387
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="joomla') && response.body_string.contains("/media/system/js/core.js") && response.body_string.contains("/media/system/js/mootools-core.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Joomla')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/media/system/js/mootools-core.js") && response.body_string.contains("/media/system/js/core.js")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="joomla')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.joomla.org">Joomla!</a>.')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="keywords" content="joomla, Joomla" />')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/media/system/js/core.js")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/media/system/js/mootools-core.js")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Alcad IPTV Web
+manual: false
+detail:
+    fingerprint:
+        name: Alcad IPTV Web
+    fofa: header="Alcad IPTV Web" || title="Alcad IPTV Web"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alcad IPTV Web"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Alcad IPTV Web")
+expression: r0() || r1()

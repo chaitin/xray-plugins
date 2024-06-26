@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alibaba Cloud (Block Page)
+manual: false
+detail:
+    fingerprint:
+        name: Alibaba Cloud (Block Page)
+    fofa: icon_hash="1227052603"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1227052603
+expression: r0()

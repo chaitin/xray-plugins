@@ -1,0 +1,23 @@
+name: fingerprint-yaml-神行者路由
+manual: false
+detail:
+    fingerprint:
+        name: 神行者路由
+    fofa: header="神行者路由" || title="神行者路由"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("神行者路由"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("神行者路由")
+expression: r0() || r1()

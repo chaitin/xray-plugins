@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Couchbase
+manual: false
+detail:
+    fingerprint:
+        name: Couchbase
+    fofa: 'header="server: couchbase" && header="realm=\"couchbase" || header="Couchbase" || header="realm=\"couchbase" || header="server: couchbase" || title="couchbase console"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: couchbase")) && response.raw_header.bcontains(bytes(''realm="couchbase''))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Couchbase"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="couchbase'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: couchbase"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("couchbase console")
+expression: r0() || r1() || r2() || r3() || r4()

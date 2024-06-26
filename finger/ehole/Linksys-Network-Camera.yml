@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Linksys-Network-Camera
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-Network-Camera
+    fofa: body="<meta name=\"description\" content=\"WVC54GCA\">" || body="<td bgcolor=\"#6766CC\" align=\"right\" valign=\"top\"><span class=\"model\" style=\"position:relative;top:-12px\">WVC54GCA</span><img src=\"../blue_top_right.gif\" alt=\"\" border=\"0\">" || body="<meta name=\"description\" content=\"WVC80N\">" || body="<td bgcolor=\"#6766CC\" align=\"right\" valign=\"top\"><span class=\"model\" style=\"position:relative;top:-12px\">WVC80N</span><img src=\"../blue_top_right.gif\" alt=\"\" border=\"0\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="WVC54GCA">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td bgcolor="#6766CC" align="right" valign="top"><span class="model" style="position:relative;top:-12px">WVC54GCA</span><img src="../blue_top_right.gif" alt="" border="0">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="WVC80N">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td bgcolor="#6766CC" align="right" valign="top"><span class="model" style="position:relative;top:-12px">WVC80N</span><img src="../blue_top_right.gif" alt="" border="0">')
+expression: r0() || r1() || r2() || r3()

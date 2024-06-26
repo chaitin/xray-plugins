@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Atomic-Photo-Album
+manual: false
+detail:
+    fingerprint:
+        name: Atomic-Photo-Album
+    fofa: body="Atomic Photo Album"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Atomic Photo Album")
+expression: r0()

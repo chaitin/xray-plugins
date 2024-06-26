@@ -1,0 +1,23 @@
+name: fingerprint-yaml-潮流网络UCM
+manual: false
+detail:
+    fingerprint:
+        name: 潮流网络UCM
+    fofa: header="潮流网络UCM" || title="潮流网络UCM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("潮流网络UCM"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("潮流网络UCM")
+expression: r0() || r1()

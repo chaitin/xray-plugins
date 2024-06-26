@@ -1,0 +1,16 @@
+name: fingerprint-yaml-社区问题管理平台系统
+manual: false
+detail:
+    fingerprint:
+        name: 社区问题管理平台系统
+    fofa: title="社区问题管理平台系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("社区问题管理平台系统")
+expression: r0()

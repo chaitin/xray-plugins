@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CephFileSystem
+manual: false
+detail:
+    fingerprint:
+        name: CephFileSystem
+    fofa: header="realm=\"ceph-mgr"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ceph-mgr'))
+expression: r0()

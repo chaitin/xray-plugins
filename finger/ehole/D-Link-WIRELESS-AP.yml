@@ -1,0 +1,37 @@
+name: fingerprint-yaml-D-Link-WIRELESS-AP
+manual: false
+detail:
+    fingerprint:
+        name: D-Link-WIRELESS-AP
+    fofa: body="location.href = \"wizard_ap.htm\";" && body="<body onload=\"load_initial_settings('no-auth', 'get_restore_default'\">" || body="<body onload=\"load_initial_settings(\"no-auth\", \"get_restore_default\")\">" && body="location.href = \"wizard_ap.htm\";" || body="location.href = \"wizard_ap.htm\";" || body="<body onload=\"load_initial_settings\"no-auth\", \"get_restore_default\"\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = "wizard_ap.htm";') && response.body_string.contains("<body onload=\"load_initial_settings('no-auth', 'get_restore_default'\">")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="load_initial_settings("no-auth", "get_restore_default")">') && response.body_string.contains('location.href = "wizard_ap.htm";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = "wizard_ap.htm";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="load_initial_settings"no-auth", "get_restore_default"">')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Intershop
+manual: false
+detail:
+    fingerprint:
+        name: Intershop
+    fofa: header="Intershop" || title="Intershop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Intershop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Intershop")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Open Journal Systems
+manual: false
+detail:
+    fingerprint:
+        name: Open Journal Systems
+    fofa: header="Open Journal Systems" || title="Open Journal Systems"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Open Journal Systems"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Open Journal Systems")
+expression: r0() || r1()

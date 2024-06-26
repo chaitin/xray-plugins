@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-Link WDR4300
+manual: false
+detail:
+    fingerprint:
+        name: TP-Link WDR4300
+    fofa: header="TP-Link WDR4300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-Link WDR4300"))
+expression: r0()

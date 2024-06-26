@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Wosign-SSL-Cert
+manual: false
+detail:
+    fingerprint:
+        name: Wosign-SSL-Cert
+    fofa: body="https://seal.wosign.com/tws.js" && body="https://seal.wosign.com/signature" || body="https://seal.wosign.com/tws.js" || body="https://seal.wosign.com/Signature" || body="https://seal.wosign.com/signature"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("https://seal.wosign.com/tws.js") && response.body_string.contains("https://seal.wosign.com/signature")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("https://seal.wosign.com/tws.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("https://seal.wosign.com/Signature")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("https://seal.wosign.com/signature")
+expression: r0() || r1() || r2() || r3()

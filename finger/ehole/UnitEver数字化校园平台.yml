@@ -1,0 +1,23 @@
+name: fingerprint-yaml-UnitEver数字化校园平台
+manual: false
+detail:
+    fingerprint:
+        name: UnitEver数字化校园平台
+    fofa: header="UnitEver数字化校园平台" || title="UnitEver数字化校园平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("UnitEver数字化校园平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("UnitEver数字化校园平台")
+expression: r0() || r1()

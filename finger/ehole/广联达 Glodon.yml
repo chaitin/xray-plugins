@@ -1,0 +1,16 @@
+name: fingerprint-yaml-广联达 Glodon
+manual: false
+detail:
+    fingerprint:
+        name: 广联达 Glodon
+    fofa: body="/ConsoleCommon/Content/weebox.css" && body="广联达"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ConsoleCommon/Content/weebox.css") && response.body_string.contains("广联达")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Nginx
+manual: false
+detail:
+    fingerprint:
+        name: Nginx
+    fofa: 'header="Welcome to nginx" && header="(Server: nginx" || header="server: nginx"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Welcome to nginx")) && response.raw_header.bcontains(bytes("(Server: nginx"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: nginx"))'
+expression: r0() || r1()

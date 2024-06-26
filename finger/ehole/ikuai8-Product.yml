@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ikuai8-Product
+manual: false
+detail:
+    fingerprint:
+        name: ikuai8-Product
+    fofa: body="fc tc y_bg prompt-head-div"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fc tc y_bg prompt-head-div")
+expression: r0()

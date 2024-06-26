@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SANGFOR 集中管理平台
+manual: false
+detail:
+    fingerprint:
+        name: SANGFOR 集中管理平台
+    fofa: header="SANGFOR 集中管理平台" || title="SANGFOR 集中管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SANGFOR 集中管理平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SANGFOR 集中管理平台")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Infinet-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: Infinet-Wireless-Router
+    fofa: 'body="content=\"infinet" || header="server: wanflex http daemon"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="infinet')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: wanflex http daemon"))'
+expression: r0() || r1()

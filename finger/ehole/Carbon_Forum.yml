@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Carbon_Forum
+manual: false
+detail:
+    fingerprint:
+        name: Carbon_Forum
+    fofa: title="Carbon_Forum" || title="Carbon Forum"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Carbon_Forum")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Carbon Forum")
+expression: r0() || r1()

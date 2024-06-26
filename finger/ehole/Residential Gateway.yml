@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Residential Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Residential Gateway
+    fofa: icon_hash="-1933493443" || body=" sagemcom corporation." || header="residential gateway" || body="sagemcom corporation."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1933493443
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(" sagemcom corporation.")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("residential gateway"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sagemcom corporation.")
+expression: r0() || r1() || r2() || r3()

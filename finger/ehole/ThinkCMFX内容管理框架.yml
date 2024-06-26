@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ThinkCMFX内容管理框架
+manual: false
+detail:
+    fingerprint:
+        name: ThinkCMFX内容管理框架
+    fofa: header="ThinkCMFX内容管理框架" || title="ThinkCMFX内容管理框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ThinkCMFX内容管理框架"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ThinkCMFX内容管理框架")
+expression: r0() || r1()

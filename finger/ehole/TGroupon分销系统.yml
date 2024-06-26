@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TGroupon分销系统
+manual: false
+detail:
+    fingerprint:
+        name: TGroupon分销系统
+    fofa: header="TGroupon分销系统" || title="TGroupon分销系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TGroupon分销系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TGroupon分销系统")
+expression: r0() || r1()

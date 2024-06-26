@@ -1,0 +1,16 @@
+name: fingerprint-yaml-孚盟云 CRM
+manual: false
+detail:
+    fingerprint:
+        name: 孚盟云 CRM
+    fofa: icon_hash="1533124028"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1533124028
+expression: r0()

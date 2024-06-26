@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CDN-Cache-Server
+manual: false
+detail:
+    fingerprint:
+        name: CDN-Cache-Server
+    fofa: header="Cdn Cache Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cdn Cache Server"))
+expression: r0()

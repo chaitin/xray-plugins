@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-MBR-900
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-MBR-900
+    fofa: title="cradlepoint mbr-900 gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cradlepoint mbr-900 gateway")
+expression: r0()

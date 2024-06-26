@@ -1,0 +1,44 @@
+name: fingerprint-yaml-VRV-NAC
+manual: false
+detail:
+    fingerprint:
+        name: VRV-NAC
+    fofa: body="id=\"modal_delay\"" || body="欢迎登录北信源网络接入控制系统" && body="localstorage.setitem('doctitle','北信源网络接入控制系统'" || body="欢迎登录北信源网络接入控制系统" || body="localstorage.setitem\"doctitle\",\"北信源网络接入控制系统\"" || body="localstorage.setitem(\"doctitle\",\"北信源网络接入控制系统\")" && body="欢迎登录北信源网络接入控制系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="modal_delay"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎登录北信源网络接入控制系统") && response.body_string.contains("localstorage.setitem('doctitle','北信源网络接入控制系统'")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎登录北信源网络接入控制系统")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('localstorage.setitem"doctitle","北信源网络接入控制系统"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('localstorage.setitem("doctitle","北信源网络接入控制系统")') && response.body_string.contains("欢迎登录北信源网络接入控制系统")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CMSware
+manual: false
+detail:
+    fingerprint:
+        name: CMSware
+    fofa: header="CMSware" || title="CMSware"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CMSware"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CMSware")
+expression: r0() || r1()

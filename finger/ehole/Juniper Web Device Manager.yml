@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Juniper Web Device Manager
+manual: false
+detail:
+    fingerprint:
+        name: Juniper Web Device Manager
+    fofa: header="Juniper Web Device Manager" || title="Juniper Web Device Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Juniper Web Device Manager"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Juniper Web Device Manager")
+expression: r0() || r1()

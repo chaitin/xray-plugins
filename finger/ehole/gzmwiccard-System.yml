@@ -1,0 +1,16 @@
+name: fingerprint-yaml-gzmwiccard-System
+manual: false
+detail:
+    fingerprint:
+        name: gzmwiccard-System
+    fofa: body="抄表器驱动tp1100m"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("抄表器驱动tp1100m")
+expression: r0()

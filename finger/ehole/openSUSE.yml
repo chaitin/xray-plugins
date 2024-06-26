@@ -1,0 +1,37 @@
+name: fingerprint-yaml-openSUSE
+manual: false
+detail:
+    fingerprint:
+        name: openSUSE
+    fofa: header="opensuse" && header="suse" || header="openSUSE" || header="suse" || header="opensuse"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("opensuse")) && response.raw_header.bcontains(bytes("suse"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("openSUSE"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("suse"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("opensuse"))
+expression: r0() || r1() || r2() || r3()

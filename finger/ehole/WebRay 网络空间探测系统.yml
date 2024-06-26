@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebRay 网络空间探测系统
+manual: false
+detail:
+    fingerprint:
+        name: WebRay 网络空间探测系统
+    fofa: header="WebRay 网络空间探测系统" || title="WebRay 网络空间探测系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebRay 网络空间探测系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebRay 网络空间探测系统")
+expression: r0() || r1()

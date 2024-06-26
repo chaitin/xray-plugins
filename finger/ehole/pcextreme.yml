@@ -1,0 +1,37 @@
+name: fingerprint-yaml-pcextreme
+manual: false
+detail:
+    fingerprint:
+        name: pcextreme
+    fofa: 'body="deze server is eigendom van <a" || body="<p class=\"content\" align=\"center\">Deze server is eigendom van <a href=\"http://www.pcextreme.nl/\">PCextreme B.V.</a></p>" || header="server: pcx/dynamic" || header="server: pcx/no-cache"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("deze server is eigendom van <a")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="content" align="center">Deze server is eigendom van <a href="http://www.pcextreme.nl/">PCextreme B.V.</a></p>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: pcx/dynamic"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: pcx/no-cache"))'
+expression: r0() || r1() || r2() || r3()

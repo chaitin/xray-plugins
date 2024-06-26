@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR WNR854T
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR WNR854T
+    fofa: header="NETGEAR WNR854T"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WNR854T"))
+expression: r0()

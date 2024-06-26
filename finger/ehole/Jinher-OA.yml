@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Jinher-OA
+manual: false
+detail:
+    fingerprint:
+        name: Jinher-OA
+    fofa: body="Jinher Software" && body="<title>金和" && body="js/passwordcommon.js" && body="js/passwordnew.js" && body="jinher network" && body="c6/jhsoft.web.login" && body="closewindownoask" || body="closewindownoask" && body="c6/jhsoft.web.login" || body="jinher network" || body="js/passwordnew.js" || body="js/passwordcommon.js" || body="Jinher Software" || body="c6/jhsoft.web.login" || body="closewindownoask" || title="金和协同管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Jinher Software") && response.body_string.contains("<title>金和") && response.body_string.contains("js/passwordcommon.js") && response.body_string.contains("js/passwordnew.js") && response.body_string.contains("jinher network") && response.body_string.contains("c6/jhsoft.web.login") && response.body_string.contains("closewindownoask")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("closewindownoask") && response.body_string.contains("c6/jhsoft.web.login")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jinher network")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/passwordnew.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("js/passwordcommon.js")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Jinher Software")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("c6/jhsoft.web.login")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("closewindownoask")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("金和协同管理平台")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

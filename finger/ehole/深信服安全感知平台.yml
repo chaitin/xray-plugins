@@ -1,0 +1,23 @@
+name: fingerprint-yaml-深信服安全感知平台
+manual: false
+detail:
+    fingerprint:
+        name: 深信服安全感知平台
+    fofa: body="安全感知平台" && body="login.js" && body="apps" || body="apps" && body="login.js" && body="安全感知平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("安全感知平台") && response.body_string.contains("login.js") && response.body_string.contains("apps")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("apps") && response.body_string.contains("login.js") && response.body_string.contains("安全感知平台")
+expression: r0() || r1()

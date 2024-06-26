@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Dolphin
+manual: false
+detail:
+    fingerprint:
+        name: Dolphin
+    fofa: body="bx_css_async" || body="<title>Dolphin Log In</title>" || body="<td><input name=\"PHP_AUTH_PW\" type=\"password\"></td>" || body="<td NOWRAP><input name=\"PHP_AUTH_USER\" type=\"text\"></td>" || body="<body onload=\"focus_username();\" bottommargin=\"0\" rightmargin=\"0\" leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("bx_css_async")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Dolphin Log In</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><input name="PHP_AUTH_PW" type="password"></td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td NOWRAP><input name="PHP_AUTH_USER" type="text"></td>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body onload="focus_username();" bottommargin="0" rightmargin="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">')
+expression: r0() || r1() || r2() || r3() || r4()

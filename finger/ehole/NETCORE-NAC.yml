@@ -1,0 +1,37 @@
+name: fingerprint-yaml-NETCORE-NAC
+manual: false
+detail:
+    fingerprint:
+        name: NETCORE-NAC
+    fofa: body="script/netcore.js" && body="./script/logic.js" && body="netis" || body="script/netcore.js" || body="./script/logic.js" || body="netis"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("script/netcore.js") && response.body_string.contains("./script/logic.js") && response.body_string.contains("netis")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("script/netcore.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("./script/logic.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netis")
+expression: r0() || r1() || r2() || r3()

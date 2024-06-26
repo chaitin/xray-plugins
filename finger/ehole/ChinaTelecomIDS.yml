@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ChinaTelecomIDS
+manual: false
+detail:
+    fingerprint:
+        name: ChinaTelecomIDS
+    fofa: title="佛山电信网络攻击智能检测系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("佛山电信网络攻击智能检测系统")
+expression: r0()

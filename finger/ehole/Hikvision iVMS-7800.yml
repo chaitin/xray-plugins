@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hikvision iVMS-7800
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision iVMS-7800
+    fofa: header="Hikvision iVMS-7800" || title="Hikvision iVMS-7800"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hikvision iVMS-7800"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Hikvision iVMS-7800")
+expression: r0() || r1()

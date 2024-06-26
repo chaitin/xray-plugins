@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TrafficShield-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: TrafficShield-FireWall
+    fofa: title="TrafficShield-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TrafficShield-FireWall")
+expression: r0()

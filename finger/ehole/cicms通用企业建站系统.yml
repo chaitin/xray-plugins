@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cicms通用企业建站系统
+manual: false
+detail:
+    fingerprint:
+        name: cicms通用企业建站系统
+    fofa: header="cicms通用企业建站系统" || title="cicms通用企业建站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cicms通用企业建站系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cicms通用企业建站系统")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Elcodi
+manual: false
+detail:
+    fingerprint:
+        name: Elcodi
+    fofa: header="Elcodi" || title="Elcodi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Elcodi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Elcodi")
+expression: r0() || r1()

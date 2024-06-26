@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AngularJS
+manual: false
+detail:
+    fingerprint:
+        name: AngularJS
+    fofa: title="AngularJS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AngularJS")
+expression: r0()

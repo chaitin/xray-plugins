@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZIO-Router
+manual: false
+detail:
+    fingerprint:
+        name: ZIO-Router
+    fofa: title="zio router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zio router")
+expression: r0()

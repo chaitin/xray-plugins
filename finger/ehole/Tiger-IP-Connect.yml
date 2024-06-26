@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Tiger-IP-Connect
+manual: false
+detail:
+    fingerprint:
+        name: Tiger-IP-Connect
+    fofa: body="<link rel=\"stylesheet\" href=\"/include/firedigit.css\">" && body="<link rel=\"stylesheet\" href=\"/include/tms.css\">" && body="/include/tiger.css" || header="location network/index.php" || header="Tiger IP Connect" || body="/include/tiger.css" || body="<link rel=\"stylesheet\" href=\"/include/tms.css\">" || body="<link rel=\"stylesheet\" href=\"/include/firedigit.css\">" || body="<td align=\"center\" bgcolor=\"#FFCC00\"><b>Login is disabled from this IP address.</b></td>" || body="background-image:url(../images/tiger/subTabmidden.gif);" || title="Tiger IP Connect" || title="tiger ip connect"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="/include/firedigit.css">') && response.body_string.contains('<link rel="stylesheet" href="/include/tms.css">') && response.body_string.contains("/include/tiger.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("location network/index.php"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tiger IP Connect"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/include/tiger.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="/include/tms.css">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" href="/include/firedigit.css">')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="center" bgcolor="#FFCC00"><b>Login is disabled from this IP address.</b></td>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("background-image:url(../images/tiger/subTabmidden.gif);")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tiger IP Connect")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tiger ip connect")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

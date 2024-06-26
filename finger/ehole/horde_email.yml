@@ -1,0 +1,16 @@
+name: fingerprint-yaml-horde_email
+manual: false
+detail:
+    fingerprint:
+        name: horde_email
+    fofa: title="horde_email"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("horde_email")
+expression: r0()

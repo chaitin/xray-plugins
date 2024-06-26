@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Qnap VioStor
+manual: false
+detail:
+    fingerprint:
+        name: Qnap VioStor
+    fofa: header="Qnap VioStor" || title="Qnap VioStor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Qnap VioStor"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Qnap VioStor")
+expression: r0() || r1()

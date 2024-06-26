@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Algolia Realtime Search
+manual: false
+detail:
+    fingerprint:
+        name: Algolia Realtime Search
+    fofa: header="Algolia Realtime Search" || title="Algolia Realtime Search"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Algolia Realtime Search"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Algolia Realtime Search")
+expression: r0() || r1()

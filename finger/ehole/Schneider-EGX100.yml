@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Schneider-EGX100
+manual: false
+detail:
+    fingerprint:
+        name: Schneider-EGX100
+    fofa: header="realm=\"egx100"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="egx100'))
+expression: r0()

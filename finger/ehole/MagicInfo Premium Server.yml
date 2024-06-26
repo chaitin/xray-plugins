@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MagicInfo Premium Server
+manual: false
+detail:
+    fingerprint:
+        name: MagicInfo Premium Server
+    fofa: header="MagicInfo Premium Server" || title="MagicInfo Premium Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MagicInfo Premium Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MagicInfo Premium Server")
+expression: r0() || r1()

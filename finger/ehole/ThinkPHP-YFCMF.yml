@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ThinkPHP-YFCMF
+manual: false
+detail:
+    fingerprint:
+        name: ThinkPHP-YFCMF
+    fofa: body="yfcmf" && body="/public/others/maxlength.js" && body="/yfcmf/yfcmf.js" || body="/yfcmf/yfcmf.js" || body="/public/others/maxlength.js" && body="yfcmf" || body="yfcmf" || body="/public/others/maxlength.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yfcmf") && response.body_string.contains("/public/others/maxlength.js") && response.body_string.contains("/yfcmf/yfcmf.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/yfcmf/yfcmf.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/public/others/maxlength.js") && response.body_string.contains("yfcmf")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("yfcmf")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/public/others/maxlength.js")
+expression: r0() || r1() || r2() || r3() || r4()

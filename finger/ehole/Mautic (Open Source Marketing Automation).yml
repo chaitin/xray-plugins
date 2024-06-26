@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mautic (Open Source Marketing Automation)
+manual: false
+detail:
+    fingerprint:
+        name: Mautic (Open Source Marketing Automation)
+    fofa: icon_hash="1273982002"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1273982002
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WHMCS主机管理软件
+manual: false
+detail:
+    fingerprint:
+        name: WHMCS主机管理软件
+    fofa: header="WHMCS主机管理软件" || title="WHMCS主机管理软件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WHMCS主机管理软件"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WHMCS主机管理软件")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lenel
+manual: false
+detail:
+    fingerprint:
+        name: Lenel
+    fofa: icon_hash="538585915"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 538585915
+expression: r0()

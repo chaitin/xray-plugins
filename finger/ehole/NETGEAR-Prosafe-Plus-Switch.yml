@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR-Prosafe-Plus-Switch
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-Prosafe-Plus-Switch
+    fofa: title="netgear prosafe plus switch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear prosafe plus switch")
+expression: r0()

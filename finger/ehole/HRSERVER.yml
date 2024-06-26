@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HRSERVER
+manual: false
+detail:
+    fingerprint:
+        name: HRSERVER
+    fofa: header="HRSERVER" || title="HRSERVER"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HRSERVER"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HRSERVER")
+expression: r0() || r1()

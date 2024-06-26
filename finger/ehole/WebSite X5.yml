@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebSite X5
+manual: false
+detail:
+    fingerprint:
+        name: WebSite X5
+    fofa: header="WebSite X5" || title="WebSite X5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebSite X5"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebSite X5")
+expression: r0() || r1()

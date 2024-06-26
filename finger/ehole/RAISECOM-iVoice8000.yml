@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RAISECOM-iVoice8000
+manual: false
+detail:
+    fingerprint:
+        name: RAISECOM-iVoice8000
+    fofa: body="id=\"com_raisecom_ums_aos_portal_login_domain"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="com_raisecom_ums_aos_portal_login_domain')
+expression: r0()

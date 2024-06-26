@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LANCOM-Device
+manual: false
+detail:
+    fingerprint:
+        name: LANCOM-Device
+    fofa: 'header="server: lancom"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lancom"))'
+expression: r0()

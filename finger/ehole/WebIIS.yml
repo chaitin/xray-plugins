@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebIIS
+manual: false
+detail:
+    fingerprint:
+        name: WebIIS
+    fofa: header="webiis mini asp web webiis " || header="webiis mini asp web webiis"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webiis mini asp web webiis "))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webiis mini asp web webiis"))
+expression: r0() || r1()

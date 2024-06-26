@@ -1,0 +1,16 @@
+name: fingerprint-yaml-安慧网盾
+manual: false
+detail:
+    fingerprint:
+        name: 安慧网盾
+    fofa: header="Protected-By:AnHui Web Firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Protected-By:AnHui Web Firewall"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Xpaper数字报刊系统
+manual: false
+detail:
+    fingerprint:
+        name: Xpaper数字报刊系统
+    fofa: header="Xpaper数字报刊系统" || title="Xpaper数字报刊系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Xpaper数字报刊系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xpaper数字报刊系统")
+expression: r0() || r1()

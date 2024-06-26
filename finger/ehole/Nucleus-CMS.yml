@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Nucleus-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Nucleus-CMS
+    fofa: 'body="target=\"_blank\">nucleus cms" && body="nucleus_lf_name" && body="title=\"nucleus\" href=\"http://nucleuscms.org/" || header="generator: nucleus cms" || header="Nucleus CMS" || body="title=\"nucleus\" href=\"http://nucleuscms.org/" || body="nucleus_lf_name" || body="target=\"_blank\">nucleus cms" || body="<meta name=\"name\" content=\"My Nucleus CMS\" />" || title="Nucleus CMS"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank">nucleus cms') && response.body_string.contains("nucleus_lf_name") && response.body_string.contains('title="nucleus" href="http://nucleuscms.org/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("generator: nucleus cms"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nucleus CMS"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="nucleus" href="http://nucleuscms.org/')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nucleus_lf_name")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('target="_blank">nucleus cms')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="name" content="My Nucleus CMS" />')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nucleus CMS")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

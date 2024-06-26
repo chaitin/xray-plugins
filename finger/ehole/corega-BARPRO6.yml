@@ -1,0 +1,16 @@
+name: fingerprint-yaml-corega-BARPRO6
+manual: false
+detail:
+    fingerprint:
+        name: corega-BARPRO6
+    fofa: header="cg-barpro6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cg-barpro6"))
+expression: r0()

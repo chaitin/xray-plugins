@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Timesheet-NG
+manual: false
+detail:
+    fingerprint:
+        name: Timesheet-NG
+    fofa: body="<!-- include the timesheet face up until the heading start section -->" || body="<td><img class=\"login_image\" src=\"images/spacer.gif\"></td>" || body="<META name=\"description\" content=\"Timesheet Next Gen\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- include the timesheet face up until the heading start section -->")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><img class="login_image" src="images/spacer.gif"></td>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<META name="description" content="Timesheet Next Gen">')
+expression: r0() || r1() || r2()

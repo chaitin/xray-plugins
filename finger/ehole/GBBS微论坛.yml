@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GBBS微论坛
+manual: false
+detail:
+    fingerprint:
+        name: GBBS微论坛
+    fofa: title="GBBS微论坛"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GBBS微论坛")
+expression: r0()

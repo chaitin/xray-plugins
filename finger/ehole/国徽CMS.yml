@@ -1,0 +1,16 @@
+name: fingerprint-yaml-国徽CMS
+manual: false
+detail:
+    fingerprint:
+        name: 国徽CMS
+    fofa: title="国徽CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("国徽CMS")
+expression: r0()

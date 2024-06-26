@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Snap_svg
+manual: false
+detail:
+    fingerprint:
+        name: Snap.svg
+    fofa: header="Snap.svg" || title="Snap.svg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Snap.svg"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Snap.svg")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-中环CMS
+manual: false
+detail:
+    fingerprint:
+        name: 中环CMS
+    fofa: title="中环CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("中环CMS")
+expression: r0()

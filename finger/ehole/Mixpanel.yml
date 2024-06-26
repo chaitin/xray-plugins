@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mixpanel
+manual: false
+detail:
+    fingerprint:
+        name: Mixpanel
+    fofa: header="Mixpanel" || title="Mixpanel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mixpanel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mixpanel")
+expression: r0() || r1()

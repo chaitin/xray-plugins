@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vigor Router
+manual: false
+detail:
+    fingerprint:
+        name: Vigor Router
+    fofa: icon_hash="104189364"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 104189364
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Intoto-Router
+manual: false
+detail:
+    fingerprint:
+        name: Intoto-Router
+    fofa: 'header="server: intoto http server " || header="Intoto Http Server" || body="<td class=\"greytitle\" nowrap><b>About Device Manager </b></td>" || header="server: intoto http server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intoto http server "))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Intoto Http Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="greytitle" nowrap><b>About Device Manager </b></td>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intoto http server"))'
+expression: r0() || r1() || r2() || r3()

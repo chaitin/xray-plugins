@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DevelopWay DW CMS
+manual: false
+detail:
+    fingerprint:
+        name: DevelopWay DW CMS
+    fofa: header="DevelopWay DW CMS" || title="DevelopWay DW CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DevelopWay DW CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DevelopWay DW CMS")
+expression: r0() || r1()

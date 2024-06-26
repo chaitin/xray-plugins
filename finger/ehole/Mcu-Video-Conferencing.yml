@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Mcu-Video-Conferencing
+manual: false
+detail:
+    fingerprint:
+        name: Mcu-Video-Conferencing
+    fofa: body="document.location.href = jarname + \"/login.asp\" + query" && body="mcu default page" || body="document.location.href = jarname + \"/login.asp\" + query" || body="mcuv572_1" || body="mcu default page" || title="mcu default page"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.location.href = jarname + "/login.asp" + query') && response.body_string.contains("mcu default page")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.location.href = jarname + "/login.asp" + query')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mcuv572_1")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mcu default page")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mcu default page")
+expression: r0() || r1() || r2() || r3() || r4()

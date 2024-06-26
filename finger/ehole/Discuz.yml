@@ -1,0 +1,100 @@
+name: fingerprint-yaml-Discuz
+manual: false
+detail:
+    fingerprint:
+        name: Discuz
+    fofa: body="content=\"discuz" && body="discuz_uid" && body="portal.php?mod=" && body="href=\"/forum.php?" && body="id=\"discuz_tips" && body="powered by <strong><a href=\"http://www.discuz.net" || body="content=\"Discuz" || body="discuz_uid" || body="Powered by <strong><a href=\"http://www.discuz.net" || body="powered by <strong><a href=\"http://www.discuz.net" || body="id=\"discuz_tips" && body="href=\"/forum.php?\")" && body="portal.php?mod=" && body="discuz_uid" || body="content=\"discuz" || body="portal.php?mod=" || body="href=\"/forum.php?" || body="id=\"discuz_tips" || body="content=\"Discuz!" && body="discuz_uid" || body="discuz_uid" && body="portal.php?mod=" || title="powered by discuz"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="discuz') && response.body_string.contains("discuz_uid") && response.body_string.contains("portal.php?mod=") && response.body_string.contains('href="/forum.php?') && response.body_string.contains('id="discuz_tips') && response.body_string.contains('powered by <strong><a href="http://www.discuz.net')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Discuz')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("discuz_uid")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <strong><a href="http://www.discuz.net')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <strong><a href="http://www.discuz.net')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="discuz_tips') && response.body_string.contains('href="/forum.php?")') && response.body_string.contains("portal.php?mod=") && response.body_string.contains("discuz_uid")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="discuz')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("portal.php?mod=")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/forum.php?')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="discuz_tips')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Discuz!') && response.body_string.contains("discuz_uid")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("discuz_uid") && response.body_string.contains("portal.php?mod=")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("powered by discuz")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

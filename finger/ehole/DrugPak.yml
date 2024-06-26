@@ -1,0 +1,72 @@
+name: fingerprint-yaml-DrugPak
+manual: false
+detail:
+    fingerprint:
+        name: DrugPak
+    fofa: body="powered by drugpak" && body="/dplimg/dpstyle.css" || body="Powered by DrugPak" || body="/dplimg/DPSTYLE.CSS" || body="/dplimg/dpstyle.css" || body="powered by drugpak" || body="<LINK REL=StyleSheet HREF=\"<#imagepath>/<#_style1 default=dpstyle.css>\" TYPE=\"text/css\" MEDIA=screen>" || body="<!--Assist making SSL connection-->" || body="<hr>Powered by DrugPak</body>" || body="<LINK REL=StyleSheet HREF=\"/dplimg/DPSTYLE.CSS\" TYPE=\"text/css\" media=\"all\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by drugpak") && response.body_string.contains("/dplimg/dpstyle.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by DrugPak")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dplimg/DPSTYLE.CSS")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dplimg/dpstyle.css")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by drugpak")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<LINK REL=StyleSheet HREF="<#imagepath>/<#_style1 default=dpstyle.css>" TYPE="text/css" MEDIA=screen>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--Assist making SSL connection-->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<hr>Powered by DrugPak</body>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<LINK REL=StyleSheet HREF="/dplimg/DPSTYLE.CSS" TYPE="text/css" media="all">')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

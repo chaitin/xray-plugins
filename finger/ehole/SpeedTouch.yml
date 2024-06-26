@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SpeedTouch
+manual: false
+detail:
+    fingerprint:
+        name: SpeedTouch
+    fofa: header="basic realm=\"speedtouch" && header="digest realm=\"speedtouch" || header="digest realm=\"speedtouch" || header="basic realm=\"speedtouch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="speedtouch')) && response.raw_header.bcontains(bytes('digest realm="speedtouch'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('digest realm="speedtouch'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="speedtouch'))
+expression: r0() || r1() || r2()

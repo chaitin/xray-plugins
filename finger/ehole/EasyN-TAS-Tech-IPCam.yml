@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EasyN-TAS-Tech-IPCam
+manual: false
+detail:
+    fingerprint:
+        name: EasyN-TAS-Tech-IPCam
+    fofa: 'header="server: tas-tech ipcam"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: tas-tech ipcam"))'
+expression: r0()

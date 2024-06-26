@@ -1,0 +1,16 @@
+name: fingerprint-yaml-kodcloud
+manual: false
+detail:
+    fingerprint:
+        name: kodcloud
+    fofa: title="kodcloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kodcloud")
+expression: r0()

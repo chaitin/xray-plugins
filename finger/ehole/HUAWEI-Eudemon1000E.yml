@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-Eudemon1000E
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-Eudemon1000E
+    fofa: header="huawei eudemon1000e-n6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei eudemon1000e-n6"))
+expression: r0()

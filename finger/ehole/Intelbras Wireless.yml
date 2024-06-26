@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Intelbras Wireless
+manual: false
+detail:
+    fingerprint:
+        name: Intelbras Wireless
+    fofa: icon_hash="-359621743"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -359621743
+expression: r0()

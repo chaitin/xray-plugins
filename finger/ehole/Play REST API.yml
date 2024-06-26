@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Play REST API
+manual: false
+detail:
+    fingerprint:
+        name: Play REST API
+    fofa: header="Play REST API" || title="Play REST API"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Play REST API"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Play REST API")
+expression: r0() || r1()

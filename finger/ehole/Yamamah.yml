@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Yamamah
+manual: false
+detail:
+    fingerprint:
+        name: Yamamah
+    fofa: body="<meta name=\"Author\" content=\"Majed Al-Mulihani - majed@modernsys.net\" />" || body="<meta name=\"Description\" content=\"Yamamah is free photo gallery cms\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Author" content="Majed Al-Mulihani - majed@modernsys.net" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="Description" content="Yamamah is free photo gallery cms" />')
+expression: r0() || r1()

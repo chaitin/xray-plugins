@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-NVR308-32-IN
+manual: false
+detail:
+    fingerprint:
+        name: uniview-NVR308-32-IN
+    fofa: title="nvr308-32-in"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nvr308-32-in")
+expression: r0()

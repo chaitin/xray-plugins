@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Mashery-Proxy
+manual: false
+detail:
+    fingerprint:
+        name: Mashery-Proxy
+    fofa: 'header="server: mashery proxy" && header="x-mashery-" || header="Mashery Proxy" || header="x-mashery-" || header="server: mashery proxy" || title="Mashery Proxy"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mashery proxy")) && response.raw_header.bcontains(bytes("x-mashery-"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mashery Proxy"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-mashery-"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mashery proxy"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mashery Proxy")
+expression: r0() || r1() || r2() || r3() || r4()

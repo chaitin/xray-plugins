@@ -1,0 +1,23 @@
+name: fingerprint-yaml-南昊网上阅卷系统
+manual: false
+detail:
+    fingerprint:
+        name: 南昊网上阅卷系统
+    fofa: header="南昊网上阅卷系统" || title="南昊网上阅卷系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("南昊网上阅卷系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("南昊网上阅卷系统")
+expression: r0() || r1()

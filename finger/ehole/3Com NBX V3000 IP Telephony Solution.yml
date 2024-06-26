@@ -1,0 +1,23 @@
+name: fingerprint-yaml-3Com NBX V3000 IP Telephony Solution
+manual: false
+detail:
+    fingerprint:
+        name: 3Com NBX V3000 IP Telephony Solution
+    fofa: header="3Com NBX V3000 IP Telephony Solution" || title="3Com NBX V3000 IP Telephony Solution"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("3Com NBX V3000 IP Telephony Solution"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("3Com NBX V3000 IP Telephony Solution")
+expression: r0() || r1()

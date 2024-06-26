@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SobiPro
+manual: false
+detail:
+    fingerprint:
+        name: SobiPro
+    fofa: header="SobiPro" || title="SobiPro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SobiPro"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SobiPro")
+expression: r0() || r1()

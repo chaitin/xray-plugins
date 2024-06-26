@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BASIC AUTH
+manual: false
+detail:
+    fingerprint:
+        name: BASIC AUTH
+    fofa: header="Www-Authenticate:Basic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Www-Authenticate:Basic"))
+expression: r0()

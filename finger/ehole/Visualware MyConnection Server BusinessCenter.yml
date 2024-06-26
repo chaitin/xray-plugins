@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Visualware MyConnection Server BusinessCenter
+manual: false
+detail:
+    fingerprint:
+        name: Visualware MyConnection Server BusinessCenter
+    fofa: header="Visualware MyConnection Server BusinessCenter" || title="Visualware MyConnection Server BusinessCenter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Visualware MyConnection Server BusinessCenter"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Visualware MyConnection Server BusinessCenter")
+expression: r0() || r1()

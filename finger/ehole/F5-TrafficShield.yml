@@ -1,0 +1,30 @@
+name: fingerprint-yaml-F5-TrafficShield
+manual: false
+detail:
+    fingerprint:
+        name: F5-TrafficShield
+    fofa: header="asinfo=" && header="f5-trafficshield" || header="f5-trafficshield" || header="asinfo="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asinfo=")) && response.raw_header.bcontains(bytes("f5-trafficshield"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("f5-trafficshield"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asinfo="))
+expression: r0() || r1() || r2()

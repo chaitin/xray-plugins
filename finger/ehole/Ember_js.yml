@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ember_js
+manual: false
+detail:
+    fingerprint:
+        name: Ember.js
+    fofa: title="Ember.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ember.js")
+expression: r0()

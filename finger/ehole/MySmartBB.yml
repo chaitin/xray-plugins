@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MySmartBB
+manual: false
+detail:
+    fingerprint:
+        name: MySmartBB
+    fofa: title="MySmartBB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MySmartBB")
+expression: r0()

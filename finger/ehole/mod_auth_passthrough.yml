@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mod_auth_passthrough
+manual: false
+detail:
+    fingerprint:
+        name: mod_auth_passthrough
+    fofa: header="mod_auth_passthrough"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mod_auth_passthrough"))
+expression: r0()

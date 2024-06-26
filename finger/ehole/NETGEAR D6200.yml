@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR D6200
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR D6200
+    fofa: header="NETGEAR D6200"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR D6200"))
+expression: r0()

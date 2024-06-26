@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftWindowsRPC
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftWindowsRPC
+    fofa: title="Microsoft Windows RPC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Windows RPC")
+expression: r0()

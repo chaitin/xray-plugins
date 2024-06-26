@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Q330
+manual: false
+detail:
+    fingerprint:
+        name: Q330
+    fofa: title="Q330"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Q330")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Alerton BCM-WEB
+manual: false
+detail:
+    fingerprint:
+        name: Alerton BCM-WEB
+    fofa: header="Alerton BCM-WEB" || title="Alerton BCM-WEB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alerton BCM-WEB"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Alerton BCM-WEB")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-shopnum1
+manual: false
+detail:
+    fingerprint:
+        name: shopnum1
+    fofa: title="shopnum1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("shopnum1")
+expression: r0()

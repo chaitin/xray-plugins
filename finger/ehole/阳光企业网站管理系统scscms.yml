@@ -1,0 +1,23 @@
+name: fingerprint-yaml-阳光企业网站管理系统scscms
+manual: false
+detail:
+    fingerprint:
+        name: 阳光企业网站管理系统scscms
+    fofa: header="阳光企业网站管理系统scscms" || title="阳光企业网站管理系统scscms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("阳光企业网站管理系统scscms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("阳光企业网站管理系统scscms")
+expression: r0() || r1()

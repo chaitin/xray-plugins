@@ -1,0 +1,30 @@
+name: fingerprint-yaml-InverseFlow-Help-Desk-System
+manual: false
+detail:
+    fingerprint:
+        name: InverseFlow-Help-Desk-System
+    fofa: body="<table width=\"100%\" bgcolor=\"#FFAD4D\" border=\"0\"><tr><td><div class=\"infobar_01\">" || body="<div class=\"normal\">To view a ticket, please enter your email address and ticket ID.  If you forgot your ticket ID, you can use the <a href=\"ticket.php?cmd=lost\">ticket lookup</a>.</div>" || body="<form action=\"ticketview.php\" method=\"get\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<table width="100%" bgcolor="#FFAD4D" border="0"><tr><td><div class="infobar_01">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="normal">To view a ticket, please enter your email address and ticket ID.  If you forgot your ticket ID, you can use the <a href="ticket.php?cmd=lost">ticket lookup</a>.</div>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form action="ticketview.php" method="get">')
+expression: r0() || r1() || r2()

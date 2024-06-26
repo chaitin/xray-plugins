@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR-Prosafe-Click-Switch
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-Prosafe-Click-Switch
+    fofa: title="netgear prosafe click switch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear prosafe click switch")
+expression: r0()

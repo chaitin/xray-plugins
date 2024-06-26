@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ScarecrowBlog
+manual: false
+detail:
+    fingerprint:
+        name: ScarecrowBlog
+    fofa: header="ScarecrowBlog" || title="ScarecrowBlog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ScarecrowBlog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ScarecrowBlog")
+expression: r0() || r1()

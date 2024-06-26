@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AsymptixPHPFramework
+manual: false
+detail:
+    fingerprint:
+        name: AsymptixPHPFramework
+    fofa: title="Asymptix PHP Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Asymptix PHP Framework")
+expression: r0()

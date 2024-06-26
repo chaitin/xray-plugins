@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ownCloud
+manual: false
+detail:
+    fingerprint:
+        name: ownCloud
+    fofa: icon_hash="-1616115760" || header="ownCloud" || title="ownCloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1616115760
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ownCloud"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ownCloud")
+expression: r0() || r1() || r2()

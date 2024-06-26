@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ebroker Enterprise Server
+manual: false
+detail:
+    fingerprint:
+        name: Ebroker Enterprise Server
+    fofa: header="Ebroker Enterprise Server" || title="Ebroker Enterprise Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ebroker Enterprise Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ebroker Enterprise Server")
+expression: r0() || r1()

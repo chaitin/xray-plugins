@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dell EMC Data Domain
+manual: false
+detail:
+    fingerprint:
+        name: Dell EMC Data Domain
+    fofa: header="Dell EMC Data Domain" || title="Dell EMC Data Domain"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dell EMC Data Domain"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dell EMC Data Domain")
+expression: r0() || r1()

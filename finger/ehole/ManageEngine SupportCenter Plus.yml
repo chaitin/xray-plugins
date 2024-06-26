@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ManageEngine SupportCenter Plus
+manual: false
+detail:
+    fingerprint:
+        name: ManageEngine SupportCenter Plus
+    fofa: header="ManageEngine SupportCenter Plus" || title="ManageEngine SupportCenter Plus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ManageEngine SupportCenter Plus"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ManageEngine SupportCenter Plus")
+expression: r0() || r1()

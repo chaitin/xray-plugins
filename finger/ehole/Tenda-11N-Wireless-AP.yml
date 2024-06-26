@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tenda-11N-Wireless-AP
+manual: false
+detail:
+    fingerprint:
+        name: Tenda-11N-Wireless-AP
+    fofa: title="tenda 11n" || title="tenda 11n wireless ap"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tenda 11n")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tenda 11n wireless ap")
+expression: r0() || r1()

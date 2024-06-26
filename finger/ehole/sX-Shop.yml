@@ -1,0 +1,51 @@
+name: fingerprint-yaml-sX-Shop
+manual: false
+detail:
+    fingerprint:
+        name: sX-Shop
+    fofa: body="alert(\"ihr suchbegriff muss mind. aus 3 zeichen bestehen.\";" && body="content=\"source worx - software development\">" || body="content=\"source worx - software development\">" && body="alert(\"ihr suchbegriff muss mind. aus 3 zeichen bestehen.\";" || body="alert\"ihr suchbegriff muss mind. aus 3 zeichen bestehen.\";" || body="content=\"source worx - software development\">" || body="<meta name=\"author\" content=\"Source WorX - Software Development\">" || body="alert(\"Ihr Suchbegriff muss mind. aus 3 Zeichen bestehen.\");"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("ihr suchbegriff muss mind. aus 3 zeichen bestehen.";') && response.body_string.contains('content="source worx - software development">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="source worx - software development">') && response.body_string.contains('alert("ihr suchbegriff muss mind. aus 3 zeichen bestehen.";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert"ihr suchbegriff muss mind. aus 3 zeichen bestehen.";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="source worx - software development">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="author" content="Source WorX - Software Development">')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alert("Ihr Suchbegriff muss mind. aus 3 Zeichen bestehen.");')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

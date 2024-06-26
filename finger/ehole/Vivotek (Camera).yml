@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vivotek (Camera)
+manual: false
+detail:
+    fingerprint:
+        name: Vivotek (Camera)
+    fofa: icon_hash="-1654229048"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1654229048
+expression: r0()

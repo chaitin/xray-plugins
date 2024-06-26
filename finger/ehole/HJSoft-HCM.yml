@@ -1,0 +1,37 @@
+name: fingerprint-yaml-HJSoft-HCM
+manual: false
+detail:
+    fingerprint:
+        name: HJSoft-HCM
+    fofa: body="src=\"/images/hcm/copyright.gif\"" && body="src=\"/images/hcm/themes/default/login/login_banner2.png?v=12334\"" && body="src=\"/general/sys/hjaxmanage.js\"" || body="src=\"/general/sys/hjaxmanage.js\"" || body="src=\"/images/hcm/themes/default/login/login_banner2.png?v=12334\"" || body="src=\"/images/hcm/copyright.gif\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images/hcm/copyright.gif"') && response.body_string.contains('src="/images/hcm/themes/default/login/login_banner2.png?v=12334"') && response.body_string.contains('src="/general/sys/hjaxmanage.js"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/general/sys/hjaxmanage.js"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images/hcm/themes/default/login/login_banner2.png?v=12334"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images/hcm/copyright.gif"')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Pi3Web
+manual: false
+detail:
+    fingerprint:
+        name: Pi3Web
+    fofa: 'header="Pi3Web" || header="server: pi3web" || title="Pi3Web"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Pi3Web"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: pi3web"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Pi3Web")
+expression: r0() || r1() || r2()

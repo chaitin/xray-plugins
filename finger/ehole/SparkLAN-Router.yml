@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SparkLAN-Router
+manual: false
+detail:
+    fingerprint:
+        name: SparkLAN-Router
+    fofa: header="mini_httpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mini_httpd"))
+expression: r0()

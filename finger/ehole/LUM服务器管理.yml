@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LUM服务器管理
+manual: false
+detail:
+    fingerprint:
+        name: LUM服务器管理
+    fofa: header="LUM_SESSION"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LUM_SESSION"))
+expression: r0()

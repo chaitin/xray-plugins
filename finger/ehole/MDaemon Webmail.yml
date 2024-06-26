@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MDaemon Webmail
+manual: false
+detail:
+    fingerprint:
+        name: MDaemon Webmail
+    fofa: icon_hash="-766957661"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -766957661
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Dovecot Pigeonhole
+manual: false
+detail:
+    fingerprint:
+        name: Dovecot Pigeonhole
+    fofa: header="Dovecot Pigeonhole" || title="Dovecot Pigeonhole"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Dovecot Pigeonhole"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Dovecot Pigeonhole")
+expression: r0() || r1()

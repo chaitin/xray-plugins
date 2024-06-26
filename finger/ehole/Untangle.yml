@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Untangle
+manual: false
+detail:
+    fingerprint:
+        name: Untangle
+    fofa: icon_hash="1103599349"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1103599349
+expression: r0()

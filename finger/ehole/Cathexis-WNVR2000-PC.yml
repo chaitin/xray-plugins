@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cathexis-WNVR2000-PC
+manual: false
+detail:
+    fingerprint:
+        name: Cathexis-WNVR2000-PC
+    fofa: title="wnvr-2000-pc" || title="wnvr2000-pc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wnvr-2000-pc")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wnvr2000-pc")
+expression: r0() || r1()

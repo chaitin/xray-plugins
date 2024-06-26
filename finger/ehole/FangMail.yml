@@ -1,0 +1,37 @@
+name: fingerprint-yaml-FangMail
+manual: false
+detail:
+    fingerprint:
+        name: FangMail
+    fofa: body="fangmail/default/css/em_css.css" && body="fangmail/cgi/index.cgi" || body="/fangmail/default/css/em_css.css" && body="/fangmail/cgi/index.cgi" || body="/fangmail/default/css/em_css.css" || body="/fangmail/cgi/index.cgi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fangmail/default/css/em_css.css") && response.body_string.contains("fangmail/cgi/index.cgi")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/fangmail/default/css/em_css.css") && response.body_string.contains("/fangmail/cgi/index.cgi")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/fangmail/default/css/em_css.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/fangmail/cgi/index.cgi")
+expression: r0() || r1() || r2() || r3()

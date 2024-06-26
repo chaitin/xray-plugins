@@ -1,0 +1,37 @@
+name: fingerprint-yaml-phpecms
+manual: false
+detail:
+    fingerprint:
+        name: phpecms
+    fofa: body="www.pcfinal.cn" && body="/plus/laydate/laydate.js" || body="/plus/laydate/laydate.js" || body="www.pcfinal.cn" || title="凡诺"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.pcfinal.cn") && response.body_string.contains("/plus/laydate/laydate.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/plus/laydate/laydate.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("www.pcfinal.cn")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("凡诺")
+expression: r0() || r1() || r2() || r3()

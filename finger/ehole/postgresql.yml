@@ -1,0 +1,23 @@
+name: fingerprint-yaml-postgresql
+manual: false
+detail:
+    fingerprint:
+        name: postgresql
+    fofa: header="postgresql" || title="postgresql"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("postgresql"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("postgresql")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alt-Svc
+manual: false
+detail:
+    fingerprint:
+        name: Alt-Svc
+    fofa: header="Alt-Svc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alt-Svc"))
+expression: r0()

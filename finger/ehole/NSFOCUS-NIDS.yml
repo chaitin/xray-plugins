@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NSFOCUS-NIDS
+manual: false
+detail:
+    fingerprint:
+        name: NSFOCUS-NIDS
+    fofa: body="/login_logo_nids_zh_cn.png" || header="NSFOCUS NIDS" || title="NSFOCUS NIDS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/login_logo_nids_zh_cn.png")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NSFOCUS NIDS"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NSFOCUS NIDS")
+expression: r0() || r1() || r2()

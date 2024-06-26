@@ -1,0 +1,100 @@
+name: fingerprint-yaml-Ruby on Rails
+manual: false
+detail:
+    fingerprint:
+        name: Ruby on Rails
+    fofa: 'header="Ruby on Rails" || body="<!-- This file lives in public/404.html -->" || body="<!-- This file lives in public/422.html -->" || body="<!-- This file lives in public/500.html -->" || body="// This file is automatically included by javascript_include_tag :defaults" || body="No route matches \"/doesnotexist\" with {:method=>:get}" || body="<title>The page you were looking for doesn\"t exist (404)</title>" || body="#errorExplanation h2 {" || body="<h3><a href=\"rails/info/properties\" onclick=\"about(); return false\">About your application&rsquo;s environment</a></h3>" || body="<p>Run <tt>rake db:migrate</tt> to create your database. If you\"re not using SQLite (the default), edit <tt>config/database.yml</tt> with your username and password.</p>" || body="<title>Action Controller: Exception caught</title>" || body="<div id=\"session_dump\" style=\"display:none\"><pre class=\"debug_dump\">---" || title="Ruby on Rails"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ruby on Rails"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- This file lives in public/404.html -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- This file lives in public/422.html -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- This file lives in public/500.html -->")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("// This file is automatically included by javascript_include_tag :defaults")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('No route matches "/doesnotexist" with {:method=>:get}')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<title>The page you were looking for doesn"t exist (404)</title>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("#errorExplanation h2 {")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Run <tt>rake db:migrate</tt> to create your database. If you"re not using SQLite (the default), edit <tt>config/database.yml</tt> with your username and password.</p>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>Action Controller: Exception caught</title>")'
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="session_dump" style="display:none"><pre class="debug_dump">---')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ruby on Rails")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

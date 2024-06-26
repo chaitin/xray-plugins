@@ -1,0 +1,23 @@
+name: fingerprint-yaml-workyiSystem
+manual: false
+detail:
+    fingerprint:
+        name: workyiSystem
+    fofa: title="workyiSystem" || title="workyi_system"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("workyiSystem")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("workyi_system")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Infogo-IMC
+manual: false
+detail:
+    fingerprint:
+        name: Infogo-IMC
+    fofa: body="client_check/js/global.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("client_check/js/global.js")
+expression: r0()

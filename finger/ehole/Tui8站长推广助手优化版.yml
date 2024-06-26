@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Tui8站长推广助手优化版
+manual: false
+detail:
+    fingerprint:
+        name: Tui8站长推广助手优化版
+    fofa: title="Tui8站长推广助手优化版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tui8站长推广助手优化版")
+expression: r0()

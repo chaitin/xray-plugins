@@ -1,0 +1,23 @@
+name: fingerprint-yaml-文网卫士安全路由器
+manual: false
+detail:
+    fingerprint:
+        name: 文网卫士安全路由器
+    fofa: header="文网卫士安全路由器" || title="文网卫士安全路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("文网卫士安全路由器"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("文网卫士安全路由器")
+expression: r0() || r1()

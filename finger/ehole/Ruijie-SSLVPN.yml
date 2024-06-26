@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Ruijie-SSLVPN
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-SSLVPN
+    fofa: body="document.cookie = \"rjsslvpn_encookie=yes;\"" || body="SSLVPN" && body="login" && body="rjsslvpn" || body="SSLVPN" && body="login" && body="rjsslvpn_encookie"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.cookie = "rjsslvpn_encookie=yes;"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("SSLVPN") && response.body_string.contains("login") && response.body_string.contains("rjsslvpn")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("SSLVPN") && response.body_string.contains("login") && response.body_string.contains("rjsslvpn_encookie")
+expression: r0() || r1() || r2()

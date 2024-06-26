@@ -1,0 +1,16 @@
+name: fingerprint-yaml-网博士网络帐簿
+manual: false
+detail:
+    fingerprint:
+        name: 网博士网络帐簿
+    fofa: title="网博士网络帐簿"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网博士网络帐簿")
+expression: r0()

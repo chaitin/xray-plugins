@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Reolink
+manual: false
+detail:
+    fingerprint:
+        name: Reolink
+    fofa: icon_hash="-38705358"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -38705358
+expression: r0()

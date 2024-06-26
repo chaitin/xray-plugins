@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FORTINET-Product
+manual: false
+detail:
+    fingerprint:
+        name: FORTINET-Product
+    fofa: body="placeholder=\"next fortitoken code\"" || body="console.error(\"failed to parse language json\")"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('placeholder="next fortitoken code"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('console.error("failed to parse language json")')
+expression: r0() || r1()

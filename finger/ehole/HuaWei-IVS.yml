@@ -1,0 +1,30 @@
+name: fingerprint-yaml-HuaWei-IVS
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-IVS
+    fofa: body="var iever = scriptenginemajorversion(" || body="var iever = scriptenginemajorversion" || body="var iever = scriptenginemajorversion()"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var iever = scriptenginemajorversion(")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var iever = scriptenginemajorversion")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var iever = scriptenginemajorversion()")
+expression: r0() || r1() || r2()

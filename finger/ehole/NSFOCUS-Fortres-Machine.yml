@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NSFOCUS-Fortres-Machine
+manual: false
+detail:
+    fingerprint:
+        name: NSFOCUS-Fortres-Machine
+    fofa: body="/login_logo_sas_h_zh_cn.png"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/login_logo_sas_h_zh_cn.png")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Abilis (Network_Automation)
+manual: false
+detail:
+    fingerprint:
+        name: Abilis (Network/Automation)
+    fofa: icon_hash="-166151761"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -166151761
+expression: r0()

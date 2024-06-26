@@ -1,0 +1,23 @@
+name: fingerprint-yaml-YUI Doc
+manual: false
+detail:
+    fingerprint:
+        name: YUI Doc
+    fofa: header="YUI Doc" || title="YUI Doc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YUI Doc"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YUI Doc")
+expression: r0() || r1()

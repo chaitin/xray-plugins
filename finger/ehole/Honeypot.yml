@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Honeypot
+manual: false
+detail:
+    fingerprint:
+        name: Honeypot
+    fofa: 'body="<h2>my resource</h2>" && body="<h2>blog comments</h2>" || header="uc-httpd 1.0.0" || body="<h2>blog comments</h2>" && body="<h2>my resource</h2>" || body="<h2>my resource</h2>" || body="<h2>blog comments</h2>" || header="server: jboss" && header="server: tomcat" && header="server: apache" || header="server: apache,tomcat,jboss,weblogic,phpstudy,struts" || header="server: jboss-5.0" && header="uc-httpd 1.0.0"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>my resource</h2>") && response.body_string.contains("<h2>blog comments</h2>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("uc-httpd 1.0.0"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>blog comments</h2>") && response.body_string.contains("<h2>my resource</h2>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>my resource</h2>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2>blog comments</h2>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: jboss")) && response.raw_header.bcontains(bytes("server: tomcat")) && response.raw_header.bcontains(bytes("server: apache"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: apache,tomcat,jboss,weblogic,phpstudy,struts"))'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: jboss-5.0")) && response.raw_header.bcontains(bytes("uc-httpd 1.0.0"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

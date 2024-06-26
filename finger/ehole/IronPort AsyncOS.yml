@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IronPort AsyncOS
+manual: false
+detail:
+    fingerprint:
+        name: IronPort AsyncOS
+    fofa: header="IronPort AsyncOS" || title="IronPort AsyncOS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IronPort AsyncOS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IronPort AsyncOS")
+expression: r0() || r1()

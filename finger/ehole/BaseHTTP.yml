@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BaseHTTP
+manual: false
+detail:
+    fingerprint:
+        name: BaseHTTP
+    fofa: header="BaseHTTP" || title="BaseHTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BaseHTTP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BaseHTTP")
+expression: r0() || r1()

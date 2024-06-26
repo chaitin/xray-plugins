@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Magento
+manual: false
+detail:
+    fingerprint:
+        name: Magento
+    fofa: icon_hash="-38580010" || body="Magento, Varien, E-commerce" || body="magento/tree" || body="magento" || body="images/logo.gif\" alt=\"Magento Commerce\" /></a></h1>" || body="<meta name=\"keywords\" content=\"Magento, Varien, E-commerce\" />" || body="var searchForm = new Varien.searchForm(\"search_mini_form\", \"search\", \"" || body=",mage/cookies.js\" ></script>" || body="<title>Log into Magento Admin Page</title>" || body="<script type=\"text/x-magento-init\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -38580010
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Magento, Varien, E-commerce")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("magento/tree")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("magento")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('images/logo.gif" alt="Magento Commerce" /></a></h1>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="keywords" content="Magento, Varien, E-commerce" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var searchForm = new Varien.searchForm("search_mini_form", "search", "')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(',mage/cookies.js" ></script>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Log into Magento Admin Page</title>")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script type="text/x-magento-init">')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

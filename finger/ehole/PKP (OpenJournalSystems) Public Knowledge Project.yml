@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PKP (OpenJournalSystems) Public Knowledge Project
+manual: false
+detail:
+    fingerprint:
+        name: PKP (OpenJournalSystems) Public Knowledge Project
+    fofa: icon_hash="2099342476"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2099342476
+expression: r0()

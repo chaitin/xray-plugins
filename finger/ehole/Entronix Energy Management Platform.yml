@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Entronix Energy Management Platform
+manual: false
+detail:
+    fingerprint:
+        name: Entronix Energy Management Platform
+    fofa: icon_hash="-368490461"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -368490461
+expression: r0()

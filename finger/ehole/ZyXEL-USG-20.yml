@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-USG-20
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-USG-20
+    fofa: title="zywall usg 20"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zywall usg 20")
+expression: r0()

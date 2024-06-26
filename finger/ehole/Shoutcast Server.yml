@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Shoutcast Server
+manual: false
+detail:
+    fingerprint:
+        name: Shoutcast Server
+    fofa: icon_hash="-632583950"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -632583950
+expression: r0()

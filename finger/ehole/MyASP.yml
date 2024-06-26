@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MyASP
+manual: false
+detail:
+    fingerprint:
+        name: MyASP
+    fofa: icon_hash="-736276076"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -736276076
+expression: r0()

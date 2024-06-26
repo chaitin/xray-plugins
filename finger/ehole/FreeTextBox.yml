@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FreeTextBox
+manual: false
+detail:
+    fingerprint:
+        name: FreeTextBox
+    fofa: header="FreeTextBox" || title="FreeTextBox"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FreeTextBox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FreeTextBox")
+expression: r0() || r1()

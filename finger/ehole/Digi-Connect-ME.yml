@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Digi-Connect-ME
+manual: false
+detail:
+    fingerprint:
+        name: Digi-Connect-ME
+    fofa: body="digi connect me"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("digi connect me")
+expression: r0()

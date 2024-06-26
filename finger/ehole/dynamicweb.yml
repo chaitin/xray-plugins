@@ -1,0 +1,23 @@
+name: fingerprint-yaml-dynamicweb
+manual: false
+detail:
+    fingerprint:
+        name: dynamicweb
+    fofa: header="dynamicweb" || title="dynamicweb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dynamicweb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dynamicweb")
+expression: r0() || r1()

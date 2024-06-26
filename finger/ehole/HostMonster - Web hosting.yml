@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HostMonster - Web hosting
+manual: false
+detail:
+    fingerprint:
+        name: HostMonster - Web hosting
+    fofa: icon_hash="-972810761"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -972810761
+expression: r0()

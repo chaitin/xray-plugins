@@ -1,0 +1,23 @@
+name: fingerprint-yaml-STAR-NET SVG6000
+manual: false
+detail:
+    fingerprint:
+        name: STAR-NET SVG6000
+    fofa: header="STAR-NET SVG6000" || title="STAR-NET SVG6000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("STAR-NET SVG6000"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("STAR-NET SVG6000")
+expression: r0() || r1()

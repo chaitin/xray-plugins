@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Shoptet
+manual: false
+detail:
+    fingerprint:
+        name: Shoptet
+    fofa: header="Shoptet" || title="Shoptet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Shoptet"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Shoptet")
+expression: r0() || r1()

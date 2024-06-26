@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Banggoo-ADC
+manual: false
+detail:
+    fingerprint:
+        name: Banggoo-ADC
+    fofa: 'body="content=\"banggoo adc " && body="欢迎登录banggoo adc管理界面</div>" || body="欢迎登录banggoo adc管理界面</div>" || body="content=\"banggoo adc " || body="content=\"banggoo adc" || title="登录(adc :: adc1)"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="banggoo adc ') && response.body_string.contains("欢迎登录banggoo adc管理界面</div>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("欢迎登录banggoo adc管理界面</div>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="banggoo adc ')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="banggoo adc')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("登录(adc :: adc1)")'
+expression: r0() || r1() || r2() || r3() || r4()

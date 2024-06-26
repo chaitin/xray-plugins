@@ -1,0 +1,51 @@
+name: fingerprint-yaml-kingdee-EAS
+manual: false
+detail:
+    fingerprint:
+        name: kingdee-EAS
+    fofa: body="eassessionid" || header="eassessionid" || body="/eassso/common" || header="eassso/login" || header="easportal" || title="kingdee_eas"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("eassessionid")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eassessionid"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/eassso/common")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eassso/login"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("easportal"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kingdee_eas")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-only1店铺收录
+manual: false
+detail:
+    fingerprint:
+        name: only1店铺收录
+    fofa: title="only1店铺收录"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("only1店铺收录")
+expression: r0()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Santach-I-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Santach-I-Cameras-and-Surveillance
+    fofa: 'body="visibility: inherit; width: 200px; z-index: 2\"><a href=\"paramlist.html\">" && body="//切换iframe 函数0-视频、录像；1-参数、日志" || body="//切换iframe 函数0-视频、录像；1-参数、日志" && body="visibility: inherit; width: 200px; z-index: 2\"><a href=\"paramlist.html\">" || body="visibility: inherit; width: 200px; z-index: 2\"><a href=\"paramlist.html\">" || body="//切换iframe 函数0-视频、录像；1-参数、日志"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''visibility: inherit; width: 200px; z-index: 2"><a href="paramlist.html">'') && response.body_string.contains("//切换iframe 函数0-视频、录像；1-参数、日志")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("//切换iframe 函数0-视频、录像；1-参数、日志") && response.body_string.contains(''visibility: inherit; width: 200px; z-index: 2"><a href="paramlist.html">'')'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''visibility: inherit; width: 200px; z-index: 2"><a href="paramlist.html">'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("//切换iframe 函数0-视频、录像；1-参数、日志")
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Laravel-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Laravel-Framework
+    fofa: 'header="set-cookie: laravel_session"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: laravel_session"))'
+expression: r0()

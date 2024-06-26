@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Raritan-Remote-Client
+manual: false
+detail:
+    fingerprint:
+        name: Raritan-Remote-Client
+    fofa: title="raritan remote client"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("raritan remote client")
+expression: r0()

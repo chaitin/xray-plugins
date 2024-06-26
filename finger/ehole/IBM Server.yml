@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBM Server
+manual: false
+detail:
+    fingerprint:
+        name: IBM Server
+    fofa: icon_hash="1726027799"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1726027799
+expression: r0()

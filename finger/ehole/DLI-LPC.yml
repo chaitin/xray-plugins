@@ -1,0 +1,58 @@
+name: fingerprint-yaml-DLI-LPC
+manual: false
+detail:
+    fingerprint:
+        name: DLI-LPC
+    fofa: 'header="dlilpc=" || header="DLILPC=" || body="<title>Power Controller </title>" || body="<FORM NAME=\"login\" ID=\"login\" ACTION=\"/login.tgi\" METHOD=post>" || body="<FORM NAME=\"secin\" ID=\"secin\" ACTION=\"/login.tgi\" METHOD=post>" || body="<tr><td align=center><h1>Warning: Insecure Authentication</h1></td></tr>" || body="<TD><INPUT onClick=\"calcResponse(); return false;\" TYPE=\"Submit\" NAME=\"Submitbtn\" VALUE=\"OK\">"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dlilpc="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DLILPC="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Power Controller </title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FORM NAME="login" ID="login" ACTION="/login.tgi" METHOD=post>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<FORM NAME="secin" ID="secin" ACTION="/login.tgi" METHOD=post>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<tr><td align=center><h1>Warning: Insecure Authentication</h1></td></tr>")'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TD><INPUT onClick="calcResponse(); return false;" TYPE="Submit" NAME="Submitbtn" VALUE="OK">')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

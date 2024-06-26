@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Mailgard-WebMail
+manual: false
+detail:
+    fingerprint:
+        name: Mailgard-WebMail
+    fofa: body="window.open('http://www.hechen.com'" || body="webmail" || header="Mailgard WebMail" || body="window.open(\"http://www.hechen.com\")" || body="window.open\"http://www.hechen.com\"" || title="Mailgard WebMail" || title="mailgard-webmail" || title="mailgard webmail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.open('http://www.hechen.com'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("webmail")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mailgard WebMail"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open("http://www.hechen.com")')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.open"http://www.hechen.com"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mailgard WebMail")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailgard-webmail")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailgard webmail")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

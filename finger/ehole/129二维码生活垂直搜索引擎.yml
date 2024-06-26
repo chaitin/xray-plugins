@@ -1,0 +1,16 @@
+name: fingerprint-yaml-129二维码生活垂直搜索引擎
+manual: false
+detail:
+    fingerprint:
+        name: 129二维码生活垂直搜索引擎
+    fofa: title="129二维码生活垂直搜索引擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("129二维码生活垂直搜索引擎")
+expression: r0()

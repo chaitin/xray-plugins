@@ -1,0 +1,93 @@
+name: fingerprint-yaml-ContrexxCMS
+manual: false
+detail:
+    fingerprint:
+        name: ContrexxCMS
+    fofa: body="powered by contrexx" && body="content=\"contrexx" || body="powered by Contrexx" || body="content=\"Contrexx" || body="content=\"contrexx" || body="powered by contrexx" || body="- powered by Contrexx   Web Content Management System</title>" || body="<p id=\"powered\"><a href=\"http://www.contrexx.com/\" title=\"Powered by Contrexx&reg; Software\">Powered by Contrexx&reg; Software</a>" || body="<div class=\"footer_right\">Powered by <a href=\"http://www.contrexx.com\">Contrexx Software</a></div>" || body="<meta name=\"generator\" content=\"Contrexx   Web Content Management System\"/>" || body="<style type=\"text/css\">@import url(core_modules/frontendEditing/css/style.css) all;</style>" || body="<title>Contrexx Administration Console</title>" || body="<td><input type=\"submit\" tabindex=\"4\" name=\"submit_button\" value=\"Anmelden\" onclick=\"if(this.disabled,typeof(this.disabled)==\"boolean\") this.disabled=true ; form_submitted_test=form_submitted ; form_submitted=true ; form_submitted=(!form_submitted_test,confirm(\"Are you sure you want to submit this form again?\")) ; if(this.disabled,typeof(this.disabled)==\"boolean\") this.disabled=false ; sub_form=\"\" ; return true\" /></td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by contrexx") && response.body_string.contains('content="contrexx')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by Contrexx")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Contrexx')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="contrexx')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by contrexx")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("- powered by Contrexx   Web Content Management System</title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="powered"><a href="http://www.contrexx.com/" title="Powered by Contrexx&reg; Software">Powered by Contrexx&reg; Software</a>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="footer_right">Powered by <a href="http://www.contrexx.com">Contrexx Software</a></div>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Contrexx   Web Content Management System"/>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<style type="text/css">@import url(core_modules/frontendEditing/css/style.css) all;</style>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Contrexx Administration Console</title>")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><input type="submit" tabindex="4" name="submit_button" value="Anmelden" onclick="if(this.disabled,typeof(this.disabled)=="boolean") this.disabled=true ; form_submitted_test=form_submitted ; form_submitted=true ; form_submitted=(!form_submitted_test,confirm("Are you sure you want to submit this form again?")) ; if(this.disabled,typeof(this.disabled)=="boolean") this.disabled=false ; sub_form="" ; return true" /></td>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RG-NBR
+manual: false
+detail:
+    fingerprint:
+        name: RG-NBR
+    fofa: header="RG-NBR" || title="RG-NBR"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RG-NBR"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RG-NBR")
+expression: r0() || r1()

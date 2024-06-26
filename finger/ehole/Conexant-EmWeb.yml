@@ -1,0 +1,100 @@
+name: fingerprint-yaml-Conexant-EmWeb
+manual: false
+detail:
+    fingerprint:
+        name: Conexant-EmWeb
+    fofa: 'header="server: virata-emweb" || header="Conexant-EmWeb" || header="Virata-EmWeb" || body="<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" scrolling=\"no\" style=\"border-collapse: collapse\"bordercolor=\"#FFFFFF\" width=\"80%\">" || body="<title>Flexor 151 Home</title>" || body="<td><b>Flexor 151</b> is connected and working properly, for more information" || body="Advanced configuration: <a style=\"font-size: 90%\" href=\"voice.html\">Voice Settings</a>&nbsp;&nbsp;&nbsp;<a style=\"font-size: 90%\" href=\"network.html\">Network Settings</a>&nbsp;&nbsp;&nbsp;<a style=\"font-size: 90%\" href=\"qos.html\">QoS Settings</a>" || body="<h2><a class=\"lg\" href=\"status.html\">Flexor 151</a></h2>" || body="<tr valign=\"middle\"><td class=\"tmainhead\"><img src=\"/webconfig/images/blank.gif\" width=\"49\" height=\"10\" alt=\"\" hspace=\"0\" vspace=\"0\" align=\"top\" id=\"logospacer\">e-con TDL-3424M Ethernet Router</td></tr>" || body="<TITLE>AT-iMG634WA</TITLE>" || body="<TITLE>AT-iMG606BD</TITLE>" || body="<TITLE>AT-iMG646BD</TITLE>" || body="<p class=\"help_data\"><b>Note:</b> If \"Checking Firmware Upgrades Automatically\" or \"Image Upgrade\" fails then please contact your service provider.</p>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: virata-emweb"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Conexant-EmWeb"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Virata-EmWeb"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<table border="1" cellpadding="0" cellspacing="0" scrolling="no" style="border-collapse: collapse"bordercolor="#FFFFFF" width="80%">'')'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Flexor 151 Home</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<td><b>Flexor 151</b> is connected and working properly, for more information")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Advanced configuration: <a style="font-size: 90%" href="voice.html">Voice Settings</a>&nbsp;&nbsp;&nbsp;<a style="font-size: 90%" href="network.html">Network Settings</a>&nbsp;&nbsp;&nbsp;<a style="font-size: 90%" href="qos.html">QoS Settings</a>'')'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h2><a class="lg" href="status.html">Flexor 151</a></h2>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr valign="middle"><td class="tmainhead"><img src="/webconfig/images/blank.gif" width="49" height="10" alt="" hspace="0" vspace="0" align="top" id="logospacer">e-con TDL-3424M Ethernet Router</td></tr>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>AT-iMG634WA</TITLE>")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>AT-iMG606BD</TITLE>")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>AT-iMG646BD</TITLE>")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="help_data"><b>Note:</b> If "Checking Firmware Upgrades Automatically" or "Image Upgrade" fails then please contact your service provider.</p>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

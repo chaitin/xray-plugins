@@ -1,0 +1,23 @@
+name: fingerprint-yaml-华为 eudemon防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 华为 eudemon防火墙
+    fofa: header="华为 eudemon防火墙" || title="华为 eudemon防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("华为 eudemon防火墙"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("华为 eudemon防火墙")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Yandex_Metrika
+manual: false
+detail:
+    fingerprint:
+        name: Yandex.Metrika
+    fofa: header="Yandex.Metrika" || title="Yandex.Metrika"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Yandex.Metrika"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Yandex.Metrika")
+expression: r0() || r1()

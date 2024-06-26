@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Topsec-Log-collection-and-analysis-system
+manual: false
+detail:
+    fingerprint:
+        name: Topsec-Log-collection-and-analysis-system
+    fofa: title="网络卫士日志收集与分析系统" || title="天融信日志收集与分析系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网络卫士日志收集与分析系统")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天融信日志收集与分析系统")
+expression: r0() || r1()

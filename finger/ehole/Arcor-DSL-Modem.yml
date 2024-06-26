@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Arcor-DSL-Modem
+manual: false
+detail:
+    fingerprint:
+        name: Arcor-DSL-Modem
+    fofa: header="realm=\"arcor-dsl wlan-modem"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="arcor-dsl wlan-modem'))
+expression: r0()

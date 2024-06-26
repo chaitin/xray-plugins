@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dahua
+manual: false
+detail:
+    fingerprint:
+        name: Dahua
+    fofa: icon_hash="-1466785234"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1466785234
+expression: r0()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Horde
+manual: false
+detail:
+    fingerprint:
+        name: Horde
+    fofa: 'body="imp: copyright 2001-2009 the horde project" || header="horde3" || body="IMP: Copyright 2001-2009 The Horde Project" || header="Horde3" || header="Set-Cookie:Horde" || body="_setHordeTitle"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("imp: copyright 2001-2009 the horde project")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("horde3"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("IMP: Copyright 2001-2009 The Horde Project")'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Horde3"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Set-Cookie:Horde"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("_setHordeTitle")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

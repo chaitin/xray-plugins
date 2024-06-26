@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Marco-Pacs METRIC
+manual: false
+detail:
+    fingerprint:
+        name: Marco-Pacs METRIC
+    fofa: header="Marco-Pacs METRIC" || title="Marco-Pacs METRIC"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Marco-Pacs METRIC"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Marco-Pacs METRIC")
+expression: r0() || r1()

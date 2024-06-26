@@ -1,0 +1,37 @@
+name: fingerprint-yaml-flow-framework
+manual: false
+detail:
+    fingerprint:
+        name: flow-framework
+    fofa: header="flow/framework" || header="FLOW/FRAMEWORK" || header="Flow Framework" || title="Flow Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("flow/framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FLOW/FRAMEWORK"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Flow Framework"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Flow Framework")
+expression: r0() || r1() || r2() || r3()

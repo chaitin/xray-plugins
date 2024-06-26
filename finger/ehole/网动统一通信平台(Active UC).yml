@@ -1,0 +1,16 @@
+name: fingerprint-yaml-网动统一通信平台(Active UC)
+manual: false
+detail:
+    fingerprint:
+        name: 网动统一通信平台(Active UC)
+    fofa: title="网动统一通信平台(Active UC)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网动统一通信平台(Active UC)")
+expression: r0()

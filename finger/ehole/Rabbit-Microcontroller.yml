@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Rabbit-Microcontroller
+manual: false
+detail:
+    fingerprint:
+        name: Rabbit-Microcontroller
+    fofa: 'header="server: z-world rabbit"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: z-world rabbit"))'
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NETGEAR-WNDR3300
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-WNDR3300
+    fofa: header="netgear wndr3300" || header="NETGEAR WNDR3300"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear wndr3300"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR WNDR3300"))
+expression: r0() || r1()

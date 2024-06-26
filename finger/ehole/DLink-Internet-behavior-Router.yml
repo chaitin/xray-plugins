@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DLink-Internet-behavior-Router
+manual: false
+detail:
+    fingerprint:
+        name: DLink-Internet-behavior-Router
+    fofa: body="<body oncontextmenu='return false;' onload=\"init(;\" >" && body="top.window.open(\"login.html\",\"_self\";" || body="<body oncontextmenu=\"return false;\" onload=\"init;\" >" || body="top.window.open\"login.html\",\"_self\";" || body="top.window.open(\"login.html\",\"_self\";" && body="<body oncontextmenu=\"return false;\" onload=\"init();\" >"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<body oncontextmenu='return false;' onload=\"init(;\" >") && response.body_string.contains('top.window.open("login.html","_self";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body oncontextmenu="return false;" onload="init;" >')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('top.window.open"login.html","_self";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('top.window.open("login.html","_self";') && response.body_string.contains('<body oncontextmenu="return false;" onload="init();" >')
+expression: r0() || r1() || r2() || r3()

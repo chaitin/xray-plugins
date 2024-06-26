@@ -1,0 +1,16 @@
+name: fingerprint-yaml-easynet
+manual: false
+detail:
+    fingerprint:
+        name: easynet
+    fofa: title="easynet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("easynet")
+expression: r0()

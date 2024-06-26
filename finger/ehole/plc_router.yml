@@ -1,0 +1,16 @@
+name: fingerprint-yaml-plc_router
+manual: false
+detail:
+    fingerprint:
+        name: plc_router
+    fofa: title="plc_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("plc_router")
+expression: r0()

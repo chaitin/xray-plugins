@@ -1,0 +1,30 @@
+name: fingerprint-yaml-MochiWeb
+manual: false
+detail:
+    fingerprint:
+        name: MochiWeb
+    fofa: 'header="MochiWeb" || header="server: mochiweb" || title="MochiWeb"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MochiWeb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mochiweb"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MochiWeb")
+expression: r0() || r1() || r2()

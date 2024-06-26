@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SpiderControl iniNet
+manual: false
+detail:
+    fingerprint:
+        name: SpiderControl iniNet
+    fofa: header="SpiderControl iniNet" || title="SpiderControl iniNet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SpiderControl iniNet"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SpiderControl iniNet")
+expression: r0() || r1()

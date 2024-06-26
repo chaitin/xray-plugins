@@ -1,0 +1,79 @@
+name: fingerprint-yaml-GeoServer
+manual: false
+detail:
+    fingerprint:
+        name: GeoServer
+    fofa: body="/org.geoserver.web.geoserverbasepage/" && body="class=\"geoserver lebeg" || body="/org.geoserver.web.GeoServerBasePage/" || body="class=\"geoserver lebeg" || body="geoserver" && body="window.location.replace(\"web/\";" || body="\\webapps\\geoserver" || body="/org.geoserver.web.geoserverbasepage/" || body="<link rel=\"shortcut icon\" href=\"resources/org.geoserver.web.GeoServerBasePage/favicon.ico\"/>" || body="<link href=\"resources/org.geoserver.web.GeoServerBasePage/favicon.ico\" rel=\"shortcut icon\"/>" || body="window.location.replace(\"web/\");" || body="geoserver"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/org.geoserver.web.geoserverbasepage/") && response.body_string.contains('class="geoserver lebeg')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/org.geoserver.web.GeoServerBasePage/")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="geoserver lebeg')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("geoserver") && response.body_string.contains('window.location.replace("web/";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("\\webapps\\geoserver")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/org.geoserver.web.geoserverbasepage/")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="shortcut icon" href="resources/org.geoserver.web.GeoServerBasePage/favicon.ico"/>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="resources/org.geoserver.web.GeoServerBasePage/favicon.ico" rel="shortcut icon"/>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.replace("web/");')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("geoserver")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

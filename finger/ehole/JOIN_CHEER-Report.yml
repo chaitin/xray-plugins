@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JOIN_CHEER-Report
+manual: false
+detail:
+    fingerprint:
+        name: JOIN_CHEER-Report
+    fofa: body="../netrep" && body="jqci"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("../netrep") && response.body_string.contains("jqci")
+expression: r0()

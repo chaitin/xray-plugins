@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DTV HMC-Lite Server
+manual: false
+detail:
+    fingerprint:
+        name: DTV HMC-Lite Server
+    fofa: header="DTV HMC-Lite Server" || title="DTV HMC-Lite Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DTV HMC-Lite Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DTV HMC-Lite Server")
+expression: r0() || r1()

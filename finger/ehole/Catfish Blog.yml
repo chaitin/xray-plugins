@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Catfish Blog
+manual: false
+detail:
+    fingerprint:
+        name: Catfish Blog
+    fofa: header="Catfish Blog" || title="Catfish Blog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Catfish Blog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Catfish Blog")
+expression: r0() || r1()

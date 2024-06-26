@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Icinga
+manual: false
+detail:
+    fingerprint:
+        name: Icinga
+    fofa: header="icinga" || header="Icinga"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("icinga"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Icinga"))
+expression: r0() || r1()

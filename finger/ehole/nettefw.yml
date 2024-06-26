@@ -1,0 +1,16 @@
+name: fingerprint-yaml-nettefw
+manual: false
+detail:
+    fingerprint:
+        name: nettefw
+    fofa: title="nettefw"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nettefw")
+expression: r0()

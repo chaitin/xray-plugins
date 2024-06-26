@@ -1,0 +1,23 @@
+name: fingerprint-yaml-QiboCMS
+manual: false
+detail:
+    fingerprint:
+        name: QiboCMS
+    fofa: header="QiboCMS" || title="QiboCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QiboCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QiboCMS")
+expression: r0() || r1()

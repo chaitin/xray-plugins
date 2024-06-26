@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Typekit
+manual: false
+detail:
+    fingerprint:
+        name: Typekit
+    fofa: header="Typekit" || title="Typekit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Typekit"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Typekit")
+expression: r0() || r1()

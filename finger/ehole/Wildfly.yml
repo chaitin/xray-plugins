@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Wildfly
+manual: false
+detail:
+    fingerprint:
+        name: Wildfly
+    fofa: icon_hash="-1666561833" || header="WildFly" || title="WildFly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1666561833
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WildFly"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WildFly")
+expression: r0() || r1() || r2()

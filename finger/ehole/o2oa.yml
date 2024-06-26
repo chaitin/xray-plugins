@@ -1,0 +1,16 @@
+name: fingerprint-yaml-o2oa
+manual: false
+detail:
+    fingerprint:
+        name: o2oa
+    fofa: title="o2oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("o2oa")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Opengear Management Console
+manual: false
+detail:
+    fingerprint:
+        name: Opengear Management Console
+    fofa: header="Opengear Management Console" || title="Opengear Management Console" || title="opengear management console"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Opengear Management Console"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Opengear Management Console")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("opengear management console")
+expression: r0() || r1() || r2()

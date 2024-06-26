@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TRENDnet-TEW-812DRU
+manual: false
+detail:
+    fingerprint:
+        name: TRENDnet-TEW-812DRU
+    fofa: header="realm=\"tew-812dru" || title="tew-812dru"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="tew-812dru'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tew-812dru")
+expression: r0() || r1()

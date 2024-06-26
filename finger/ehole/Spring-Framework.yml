@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Spring-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Spring-Framework
+    fofa: body="org.springframework.web.servlet.i18n.cookielocaleresolver.locale=" && body="<h1>whitelabel error page</h1>" || body="<h1>whitelabel error page</h1>" || body="org.springframework.web.servlet.i18n.cookielocaleresolver.locale=" || header="org.springframework.web.servlet.i18n.cookielocaleresolver.locale="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("org.springframework.web.servlet.i18n.cookielocaleresolver.locale=") && response.body_string.contains("<h1>whitelabel error page</h1>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>whitelabel error page</h1>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("org.springframework.web.servlet.i18n.cookielocaleresolver.locale=")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("org.springframework.web.servlet.i18n.cookielocaleresolver.locale="))
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-serendipity博客系统
+manual: false
+detail:
+    fingerprint:
+        name: serendipity博客系统
+    fofa: header="serendipity博客系统" || title="serendipity博客系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("serendipity博客系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("serendipity博客系统")
+expression: r0() || r1()

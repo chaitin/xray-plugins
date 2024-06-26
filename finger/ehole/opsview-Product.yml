@@ -1,0 +1,44 @@
+name: fingerprint-yaml-opsview-Product
+manual: false
+detail:
+    fingerprint:
+        name: opsview-Product
+    fofa: body="/images/opsview_logo_large.gif" && body="/images/opsviewcommunitylogo-large.png" && body="follow @opsview" || body="follow @opsview" || body="/images/opsviewcommunitylogo-large.png" || body="/images/opsview_logo_large.gif" || title="opsview"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/opsview_logo_large.gif") && response.body_string.contains("/images/opsviewcommunitylogo-large.png") && response.body_string.contains("follow @opsview")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("follow @opsview")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/opsviewcommunitylogo-large.png")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/images/opsview_logo_large.gif")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("opsview")
+expression: r0() || r1() || r2() || r3() || r4()

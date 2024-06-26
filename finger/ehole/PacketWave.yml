@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PacketWave
+manual: false
+detail:
+    fingerprint:
+        name: PacketWave
+    fofa: body="<td bgcolor=\"#cccccc\" colspan=2 align=\"center\"><input type=\"button\" name=\"goto\" value=\"Log On\" onClick=\"encode_submit(this.form)\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td bgcolor="#cccccc" colspan=2 align="center"><input type="button" name="goto" value="Log On" onClick="encode_submit(this.form)">')
+expression: r0()

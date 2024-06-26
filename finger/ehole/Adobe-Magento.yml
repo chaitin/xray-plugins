@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Adobe-Magento
+manual: false
+detail:
+    fingerprint:
+        name: Adobe-Magento
+    fofa: body="magento, varien, e-commerce" || header="redkiwi-cloud" || body="blank_img" && body="/skin/frontend/" || body="/skin/frontend/" || body="blank_img"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("magento, varien, e-commerce")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("redkiwi-cloud"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("blank_img") && response.body_string.contains("/skin/frontend/")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/skin/frontend/")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("blank_img")
+expression: r0() || r1() || r2() || r3() || r4()

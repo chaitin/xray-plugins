@@ -1,0 +1,23 @@
+name: fingerprint-yaml-H3C SecPath
+manual: false
+detail:
+    fingerprint:
+        name: H3C SecPath
+    fofa: header="H3C SecPath" || title="H3C SecPath"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("H3C SecPath"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("H3C SecPath")
+expression: r0() || r1()

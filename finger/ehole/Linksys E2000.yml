@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys E2000
+manual: false
+detail:
+    fingerprint:
+        name: Linksys E2000
+    fofa: header="Linksys E2000"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys E2000"))
+expression: r0()

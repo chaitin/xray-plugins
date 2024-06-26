@@ -1,0 +1,30 @@
+name: fingerprint-yaml-StorageTek-NAS
+manual: false
+detail:
+    fingerprint:
+        name: StorageTek-NAS
+    fofa: 'body="<title>Sun StorageTek NAS OS Web Admin</title>" || header="server: storagetek-httpd" || title="sun storagetek nas os web admin"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Sun StorageTek NAS OS Web Admin</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: storagetek-httpd"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sun storagetek nas os web admin")
+expression: r0() || r1() || r2()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FCS-1040 P_T_Z IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: FCS-1040 P/T/Z IP Camera
+    fofa: header="FCS-1040 P/T/Z IP Camera" || title="FCS-1040 P/T/Z IP Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FCS-1040 P/T/Z IP Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FCS-1040 P/T/Z IP Camera")
+expression: r0() || r1()

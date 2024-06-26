@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Procon-Electronics-Mod-Mux
+manual: false
+detail:
+    fingerprint:
+        name: Procon-Electronics-Mod-Mux
+    fofa: 'header="server: procon electronics mod-mux"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: procon electronics mod-mux"))'
+expression: r0()

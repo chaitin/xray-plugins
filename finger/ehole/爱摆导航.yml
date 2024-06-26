@@ -1,0 +1,16 @@
+name: fingerprint-yaml-爱摆导航
+manual: false
+detail:
+    fingerprint:
+        name: 爱摆导航
+    fofa: title="爱摆导航"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("爱摆导航")
+expression: r0()

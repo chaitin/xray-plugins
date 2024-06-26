@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL (Network)
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL (Network)
+    fofa: icon_hash="-882760066"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -882760066
+expression: r0()

@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Netsnap-Web-Camera
+manual: false
+detail:
+    fingerprint:
+        name: Netsnap-Web-Camera
+    fofa: body="color=\"#008080\">live-webcam" && body="<small>netsnap is a registered trademark" || body="<small>netsnap is a registered trademark" || body="color=\"#008080\">live-webcam" || body="<title>Live NetSnap Cam-Server feed</title>" || body="color=\"#008080\">Live-Webcam</font></big></big></big></strong></em></font></h3>" || body="color=\"#008080\">NetSnap®</font></big></big></big></big><font size=\"6\"> </font></strong></font></em></h3>" || body="<p align=\"center\"><font face=\"Arial\"><small><small>NetSnap is a registered Trademark of"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#008080">live-webcam') && response.body_string.contains("<small>netsnap is a registered trademark")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<small>netsnap is a registered trademark")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#008080">live-webcam')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Live NetSnap Cam-Server feed</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#008080">Live-Webcam</font></big></big></big></strong></em></font></h3>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('color="#008080">NetSnap®</font></big></big></big></big><font size="6"> </font></strong></font></em></h3>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p align="center"><font face="Arial"><small><small>NetSnap is a registered Trademark of')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

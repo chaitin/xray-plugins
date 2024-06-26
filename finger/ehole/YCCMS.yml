@@ -1,0 +1,23 @@
+name: fingerprint-yaml-YCCMS
+manual: false
+detail:
+    fingerprint:
+        name: YCCMS
+    fofa: header="YCCMS" || title="YCCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("YCCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YCCMS")
+expression: r0() || r1()

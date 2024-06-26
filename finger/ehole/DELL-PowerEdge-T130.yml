@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-PowerEdge-T130
+manual: false
+detail:
+    fingerprint:
+        name: DELL-PowerEdge-T130
+    fofa: header="poweredge-t130"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poweredge-t130"))
+expression: r0()

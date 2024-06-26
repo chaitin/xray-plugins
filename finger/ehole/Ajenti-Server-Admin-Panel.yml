@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Ajenti-Server-Admin-Panel
+manual: false
+detail:
+    fingerprint:
+        name: Ajenti-Server-Admin-Panel
+    fofa: body="src=\"/ajenti:static/" && body="action=\"/ajenti:auth\"" || body="action=\"/ajenti:auth\"" || body="src=\"/ajenti:static/" || body="action=\"/ajenti:auth\"" && body="src=\"/ajenti:static/" || title="ajenti"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/ajenti:static/') && response.body_string.contains('action="/ajenti:auth"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/ajenti:auth"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/ajenti:static/')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/ajenti:auth"') && response.body_string.contains('src="/ajenti:static/')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ajenti")
+expression: r0() || r1() || r2() || r3() || r4()

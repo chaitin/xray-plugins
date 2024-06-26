@@ -1,0 +1,16 @@
+name: fingerprint-yaml-360主机卫士
+manual: false
+detail:
+    fingerprint:
+        name: 360主机卫士
+    fofa: header="X-Safe-Firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Safe-Firewall"))
+expression: r0()

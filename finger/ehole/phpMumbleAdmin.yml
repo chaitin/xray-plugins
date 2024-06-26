@@ -1,0 +1,16 @@
+name: fingerprint-yaml-phpMumbleAdmin
+manual: false
+detail:
+    fingerprint:
+        name: phpMumbleAdmin
+    fofa: header="phpmumbleadmin_session="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("phpmumbleadmin_session="))
+expression: r0()

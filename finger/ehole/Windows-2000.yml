@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Windows-2000
+manual: false
+detail:
+    fingerprint:
+        name: Windows-2000
+    fofa: 'header="server: windows 2000"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: windows 2000"))'
+expression: r0()

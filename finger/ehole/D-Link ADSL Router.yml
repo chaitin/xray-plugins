@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D-Link ADSL Router
+manual: false
+detail:
+    fingerprint:
+        name: D-Link ADSL Router
+    fofa: header="D-Link ADSL Router" || title="D-Link ADSL Router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("D-Link ADSL Router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("D-Link ADSL Router")
+expression: r0() || r1()

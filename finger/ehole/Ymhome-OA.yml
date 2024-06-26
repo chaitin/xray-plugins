@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ymhome-OA
+manual: false
+detail:
+    fingerprint:
+        name: Ymhome-OA
+    fofa: body="/yimioa.apk" || title="一米oa"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/yimioa.apk")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("一米oa")
+expression: r0() || r1()

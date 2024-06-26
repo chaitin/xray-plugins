@@ -1,0 +1,16 @@
+name: fingerprint-yaml-商信TEAMWROKCMS
+manual: false
+detail:
+    fingerprint:
+        name: 商信TEAMWROKCMS
+    fofa: title="商信TEAMWROK CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("商信TEAMWROK CMS")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-聚水潭SaaS协同平台
+manual: false
+detail:
+    fingerprint:
+        name: 聚水潭SaaS协同平台
+    fofa: header="聚水潭SaaS协同平台" || title="聚水潭SaaS协同平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("聚水潭SaaS协同平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("聚水潭SaaS协同平台")
+expression: r0() || r1()

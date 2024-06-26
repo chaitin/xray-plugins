@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Wireless-Access-Point-Controller
+manual: false
+detail:
+    fingerprint:
+        name: Wireless-Access-Point-Controller
+    fofa: body="var oemproductname = \"mvc_howay6000\"" && body="<select id = \"selclangswitch\" class=\"langswitch\" onchange = \"switchpagelanguage(\">" && body="苏州汉明科技有限公司" && body="var oemproductname = \"mvc_howay6100\"" && body="src=\"images/acchtext.png\"" && body="版权所有 &copy 2009-2017</div>" || body="var oemproductname = \"mvc_howay6000\"" || body="<select id = \"selclangswitch\" class=\"langswitch\" onchange = \"switchpagelanguage\">" || body="苏州汉明科技有限公司" || body="var oemproductname = \"mvc_howay6100\"" || body="src=\"images/acchtext.png\"" || body="版权所有 &copy 2009-2017</div>" || body="<select id = \"selclangswitch\" class=\"langswitch\" onchange = \"switchpagelanguage()\">" || body="var oemproductname = \"mvc_howay6100\")" || body="版权所有 &copy 2009-2017</div>" && body="src=\"images/acchtext.png\"" || body="苏州汉明科技有限公司" && body="<select id = \"selclangswitch\" class=\"langswitch\" onchange = \"switchpagelanguage()\">" && body="var oemproductname = \"mvc_howay6000\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var oemproductname = "mvc_howay6000"') && response.body_string.contains('<select id = "selclangswitch" class="langswitch" onchange = "switchpagelanguage(">') && response.body_string.contains("苏州汉明科技有限公司") && response.body_string.contains('var oemproductname = "mvc_howay6100"') && response.body_string.contains('src="images/acchtext.png"') && response.body_string.contains("版权所有 &copy 2009-2017</div>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var oemproductname = "mvc_howay6000"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select id = "selclangswitch" class="langswitch" onchange = "switchpagelanguage">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("苏州汉明科技有限公司")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var oemproductname = "mvc_howay6100"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/acchtext.png"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("版权所有 &copy 2009-2017</div>")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<select id = "selclangswitch" class="langswitch" onchange = "switchpagelanguage()">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var oemproductname = "mvc_howay6100")')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("版权所有 &copy 2009-2017</div>") && response.body_string.contains('src="images/acchtext.png"')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("苏州汉明科技有限公司") && response.body_string.contains('<select id = "selclangswitch" class="langswitch" onchange = "switchpagelanguage()">') && response.body_string.contains('var oemproductname = "mvc_howay6000"')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

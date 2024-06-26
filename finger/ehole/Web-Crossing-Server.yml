@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Web-Crossing-Server
+manual: false
+detail:
+    fingerprint:
+        name: Web-Crossing-Server
+    fofa: 'header="server: web crossing" && header="set-cookie: webxsess" || header="set-cookie: webxsess" || header="server: web crossing"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: web crossing")) && response.raw_header.bcontains(bytes("set-cookie: webxsess"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: webxsess"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: web crossing"))'
+expression: r0() || r1() || r2()

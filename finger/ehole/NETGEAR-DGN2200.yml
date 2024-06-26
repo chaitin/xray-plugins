@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NETGEAR-DGN2200
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-DGN2200
+    fofa: header="netgear dgn2200" || header="NETGEAR DGN2200" || title="netgear router dgn2200"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("netgear dgn2200"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DGN2200"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netgear router dgn2200")
+expression: r0() || r1() || r2()

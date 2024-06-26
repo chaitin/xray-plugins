@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AMR-WinControl
+manual: false
+detail:
+    fingerprint:
+        name: AMR-WinControl
+    fofa: header="AMR_WinControl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AMR_WinControl"))
+expression: r0()

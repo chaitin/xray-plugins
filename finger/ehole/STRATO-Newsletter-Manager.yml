@@ -1,0 +1,23 @@
+name: fingerprint-yaml-STRATO-Newsletter-Manager
+manual: false
+detail:
+    fingerprint:
+        name: STRATO-Newsletter-Manager
+    fofa: body="<td><img src=\"http://strato.de/cgi2004/cgi2.0/images/transparent120x94.gif\" alt=\"CGI 2004\" /></td>" || body="<title>STRATO Newsletter Manager</title>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td><img src="http://strato.de/cgi2004/cgi2.0/images/transparent120x94.gif" alt="CGI 2004" /></td>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>STRATO Newsletter Manager</title>")
+expression: r0() || r1()

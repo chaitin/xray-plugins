@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HFS (HTTP File Server)
+manual: false
+detail:
+    fingerprint:
+        name: HFS (HTTP File Server)
+    fofa: icon_hash="2124459909" || icon_hash="731374291"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 2124459909
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 731374291
+expression: r0() || r1()

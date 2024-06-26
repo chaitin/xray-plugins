@@ -1,0 +1,30 @@
+name: fingerprint-yaml-David-WebBox
+manual: false
+detail:
+    fingerprint:
+        name: David-WebBox
+    fofa: 'header="David-WebBox" || header="server: david-webbox" || title="David Webbox"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("David-WebBox"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: david-webbox"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("David Webbox")
+expression: r0() || r1() || r2()

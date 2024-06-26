@@ -1,0 +1,79 @@
+name: fingerprint-yaml-Rainmail
+manual: false
+detail:
+    fingerprint:
+        name: Rainmail
+    fofa: 'body=".: <b>rainmail intranet login </b> :.</div>" && body="href=\"/resources/rainmailvpninstaller.exe" || header="Rainmail" || body="href=\"/resources/rainmailvpninstaller.exe" || body=".: <b>rainmail intranet login </b> :.</div>" || body="<form action=\"/cgi-bin/openwebmail/openwebmail.pl\"" || body="<!--  SCRIPT CONFIGURATION SECTION -->" || body="<TD width=50%><font color=\"ffffff\" size=\"1\"face=\"Verdana, Helvetica\">Rainmail is a product of :</font>" || body="<div align=\"center\">.: <b>Rainmail Intranet Login </b> :.</div>" || body="<TD><font color=\"ffffff\" size=\"1\"face=\"Verdana, Arial, Helvetica, sans-serif\">Rainmail is a product of :</font></TD>" || title="Rainmail"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(".: <b>rainmail intranet login </b> :.</div>") && response.body_string.contains(''href="/resources/rainmailvpninstaller.exe'')'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Rainmail"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/resources/rainmailvpninstaller.exe')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(".: <b>rainmail intranet login </b> :.</div>")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form action="/cgi-bin/openwebmail/openwebmail.pl"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--  SCRIPT CONFIGURATION SECTION -->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TD width=50%><font color="ffffff" size="1"face="Verdana, Helvetica">Rainmail is a product of :</font>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div align="center">.: <b>Rainmail Intranet Login </b> :.</div>'')'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TD><font color="ffffff" size="1"face="Verdana, Arial, Helvetica, sans-serif">Rainmail is a product of :</font></TD>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Rainmail")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

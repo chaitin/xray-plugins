@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LG-43UK6400PLF
+manual: false
+detail:
+    fingerprint:
+        name: LG-43UK6400PLF
+    fofa: body="<modelname>43uk6400plf</modelname>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<modelname>43uk6400plf</modelname>")
+expression: r0()

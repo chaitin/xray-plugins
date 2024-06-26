@@ -1,0 +1,72 @@
+name: fingerprint-yaml-BackupPC
+manual: false
+detail:
+    fingerprint:
+        name: BackupPC
+    fofa: body="/backuppc/image/logo.gif" && body="/index.cgi?action=editconfig" || header="backuppc_admin" || header="BackupPC_Admin" || header="Backup" || body="/index.cgi?action=editconfig" || body="/backuppc/image/logo.gif" || body="<input type=\"hidden\" name=\"action\" value=\"hostInfo\"><input type=\"submit\" value=\"Go\" name=\"ignore\">" || body="</head><body onLoad=\"document.getElementById(\"NavMenu\").style.height=document.body.scrollHeight\">" || header="backup"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/backuppc/image/logo.gif") && response.body_string.contains("/index.cgi?action=editconfig")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("backuppc_admin"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("BackupPC_Admin"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Backup"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.cgi?action=editconfig")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/backuppc/image/logo.gif")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<input type="hidden" name="action" value="hostInfo"><input type="submit" value="Go" name="ignore">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('</head><body onLoad="document.getElementById("NavMenu").style.height=document.body.scrollHeight">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("backup"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

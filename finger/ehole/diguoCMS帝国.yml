@@ -1,0 +1,16 @@
+name: fingerprint-yaml-diguoCMS帝国
+manual: false
+detail:
+    fingerprint:
+        name: diguoCMS帝国
+    fofa: title="diguoCMS帝国"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("diguoCMS帝国")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM Tivoli Storage Manager
+manual: false
+detail:
+    fingerprint:
+        name: IBM Tivoli Storage Manager
+    fofa: header="IBM Tivoli Storage Manager" || title="IBM Tivoli Storage Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM Tivoli Storage Manager"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IBM Tivoli Storage Manager")
+expression: r0() || r1()

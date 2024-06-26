@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SinaPSi-eSola
+manual: false
+detail:
+    fingerprint:
+        name: SinaPSi-eSola
+    fofa: title="esolar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("esolar")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Arris
+manual: false
+detail:
+    fingerprint:
+        name: Arris
+    fofa: icon_hash="-1477563858"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1477563858
+expression: r0()

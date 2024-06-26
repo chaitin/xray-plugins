@@ -1,0 +1,65 @@
+name: fingerprint-yaml-AMCREST-camera
+manual: false
+detail:
+    fingerprint:
+        name: AMCREST-camera
+    fofa: body="amcrest" && body="w_cloudcurver" && body="onclick=\"chkalarmsound(" && body="id=\"play_alarm_sound" && body="amcrest technologies" || body="amcrest technologies" && body="id=\"play_alarm_sound" && body="onclick=\"chkalarmsound()" || body="w_cloudcurver" && body="amcrest" || body="amcrest" || body="w_cloudcurver" || body="onclick=\"chkalarmsound" || body="id=\"play_alarm_sound" || body="amcrest technologies"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amcrest") && response.body_string.contains("w_cloudcurver") && response.body_string.contains('onclick="chkalarmsound(') && response.body_string.contains('id="play_alarm_sound') && response.body_string.contains("amcrest technologies")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amcrest technologies") && response.body_string.contains('id="play_alarm_sound') && response.body_string.contains('onclick="chkalarmsound()')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("w_cloudcurver") && response.body_string.contains("amcrest")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amcrest")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("w_cloudcurver")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onclick="chkalarmsound')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="play_alarm_sound')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("amcrest technologies")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

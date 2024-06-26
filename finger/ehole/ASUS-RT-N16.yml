@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ASUS-RT-N16
+manual: false
+detail:
+    fingerprint:
+        name: ASUS-RT-N16
+    fofa: header="ASUS-RT-N16" || title="ASUS-RT-N16"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ASUS-RT-N16"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ASUS-RT-N16")
+expression: r0() || r1()

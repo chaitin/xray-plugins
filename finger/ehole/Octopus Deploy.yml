@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Octopus Deploy
+manual: false
+detail:
+    fingerprint:
+        name: Octopus Deploy
+    fofa: header="Octopus Deploy" || title="Octopus Deploy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Octopus Deploy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Octopus Deploy")
+expression: r0() || r1()

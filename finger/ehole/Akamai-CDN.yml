@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Akamai-CDN
+manual: false
+detail:
+    fingerprint:
+        name: Akamai-CDN
+    fofa: 'header="server: akamaighost" && header="akamai-ip: " || header="akamai-ip: " || header="x-akamai-transformed" || header="server: akamaighost" || header="akamai-ip:"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: akamaighost")) && response.raw_header.bcontains(bytes("akamai-ip: "))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("akamai-ip: "))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-akamai-transformed"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: akamaighost"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("akamai-ip:"))
+expression: r0() || r1() || r2() || r3() || r4()

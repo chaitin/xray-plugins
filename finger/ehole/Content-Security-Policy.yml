@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Content-Security-Policy
+manual: false
+detail:
+    fingerprint:
+        name: Content-Security-Policy
+    fofa: header="x-content-security-policy" || header="x-webkit-csp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-content-security-policy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-webkit-csp"))
+expression: r0() || r1()

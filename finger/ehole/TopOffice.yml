@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TopOffice
+manual: false
+detail:
+    fingerprint:
+        name: TopOffice
+    fofa: title="topoffice协同办公系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("topoffice协同办公系统")
+expression: r0()

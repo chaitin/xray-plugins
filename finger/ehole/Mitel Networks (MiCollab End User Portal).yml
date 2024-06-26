@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mitel Networks (MiCollab End User Portal)
+manual: false
+detail:
+    fingerprint:
+        name: Mitel Networks (MiCollab End User Portal)
+    fofa: icon_hash="-1922044295"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1922044295
+expression: r0()

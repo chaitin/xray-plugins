@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MS-SDK-HttpServer
+manual: false
+detail:
+    fingerprint:
+        name: MS-SDK-HttpServer
+    fofa: 'header="server: ms-sdk-httpserver"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ms-sdk-httpserver"))'
+expression: r0()

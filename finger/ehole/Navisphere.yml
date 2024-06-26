@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Navisphere
+manual: false
+detail:
+    fingerprint:
+        name: Navisphere
+    fofa: title="n a v i s p h e r e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("n a v i s p h e r e")
+expression: r0()

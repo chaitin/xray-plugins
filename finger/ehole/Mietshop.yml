@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mietshop
+manual: false
+detail:
+    fingerprint:
+        name: Mietshop
+    fofa: header="Mietshop" || title="Mietshop"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mietshop"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mietshop")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-agoracgi
+manual: false
+detail:
+    fingerprint:
+        name: agoracgi
+    fofa: body="/agora.cgi?product=" && body="/store/agora.cgi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/agora.cgi?product=") && response.body_string.contains("/store/agora.cgi")
+expression: r0()

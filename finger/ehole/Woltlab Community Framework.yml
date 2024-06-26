@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Woltlab Community Framework
+manual: false
+detail:
+    fingerprint:
+        name: Woltlab Community Framework
+    fofa: header="Woltlab Community Framework" || title="Woltlab Community Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Woltlab Community Framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Woltlab Community Framework")
+expression: r0() || r1()

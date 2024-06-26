@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Intelbras-Roteador-Wireless-N-WRN240-Slim
+manual: false
+detail:
+    fingerprint:
+        name: Intelbras-Roteador-Wireless-N-WRN240-Slim
+    fofa: title="roteador wireless n wrn240 slim"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("roteador wireless n wrn240 slim")
+expression: r0()

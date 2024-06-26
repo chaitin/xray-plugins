@@ -1,0 +1,65 @@
+name: fingerprint-yaml-oscommerce
+manual: false
+detail:
+    fingerprint:
+        name: oscommerce
+    fofa: 'body="src=\"images/oscommerce.png" || header="set-cookie: oscsid=" || header="osCommerce" || body="The Exchange Project - Community Made Shopping!" || body="<td class=\"messageStackWarning\"><img src=\"images/icons/warning.gif\"" || body="Powered by <a href=\"http://www.oscommerce.com\" target=\"_blank\">osCommerce</a>" || body="cookie_test=please_accept_for_session;" || title="osCommerce"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/oscommerce.png')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: oscsid="))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("osCommerce"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("The Exchange Project - Community Made Shopping!")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td class="messageStackWarning"><img src="images/icons/warning.gif"')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.oscommerce.com" target="_blank">osCommerce</a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cookie_test=please_accept_for_session;")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("osCommerce")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

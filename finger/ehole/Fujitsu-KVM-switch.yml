@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Fujitsu-KVM-switch
+manual: false
+detail:
+    fingerprint:
+        name: Fujitsu-KVM-switch
+    fofa: body="src=\"/avct.js" && body="alt=\"fujitsu" || body="alt=\"fujitsu" && body="src=\"/avct.js" || body="alt=\"fujitsu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/avct.js') && response.body_string.contains('alt="fujitsu')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="fujitsu') && response.body_string.contains('src="/avct.js')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="fujitsu')
+expression: r0() || r1() || r2()

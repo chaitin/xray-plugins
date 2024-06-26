@@ -1,0 +1,30 @@
+name: fingerprint-yaml-cyberoam-SSL-VPN
+manual: false
+detail:
+    fingerprint:
+        name: cyberoam-SSL-VPN
+    fofa: body="src=\"/images/customizeimages/uploadedlogo.jpg\"" || header="Cyberoam SSLVPN" || title="Cyberoam SSLVPN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/images/customizeimages/uploadedlogo.jpg"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cyberoam SSLVPN"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cyberoam SSLVPN")
+expression: r0() || r1() || r2()

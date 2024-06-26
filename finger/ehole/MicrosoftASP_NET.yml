@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftASP_NET
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftASP.NET
+    fofa: title="Microsoft ASP.NET"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft ASP.NET")
+expression: r0()

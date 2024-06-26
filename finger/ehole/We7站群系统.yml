@@ -1,0 +1,23 @@
+name: fingerprint-yaml-We7站群系统
+manual: false
+detail:
+    fingerprint:
+        name: We7站群系统
+    fofa: header="We7站群系统" || title="We7站群系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("We7站群系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("We7站群系统")
+expression: r0() || r1()

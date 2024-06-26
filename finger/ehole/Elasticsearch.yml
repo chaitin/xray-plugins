@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Elasticsearch
+manual: false
+detail:
+    fingerprint:
+        name: Elasticsearch
+    fofa: 'body="you know, for search" && body="<title>elasticsearch" || header="server: ecstatic" || body="You Know, for Search" || body="you know, for search" || body="\"tagline\" : \"You Know, for Search\"}" || body="  \"tagline\" : \"You Know, for Search\"" || body=" \"tagline\" : \"You Know, for Search\"" || header="realm=\"elasticsearch"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("you know, for search") && response.body_string.contains("<title>elasticsearch")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ecstatic"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("You Know, for Search")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("you know, for search")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''"tagline" : "You Know, for Search"}'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''  "tagline" : "You Know, for Search"'')'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains('' "tagline" : "You Know, for Search"'')'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="elasticsearch'))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

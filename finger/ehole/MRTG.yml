@@ -1,0 +1,86 @@
+name: fingerprint-yaml-MRTG
+manual: false
+detail:
+    fingerprint:
+        name: MRTG
+    fofa: 'body="href=\"http://oss.oetiker.ch/mrtg/" && body="command line is easier to read using \"view page properties\" of your browser" && body="mrtg " && body="mrtg " || header="realm=\"mrtg " || body="Command line is easier to read using \"View Page Properties\" of your browser" || body="commandline was: indexmaker" || body="command line is easier to read using \"view page properties\" of your browser" || body="/mrtg-l.png" || body="href=\"http://oss.oetiker.ch/mrtg/" || body="mrtg" || body="/mrtg-l.png" && body="command line is easier to read using \"view page properties\" of your browser" || header="realm=\"mrtg" || title="mrtg index page"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://oss.oetiker.ch/mrtg/') && response.body_string.contains('command line is easier to read using "view page properties" of your browser') && response.body_string.contains("mrtg ") && response.body_string.contains("mrtg ")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="mrtg '))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Command line is easier to read using "View Page Properties" of your browser')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("commandline was: indexmaker")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('command line is easier to read using "view page properties" of your browser')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/mrtg-l.png")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://oss.oetiker.ch/mrtg/')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mrtg")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/mrtg-l.png") && response.body_string.contains('command line is easier to read using "view page properties" of your browser')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="mrtg'))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mrtg index page")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

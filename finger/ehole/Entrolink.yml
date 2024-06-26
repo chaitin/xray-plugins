@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Entrolink
+manual: false
+detail:
+    fingerprint:
+        name: Entrolink
+    fofa: icon_hash="1973665246"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1973665246
+expression: r0()

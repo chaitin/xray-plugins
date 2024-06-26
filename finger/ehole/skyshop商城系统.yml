@@ -1,0 +1,16 @@
+name: fingerprint-yaml-skyshop商城系统
+manual: false
+detail:
+    fingerprint:
+        name: skyshop商城系统
+    fofa: title="skyshop商城系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("skyshop商城系统")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SimpleTech-SimpleShare-NAS
+manual: false
+detail:
+    fingerprint:
+        name: SimpleTech-SimpleShare-NAS
+    fofa: header="default user name is admin and password is simple" || header="realm=\"simpleshare(default user name is admin,password is simple"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("default user name is admin and password is simple"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="simpleshare(default user name is admin,password is simple'))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GitPHP
+manual: false
+detail:
+    fingerprint:
+        name: GitPHP
+    fofa: title="GitPHP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("GitPHP")
+expression: r0()

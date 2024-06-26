@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Intel-AMT
+manual: false
+detail:
+    fingerprint:
+        name: Intel-AMT
+    fofa: 'header="server: intel(r standard manageability " && header="server: intel(r active management technology" || header="server: intel(r) active management technology" || header="server: intel(r) standard manageability " || header="server: intelr standard manageability" || header="server: intelr active management technology"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intel(r standard manageability ")) && response.raw_header.bcontains(bytes("server: intel(r active management technology"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intel(r) active management technology"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intel(r) standard manageability "))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intelr standard manageability"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: intelr active management technology"))'
+expression: r0() || r1() || r2() || r3() || r4()

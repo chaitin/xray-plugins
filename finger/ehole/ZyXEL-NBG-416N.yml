@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZyXEL-NBG-416N
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-NBG-416N
+    fofa: header="nbg-416n n-lite home router" && header="nbg-418n n home router" || header="nbg-418n n home router" || header="nbg-416n n-lite home router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nbg-416n n-lite home router")) && response.raw_header.bcontains(bytes("nbg-418n n home router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nbg-418n n home router"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nbg-416n n-lite home router"))
+expression: r0() || r1() || r2()

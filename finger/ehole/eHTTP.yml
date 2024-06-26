@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eHTTP
+manual: false
+detail:
+    fingerprint:
+        name: eHTTP
+    fofa: title="eHTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eHTTP")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Trend-IWSS-Proxy
+manual: false
+detail:
+    fingerprint:
+        name: Trend-IWSS-Proxy
+    fofa: 'header="proxy-agent: iwss"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("proxy-agent: iwss"))'
+expression: r0()

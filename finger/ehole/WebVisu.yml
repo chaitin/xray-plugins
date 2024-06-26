@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WebVisu
+manual: false
+detail:
+    fingerprint:
+        name: WebVisu
+    fofa: header="WebVisu" || title="WebVisu"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebVisu"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WebVisu")
+expression: r0() || r1()

@@ -1,0 +1,79 @@
+name: fingerprint-yaml-CoreMail
+manual: false
+detail:
+    fingerprint:
+        name: CoreMail
+    fofa: 'body="coremail/common" || icon_hash="541942600" || body="/coremail/common/" && body="action=\"/coremail/index.jsp" && body="fmt_logoalt: \"coremail 电子邮件系统" || body="fmt_logoalt: \"coremail 电子邮件系统" || body="action=\"/coremail/index.jsp" || body="/coremail/common/" || body="/coremail/bundle/" || body="<a href=\"http://www.coremail.cn\" target=\"_blank\">" || title="coremail 电子邮局" || title="coremail邮件系统"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("coremail/common")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 541942600
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("/coremail/common/") && response.body_string.contains(''action="/coremail/index.jsp'') && response.body_string.contains(''fmt_logoalt: "coremail 电子邮件系统'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''fmt_logoalt: "coremail 电子邮件系统'')'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/coremail/index.jsp')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/coremail/common/")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/coremail/bundle/")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.coremail.cn" target="_blank">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("coremail 电子邮局")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("coremail邮件系统")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

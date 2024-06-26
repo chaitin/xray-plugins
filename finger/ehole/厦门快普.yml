@@ -1,0 +1,16 @@
+name: fingerprint-yaml-厦门快普
+manual: false
+detail:
+    fingerprint:
+        name: 厦门快普
+    fofa: body="jKPM6" && body="WebResource.axd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("jKPM6") && response.body_string.contains("WebResource.axd")
+expression: r0()

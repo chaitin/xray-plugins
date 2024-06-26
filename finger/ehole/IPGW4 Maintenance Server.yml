@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IPGW4 Maintenance Server
+manual: false
+detail:
+    fingerprint:
+        name: IPGW4 Maintenance Server
+    fofa: header="IPGW4 Maintenance Server" || title="IPGW4 Maintenance Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IPGW4 Maintenance Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IPGW4 Maintenance Server")
+expression: r0() || r1()

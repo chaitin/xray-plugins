@@ -1,0 +1,30 @@
+name: fingerprint-yaml-LANCOM-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: LANCOM-Firewall
+    fofa: body="<a href=\"http://www.lancom-systems.de\">" || body="firewall" && body="<a href=\"http://www.lancom-systems.de\">" || title="firewall login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.lancom-systems.de">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("firewall") && response.body_string.contains('<a href="http://www.lancom-systems.de">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("firewall login")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Vmware Secure File Transfer
+manual: false
+detail:
+    fingerprint:
+        name: Vmware Secure File Transfer
+    fofa: icon_hash="1642701741"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1642701741
+expression: r0()

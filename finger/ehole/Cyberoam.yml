@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cyberoam
+manual: false
+detail:
+    fingerprint:
+        name: Cyberoam
+    fofa: icon_hash="1462981117"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1462981117
+expression: r0()

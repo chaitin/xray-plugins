@@ -1,0 +1,16 @@
+name: fingerprint-yaml-nanjing_shiyou
+manual: false
+detail:
+    fingerprint:
+        name: nanjing_shiyou
+    fofa: title="nanjing_shiyou"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nanjing_shiyou")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SyncThru Web Service (Printers)
+manual: false
+detail:
+    fingerprint:
+        name: SyncThru Web Service (Printers)
+    fofa: icon_hash="1483097076"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1483097076
+expression: r0()

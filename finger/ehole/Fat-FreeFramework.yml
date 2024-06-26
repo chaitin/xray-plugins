@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Fat-FreeFramework
+manual: false
+detail:
+    fingerprint:
+        name: Fat-FreeFramework
+    fofa: header="fat-free framework" || header="Fat-Free Framework" || title="Fat-Free Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fat-free framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fat-Free Framework"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fat-Free Framework")
+expression: r0() || r1() || r2()

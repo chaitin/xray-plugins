@@ -1,0 +1,72 @@
+name: fingerprint-yaml-cPanel
+manual: false
+detail:
+    fingerprint:
+        name: cPanel
+    fofa: body="cpanel, inc." && body="cpanel 登录" && body="(cprelogin:" || header="cprelogin:" || body="cpanel, inc." || body="cpanel 登录" || body="<title>cPanel&reg;</title>" || body="<div id=\"footer_images\"><img src=\"sys_cpanel/images/powered_by.gif\" />" || body="Apache is working on your cPanel<sup>&reg;</sup> and WHM&#8482; Server" || body="<html><head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=/cgi-sys/defaultwebpage.cgi\"></head><body></body></html>" || body="<p class=\"troubleshoot\">It may be possible to restore access to this site by <a href=\"http://www.cpanel.net/docs/dnscache/cleardns.html\">following these instructions</a> for clearing your dns cache.</p>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cpanel, inc.") && response.body_string.contains("cpanel 登录") && response.body_string.contains("(cprelogin:")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cprelogin:"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cpanel, inc.")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cpanel 登录")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>cPanel&reg;</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="footer_images"><img src="sys_cpanel/images/powered_by.gif" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Apache is working on your cPanel<sup>&reg;</sup> and WHM&#8482; Server")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<html><head><META HTTP-EQUIV="refresh" CONTENT="0;URL=/cgi-sys/defaultwebpage.cgi"></head><body></body></html>')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="troubleshoot">It may be possible to restore access to this site by <a href="http://www.cpanel.net/docs/dnscache/cleardns.html">following these instructions</a> for clearing your dns cache.</p>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

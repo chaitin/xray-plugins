@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DAS-APT
+manual: false
+detail:
+    fingerprint:
+        name: DAS-APT
+    fofa: title="明御apt攻击"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("明御apt攻击")
+expression: r0()

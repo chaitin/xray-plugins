@@ -1,0 +1,16 @@
+name: fingerprint-yaml-apabi_tasi
+manual: false
+detail:
+    fingerprint:
+        name: apabi_tasi
+    fofa: title="apabi_tasi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("apabi_tasi")
+expression: r0()

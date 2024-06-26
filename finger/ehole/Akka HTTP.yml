@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Akka HTTP
+manual: false
+detail:
+    fingerprint:
+        name: Akka HTTP
+    fofa: header="Akka HTTP" || title="Akka HTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Akka HTTP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Akka HTTP")
+expression: r0() || r1()

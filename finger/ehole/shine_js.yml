@@ -1,0 +1,16 @@
+name: fingerprint-yaml-shine_js
+manual: false
+detail:
+    fingerprint:
+        name: shine.js
+    fofa: title="shine.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("shine.js")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoogleWallet
+manual: false
+detail:
+    fingerprint:
+        name: GoogleWallet
+    fofa: title="Google Wallet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Wallet")
+expression: r0()

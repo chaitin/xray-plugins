@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TXQASP博客
+manual: false
+detail:
+    fingerprint:
+        name: TXQASP博客
+    fofa: title="TXQASP博客"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TXQASP博客")
+expression: r0()

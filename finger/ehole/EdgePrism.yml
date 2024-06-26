@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EdgePrism
+manual: false
+detail:
+    fingerprint:
+        name: EdgePrism
+    fofa: header="EdgePrism" || header="EdgePrismSSL"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EdgePrism"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EdgePrismSSL"))
+expression: r0() || r1()

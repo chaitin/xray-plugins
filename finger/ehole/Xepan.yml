@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Xepan
+manual: false
+detail:
+    fingerprint:
+        name: Xepan
+    fofa: header="Xepan" || title="Xepan"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Xepan"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xepan")
+expression: r0() || r1()

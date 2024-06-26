@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jindun_gateway
+manual: false
+detail:
+    fingerprint:
+        name: jindun_gateway
+    fofa: title="jindun_gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jindun_gateway")
+expression: r0()

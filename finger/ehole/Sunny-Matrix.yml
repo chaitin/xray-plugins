@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sunny-Matrix
+manual: false
+detail:
+    fingerprint:
+        name: Sunny-Matrix
+    fofa: title="- - - sunny matrix - - -"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("- - - sunny matrix - - -")
+expression: r0()

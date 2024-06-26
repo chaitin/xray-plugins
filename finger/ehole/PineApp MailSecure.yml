@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PineApp MailSecure
+manual: false
+detail:
+    fingerprint:
+        name: PineApp MailSecure
+    fofa: header="PineApp MailSecure" || title="PineApp MailSecure"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PineApp MailSecure"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PineApp MailSecure")
+expression: r0() || r1()

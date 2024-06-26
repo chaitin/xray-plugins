@@ -1,0 +1,37 @@
+name: fingerprint-yaml-XWiki
+manual: false
+detail:
+    fingerprint:
+        name: XWiki
+    fofa: header="XWiki" || body="<meta name=\"wiki\" content=\"xwiki\"/>" || body="<div id=\"xwikilicence\">" || title="XWiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XWiki"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="wiki" content="xwiki"/>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="xwikilicence">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XWiki")
+expression: r0() || r1() || r2() || r3()

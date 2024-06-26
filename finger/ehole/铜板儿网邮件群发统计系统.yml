@@ -1,0 +1,16 @@
+name: fingerprint-yaml-铜板儿网邮件群发统计系统
+manual: false
+detail:
+    fingerprint:
+        name: 铜板儿网邮件群发统计系统
+    fofa: title="铜板儿网邮件群发统计系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("铜板儿网邮件群发统计系统")
+expression: r0()

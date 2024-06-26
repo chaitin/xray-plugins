@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Node_js
+manual: false
+detail:
+    fingerprint:
+        name: Node.js
+    fofa: 'header="x-powered-by: express" || header="pump.io" || title="Node.js"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: express"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("pump.io"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Node.js")
+expression: r0() || r1() || r2()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-phpmps
+manual: false
+detail:
+    fingerprint:
+        name: phpmps
+    fofa: body="powered by phpmps" && body="templates/phpmps/style/index.css" || body="Powered by Phpmps" || body="templates/phpmps/style/index.css" || body="powered by phpmps"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by phpmps") && response.body_string.contains("templates/phpmps/style/index.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Phpmps")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("templates/phpmps/style/index.css")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by phpmps")
+expression: r0() || r1() || r2() || r3()

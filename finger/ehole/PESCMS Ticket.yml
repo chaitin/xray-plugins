@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PESCMS Ticket
+manual: false
+detail:
+    fingerprint:
+        name: PESCMS Ticket
+    fofa: header="PESCMS Ticket" || title="PESCMS Ticket"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PESCMS Ticket"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PESCMS Ticket")
+expression: r0() || r1()

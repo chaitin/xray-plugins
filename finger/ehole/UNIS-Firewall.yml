@@ -1,0 +1,37 @@
+name: fingerprint-yaml-UNIS-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: UNIS-Firewall
+    fofa: body="name=\"adminlogin\" action=\"/cgi-bin/manageaccount\">" && body="<b><nobr>紫光防火墙" || body="<b><nobr>紫光防火墙" || body="name=\"adminlogin\" action=\"/cgi-bin/manageaccount\">" || title="紫光防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="adminlogin" action="/cgi-bin/manageaccount">') && response.body_string.contains("<b><nobr>紫光防火墙")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b><nobr>紫光防火墙")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="adminlogin" action="/cgi-bin/manageaccount">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("紫光防火墙")
+expression: r0() || r1() || r2() || r3()

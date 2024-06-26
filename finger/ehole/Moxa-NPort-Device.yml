@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Moxa-NPort-Device
+manual: false
+detail:
+    fingerprint:
+        name: Moxa-NPort-Device
+    fofa: body="<HTML><HEAD><TITLE>NPort Web Console</TITLE></HEAD> <FRAMESET rows=57,1* frameborder=NO> <FRAME name=top scrolling=NO target=contents src=top.htm noresize> <FRAMESET cols=200,*> <FRAME name=contents target=main src=contents.htm> <FRAME name=main src=main.htm marginwidth=0 marginheight=0 scrolling=auto> </FRAMESET> <NOFRAMES><BODY background=bg.gif><P>This page uses frame, but your browser doesn\"t support.</P></BODY> </NOFRAMES> </FRAMESET></HTML>" || body="<HTML><HEAD><TITLE>NPort Web Console</TITLE> <SCRIPT language=" || body="<HTML><HEAD> <LINK href=nport2g.css rel=stylesheet type=text/css><TITLE>Overview</TITLE></HEAD>" || body="</script><BODY onload=window_onload()> <TABLE width=100% border=0 align=center><TR><TD><H2>Welcome to <span id=devlab1></span>\"s web console !</H2></TD></TR>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<HTML><HEAD><TITLE>NPort Web Console</TITLE></HEAD> <FRAMESET rows=57,1* frameborder=NO> <FRAME name=top scrolling=NO target=contents src=top.htm noresize> <FRAMESET cols=200,*> <FRAME name=contents target=main src=contents.htm> <FRAME name=main src=main.htm marginwidth=0 marginheight=0 scrolling=auto> </FRAMESET> <NOFRAMES><BODY background=bg.gif><P>This page uses frame, but your browser doesn"t support.</P></BODY> </NOFRAMES> </FRAMESET></HTML>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML><HEAD><TITLE>NPort Web Console</TITLE> <SCRIPT language=")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML><HEAD> <LINK href=nport2g.css rel=stylesheet type=text/css><TITLE>Overview</TITLE></HEAD>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('</script><BODY onload=window_onload()> <TABLE width=100% border=0 align=center><TR><TD><H2>Welcome to <span id=devlab1></span>"s web console !</H2></TD></TR>')
+expression: r0() || r1() || r2() || r3()

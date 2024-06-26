@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys RT31P2
+manual: false
+detail:
+    fingerprint:
+        name: Linksys RT31P2
+    fofa: header="Linksys RT31P2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys RT31P2"))
+expression: r0()

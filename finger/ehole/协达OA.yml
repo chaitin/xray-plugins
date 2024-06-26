@@ -1,0 +1,16 @@
+name: fingerprint-yaml-协达OA
+manual: false
+detail:
+    fingerprint:
+        name: 协达OA
+    fofa: icon_hash="-1850889691"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1850889691
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AVTECH TemPageR
+manual: false
+detail:
+    fingerprint:
+        name: AVTECH TemPageR
+    fofa: header="AVTECH TemPageR" || title="AVTECH TemPageR"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AVTECH TemPageR"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AVTECH TemPageR")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ChenRui-One-way-transmission-system
+manual: false
+detail:
+    fingerprint:
+        name: ChenRui-One-way-transmission-system
+    fofa: title="辰锐单向传输系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("辰锐单向传输系统")
+expression: r0()

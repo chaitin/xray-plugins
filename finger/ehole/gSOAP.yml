@@ -1,0 +1,23 @@
+name: fingerprint-yaml-gSOAP
+manual: false
+detail:
+    fingerprint:
+        name: gSOAP
+    fofa: 'header="server: gsoap" || header="gSOAP"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: gsoap"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("gSOAP"))
+expression: r0() || r1()

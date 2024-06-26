@@ -1,0 +1,23 @@
+name: fingerprint-yaml-iPresta
+manual: false
+detail:
+    fingerprint:
+        name: iPresta
+    fofa: header="iPresta" || title="iPresta"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iPresta"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iPresta")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wordpress_qTranslate
+manual: false
+detail:
+    fingerprint:
+        name: wordpress_qTranslate
+    fofa: header="qtrans_cookie_test"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("qtrans_cookie_test"))
+expression: r0()

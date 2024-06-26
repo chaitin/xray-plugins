@@ -1,0 +1,16 @@
+name: fingerprint-yaml-zhuhaigaoling_huanjingzaosheng
+manual: false
+detail:
+    fingerprint:
+        name: zhuhaigaoling_huanjingzaosheng
+    fofa: title="zhuhaigaoling_huanjingzaosheng"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zhuhaigaoling_huanjingzaosheng")
+expression: r0()

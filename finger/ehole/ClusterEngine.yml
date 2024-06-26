@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ClusterEngine
+manual: false
+detail:
+    fingerprint:
+        name: ClusterEngine
+    fofa: header="ClusterEngine" || title="ClusterEngine"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ClusterEngine"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ClusterEngine")
+expression: r0() || r1()

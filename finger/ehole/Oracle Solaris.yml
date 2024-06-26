@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Oracle Solaris
+manual: false
+detail:
+    fingerprint:
+        name: Oracle Solaris
+    fofa: header="Oracle Solaris"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle Solaris"))
+expression: r0()

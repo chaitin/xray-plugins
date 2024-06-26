@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Union-HAC
+manual: false
+detail:
+    fingerprint:
+        name: Union-HAC
+    fofa: body="hac v3 版 <br>" && body="/script/keysigned.js" && body="class=\"leftbox\">hac" && body="/image/serchnotice.jpg" || body="/image/serchnotice.jpg" || body="class=\"leftbox\">hac" || body="/script/keysigned.js" || body="hac v3 版 <br>" || title="hac 运维审计系统登录"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hac v3 版 <br>") && response.body_string.contains("/script/keysigned.js") && response.body_string.contains('class="leftbox">hac') && response.body_string.contains("/image/serchnotice.jpg")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/image/serchnotice.jpg")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="leftbox">hac')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/script/keysigned.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hac v3 版 <br>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hac 运维审计系统登录")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-wdscms
+manual: false
+detail:
+    fingerprint:
+        name: wdscms
+    fofa: title="wdscms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wdscms")
+expression: r0()

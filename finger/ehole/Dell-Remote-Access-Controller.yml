@@ -1,0 +1,93 @@
+name: fingerprint-yaml-Dell-Remote-Access-Controller
+manual: false
+detail:
+    fingerprint:
+        name: Dell-Remote-Access-Controller
+    fofa: 'body="/cgi-bin/webcgi/ssologin" && body="javascript:getaimintprop" && body="top.document.location.href = \"/index.html?console\";" || header="server: rac_one_http" && header="embedthis" || body="/cgi-bin/webcgi/ssologin" || header="RAC_ONE_HTTP" || body="/index.html?console" && body="/session?aimgetintprop" || body="top.document.location.href = \"/index.html?console\";" || body="javascript:getaimintprop" || header="embedthis" && header="/start.html" || header="server: rac_one_http" || header="embedthis" || title="dell remote access controller" || title="dell remote management controller"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/webcgi/ssologin") && response.body_string.contains("javascript:getaimintprop") && response.body_string.contains('top.document.location.href = "/index.html?console";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rac_one_http")) && response.raw_header.bcontains(bytes("embedthis"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/webcgi/ssologin")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RAC_ONE_HTTP"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/index.html?console") && response.body_string.contains("/session?aimgetintprop")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('top.document.location.href = "/index.html?console";')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("javascript:getaimintprop")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("embedthis")) && response.raw_header.bcontains(bytes("/start.html"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: rac_one_http"))'
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("embedthis"))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dell remote access controller")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dell remote management controller")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

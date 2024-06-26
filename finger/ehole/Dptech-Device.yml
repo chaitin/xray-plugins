@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Dptech-Device
+manual: false
+detail:
+    fingerprint:
+        name: Dptech-Device
+    fofa: body="window.location = \"html/login_en.html\";" && body="/func/web_main/validate?check=\"+hex_md5(s.tolowercase(" || body="var valid_url=\"/func/web_main/validate?check=\"+hex_md5(s).tolowercase()" || body="window.location = \"html/login_en.html\";" || body="/func/web_main/validate?check=\"+hex_md5s.tolowercase" || title="web management interface for dptech"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "html/login_en.html";') && response.body_string.contains('/func/web_main/validate?check="+hex_md5(s.tolowercase(')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var valid_url="/func/web_main/validate?check="+hex_md5(s).tolowercase()')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location = "html/login_en.html";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('/func/web_main/validate?check="+hex_md5s.tolowercase')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("web management interface for dptech")
+expression: r0() || r1() || r2() || r3() || r4()

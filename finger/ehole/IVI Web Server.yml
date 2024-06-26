@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IVI Web Server
+manual: false
+detail:
+    fingerprint:
+        name: IVI Web Server
+    fofa: header="IVI Web Server" || title="IVI Web Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IVI Web Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IVI Web Server")
+expression: r0() || r1()

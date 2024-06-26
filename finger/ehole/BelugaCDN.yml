@@ -1,0 +1,16 @@
+name: fingerprint-yaml-BelugaCDN
+manual: false
+detail:
+    fingerprint:
+        name: BelugaCDN
+    fofa: title="BelugaCDN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("BelugaCDN")
+expression: r0()

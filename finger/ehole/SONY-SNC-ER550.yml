@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-SNC-ER550
+manual: false
+detail:
+    fingerprint:
+        name: SONY-SNC-ER550
+    fofa: header="realm=\"sony network camera snc-er550"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="sony network camera snc-er550'))
+expression: r0()

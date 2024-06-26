@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SONY-SNC-VM772R
+manual: false
+detail:
+    fingerprint:
+        name: SONY-SNC-VM772R
+    fofa: header="realm=\"snc-vm772r"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="snc-vm772r'))
+expression: r0()

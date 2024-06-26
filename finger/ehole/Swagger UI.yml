@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Swagger UI
+manual: false
+detail:
+    fingerprint:
+        name: Swagger UI
+    fofa: body="Swagger UI" || body="/swagger-ui.css" && body="swagger-ui-bundle.js" && body="swagger-ui-standalone-preset.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Swagger UI")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/swagger-ui.css") && response.body_string.contains("swagger-ui-bundle.js") && response.body_string.contains("swagger-ui-standalone-preset.js")
+expression: r0() || r1()

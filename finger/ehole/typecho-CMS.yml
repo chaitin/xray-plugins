@@ -1,0 +1,37 @@
+name: fingerprint-yaml-typecho-CMS
+manual: false
+detail:
+    fingerprint:
+        name: typecho-CMS
+    fofa: body="class=\"typecho-login-wrap" || body="content=\"typecho" || body="typecho" && body="强力驱动" || body="generator\" content=\"typecho"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="typecho-login-wrap')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="typecho')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("typecho") && response.body_string.contains("强力驱动")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="typecho')
+expression: r0() || r1() || r2() || r3()

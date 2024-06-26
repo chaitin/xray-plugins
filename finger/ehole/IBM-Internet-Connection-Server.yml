@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IBM-Internet-Connection-Server
+manual: false
+detail:
+    fingerprint:
+        name: IBM-Internet-Connection-Server
+    fofa: 'header="server: ibm internet connection server" || header="IBM Internet Connection Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: ibm internet connection server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("IBM Internet Connection Server"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Solar 网络管理系统
+manual: false
+detail:
+    fingerprint:
+        name: Solar 网络管理系统
+    fofa: icon_hash="-1871496583"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1871496583
+expression: r0()

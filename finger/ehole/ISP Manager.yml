@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ISP Manager
+manual: false
+detail:
+    fingerprint:
+        name: ISP Manager
+    fofa: icon_hash="-986678507"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -986678507
+expression: r0()

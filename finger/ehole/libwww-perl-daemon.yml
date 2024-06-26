@@ -1,0 +1,30 @@
+name: fingerprint-yaml-libwww-perl-daemon
+manual: false
+detail:
+    fingerprint:
+        name: libwww-perl-daemon
+    fofa: 'header="server: libwww-perl-daemon" || header="libwww-perl-daemon" || title="libwww-perl-daemon"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: libwww-perl-daemon"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("libwww-perl-daemon"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("libwww-perl-daemon")
+expression: r0() || r1() || r2()

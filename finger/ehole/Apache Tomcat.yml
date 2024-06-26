@@ -1,0 +1,93 @@
+name: fingerprint-yaml-Apache Tomcat
+manual: false
+detail:
+    fingerprint:
+        name: Apache Tomcat
+    fofa: icon_hash="-297069493" || body="href=\"tomcat.css" && body="tomcat.apache.org" && body="this is the default tomcat home page" && body="<h3>apache tomcat" && body="<a href=\"/docs/setup.html\">Tomcat Setup</a>" && body="If you're seeing this, you've successfully installed Tomcat. Congratulations!" && body="this is the default tomcat home page" && body="tomcat.apache.org" && body="href=\\\"tomcat.css" || body="Apache Tomcat/7.0.52" || body="<h3>apache tomcat" || body="href=\"tomcat.css" || body="tomcat" || body="<h3>Apache Tomcat/" || body="<title>Apache Tomcat/" || body="/manager/html" && body="/manager/status" || body="this is the default tomcat home page" || header="apache-coyote" || title="Apache Tomcat"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -297069493
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="tomcat.css') && response.body_string.contains("tomcat.apache.org") && response.body_string.contains("this is the default tomcat home page") && response.body_string.contains("<h3>apache tomcat") && response.body_string.contains('<a href="/docs/setup.html">Tomcat Setup</a>') && response.body_string.contains("If you're seeing this, you've successfully installed Tomcat. Congratulations!") && response.body_string.contains("this is the default tomcat home page") && response.body_string.contains("tomcat.apache.org") && response.body_string.contains('href=\\"tomcat.css')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Apache Tomcat/7.0.52")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h3>apache tomcat")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="tomcat.css')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("tomcat")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h3>Apache Tomcat/")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Apache Tomcat/")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/manager/html") && response.body_string.contains("/manager/status")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("this is the default tomcat home page")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("apache-coyote"))
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apache Tomcat")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

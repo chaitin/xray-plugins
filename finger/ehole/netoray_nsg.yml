@@ -1,0 +1,16 @@
+name: fingerprint-yaml-netoray_nsg
+manual: false
+detail:
+    fingerprint:
+        name: netoray_nsg
+    fofa: title="netoray_nsg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netoray_nsg")
+expression: r0()

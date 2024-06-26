@@ -1,0 +1,16 @@
+name: fingerprint-yaml-项目管理软件TaskPm
+manual: false
+detail:
+    fingerprint:
+        name: 项目管理软件TaskPm
+    fofa: title="项目管理软件TaskPm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("项目管理软件TaskPm")
+expression: r0()

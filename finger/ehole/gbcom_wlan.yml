@@ -1,0 +1,16 @@
+name: fingerprint-yaml-gbcom_wlan
+manual: false
+detail:
+    fingerprint:
+        name: gbcom_wlan
+    fofa: title="gbcom_wlan"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("gbcom_wlan")
+expression: r0()

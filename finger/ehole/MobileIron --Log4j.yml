@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MobileIron --Log4j
+manual: false
+detail:
+    fingerprint:
+        name: MobileIron --Log4j
+    fofa: 'title="MobileIron User Portal: Sign In"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("MobileIron User Portal: Sign In")'
+expression: r0()

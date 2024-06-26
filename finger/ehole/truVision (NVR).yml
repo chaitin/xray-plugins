@@ -1,0 +1,16 @@
+name: fingerprint-yaml-truVision (NVR)
+manual: false
+detail:
+    fingerprint:
+        name: truVision (NVR)
+    fofa: icon_hash="-1093172228"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1093172228
+expression: r0()

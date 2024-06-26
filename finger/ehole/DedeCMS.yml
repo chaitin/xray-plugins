@@ -1,0 +1,79 @@
+name: fingerprint-yaml-DedeCMS
+manual: false
+detail:
+    fingerprint:
+        name: DedeCMS
+    fofa: body="power by dedecms" && body="http://www.dedecms.com/" && body="dedecms" && body="/templets/default/style/dedecms.css" && body="<div><h3>dedecms error warning!</h3>" || body="Power by DedeCms" || body="http://www.dedecms.com/" || body="DedeCMS" || body="/templets/default/style/dedecms.css" || body="<div><h3>dedecms error warning!</h3>" || body="dedecms" && body="http://www.dedecms.com/" && body="powered by" || body="power by dedecms" || body="<a href=http://www.dedecms.com target=\"_blank\">Power by DedeCms</a>" || body="/templets/default/style/dedecms.css" && body="dedecms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("power by dedecms") && response.body_string.contains("http://www.dedecms.com/") && response.body_string.contains("dedecms") && response.body_string.contains("/templets/default/style/dedecms.css") && response.body_string.contains("<div><h3>dedecms error warning!</h3>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Power by DedeCms")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.dedecms.com/")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("DedeCMS")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/templets/default/style/dedecms.css")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<div><h3>dedecms error warning!</h3>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("dedecms") && response.body_string.contains("http://www.dedecms.com/") && response.body_string.contains("powered by")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("power by dedecms")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href=http://www.dedecms.com target="_blank">Power by DedeCms</a>')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/templets/default/style/dedecms.css") && response.body_string.contains("dedecms")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

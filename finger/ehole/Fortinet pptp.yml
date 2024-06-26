@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Fortinet pptp
+manual: false
+detail:
+    fingerprint:
+        name: Fortinet pptp
+    fofa: header="Fortinet pptp" || title="Fortinet pptp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fortinet pptp"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fortinet pptp")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Avtech IP Surveillance (Camera)
+manual: false
+detail:
+    fingerprint:
+        name: Avtech IP Surveillance (Camera)
+    fofa: icon_hash="-194439630"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -194439630
+expression: r0()

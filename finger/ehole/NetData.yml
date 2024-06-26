@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetData
+manual: false
+detail:
+    fingerprint:
+        name: NetData
+    fofa: icon_hash="1302486561"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1302486561
+expression: r0()

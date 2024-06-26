@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ace
+manual: false
+detail:
+    fingerprint:
+        name: Ace
+    fofa: icon_hash="-183163807"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -183163807
+expression: r0()

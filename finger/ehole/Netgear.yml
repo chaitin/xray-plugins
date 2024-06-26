@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Netgear
+manual: false
+detail:
+    fingerprint:
+        name: Netgear
+    fofa: icon_hash="-1319025408"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1319025408
+expression: r0()

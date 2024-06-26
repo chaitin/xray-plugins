@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Telecom-OSS
+manual: false
+detail:
+    fingerprint:
+        name: Telecom-OSS
+    fofa: header="/cas/login?service=" && header="; path=/portal/; httponly" || header="; path=/portal/; httponly" && header="/cas/login?service=" || header="/cas/login?service=" || header="; path=/portal/; httponly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/cas/login?service=")) && response.raw_header.bcontains(bytes("; path=/portal/; httponly"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("; path=/portal/; httponly")) && response.raw_header.bcontains(bytes("/cas/login?service="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/cas/login?service="))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("; path=/portal/; httponly"))
+expression: r0() || r1() || r2() || r3()

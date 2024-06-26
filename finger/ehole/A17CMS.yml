@@ -1,0 +1,16 @@
+name: fingerprint-yaml-A17CMS
+manual: false
+detail:
+    fingerprint:
+        name: A17CMS
+    fofa: title="A17CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("A17CMS")
+expression: r0()

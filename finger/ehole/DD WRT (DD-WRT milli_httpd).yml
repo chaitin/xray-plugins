@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DD WRT (DD-WRT milli_httpd)
+manual: false
+detail:
+    fingerprint:
+        name: DD WRT (DD-WRT milli_httpd)
+    fofa: icon_hash="252728887"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 252728887
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Kedacom-DVR-Access-gateway
+manual: false
+detail:
+    fingerprint:
+        name: Kedacom-DVR-Access-gateway
+    fofa: body="/kdc/" && body="苏州科达科技有限公司" && body="src=\"images/ind_log_kedacom.png\")" && body="classid=\"clsid:23cf673f-3fe7-467d-aa36-d2aa72d5361b" || title="欢迎使用dvr接入网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/kdc/") && response.body_string.contains("苏州科达科技有限公司") && response.body_string.contains('src="images/ind_log_kedacom.png")') && response.body_string.contains('classid="clsid:23cf673f-3fe7-467d-aa36-d2aa72d5361b')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("欢迎使用dvr接入网关")
+expression: r0() || r1()

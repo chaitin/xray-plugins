@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Comcast-Business
+manual: false
+detail:
+    fingerprint:
+        name: Comcast-Business
+    fofa: body="cmn/css/common-min.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cmn/css/common-min.css")
+expression: r0()

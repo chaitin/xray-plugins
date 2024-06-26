@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Pansoft-Financial-System
+manual: false
+detail:
+    fingerprint:
+        name: Pansoft-Financial-System
+    fofa: body="pansoftplugins/multithreading/pancalc.js" && body="src=\"/login/img/loading.gif\"" || body="src=\"/login/img/loading.gif\"" && body="pansoftplugins/multithreading/pancalc.js" || body="pansoftplugins/multithreading/pancalc.js" || body="src=\"/login/img/loading.gif\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pansoftplugins/multithreading/pancalc.js") && response.body_string.contains('src="/login/img/loading.gif"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/login/img/loading.gif"') && response.body_string.contains("pansoftplugins/multithreading/pancalc.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pansoftplugins/multithreading/pancalc.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/login/img/loading.gif"')
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jienuohan
+manual: false
+detail:
+    fingerprint:
+        name: jienuohan
+    fofa: title="jienuohan"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jienuohan")
+expression: r0()

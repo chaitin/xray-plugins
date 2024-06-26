@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EMC-Unisphere
+manual: false
+detail:
+    fingerprint:
+        name: EMC-Unisphere
+    fofa: body="<script src=\"oemmessage.js" || title="emc unisphere"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script src="oemmessage.js')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("emc unisphere")
+expression: r0() || r1()

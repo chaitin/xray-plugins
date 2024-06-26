@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoogleTagManager
+manual: false
+detail:
+    fingerprint:
+        name: GoogleTagManager
+    fofa: title="Google Tag Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Tag Manager")
+expression: r0()

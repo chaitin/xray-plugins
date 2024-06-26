@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Koala-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Koala-Web-Server
+    fofa: 'header="server: koala web server" || header="Koala Web Server" || title="Koala Web Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: koala web server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Koala Web Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Koala Web Server")
+expression: r0() || r1() || r2()

@@ -1,0 +1,37 @@
+name: fingerprint-yaml-eSitesBuilder
+manual: false
+detail:
+    fingerprint:
+        name: eSitesBuilder
+    fofa: body="eSitesBuilder. All rights reserved" || body="<!-- created by XTLabs, Inc. http://www.xt-labs.com -->" || body="Powered by <a href=\"http://www.esitesbuilder.com/\" target=\"_blank\" alt=\"website builder\">eSitesBuilder</a>" || body="All rights reserved. Powered by eSitesBuilder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("eSitesBuilder. All rights reserved")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- created by XTLabs, Inc. http://www.xt-labs.com -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://www.esitesbuilder.com/" target="_blank" alt="website builder">eSitesBuilder</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("All rights reserved. Powered by eSitesBuilder")
+expression: r0() || r1() || r2() || r3()

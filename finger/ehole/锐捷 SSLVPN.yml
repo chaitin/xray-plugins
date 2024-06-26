@@ -1,0 +1,30 @@
+name: fingerprint-yaml-锐捷 SSLVPN
+manual: false
+detail:
+    fingerprint:
+        name: 锐捷 SSLVPN
+    fofa: body="SSLVPN" && body="rjweb" && body="login" || body="SSLVPN" && body="rjsslvpn_encookie" && body="login" || icon_hash="-1525950034"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("SSLVPN") && response.body_string.contains("rjweb") && response.body_string.contains("login")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("SSLVPN") && response.body_string.contains("rjsslvpn_encookie") && response.body_string.contains("login")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1525950034
+expression: r0() || r1() || r2()

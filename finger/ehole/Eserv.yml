@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Eserv
+manual: false
+detail:
+    fingerprint:
+        name: Eserv
+    fofa: body="content=\"Eserv" || header="Eserv" || body="content=\"eserv" || header="eserv"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Eserv')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Eserv"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="eserv')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("eserv"))
+expression: r0() || r1() || r2() || r3()

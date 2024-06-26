@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SmartThumbs
+manual: false
+detail:
+    fingerprint:
+        name: SmartThumbs
+    fofa: 'body="powered by<a href=\"http://www.smart-scripts.com\">smart thumbs</a>" || body="POWERED BY<span> <a href=\"http://www.thumbsrotator.com\"><b><span style=\"font-size: 11px; font-family: Verdana, Arial;\">SMART THUMBS</span>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by<a href="http://www.smart-scripts.com">smart thumbs</a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''POWERED BY<span> <a href="http://www.thumbsrotator.com"><b><span style="font-size: 11px; font-family: Verdana, Arial;">SMART THUMBS</span>'')'
+expression: r0() || r1()

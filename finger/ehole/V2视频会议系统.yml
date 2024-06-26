@@ -1,0 +1,16 @@
+name: fingerprint-yaml-V2视频会议系统
+manual: false
+detail:
+    fingerprint:
+        name: V2视频会议系统
+    fofa: title="V2视频会议系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("V2视频会议系统")
+expression: r0()

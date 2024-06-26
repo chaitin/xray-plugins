@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Mitel-Communications-Director
+manual: false
+detail:
+    fingerprint:
+        name: Mitel-Communications-Director
+    fofa: title="mitel communications director"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mitel communications director")
+expression: r0()

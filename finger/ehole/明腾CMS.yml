@@ -1,0 +1,23 @@
+name: fingerprint-yaml-明腾CMS
+manual: false
+detail:
+    fingerprint:
+        name: 明腾CMS
+    fofa: header="明腾CMS" || title="明腾CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("明腾CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("明腾CMS")
+expression: r0() || r1()

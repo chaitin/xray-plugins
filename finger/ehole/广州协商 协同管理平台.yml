@@ -1,0 +1,23 @@
+name: fingerprint-yaml-广州协商 协同管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 广州协商 协同管理平台
+    fofa: header="广州协商 协同管理平台" || title="广州协商 协同管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("广州协商 协同管理平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("广州协商 协同管理平台")
+expression: r0() || r1()

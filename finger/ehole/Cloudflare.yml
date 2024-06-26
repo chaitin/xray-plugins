@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Cloudflare
+manual: false
+detail:
+    fingerprint:
+        name: Cloudflare
+    fofa: 'body="cloudflare ray id:" && body="var cloudflare=" || header="cloudflare-nginx" && header="__cfduid=" || body="var cloudflare=" || body="cloudflare ray id:" || body="<iframe frameborder=\"0\" width=\"100%\" height=\"100%\" src=\"http://anti-virus.cloudflare.com/cdn-cgi/anti-virus-challenge?h=" || body="&nbsp;&nbsp;Performance &amp; Security by <a id=\"FooterCloudFlare\" href=\"https://www.cloudflare.com\" target=\"_blank\">CloudFlare</a>" || header="server: cloudflare" || header="__cfduid=" || header="cloudflare-nginx"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cloudflare ray id:") && response.body_string.contains("var cloudflare=")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cloudflare-nginx")) && response.raw_header.bcontains(bytes("__cfduid="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var cloudflare=")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cloudflare ray id:")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe frameborder="0" width="100%" height="100%" src="http://anti-virus.cloudflare.com/cdn-cgi/anti-virus-challenge?h=')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('&nbsp;&nbsp;Performance &amp; Security by <a id="FooterCloudFlare" href="https://www.cloudflare.com" target="_blank">CloudFlare</a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cloudflare"))'
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("__cfduid="))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cloudflare-nginx"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

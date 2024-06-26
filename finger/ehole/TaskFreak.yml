@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TaskFreak
+manual: false
+detail:
+    fingerprint:
+        name: TaskFreak
+    fofa: body="<a href=\"http://www.taskfreak.com\">taskfreak"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.taskfreak.com">taskfreak')
+expression: r0()

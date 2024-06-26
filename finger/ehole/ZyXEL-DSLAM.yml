@@ -1,0 +1,37 @@
+name: fingerprint-yaml-ZyXEL-DSLAM
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-DSLAM
+    fofa: header="realm=\"aam1212-" && header="realm=\"ies-1000" || header="realm=\"ies-1000" || header="realm=\"ies-612" || header="realm=\"aam1212-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="aam1212-')) && response.raw_header.bcontains(bytes('realm="ies-1000'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ies-1000'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ies-612'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="aam1212-'))
+expression: r0() || r1() || r2() || r3()

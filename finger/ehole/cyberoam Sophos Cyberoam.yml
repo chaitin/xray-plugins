@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cyberoam Sophos Cyberoam
+manual: false
+detail:
+    fingerprint:
+        name: cyberoam Sophos Cyberoam
+    fofa: header="cyberoam Sophos Cyberoam" || title="cyberoam Sophos Cyberoam"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cyberoam Sophos Cyberoam"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cyberoam Sophos Cyberoam")
+expression: r0() || r1()

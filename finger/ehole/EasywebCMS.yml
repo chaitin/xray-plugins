@@ -1,0 +1,23 @@
+name: fingerprint-yaml-EasywebCMS
+manual: false
+detail:
+    fingerprint:
+        name: EasywebCMS
+    fofa: header="Easyweb CMS" || title="Easyweb CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Easyweb CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Easyweb CMS")
+expression: r0() || r1()

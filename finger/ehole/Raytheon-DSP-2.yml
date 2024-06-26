@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Raytheon-DSP-2
+manual: false
+detail:
+    fingerprint:
+        name: Raytheon-DSP-2
+    fofa: 'body="<b>unit name: dsp-2</b></center>" && body="raytheon corporation" || body="<b>unit name: dsp-2</b></center>" || body="raytheon corporation"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<b>unit name: dsp-2</b></center>") && response.body_string.contains("raytheon corporation")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<b>unit name: dsp-2</b></center>")'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("raytheon corporation")
+expression: r0() || r1() || r2()

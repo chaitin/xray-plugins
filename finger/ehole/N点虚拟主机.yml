@@ -1,0 +1,16 @@
+name: fingerprint-yaml-N点虚拟主机
+manual: false
+detail:
+    fingerprint:
+        name: N点虚拟主机
+    fofa: title="N点虚拟主机"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("N点虚拟主机")
+expression: r0()

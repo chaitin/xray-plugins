@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Kayako-SupportSuite
+manual: false
+detail:
+    fingerprint:
+        name: Kayako-SupportSuite
+    fofa: body="powered by kayako esupport" && body="help desk software by kayako esupport" || body="help desk software by kayako esupport" || body="powered by kayako esupport" || body="SWIFT_client" || body="- Powered By Kayako eSupport</title>" || body="<div id=\"bottomfooter\" class=\"bottomfooterpadding\"><a href=\"http://www.kayako.com\" target=\"_blank\" class=\"bottomfooterlink\">Help Desk Software\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by kayako esupport") && response.body_string.contains("help desk software by kayako esupport")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("help desk software by kayako esupport")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by kayako esupport")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("SWIFT_client")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("- Powered By Kayako eSupport</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="bottomfooter" class="bottomfooterpadding"><a href="http://www.kayako.com" target="_blank" class="bottomfooterlink">Help Desk Software"')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

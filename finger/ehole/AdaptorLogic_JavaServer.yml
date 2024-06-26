@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AdaptorLogic_JavaServer
+manual: false
+detail:
+    fingerprint:
+        name: AdaptorLogic_JavaServer
+    fofa: header="AdaptorLogic_JavaServer" || title="AdaptorLogic_JavaServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AdaptorLogic_JavaServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AdaptorLogic_JavaServer")
+expression: r0() || r1()

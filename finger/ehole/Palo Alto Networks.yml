@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Palo Alto Networks
+manual: false
+detail:
+    fingerprint:
+        name: Palo Alto Networks
+    fofa: icon_hash="-318947884"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -318947884
+expression: r0()

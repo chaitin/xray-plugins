@@ -1,0 +1,16 @@
+name: fingerprint-yaml-分类信息网bank_asp后门
+manual: false
+detail:
+    fingerprint:
+        name: 分类信息网bank.asp后门
+    fofa: title="分类信息网bank.asp后门"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("分类信息网bank.asp后门")
+expression: r0()

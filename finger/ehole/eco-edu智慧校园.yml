@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eco-edu智慧校园
+manual: false
+detail:
+    fingerprint:
+        name: eco-edu智慧校园
+    fofa: title="eco-edu智慧校园"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eco-edu智慧校园")
+expression: r0()

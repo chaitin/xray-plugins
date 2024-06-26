@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AADServer HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: AADServer HTTP Server
+    fofa: header="AADServer HTTP Server" || title="AADServer HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AADServer HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AADServer HTTP Server")
+expression: r0() || r1()

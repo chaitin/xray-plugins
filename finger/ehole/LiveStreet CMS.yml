@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LiveStreet CMS
+manual: false
+detail:
+    fingerprint:
+        name: LiveStreet CMS
+    fofa: header="LiveStreet CMS" || title="LiveStreet CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LiveStreet CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LiveStreet CMS")
+expression: r0() || r1()

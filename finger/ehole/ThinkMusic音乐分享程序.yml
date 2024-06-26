@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ThinkMusic音乐分享程序
+manual: false
+detail:
+    fingerprint:
+        name: ThinkMusic音乐分享程序
+    fofa: title="ThinkMusic音乐分享程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ThinkMusic音乐分享程序")
+expression: r0()

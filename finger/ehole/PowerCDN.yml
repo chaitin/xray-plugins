@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PowerCDN
+manual: false
+detail:
+    fingerprint:
+        name: PowerCDN
+    fofa: header="powercdn" || header="Powercdn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("powercdn"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Powercdn"))
+expression: r0() || r1()

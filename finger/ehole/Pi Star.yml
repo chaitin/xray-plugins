@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Pi Star
+manual: false
+detail:
+    fingerprint:
+        name: Pi Star
+    fofa: icon_hash="432733105"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 432733105
+expression: r0()

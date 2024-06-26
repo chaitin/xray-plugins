@@ -1,0 +1,72 @@
+name: fingerprint-yaml-EPiServer
+manual: false
+detail:
+    fingerprint:
+        name: EPiServer
+    fofa: 'body="content=\"episerver" && body="/javascript/episerverscriptmanager.js" || body="content=\"EPiServer" || body="/javascript/episerverscriptmanager.js" || body="content=\"episerver" || body="<meta name=\"GENERATOR\" content=\"EPiServer\" />" || body="<!-- EPiServer -->" || body="src=\"/Util/javascript/episerverscriptmanager.js\"" || body="<h1>Log in to EPiServer CMS 6" || header="server: episerver"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="episerver') && response.body_string.contains("/javascript/episerverscriptmanager.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="EPiServer')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/javascript/episerverscriptmanager.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="episerver')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="GENERATOR" content="EPiServer" />')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- EPiServer -->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/Util/javascript/episerverscriptmanager.js"')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>Log in to EPiServer CMS 6")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: episerver"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

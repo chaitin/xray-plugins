@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Combeenation
+manual: false
+detail:
+    fingerprint:
+        name: Combeenation
+    fofa: header="Combeenation" || title="Combeenation"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Combeenation"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Combeenation")
+expression: r0() || r1()

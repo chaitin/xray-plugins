@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Aegea
+manual: false
+detail:
+    fingerprint:
+        name: Aegea
+    fofa: header="Aegea" || title="Aegea"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Aegea"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Aegea")
+expression: r0() || r1()

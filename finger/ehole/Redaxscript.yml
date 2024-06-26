@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Redaxscript
+manual: false
+detail:
+    fingerprint:
+        name: Redaxscript
+    fofa: header="Redaxscript" || body="Powered by <a href=\"http://redaxscript.com\">Redaxscript</a>" || title="Redaxscript"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Redaxscript"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://redaxscript.com">Redaxscript</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Redaxscript")
+expression: r0() || r1() || r2()

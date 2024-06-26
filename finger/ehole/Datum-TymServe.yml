@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Datum-TymServe
+manual: false
+detail:
+    fingerprint:
+        name: Datum-TymServe
+    fofa: body="<h2 align=center>datum tymserve" || header="datm" || body="<H2 ALIGN=CENTER>Datum TymServe" || header="DATM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h2 align=center>datum tymserve")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("datm"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<H2 ALIGN=CENTER>Datum TymServe")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DATM"))
+expression: r0() || r1() || r2() || r3()

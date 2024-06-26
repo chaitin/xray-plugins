@@ -1,0 +1,23 @@
+name: fingerprint-yaml-AVR32 UC3 WEB SERVER
+manual: false
+detail:
+    fingerprint:
+        name: AVR32 UC3 WEB SERVER
+    fofa: header="AVR32 UC3 WEB SERVER" || title="AVR32 UC3 WEB SERVER"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("AVR32 UC3 WEB SERVER"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("AVR32 UC3 WEB SERVER")
+expression: r0() || r1()

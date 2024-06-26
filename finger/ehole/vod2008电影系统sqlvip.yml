@@ -1,0 +1,16 @@
+name: fingerprint-yaml-vod2008电影系统sqlvip
+manual: false
+detail:
+    fingerprint:
+        name: vod2008电影系统sqlvip
+    fofa: title="vod2008电影系统sqlvip"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vod2008电影系统sqlvip")
+expression: r0()

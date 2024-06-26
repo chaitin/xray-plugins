@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-poweredge-r410
+manual: false
+detail:
+    fingerprint:
+        name: DELL-poweredge-r410
+    fofa: header="poweredge-r410"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("poweredge-r410"))
+expression: r0()

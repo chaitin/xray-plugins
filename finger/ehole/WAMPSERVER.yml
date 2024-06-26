@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WAMPSERVER
+manual: false
+detail:
+    fingerprint:
+        name: WAMPSERVER
+    fofa: icon_hash="929825723" || icon_hash="443944613"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 929825723
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 443944613
+expression: r0() || r1()

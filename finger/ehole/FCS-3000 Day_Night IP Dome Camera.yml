@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FCS-3000 Day_Night IP Dome Camera
+manual: false
+detail:
+    fingerprint:
+        name: FCS-3000 Day/Night IP Dome Camera
+    fofa: header="FCS-3000 Day/Night IP Dome Camera" || title="FCS-3000 Day/Night IP Dome Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FCS-3000 Day/Night IP Dome Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FCS-3000 Day/Night IP Dome Camera")
+expression: r0() || r1()

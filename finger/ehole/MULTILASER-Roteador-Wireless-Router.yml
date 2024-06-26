@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MULTILASER-Roteador-Wireless-Router
+manual: false
+detail:
+    fingerprint:
+        name: MULTILASER-Roteador-Wireless-Router
+    fofa: title="roteador wireless n"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("roteador wireless n")
+expression: r0()

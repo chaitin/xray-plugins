@@ -1,0 +1,65 @@
+name: fingerprint-yaml-AirLive-Wireless-Device
+manual: false
+detail:
+    fingerprint:
+        name: AirLive-Wireless-Device
+    fofa: header="realm=\"airlive wl-" && header="realm=\"airlive g.duo" || header="realm=\"airlive g.duo" || header="realm=\"airlive air3g" || header="realm=\"airlive ap60" || header="realm=\"airlive wmm-" || header="realm=\"airlive n.power" || header="realm=\"airlive wt-" || header="realm=\"airlive wl-"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive wl-')) && response.raw_header.bcontains(bytes('realm="airlive g.duo'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive g.duo'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive air3g'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive ap60'))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive wmm-'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive n.power'))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive wt-'))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="airlive wl-'))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

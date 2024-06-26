@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Silex-SX-3000GB
+manual: false
+detail:
+    fingerprint:
+        name: Silex-SX-3000GB
+    fofa: title="sx-3000gb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sx-3000gb")
+expression: r0()

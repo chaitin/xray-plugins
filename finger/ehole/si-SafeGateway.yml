@@ -1,0 +1,16 @@
+name: fingerprint-yaml-si-SafeGateway
+manual: false
+detail:
+    fingerprint:
+        name: si-SafeGateway
+    fofa: title="黑盾运维安全网关(hd-sgs/v4.0)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("黑盾运维安全网关(hd-sgs/v4.0)")
+expression: r0()

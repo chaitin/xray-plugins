@@ -1,0 +1,23 @@
+name: fingerprint-yaml-lighttpd
+manual: false
+detail:
+    fingerprint:
+        name: lighttpd
+    fofa: 'header="server:lighttpd" || header="server: lighttpd"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("server:lighttpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: lighttpd"))'
+expression: r0() || r1()

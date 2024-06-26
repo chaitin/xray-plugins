@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Monkey HTTP Server
+manual: false
+detail:
+    fingerprint:
+        name: Monkey HTTP Server
+    fofa: header="Monkey HTTP Server" || title="Monkey HTTP Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Monkey HTTP Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Monkey HTTP Server")
+expression: r0() || r1()

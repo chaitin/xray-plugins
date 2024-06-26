@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Powereasy
+manual: false
+detail:
+    fingerprint:
+        name: Powereasy
+    fofa: title="Powereasy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Powereasy")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Shopxp购物系统Html版
+manual: false
+detail:
+    fingerprint:
+        name: Shopxp购物系统Html版
+    fofa: title="Shopxp购物系统Html版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Shopxp购物系统Html版")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Hybrid-Cluster
+manual: false
+detail:
+    fingerprint:
+        name: Hybrid-Cluster
+    fofa: 'header="server: hybrid cluster" || header="Hybrid Cluster"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: hybrid cluster"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Hybrid Cluster"))
+expression: r0() || r1()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NetteFramework
+manual: false
+detail:
+    fingerprint:
+        name: NetteFramework
+    fofa: header="nette framework" || header="Nette Framework" || title="Nette Framework"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nette framework"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Nette Framework"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Nette Framework")
+expression: r0() || r1() || r2()

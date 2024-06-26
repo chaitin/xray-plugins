@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Adobe-GoLive
+manual: false
+detail:
+    fingerprint:
+        name: Adobe-GoLive
+    fofa: body="generator\" content=\"adobe golive" || header="Adobe GoLive" || title="Adobe GoLive"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="adobe golive')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Adobe GoLive"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Adobe GoLive")
+expression: r0() || r1() || r2()

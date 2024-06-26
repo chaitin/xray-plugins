@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mod_wsgi
+manual: false
+detail:
+    fingerprint:
+        name: mod_wsgi
+    fofa: header="mod_wsgi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mod_wsgi"))
+expression: r0()

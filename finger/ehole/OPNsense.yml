@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OPNsense
+manual: false
+detail:
+    fingerprint:
+        name: OPNsense
+    fofa: icon_hash="-1148190371"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1148190371
+expression: r0()

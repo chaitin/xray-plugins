@@ -1,0 +1,30 @@
+name: fingerprint-yaml-网康下一代防火墙
+manual: false
+detail:
+    fingerprint:
+        name: 网康下一代防火墙
+    fofa: header="网康下一代防火墙" || body="<title>网康下一代防火墙</title>" && body="netentsec.css" || title="网康下一代防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("网康下一代防火墙"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>网康下一代防火墙</title>") && response.body_string.contains("netentsec.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("网康下一代防火墙")
+expression: r0() || r1() || r2()

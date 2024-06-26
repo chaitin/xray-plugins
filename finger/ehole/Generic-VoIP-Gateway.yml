@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Generic-VoIP-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Generic-VoIP-Gateway
+    fofa: header="voip gateway configuration web server" && header="digest realm=\" voip gateway" || header="digest realm=\" voip gateway" || header="voip gateway configuration web server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("voip gateway configuration web server")) && response.raw_header.bcontains(bytes('digest realm=" voip gateway'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('digest realm=" voip gateway'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("voip gateway configuration web server"))
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-March-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: March-Cameras-and-Surveillance
+    fofa: title="march networks command client"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("march networks command client")
+expression: r0()

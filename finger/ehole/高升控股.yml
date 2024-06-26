@@ -1,0 +1,16 @@
+name: fingerprint-yaml-高升控股
+manual: false
+detail:
+    fingerprint:
+        name: 高升控股
+    fofa: title="高升控股"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("高升控股")
+expression: r0()

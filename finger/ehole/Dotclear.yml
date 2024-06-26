@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Dotclear
+manual: false
+detail:
+    fingerprint:
+        name: Dotclear
+    fofa: 'body="powered by <a href=\"http://dotclear.org/" || body="Powered by <a href=\"http://dotclear.org/" || body="<p>Powered by <a href=\"http://dotclear.org/\">Dotclear</a></p>" || body="<!-- End #d-content -->" || body="<!-- End #blogextra -->" || body="<a href=\"#search\">To search</a>" || body="<p class=\"post-info-co\">"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://dotclear.org/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://dotclear.org/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p>Powered by <a href="http://dotclear.org/">Dotclear</a></p>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- End #d-content -->")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- End #blogextra -->")'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="#search">To search</a>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="post-info-co">')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

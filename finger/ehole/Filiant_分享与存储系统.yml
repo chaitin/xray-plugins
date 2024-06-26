@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Filiant_分享与存储系统
+manual: false
+detail:
+    fingerprint:
+        name: Filiant_分享与存储系统
+    fofa: title="Filiant_分享与存储系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Filiant_分享与存储系统")
+expression: r0()

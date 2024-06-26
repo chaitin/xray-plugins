@@ -1,0 +1,16 @@
+name: fingerprint-yaml-用友-UFIDA-NC
+manual: false
+detail:
+    fingerprint:
+        name: 用友-UFIDA-NC
+    fofa: body="nc.sfbase.applet.NCApplet.class"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nc.sfbase.applet.NCApplet.class")
+expression: r0()

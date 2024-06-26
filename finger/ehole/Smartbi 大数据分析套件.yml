@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Smartbi 大数据分析套件
+manual: false
+detail:
+    fingerprint:
+        name: Smartbi 大数据分析套件
+    fofa: header="Smartbi 大数据分析套件" || title="Smartbi 大数据分析套件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Smartbi 大数据分析套件"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Smartbi 大数据分析套件")
+expression: r0() || r1()

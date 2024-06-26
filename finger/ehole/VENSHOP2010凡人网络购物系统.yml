@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VENSHOP2010凡人网络购物系统
+manual: false
+detail:
+    fingerprint:
+        name: VENSHOP2010凡人网络购物系统
+    fofa: title="VENSHOP2010凡人网络购物系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VENSHOP2010凡人网络购物系统")
+expression: r0()

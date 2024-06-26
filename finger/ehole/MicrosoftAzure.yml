@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftAzure
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftAzure
+    fofa: title="Microsoft Azure"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Azure")
+expression: r0()

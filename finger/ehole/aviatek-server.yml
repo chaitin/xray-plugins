@@ -1,0 +1,23 @@
+name: fingerprint-yaml-aviatek-server
+manual: false
+detail:
+    fingerprint:
+        name: aviatek-server
+    fofa: header="aviatek-server" || title="aviatek-server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("aviatek-server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("aviatek-server")
+expression: r0() || r1()

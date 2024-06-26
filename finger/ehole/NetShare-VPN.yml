@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NetShare-VPN
+manual: false
+detail:
+    fingerprint:
+        name: NetShare-VPN
+    fofa: header="NetShare-VPN" || title="NetShare-VPN" || title="vpn" && title="netshare"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NetShare-VPN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("NetShare-VPN")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vpn") && response.title_string.contains("netshare")
+expression: r0() || r1() || r2()

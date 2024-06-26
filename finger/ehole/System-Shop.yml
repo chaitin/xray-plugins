@@ -1,0 +1,37 @@
+name: fingerprint-yaml-System-Shop
+manual: false
+detail:
+    fingerprint:
+        name: System-Shop
+    fofa: body="powered by System4you.com internet solutions" || body="powered by System-Shop" || body="http://www.system-shop.at" || body="<a href=\"http://www.systemshop.at\" target=\"_blank\">Powered by System"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by System4you.com internet solutions")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by System-Shop")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.system-shop.at")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.systemshop.at" target="_blank">Powered by System')
+expression: r0() || r1() || r2() || r3()

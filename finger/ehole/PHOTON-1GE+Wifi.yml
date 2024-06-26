@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHOTON-1GE+Wifi
+manual: false
+detail:
+    fingerprint:
+        name: PHOTON-1GE+Wifi
+    fofa: title="1ge+wifi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("1ge+wifi")
+expression: r0()

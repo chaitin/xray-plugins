@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Swiper Slider
+manual: false
+detail:
+    fingerprint:
+        name: Swiper Slider
+    fofa: header="Swiper Slider" || title="Swiper Slider"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Swiper Slider"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Swiper Slider")
+expression: r0() || r1()

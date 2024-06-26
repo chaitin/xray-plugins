@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Xdoa-OA
+manual: false
+detail:
+    fingerprint:
+        name: Xdoa-OA
+    fofa: body="http://www.xdoa.cn</a>" && body="北京创信达科技有限公司" || body="北京创信达科技有限公司" || body="http://www.xdoa.cn</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.xdoa.cn</a>") && response.body_string.contains("北京创信达科技有限公司")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("北京创信达科技有限公司")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.xdoa.cn</a>")
+expression: r0() || r1() || r2()

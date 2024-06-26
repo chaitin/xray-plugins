@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZyXEL GS-4012F
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL GS-4012F
+    fofa: header="ZyXEL GS-4012F" || title="ZyXEL GS-4012F"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZyXEL GS-4012F"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZyXEL GS-4012F")
+expression: r0() || r1()

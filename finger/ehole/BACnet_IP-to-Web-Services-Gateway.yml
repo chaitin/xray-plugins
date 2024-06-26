@@ -1,0 +1,23 @@
+name: fingerprint-yaml-BACnet_IP-to-Web-Services-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: BACnet/IP-to-Web-Services-Gateway
+    fofa: 'header="server: cimetrics eplus web server " || header="server: cimetrics eplus web server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cimetrics eplus web server "))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: cimetrics eplus web server"))'
+expression: r0() || r1()

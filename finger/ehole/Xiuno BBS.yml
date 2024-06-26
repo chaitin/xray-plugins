@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Xiuno BBS
+manual: false
+detail:
+    fingerprint:
+        name: Xiuno BBS
+    fofa: header="Xiuno BBS" || title="Xiuno BBS" || title="Xiuno_BBS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Xiuno BBS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xiuno BBS")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Xiuno_BBS")
+expression: r0() || r1() || r2()

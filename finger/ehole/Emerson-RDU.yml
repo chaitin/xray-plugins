@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Emerson-RDU
+manual: false
+detail:
+    fingerprint:
+        name: Emerson-RDU
+    fofa: title="rdu-a login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rdu-a login")
+expression: r0()

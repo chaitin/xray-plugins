@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Venustech-ADM-DetectorWeb
+manual: false
+detail:
+    fingerprint:
+        name: Venustech-ADM-DetectorWeb
+    fofa: title="天清异常流量检测"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天清异常流量检测")
+expression: r0()

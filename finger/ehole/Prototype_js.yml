@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Prototype_js
+manual: false
+detail:
+    fingerprint:
+        name: Prototype.js
+    fofa: title="Prototype"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Prototype")
+expression: r0()

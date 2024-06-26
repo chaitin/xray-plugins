@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AppWall
+manual: false
+detail:
+    fingerprint:
+        name: AppWall
+    fofa: header="X-SL-CompState"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-SL-CompState"))
+expression: r0()

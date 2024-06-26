@@ -1,0 +1,51 @@
+name: fingerprint-yaml-AvantFAX
+manual: false
+detail:
+    fingerprint:
+        name: AvantFAX
+    fofa: 'body="src=\"images/avantfax-big.png\" border=\"0\" alt=\"avantfax" || body="content=\"Web 2.0 HylaFAX" || body="images/avantfax-big.png" || body="<meta name=\"description\" content=\"Web 2.0 HylaFAX management\" />" || body="</label><br /><br /><input type=\"password\" name=\"password\" id=\"password\" style=\"width: 12em\" maxlength=\"15\" /></p><br />" || title="- avantfax - login"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/avantfax-big.png" border="0" alt="avantfax')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Web 2.0 HylaFAX')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/avantfax-big.png")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="description" content="Web 2.0 HylaFAX management" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''</label><br /><br /><input type="password" name="password" id="password" style="width: 12em" maxlength="15" /></p><br />'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("- avantfax - login")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

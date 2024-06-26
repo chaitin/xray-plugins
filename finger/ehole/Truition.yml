@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Truition
+manual: false
+detail:
+    fingerprint:
+        name: Truition
+    fofa: 'body="<A HREF=\"/cgi-bin/ncommerce3/ExecMacro/search.d2w/report?wl=151\">Search</A>&nbsp;|&nbsp;" || body="<!--Logon Information-faq answers below-->" || body="<li>DTWF050E: Net.Data is unable to locate the HTML block specification in the URL." || body="<li>DTWP001E: Net.Data is unable to locate the macro file" || body="location.href = \"/cgi-bin/ncommerce3/ExecMacro/static/"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<A HREF="/cgi-bin/ncommerce3/ExecMacro/search.d2w/report?wl=151">Search</A>&nbsp;|&nbsp;')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--Logon Information-faq answers below-->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<li>DTWF050E: Net.Data is unable to locate the HTML block specification in the URL.")'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<li>DTWP001E: Net.Data is unable to locate the macro file")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = "/cgi-bin/ncommerce3/ExecMacro/static/')
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Electro-Industries-GaugeTech
+manual: false
+detail:
+    fingerprint:
+        name: Electro-Industries-GaugeTech
+    fofa: 'header="server: eig embedded web server" || header="EIG Embedded Web Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: eig embedded web server"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EIG Embedded Web Server"))
+expression: r0() || r1()

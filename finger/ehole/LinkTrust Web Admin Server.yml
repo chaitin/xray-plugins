@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LinkTrust Web Admin Server
+manual: false
+detail:
+    fingerprint:
+        name: LinkTrust Web Admin Server
+    fofa: header="LinkTrust Web Admin Server" || title="LinkTrust Web Admin Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LinkTrust Web Admin Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LinkTrust Web Admin Server")
+expression: r0() || r1()

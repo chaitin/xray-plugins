@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Discuz(康盛)7_2
+manual: false
+detail:
+    fingerprint:
+        name: Discuz(康盛)7.2
+    fofa: title="Discuz(康盛)7.2"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Discuz(康盛)7.2")
+expression: r0()

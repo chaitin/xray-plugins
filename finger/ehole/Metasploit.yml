@@ -1,0 +1,86 @@
+name: fingerprint-yaml-Metasploit
+manual: false
+detail:
+    fingerprint:
+        name: Metasploit
+    fofa: icon_hash="-127886975" || icon_hash="1139788073" || icon_hash="-1235192469" || icon_hash="579239725" || body="r7bottom-strip" || header="https://dev.metasploit.com" && header="_ui_session" || body="metasploit" || header="https://dev.metasploit.com" || body="metasploit" && body="r7bottom-strip" || header="_ui_session" || title="metasploit is initializing..."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -127886975
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1139788073
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1235192469
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 579239725
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("r7bottom-strip")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("https://dev.metasploit.com")) && response.raw_header.bcontains(bytes("_ui_session"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("metasploit")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("https://dev.metasploit.com"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("metasploit") && response.body_string.contains("r7bottom-strip")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_ui_session"))
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("metasploit is initializing...")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10()

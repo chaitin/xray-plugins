@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FLIR-Brickstream-1100
+manual: false
+detail:
+    fingerprint:
+        name: FLIR-Brickstream-1100
+    fofa: body="<h1>brickstream 1100 basic configuration</h1>" || title="brickstream 1100"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h1>brickstream 1100 basic configuration</h1>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("brickstream 1100")
+expression: r0() || r1()

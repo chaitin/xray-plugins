@@ -1,0 +1,16 @@
+name: fingerprint-yaml-XAMPP 默认页面
+manual: false
+detail:
+    fingerprint:
+        name: XAMPP 默认页面
+    fofa: title="Welcome to XAMPP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Welcome to XAMPP")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PxPlus-WebServer
+manual: false
+detail:
+    fingerprint:
+        name: PxPlus-WebServer
+    fofa: header="PxPlus-WebServer" || title="PxPlus-WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PxPlus-WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PxPlus-WebServer")
+expression: r0() || r1()

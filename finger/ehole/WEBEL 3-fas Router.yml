@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WEBEL 3-fas Router
+manual: false
+detail:
+    fingerprint:
+        name: WEBEL 3-fas Router
+    fofa: header="WEBEL 3-fas Router" || title="WEBEL 3-fas Router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WEBEL 3-fas Router"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WEBEL 3-fas Router")
+expression: r0() || r1()

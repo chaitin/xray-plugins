@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-X6781-Z37
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-X6781-Z37
+    fofa: header="realm=\"huawei x6781-z37"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="huawei x6781-z37'))
+expression: r0()

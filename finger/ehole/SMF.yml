@@ -1,0 +1,72 @@
+name: fingerprint-yaml-SMF
+manual: false
+detail:
+    fingerprint:
+        name: SMF
+    fofa: body="<a href=\"http://www.simplemachines.org/about/copyright.php\" title=\"free forum software\" target=\"_blank" && body="<img class=\"floatright\" id=\"smflogo\" src=" && body="document.getelementbyid(\"upshrink\".src = smf_images_url + " || body="document.getelementbyid(\"upshrink\".src = smf_images_url + " || body="<img class=\"floatright\" id=\"smflogo\" src=" || body="<a href=\"http://www.simplemachines.org/about/copyright.php\" title=\"free forum software\" target=\"_blank" || body="document.getelementbyid\"upshrink\".src = smf_images_url +" || body="<a href=\"http://www.simplemachines.org/about/copyright.php\" title=\"Free Forum Software\" target=\"_blank\"" || body="document.getElementById(\"upshrink\").src = smf_images_url +" || body="document.getelementbyid(\"upshrink\").src = smf_images_url + " || body="document.getelementbyid(\"upshrink\").src = smf_images_url "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.simplemachines.org/about/copyright.php" title="free forum software" target="_blank') && response.body_string.contains('<img class="floatright" id="smflogo" src=') && response.body_string.contains('document.getelementbyid("upshrink".src = smf_images_url + ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementbyid("upshrink".src = smf_images_url + ')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img class="floatright" id="smflogo" src=')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.simplemachines.org/about/copyright.php" title="free forum software" target="_blank')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementbyid"upshrink".src = smf_images_url +')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.simplemachines.org/about/copyright.php" title="Free Forum Software" target="_blank"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getElementById("upshrink").src = smf_images_url +')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementbyid("upshrink").src = smf_images_url + ')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.getelementbyid("upshrink").src = smf_images_url ')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

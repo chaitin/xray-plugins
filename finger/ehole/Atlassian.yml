@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Atlassian
+manual: false
+detail:
+    fingerprint:
+        name: Atlassian
+    fofa: icon_hash="743365239" || icon_hash="628535358" || icon_hash="705143395"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 743365239
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 628535358
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 705143395
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TOTO_LINK-N150RB
+manual: false
+detail:
+    fingerprint:
+        name: TOTO_LINK-N150RB
+    fofa: title="totolink n150rb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totolink n150rb")
+expression: r0()

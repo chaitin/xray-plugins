@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PT单本小说程序_PTSingleNovel
+manual: false
+detail:
+    fingerprint:
+        name: PT单本小说程序_PTSingleNovel
+    fofa: title="PT单本小说程序_PTSingleNovel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PT单本小说程序_PTSingleNovel")
+expression: r0()

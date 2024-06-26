@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Avasize
+manual: false
+detail:
+    fingerprint:
+        name: Avasize
+    fofa: header="Avasize" || title="Avasize"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Avasize"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Avasize")
+expression: r0() || r1()

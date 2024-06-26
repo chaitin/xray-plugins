@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZyXEL-ES-2024A
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-ES-2024A
+    fofa: header="realm=\"es-2024a" || header="ZyXEL ES-2024A" || title="ZyXEL ES-2024A"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="es-2024a'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZyXEL ES-2024A"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZyXEL ES-2024A")
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VNC-Enterprise-
+manual: false
+detail:
+    fingerprint:
+        name: VNC-Enterprise-
+    fofa: 'header="server: vnc server enterprise edition"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: vnc server enterprise edition"))'
+expression: r0()

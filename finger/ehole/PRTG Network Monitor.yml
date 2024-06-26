@@ -1,0 +1,51 @@
+name: fingerprint-yaml-PRTG Network Monitor
+manual: false
+detail:
+    fingerprint:
+        name: PRTG Network Monitor
+    fofa: 'icon_hash="-655683626" || body="href=\"/css/prtgmini.css?prtgversion=" || header="PRTG Network Monitor" || header="server: prtg" || title="PRTG Network Monitor" || title="prtg network monitor"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -655683626
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/css/prtgmini.css?prtgversion=')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PRTG Network Monitor"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: prtg"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PRTG Network Monitor")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("prtg network monitor")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ManyContacts
+manual: false
+detail:
+    fingerprint:
+        name: ManyContacts
+    fofa: header="ManyContacts" || title="ManyContacts"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ManyContacts"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ManyContacts")
+expression: r0() || r1()

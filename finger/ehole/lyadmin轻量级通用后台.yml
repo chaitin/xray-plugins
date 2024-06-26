@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lyadmin轻量级通用后台
+manual: false
+detail:
+    fingerprint:
+        name: lyadmin轻量级通用后台
+    fofa: title="lyadmin轻量级通用后台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lyadmin轻量级通用后台")
+expression: r0()

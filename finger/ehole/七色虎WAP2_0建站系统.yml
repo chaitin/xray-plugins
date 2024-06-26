@@ -1,0 +1,16 @@
+name: fingerprint-yaml-七色虎WAP2_0建站系统
+manual: false
+detail:
+    fingerprint:
+        name: 七色虎WAP2.0建站系统
+    fofa: title="七色虎WAP2.0建站系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("七色虎WAP2.0建站系统")
+expression: r0()

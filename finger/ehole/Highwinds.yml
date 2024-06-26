@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Highwinds
+manual: false
+detail:
+    fingerprint:
+        name: Highwinds
+    fofa: title="Highwinds"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Highwinds")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Moment_js
+manual: false
+detail:
+    fingerprint:
+        name: Moment.js
+    fofa: title="Moment.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Moment.js")
+expression: r0()

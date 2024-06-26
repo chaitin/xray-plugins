@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JustHost
+manual: false
+detail:
+    fingerprint:
+        name: JustHost
+    fofa: icon_hash="1734609466"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1734609466
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EFM-Networks-ipTIME-N104R
+manual: false
+detail:
+    fingerprint:
+        name: EFM-Networks-ipTIME-N104R
+    fofa: title="iptime n104r"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iptime n104r")
+expression: r0()

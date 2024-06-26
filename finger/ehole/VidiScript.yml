@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VidiScript
+manual: false
+detail:
+    fingerprint:
+        name: VidiScript
+    fofa: body="<span  style=\"font-size:12px\"><a href=\"http://www.VidiScript.com\"><b>Free Open Source Video Script</b></a>&nbsp;Powered By&nbsp;<a href=\"http://www.VidiScript.com\"><b>VidiScript.com</b></a> |    <b>" || body="<a href=\"http://www.VidiScript.com\"><b>Free Video Script</b></a>&nbsp;Powered By&nbsp;<a href=\"http://www.VidiScript.com\"><b>VidiScript.com</b></a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span  style="font-size:12px"><a href="http://www.VidiScript.com"><b>Free Open Source Video Script</b></a>&nbsp;Powered By&nbsp;<a href="http://www.VidiScript.com"><b>VidiScript.com</b></a> |    <b>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.VidiScript.com"><b>Free Video Script</b></a>&nbsp;Powered By&nbsp;<a href="http://www.VidiScript.com"><b>VidiScript.com</b></a>')
+expression: r0() || r1()

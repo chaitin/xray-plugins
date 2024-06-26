@@ -1,0 +1,30 @@
+name: fingerprint-yaml-WiFiDog
+manual: false
+detail:
+    fingerprint:
+        name: WiFiDog
+    fofa: body="<TITLE>Welcome - Wifidog Auth-server installation and configuration</TITLE>" || body="<p><br></p><A HREF=\"#\" ONCLICK=\"document.myform.page.value = \"Prerequisites\"; document.myform.action.value = \"\"; document.myform.submit();\" CLASS=\"submit\">Next</A>" || body="<html><body><h1>I am unable to retrieve the schema version. Either the wifidog database hasn\"t been created yet, the postgresql server is down, or pg_hba.conf does not allow your web server to connect to the wifidog database.</h1>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>Welcome - Wifidog Auth-server installation and configuration</TITLE>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p><br></p><A HREF="#" ONCLICK="document.myform.page.value = "Prerequisites"; document.myform.action.value = ""; document.myform.submit();" CLASS="submit">Next</A>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<html><body><h1>I am unable to retrieve the schema version. Either the wifidog database hasn"t been created yet, the postgresql server is down, or pg_hba.conf does not allow your web server to connect to the wifidog database.</h1>')
+expression: r0() || r1() || r2()

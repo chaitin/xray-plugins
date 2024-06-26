@@ -1,0 +1,30 @@
+name: fingerprint-yaml-联达动力医院综合办公管理系统
+manual: false
+detail:
+    fingerprint:
+        name: 联达动力医院综合办公管理系统
+    fofa: body="login.aspx?Method=AJAX&UserName=" && body="Login_Return_XML.aspx" || header="联达动力 医院综合办公管理系统" || title="联达动力 医院综合办公管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login.aspx?Method=AJAX&UserName=") && response.body_string.contains("Login_Return_XML.aspx")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("联达动力 医院综合办公管理系统"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("联达动力 医院综合办公管理系统")
+expression: r0() || r1() || r2()

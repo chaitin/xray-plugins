@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Chunjs-server
+manual: false
+detail:
+    fingerprint:
+        name: Chunjs-server
+    fofa: 'header="server: chunjs/server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: chunjs/server"))'
+expression: r0()

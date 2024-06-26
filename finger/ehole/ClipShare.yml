@@ -1,0 +1,58 @@
+name: fingerprint-yaml-ClipShare
+manual: false
+detail:
+    fingerprint:
+        name: ClipShare
+    fofa: body="<!--!!!!!!!!!!!!!!!!!!!!!!!!! processing script" && body="powered by <a href=\"http://www.clip-share.com" || body="<!--!!!!!!!!!!!!!!!!!!!!!!!!! Processing SCRIPT" || body="Powered By <a href=\"http://www.clip-share.com" || body="powered by <a href=\"http://www.clip-share.com" || body="<!--!!!!!!!!!!!!!!!!!!!!!!!!! processing script" || body="<!--!!!!!!!!!!!!!!!!!!!!!!!! LIBRARY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->" || body="Powered By <a href=\"http://www.clip-share.com\">ClipShare</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--!!!!!!!!!!!!!!!!!!!!!!!!! processing script") && response.body_string.contains('powered by <a href="http://www.clip-share.com')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--!!!!!!!!!!!!!!!!!!!!!!!!! Processing SCRIPT")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.clip-share.com')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.clip-share.com')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--!!!!!!!!!!!!!!!!!!!!!!!!! processing script")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--!!!!!!!!!!!!!!!!!!!!!!!! LIBRARY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.clip-share.com">ClipShare</a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

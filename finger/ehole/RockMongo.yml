@@ -1,0 +1,16 @@
+name: fingerprint-yaml-RockMongo
+manual: false
+detail:
+    fingerprint:
+        name: RockMongo
+    fofa: title="rockmongo"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rockmongo")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Sangfor Branch Business Center
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor Branch Business Center
+    fofa: body="location.href = '/bbc/index'" || body="location.href = \"/bbc/index\"" || body="location.href = /bbc/index\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("location.href = '/bbc/index'")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = "/bbc/index"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('location.href = /bbc/index"')
+expression: r0() || r1() || r2()

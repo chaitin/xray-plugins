@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Bitnami-LAMP
+manual: false
+detail:
+    fingerprint:
+        name: Bitnami-LAMP
+    fofa: 'title="bitnami: open source. simplified"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.title_string.contains("bitnami: open source. simplified")'
+expression: r0()

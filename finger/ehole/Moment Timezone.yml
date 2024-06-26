@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Moment Timezone
+manual: false
+detail:
+    fingerprint:
+        name: Moment Timezone
+    fofa: header="Moment Timezone" || title="Moment Timezone"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Moment Timezone"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Moment Timezone")
+expression: r0() || r1()

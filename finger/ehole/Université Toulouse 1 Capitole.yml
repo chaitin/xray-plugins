@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Université Toulouse 1 Capitole
+manual: false
+detail:
+    fingerprint:
+        name: Université Toulouse 1 Capitole
+    fofa: icon_hash="1632780968"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1632780968
+expression: r0()

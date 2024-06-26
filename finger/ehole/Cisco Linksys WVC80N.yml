@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco Linksys WVC80N
+manual: false
+detail:
+    fingerprint:
+        name: Cisco Linksys WVC80N
+    fofa: header="Cisco Linksys WVC80N" || title="Cisco Linksys WVC80N"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cisco Linksys WVC80N"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cisco Linksys WVC80N")
+expression: r0() || r1()

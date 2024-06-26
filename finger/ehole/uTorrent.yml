@@ -1,0 +1,30 @@
+name: fingerprint-yaml-uTorrent
+manual: false
+detail:
+    fingerprint:
+        name: uTorrent
+    fofa: header="basic realm=\"utorrent\"" && header="www-authenticate basic realm=\"utorrent" || header="www-authenticate basic realm=\"utorrent" || header="basic realm=\"utorrent\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="utorrent"')) && response.raw_header.bcontains(bytes('www-authenticate basic realm="utorrent'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('www-authenticate basic realm="utorrent'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="utorrent"'))
+expression: r0() || r1() || r2()

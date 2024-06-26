@@ -1,0 +1,23 @@
+name: fingerprint-yaml-TYPO3 CMS
+manual: false
+detail:
+    fingerprint:
+        name: TYPO3 CMS
+    fofa: header="TYPO3 CMS" || title="TYPO3 CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TYPO3 CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("TYPO3 CMS")
+expression: r0() || r1()

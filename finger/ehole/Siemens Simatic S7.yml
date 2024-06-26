@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Siemens Simatic S7
+manual: false
+detail:
+    fingerprint:
+        name: Siemens Simatic S7
+    fofa: header="Siemens Simatic S7" || title="Siemens Simatic S7"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Siemens Simatic S7"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Siemens Simatic S7")
+expression: r0() || r1()

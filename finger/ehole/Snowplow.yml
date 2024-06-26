@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Snowplow
+manual: false
+detail:
+    fingerprint:
+        name: Snowplow
+    fofa: header="Snowplow" || title="Snowplow"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Snowplow"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Snowplow")
+expression: r0() || r1()

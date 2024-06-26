@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DCN-DCWS-6028
+manual: false
+detail:
+    fingerprint:
+        name: DCN-DCWS-6028
+    fofa: body="id=\"span_thead\">dcws-6028</span>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="span_thead">dcws-6028</span>')
+expression: r0()

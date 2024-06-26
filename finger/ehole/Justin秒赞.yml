@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Justin秒赞
+manual: false
+detail:
+    fingerprint:
+        name: Justin秒赞
+    fofa: title="Justin秒赞"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Justin秒赞")
+expression: r0()

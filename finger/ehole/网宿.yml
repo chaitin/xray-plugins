@@ -1,0 +1,23 @@
+name: fingerprint-yaml-网宿
+manual: false
+detail:
+    fingerprint:
+        name: 网宿
+    fofa: header="Cdn Cache Server" || header="WS CDN Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cdn Cache Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WS CDN Server"))
+expression: r0() || r1()

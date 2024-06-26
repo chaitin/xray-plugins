@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FortiMail
+manual: false
+detail:
+    fingerprint:
+        name: FortiMail
+    fofa: header="FortiMail" || title="FortiMail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FortiMail"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FortiMail")
+expression: r0() || r1()

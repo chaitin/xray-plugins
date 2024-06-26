@@ -1,0 +1,93 @@
+name: fingerprint-yaml-HuaWei-Home-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-Home-Gateway
+    fofa: body="menu.homegatewaytitle" || header="huaweihomegateway" && header="sessionid_r3" || body="Menu.HomeGatewayTitle" || header="HuaweiHomeGateway" || header="Huawei Home Gateway" || body="\" + gvartitle + \"" && body="document.write(\"<title>\" + gvarlogin + \"</title>\"" || header="huawei srg2220" || header="huaweihomegateway" || header="sessionid_r3" || title="Huawei Home Gateway" || title="home gateway hg630 " || title="huawei home gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("menu.homegatewaytitle")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huaweihomegateway")) && response.raw_header.bcontains(bytes("sessionid_r3"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Menu.HomeGatewayTitle")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HuaweiHomeGateway"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Huawei Home Gateway"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('" + gvartitle + "') && response.body_string.contains('document.write("<title>" + gvarlogin + "</title>"')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei srg2220"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huaweihomegateway"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sessionid_r3"))
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Huawei Home Gateway")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("home gateway hg630 ")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("huawei home gateway")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

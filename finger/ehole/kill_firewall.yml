@@ -1,0 +1,16 @@
+name: fingerprint-yaml-kill_firewall
+manual: false
+detail:
+    fingerprint:
+        name: kill_firewall
+    fofa: title="kill_firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("kill_firewall")
+expression: r0()

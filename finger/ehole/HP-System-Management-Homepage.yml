@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HP-System-Management-Homepage
+manual: false
+detail:
+    fingerprint:
+        name: HP-System-Management-Homepage
+    fofa: header="Compaq-HMMD" || header="CompaqHTTPServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Compaq-HMMD"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CompaqHTTPServer"))
+expression: r0() || r1()

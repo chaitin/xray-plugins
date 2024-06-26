@@ -1,0 +1,30 @@
+name: fingerprint-yaml-NetPort
+manual: false
+detail:
+    fingerprint:
+        name: NetPort
+    fofa: 'header="server: netport software" && header="power by netport" || header="power by netport" || header="server: netport software"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: netport software")) && response.raw_header.bcontains(bytes("power by netport"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("power by netport"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: netport software"))'
+expression: r0() || r1() || r2()

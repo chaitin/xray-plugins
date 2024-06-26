@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETCORE NR235P
+manual: false
+detail:
+    fingerprint:
+        name: NETCORE NR235P
+    fofa: header="NETCORE NR235P"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETCORE NR235P"))
+expression: r0()

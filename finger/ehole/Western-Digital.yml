@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Western-Digital
+manual: false
+detail:
+    fingerprint:
+        name: Western-Digital
+    fofa: header="wt263cdn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wt263cdn"))
+expression: r0()

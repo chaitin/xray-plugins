@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DMS-DVR
+manual: false
+detail:
+    fingerprint:
+        name: DMS-DVR
+    fofa: header="operation=invalidoperation" && header="&unit=dms&id=" || header="&unit=dms&id=" && header="operation=invalidoperation" || header="operation=invalidoperation" || header="&unit=dms&id="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("operation=invalidoperation")) && response.raw_header.bcontains(bytes("&unit=dms&id="))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("&unit=dms&id=")) && response.raw_header.bcontains(bytes("operation=invalidoperation"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("operation=invalidoperation"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("&unit=dms&id="))
+expression: r0() || r1() || r2() || r3()

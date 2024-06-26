@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Suremail
+manual: false
+detail:
+    fingerprint:
+        name: Suremail
+    fofa: body="content=\"北京国信安邮科技有限公司" && body="<span> 客服邮箱：support@suremail.cn</span>" || body="<span> 客服邮箱：support@suremail.cn</span>" || body="content=\"北京国信安邮科技有限公司"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="北京国信安邮科技有限公司') && response.body_string.contains("<span> 客服邮箱：support@suremail.cn</span>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span> 客服邮箱：support@suremail.cn</span>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="北京国信安邮科技有限公司')
+expression: r0() || r1() || r2()

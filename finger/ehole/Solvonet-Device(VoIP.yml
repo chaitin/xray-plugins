@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Solvonet-Device(VoIP
+manual: false
+detail:
+    fingerprint:
+        name: Solvonet-Device(VoIP
+    fofa: header="basic realm=\"solvonet\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="solvonet"'))
+expression: r0()

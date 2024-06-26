@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR R8500
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR R8500
+    fofa: header="NETGEAR R8500"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR R8500"))
+expression: r0()

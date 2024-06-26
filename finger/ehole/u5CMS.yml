@@ -1,0 +1,16 @@
+name: fingerprint-yaml-u5CMS
+manual: false
+detail:
+    fingerprint:
+        name: u5CMS
+    fofa: title="u5CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("u5CMS")
+expression: r0()

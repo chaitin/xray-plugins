@@ -1,0 +1,191 @@
+name: fingerprint-yaml-Citrix Access Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Citrix Access Gateway
+    fofa: body="Citrix Access Gateway" && body="login" || body="href=\"/vpn/images/accessgateway.ico" && body="/vpn/images/accessgateway.ico" && body="href=\"/vpn/images/accessgateway.ico" && body="class=\"citrixreceiverlogoaboutbox\"" && body="/vpn/js/gateway_login_view.js?" && body="cloud.ottoworkfroce.eu/vpn/index.html" && body="vpn/js/lsgateway_login_view.js" && body="class=\"_ctxstxt_netscalergateway\"" && body="receiver/images/common/icon_vpn.ico" || header="ezisneercsresu=" && header="pwcount" || body="href=\"/vpn/images/AccessGateway.ico" || header="ezisneercsresu=" || header="Cyms-SecS" || header="Citrix Access Gateway" || body="receiver/images/common/icon_vpn.ico" && body="class=\"_ctxstxt_netscalergateway\"" || body="vpn/js/lsgateway_login_view.js" && body="cloud.ottoworkfroce.eu/vpn/index.html" && body="/vpn/js/gateway_login_view.js?" && body="class=\"citrixreceiverlogoaboutbox\"" && body="href=\"/vpn/images/accessgateway.ico" || body="href=\"/vpn/images/accessgateway.ico" || body="/vpn/images/accessgateway.ico" || body="class=\"citrixreceiverlogoaboutbox\"" || body="/vpn/js/gateway_login_view.js?" || body="cloud.ottoworkfroce.eu/vpn/index.html" || body="vpn/js/lsgateway_login_view.js" || body="class=\"_ctxstxt_netscalergateway\"" || body="receiver/images/common/icon_vpn.ico" || body="<HTML><HEAD><TITLE>Citrix Access Gateway</TITLE>" || body="<link rel=\"SHORTCUT ICON\" href=\"/vpn/images/AccessGateway.ico\" type=\"image/vnd.microsoft.icon\">" || body="<!--CONTENT CONTENT CONTENT CONTENT CONTENT--->" || body="</div><!---end of div c_logon_maincontent-->" || body="\"/vpn/resources/{lang}\"" || header="cyms-secs" || header="pwcount" || title="Citrix Access Gateway" || title="citrix access gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Citrix Access Gateway") && response.body_string.contains("login")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/vpn/images/accessgateway.ico') && response.body_string.contains("/vpn/images/accessgateway.ico") && response.body_string.contains('href="/vpn/images/accessgateway.ico') && response.body_string.contains('class="citrixreceiverlogoaboutbox"') && response.body_string.contains("/vpn/js/gateway_login_view.js?") && response.body_string.contains("cloud.ottoworkfroce.eu/vpn/index.html") && response.body_string.contains("vpn/js/lsgateway_login_view.js") && response.body_string.contains('class="_ctxstxt_netscalergateway"') && response.body_string.contains("receiver/images/common/icon_vpn.ico")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ezisneercsresu=")) && response.raw_header.bcontains(bytes("pwcount"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/vpn/images/AccessGateway.ico')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ezisneercsresu="))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cyms-SecS"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix Access Gateway"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("receiver/images/common/icon_vpn.ico") && response.body_string.contains('class="_ctxstxt_netscalergateway"')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("vpn/js/lsgateway_login_view.js") && response.body_string.contains("cloud.ottoworkfroce.eu/vpn/index.html") && response.body_string.contains("/vpn/js/gateway_login_view.js?") && response.body_string.contains('class="citrixreceiverlogoaboutbox"') && response.body_string.contains('href="/vpn/images/accessgateway.ico')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/vpn/images/accessgateway.ico')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/vpn/images/accessgateway.ico")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="citrixreceiverlogoaboutbox"')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/vpn/js/gateway_login_view.js?")
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("cloud.ottoworkfroce.eu/vpn/index.html")
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("vpn/js/lsgateway_login_view.js")
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="_ctxstxt_netscalergateway"')
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("receiver/images/common/icon_vpn.ico")
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML><HEAD><TITLE>Citrix Access Gateway</TITLE>")
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="SHORTCUT ICON" href="/vpn/images/AccessGateway.ico" type="image/vnd.microsoft.icon">')
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--CONTENT CONTENT CONTENT CONTENT CONTENT--->")
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("</div><!---end of div c_logon_maincontent-->")
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('"/vpn/resources/{lang}"')
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cyms-secs"))
+    r23:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("pwcount"))
+    r24:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix Access Gateway")
+    r25:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("citrix access gateway")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25()

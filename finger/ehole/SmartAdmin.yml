@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SmartAdmin
+manual: false
+detail:
+    fingerprint:
+        name: SmartAdmin
+    fofa: header="SmartAdmin" || title="SmartAdmin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SmartAdmin"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SmartAdmin")
+expression: r0() || r1()

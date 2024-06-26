@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FreekanCMS
+manual: false
+detail:
+    fingerprint:
+        name: FreekanCMS
+    fofa: title="FreekanCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FreekanCMS")
+expression: r0()

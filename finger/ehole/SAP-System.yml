@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SAP-System
+manual: false
+detail:
+    fingerprint:
+        name: SAP-System
+    fofa: header="realm=\"sap-system"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="sap-system'))
+expression: r0()

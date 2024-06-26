@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MajExpress
+manual: false
+detail:
+    fingerprint:
+        name: MajExpress
+    fofa: header="MajExpress" || title="MajExpress"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MajExpress"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MajExpress")
+expression: r0() || r1()

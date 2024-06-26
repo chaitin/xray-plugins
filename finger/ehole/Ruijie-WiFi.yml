@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ruijie-WiFi
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-WiFi
+    fofa: body="var apmainpage = 'ap/main.htm" || body="var apmainpage = \"ap/main.htm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var apmainpage = 'ap/main.htm")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var apmainpage = "ap/main.htm')
+expression: r0() || r1()

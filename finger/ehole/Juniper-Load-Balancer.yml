@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Juniper-Load-Balancer
+manual: false
+detail:
+    fingerprint:
+        name: Juniper-Load-Balancer
+    fofa: 'header="set-cookie: rl-sticky-key" && header="juniper networks application acceleration platform" || header="rl-sticky-key" || header="Juniper Networks Application Acceleration Platform" || header="Juniper Load Balancer" || header="juniper networks application acceleration platform" || header="set-cookie: rl-sticky-key" || title="Juniper Load Balancer"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: rl-sticky-key")) && response.raw_header.bcontains(bytes("juniper networks application acceleration platform"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rl-sticky-key"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Juniper Networks Application Acceleration Platform"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Juniper Load Balancer"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("juniper networks application acceleration platform"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("set-cookie: rl-sticky-key"))'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Juniper Load Balancer")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

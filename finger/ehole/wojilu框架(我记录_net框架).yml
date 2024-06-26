@@ -1,0 +1,30 @@
+name: fingerprint-yaml-wojilu框架(我记录_net框架)
+manual: false
+detail:
+    fingerprint:
+        name: wojilu框架(我记录.net框架)
+    fofa: body="我记录.net框架" || body="content=\"Visual Basic .NET 7.1" || title="我记录.net框架"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("我记录.net框架")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Visual Basic .NET 7.1')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("我记录.net框架")
+expression: r0() || r1() || r2()

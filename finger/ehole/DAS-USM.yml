@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DAS-USM
+manual: false
+detail:
+    fingerprint:
+        name: DAS-USM
+    fofa: title="明御运维审计"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("明御运维审计")
+expression: r0()

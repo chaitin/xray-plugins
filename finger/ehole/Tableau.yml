@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Tableau
+manual: false
+detail:
+    fingerprint:
+        name: Tableau
+    fofa: icon_hash="-1441956789"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1441956789
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EPages
+manual: false
+detail:
+    fingerprint:
+        name: EPages
+    fofa: title="EPages"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EPages")
+expression: r0()

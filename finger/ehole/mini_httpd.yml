@@ -1,0 +1,23 @@
+name: fingerprint-yaml-mini_httpd
+manual: false
+detail:
+    fingerprint:
+        name: mini_httpd
+    fofa: 'header="mini_httpd" || header="server: acme mini_httpd"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mini_httpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: acme mini_httpd"))'
+expression: r0() || r1()

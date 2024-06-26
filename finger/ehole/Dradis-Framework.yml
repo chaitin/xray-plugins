@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Dradis-Framework
+manual: false
+detail:
+    fingerprint:
+        name: Dradis-Framework
+    fofa: body="<p class=\"copyright\">dradis" || header="_dradis_session=" || body="effective information sharing - <a href=\"http://dradisframework.org/\">http://dradisframework.org</a>" || body="<div id=\"back\"><a href=\"/\">&lsaquo; back to the app.</a></div>" || body="<p id=\"wizard\">Not familiar with Dradis? Checkout the <a href=\"/wizard\">Wizard</a>.</p>" || body="<li>Integration with existing systems and tools through <a href=\"http://Dradisframework.org/server_plugins.html\">server plugins</a>.</li>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p class="copyright">dradis')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_dradis_session="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('effective information sharing - <a href="http://dradisframework.org/">http://dradisframework.org</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="back"><a href="/">&lsaquo; back to the app.</a></div>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<p id="wizard">Not familiar with Dradis? Checkout the <a href="/wizard">Wizard</a>.</p>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li>Integration with existing systems and tools through <a href="http://Dradisframework.org/server_plugins.html">server plugins</a>.</li>')
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-JLOA
+manual: false
+detail:
+    fingerprint:
+        name: JLOA
+    fofa: body="selectcss" && body="toptitleimg" && body="logintable" || body="logintable" && body="toptitleimg" && body="selectcss" || body="selectcss" || body="toptitleimg" || body="logintable" || body="logintable" && body="selectcss" && body="toptitleimg"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("selectcss") && response.body_string.contains("toptitleimg") && response.body_string.contains("logintable")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logintable") && response.body_string.contains("toptitleimg") && response.body_string.contains("selectcss")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("selectcss")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("toptitleimg")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logintable")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("logintable") && response.body_string.contains("selectcss") && response.body_string.contains("toptitleimg")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

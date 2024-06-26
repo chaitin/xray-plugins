@@ -1,0 +1,16 @@
+name: fingerprint-yaml-visionsoft_velcro
+manual: false
+detail:
+    fingerprint:
+        name: visionsoft_velcro
+    fofa: title="visionsoft_velcro"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("visionsoft_velcro")
+expression: r0()

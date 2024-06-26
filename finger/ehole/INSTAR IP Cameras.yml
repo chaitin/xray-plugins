@@ -1,0 +1,16 @@
+name: fingerprint-yaml-INSTAR IP Cameras
+manual: false
+detail:
+    fingerprint:
+        name: INSTAR IP Cameras
+    fofa: icon_hash="-1169314298"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1169314298
+expression: r0()

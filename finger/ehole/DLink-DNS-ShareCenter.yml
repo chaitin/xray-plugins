@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DLink-DNS-ShareCenter
+manual: false
+detail:
+    fingerprint:
+        name: DLink-DNS-ShareCenter
+    fofa: body="/cgi-bin/login_mgr.cgi" && body="sharecenter" || body="sharecenter" && body="/cgi-bin/login_mgr.cgi" || body="/cgi-bin/login_mgr.cgi" || body="sharecenter"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/login_mgr.cgi") && response.body_string.contains("sharecenter")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sharecenter") && response.body_string.contains("/cgi-bin/login_mgr.cgi")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/cgi-bin/login_mgr.cgi")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sharecenter")
+expression: r0() || r1() || r2() || r3()

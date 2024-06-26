@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Combivox
+manual: false
+detail:
+    fingerprint:
+        name: Combivox
+    fofa: icon_hash="-342262483"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -342262483
+expression: r0()

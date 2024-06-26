@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Xerox-CentreWare
+manual: false
+detail:
+    fingerprint:
+        name: Xerox-CentreWare
+    fofa: header="realm=\"centreware_is_admin" && header="realm=\"centreware internet services" || header="realm=\"centreware internet services" || header="realm=\"centreware_is_admin"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="centreware_is_admin')) && response.raw_header.bcontains(bytes('realm="centreware internet services'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="centreware internet services'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="centreware_is_admin'))
+expression: r0() || r1() || r2()

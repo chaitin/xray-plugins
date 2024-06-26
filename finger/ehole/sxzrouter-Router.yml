@@ -1,0 +1,16 @@
+name: fingerprint-yaml-sxzrouter-Router
+manual: false
+detail:
+    fingerprint:
+        name: sxzrouter-Router
+    fofa: title="神行者路由"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("神行者路由")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-bohoog
+manual: false
+detail:
+    fingerprint:
+        name: bohoog
+    fofa: title="bohoog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bohoog")
+expression: r0()

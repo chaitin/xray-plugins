@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yongyou_icc
+manual: false
+detail:
+    fingerprint:
+        name: yongyou_icc
+    fofa: title="yongyou_icc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yongyou_icc")
+expression: r0()

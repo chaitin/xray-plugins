@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Moxapass ioLogik Remote Ethernet I_O Server
+manual: false
+detail:
+    fingerprint:
+        name: 'Moxapass ioLogik Remote Ethernet I/O Server '
+    fofa: icon_hash="381100274"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 381100274
+expression: r0()

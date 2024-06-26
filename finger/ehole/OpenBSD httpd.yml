@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OpenBSD httpd
+manual: false
+detail:
+    fingerprint:
+        name: OpenBSD httpd
+    fofa: header="OpenBSD httpd" || title="OpenBSD httpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OpenBSD httpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OpenBSD httpd")
+expression: r0() || r1()

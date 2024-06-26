@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sails_js
+manual: false
+detail:
+    fingerprint:
+        name: Sails.js
+    fofa: title="Sails.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sails.js")
+expression: r0()

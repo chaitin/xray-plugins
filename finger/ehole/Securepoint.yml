@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Securepoint
+manual: false
+detail:
+    fingerprint:
+        name: Securepoint
+    fofa: icon_hash="1051648103"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1051648103
+expression: r0()

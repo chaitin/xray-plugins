@@ -1,0 +1,23 @@
+name: fingerprint-yaml-thinkphp-bjyblog
+manual: false
+detail:
+    fingerprint:
+        name: thinkphp-bjyblog
+    fofa: header="thinkphp-bjyblog" || title="thinkphp-bjyblog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("thinkphp-bjyblog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("thinkphp-bjyblog")
+expression: r0() || r1()

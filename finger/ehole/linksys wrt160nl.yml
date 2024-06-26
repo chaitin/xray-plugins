@@ -1,0 +1,16 @@
+name: fingerprint-yaml-linksys wrt160nl
+manual: false
+detail:
+    fingerprint:
+        name: linksys wrt160nl
+    fofa: header="linksys wrt160nl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("linksys wrt160nl"))
+expression: r0()

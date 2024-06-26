@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cross Pixel
+manual: false
+detail:
+    fingerprint:
+        name: Cross Pixel
+    fofa: header="Cross Pixel" || title="Cross Pixel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cross Pixel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cross Pixel")
+expression: r0() || r1()

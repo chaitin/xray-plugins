@@ -1,0 +1,58 @@
+name: fingerprint-yaml-OpenNewsletter
+manual: false
+detail:
+    fingerprint:
+        name: OpenNewsletter
+    fofa: body="href=\"http://netmeans.net\">netmeans.net" && body="this software is based on the opennewsletter project" || body="this software is based on the opennewsletter project" || body="href=\"http://netmeans.net\">netmeans.net" || body="This is a <a href=fsw.php>Free</a> & <a href=osd.php>Open Source</a> mailing list manager developed by <a href=selfexile.php>Self Exile</a> and distributed under the <a href=gpl.php>GPL</a>." || body="This is a <a href=fsw.php>Free</a> & <a href=osd.php>Open Source</a> mailing list manager developed by <a href=feedback.php>Self Exile</a> and distributed under the <a href=gpl.php>GPL</a>." || body="This is a Free & Open Source mailing list manager developed by <a href=\"http://netmeans.net\">NetMeans.Net</a> and distributed under the LGPL license. This software is based on the OpenNewsletter project by <a href=\"http://www.selfexile.com\" target=\"_blank\">Self Exile</a>." || body="This is a Free & Open Source mailing list manager developed by <a href=\"http://www.quadronet.net\">Quadro Net</a> and distributed under the LGPL license. This software is based on the OpenNewsletter project by <a href=\"http://www.selfexile.com\" target=\"_blank\">Self Exile</a> and NmnNewsletter by <a href=\"http://netmeans.net\">NetMeans.Net</a>."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://netmeans.net">netmeans.net') && response.body_string.contains("this software is based on the opennewsletter project")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("this software is based on the opennewsletter project")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://netmeans.net">netmeans.net')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("This is a <a href=fsw.php>Free</a> & <a href=osd.php>Open Source</a> mailing list manager developed by <a href=selfexile.php>Self Exile</a> and distributed under the <a href=gpl.php>GPL</a>.")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("This is a <a href=fsw.php>Free</a> & <a href=osd.php>Open Source</a> mailing list manager developed by <a href=feedback.php>Self Exile</a> and distributed under the <a href=gpl.php>GPL</a>.")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This is a Free & Open Source mailing list manager developed by <a href="http://netmeans.net">NetMeans.Net</a> and distributed under the LGPL license. This software is based on the OpenNewsletter project by <a href="http://www.selfexile.com" target="_blank">Self Exile</a>.')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This is a Free & Open Source mailing list manager developed by <a href="http://www.quadronet.net">Quadro Net</a> and distributed under the LGPL license. This software is based on the OpenNewsletter project by <a href="http://www.selfexile.com" target="_blank">Self Exile</a> and NmnNewsletter by <a href="http://netmeans.net">NetMeans.Net</a>.')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

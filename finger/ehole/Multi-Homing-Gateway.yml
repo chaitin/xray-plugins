@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Multi-Homing-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Multi-Homing-Gateway
+    fofa: header="realm=\"multi-homing gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="multi-homing gateway'))
+expression: r0()

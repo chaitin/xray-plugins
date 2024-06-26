@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MiniEOS WS
+manual: false
+detail:
+    fingerprint:
+        name: MiniEOS WS
+    fofa: header="MiniEOS WS" || title="MiniEOS WS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MiniEOS WS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MiniEOS WS")
+expression: r0() || r1()

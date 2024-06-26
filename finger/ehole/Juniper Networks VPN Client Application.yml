@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Juniper Networks VPN Client Application
+manual: false
+detail:
+    fingerprint:
+        name: Juniper Networks VPN Client Application
+    fofa: header="Juniper Networks VPN Client Application" || title="Juniper Networks VPN Client Application"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Juniper Networks VPN Client Application"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Juniper Networks VPN Client Application")
+expression: r0() || r1()

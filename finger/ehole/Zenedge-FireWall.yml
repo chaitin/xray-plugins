@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Zenedge-FireWall
+manual: false
+detail:
+    fingerprint:
+        name: Zenedge-FireWall
+    fofa: title="Zenedge-FireWall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Zenedge-FireWall")
+expression: r0()

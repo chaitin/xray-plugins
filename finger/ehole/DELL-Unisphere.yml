@@ -1,0 +1,30 @@
+name: fingerprint-yaml-DELL-Unisphere
+manual: false
+detail:
+    fingerprint:
+        name: DELL-Unisphere
+    fofa: body="用于 sc 系列的 unisphere" && body="unisphere for sc series" || body="unisphere for sc series" || body="用于 sc 系列的 unisphere"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("用于 sc 系列的 unisphere") && response.body_string.contains("unisphere for sc series")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("unisphere for sc series")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("用于 sc 系列的 unisphere")
+expression: r0() || r1() || r2()

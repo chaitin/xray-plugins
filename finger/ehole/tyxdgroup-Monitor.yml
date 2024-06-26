@@ -1,0 +1,16 @@
+name: fingerprint-yaml-tyxdgroup-Monitor
+manual: false
+detail:
+    fingerprint:
+        name: tyxdgroup-Monitor
+    fofa: body="login.ashx?mode=valid"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("login.ashx?mode=valid")
+expression: r0()

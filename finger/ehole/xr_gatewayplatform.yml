@@ -1,0 +1,16 @@
+name: fingerprint-yaml-xr_gatewayplatform
+manual: false
+detail:
+    fingerprint:
+        name: xr_gatewayplatform
+    fofa: title="xr_gatewayplatform"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xr_gatewayplatform")
+expression: r0()

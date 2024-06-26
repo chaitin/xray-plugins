@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Wygk-Product
+manual: false
+detail:
+    fingerprint:
+        name: Wygk-Product
+    fofa: body="href=\"wrzcnet.ico" && body="<a href=\"mailto:webmaster@wrzc.net" && body="url = 'wrzcnet_vote.asp?stype=view';" || body="url = \"wrzcnet_vote.asp?stype=view\";" || body="<a href=\"mailto:webmaster@wrzc.net" || body="href=\"wrzcnet.ico" || body="url = wrzcnet_vote.asp?stype=view\";"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="wrzcnet.ico') && response.body_string.contains('<a href="mailto:webmaster@wrzc.net') && response.body_string.contains("url = 'wrzcnet_vote.asp?stype=view';")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('url = "wrzcnet_vote.asp?stype=view";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="mailto:webmaster@wrzc.net')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="wrzcnet.ico')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('url = wrzcnet_vote.asp?stype=view";')
+expression: r0() || r1() || r2() || r3() || r4()

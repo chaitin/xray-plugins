@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FRITZ!Box
+manual: false
+detail:
+    fingerprint:
+        name: FRITZ!Box
+    fofa: icon_hash="-219752612"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -219752612
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iDirect Canada (Network Management)
+manual: false
+detail:
+    fingerprint:
+        name: iDirect Canada (Network Management)
+    fofa: icon_hash="-256828986"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -256828986
+expression: r0()

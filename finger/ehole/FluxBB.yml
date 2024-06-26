@@ -1,0 +1,30 @@
+name: fingerprint-yaml-FluxBB
+manual: false
+detail:
+    fingerprint:
+        name: FluxBB
+    fofa: body="powered by <a href=\"http://fluxbb.org/" || body="Powered by <a href=\"http://fluxbb.org/" || body="<li id=\"navlogin\"><a href=\"login.php\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://fluxbb.org/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://fluxbb.org/')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li id="navlogin"><a href="login.php">')
+expression: r0() || r1() || r2()

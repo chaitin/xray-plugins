@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TOPSEC-Employee-Internet-Management
+manual: false
+detail:
+    fingerprint:
+        name: TOPSEC-Employee-Internet-Management
+    fofa: body="repeat-x left top" && body="name=\"dkey_login\" " && body="activexobject"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("repeat-x left top") && response.body_string.contains('name="dkey_login" ') && response.body_string.contains("activexobject")
+expression: r0()

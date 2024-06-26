@@ -1,0 +1,16 @@
+name: fingerprint-yaml-即会通企业版(LiveUC)_视频会议
+manual: false
+detail:
+    fingerprint:
+        name: 即会通企业版(LiveUC)|视频会议
+    fofa: icon_hash="-637931821"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -637931821
+expression: r0()

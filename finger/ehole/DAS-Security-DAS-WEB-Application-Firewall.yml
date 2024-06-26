@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DAS-Security-DAS-WEB-Application-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: DAS-Security-DAS-WEB-Application-Firewall
+    fofa: body="<img id=\"company_logo\" src=\"images/waf.company.png" || title="明御web应用防火墙"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id="company_logo" src="images/waf.company.png')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("明御web应用防火墙")
+expression: r0() || r1()

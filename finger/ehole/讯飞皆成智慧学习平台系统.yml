@@ -1,0 +1,23 @@
+name: fingerprint-yaml-讯飞皆成智慧学习平台系统
+manual: false
+detail:
+    fingerprint:
+        name: 讯飞皆成智慧学习平台系统
+    fofa: header="讯飞皆成智慧学习平台系统" || title="讯飞皆成智慧学习平台系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("讯飞皆成智慧学习平台系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("讯飞皆成智慧学习平台系统")
+expression: r0() || r1()

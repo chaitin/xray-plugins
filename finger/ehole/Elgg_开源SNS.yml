@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Elgg_开源SNS
+manual: false
+detail:
+    fingerprint:
+        name: Elgg_开源SNS
+    fofa: title="Elgg_开源SNS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Elgg_开源SNS")
+expression: r0()

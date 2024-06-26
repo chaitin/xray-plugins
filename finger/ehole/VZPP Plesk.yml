@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VZPP Plesk
+manual: false
+detail:
+    fingerprint:
+        name: VZPP Plesk
+    fofa: icon_hash="-1268095485"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1268095485
+expression: r0()

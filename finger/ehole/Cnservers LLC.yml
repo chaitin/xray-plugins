@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cnservers LLC
+manual: false
+detail:
+    fingerprint:
+        name: Cnservers LLC
+    fofa: icon_hash="-235701012"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -235701012
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Ricoh
+manual: false
+detail:
+    fingerprint:
+        name: Ricoh
+    fofa: icon_hash="1135165421"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1135165421
+expression: r0()

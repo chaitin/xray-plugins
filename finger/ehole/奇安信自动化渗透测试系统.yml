@@ -1,0 +1,16 @@
+name: fingerprint-yaml-奇安信自动化渗透测试系统
+manual: false
+detail:
+    fingerprint:
+        name: 奇安信自动化渗透测试系统
+    fofa: icon_hash="-747580443"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -747580443
+expression: r0()

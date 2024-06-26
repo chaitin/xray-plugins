@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WisePower-OA
+manual: false
+detail:
+    fingerprint:
+        name: WisePower-OA
+    fofa: body="action=\"/wisepower/login.jsp" || title="wisepower office login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('action="/wisepower/login.jsp')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wisepower office login")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AnHuiWAF
+manual: false
+detail:
+    fingerprint:
+        name: AnHuiWAF
+    fofa: 'header="protected-by: anhui web firewall"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("protected-by: anhui web firewall"))'
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MW4530R
+manual: false
+detail:
+    fingerprint:
+        name: MW4530R
+    fofa: header="MW4530R"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MW4530R"))
+expression: r0()

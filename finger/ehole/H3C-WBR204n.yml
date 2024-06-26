@@ -1,0 +1,16 @@
+name: fingerprint-yaml-H3C-WBR204n
+manual: false
+detail:
+    fingerprint:
+        name: H3C-WBR204n
+    fofa: header="basic realm=\"h3c wbr204n\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('basic realm="h3c wbr204n"'))
+expression: r0()

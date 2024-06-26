@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPYUN人才招聘系统
+manual: false
+detail:
+    fingerprint:
+        name: PHPYUN人才招聘系统
+    fofa: header="PHPYUN人才招聘系统" || title="PHPYUN人才招聘系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPYUN人才招聘系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPYUN人才招聘系统")
+expression: r0() || r1()

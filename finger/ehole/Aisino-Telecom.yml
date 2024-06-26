@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aisino-Telecom
+manual: false
+detail:
+    fingerprint:
+        name: Aisino-Telecom
+    fofa: body="<font class=\"bottomfont\">航天信息股份有限公司 电信行业版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<font class="bottomfont">航天信息股份有限公司 电信行业版')
+expression: r0()

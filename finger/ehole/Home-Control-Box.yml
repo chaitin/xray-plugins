@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Home-Control-Box
+manual: false
+detail:
+    fingerprint:
+        name: Home-Control-Box
+    fofa: header="realm=\"hcb_web" || header="hcb_web" || body="<frame frameborder=\"0\" name=\"MGUI\" src=\"myhcb_gui.html\" scrolling=\"no\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="hcb_web'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("hcb_web"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame frameborder="0" name="MGUI" src="myhcb_gui.html" scrolling="no"')
+expression: r0() || r1() || r2()

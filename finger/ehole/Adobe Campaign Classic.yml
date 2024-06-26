@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Adobe Campaign Classic
+manual: false
+detail:
+    fingerprint:
+        name: Adobe Campaign Classic
+    fofa: icon_hash="-333791179"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -333791179
+expression: r0()

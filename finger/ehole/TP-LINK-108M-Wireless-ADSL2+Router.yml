@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK-108M-Wireless-ADSL2+Router
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-108M-Wireless-ADSL2+Router
+    fofa: header="realm=\"108m wireless adsl2+ router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="108m wireless adsl2+ router'))
+expression: r0()

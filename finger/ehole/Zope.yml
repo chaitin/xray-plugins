@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Zope
+manual: false
+detail:
+    fingerprint:
+        name: Zope
+    fofa: 'header="zope" && header="server: zope" && header="x-debug-frontend-key: zope" || header="zope" || header="x-debug-frontend-key: zope" && header="basic realm=\"zope" && header="x-powered-by: zope" && header="server: zope" && header="zope" || header="server: zope" || header="x-debug-frontend-key: zope" || header="X-Powered-By: zope"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("zope")) && response.raw_header.bcontains(bytes("server: zope")) && response.raw_header.bcontains(bytes("x-debug-frontend-key: zope"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("zope"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-debug-frontend-key: zope")) && response.raw_header.bcontains(bytes(''basic realm="zope'')) && response.raw_header.bcontains(bytes("x-powered-by: zope")) && response.raw_header.bcontains(bytes("server: zope")) && response.raw_header.bcontains(bytes("zope"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: zope"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-debug-frontend-key: zope"))'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("X-Powered-By: zope"))'
+expression: r0() || r1() || r2() || r3() || r4() || r5()

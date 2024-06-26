@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Avocent-DSView
+manual: false
+detail:
+    fingerprint:
+        name: Avocent-DSView
+    fofa: body="/dsview/images/favicon.ico" || body="/dsview/protected/login.do" || header="Avocent DSView" || body="<link rel=\"stylesheet\" type=\"text/css\" href=\"/dsview/scheme-1.css\" title=\"Default\" />" || body="<form name=\"loginForm\" method=\"post\" action=\"/dsview/protected/login.do\" class=\"form-block\"><span id=\"propertiesForm\"></span>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dsview/images/favicon.ico")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dsview/protected/login.do")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Avocent DSView"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="stylesheet" type="text/css" href="/dsview/scheme-1.css" title="Default" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name="loginForm" method="post" action="/dsview/protected/login.do" class="form-block"><span id="propertiesForm"></span>')
+expression: r0() || r1() || r2() || r3() || r4()

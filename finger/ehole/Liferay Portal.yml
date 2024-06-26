@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Liferay Portal
+manual: false
+detail:
+    fingerprint:
+        name: Liferay Portal
+    fofa: icon_hash="129457226"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 129457226
+expression: r0()

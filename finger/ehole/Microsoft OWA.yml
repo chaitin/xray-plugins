@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Microsoft OWA
+manual: false
+detail:
+    fingerprint:
+        name: Microsoft OWA
+    fofa: icon_hash="442749392"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 442749392
+expression: r0()

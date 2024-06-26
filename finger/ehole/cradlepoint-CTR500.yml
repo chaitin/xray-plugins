@@ -1,0 +1,16 @@
+name: fingerprint-yaml-cradlepoint-CTR500
+manual: false
+detail:
+    fingerprint:
+        name: cradlepoint-CTR500
+    fofa: title="cradlepoint ctr500 gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cradlepoint ctr500 gateway")
+expression: r0()

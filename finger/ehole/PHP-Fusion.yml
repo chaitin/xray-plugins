@@ -1,0 +1,58 @@
+name: fingerprint-yaml-PHP-Fusion
+manual: false
+detail:
+    fingerprint:
+        name: PHP-Fusion
+    fofa: header="PHP-Fusion" || body="<td align=\"right\" class=\"tbl1 profile_user_level\"><!--profile_user_level-->" || body="<td align=\"right\" class=\"profile_user_level tbl1\"><!--profile_user_level-->" || body="class=\"tbl profile_user_avatar\"><!--profile_user_avatar--><img src=\"images/avatars/" || body="<td align=\"right\" class=\"tbl1 profile_user_name\"><!--profile_user_name-->" || body="<td align=\"right\" class=\"profile_user_name tbl1\"><!--profile_user_name-->" || title="PHP-Fusion"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHP-Fusion"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="tbl1 profile_user_level"><!--profile_user_level-->')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="profile_user_level tbl1"><!--profile_user_level-->')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="tbl profile_user_avatar"><!--profile_user_avatar--><img src="images/avatars/')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="tbl1 profile_user_name"><!--profile_user_name-->')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align="right" class="profile_user_name tbl1"><!--profile_user_name-->')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHP-Fusion")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

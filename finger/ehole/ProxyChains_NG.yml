@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ProxyChains_NG
+manual: false
+detail:
+    fingerprint:
+        name: ProxyChains_NG
+    fofa: 'header="server: proxychain"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: proxychain"))'
+expression: r0()

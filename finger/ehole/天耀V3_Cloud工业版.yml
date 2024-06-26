@@ -1,0 +1,23 @@
+name: fingerprint-yaml-天耀V3_Cloud工业版
+manual: false
+detail:
+    fingerprint:
+        name: 天耀V3.Cloud工业版
+    fofa: header="天耀V3.Cloud工业版" || title="天耀V3.Cloud工业版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("天耀V3.Cloud工业版"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天耀V3.Cloud工业版")
+expression: r0() || r1()

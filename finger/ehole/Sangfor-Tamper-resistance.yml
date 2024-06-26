@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Sangfor-Tamper-resistance
+manual: false
+detail:
+    fingerprint:
+        name: Sangfor-Tamper-resistance
+    fofa: body="<li style=\"color:#999999;margin-left:6px;list-style:circle inside;\">如忘记密码，请与防火墙管理员联系</li>" && body="href=\"tamper/style/control.css\"" || body="href=\"tamper/style/control.css\"" || body="<li style=\"color:#999999;margin-left:6px;list-style:circle inside;\">如忘记密码，请与防火墙管理员联系</li>" || title="防火墙web防篡改管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li style="color:#999999;margin-left:6px;list-style:circle inside;">如忘记密码，请与防火墙管理员联系</li>') && response.body_string.contains('href="tamper/style/control.css"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="tamper/style/control.css"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li style="color:#999999;margin-left:6px;list-style:circle inside;">如忘记密码，请与防火墙管理员联系</li>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("防火墙web防篡改管理系统")
+expression: r0() || r1() || r2() || r3()

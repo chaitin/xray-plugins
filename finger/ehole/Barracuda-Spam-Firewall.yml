@@ -1,0 +1,58 @@
+name: fingerprint-yaml-Barracuda-Spam-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Barracuda-Spam-Firewall
+    fofa: 'body="/barracuda.css" && body="http://www.barracudanetworks.com?a=bsf_product" || body="/barracuda.css" || body="http://www.barracudanetworks.com?a=bsf_product" || body="<title>Barracuda Spam & Virus Firewall: Welcome</title>" || body="<title>Barracuda Spam Firewall: Welcome</title><link rel=\"stylesheet\" type=\"text/css\" href=\"/barracuda.css\">" || body="<tr><td valign=top width=680 bgcolor=\"#ffffff\" nowrap><table summary =\"Logo Row\" cellspacing=0 cellpadding=0 border=0><tr><td><a href=\"http://www.barracudanetworks.com?track=asg\" class=transbutton><img src=\"" || body="<a href=\"http://www.barracudanetworks.com?track=asg\"><img src=\"/images/powered_by.gif\" border=0"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/barracuda.css") && response.body_string.contains("http://www.barracudanetworks.com?a=bsf_product")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/barracuda.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("http://www.barracudanetworks.com?a=bsf_product")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<title>Barracuda Spam & Virus Firewall: Welcome</title>")'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<title>Barracuda Spam Firewall: Welcome</title><link rel="stylesheet" type="text/css" href="/barracuda.css">'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<tr><td valign=top width=680 bgcolor="#ffffff" nowrap><table summary ="Logo Row" cellspacing=0 cellpadding=0 border=0><tr><td><a href="http://www.barracudanetworks.com?track=asg" class=transbutton><img src="')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.barracudanetworks.com?track=asg"><img src="/images/powered_by.gif" border=0')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-BeEF
+manual: false
+detail:
+    fingerprint:
+        name: BeEF
+    fofa: body="<img src=\"../images/beef.gif\" onclick=\"new Effect.Shake(\"sidebar\");\"></div> BeEF</h1>" || body="<title>Browser Exploitation Framework</title>" || body="<div id=\"centered\"><img id=\"beef-logo\" src=\"/ui/media/images/beef.png\" alt=\"BeEF - The Browser Exploitation Framework\" /></div>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="../images/beef.gif" onclick="new Effect.Shake("sidebar");"></div> BeEF</h1>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Browser Exploitation Framework</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="centered"><img id="beef-logo" src="/ui/media/images/beef.png" alt="BeEF - The Browser Exploitation Framework" /></div>')
+expression: r0() || r1() || r2()

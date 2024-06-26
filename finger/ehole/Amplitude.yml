@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Amplitude
+manual: false
+detail:
+    fingerprint:
+        name: Amplitude
+    fofa: header="Amplitude" || title="Amplitude"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Amplitude"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Amplitude")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-iOffice(红帆oa)
+manual: false
+detail:
+    fingerprint:
+        name: iOffice(红帆oa)
+    fofa: header="iOffice(红帆oa)" || title="iOffice(红帆oa)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("iOffice(红帆oa)"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iOffice(红帆oa)")
+expression: r0() || r1()

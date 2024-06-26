@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPads
+manual: false
+detail:
+    fingerprint:
+        name: PHPads
+    fofa: header="PHPads" || title="PHPads"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPads"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPads")
+expression: r0() || r1()

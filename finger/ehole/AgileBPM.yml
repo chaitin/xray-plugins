@@ -1,0 +1,30 @@
+name: fingerprint-yaml-AgileBPM
+manual: false
+detail:
+    fingerprint:
+        name: AgileBPM
+    fofa: body="class=\"logo-element\">bpm" && body="class=\"logo-element\">agile-bpm" || body="class=\"logo-element\">agile-bpm" || body="class=\"logo-element\">bpm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="logo-element">bpm') && response.body_string.contains('class="logo-element">agile-bpm')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="logo-element">agile-bpm')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="logo-element">bpm')
+expression: r0() || r1() || r2()

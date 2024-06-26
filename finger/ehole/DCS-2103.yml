@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DCS-2103
+manual: false
+detail:
+    fingerprint:
+        name: DCS-2103
+    fofa: header="realm=\"dcs-2103"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="dcs-2103'))
+expression: r0()

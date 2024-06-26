@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WISPR (Airlan)
+manual: false
+detail:
+    fingerprint:
+        name: WISPR (Airlan)
+    fofa: icon_hash="-106646451"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -106646451
+expression: r0()

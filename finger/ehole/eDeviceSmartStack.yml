@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eDeviceSmartStack
+manual: false
+detail:
+    fingerprint:
+        name: eDeviceSmartStack
+    fofa: title="eDevice SmartStack"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("eDevice SmartStack")
+expression: r0()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-ZZZCMS
+manual: false
+detail:
+    fingerprint:
+        name: ZZZCMS
+    fofa: body="href=\"/?brandlist/zzzcms" && body=".banner .in_business ul li dd" || body=".banner .in_business ul li dd" || body="href=\"/?brandlist/zzzcms" || body="Powered by <a href=\"http://zzzcms.com\">ZZZcms</a>" || title="开源免费建站系统zzzcms.com" || title="zzzcms网站管理系统zzzcms.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/?brandlist/zzzcms') && response.body_string.contains(".banner .in_business ul li dd")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(".banner .in_business ul li dd")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="/?brandlist/zzzcms')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered by <a href="http://zzzcms.com">ZZZcms</a>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("开源免费建站系统zzzcms.com")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zzzcms网站管理系统zzzcms.com")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Card-Reader-Adapter
+manual: false
+detail:
+    fingerprint:
+        name: Card-Reader-Adapter
+    fofa: body="<HTML> <Title> 401 unAuthorized </title>                   <body> <H1> 401 unauthorized request </H1></body>                   </HTML>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<HTML> <Title> 401 unAuthorized </title>                   <body> <H1> 401 unauthorized request </H1></body>                   </HTML>")
+expression: r0()

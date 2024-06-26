@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ClaimTime (Ramsell Public Health & Safety)
+manual: false
+detail:
+    fingerprint:
+        name: ClaimTime (Ramsell Public Health & Safety)
+    fofa: icon_hash="-687783882"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -687783882
+expression: r0()

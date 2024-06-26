@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Synametrics File Manager
+manual: false
+detail:
+    fingerprint:
+        name: Synametrics File Manager
+    fofa: header="Synametrics File Manager" || title="Synametrics File Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Synametrics File Manager"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Synametrics File Manager")
+expression: r0() || r1()

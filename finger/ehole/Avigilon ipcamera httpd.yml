@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Avigilon ipcamera httpd
+manual: false
+detail:
+    fingerprint:
+        name: Avigilon ipcamera httpd
+    fofa: header="Avigilon ipcamera httpd" || title="Avigilon ipcamera httpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Avigilon ipcamera httpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Avigilon ipcamera httpd")
+expression: r0() || r1()

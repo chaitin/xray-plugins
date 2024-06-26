@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OpenRG
+manual: false
+detail:
+    fingerprint:
+        name: OpenRG
+    fofa: icon_hash="-986816620"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -986816620
+expression: r0()

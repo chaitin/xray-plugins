@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Termite
+manual: false
+detail:
+    fingerprint:
+        name: Termite
+    fofa: header="realm=\"termite-nest"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="termite-nest'))
+expression: r0()

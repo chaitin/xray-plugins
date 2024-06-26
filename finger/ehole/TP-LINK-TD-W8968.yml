@@ -1,0 +1,30 @@
+name: fingerprint-yaml-TP-LINK-TD-W8968
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-TD-W8968
+    fofa: header="tp-link td-w8968" || header="TP-LINK TD-W8968" || title="td-w8968"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tp-link td-w8968"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TP-LINK TD-W8968"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("td-w8968")
+expression: r0() || r1() || r2()

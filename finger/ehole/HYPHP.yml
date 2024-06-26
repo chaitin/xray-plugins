@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HYPHP
+manual: false
+detail:
+    fingerprint:
+        name: HYPHP
+    fofa: header="HYPHP" || title="HYPHP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HYPHP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HYPHP")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Roteador-Intelbras-Wireless
+manual: false
+detail:
+    fingerprint:
+        name: Roteador-Intelbras-Wireless
+    fofa: header="realm=\"roteador intelbras wireless"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="roteador intelbras wireless'))
+expression: r0()

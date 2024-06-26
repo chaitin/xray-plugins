@@ -1,0 +1,23 @@
+name: fingerprint-yaml-IceWarp-Email-Server
+manual: false
+detail:
+    fingerprint:
+        name: IceWarp-Email-Server
+    fofa: body="<noscript>Please, enable <strong>JavaScript</strong> for this site and if such option is not available, download the latest <a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\">Internet Explorer</a> or <a href=\"http://www.getfirefox.com\">Mozilla FireFox</a>.</noscript>" || body="<span id=\"cipher\"><input type=\"checkbox\" name=\"xcipher\" value=\"1\" >Encrypted login</span>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<noscript>Please, enable <strong>JavaScript</strong> for this site and if such option is not available, download the latest <a href="http://www.microsoft.com/windows/downloads/ie/getitnow.mspx">Internet Explorer</a> or <a href="http://www.getfirefox.com">Mozilla FireFox</a>.</noscript>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="cipher"><input type="checkbox" name="xcipher" value="1" >Encrypted login</span>')
+expression: r0() || r1()

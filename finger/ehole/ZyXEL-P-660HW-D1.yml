@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-P-660HW-D1
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-P-660HW-D1
+    fofa: header="realm=\"p-660hw-d1"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="p-660hw-d1'))
+expression: r0()

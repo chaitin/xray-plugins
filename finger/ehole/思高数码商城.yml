@@ -1,0 +1,16 @@
+name: fingerprint-yaml-思高数码商城
+manual: false
+detail:
+    fingerprint:
+        name: 思高数码商城
+    fofa: title="思高数码商城"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("思高数码商城")
+expression: r0()

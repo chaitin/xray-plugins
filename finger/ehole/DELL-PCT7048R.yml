@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DELL-PCT7048R
+manual: false
+detail:
+    fingerprint:
+        name: DELL-PCT7048R
+    fofa: body="class=\"login_server_default\">pct7048r"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="login_server_default">pct7048r')
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-中兴路由器
+manual: false
+detail:
+    fingerprint:
+        name: 中兴路由器
+    fofa: header="Server:Mini web server 1.0 ZTE corp 2005."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Server:Mini web server 1.0 ZTE corp 2005."))
+expression: r0()

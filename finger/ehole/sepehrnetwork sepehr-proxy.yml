@@ -1,0 +1,23 @@
+name: fingerprint-yaml-sepehrnetwork sepehr-proxy
+manual: false
+detail:
+    fingerprint:
+        name: sepehrnetwork sepehr-proxy
+    fofa: header="sepehrnetwork sepehr-proxy" || title="sepehrnetwork sepehr-proxy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("sepehrnetwork sepehr-proxy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("sepehrnetwork sepehr-proxy")
+expression: r0() || r1()

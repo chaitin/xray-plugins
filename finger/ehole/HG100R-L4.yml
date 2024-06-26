@@ -1,0 +1,30 @@
+name: fingerprint-yaml-HG100R-L4
+manual: false
+detail:
+    fingerprint:
+        name: HG100R-L4
+    fofa: body="nav.rg_str_incorrect_id_password" && body="copyright &copy; 2014 humax co., ltd. all rights reserved" || body="nav.rg_str_incorrect_id_password" || body="copyright &copy; 2014 humax co., ltd. all rights reserved"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nav.rg_str_incorrect_id_password") && response.body_string.contains("copyright &copy; 2014 humax co., ltd. all rights reserved")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("nav.rg_str_incorrect_id_password")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright &copy; 2014 humax co., ltd. all rights reserved")
+expression: r0() || r1() || r2()

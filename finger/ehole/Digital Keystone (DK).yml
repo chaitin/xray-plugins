@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Digital Keystone (DK)
+manual: false
+detail:
+    fingerprint:
+        name: Digital Keystone (DK)
+    fofa: icon_hash="-373674173"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -373674173
+expression: r0()

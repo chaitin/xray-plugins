@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Dahua Storm (DVR)
+manual: false
+detail:
+    fingerprint:
+        name: Dahua Storm (DVR)
+    fofa: icon_hash="1281253102"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1281253102
+expression: r0()

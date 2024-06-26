@@ -1,0 +1,72 @@
+name: fingerprint-yaml-Fidion-CMS
+manual: false
+detail:
+    fingerprint:
+        name: Fidion-CMS
+    fofa: 'body="<!-- fcms-template head.tpl begins" || header="fcms=" || body="<!-- fCMS-Template head.tpl begins" || header="fCMS=" || header="fidion CMS" || body="<!-- ================== This site is powered by: ==================== -->" || body="<!-- | fCMS by fidion GmbH, Wüg.         http://www.fidion.de  | -->" || body="<!-- fCMS-Template head.tpl begins -->" || title="fidion CMS"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- fcms-template head.tpl begins")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fcms="))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- fCMS-Template head.tpl begins")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fCMS="))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fidion CMS"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- ================== This site is powered by: ==================== -->")'
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- | fCMS by fidion GmbH, Wüg.         http://www.fidion.de  | -->")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- fCMS-Template head.tpl begins -->")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("fidion CMS")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

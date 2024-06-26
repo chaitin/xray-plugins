@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Sencha Touch
+manual: false
+detail:
+    fingerprint:
+        name: Sencha Touch
+    fofa: header="Sencha Touch" || title="Sencha Touch"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Sencha Touch"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sencha Touch")
+expression: r0() || r1()

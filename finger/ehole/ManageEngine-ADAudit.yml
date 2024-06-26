@@ -1,0 +1,51 @@
+name: fingerprint-yaml-ManageEngine-ADAudit
+manual: false
+detail:
+    fingerprint:
+        name: ManageEngine-ADAudit
+    fofa: body="adauditplus authentication" && body="title=\"manageengine admanager plus" && body="manageengine" || body="title=\"manageengine admanager plus" || body="adauditplus authentication" || body="manageengine" || title="manageengine - admanager plus" || title="manageengine - adaudit plus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("adauditplus authentication") && response.body_string.contains('title="manageengine admanager plus') && response.body_string.contains("manageengine")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('title="manageengine admanager plus')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("adauditplus authentication")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("manageengine")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("manageengine - admanager plus")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("manageengine - adaudit plus")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

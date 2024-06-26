@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FCS-1060 P_T IP Network Camera
+manual: false
+detail:
+    fingerprint:
+        name: FCS-1060 P/T IP Network Camera
+    fofa: header="FCS-1060 P/T IP Network Camera" || title="FCS-1060 P/T IP Network Camera"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FCS-1060 P/T IP Network Camera"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FCS-1060 P/T IP Network Camera")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-昆石网络 VOS2009
+manual: false
+detail:
+    fingerprint:
+        name: 昆石网络 VOS2009
+    fofa: header="昆石网络 VOS2009" || title="昆石网络 VOS2009"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("昆石网络 VOS2009"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("昆石网络 VOS2009")
+expression: r0() || r1()

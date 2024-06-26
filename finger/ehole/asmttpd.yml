@@ -1,0 +1,23 @@
+name: fingerprint-yaml-asmttpd
+manual: false
+detail:
+    fingerprint:
+        name: asmttpd
+    fofa: header="asmttpd" || title="asmttpd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("asmttpd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("asmttpd")
+expression: r0() || r1()

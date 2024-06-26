@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ClickShare WebServer
+manual: false
+detail:
+    fingerprint:
+        name: ClickShare WebServer
+    fofa: header="ClickShare WebServer" || title="ClickShare WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ClickShare WebServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ClickShare WebServer")
+expression: r0() || r1()

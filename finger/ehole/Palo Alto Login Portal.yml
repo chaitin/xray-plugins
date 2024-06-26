@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Palo Alto Login Portal
+manual: false
+detail:
+    fingerprint:
+        name: Palo Alto Login Portal
+    fofa: icon_hash="602431586"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 602431586
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OSTD-Cloud
+manual: false
+detail:
+    fingerprint:
+        name: OSTD-Cloud
+    fofa: body="class=\"sys-title-right\">智联云服务"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="sys-title-right">智联云服务')
+expression: r0()

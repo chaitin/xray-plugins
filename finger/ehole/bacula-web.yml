@@ -1,0 +1,30 @@
+name: fingerprint-yaml-bacula-web
+manual: false
+detail:
+    fingerprint:
+        name: bacula-web
+    fofa: title="bacula-web" || title="bacula web" || title="webacula"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bacula-web")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bacula web")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("webacula")
+expression: r0() || r1() || r2()

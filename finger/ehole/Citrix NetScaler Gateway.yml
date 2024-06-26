@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Citrix NetScaler Gateway
+manual: false
+detail:
+    fingerprint:
+        name: Citrix NetScaler Gateway
+    fofa: header="Citrix NetScaler Gateway" || title="Citrix NetScaler Gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Citrix NetScaler Gateway"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Citrix NetScaler Gateway")
+expression: r0() || r1()

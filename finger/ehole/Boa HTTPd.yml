@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Boa HTTPd
+manual: false
+detail:
+    fingerprint:
+        name: Boa HTTPd
+    fofa: header="Boa HTTPd" || title="Boa HTTPd"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Boa HTTPd"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Boa HTTPd")
+expression: r0() || r1()

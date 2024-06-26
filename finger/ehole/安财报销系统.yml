@@ -1,0 +1,16 @@
+name: fingerprint-yaml-安财报销系统
+manual: false
+detail:
+    fingerprint:
+        name: 安财报销系统
+    fofa: title="安财报销系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安财报销系统")
+expression: r0()

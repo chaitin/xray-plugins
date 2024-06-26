@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Piwigo
+manual: false
+detail:
+    fingerprint:
+        name: Piwigo
+    fofa: body="generator\" content=\"piwigo" || header="pwg_id" || body="generator\" content=\"Piwigo" || body="<meta name=\"generator\" content=\"Piwigo (aka PWG), see piwigo.org\">" || body="<meta name=\"generator\" content=\"Piwigo, piwigo.org\">"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="piwigo')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("pwg_id"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="Piwigo')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Piwigo (aka PWG), see piwigo.org">')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="Piwigo, piwigo.org">')
+expression: r0() || r1() || r2() || r3() || r4()

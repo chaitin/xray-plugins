@@ -1,0 +1,65 @@
+name: fingerprint-yaml-Calypso-ION-8r-Device
+manual: false
+detail:
+    fingerprint:
+        name: Calypso-ION-8r-Device
+    fofa: body="/a/cfg/entercmd.stm" || header="calypso ion8r device" || body="/A/cfg/entercmd.stm" || header="Calypso ION8r Device" || body="<title>Calypso ION-8r Device</title>" || body="<li><a href=\"/A/cfg/entercmd.stm\">Enter Command</a></li>" || body="Calypso ION8r Device" || title="calypso ion-8r device"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/a/cfg/entercmd.stm")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("calypso ion8r device"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/A/cfg/entercmd.stm")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Calypso ION8r Device"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>Calypso ION-8r Device</title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<li><a href="/A/cfg/entercmd.stm">Enter Command</a></li>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Calypso ION8r Device")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("calypso ion-8r device")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Skylable-SX
+manual: false
+detail:
+    fingerprint:
+        name: Skylable-SX
+    fofa: header="Skylable-SX" || title="Skylable-SX"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Skylable-SX"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Skylable-SX")
+expression: r0() || r1()

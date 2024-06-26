@@ -1,0 +1,65 @@
+name: fingerprint-yaml-eMeeting-Online-Dating-Software
+manual: false
+detail:
+    fingerprint:
+        name: eMeeting-Online-Dating-Software
+    fofa: body="emeeting dating software" && body="/_emeetingglobals.js" || body="eMeeting Dating Software" || body="/_eMeetingGlobals.js" || body="/_emeetingglobals.js" || body="emeeting dating software" || body="<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>Admin Area Login</title>" || body="<td valign=\"bottom\"><h2>Admin Area Login</h2></td>" || body="<a href=\"http://www.datingscripts.org\" alt=\"Dating Software by eMeeting Ltd\" target=\"_blank\">Dating Software Powered by eMeeting Ltd</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("emeeting dating software") && response.body_string.contains("/_emeetingglobals.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("eMeeting Dating Software")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/_eMeetingGlobals.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/_emeetingglobals.js")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("emeeting dating software")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Admin Area Login</title>')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td valign="bottom"><h2>Admin Area Login</h2></td>')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://www.datingscripts.org" alt="Dating Software by eMeeting Ltd" target="_blank">Dating Software Powered by eMeeting Ltd</a>')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

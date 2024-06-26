@@ -1,0 +1,16 @@
+name: fingerprint-yaml-motionEye (camera)
+manual: false
+detail:
+    fingerprint:
+        name: motionEye (camera)
+    fofa: icon_hash="-923693877"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -923693877
+expression: r0()

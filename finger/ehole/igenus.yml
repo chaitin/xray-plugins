@@ -1,0 +1,16 @@
+name: fingerprint-yaml-igenus
+manual: false
+detail:
+    fingerprint:
+        name: igenus
+    fofa: title="igenus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("igenus")
+expression: r0()

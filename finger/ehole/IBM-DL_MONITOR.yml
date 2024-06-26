@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBM-DL_MONITOR
+manual: false
+detail:
+    fingerprint:
+        name: IBM-DL_MONITOR
+    fofa: header="dl_monitor"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("dl_monitor"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-xinyicms
+manual: false
+detail:
+    fingerprint:
+        name: xinyicms
+    fofa: header="xinyicms" || title="xinyicms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("xinyicms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("xinyicms")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CSCSSM
+manual: false
+detail:
+    fingerprint:
+        name: CSCSSM
+    fofa: header="CSCSSM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CSCSSM"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-e-junkie
+manual: false
+detail:
+    fingerprint:
+        name: e-junkie
+    fofa: body="function EJEJC_lc"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function EJEJC_lc")
+expression: r0()

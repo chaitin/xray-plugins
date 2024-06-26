@@ -1,0 +1,37 @@
+name: fingerprint-yaml-VIEWGOOD(远古媒体发布平台)
+manual: false
+detail:
+    fingerprint:
+        name: VIEWGOOD(远古媒体发布平台)
+    fofa: body="VIEWGOOD" || body="远古媒体发布平台" || title="VIEWGOOD" || title="远古媒体发布平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("VIEWGOOD")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("远古媒体发布平台")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("VIEWGOOD")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("远古媒体发布平台")
+expression: r0() || r1() || r2() || r3()

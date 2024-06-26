@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HomeFounder_个人博客系统
+manual: false
+detail:
+    fingerprint:
+        name: HomeFounder_个人博客系统
+    fofa: title="HomeFounder_个人博客系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HomeFounder_个人博客系统")
+expression: r0()

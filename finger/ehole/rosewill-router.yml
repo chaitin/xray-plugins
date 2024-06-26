@@ -1,0 +1,30 @@
+name: fingerprint-yaml-rosewill-router
+manual: false
+detail:
+    fingerprint:
+        name: rosewill-router
+    fofa: 'header="rnx-n300rt" && header="default: admin/admin" || header="default: admin/admin" || header="rnx-n300rt"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("rnx-n300rt")) && response.raw_header.bcontains(bytes("default: admin/admin"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("default: admin/admin"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("rnx-n300rt"))
+expression: r0() || r1() || r2()

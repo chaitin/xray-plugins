@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys WAP54GP
+manual: false
+detail:
+    fingerprint:
+        name: Linksys WAP54GP
+    fofa: header="Linksys WAP54GP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Linksys WAP54GP"))
+expression: r0()

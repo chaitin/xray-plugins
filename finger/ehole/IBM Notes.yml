@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IBM Notes
+manual: false
+detail:
+    fingerprint:
+        name: IBM Notes
+    fofa: icon_hash="728788645"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 728788645
+expression: r0()

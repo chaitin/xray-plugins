@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Qualcomm-4G-LTE-WiFi-VoIP-Router
+manual: false
+detail:
+    fingerprint:
+        name: Qualcomm-4G-LTE-WiFi-VoIP-Router
+    fofa: title="4g lte wifi voip router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("4g lte wifi voip router")
+expression: r0()

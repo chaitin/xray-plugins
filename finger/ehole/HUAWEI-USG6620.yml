@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HUAWEI-USG6620
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI-USG6620
+    fofa: header="huawei usg6620"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("huawei usg6620"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MobileIron System Manager
+manual: false
+detail:
+    fingerprint:
+        name: MobileIron System Manager
+    fofa: header="MobileIron System Manager" || title="MobileIron System Manager"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MobileIron System Manager"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MobileIron System Manager")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-viennaCMS
+manual: false
+detail:
+    fingerprint:
+        name: viennaCMS
+    fofa: title="viennaCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("viennaCMS")
+expression: r0()

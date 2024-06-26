@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-NBG2105
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-NBG2105
+    fofa: title="zyxel nbg2105"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("zyxel nbg2105")
+expression: r0()

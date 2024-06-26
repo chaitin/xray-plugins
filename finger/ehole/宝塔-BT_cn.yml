@@ -1,0 +1,72 @@
+name: fingerprint-yaml-宝塔-BT_cn
+manual: false
+detail:
+    fingerprint:
+        name: 宝塔-BT.cn
+    fofa: body="入口校验失败" || body="没有找到站点" && body="可能原因" && body="CDN产品" && body="Web服务" && body="检查端口是否正确" || body="<title>恭喜，站点创建成功" && body="面板系统后台" && body="系统自动生成" || body="扫码登录更安全" && body="bt.cn" && body="/login" || body="站点创建成功" && body="bt.cn" || body="站点创建成功" && body="宝塔" || icon_hash="-386189083" || body="宝塔Linux面板" || body="<title>入口校验失败</title>" && body="href=\"http://www.bt.cn/bbs\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("入口校验失败")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("没有找到站点") && response.body_string.contains("可能原因") && response.body_string.contains("CDN产品") && response.body_string.contains("Web服务") && response.body_string.contains("检查端口是否正确")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>恭喜，站点创建成功") && response.body_string.contains("面板系统后台") && response.body_string.contains("系统自动生成")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("扫码登录更安全") && response.body_string.contains("bt.cn") && response.body_string.contains("/login")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("站点创建成功") && response.body_string.contains("bt.cn")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("站点创建成功") && response.body_string.contains("宝塔")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -386189083
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("宝塔Linux面板")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>入口校验失败</title>") && response.body_string.contains('href="http://www.bt.cn/bbs"')
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

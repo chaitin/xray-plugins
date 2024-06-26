@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Joyent
+manual: false
+detail:
+    fingerprint:
+        name: Joyent
+    fofa: 'header="realm=\"joyent" && header="served-by: joyent" || header="served-by: joyent" || header="realm=\"joyent"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes(''realm="joyent'')) && response.raw_header.bcontains(bytes("served-by: joyent"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("served-by: joyent"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="joyent'))
+expression: r0() || r1() || r2()

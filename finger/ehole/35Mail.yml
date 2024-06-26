@@ -1,0 +1,65 @@
+name: fingerprint-yaml-35Mail
+manual: false
+detail:
+    fingerprint:
+        name: 35Mail
+    fofa: body="switchingserverpopup" && body="images/mail/35pushmail.app.png" && body="class=\"user_define_img_btn6\" href=\"http://help.mail.35.com/mailman/81.html" || header="35Mail" || body="class=\"user_define_img_btn6\" href=\"http://help.mail.35.com/mailman/81.html" || body="images/mail/35pushmail.app.png" || body="35" && body="switchingserverpopup" || body="switchingserverpopup" || body="35" && body="images/mail/35pushmail.app.png" && body="switchingserverpopup" || title="35Mail"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("switchingserverpopup") && response.body_string.contains("images/mail/35pushmail.app.png") && response.body_string.contains('class="user_define_img_btn6" href="http://help.mail.35.com/mailman/81.html')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("35Mail"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="user_define_img_btn6" href="http://help.mail.35.com/mailman/81.html')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/mail/35pushmail.app.png")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("35") && response.body_string.contains("switchingserverpopup")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("switchingserverpopup")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("35") && response.body_string.contains("images/mail/35pushmail.app.png") && response.body_string.contains("switchingserverpopup")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("35Mail")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7()

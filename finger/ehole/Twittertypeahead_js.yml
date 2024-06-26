@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Twittertypeahead_js
+manual: false
+detail:
+    fingerprint:
+        name: Twittertypeahead.js
+    fofa: title="Twitter typeahead.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Twitter typeahead.js")
+expression: r0()

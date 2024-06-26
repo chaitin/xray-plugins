@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Apigee
+manual: false
+detail:
+    fingerprint:
+        name: Apigee
+    fofa: header="Apigee" || title="Apigee"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Apigee"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Apigee")
+expression: r0() || r1()

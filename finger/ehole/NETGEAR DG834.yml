@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR DG834
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR DG834
+    fofa: header="NETGEAR DG834"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR DG834"))
+expression: r0()

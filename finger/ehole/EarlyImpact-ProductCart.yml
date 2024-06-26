@@ -1,0 +1,30 @@
+name: fingerprint-yaml-EarlyImpact-ProductCart
+manual: false
+detail:
+    fingerprint:
+        name: EarlyImpact-ProductCart
+    fofa: body="fpassword.asp?redirectUrl=&frURL=Custva.asp" || body="<a href=\"fpassword.asp?redirectUrl=&frURL=Custva.asp\"" || body="<!-- end of password request -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fpassword.asp?redirectUrl=&frURL=Custva.asp")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="fpassword.asp?redirectUrl=&frURL=Custva.asp"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- end of password request -->")
+expression: r0() || r1() || r2()

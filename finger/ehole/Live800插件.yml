@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Live800插件
+manual: false
+detail:
+    fingerprint:
+        name: Live800插件
+    fofa: title="Live800插件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Live800插件")
+expression: r0()

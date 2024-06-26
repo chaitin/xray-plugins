@@ -1,0 +1,16 @@
+name: fingerprint-yaml-subeicms
+manual: false
+detail:
+    fingerprint:
+        name: subeicms
+    fofa: title="subeicms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("subeicms")
+expression: r0()

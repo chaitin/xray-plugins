@@ -1,0 +1,16 @@
+name: fingerprint-yaml-feiyuxing_router
+manual: false
+detail:
+    fingerprint:
+        name: feiyuxing_router
+    fofa: title="feiyuxing_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("feiyuxing_router")
+expression: r0()

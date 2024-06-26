@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PHP_8_1_0-dev
+manual: false
+detail:
+    fingerprint:
+        name: PHP/8.1.0-dev
+    fofa: header="PHP/8.1.0-dev"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHP/8.1.0-dev"))
+expression: r0()

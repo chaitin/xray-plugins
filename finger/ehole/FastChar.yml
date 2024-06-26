@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FastChar
+manual: false
+detail:
+    fingerprint:
+        name: FastChar
+    fofa: header="FastChar" || title="FastChar"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FastChar"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FastChar")
+expression: r0() || r1()

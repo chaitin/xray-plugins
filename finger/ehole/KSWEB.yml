@@ -1,0 +1,23 @@
+name: fingerprint-yaml-KSWEB
+manual: false
+detail:
+    fingerprint:
+        name: KSWEB
+    fofa: header="KSWEB" || title="KSWEB"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("KSWEB"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("KSWEB")
+expression: r0() || r1()

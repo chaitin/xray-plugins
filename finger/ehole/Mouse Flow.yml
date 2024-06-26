@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mouse Flow
+manual: false
+detail:
+    fingerprint:
+        name: Mouse Flow
+    fofa: header="Mouse Flow" || title="Mouse Flow"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mouse Flow"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mouse Flow")
+expression: r0() || r1()

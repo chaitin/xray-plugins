@@ -1,0 +1,58 @@
+name: fingerprint-yaml-NetDvrV3
+manual: false
+detail:
+    fingerprint:
+        name: NetDvrV3
+    fofa: body="objlvrfornoie" && body="netdvrv3" && body="document.write(\"<a href='../netdvrv3.exe'>web client plugin</a>.\"" || body="objLvrForNoIE" || body="document.write(\"<a href=\"../netdvrv3.exe\">web client plugin</a>.\"" || body="objlvrfornoie" || body="netdvrv3" || body="document.write\"<a href=\"../netdvrv3.exe\">web client plugin</a>.\"" || title="netdvrv3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("objlvrfornoie") && response.body_string.contains("netdvrv3") && response.body_string.contains("document.write(\"<a href='../netdvrv3.exe'>web client plugin</a>.\"")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("objLvrForNoIE")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.write("<a href="../netdvrv3.exe">web client plugin</a>."')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("objlvrfornoie")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("netdvrv3")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.write"<a href="../netdvrv3.exe">web client plugin</a>."')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netdvrv3")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

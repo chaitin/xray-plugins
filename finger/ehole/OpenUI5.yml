@@ -1,0 +1,23 @@
+name: fingerprint-yaml-OpenUI5
+manual: false
+detail:
+    fingerprint:
+        name: OpenUI5
+    fofa: header="OpenUI5" || title="OpenUI5"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("OpenUI5"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("OpenUI5")
+expression: r0() || r1()

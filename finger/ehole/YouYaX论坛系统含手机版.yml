@@ -1,0 +1,16 @@
+name: fingerprint-yaml-YouYaX论坛系统含手机版
+manual: false
+detail:
+    fingerprint:
+        name: YouYaX论坛系统含手机版
+    fofa: title="YouYaX论坛系统含手机版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("YouYaX论坛系统含手机版")
+expression: r0()

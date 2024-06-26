@@ -1,0 +1,23 @@
+name: fingerprint-yaml-thin
+manual: false
+detail:
+    fingerprint:
+        name: thin
+    fofa: 'header="codename" || header="server: thin" && header="codename"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("codename"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: thin")) && response.raw_header.bcontains(bytes("codename"))'
+expression: r0() || r1()

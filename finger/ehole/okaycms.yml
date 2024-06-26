@@ -1,0 +1,23 @@
+name: fingerprint-yaml-okaycms
+manual: false
+detail:
+    fingerprint:
+        name: okaycms
+    fofa: header="okaycms" || title="okaycms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("okaycms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("okaycms")
+expression: r0() || r1()

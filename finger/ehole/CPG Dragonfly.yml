@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CPG Dragonfly
+manual: false
+detail:
+    fingerprint:
+        name: CPG Dragonfly
+    fofa: header="CPG Dragonfly" || title="CPG Dragonfly"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CPG Dragonfly"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CPG Dragonfly")
+expression: r0() || r1()

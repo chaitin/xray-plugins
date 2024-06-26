@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hanwha-XRN-810S
+manual: false
+detail:
+    fingerprint:
+        name: Hanwha-XRN-810S
+    fofa: body="$.nvr.model_name=\"xrn-810s\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('$.nvr.model_name="xrn-810s"')
+expression: r0()

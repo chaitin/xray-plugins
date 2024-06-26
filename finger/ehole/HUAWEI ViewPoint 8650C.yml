@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HUAWEI ViewPoint 8650C
+manual: false
+detail:
+    fingerprint:
+        name: HUAWEI ViewPoint 8650C
+    fofa: header="HUAWEI ViewPoint 8650C" || title="HUAWEI ViewPoint 8650C"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HUAWEI ViewPoint 8650C"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HUAWEI ViewPoint 8650C")
+expression: r0() || r1()

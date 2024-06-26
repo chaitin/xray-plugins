@@ -1,0 +1,16 @@
+name: fingerprint-yaml-idera
+manual: false
+detail:
+    fingerprint:
+        name: idera
+    fofa: icon_hash="-450254253"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -450254253
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SCJG_CMS
+manual: false
+detail:
+    fingerprint:
+        name: SCJG_CMS
+    fofa: title="SCJG_CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SCJG_CMS")
+expression: r0()

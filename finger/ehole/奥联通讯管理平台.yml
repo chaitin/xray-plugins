@@ -1,0 +1,16 @@
+name: fingerprint-yaml-奥联通讯管理平台
+manual: false
+detail:
+    fingerprint:
+        name: 奥联通讯管理平台
+    fofa: icon_hash="-1356973161"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1356973161
+expression: r0()

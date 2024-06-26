@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Mesosphere-DC_OS
+manual: false
+detail:
+    fingerprint:
+        name: Mesosphere-DC/OS
+    fofa: header="realm=\"mesosphere" || title="dc/os" || title="mesosphere dc/os" || title="mesosphere dcos" || title="天宫dc/os"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="mesosphere'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("dc/os")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mesosphere dc/os")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mesosphere dcos")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("天宫dc/os")
+expression: r0() || r1() || r2() || r3() || r4()

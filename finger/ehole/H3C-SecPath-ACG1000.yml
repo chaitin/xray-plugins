@@ -1,0 +1,30 @@
+name: fingerprint-yaml-H3C-SecPath-ACG1000
+manual: false
+detail:
+    fingerprint:
+        name: H3C-SecPath-ACG1000
+    fofa: body="src=\"./js/web_auth.js" && body="var msg1=\"username can not be empty\"" || body="src=\"./js/web_auth.js" || body="var msg1=\"username can not be empty\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="./js/web_auth.js') && response.body_string.contains('var msg1="username can not be empty"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="./js/web_auth.js')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var msg1="username can not be empty"')
+expression: r0() || r1() || r2()

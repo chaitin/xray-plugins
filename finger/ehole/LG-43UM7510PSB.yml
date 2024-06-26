@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LG-43UM7510PSB
+manual: false
+detail:
+    fingerprint:
+        name: LG-43UM7510PSB
+    fofa: body="<modelnumber>43um7510psb</modelnumber>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<modelnumber>43um7510psb</modelnumber>")
+expression: r0()

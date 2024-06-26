@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Riskified
+manual: false
+detail:
+    fingerprint:
+        name: Riskified
+    fofa: header="Riskified" || title="Riskified"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Riskified"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Riskified")
+expression: r0() || r1()

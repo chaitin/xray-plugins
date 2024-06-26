@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Kerio_WinRoute_Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Kerio_WinRoute_Firewall
+    fofa: body="style/bodyNonauth.css" || body="/gfx/kerio_logo.gif" || header="Kerio WinRoute Firewall" || header="Kerio WinRoute Firewall Embedded Web Server" || body="<meta HTTP-EQUIV=\"Refresh\" content=\"0;URL=/internal/ntlm/dologin.php?internal=0\"><title>Kerio WinRoute Firewall - Login Page - Kerio WinRoute Firewall</title>" || title="Kerio WinRoute Firewall"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("style/bodyNonauth.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/gfx/kerio_logo.gif")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kerio WinRoute Firewall"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Kerio WinRoute Firewall Embedded Web Server"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta HTTP-EQUIV="Refresh" content="0;URL=/internal/ntlm/dologin.php?internal=0"><title>Kerio WinRoute Firewall - Login Page - Kerio WinRoute Firewall</title>')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Kerio WinRoute Firewall")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

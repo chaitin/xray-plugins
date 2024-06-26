@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Material Dashboard
+manual: false
+detail:
+    fingerprint:
+        name: Material Dashboard
+    fofa: icon_hash="1913538826"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1913538826
+expression: r0()

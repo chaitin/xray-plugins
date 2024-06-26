@@ -1,0 +1,44 @@
+name: fingerprint-yaml-BiHaiYunHe-Router
+manual: false
+detail:
+    fingerprint:
+        name: BiHaiYunHe-Router
+    fofa: body="src=\"internal/ext-lang-zh_cn.js\"" && body="<h4>欢迎登录碧海云盒</h4>" || body="<h4>欢迎登录碧海云盒</h4>" && body="src=\"lib/ext-lang-zh_cn.js\"" || body="src=\"internal/ext-lang-zh_cn.js\"" || body="<h4>欢迎登录碧海云盒</h4>" || title="碧海云盒"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="internal/ext-lang-zh_cn.js"') && response.body_string.contains("<h4>欢迎登录碧海云盒</h4>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h4>欢迎登录碧海云盒</h4>") && response.body_string.contains('src="lib/ext-lang-zh_cn.js"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="internal/ext-lang-zh_cn.js"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h4>欢迎登录碧海云盒</h4>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("碧海云盒")
+expression: r0() || r1() || r2() || r3() || r4()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lantronix-Modbus-Bridge
+manual: false
+detail:
+    fingerprint:
+        name: Lantronix-Modbus-Bridge
+    fofa: header="modbus bridge"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("modbus bridge"))
+expression: r0()

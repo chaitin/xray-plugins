@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HAC 运维审计系统
+manual: false
+detail:
+    fingerprint:
+        name: HAC 运维审计系统
+    fofa: header="HAC 运维审计系统" || title="HAC 运维审计系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HAC 运维审计系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HAC 运维审计系统")
+expression: r0() || r1()

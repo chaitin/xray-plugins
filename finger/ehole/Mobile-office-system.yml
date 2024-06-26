@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Mobile-office-system
+manual: false
+detail:
+    fingerprint:
+        name: Mobile-office-system
+    fofa: body="window.location.href = '/ui/html/login.html';" || body="window.location.href = \"/ui/html/login.html\";" || body="window.location.href = /ui/html/login.html\";" || title="移动办公系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("window.location.href = '/ui/html/login.html';")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = "/ui/html/login.html";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href = /ui/html/login.html";')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("移动办公系统")
+expression: r0() || r1() || r2() || r3()

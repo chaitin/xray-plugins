@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Logitech-Media-Server
+manual: false
+detail:
+    fingerprint:
+        name: Logitech-Media-Server
+    fofa: header="logitech media server" || header="Logitech Media Server" || title="Logitech Media Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("logitech media server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Logitech Media Server"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Logitech Media Server")
+expression: r0() || r1() || r2()

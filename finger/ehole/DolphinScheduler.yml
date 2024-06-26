@@ -1,0 +1,37 @@
+name: fingerprint-yaml-DolphinScheduler
+manual: false
+detail:
+    fingerprint:
+        name: DolphinScheduler
+    fofa: body="let node_env = 'true'" && body="<title>dolphinscheduler</title>" || body="<title>dolphinscheduler</title>" || body="let node_env = \"true\"" || body="let node_env = true\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("let node_env = 'true'") && response.body_string.contains("<title>dolphinscheduler</title>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>dolphinscheduler</title>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('let node_env = "true"')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('let node_env = true"')
+expression: r0() || r1() || r2() || r3()

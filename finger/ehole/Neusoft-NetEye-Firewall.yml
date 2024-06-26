@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Neusoft-NetEye-Firewall
+manual: false
+detail:
+    fingerprint:
+        name: Neusoft-NetEye-Firewall
+    fofa: body="name=\"login_form\" action=\"/fwm4/fwm.cgi/usrlgin\" " || body="name=\"login_form\" action=\"/fwm4/fwm.cgi/usrlgin\"" || title="neteye防火墙系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="login_form" action="/fwm4/fwm.cgi/usrlgin" ')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('name="login_form" action="/fwm4/fwm.cgi/usrlgin"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("neteye防火墙系统")
+expression: r0() || r1() || r2()

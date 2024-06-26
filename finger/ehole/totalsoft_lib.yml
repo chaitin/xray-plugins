@@ -1,0 +1,16 @@
+name: fingerprint-yaml-totalsoft_lib
+manual: false
+detail:
+    fingerprint:
+        name: totalsoft_lib
+    fofa: title="totalsoft_lib"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("totalsoft_lib")
+expression: r0()

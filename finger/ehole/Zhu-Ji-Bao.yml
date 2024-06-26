@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Zhu-Ji-Bao
+manual: false
+detail:
+    fingerprint:
+        name: Zhu-Ji-Bao
+    fofa: body="您访问的是主机宝服务器默认页" && body="<a href=\"http://z.admin5.com/\" target=" || body="<a href=\"http://z.admin5.com/\" target=" || body="您访问的是主机宝服务器默认页" || title="主机宝"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("您访问的是主机宝服务器默认页") && response.body_string.contains('<a href="http://z.admin5.com/" target=')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="http://z.admin5.com/" target=')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("您访问的是主机宝服务器默认页")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("主机宝")
+expression: r0() || r1() || r2() || r3()

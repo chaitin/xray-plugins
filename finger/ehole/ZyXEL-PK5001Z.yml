@@ -1,0 +1,30 @@
+name: fingerprint-yaml-ZyXEL-PK5001Z
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-PK5001Z
+    fofa: body=">centurylink&reg; modem configuration zyxel pk5001z<" && body="centurylink.com</a>" || body=">centurylink&reg; modem configuration zyxel pk5001z<" || body="centurylink.com</a>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">centurylink&reg; modem configuration zyxel pk5001z<") && response.body_string.contains("centurylink.com</a>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains(">centurylink&reg; modem configuration zyxel pk5001z<")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("centurylink.com</a>")
+expression: r0() || r1() || r2()

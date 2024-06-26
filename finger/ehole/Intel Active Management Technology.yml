@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Intel Active Management Technology
+manual: false
+detail:
+    fingerprint:
+        name: Intel Active Management Technology
+    fofa: header="Intel Active Management Technology" || title="Intel Active Management Technology"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Intel Active Management Technology"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Intel Active Management Technology")
+expression: r0() || r1()

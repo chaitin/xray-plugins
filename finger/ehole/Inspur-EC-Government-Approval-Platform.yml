@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Inspur-EC-Government-Approval-Platform
+manual: false
+detail:
+    fingerprint:
+        name: Inspur-EC-Government-Approval-Platform
+    fofa: body="onlinequery/querylist.aspx" && body="langchao.ecgap.outportal" || body="langchao.ecgap.outportal" || body="onlinequery/querylist.aspx" || title="浪潮政务"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("onlinequery/querylist.aspx") && response.body_string.contains("langchao.ecgap.outportal")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("langchao.ecgap.outportal")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("onlinequery/querylist.aspx")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("浪潮政务")
+expression: r0() || r1() || r2() || r3()

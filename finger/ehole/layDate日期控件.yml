@@ -1,0 +1,16 @@
+name: fingerprint-yaml-layDate日期控件
+manual: false
+detail:
+    fingerprint:
+        name: layDate日期控件
+    fofa: title="layDate日期控件"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("layDate日期控件")
+expression: r0()

@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Hitachi-Storage-Navigator
+manual: false
+detail:
+    fingerprint:
+        name: Hitachi-Storage-Navigator
+    fofa: body="<form method=\"post\" action=\"./index.do\" name=\"frm\" />" || title="jump to storagenavigator2" || title="hitachi device manager - storage navigator"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form method="post" action="./index.do" name="frm" />')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jump to storagenavigator2")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hitachi device manager - storage navigator")
+expression: r0() || r1() || r2()

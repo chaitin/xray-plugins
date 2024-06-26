@@ -1,0 +1,44 @@
+name: fingerprint-yaml-TP_LINK-TL-PS110U
+manual: false
+detail:
+    fingerprint:
+        name: TP_LINK-TL-PS110U
+    fofa: body="img src=\"images/blank.gif" && body="href=\"tcpip.htm\"" || header="tl-ps110u" || body="href=\"tcpip.htm\"" && body="img src=\"images/blank.gif" || body="img src=\"images/blank.gif" || body="href=\"tcpip.htm\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('img src="images/blank.gif') && response.body_string.contains('href="tcpip.htm"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("tl-ps110u"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="tcpip.htm"') && response.body_string.contains('img src="images/blank.gif')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('img src="images/blank.gif')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="tcpip.htm"')
+expression: r0() || r1() || r2() || r3() || r4()

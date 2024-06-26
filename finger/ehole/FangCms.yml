@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FangCms
+manual: false
+detail:
+    fingerprint:
+        name: FangCms
+    fofa: title="FangCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("FangCms")
+expression: r0()

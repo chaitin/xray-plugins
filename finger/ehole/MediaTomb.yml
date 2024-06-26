@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MediaTomb
+manual: false
+detail:
+    fingerprint:
+        name: MediaTomb
+    fofa: header="MediaTomb" || title="MediaTomb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MediaTomb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MediaTomb")
+expression: r0() || r1()

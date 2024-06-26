@@ -1,0 +1,23 @@
+name: fingerprint-yaml-联洲 热水锅炉自动控制系统
+manual: false
+detail:
+    fingerprint:
+        name: 联洲 热水锅炉自动控制系统
+    fofa: header="联洲 热水锅炉自动控制系统" || title="联洲 热水锅炉自动控制系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("联洲 热水锅炉自动控制系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("联洲 热水锅炉自动控制系统")
+expression: r0() || r1()

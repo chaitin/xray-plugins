@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Solusquare OmniCommerce Cloud
+manual: false
+detail:
+    fingerprint:
+        name: Solusquare OmniCommerce Cloud
+    fofa: header="Solusquare OmniCommerce Cloud" || title="Solusquare OmniCommerce Cloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Solusquare OmniCommerce Cloud"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Solusquare OmniCommerce Cloud")
+expression: r0() || r1()

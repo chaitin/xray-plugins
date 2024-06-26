@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Wisentsoft-TeaView
+manual: false
+detail:
+    fingerprint:
+        name: Wisentsoft-TeaView
+    fofa: title="teaview一体化监控运维管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("teaview一体化监控运维管理平台")
+expression: r0()

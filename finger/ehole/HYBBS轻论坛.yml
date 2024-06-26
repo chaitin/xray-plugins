@@ -1,0 +1,23 @@
+name: fingerprint-yaml-HYBBS轻论坛
+manual: false
+detail:
+    fingerprint:
+        name: HYBBS轻论坛
+    fofa: header="HYBBS轻论坛" || title="HYBBS轻论坛"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HYBBS轻论坛"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("HYBBS轻论坛")
+expression: r0() || r1()

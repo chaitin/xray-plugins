@@ -1,0 +1,23 @@
+name: fingerprint-yaml-venustech 天清入侵防御系统
+manual: false
+detail:
+    fingerprint:
+        name: venustech 天清入侵防御系统
+    fofa: header="venustech 天清入侵防御系统" || title="venustech 天清入侵防御系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("venustech 天清入侵防御系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("venustech 天清入侵防御系统")
+expression: r0() || r1()

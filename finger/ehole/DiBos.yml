@@ -1,0 +1,30 @@
+name: fingerprint-yaml-DiBos
+manual: false
+detail:
+    fingerprint:
+        name: DiBos
+    fofa: body="style/bovisnt.css" || body="<link rel=\"STYLESHEET\" type=\"text/css\" href=\"style/bovisnt.css\"></link>" || body="<h2>Object moved to <a href=\"/Error.aspx?error=wrongbrowser\">here</a>.</h2>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("style/bovisnt.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link rel="STYLESHEET" type="text/css" href="style/bovisnt.css"></link>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<h2>Object moved to <a href="/Error.aspx?error=wrongbrowser">here</a>.</h2>')
+expression: r0() || r1() || r2()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-MYRE-PHP
+manual: false
+detail:
+    fingerprint:
+        name: MYRE-PHP
+    fofa: 'body="<!-- begin: menu footer don''t change anything" && body="<b><u>my last viewed</u></b>" || body="<b><u>my last viewed</u></b>" || body="<!-- begin: menu footer don\"t change anything" || body="<td align=right><a href=\"links_view.php\"><font class=\"menu_top\"><b><u>My Last Viewed</u></b></font></a>&nbsp;&nbsp;<a href=\"alert.php?action=register\"><font class=\"menu_top\"><b><u>Get e-mail alerts</u></b></font></a>&nbsp;&nbsp;" || body="<!-- BEGIN: MENU FOOTER don\"t change anything -->"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains("<!-- begin: menu footer don''t change anything") && response.body_string.contains("<b><u>my last viewed</u></b>")'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b><u>my last viewed</u></b>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<!-- begin: menu footer don"t change anything'')'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td align=right><a href="links_view.php"><font class="menu_top"><b><u>My Last Viewed</u></b></font></a>&nbsp;&nbsp;<a href="alert.php?action=register"><font class="menu_top"><b><u>Get e-mail alerts</u></b></font></a>&nbsp;&nbsp;')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<!-- BEGIN: MENU FOOTER don"t change anything -->'')'
+expression: r0() || r1() || r2() || r3() || r4()

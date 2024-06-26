@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WirelessHART-Gateway-Access-Control
+manual: false
+detail:
+    fingerprint:
+        name: WirelessHART-Gateway-Access-Control
+    fofa: header="realm=\"wirelesshart gateway access control"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="wirelesshart gateway access control'))
+expression: r0()

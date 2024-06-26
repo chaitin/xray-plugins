@@ -1,0 +1,93 @@
+name: fingerprint-yaml-Kloxo-Single-Server
+manual: false
+detail:
+    fingerprint:
+        name: Kloxo-Single-Server
+    fofa: body="src=\"/img/hypervm-logo.gif" && body="/htmllib/js/preop.js" || body="src=\"/img/hypervm-logo.gif" || body="/htmllib/js/preop.js" || body="<title> HyperVM 2.0 </title>" || body="<title> Kloxo </title>" || body="<title> Lxadmin </title>" || body="<img id=main_logo width=84 height=23 src=\"/img/hypervm-logo.gif\">" || body="Use a valid username and password to gain access to the console</b>" || body="@import url(\"/htmllib/lib/admin_login.css\");" || body="<script language=javascript src=\"/htmllib/js/preop.js\"></script>" || body="<form name=loginform action=\"/htmllib/phplib/\" onsubmit=\"encode_url(loginform) ; return fieldcheck(this);\" method=post>" || title="hypervm"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/img/hypervm-logo.gif') && response.body_string.contains("/htmllib/js/preop.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="/img/hypervm-logo.gif')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/htmllib/js/preop.js")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title> HyperVM 2.0 </title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title> Kloxo </title>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title> Lxadmin </title>")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img id=main_logo width=84 height=23 src="/img/hypervm-logo.gif">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Use a valid username and password to gain access to the console</b>")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('@import url("/htmllib/lib/admin_login.css");')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<script language=javascript src="/htmllib/js/preop.js"></script>')
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<form name=loginform action="/htmllib/phplib/" onsubmit="encode_url(loginform) ; return fieldcheck(this);" method=post>')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("hypervm")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11()

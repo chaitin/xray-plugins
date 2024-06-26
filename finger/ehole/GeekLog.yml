@@ -1,0 +1,37 @@
+name: fingerprint-yaml-GeekLog
+manual: false
+detail:
+    fingerprint:
+        name: GeekLog
+    fofa: body="Powered By <a href=\"http://www.geeklog.net/" || body="Powered By <a href=\"http://www.geeklog.net/\">Geeklog</a>" || body="Powered By <a class=\"footer\" href=\"http://www.geeklog.net/\">GeekLog</a>" || body="<!--If you want the splash, uncomment the last line. If you want no splash, make sure it is commented out.-->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.geeklog.net/')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a href="http://www.geeklog.net/">Geeklog</a>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('Powered By <a class="footer" href="http://www.geeklog.net/">GeekLog</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--If you want the splash, uncomment the last line. If you want no splash, make sure it is commented out.-->")
+expression: r0() || r1() || r2() || r3()

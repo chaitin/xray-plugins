@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DCN-DCRS-7604E
+manual: false
+detail:
+    fingerprint:
+        name: DCN-DCRS-7604E
+    fofa: body="<b>dcrs-7604e</b>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>dcrs-7604e</b>")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-D_Link-web-camera
+manual: false
+detail:
+    fingerprint:
+        name: D_Link-web-camera
+    fofa: header="realm=\"administrator or user\"" || header="realm=\"administrator,user\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="administrator or user"'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="administrator,user"'))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UberGallery相册系统
+manual: false
+detail:
+    fingerprint:
+        name: UberGallery相册系统
+    fofa: title="UberGallery相册系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("UberGallery相册系统")
+expression: r0()

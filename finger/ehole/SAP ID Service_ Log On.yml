@@ -1,0 +1,16 @@
+name: fingerprint-yaml-SAP ID Service_ Log On
+manual: false
+detail:
+    fingerprint:
+        name: 'SAP ID Service: Log On'
+    fofa: icon_hash="-1967743928"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1967743928
+expression: r0()

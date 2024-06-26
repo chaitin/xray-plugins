@@ -1,0 +1,100 @@
+name: fingerprint-yaml-Business-System
+manual: false
+detail:
+    fingerprint:
+        name: Business-System
+    fofa: body="onsubmit=\"return checksubmit(" && body="function hiddenpass(e" && body="window.location=contextpath+\"/work/index.jsp\"" && body="function omiga_window(url" && body="images/login_d.png" && body="function updatapipeline(pipelinename" || body="function updatapipeline(pipelinename)" || body="images/login_d.png" && body="function omiga_window(url)" || body="window.location=contextpath+\"/work/index.jsp\"" || body="function hiddenpass(e)" && body="onsubmit=\"return checksubmit()" || body="onsubmit=\"return checksubmit" || body="function hiddenpasse" || body="function omiga_windowurl" || body="images/login_d.png" || body="function updatapipelinepipelinename" || body="onsubmit=\"return checksubmit()" || body="function hiddenpass(e)" || body="function omiga_window(url)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="return checksubmit(') && response.body_string.contains("function hiddenpass(e") && response.body_string.contains('window.location=contextpath+"/work/index.jsp"') && response.body_string.contains("function omiga_window(url") && response.body_string.contains("images/login_d.png") && response.body_string.contains("function updatapipeline(pipelinename")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function updatapipeline(pipelinename)")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/login_d.png") && response.body_string.contains("function omiga_window(url)")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location=contextpath+"/work/index.jsp"')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function hiddenpass(e)") && response.body_string.contains('onsubmit="return checksubmit()')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="return checksubmit')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function hiddenpasse")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function omiga_windowurl")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("images/login_d.png")
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function updatapipelinepipelinename")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('onsubmit="return checksubmit()')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function hiddenpass(e)")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("function omiga_window(url)")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

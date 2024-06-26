@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Po_st
+manual: false
+detail:
+    fingerprint:
+        name: Po.st
+    fofa: header="Po.st" || title="Po.st"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Po.st"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Po.st")
+expression: r0() || r1()

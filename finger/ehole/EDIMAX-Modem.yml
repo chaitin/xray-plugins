@@ -1,0 +1,51 @@
+name: fingerprint-yaml-EDIMAX-Modem
+manual: false
+detail:
+    fingerprint:
+        name: EDIMAX-Modem
+    fofa: header="realm=\"ar-7182wna" && header="realm=\"ar-7286wnb" || header="realm=\"ar-7286wnb" || header="realm=\"ar-7286wna" || header="realm=\"ar-7188wna" || header="realm=\"ar-7186wna" || header="realm=\"ar-7182wna"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7182wna')) && response.raw_header.bcontains(bytes('realm="ar-7286wnb'))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7286wnb'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7286wna'))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7188wna'))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7186wna'))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="ar-7182wna'))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

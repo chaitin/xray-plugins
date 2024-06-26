@@ -1,0 +1,37 @@
+name: fingerprint-yaml-phpLDAPadmin
+manual: false
+detail:
+    fingerprint:
+        name: phpLDAPadmin
+    fofa: body="href=\"http://phpldapadmin.sourceforge.net/documentation\" onclick" && body="src=\"images/default/logo.png\" title=\"phpldapadmin logo" || body="src=\"images/default/logo.png\" title=\"phpldapadmin logo" || body="href=\"http://phpldapadmin.sourceforge.net/documentation\" onclick" || title="phpldapadmin - "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://phpldapadmin.sourceforge.net/documentation" onclick') && response.body_string.contains('src="images/default/logo.png" title="phpldapadmin logo')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="images/default/logo.png" title="phpldapadmin logo')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://phpldapadmin.sourceforge.net/documentation" onclick')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("phpldapadmin - ")
+expression: r0() || r1() || r2() || r3()

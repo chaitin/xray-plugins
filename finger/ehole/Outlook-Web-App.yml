@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Outlook-Web-App
+manual: false
+detail:
+    fingerprint:
+        name: Outlook-Web-App
+    fofa: body="<body class=\"owaLgnBdy\">" || body="<!-- OwaPage = ASP.auth_logon_aspx -->" || body="<TR><TD><P style=\"color:red\">You could not be logged on to" || body="<TITLE>Microsoft Outlook Web Access</TITLE>" || body="<td style=\"width:100%\">To use Outlook Web App, browser settings must allow scripts to run. For information about how to allow scripts, consult the Help for your browser. If your browser doesn\"t support scripts, you can download <a href=\"http://www.microsoft.com/windows/ie/downloads/default.mspx\">Windows Internet Explorer</a> for access to Outlook Web App.</td>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<body class="owaLgnBdy">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- OwaPage = ASP.auth_logon_aspx -->")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<TR><TD><P style="color:red">You could not be logged on to')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<TITLE>Microsoft Outlook Web Access</TITLE>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td style="width:100%">To use Outlook Web App, browser settings must allow scripts to run. For information about how to allow scripts, consult the Help for your browser. If your browser doesn"t support scripts, you can download <a href="http://www.microsoft.com/windows/ie/downloads/default.mspx">Windows Internet Explorer</a> for access to Outlook Web App.</td>')
+expression: r0() || r1() || r2() || r3() || r4()

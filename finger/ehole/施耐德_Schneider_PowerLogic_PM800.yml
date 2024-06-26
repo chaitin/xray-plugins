@@ -1,0 +1,16 @@
+name: fingerprint-yaml-施耐德_Schneider_PowerLogic_PM800
+manual: false
+detail:
+    fingerprint:
+        name: 施耐德_Schneider_PowerLogic_PM800
+    fofa: header="PM800"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PM800"))
+expression: r0()

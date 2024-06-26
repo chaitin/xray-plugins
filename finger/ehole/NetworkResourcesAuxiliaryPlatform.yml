@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NetworkResourcesAuxiliaryPlatform
+manual: false
+detail:
+    fingerprint:
+        name: NetworkResourcesAuxiliaryPlatform
+    fofa: body="<b>网络资源综合支撑辅助平台</b>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<b>网络资源综合支撑辅助平台</b>")
+expression: r0()

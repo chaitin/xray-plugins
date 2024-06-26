@@ -1,0 +1,16 @@
+name: fingerprint-yaml-金睛云华高级威胁检测系统
+manual: false
+detail:
+    fingerprint:
+        name: 金睛云华高级威胁检测系统
+    fofa: icon_hash="1747722638"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1747722638
+expression: r0()

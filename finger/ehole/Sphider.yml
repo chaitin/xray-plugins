@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sphider
+manual: false
+detail:
+    fingerprint:
+        name: Sphider
+    fofa: title="Sphider"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Sphider")
+expression: r0()

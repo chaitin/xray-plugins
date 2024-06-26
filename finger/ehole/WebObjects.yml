@@ -1,0 +1,79 @@
+name: fingerprint-yaml-WebObjects
+manual: false
+detail:
+    fingerprint:
+        name: WebObjects
+    fofa: header="webobjects" && header="x-apple-application-instance" || header="WebObjects" || header="wosid" || header="x-apple-application-instance" || header="x-webobjects-loadaverage" || header="x-webobjects-adaptor-version" || header="x-webobjects-server-name" || header="x-webobjects-customenv" || header="wosid" && header="webobjects" || header="webobjects"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webobjects")) && response.raw_header.bcontains(bytes("x-apple-application-instance"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WebObjects"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wosid"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-apple-application-instance"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-webobjects-loadaverage"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-webobjects-adaptor-version"))
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-webobjects-server-name"))
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-webobjects-customenv"))
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wosid")) && response.raw_header.bcontains(bytes("webobjects"))
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("webobjects"))
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9()

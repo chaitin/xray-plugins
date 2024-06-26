@@ -1,0 +1,16 @@
+name: fingerprint-yaml-eshop_unib
+manual: false
+detail:
+    fingerprint:
+        name: eshop.unib
+    fofa: title="中国联通电子商城外网接入平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("中国联通电子商城外网接入平台")
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-INDAS InView
+manual: false
+detail:
+    fingerprint:
+        name: INDAS InView
+    fofa: header="INDAS InView" || title="INDAS InView"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("INDAS InView"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("INDAS InView")
+expression: r0() || r1()

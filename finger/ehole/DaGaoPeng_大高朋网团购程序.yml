@@ -1,0 +1,16 @@
+name: fingerprint-yaml-DaGaoPeng_大高朋网团购程序
+manual: false
+detail:
+    fingerprint:
+        name: DaGaoPeng_大高朋网团购程序
+    fofa: title="DaGaoPeng_大高朋网团购程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DaGaoPeng_大高朋网团购程序")
+expression: r0()

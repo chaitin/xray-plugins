@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Loxone (Automation)
+manual: false
+detail:
+    fingerprint:
+        name: Loxone (Automation)
+    fofa: icon_hash="904434662"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 904434662
+expression: r0()

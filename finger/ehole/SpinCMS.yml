@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SpinCMS
+manual: false
+detail:
+    fingerprint:
+        name: SpinCMS
+    fofa: header="SpinCMS" || title="SpinCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SpinCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SpinCMS")
+expression: r0() || r1()

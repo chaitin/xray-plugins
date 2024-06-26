@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Sina-SAE
+manual: false
+detail:
+    fingerprint:
+        name: Sina-SAE
+    fofa: body="internal.sinaapp.com" || header="internal.sinaapp.com" || body="lib.sinaapp.com" || header="lib.sinaapp.com"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("internal.sinaapp.com")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("internal.sinaapp.com"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("lib.sinaapp.com")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("lib.sinaapp.com"))
+expression: r0() || r1() || r2() || r3()

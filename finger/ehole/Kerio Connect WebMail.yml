@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Kerio Connect WebMail
+manual: false
+detail:
+    fingerprint:
+        name: Kerio Connect WebMail
+    fofa: icon_hash="-1678298769"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1678298769
+expression: r0()

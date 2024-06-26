@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mailtraq-Mail-Server
+manual: false
+detail:
+    fingerprint:
+        name: Mailtraq-Mail-Server
+    fofa: 'header="server: mailtraq" || title="mailtraq"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mailtraq"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("mailtraq")
+expression: r0() || r1()

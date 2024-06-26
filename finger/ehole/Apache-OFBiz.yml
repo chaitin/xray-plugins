@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Apache-OFBiz
+manual: false
+detail:
+    fingerprint:
+        name: Apache-OFBiz
+    fofa: 'body="Apache OFBiz" && body="apache.ofbiz" || header="Set-Cookie: OFBiz.Visitor=" || body="Apache OFBiz" || body="apache.ofbiz" || body="<span>Powered by OFBiz</span>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Apache OFBiz") && response.body_string.contains("apache.ofbiz")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Set-Cookie: OFBiz.Visitor="))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Apache OFBiz")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("apache.ofbiz")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<span>Powered by OFBiz</span>")
+expression: r0() || r1() || r2() || r3() || r4()

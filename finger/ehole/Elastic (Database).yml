@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Elastic (Database)
+manual: false
+detail:
+    fingerprint:
+        name: Elastic (Database)
+    fofa: icon_hash="1611729805" || icon_hash="1552860581"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1611729805
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1552860581
+expression: r0() || r1()

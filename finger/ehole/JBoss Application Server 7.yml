@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JBoss Application Server 7
+manual: false
+detail:
+    fingerprint:
+        name: JBoss Application Server 7
+    fofa: icon_hash="937999361"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 937999361
+expression: r0()

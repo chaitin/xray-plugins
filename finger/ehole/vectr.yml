@@ -1,0 +1,16 @@
+name: fingerprint-yaml-vectr
+manual: false
+detail:
+    fingerprint:
+        name: vectr
+    fofa: 'header="Location: /sra-purpletools-webui/app"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Location: /sra-purpletools-webui/app"))'
+expression: r0()

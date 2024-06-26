@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Litespeed Cache
+manual: false
+detail:
+    fingerprint:
+        name: Litespeed Cache
+    fofa: header="Litespeed Cache" || title="Litespeed Cache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Litespeed Cache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Litespeed Cache")
+expression: r0() || r1()

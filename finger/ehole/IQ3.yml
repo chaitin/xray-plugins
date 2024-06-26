@@ -1,0 +1,16 @@
+name: fingerprint-yaml-IQ3
+manual: false
+detail:
+    fingerprint:
+        name: IQ3
+    fofa: title="IQ3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("IQ3")
+expression: r0()

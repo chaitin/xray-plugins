@@ -1,0 +1,23 @@
+name: fingerprint-yaml-XiaoCms
+manual: false
+detail:
+    fingerprint:
+        name: XiaoCms
+    fofa: header="XiaoCms" || title="XiaoCms"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("XiaoCms"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("XiaoCms")
+expression: r0() || r1()

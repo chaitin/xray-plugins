@@ -1,0 +1,16 @@
+name: fingerprint-yaml-和茶网商城电脑版加手机版
+manual: false
+detail:
+    fingerprint:
+        name: 和茶网商城电脑版加手机版
+    fofa: title="和茶网商城电脑版加手机版"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("和茶网商城电脑版加手机版")
+expression: r0()

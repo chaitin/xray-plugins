@@ -1,0 +1,16 @@
+name: fingerprint-yaml-anysec
+manual: false
+detail:
+    fingerprint:
+        name: anysec
+    fofa: title="anysec login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("anysec login")
+expression: r0()

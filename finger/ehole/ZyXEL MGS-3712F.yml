@@ -1,0 +1,23 @@
+name: fingerprint-yaml-ZyXEL MGS-3712F
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL MGS-3712F
+    fofa: header="ZyXEL MGS-3712F" || title="ZyXEL MGS-3712F"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ZyXEL MGS-3712F"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ZyXEL MGS-3712F")
+expression: r0() || r1()

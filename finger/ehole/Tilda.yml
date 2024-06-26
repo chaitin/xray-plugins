@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tilda
+manual: false
+detail:
+    fingerprint:
+        name: Tilda
+    fofa: header="Tilda" || title="Tilda"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tilda"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tilda")
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Blackboard
+manual: false
+detail:
+    fingerprint:
+        name: Blackboard
+    fofa: icon_hash="-1593651747" || header="x-blackboard-product" && header="x-blackboard-appserver" || header="X-Blackboard-Product" || header="X-Blackboard-Appserver" || header="x-blackboard-appserver" || header="x-blackboard-product"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1593651747
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-blackboard-product")) && response.raw_header.bcontains(bytes("x-blackboard-appserver"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Blackboard-Product"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Blackboard-Appserver"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-blackboard-appserver"))
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("x-blackboard-product"))
+expression: r0() || r1() || r2() || r3() || r4() || r5()

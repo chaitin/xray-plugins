@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ThinkSocial搜雪社交化电商开发引擎
+manual: false
+detail:
+    fingerprint:
+        name: ThinkSocial搜雪社交化电商开发引擎
+    fofa: title="ThinkSocial搜雪社交化电商开发引擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ThinkSocial搜雪社交化电商开发引擎")
+expression: r0()

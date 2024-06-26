@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Alcatel_Lucent-Extended-Communication-Server
+manual: false
+detail:
+    fingerprint:
+        name: Alcatel_Lucent-Extended-Communication-Server
+    fofa: title="alcatel-lucent extended communication server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("alcatel-lucent extended communication server")
+expression: r0()

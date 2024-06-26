@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Supermicro Intelligent Management (IPMI)
+manual: false
+detail:
+    fingerprint:
+        name: Supermicro Intelligent Management (IPMI)
+    fofa: icon_hash="1410610129"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1410610129
+expression: r0()

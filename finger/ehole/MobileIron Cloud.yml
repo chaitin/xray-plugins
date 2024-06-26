@@ -1,0 +1,23 @@
+name: fingerprint-yaml-MobileIron Cloud
+manual: false
+detail:
+    fingerprint:
+        name: MobileIron Cloud
+    fofa: header="MobileIron Cloud" || title="MobileIron Cloud"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("MobileIron Cloud"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("MobileIron Cloud")
+expression: r0() || r1()

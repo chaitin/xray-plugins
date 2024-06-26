@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-ISC5000-E
+manual: false
+detail:
+    fingerprint:
+        name: uniview-ISC5000-E
+    fofa: title="isc5000-e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc5000-e")
+expression: r0()

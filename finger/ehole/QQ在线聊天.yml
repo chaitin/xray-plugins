@@ -1,0 +1,23 @@
+name: fingerprint-yaml-QQ在线聊天
+manual: false
+detail:
+    fingerprint:
+        name: QQ在线聊天
+    fofa: header="QQ在线聊天" || title="QQ在线聊天"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("QQ在线聊天"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("QQ在线聊天")
+expression: r0() || r1()

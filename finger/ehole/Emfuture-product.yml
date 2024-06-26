@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Emfuture-product
+manual: false
+detail:
+    fingerprint:
+        name: Emfuture-product
+    fofa: body="copyright(c 2005-2009　　emsyschina co.,ltd." && body="<meta content=\"中嵌科技" || body="<meta content=\"中嵌科技" || body="copyright(c) 2005-2009　　emsyschina co.,ltd." || body="copyrightc 2005-2009　　emsyschina co.,ltd."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright(c 2005-2009\u3000\u3000emsyschina co.,ltd.") && response.body_string.contains('<meta content="中嵌科技')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta content="中嵌科技')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyright(c) 2005-2009\u3000\u3000emsyschina co.,ltd.")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("copyrightc 2005-2009\u3000\u3000emsyschina co.,ltd.")
+expression: r0() || r1() || r2() || r3()

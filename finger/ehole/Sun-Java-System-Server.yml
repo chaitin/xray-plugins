@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Sun-Java-System-Server
+manual: false
+detail:
+    fingerprint:
+        name: Sun-Java-System-Server
+    fofa: 'header="server: sun-java-system-web-"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: sun-java-system-web-"))'
+expression: r0()

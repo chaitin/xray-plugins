@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHP-CGI
+manual: false
+detail:
+    fingerprint:
+        name: PHP-CGI
+    fofa: header="php-cgi" || header="PHP-CGI"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("php-cgi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHP-CGI"))
+expression: r0() || r1()

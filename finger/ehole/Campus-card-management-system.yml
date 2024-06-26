@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Campus-card-management-system
+manual: false
+detail:
+    fingerprint:
+        name: Campus-card-management-system
+    fofa: body="harbin synjones electronic" && body="document.formpostds.action=\"xxsearch.action" && body="/shouyeziti.css" || body="/shouyeziti.css" || body="document.formpostds.action=\"xxsearch.action" || body="harbin synjones electronic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("harbin synjones electronic") && response.body_string.contains('document.formpostds.action="xxsearch.action') && response.body_string.contains("/shouyeziti.css")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/shouyeziti.css")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('document.formpostds.action="xxsearch.action')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("harbin synjones electronic")
+expression: r0() || r1() || r2() || r3()

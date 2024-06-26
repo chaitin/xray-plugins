@@ -1,0 +1,16 @@
+name: fingerprint-yaml-AiXun-Traffic-management-platform
+manual: false
+detail:
+    fingerprint:
+        name: AiXun-Traffic-management-platform
+    fofa: title="爱讯流量管理平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("爱讯流量管理平台")
+expression: r0()

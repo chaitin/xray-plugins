@@ -1,0 +1,23 @@
+name: fingerprint-yaml-DoubleClick for Publishers (DFP)
+manual: false
+detail:
+    fingerprint:
+        name: DoubleClick for Publishers (DFP)
+    fofa: header="DoubleClick for Publishers (DFP)" || title="DoubleClick for Publishers (DFP)"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("DoubleClick for Publishers (DFP)"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("DoubleClick for Publishers (DFP)")
+expression: r0() || r1()

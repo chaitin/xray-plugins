@@ -1,0 +1,16 @@
+name: fingerprint-yaml-汉码高校毕业生就业信息系统
+manual: false
+detail:
+    fingerprint:
+        name: 汉码高校毕业生就业信息系统
+    fofa: title="汉码高校毕业生就业信息系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("汉码高校毕业生就业信息系统")
+expression: r0()

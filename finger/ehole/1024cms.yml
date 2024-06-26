@@ -1,0 +1,44 @@
+name: fingerprint-yaml-1024cms
+manual: false
+detail:
+    fingerprint:
+        name: 1024cms
+    fofa: body="Powered by 1024 CMS" || body="generator\" content=\"1024 CMS (c)" || body="content=\"1024 CMS" || body="<div id=\"otatfpowered\"><a href=\"http://www.1024cms.com\" target=\"_blank\">Powered by 1024 CMS</a></div></div>" || body="<meta name=\"generator\" content=\"1024 CMS (c) 2008 Treble Designs. This is free software, and you may redistribute it under the Attribution-Non-Commercial-Share Alike 2.0 license (http://creativecommons.org/licenses/by-nc-sa/2.0/uk/). 1024 CMS comes with absolutely no warranty, for details, see the license (http://creativecommons.org/licenses/by-nc-sa/2.0/uk/).\" />"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by 1024 CMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('generator" content="1024 CMS (c)')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="1024 CMS')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div id="otatfpowered"><a href="http://www.1024cms.com" target="_blank">Powered by 1024 CMS</a></div></div>')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta name="generator" content="1024 CMS (c) 2008 Treble Designs. This is free software, and you may redistribute it under the Attribution-Non-Commercial-Share Alike 2.0 license (http://creativecommons.org/licenses/by-nc-sa/2.0/uk/). 1024 CMS comes with absolutely no warranty, for details, see the license (http://creativecommons.org/licenses/by-nc-sa/2.0/uk/)." />')
+expression: r0() || r1() || r2() || r3() || r4()

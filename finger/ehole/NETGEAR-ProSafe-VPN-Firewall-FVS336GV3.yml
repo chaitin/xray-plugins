@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR-ProSafe-VPN-Firewall-FVS336GV3
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR-ProSafe-VPN-Firewall-FVS336GV3
+    fofa: body="gigabit dual wan ssl vpn firewall fvs336gv3</div>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gigabit dual wan ssl vpn firewall fvs336gv3</div>")
+expression: r0()

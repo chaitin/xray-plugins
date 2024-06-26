@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftWindowsnetbios-ssn
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftWindowsnetbios-ssn
+    fofa: title="Microsoft Windows netbios-ssn"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Windows netbios-ssn")
+expression: r0()

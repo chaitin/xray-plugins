@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Serial-Device-Server-eth2232X
+manual: false
+detail:
+    fingerprint:
+        name: Serial-Device-Server-eth2232X
+    fofa: title="串口服务器---eth2232x"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("串口服务器---eth2232x")
+expression: r0()

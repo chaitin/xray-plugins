@@ -1,0 +1,16 @@
+name: fingerprint-yaml-VisualSiteBuilder
+manual: false
+detail:
+    fingerprint:
+        name: VisualSiteBuilder
+    fofa: title="Visual SiteBuilder"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Visual SiteBuilder")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Cisco Meraki
+manual: false
+detail:
+    fingerprint:
+        name: Cisco Meraki
+    fofa: icon_hash="163842882"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 163842882
+expression: r0()

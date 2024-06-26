@@ -1,0 +1,23 @@
+name: fingerprint-yaml-jQuery Sparklines
+manual: false
+detail:
+    fingerprint:
+        name: jQuery Sparklines
+    fofa: header="jQuery Sparklines" || title="jQuery Sparklines"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jQuery Sparklines"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jQuery Sparklines")
+expression: r0() || r1()

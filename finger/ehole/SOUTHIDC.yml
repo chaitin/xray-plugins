@@ -1,0 +1,37 @@
+name: fingerprint-yaml-SOUTHIDC
+manual: false
+detail:
+    fingerprint:
+        name: SOUTHIDC
+    fofa: body="/southidckefu.js" && body="content=\"copyright 2003-2015 - southidc.net" && body="/southidcj2f.js" || body="/southidcj2f.js" || body="content=\"copyright 2003-2015 - southidc.net" || body="/southidckefu.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/southidckefu.js") && response.body_string.contains('content="copyright 2003-2015 - southidc.net') && response.body_string.contains("/southidcj2f.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/southidcj2f.js")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="copyright 2003-2015 - southidc.net')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/southidckefu.js")
+expression: r0() || r1() || r2() || r3()

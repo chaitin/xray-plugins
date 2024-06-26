@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ionize_基于CodeIgniter开源CMS
+manual: false
+detail:
+    fingerprint:
+        name: Ionize_基于CodeIgniter开源CMS
+    fofa: header="Ionize_基于CodeIgniter开源CMS" || title="Ionize_基于CodeIgniter开源CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ionize_基于CodeIgniter开源CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ionize_基于CodeIgniter开源CMS")
+expression: r0() || r1()

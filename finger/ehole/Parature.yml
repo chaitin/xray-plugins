@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Parature
+manual: false
+detail:
+    fingerprint:
+        name: Parature
+    fofa: body="redirectportalurl(\"/ics/support/custhandler.asp?" || body="src=\"kbfolder.asp?deptid=" || body="This Website requires your browser to be JavaScript enabled. Please enable JavaScript  and click <a href=\"/ics/default.asp\">here</a> to continue." || body="RedirectPortalURL(\"/ics/support/custhandler.asp?task=signOut&redirectURL=\" + encodeURI(\"" || body="<frame title=\"Left Navigation\" name=\"cypLeft\" src=\"KBFolder.asp?deptID="
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('redirectportalurl("/ics/support/custhandler.asp?')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('src="kbfolder.asp?deptid=')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('This Website requires your browser to be JavaScript enabled. Please enable JavaScript  and click <a href="/ics/default.asp">here</a> to continue.')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('RedirectPortalURL("/ics/support/custhandler.asp?task=signOut&redirectURL=" + encodeURI("')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame title="Left Navigation" name="cypLeft" src="KBFolder.asp?deptID=')
+expression: r0() || r1() || r2() || r3() || r4()

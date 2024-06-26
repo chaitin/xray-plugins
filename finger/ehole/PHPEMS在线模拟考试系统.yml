@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPEMS在线模拟考试系统
+manual: false
+detail:
+    fingerprint:
+        name: PHPEMS在线模拟考试系统
+    fofa: header="PHPEMS在线模拟考试系统" || title="PHPEMS在线模拟考试系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PHPEMS在线模拟考试系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PHPEMS在线模拟考试系统")
+expression: r0() || r1()

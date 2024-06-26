@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Aladdin-HASP-License-Manager
+manual: false
+detail:
+    fingerprint:
+        name: Aladdin-HASP-License-Manager
+    fofa: header="HASP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("HASP"))
+expression: r0()

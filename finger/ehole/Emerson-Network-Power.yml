@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Emerson-Network-Power
+manual: false
+detail:
+    fingerprint:
+        name: Emerson-Network-Power
+    fofa: body="emerson network power" || title="usbvideo webplayer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("emerson network power")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("usbvideo webplayer")
+expression: r0() || r1()

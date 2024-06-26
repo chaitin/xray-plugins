@@ -1,0 +1,30 @@
+name: fingerprint-yaml-VMware-vFabric
+manual: false
+detail:
+    fingerprint:
+        name: VMware-vFabric
+    fofa: header="ts01efd1fa" || header="TS01efd1fa" || title="vfabric"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ts01efd1fa"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("TS01efd1fa"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vfabric")
+expression: r0() || r1() || r2()

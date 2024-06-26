@@ -1,0 +1,23 @@
+name: fingerprint-yaml-wemall商城
+manual: false
+detail:
+    fingerprint:
+        name: wemall商城
+    fofa: header="wemall商城" || title="wemall商城"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("wemall商城"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("wemall商城")
+expression: r0() || r1()

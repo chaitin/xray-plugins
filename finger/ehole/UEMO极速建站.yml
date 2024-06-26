@@ -1,0 +1,16 @@
+name: fingerprint-yaml-UEMO极速建站
+manual: false
+detail:
+    fingerprint:
+        name: UEMO极速建站
+    fofa: title="UEMO极速建站"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("UEMO极速建站")
+expression: r0()

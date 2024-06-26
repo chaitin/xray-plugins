@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RD Station
+manual: false
+detail:
+    fingerprint:
+        name: RD Station
+    fofa: header="RD Station" || title="RD Station"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RD Station"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RD Station")
+expression: r0() || r1()

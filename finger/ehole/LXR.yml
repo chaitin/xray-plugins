@@ -1,0 +1,23 @@
+name: fingerprint-yaml-LXR
+manual: false
+detail:
+    fingerprint:
+        name: LXR
+    fofa: body="<b>[</b>&nbsp;<a href=\"ident\">identifier search</a>&nbsp;<b>]</b>" || body="[&nbsp;<a href=\"ident\">identifier search</a>&nbsp;]"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<b>[</b>&nbsp;<a href="ident">identifier search</a>&nbsp;<b>]</b>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('[&nbsp;<a href="ident">identifier search</a>&nbsp;]')
+expression: r0() || r1()

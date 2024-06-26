@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Amiro_CMS
+manual: false
+detail:
+    fingerprint:
+        name: Amiro.CMS
+    fofa: header="Amiro.CMS" || title="Amiro.CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Amiro.CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Amiro.CMS")
+expression: r0() || r1()

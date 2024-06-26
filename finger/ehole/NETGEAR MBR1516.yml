@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR MBR1516
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR MBR1516
+    fofa: header="NETGEAR MBR1516"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR MBR1516"))
+expression: r0()

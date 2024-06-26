@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PHPWEB
+manual: false
+detail:
+    fingerprint:
+        name: PHPWEB
+    fofa: body="pdv_pagename" || body="PDV_PAGENAME"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pdv_pagename")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("PDV_PAGENAME")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PubMatic
+manual: false
+detail:
+    fingerprint:
+        name: PubMatic
+    fofa: header="PubMatic" || title="PubMatic"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("PubMatic"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PubMatic")
+expression: r0() || r1()

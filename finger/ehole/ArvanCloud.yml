@@ -1,0 +1,44 @@
+name: fingerprint-yaml-ArvanCloud
+manual: false
+detail:
+    fingerprint:
+        name: ArvanCloud
+    fofa: 'header="ar-poweredby: arvan cloud" && header="server: arvancloud" || header="ArvanCloud" || header="server: arvancloud" || header="ar-poweredby: arvan cloud" || title="ArvanCloud"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("ar-poweredby: arvan cloud")) && response.raw_header.bcontains(bytes("server: arvancloud"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ArvanCloud"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: arvancloud"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("ar-poweredby: arvan cloud"))'
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ArvanCloud")
+expression: r0() || r1() || r2() || r3() || r4()

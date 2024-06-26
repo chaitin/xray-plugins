@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NTLM认证
+manual: false
+detail:
+    fingerprint:
+        name: NTLM认证
+    fofa: header="NTLM"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NTLM"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Prospector
+manual: false
+detail:
+    fingerprint:
+        name: Prospector
+    fofa: title="Prospector"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Prospector")
+expression: r0()

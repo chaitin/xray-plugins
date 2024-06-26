@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Industrychecksystem
+manual: false
+detail:
+    fingerprint:
+        name: Industrychecksystem
+    fofa: title="中国联通会业核对系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("中国联通会业核对系统")
+expression: r0()

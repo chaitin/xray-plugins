@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Advantech-LR77
+manual: false
+detail:
+    fingerprint:
+        name: Advantech-LR77
+    fofa: header="lr77-v2" || title="lr77-v2l"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("lr77-v2"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("lr77-v2l")
+expression: r0() || r1()

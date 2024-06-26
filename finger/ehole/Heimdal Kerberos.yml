@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Heimdal Kerberos
+manual: false
+detail:
+    fingerprint:
+        name: Heimdal Kerberos
+    fofa: header="Heimdal Kerberos" || title="Heimdal Kerberos"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Heimdal Kerberos"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Heimdal Kerberos")
+expression: r0() || r1()

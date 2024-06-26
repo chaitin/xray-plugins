@@ -1,0 +1,16 @@
+name: fingerprint-yaml-EasySite内容管理
+manual: false
+detail:
+    fingerprint:
+        name: EasySite内容管理
+    fofa: title="EasySite内容管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("EasySite内容管理")
+expression: r0()

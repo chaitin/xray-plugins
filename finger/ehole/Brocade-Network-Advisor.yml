@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Brocade-Network-Advisor
+manual: false
+detail:
+    fingerprint:
+        name: Brocade-Network-Advisor
+    fofa: body="<span class=\"ui-menuitem-text\">about network advisor</span></a>" || title="network advisor login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span class="ui-menuitem-text">about network advisor</span></a>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("network advisor login")
+expression: r0() || r1()

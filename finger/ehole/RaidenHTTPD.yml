@@ -1,0 +1,30 @@
+name: fingerprint-yaml-RaidenHTTPD
+manual: false
+detail:
+    fingerprint:
+        name: RaidenHTTPD
+    fofa: 'header="RaidenHTTPD" || header="server: raidenhttpd" || title="RaidenHTTPD"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RaidenHTTPD"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: raidenhttpd"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RaidenHTTPD")
+expression: r0() || r1() || r2()

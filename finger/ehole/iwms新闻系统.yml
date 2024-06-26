@@ -1,0 +1,16 @@
+name: fingerprint-yaml-iwms新闻系统
+manual: false
+detail:
+    fingerprint:
+        name: iwms新闻系统
+    fofa: title="iwms新闻系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("iwms新闻系统")
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TP-LINK-Archer-VR900
+manual: false
+detail:
+    fingerprint:
+        name: TP-LINK-Archer-VR900
+    fofa: body="var modelname=\"archer vr900\""
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var modelname="archer vr900"')
+expression: r0()

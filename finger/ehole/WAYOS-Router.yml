@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WAYOS-Router
+manual: false
+detail:
+    fingerprint:
+        name: WAYOS-Router
+    fofa: header="realm=\"wayos 多wan高性能路由器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="wayos 多wan高性能路由器'))
+expression: r0()

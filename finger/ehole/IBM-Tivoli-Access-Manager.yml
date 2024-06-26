@@ -1,0 +1,72 @@
+name: fingerprint-yaml-IBM-Tivoli-Access-Manager
+manual: false
+detail:
+    fingerprint:
+        name: IBM-Tivoli-Access-Manager
+    fofa: body="<!--- do not translate or modify any part of the hidden parameter(s --->" && body="access manager for e-business" && body="var warningstring = \"<b>warning:</b> to maintain your login session, make sure that your browser is configured to accept cookies.\";" && body="<!-- copyright (c 2000 tivoli systems, inc. -->" || header="realm=\"access manager for e-business" || body="<!-- copyright (c) 2000 tivoli systems, inc. -->" || body="var warningstring = \"<b>warning:</b> to maintain your login session, make sure that your browser is configured to accept cookies.\";" || body="<!--- do not translate,modify any part of the hidden parameter(s) --->" || body="<!--- do not translate or modify any part of the hidden parameters --->" || body="access manager for e-business" || body="<!-- copyright c 2000 tivoli systems, inc. -->" || title="access manager for e-business login"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--- do not translate or modify any part of the hidden parameter(s --->") && response.body_string.contains("access manager for e-business") && response.body_string.contains('var warningstring = "<b>warning:</b> to maintain your login session, make sure that your browser is configured to accept cookies.";') && response.body_string.contains("<!-- copyright (c 2000 tivoli systems, inc. -->")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="access manager for e-business'))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- copyright (c) 2000 tivoli systems, inc. -->")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var warningstring = "<b>warning:</b> to maintain your login session, make sure that your browser is configured to accept cookies.";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--- do not translate,modify any part of the hidden parameter(s) --->")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!--- do not translate or modify any part of the hidden parameters --->")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("access manager for e-business")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- copyright c 2000 tivoli systems, inc. -->")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("access manager for e-business login")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CoyotePoint-Load-Balancer
+manual: false
+detail:
+    fingerprint:
+        name: CoyotePoint-Load-Balancer
+    fofa: header="CoyotePoint"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CoyotePoint"))
+expression: r0()

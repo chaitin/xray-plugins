@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MicrosoftPublisher
+manual: false
+detail:
+    fingerprint:
+        name: MicrosoftPublisher
+    fofa: title="Microsoft Publisher"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Microsoft Publisher")
+expression: r0()

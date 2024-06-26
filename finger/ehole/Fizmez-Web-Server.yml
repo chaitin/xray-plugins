@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Fizmez-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Fizmez-Web-Server
+    fofa: header="Fizmez"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fizmez"))
+expression: r0()

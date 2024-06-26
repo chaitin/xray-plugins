@@ -1,0 +1,16 @@
+name: fingerprint-yaml-lwIP (A Lightweight TCP_IP stack)
+manual: false
+detail:
+    fingerprint:
+        name: lwIP (A Lightweight TCP/IP stack)
+    fofa: icon_hash="-1205024243"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1205024243
+expression: r0()

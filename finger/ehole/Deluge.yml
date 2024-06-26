@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Deluge
+manual: false
+detail:
+    fingerprint:
+        name: Deluge
+    fofa: icon_hash="944969688"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 944969688
+expression: r0()

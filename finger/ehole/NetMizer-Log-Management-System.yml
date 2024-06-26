@@ -1,0 +1,44 @@
+name: fingerprint-yaml-NetMizer-Log-Management-System
+manual: false
+detail:
+    fingerprint:
+        name: NetMizer-Log-Management-System
+    fofa: body="var mywindows = ext.create" && body="window.location.href=\"main.html\";" || body="window.location.href=\"main.html\";" && body="var mywindows = ext.create" || body="var mywindows = ext.create" || body="window.location.href=\"main.html\";" || title="netmizer 日志管理系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var mywindows = ext.create") && response.body_string.contains('window.location.href="main.html";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href="main.html";') && response.body_string.contains("var mywindows = ext.create")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var mywindows = ext.create")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('window.location.href="main.html";')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("netmizer 日志管理系统")
+expression: r0() || r1() || r2() || r3() || r4()

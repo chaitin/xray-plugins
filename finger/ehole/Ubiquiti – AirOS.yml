@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ubiquiti – AirOS
+manual: false
+detail:
+    fingerprint:
+        name: Ubiquiti – AirOS
+    fofa: icon_hash="-697231354" || icon_hash="1020814938"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -697231354
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1020814938
+expression: r0() || r1()

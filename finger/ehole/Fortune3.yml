@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Fortune3
+manual: false
+detail:
+    fingerprint:
+        name: Fortune3
+    fofa: header="Fortune3" || title="Fortune3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Fortune3"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Fortune3")
+expression: r0() || r1()

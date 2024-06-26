@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Paper_js
+manual: false
+detail:
+    fingerprint:
+        name: Paper.js
+    fofa: title="Paper.js"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Paper.js")
+expression: r0()

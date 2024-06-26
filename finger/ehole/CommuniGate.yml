@@ -1,0 +1,16 @@
+name: fingerprint-yaml-CommuniGate
+manual: false
+detail:
+    fingerprint:
+        name: CommuniGate
+    fofa: icon_hash="-1588746893"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1588746893
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Monkey
+manual: false
+detail:
+    fingerprint:
+        name: Monkey
+    fofa: 'header="server: monkey"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: monkey"))'
+expression: r0()

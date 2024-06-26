@@ -1,0 +1,23 @@
+name: fingerprint-yaml-NTP
+manual: false
+detail:
+    fingerprint:
+        name: NTP
+    fofa: title="ntpserver" || title="ntp time"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ntpserver")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ntp time")
+expression: r0() || r1()

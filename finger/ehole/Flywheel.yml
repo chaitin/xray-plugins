@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Flywheel
+manual: false
+detail:
+    fingerprint:
+        name: Flywheel
+    fofa: header="Flywheel" || title="Flywheel"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Flywheel"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Flywheel")
+expression: r0() || r1()

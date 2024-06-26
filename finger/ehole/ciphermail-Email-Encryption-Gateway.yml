@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ciphermail-Email-Encryption-Gateway
+manual: false
+detail:
+    fingerprint:
+        name: ciphermail-Email-Encryption-Gateway
+    fofa: title="ciphermail email encryption gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ciphermail email encryption gateway")
+expression: r0()

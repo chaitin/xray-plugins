@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Oracle-PeopleSoft
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-PeopleSoft
+    fofa: header="ps_tokenexpire" || header="Oracle PeopleSoft" || title="Oracle PeopleSoft"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ps_tokenexpire"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Oracle PeopleSoft"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Oracle PeopleSoft")
+expression: r0() || r1() || r2()

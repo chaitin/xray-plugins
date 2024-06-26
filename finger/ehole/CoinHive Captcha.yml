@@ -1,0 +1,23 @@
+name: fingerprint-yaml-CoinHive Captcha
+manual: false
+detail:
+    fingerprint:
+        name: CoinHive Captcha
+    fofa: header="CoinHive Captcha" || title="CoinHive Captcha"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CoinHive Captcha"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CoinHive Captcha")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-SIEMENS HMI miniweb
+manual: false
+detail:
+    fingerprint:
+        name: SIEMENS HMI miniweb
+    fofa: header="SIEMENS HMI miniweb" || title="SIEMENS HMI miniweb"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("SIEMENS HMI miniweb"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("SIEMENS HMI miniweb")
+expression: r0() || r1()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Textpattern
+manual: false
+detail:
+    fingerprint:
+        name: Textpattern
+    fofa: body="<td id=\"view-site\" class=\"tabdown\">" || title="textpattern"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<td id="view-site" class="tabdown">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("textpattern")
+expression: r0() || r1()

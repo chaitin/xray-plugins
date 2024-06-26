@@ -1,0 +1,23 @@
+name: fingerprint-yaml-VPON
+manual: false
+detail:
+    fingerprint:
+        name: VPON
+    fofa: 'body="/ctrl_ver.js" || header="server: vpon server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ctrl_ver.js")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: vpon server"))'
+expression: r0() || r1()

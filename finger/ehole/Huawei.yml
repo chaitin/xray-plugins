@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Huawei
+manual: false
+detail:
+    fingerprint:
+        name: Huawei
+    fofa: icon_hash="281559989"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 281559989
+expression: r0()

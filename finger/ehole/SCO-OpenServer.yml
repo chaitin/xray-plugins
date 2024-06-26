@@ -1,0 +1,37 @@
+name: fingerprint-yaml-SCO-OpenServer
+manual: false
+detail:
+    fingerprint:
+        name: SCO-OpenServer
+    fofa: body="sco corporate web site" && body="gif/rlogo1.gif" || body="gif/rlogo1.gif" && body="sco corporate web site" || body="sco corporate web site" || body="gif/rlogo1.gif"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sco corporate web site") && response.body_string.contains("gif/rlogo1.gif")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gif/rlogo1.gif") && response.body_string.contains("sco corporate web site")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("sco corporate web site")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gif/rlogo1.gif")
+expression: r0() || r1() || r2() || r3()

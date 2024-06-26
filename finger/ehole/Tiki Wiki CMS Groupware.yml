@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Tiki Wiki CMS Groupware
+manual: false
+detail:
+    fingerprint:
+        name: Tiki Wiki CMS Groupware
+    fofa: header="Tiki Wiki CMS Groupware" || title="Tiki Wiki CMS Groupware"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Tiki Wiki CMS Groupware"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Tiki Wiki CMS Groupware")
+expression: r0() || r1()

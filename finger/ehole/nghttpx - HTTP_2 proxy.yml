@@ -1,0 +1,23 @@
+name: fingerprint-yaml-nghttpx - HTTP_2 proxy
+manual: false
+detail:
+    fingerprint:
+        name: nghttpx - HTTP/2 proxy
+    fofa: header="nghttpx - HTTP/2 proxy" || title="nghttpx - HTTP/2 proxy"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("nghttpx - HTTP/2 proxy"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("nghttpx - HTTP/2 proxy")
+expression: r0() || r1()

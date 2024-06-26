@@ -1,0 +1,44 @@
+name: fingerprint-yaml-JSP
+manual: false
+detail:
+    fingerprint:
+        name: JSP
+    fofa: header="jsp" && header="jboss" && header="jsessionid" || header="jsessionid" || header="jboss" || header="servlet" || header="jsp"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jsp")) && response.raw_header.bcontains(bytes("jboss")) && response.raw_header.bcontains(bytes("jsessionid"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jsessionid"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jboss"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("servlet"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("jsp"))
+expression: r0() || r1() || r2() || r3() || r4()

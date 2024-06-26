@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GooglePlus
+manual: false
+detail:
+    fingerprint:
+        name: GooglePlus
+    fofa: title="Google Plus"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Plus")
+expression: r0()

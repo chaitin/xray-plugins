@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Net-Keybord
+manual: false
+detail:
+    fingerprint:
+        name: Net-Keybord
+    fofa: header="net keybord-webs"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("net keybord-webs"))
+expression: r0()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Thingsquare-Contiki
+manual: false
+detail:
+    fingerprint:
+        name: Thingsquare-Contiki
+    fofa: 'header="server: contiki"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: contiki"))'
+expression: r0()

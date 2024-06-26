@@ -1,0 +1,58 @@
+name: fingerprint-yaml-360-TianQing
+manual: false
+detail:
+    fingerprint:
+        name: 360-TianQing
+    fofa: body="/task/index/detail?id={item.id}" && body="已过期或者未授权，购买请联系4008-136-360" || body="已过期或者未授权，购买请联系4008-136-360" || body="/task/index/detail?id={item.id}" || body="appid\":\"skylar6" || title="360天擎终端安全管理系统" || title="360天擎" || title="360新天擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/task/index/detail?id={item.id}") && response.body_string.contains("已过期或者未授权，购买请联系4008-136-360")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("已过期或者未授权，购买请联系4008-136-360")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/task/index/detail?id={item.id}")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('appid":"skylar6')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("360天擎终端安全管理系统")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("360天擎")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("360新天擎")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

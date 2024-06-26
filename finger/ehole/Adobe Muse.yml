@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Adobe Muse
+manual: false
+detail:
+    fingerprint:
+        name: Adobe Muse
+    fofa: header="Adobe Muse" || title="Adobe Muse"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Adobe Muse"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Adobe Muse")
+expression: r0() || r1()

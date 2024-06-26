@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TQ2440
+manual: false
+detail:
+    fingerprint:
+        name: TQ2440
+    fofa: title="tq2440"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("tq2440")
+expression: r0()

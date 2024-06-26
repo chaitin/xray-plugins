@@ -1,0 +1,30 @@
+name: fingerprint-yaml-SnoGrafx
+manual: false
+detail:
+    fingerprint:
+        name: SnoGrafx
+    fofa: 'body="var snoOff = new Image();snoOff.src = \"xfx/snografx0.gif\";var snoOn = new Image();snoOn.src = \"xfx/snografx2.gif\";" || body="var snoOff = new Image();snoOff.src = \"4fx/00sno.png\";var snoOn = new Image();snoOn.src = \"4fx/02sno.png\";" || body="Website powered by: <a href=\"http://snografx.com/\" target=\"_blank\">Snöfx</a>"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var snoOff = new Image();snoOff.src = "xfx/snografx0.gif";var snoOn = new Image();snoOn.src = "xfx/snografx2.gif";')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var snoOff = new Image();snoOff.src = "4fx/00sno.png";var snoOn = new Image();snoOn.src = "4fx/02sno.png";')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''Website powered by: <a href="http://snografx.com/" target="_blank">Snöfx</a>'')'
+expression: r0() || r1() || r2()

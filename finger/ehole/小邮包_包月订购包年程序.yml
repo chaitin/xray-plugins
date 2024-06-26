@@ -1,0 +1,16 @@
+name: fingerprint-yaml-小邮包_包月订购包年程序
+manual: false
+detail:
+    fingerprint:
+        name: 小邮包_包月订购包年程序
+    fofa: title="小邮包_包月订购包年程序"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("小邮包_包月订购包年程序")
+expression: r0()

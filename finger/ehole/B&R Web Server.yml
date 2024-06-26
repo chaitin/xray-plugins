@@ -1,0 +1,23 @@
+name: fingerprint-yaml-B&R Web Server
+manual: false
+detail:
+    fingerprint:
+        name: B&R Web Server
+    fofa: header="B&R Web Server" || title="B&R Web Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("B&R Web Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("B&R Web Server")
+expression: r0() || r1()

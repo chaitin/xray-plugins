@@ -1,0 +1,16 @@
+name: fingerprint-yaml-GoogleWebToolkit
+manual: false
+detail:
+    fingerprint:
+        name: GoogleWebToolkit
+    fofa: title="Google Web Toolkit"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Google Web Toolkit")
+expression: r0()

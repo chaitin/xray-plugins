@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Niushop B2C商城系统
+manual: false
+detail:
+    fingerprint:
+        name: Niushop B2C商城系统
+    fofa: header="Niushop B2C商城系统" || title="Niushop B2C商城系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Niushop B2C商城系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Niushop B2C商城系统")
+expression: r0() || r1()

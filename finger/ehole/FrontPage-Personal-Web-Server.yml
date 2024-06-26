@@ -1,0 +1,23 @@
+name: fingerprint-yaml-FrontPage-Personal-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: FrontPage-Personal-Web-Server
+    fofa: header="fpws" || header="FPWS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("fpws"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("FPWS"))
+expression: r0() || r1()

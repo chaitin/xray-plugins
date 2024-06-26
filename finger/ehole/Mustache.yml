@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mustache
+manual: false
+detail:
+    fingerprint:
+        name: Mustache
+    fofa: header="Mustache" || title="Mustache"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mustache"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Mustache")
+expression: r0() || r1()

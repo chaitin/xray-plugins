@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Inout web Portal
+manual: false
+detail:
+    fingerprint:
+        name: Inout web Portal
+    fofa: header="Inout web Portal" || title="Inout web Portal"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Inout web Portal"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Inout web Portal")
+expression: r0() || r1()

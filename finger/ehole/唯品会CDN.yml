@@ -1,0 +1,23 @@
+name: fingerprint-yaml-唯品会CDN
+manual: false
+detail:
+    fingerprint:
+        name: 唯品会CDN
+    fofa: header="唯品会CDN" || title="唯品会CDN"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("唯品会CDN"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("唯品会CDN")
+expression: r0() || r1()

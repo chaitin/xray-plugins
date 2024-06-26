@@ -1,0 +1,23 @@
+name: fingerprint-yaml-citrix-xenmobile
+manual: false
+detail:
+    fingerprint:
+        name: citrix-xenmobile
+    fofa: 'header="Citrix-TransactionId: *" || header="Citrix-TransactionId: *" && header="Set-Cookie: xmscookie"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Citrix-TransactionId: *"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("Citrix-TransactionId: *")) && response.raw_header.bcontains(bytes("Set-Cookie: xmscookie"))'
+expression: r0() || r1()

@@ -1,0 +1,51 @@
+name: fingerprint-yaml-File-Upload-Manager
+manual: false
+detail:
+    fingerprint:
+        name: File-Upload-Manager
+    fofa: 'body="<img src=\"/images/header.jpg\" alt=\"file upload manager\">" || body="<IMG SRC=\"/images/header.jpg\" ALT=\"File Upload Manager\">" || body="<title>File Upload Manager</title>" || body="<!-- Copyright (c) 2003 thepeak. Get your own copy of this free PHP script from www.mtnpeak.net -->" || body="<a href=\"http://www.mtnpeak.net\" style=\"text-decoration: none; color: #C0C0C0; font-size: 9px; cursor: default\";>&copy; thepeak</a>" || title="file upload manager"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<img src="/images/header.jpg" alt="file upload manager">')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<IMG SRC="/images/header.jpg" ALT="File Upload Manager">')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<title>File Upload Manager</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<!-- Copyright (c) 2003 thepeak. Get your own copy of this free PHP script from www.mtnpeak.net -->")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<a href="http://www.mtnpeak.net" style="text-decoration: none; color: #C0C0C0; font-size: 9px; cursor: default";>&copy; thepeak</a>'')'
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("file upload manager")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

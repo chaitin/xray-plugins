@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Socket_io
+manual: false
+detail:
+    fingerprint:
+        name: Socket.io
+    fofa: header="Socket.io" || title="Socket.io"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Socket.io"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Socket.io")
+expression: r0() || r1()

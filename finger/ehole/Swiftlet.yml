@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Swiftlet
+manual: false
+detail:
+    fingerprint:
+        name: Swiftlet
+    fofa: header="swiftlet" || header="Swiftlet"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("swiftlet"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Swiftlet"))
+expression: r0() || r1()

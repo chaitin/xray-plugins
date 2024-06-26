@@ -1,0 +1,16 @@
+name: fingerprint-yaml-乐视路由器
+manual: false
+detail:
+    fingerprint:
+        name: 乐视路由器
+    fofa: body="<div class=\"login-logo\"></div>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<div class="login-logo"></div>')
+expression: r0()

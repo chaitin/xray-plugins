@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Mbedthis-Appweb
+manual: false
+detail:
+    fingerprint:
+        name: Mbedthis-Appweb
+    fofa: 'header="server: mbedthis-appweb" || header="Mbedthis-Appweb"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: mbedthis-appweb"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Mbedthis-Appweb"))
+expression: r0() || r1()

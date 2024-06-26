@@ -1,0 +1,16 @@
+name: fingerprint-yaml-uniview-ISC3500-SL
+manual: false
+detail:
+    fingerprint:
+        name: uniview-ISC3500-SL
+    fofa: title="isc3500-sl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc3500-sl")
+expression: r0()

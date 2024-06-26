@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Esvon-Classifieds
+manual: false
+detail:
+    fingerprint:
+        name: Esvon-Classifieds
+    fofa: body="powered by esvon" || body="Powered by Esvon" || body="<!-- DO NOT REMOVE OR EDIT THIS LINE, DOING SO WILL RESULT IN COPYRIGHT VIOLATIONS UNLESS YOU PURCHASED \"POWERED BY\" REMOVAL OPTION -->"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("powered by esvon")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Esvon")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- DO NOT REMOVE OR EDIT THIS LINE, DOING SO WILL RESULT IN COPYRIGHT VIOLATIONS UNLESS YOU PURCHASED "POWERED BY" REMOVAL OPTION -->')
+expression: r0() || r1() || r2()

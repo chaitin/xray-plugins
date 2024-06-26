@@ -1,0 +1,23 @@
+name: fingerprint-yaml-InstantCMS
+manual: false
+detail:
+    fingerprint:
+        name: InstantCMS
+    fofa: header="InstantCMS" || title="InstantCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("InstantCMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("InstantCMS")
+expression: r0() || r1()

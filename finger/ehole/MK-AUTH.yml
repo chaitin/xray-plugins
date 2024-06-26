@@ -1,0 +1,16 @@
+name: fingerprint-yaml-MK-AUTH
+manual: false
+detail:
+    fingerprint:
+        name: MK-AUTH
+    fofa: icon_hash="1490343308"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 1490343308
+expression: r0()

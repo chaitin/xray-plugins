@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Hikvision--UDE
+manual: false
+detail:
+    fingerprint:
+        name: Hikvision--UDE
+    fofa: body="hikvision"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("hikvision")
+expression: r0()

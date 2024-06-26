@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Youngzsoft-DBMail
+manual: false
+detail:
+    fingerprint:
+        name: Youngzsoft-DBMail
+    fofa: body="href=\"http://www.dbmailserver.com\" target=_blank" || title="遥志dbmail邮件服务器"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://www.dbmailserver.com" target=_blank')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("遥志dbmail邮件服务器")
+expression: r0() || r1()

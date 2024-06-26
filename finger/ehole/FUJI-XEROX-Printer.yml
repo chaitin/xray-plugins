@@ -1,0 +1,100 @@
+name: fingerprint-yaml-FUJI-XEROX-Printer
+manual: false
+detail:
+    fingerprint:
+        name: FUJI-XEROX-Printer
+    fofa: body="<frame src=\"headstat.htm\" name=\"top" && body="<frame src=\"footer.asp\" name=\"footer\" title=\"footer\" scrolling=\"no\" noresize marginheight=\"2\">" && body="var jtpath = '/jt/cgi-bin/';" && body="fuji xerox" && body="frames[2].window.location.href=jtpath + loc;" && body="properties/aboutprinter.html" && body="phaser 6250dp</title>" && body="phaser 6250n</title>" && body="phaser 4500dt</font></td>" || body="phaser 4500dt</font></td>" || body="phaser 6250n</title>" || body="phaser 6250dp</title>" || body="properties/aboutprinter.html" || body="fuji xerox" && body="var jtpath = \"/jt/cgi-bin/\";" || body="<frame src=\"headstat.htm\" name=\"top" || body="<frame src=\"footer.asp\" name=\"footer\" title=\"footer\" scrolling=\"no\" noresize marginheight=\"2\">" || body="var jtpath = \"/jt/cgi-bin/\";" || body="fuji xerox" || body="frames[2].window.location.href=jtpath + loc;" || title="docucentre" || title="docuprint "
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="headstat.htm" name="top') && response.body_string.contains('<frame src="footer.asp" name="footer" title="footer" scrolling="no" noresize marginheight="2">') && response.body_string.contains("var jtpath = '/jt/cgi-bin/';") && response.body_string.contains("fuji xerox") && response.body_string.contains("frames[2].window.location.href=jtpath + loc;") && response.body_string.contains("properties/aboutprinter.html") && response.body_string.contains("phaser 6250dp</title>") && response.body_string.contains("phaser 6250n</title>") && response.body_string.contains("phaser 4500dt</font></td>")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phaser 4500dt</font></td>")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phaser 6250n</title>")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("phaser 6250dp</title>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("properties/aboutprinter.html")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fuji xerox") && response.body_string.contains('var jtpath = "/jt/cgi-bin/";')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="headstat.htm" name="top')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<frame src="footer.asp" name="footer" title="footer" scrolling="no" noresize marginheight="2">')
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('var jtpath = "/jt/cgi-bin/";')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("fuji xerox")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("frames[2].window.location.href=jtpath + loc;")
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("docucentre")
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("docuprint ")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12()

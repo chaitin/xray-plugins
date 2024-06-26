@@ -1,0 +1,37 @@
+name: fingerprint-yaml-Telligent-Community-Server
+manual: false
+detail:
+    fingerprint:
+        name: Telligent-Community-Server
+    fofa: header="communityserver-lastvisitupdated" && header="communityserver-usercookie" || header="communityserver-usercookie" || header="communityserver" || header="communityserver-lastvisitupdated"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("communityserver-lastvisitupdated")) && response.raw_header.bcontains(bytes("communityserver-usercookie"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("communityserver-usercookie"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("communityserver"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("communityserver-lastvisitupdated"))
+expression: r0() || r1() || r2() || r3()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Huawei-AR敏捷网关
+manual: false
+detail:
+    fingerprint:
+        name: Huawei-AR敏捷网关
+    fofa: title="Huawei-AR敏捷网关"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Huawei-AR敏捷网关")
+expression: r0()

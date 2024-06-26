@@ -1,0 +1,23 @@
+name: fingerprint-yaml-WikkaWiki
+manual: false
+detail:
+    fingerprint:
+        name: WikkaWiki
+    fofa: header="WikkaWiki" || title="WikkaWiki"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WikkaWiki"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WikkaWiki")
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-JPress
+manual: false
+detail:
+    fingerprint:
+        name: JPress
+    fofa: title="JPress"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("JPress")
+expression: r0()

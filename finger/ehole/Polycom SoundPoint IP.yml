@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Polycom SoundPoint IP
+manual: false
+detail:
+    fingerprint:
+        name: Polycom SoundPoint IP
+    fofa: header="Polycom SoundPoint IP" || title="Polycom SoundPoint IP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Polycom SoundPoint IP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Polycom SoundPoint IP")
+expression: r0() || r1()

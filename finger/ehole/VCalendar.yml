@@ -1,0 +1,37 @@
+name: fingerprint-yaml-VCalendar
+manual: false
+detail:
+    fingerprint:
+        name: VCalendar
+    fofa: body="powered by <a href=\"http://www.vcalendar.org\">vcalendar</a>" && body="<link href=\"styles/basic/style.css\"" || body="<link href=\"styles/basic/style.css\"" || body="powered by <a href=\"http://www.vcalendar.org\">vcalendar</a>" || body="<link href=\"Styles/Basic/Style.css\" type=\"text/css\" rel=\"stylesheet\"></head>"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.vcalendar.org">vcalendar</a>') && response.body_string.contains('<link href="styles/basic/style.css"')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="styles/basic/style.css"')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('powered by <a href="http://www.vcalendar.org">vcalendar</a>')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="Styles/Basic/Style.css" type="text/css" rel="stylesheet"></head>')
+expression: r0() || r1() || r2() || r3()

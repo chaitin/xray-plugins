@@ -1,0 +1,16 @@
+name: fingerprint-yaml-yuanwei_gateway
+manual: false
+detail:
+    fingerprint:
+        name: yuanwei_gateway
+    fofa: title="yuanwei_gateway"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("yuanwei_gateway")
+expression: r0()

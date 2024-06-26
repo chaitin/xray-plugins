@@ -1,0 +1,23 @@
+name: fingerprint-yaml-企智通上网行为管理
+manual: false
+detail:
+    fingerprint:
+        name: 企智通上网行为管理
+    fofa: header="企智通上网行为管理" || title="企智通上网行为管理"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("企智通上网行为管理"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("企智通上网行为管理")
+expression: r0() || r1()

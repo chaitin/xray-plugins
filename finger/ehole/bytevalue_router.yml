@@ -1,0 +1,16 @@
+name: fingerprint-yaml-bytevalue_router
+manual: false
+detail:
+    fingerprint:
+        name: bytevalue_router
+    fofa: title="bytevalue_router"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("bytevalue_router")
+expression: r0()

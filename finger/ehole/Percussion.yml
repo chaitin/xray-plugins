@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Percussion
+manual: false
+detail:
+    fingerprint:
+        name: Percussion
+    fofa: header="Percussion" || title="Percussion"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Percussion"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Percussion")
+expression: r0() || r1()

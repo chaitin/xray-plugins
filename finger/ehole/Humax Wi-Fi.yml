@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Humax Wi-Fi
+manual: false
+detail:
+    fingerprint:
+        name: Humax Wi-Fi
+    fofa: header="Humax Wi-Fi" || title="Humax Wi-Fi"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Humax Wi-Fi"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Humax Wi-Fi")
+expression: r0() || r1()

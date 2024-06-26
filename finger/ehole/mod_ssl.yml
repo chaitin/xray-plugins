@@ -1,0 +1,16 @@
+name: fingerprint-yaml-mod_ssl
+manual: false
+detail:
+    fingerprint:
+        name: mod_ssl
+    fofa: header="mod_ssl"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("mod_ssl"))
+expression: r0()

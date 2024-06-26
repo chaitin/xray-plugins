@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Keil-Embedded-WEB-Server
+manual: false
+detail:
+    fingerprint:
+        name: Keil-Embedded-WEB-Server
+    fofa: 'header="server: keil-eweb" || header="Keil-EWEB" || header="Keil Embedded WEB Server" || body="<head><title>Keil Embedded WEB Server</title></head><body><h2>HTTP 1.0 401 Error. Unauthorized Access</h2>You are not authorized to access this server.<hr>" || title="Keil Embedded WEB Server"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: keil-eweb"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Keil-EWEB"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Keil Embedded WEB Server"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<head><title>Keil Embedded WEB Server</title></head><body><h2>HTTP 1.0 401 Error. Unauthorized Access</h2>You are not authorized to access this server.<hr>")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Keil Embedded WEB Server")
+expression: r0() || r1() || r2() || r3() || r4()

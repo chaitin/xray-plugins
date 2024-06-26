@@ -1,0 +1,23 @@
+name: fingerprint-yaml-PigCms
+manual: false
+detail:
+    fingerprint:
+        name: PigCms
+    fofa: 'header="x-powered-by: pigcms.com" || header="X-Powered-By:PigCms.com"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("x-powered-by: pigcms.com"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-By:PigCms.com"))
+expression: r0() || r1()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-LILIN-Camera
+manual: false
+detail:
+    fingerprint:
+        name: LILIN-Camera
+    fofa: header="realm=\"merit lilin ent. co., ltd."
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="merit lilin ent. co., ltd.'))
+expression: r0()

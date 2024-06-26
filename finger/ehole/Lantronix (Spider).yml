@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Lantronix (Spider)
+manual: false
+detail:
+    fingerprint:
+        name: Lantronix (Spider)
+    fofa: icon_hash="882208493"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 882208493
+expression: r0()

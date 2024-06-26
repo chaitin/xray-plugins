@@ -1,0 +1,16 @@
+name: fingerprint-yaml-epson打印机
+manual: false
+detail:
+    fingerprint:
+        name: epson打印机
+    fofa: header="EPSON-HTTP"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("EPSON-HTTP"))
+expression: r0()

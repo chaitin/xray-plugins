@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Yasni
+manual: false
+detail:
+    fingerprint:
+        name: Yasni
+    fofa: icon_hash="-178685903"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -178685903
+expression: r0()

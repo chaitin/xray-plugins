@@ -1,0 +1,16 @@
+name: fingerprint-yaml-OpenGeo Suite
+manual: false
+detail:
+    fingerprint:
+        name: OpenGeo Suite
+    fofa: icon_hash="-609520537"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -609520537
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Alpha Five Application Server
+manual: false
+detail:
+    fingerprint:
+        name: Alpha Five Application Server
+    fofa: header="Alpha Five Application Server" || title="Alpha Five Application Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Alpha Five Application Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Alpha Five Application Server")
+expression: r0() || r1()

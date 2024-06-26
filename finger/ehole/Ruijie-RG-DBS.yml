@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Ruijie-RG-DBS
+manual: false
+detail:
+    fingerprint:
+        name: Ruijie-RG-DBS
+    fofa: body="/css/impl-security.css" && body="/dbaudit/authenticate" || body="/dbaudit/authenticate" || body="/css/impl-security.css"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/impl-security.css") && response.body_string.contains("/dbaudit/authenticate")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/dbaudit/authenticate")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/css/impl-security.css")
+expression: r0() || r1() || r2()

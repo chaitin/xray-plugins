@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Github-Enterprise
+manual: false
+detail:
+    fingerprint:
+        name: Github-Enterprise
+    fofa: header="_gh_manage"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("_gh_manage"))
+expression: r0()

@@ -1,0 +1,23 @@
+name: fingerprint-yaml-360-NGSOC
+manual: false
+detail:
+    fingerprint:
+        name: 360-NGSOC
+    fofa: title="ngsoc日志采集探针" || title="ngsoc关联规则引擎"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ngsoc日志采集探针")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ngsoc关联规则引擎")
+expression: r0() || r1()

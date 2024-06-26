@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NETGEAR VEGN2610
+manual: false
+detail:
+    fingerprint:
+        name: NETGEAR VEGN2610
+    fofa: header="NETGEAR VEGN2610"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("NETGEAR VEGN2610"))
+expression: r0()

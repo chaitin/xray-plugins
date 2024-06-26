@@ -1,0 +1,23 @@
+name: fingerprint-yaml-安恒 明鉴网站安全监测平台
+manual: false
+detail:
+    fingerprint:
+        name: 安恒 明鉴网站安全监测平台
+    fofa: header="安恒 明鉴网站安全监测平台" || title="安恒 明鉴网站安全监测平台"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("安恒 明鉴网站安全监测平台"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("安恒 明鉴网站安全监测平台")
+expression: r0() || r1()

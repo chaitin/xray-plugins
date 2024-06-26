@@ -1,0 +1,30 @@
+name: fingerprint-yaml-Oracle-WebDb
+manual: false
+detail:
+    fingerprint:
+        name: Oracle-WebDb
+    fofa: 'header="server: oracle_webdb_listener" && header="/webdb/webdb.home" || header="/webdb/webdb.home" || header="server: oracle_webdb_listener"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle_webdb_listener")) && response.raw_header.bcontains(bytes("/webdb/webdb.home"))'
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("/webdb/webdb.home"))
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: oracle_webdb_listener"))'
+expression: r0() || r1() || r2()

@@ -1,0 +1,16 @@
+name: fingerprint-yaml-NukeViet-CMS
+manual: false
+detail:
+    fingerprint:
+        name: NukeViet-CMS
+    fofa: 'body="<div id=\"run_cronjobs\" style=\"visibility: hidden; display: none;\">"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<div id="run_cronjobs" style="visibility: hidden; display: none;">'')'
+expression: r0()

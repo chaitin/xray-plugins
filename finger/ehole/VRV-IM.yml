@@ -1,0 +1,58 @@
+name: fingerprint-yaml-VRV-IM
+manual: false
+detail:
+    fingerprint:
+        name: VRV-IM
+    fofa: body="<h3>连豆豆pc客户端 </h3>" && body="href=\"http://im.vrv.cn/server-securitycenter/password/goretrieval.vrv" && body="class=\"loginusername\" value=\"\" placeholder=\"连豆豆账号/邮箱/手机号" && body="class=\"wj-text wj-title\">下载信源豆豆</p>" || body="class=\"wj-text wj-title\">下载信源豆豆</p>" || body="class=\"loginusername\" value=\"\" placeholder=\"连豆豆账号/邮箱/手机号" || body="href=\"http://im.vrv.cn/server-securitycenter/password/goretrieval.vrv" || body="<h3>连豆豆pc客户端 </h3>" || title="信源豆豆官网" || title="连豆豆官网"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h3>连豆豆pc客户端 </h3>") && response.body_string.contains('href="http://im.vrv.cn/server-securitycenter/password/goretrieval.vrv') && response.body_string.contains('class="loginusername" value="" placeholder="连豆豆账号/邮箱/手机号') && response.body_string.contains('class="wj-text wj-title">下载信源豆豆</p>')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="wj-text wj-title">下载信源豆豆</p>')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('class="loginusername" value="" placeholder="连豆豆账号/邮箱/手机号')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('href="http://im.vrv.cn/server-securitycenter/password/goretrieval.vrv')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<h3>连豆豆pc客户端 </h3>")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("信源豆豆官网")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("连豆豆官网")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6()

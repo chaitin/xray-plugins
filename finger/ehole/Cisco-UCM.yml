@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cisco-UCM
+manual: false
+detail:
+    fingerprint:
+        name: Cisco-UCM
+    fofa: body="/ccmadmin/" || title="cisco unified"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("/ccmadmin/")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cisco unified")
+expression: r0() || r1()

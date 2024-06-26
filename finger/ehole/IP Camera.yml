@@ -1,0 +1,72 @@
+name: fingerprint-yaml-IP Camera
+manual: false
+detail:
+    fingerprint:
+        name: IP Camera
+    fofa: 'icon_hash="492290497" || body="classid=''clsid:67f77f18-5272-4875-b983-c7e8af5517e4'' codebase=''/ocxctrlsvac.cab" && body="#max{background:url(svac.png;width:121px;float:right}" && body="clientbin/vimicro.silverlight.video.xap" || body="value=\"clientbin/vimicro.silverlight.video.xap" || body="#max{background:url(svac.png);width:121px;float:right}" && body="classid=\"clsid:67f77f18-5272-4875-b983-c7e8af5517e4\" codebase=\"/ocxctrlsvac.cab" || body="classid=\"clsid:67f77f18-5272-4875-b983-c7e8af5517e4\" codebase=\"/ocxctrlsvac.cab" || body="#max{background:urlsvac.png;width:121px;float:right}" || body="clientbin/vimicro.silverlight.video.xap" || header="server: boa/0.94.14rc18-ipcam" || title="vilar ipcamera login"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 492290497
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("classid='clsid:67f77f18-5272-4875-b983-c7e8af5517e4' codebase='/ocxctrlsvac.cab") && response.body_string.contains("#max{background:url(svac.png;width:121px;float:right}") && response.body_string.contains("clientbin/vimicro.silverlight.video.xap")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('value="clientbin/vimicro.silverlight.video.xap')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("#max{background:url(svac.png);width:121px;float:right}") && response.body_string.contains('classid="clsid:67f77f18-5272-4875-b983-c7e8af5517e4" codebase="/ocxctrlsvac.cab')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:67f77f18-5272-4875-b983-c7e8af5517e4" codebase="/ocxctrlsvac.cab')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("#max{background:urlsvac.png;width:121px;float:right}")
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("clientbin/vimicro.silverlight.video.xap")
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: boa/0.94.14rc18-ipcam"))'
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("vilar ipcamera login")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8()

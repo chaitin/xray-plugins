@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Canon-Print-or-Copier
+manual: false
+detail:
+    fingerprint:
+        name: Canon-Print-or-Copier
+    fofa: 'body="<span id=\"devicename\">ir-adv" || header="canon http server" && header="server: catwalk" || header="server: catwalk" || header="canon http server" || title="ir-adv"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<span id="devicename">ir-adv')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("canon http server")) && response.raw_header.bcontains(bytes("server: catwalk"))'
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: catwalk"))'
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("canon http server"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ir-adv")
+expression: r0() || r1() || r2() || r3() || r4()

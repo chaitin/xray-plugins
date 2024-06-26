@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ZyXEL-USG210
+manual: false
+detail:
+    fingerprint:
+        name: ZyXEL-USG210
+    fofa: title="usg210"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("usg210")
+expression: r0()

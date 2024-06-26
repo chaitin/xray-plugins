@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Zrlog
+manual: false
+detail:
+    fingerprint:
+        name: Zrlog
+    fofa: header="Zrlog" || title="Zrlog"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Zrlog"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Zrlog")
+expression: r0() || r1()

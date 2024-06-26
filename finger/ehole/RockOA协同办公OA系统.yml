@@ -1,0 +1,23 @@
+name: fingerprint-yaml-RockOA协同办公OA系统
+manual: false
+detail:
+    fingerprint:
+        name: RockOA协同办公OA系统
+    fofa: header="RockOA协同办公OA系统" || title="RockOA协同办公OA系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RockOA协同办公OA系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RockOA协同办公OA系统")
+expression: r0() || r1()

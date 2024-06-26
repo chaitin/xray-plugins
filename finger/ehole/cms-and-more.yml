@@ -1,0 +1,23 @@
+name: fingerprint-yaml-cms-and-more
+manual: false
+detail:
+    fingerprint:
+        name: cms-and-more
+    fofa: header="cms-and-more" || title="cms-and-more"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("cms-and-more"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("cms-and-more")
+expression: r0() || r1()

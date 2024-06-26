@@ -1,0 +1,212 @@
+name: fingerprint-yaml-Uniview-Cameras-and-Surveillance
+manual: false
+detail:
+    fingerprint:
+        name: Uniview-Cameras-and-Surveillance
+    fofa: 'body="to=\"href_version_div\">版本<" && body="<a href=\"#\" onclick=\"pophelp(varhelpancvalue;\">" && body="classid=\"clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae\" id=\"recordmanager_activex" && body="<meta http-equiv=\"refresh\" content=\"0; url=cgi-bin/main.cgi?webid=1\" />" && body="recordmanager_activex" && body="pophelp(varhelpancvalue;" && body="<label for=''autologin'' class=\"login_autologinlabel\">" && body="text.videomanagesystem" && body="wanlanswitch" && body="gjs_producttype" && body="uniview" && body="宇视" || body="宇视" && body="uniview" && body="gjs_producttype" || body="wanlanswitch" && body="text.videomanagesystem" && body="<label for=\"autologin\" class=\"login_autologinlabel\">" || body="<form id=loginform name=loginform action=cgi-bin/main.cgi method=post >" && body="cgi-bin/main.cgi?web_id=1&langinfo=-3" || body="pophelp(varhelpancvalue);" && body="recordmanager_activex" || body="<meta http-equiv=\"refresh\" content=\"0; url=cgi-bin/main.cgi?webid=1\" />" || body="classid=\"clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae\" id=\"recordmanager_activex" && body="<a href=\"#\" onclick=\"pophelp(varhelpancvalue);\">" || body="id=\"username\" onkeypress=\"check_username(this)\" value=\"admin" && body="isun = true;" || body="<iframe name=\"banner\" id=\"banner\" hidefocus=\"hidefocus\" marginwidth=\"0\" marginheight=\"0\" src=\" ../index.htm?clientipaddr=" || body="var gjs_" || body="<!-- <embed src=\"null.wav\" loop=" || body="gjs_oemtype = \"uniview" || body="to=\"href_version_div\">版本<" || body="<a href=\"#\" onclick=\"pophelpvarhelpancvalue;\">" || body="classid=\"clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae\" id=\"recordmanager_activex" || body="recordmanager_activex" || body="pophelpvarhelpancvalue;" || body="<label for=\"autologin\" class=\"login_autologinlabel\">" || body="text.videomanagesystem" || body="wanlanswitch" || body="gjs_producttype" || body="uniview" || body="宇视" || header="server: uniser" || title="isc3616" || title="isc3500-" || title="国标配置系统" || title="公安图像应用平台" || title="isc2500"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('to="href_version_div">版本<') && response.body_string.contains('<a href="#" onclick="pophelp(varhelpancvalue;">') && response.body_string.contains('classid="clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae" id="recordmanager_activex') && response.body_string.contains('<meta http-equiv="refresh" content="0; url=cgi-bin/main.cgi?webid=1" />') && response.body_string.contains("recordmanager_activex") && response.body_string.contains("pophelp(varhelpancvalue;") && response.body_string.contains("<label for='autologin' class=\"login_autologinlabel\">") && response.body_string.contains("text.videomanagesystem") && response.body_string.contains("wanlanswitch") && response.body_string.contains("gjs_producttype") && response.body_string.contains("uniview") && response.body_string.contains("宇视")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("宇视") && response.body_string.contains("uniview") && response.body_string.contains("gjs_producttype")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wanlanswitch") && response.body_string.contains("text.videomanagesystem") && response.body_string.contains('<label for="autologin" class="login_autologinlabel">')
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("<form id=loginform name=loginform action=cgi-bin/main.cgi method=post >") && response.body_string.contains("cgi-bin/main.cgi?web_id=1&langinfo=-3")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pophelp(varhelpancvalue);") && response.body_string.contains("recordmanager_activex")
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<meta http-equiv="refresh" content="0; url=cgi-bin/main.cgi?webid=1" />')
+    r6:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae" id="recordmanager_activex') && response.body_string.contains('<a href="#" onclick="pophelp(varhelpancvalue);">')
+    r7:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('id="username" onkeypress="check_username(this)" value="admin') && response.body_string.contains("isun = true;")
+    r8:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<iframe name="banner" id="banner" hidefocus="hidefocus" marginwidth="0" marginheight="0" src=" ../index.htm?clientipaddr=')
+    r9:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("var gjs_")
+    r10:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<!-- <embed src="null.wav" loop=')
+    r11:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('gjs_oemtype = "uniview')
+    r12:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('to="href_version_div">版本<')
+    r13:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<a href="#" onclick="pophelpvarhelpancvalue;">')
+    r14:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('classid="clsid:0796c71f-aa80-4921-b6d1-aa4252d097ae" id="recordmanager_activex')
+    r15:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("recordmanager_activex")
+    r16:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("pophelpvarhelpancvalue;")
+    r17:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<label for="autologin" class="login_autologinlabel">')
+    r18:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("text.videomanagesystem")
+    r19:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wanlanswitch")
+    r20:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("gjs_producttype")
+    r21:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("uniview")
+    r22:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("宇视")
+    r23:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: uniser"))'
+    r24:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc3616")
+    r25:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc3500-")
+    r26:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("国标配置系统")
+    r27:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("公安图像应用平台")
+    r28:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("isc2500")
+expression: r0() || r1() || r2() || r3() || r4() || r5() || r6() || r7() || r8() || r9() || r10() || r11() || r12() || r13() || r14() || r15() || r16() || r17() || r18() || r19() || r20() || r21() || r22() || r23() || r24() || r25() || r26() || r27() || r28()

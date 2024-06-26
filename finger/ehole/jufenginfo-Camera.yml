@@ -1,0 +1,16 @@
+name: fingerprint-yaml-jufenginfo-Camera
+manual: false
+detail:
+    fingerprint:
+        name: jufenginfo-Camera
+    fofa: title="jftech"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("jftech")
+expression: r0()

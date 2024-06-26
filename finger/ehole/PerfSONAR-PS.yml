@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PerfSONAR-PS
+manual: false
+detail:
+    fingerprint:
+        name: PerfSONAR-PS
+    fofa: title="PerfSONAR-PS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("PerfSONAR-PS")
+expression: r0()

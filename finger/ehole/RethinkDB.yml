@@ -1,0 +1,30 @@
+name: fingerprint-yaml-RethinkDB
+manual: false
+detail:
+    fingerprint:
+        name: RethinkDB
+    fofa: header="RethinkDB" || title="RethinkDB" || title="rethinkdb administration"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("RethinkDB"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("RethinkDB")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("rethinkdb administration")
+expression: r0() || r1() || r2()

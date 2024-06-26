@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WindRiver设备
+manual: false
+detail:
+    fingerprint:
+        name: WindRiver设备
+    fofa: header="WindRiver-WebServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("WindRiver-WebServer"))
+expression: r0()

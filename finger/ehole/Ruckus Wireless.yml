@@ -1,0 +1,51 @@
+name: fingerprint-yaml-Ruckus Wireless
+manual: false
+detail:
+    fingerprint:
+        name: Ruckus Wireless
+    fofa: icon_hash="-2069844696" || body="alt=\"ruckus wireless\" title=\"ruckus wireless" && body="mon.  tell me your username" || header="ruckuswireless" || body="mon.  tell me your username" || body="alt=\"ruckus wireless\" title=\"ruckus wireless" || title="ruckus wireless"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -2069844696
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="ruckus wireless" title="ruckus wireless') && response.body_string.contains("mon.  tell me your username")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("ruckuswireless"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("mon.  tell me your username")
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('alt="ruckus wireless" title="ruckus wireless')
+    r5:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ruckus wireless")
+expression: r0() || r1() || r2() || r3() || r4() || r5()

@@ -1,0 +1,44 @@
+name: fingerprint-yaml-Chamilo
+manual: false
+detail:
+    fingerprint:
+        name: Chamilo
+    fofa: 'body="<link href=\"http://www.chamilo.org/documentation.php" || body="content=\"Chamilo" || header="X-Powered-By:Chamilo" || body="<link href=\"http://www.chamilo.org/documentation.php\" rel=\"Help\" />" || body="<!-- end of #main\" started at the end of banner.inc.php -->"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="http://www.chamilo.org/documentation.php')
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Chamilo')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-By:Chamilo"))
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('<link href="http://www.chamilo.org/documentation.php" rel="Help" />')
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.body_string.contains(''<!-- end of #main" started at the end of banner.inc.php -->'')'
+expression: r0() || r1() || r2() || r3() || r4()

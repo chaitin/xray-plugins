@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ftxia淘宝客
+manual: false
+detail:
+    fingerprint:
+        name: Ftxia淘宝客
+    fofa: header="Ftxia淘宝客" || title="Ftxia淘宝客"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ftxia淘宝客"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ftxia淘宝客")
+expression: r0() || r1()

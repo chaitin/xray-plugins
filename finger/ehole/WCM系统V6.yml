@@ -1,0 +1,16 @@
+name: fingerprint-yaml-WCM系统V6
+manual: false
+detail:
+    fingerprint:
+        name: WCM系统V6
+    fofa: title="WCM系统V6"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("WCM系统V6")
+expression: r0()

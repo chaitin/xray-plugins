@@ -1,0 +1,16 @@
+name: fingerprint-yaml-ADTRAN-MX408e
+manual: false
+detail:
+    fingerprint:
+        name: ADTRAN-MX408e
+    fofa: header="realm=\"adtran mx408e"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="adtran mx408e'))
+expression: r0()

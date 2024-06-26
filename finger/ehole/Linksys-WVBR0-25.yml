@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Linksys-WVBR0-25
+manual: false
+detail:
+    fingerprint:
+        name: Linksys-WVBR0-25
+    fofa: body="wvbr0-25 model region code"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("wvbr0-25 model region code")
+expression: r0()

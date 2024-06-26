@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Samsung-Laser-printer
+manual: false
+detail:
+    fingerprint:
+        name: Samsung-Laser-printer
+    fofa: 'header="samsung m332x" || header="server: hp http server; samsung"'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("samsung m332x"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: hp http server; samsung"))'
+expression: r0() || r1()

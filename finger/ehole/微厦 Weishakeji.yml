@@ -1,0 +1,23 @@
+name: fingerprint-yaml-微厦 Weishakeji
+manual: false
+detail:
+    fingerprint:
+        name: 微厦 Weishakeji
+    fofa: header="微厦 Weishakeji" || title="微厦 Weishakeji"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("微厦 Weishakeji"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("微厦 Weishakeji")
+expression: r0() || r1()

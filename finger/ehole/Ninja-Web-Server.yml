@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Ninja-Web-Server
+manual: false
+detail:
+    fingerprint:
+        name: Ninja-Web-Server
+    fofa: header="Ninja-Web-Server" || title="Ninja-Web-Server"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Ninja-Web-Server"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Ninja-Web-Server")
+expression: r0() || r1()

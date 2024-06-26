@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Citrix 虚拟桌面
+manual: false
+detail:
+    fingerprint:
+        name: Citrix 虚拟桌面
+    fofa: icon_hash="-1272756243"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -1272756243
+expression: r0()

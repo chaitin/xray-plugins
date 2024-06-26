@@ -1,0 +1,44 @@
+name: fingerprint-yaml-LFCMS(雷风影视CMS)
+manual: false
+detail:
+    fingerprint:
+        name: LFCMS(雷风影视CMS)
+    fofa: body="LFCMS" || body="content=\"Ryan Haudenschilt" || body="Powered by Family Connections" || header="LFCMS" || title="LFCMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("LFCMS")
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains('content="Ryan Haudenschilt')
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("Powered by Family Connections")
+    r3:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("LFCMS"))
+    r4:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("LFCMS")
+expression: r0() || r1() || r2() || r3() || r4()

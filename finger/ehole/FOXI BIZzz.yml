@@ -1,0 +1,16 @@
+name: fingerprint-yaml-FOXI BIZzz
+manual: false
+detail:
+    fingerprint:
+        name: FOXI BIZzz
+    fofa: header="X-Powered-Cms:FOXI BIZzz"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("X-Powered-Cms:FOXI BIZzz"))
+expression: r0()

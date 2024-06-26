@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HuaWei-S5728C
+manual: false
+detail:
+    fingerprint:
+        name: HuaWei-S5728C
+    fofa: 'header="server: s5728c "'
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: 'response.raw_header.bcontains(bytes("server: s5728c "))'
+expression: r0()

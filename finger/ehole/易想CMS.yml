@@ -1,0 +1,16 @@
+name: fingerprint-yaml-易想CMS
+manual: false
+detail:
+    fingerprint:
+        name: 易想CMS
+    fofa: title="易想CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("易想CMS")
+expression: r0()

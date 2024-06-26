@@ -1,0 +1,16 @@
+name: fingerprint-yaml-PIXEL-M151RW3
+manual: false
+detail:
+    fingerprint:
+        name: PIXEL-M151RW3
+    fofa: header="realm=\"pixel m151rw3"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes('realm="pixel m151rw3'))
+expression: r0()

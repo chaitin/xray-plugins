@@ -1,0 +1,16 @@
+name: fingerprint-yaml-TVT 公司产品
+manual: false
+detail:
+    fingerprint:
+        name: TVT 公司产品
+    fofa: icon_hash="492290497"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == 492290497
+expression: r0()

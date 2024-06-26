@@ -1,0 +1,16 @@
+name: fingerprint-yaml-Advantech-UR5i-v2L
+manual: false
+detail:
+    fingerprint:
+        name: Advantech-UR5i-v2L
+    fofa: title="ur5i-v2l"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("ur5i-v2l")
+expression: r0()

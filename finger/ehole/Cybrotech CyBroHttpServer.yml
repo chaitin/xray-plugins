@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Cybrotech CyBroHttpServer
+manual: false
+detail:
+    fingerprint:
+        name: Cybrotech CyBroHttpServer
+    fofa: header="Cybrotech CyBroHttpServer" || title="Cybrotech CyBroHttpServer"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Cybrotech CyBroHttpServer"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Cybrotech CyBroHttpServer")
+expression: r0() || r1()

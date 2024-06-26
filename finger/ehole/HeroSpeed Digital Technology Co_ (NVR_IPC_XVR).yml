@@ -1,0 +1,16 @@
+name: fingerprint-yaml-HeroSpeed Digital Technology Co_ (NVR_IPC_XVR)
+manual: false
+detail:
+    fingerprint:
+        name: HeroSpeed Digital Technology Co. (NVR/IPC/XVR)
+    fofa: icon_hash="-873627015"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: faviconHash(response.getIconContent()) == -873627015
+expression: r0()

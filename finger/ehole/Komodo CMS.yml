@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Komodo CMS
+manual: false
+detail:
+    fingerprint:
+        name: Komodo CMS
+    fofa: header="Komodo CMS" || title="Komodo CMS"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Komodo CMS"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Komodo CMS")
+expression: r0() || r1()

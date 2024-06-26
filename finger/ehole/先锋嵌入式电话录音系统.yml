@@ -1,0 +1,23 @@
+name: fingerprint-yaml-先锋嵌入式电话录音系统
+manual: false
+detail:
+    fingerprint:
+        name: 先锋嵌入式电话录音系统
+    fofa: header="先锋嵌入式电话录音系统" || title="先锋嵌入式电话录音系统"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("先锋嵌入式电话录音系统"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("先锋嵌入式电话录音系统")
+expression: r0() || r1()

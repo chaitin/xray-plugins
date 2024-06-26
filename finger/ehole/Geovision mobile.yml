@@ -1,0 +1,23 @@
+name: fingerprint-yaml-Geovision mobile
+manual: false
+detail:
+    fingerprint:
+        name: Geovision mobile
+    fofa: header="Geovision mobile" || title="Geovision mobile"
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("Geovision mobile"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("Geovision mobile")
+expression: r0() || r1()
