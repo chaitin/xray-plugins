@@ -3,7 +3,8 @@ manual: false
 detail:
     fingerprint:
         name: EleanorCMS
-    fofa: header="Eleanor CMS" || title="Eleanor CMS"
+    fofa: product="EleanorCMS"
+    cpe: eleanor-cms:eleanor_cms
 transport: http
 rules:
     r0:

@@ -1,0 +1,31 @@
+name: fingerprint-yaml-CLTPHP
+manual: false
+detail:
+    fingerprint:
+        name: CLTPHP
+    fofa: product="CLTPHP"
+    cpe: cltphp:cltphp
+transport: http
+rules:
+    r0:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.raw_header.bcontains(bytes("CLTPHP"))
+    r1:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.body_string.contains("CLTPHP")
+    r2:
+        request:
+            cache: true
+            method: GET
+            path: /
+            follow_redirects: true
+        expression: response.title_string.contains("CLTPHP")
+expression: r0() || r1() || r2()

@@ -4,6 +4,7 @@ detail:
     fingerprint:
         name: UCMS
     fofa: title="UCMS"
+    cpe: ucms_project:ucms
 transport: http
 rules:
     r0:

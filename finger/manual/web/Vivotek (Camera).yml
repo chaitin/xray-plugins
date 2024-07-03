@@ -4,6 +4,7 @@ detail:
     fingerprint:
         name: Vivotek (Camera)
     fofa: icon_hash="-1654229048"
+    cpe: vivotek:camera
 transport: http
 rules:
     r0:
