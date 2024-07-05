@@ -4,6 +4,7 @@ detail:
     fingerprint:
         name: Leadsec-Firewall
     fofa: title="网御 防火墙"
+    cpe: leadsec:firewall
 transport: http
 rules:
     r0:

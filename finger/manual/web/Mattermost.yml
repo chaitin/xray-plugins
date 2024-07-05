@@ -3,7 +3,8 @@ manual: false
 detail:
     fingerprint:
         name: Mattermost
-    fofa: header="Mattermost" || title="Mattermost"
+    fofa: product="Mattermost"
+    cpe: mattermost:mattermost
 transport: http
 rules:
     r0:
@@ -20,4 +21,10 @@ rules:
             path: /
             follow_redirects: true
         expression: response.title_string.contains("Mattermost")
-expression: r0() || r1()
+    favicon_hash:
+        request:
+            method: GET
+            path: /
+            follow_redirects: false
+        expression: faviconHash(response.getIconContent()) in [2091779061,-77128220,-940958811,1875634354,1158942057,180508508,-405956582]
+expression: r0() || r1() || favicon_hash()
